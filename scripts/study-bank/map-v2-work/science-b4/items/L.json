@@ -1,0 +1,5457 @@
+[
+  {
+    "id": "MSB4-L5-01",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS3",
+    "ngss_pe": "3-LS3-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Ardenne moth",
+      "Box Hartley",
+      "Box Oun",
+      "Box Ravel",
+      "Box Winslet",
+      "Box Castlemaine"
+    ],
+    "passage": "Caterpillars of the Ardenne moth hatched from eggs laid by two parent pairs. Students raised them in five boxes, fed them leaves of one food plant, and kept some boxes warmer than others.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Box Hartley",
+        "Box Oun",
+        "Box Ravel",
+        "Box Castlemaine",
+        "Box Winslet"
+      ],
+      "colLabels": [
+        "Parents",
+        "Food plant",
+        "Temperature (°C)",
+        "Caterpillar color"
+      ],
+      "cells": [
+        [
+          "Pair 1",
+          "willow",
+          20,
+          "pale green"
+        ],
+        [
+          "Pair 2",
+          "alder",
+          20,
+          "dark brown"
+        ],
+        [
+          "Pair 1",
+          "willow",
+          26,
+          "pale green"
+        ],
+        [
+          "Pair 1",
+          "alder",
+          20,
+          "dark brown"
+        ],
+        [
+          "Pair 1",
+          "alder",
+          26,
+          "dark brown"
+        ]
+      ],
+      "caption": "Table 1. Ardenne moth caterpillars raised in five boxes"
+    },
+    "prompt": "The students want to test only whether the food plant affects caterpillar color. Based on Table 1, the caterpillars in Box Hartley should be compared with the caterpillars in which box?",
+    "choices": [
+      "Box Oun",
+      "Box Ravel",
+      "Box Castlemaine",
+      "Box Winslet"
+    ],
+    "correct_answer": "Box Castlemaine",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    "explanation": "Box Castlemaine matches Box Hartley in parents (Pair 1) and temperature (20 °C) and differs only in food plant (alder, not willow).",
+    "distractor_rationales": [
+      {
+        "choice": "Box Oun",
+        "fault": "Box Oun differs from Box Hartley in parents (Pair 2) as well as food plant, so two things differ."
+      },
+      {
+        "choice": "Box Ravel",
+        "fault": "Box Ravel has the same parents and food plant as Box Hartley and differs only in temperature, so it tests temperature."
+      },
+      {
+        "choice": "Box Winslet",
+        "fault": "Box Winslet differs from Box Hartley in food plant and in temperature (26 °C), so the color change cannot be pinned on food."
+      }
+    ],
+    "real_world_check": "The environment, such as the food an animal eats while it grows, can change a trait like body color; a fair comparison changes only that one factor."
+  },
+  {
+    "id": "MSB4-L5-02",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS2",
+    "ngss_pe": "3-LS2-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Flock Ure",
+      "Flock Tarrant",
+      "Flock Ellismere",
+      "Flock Wintringham",
+      "Flock Odell"
+    ],
+    "passage": "A scientist watched five flocks of starlings feeding in a park for one month. A hawk hunted in the park. The scientist counted how many birds the hawk caught from each flock.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Flock Ure",
+          "value": 7
+        },
+        {
+          "label": "Flock Tarrant",
+          "value": 2
+        },
+        {
+          "label": "Flock Ellismere",
+          "value": 5
+        },
+        {
+          "label": "Flock Wintringham",
+          "value": 9
+        },
+        {
+          "label": "Flock Odell",
+          "value": 4
+        }
+      ],
+      "xLabel": "Flock",
+      "yLabel": "Birds caught by the hawk",
+      "caption": "Figure 1. Starlings caught from five flocks in one month"
+    },
+    "prompt": "Based on Figure 1, from which flock did the hawk catch the fewest birds?",
+    "choices": [
+      "Flock Ure",
+      "Flock Ellismere",
+      "Flock Tarrant",
+      "Flock Wintringham"
+    ],
+    "correct_answer": "Flock Tarrant",
+    "key_evidence": {
+      "refs": [
+        "Flock Tarrant",
+        "Flock Odell",
+        "Flock Ellismere"
+      ]
+    },
+    "explanation": "The Flock Tarrant bar is the shortest in Figure 1, about 2 birds, so the hawk caught the fewest birds from that flock.",
+    "distractor_rationales": [
+      {
+        "choice": "Flock Ure",
+        "fault": "The Flock Ure bar reaches about 7 birds, far above the shortest bar."
+      },
+      {
+        "choice": "Flock Ellismere",
+        "fault": "The Flock Ellismere bar reaches about 5 birds, higher than the Flock Tarrant bar."
+      },
+      {
+        "choice": "Flock Wintringham",
+        "fault": "The Flock Wintringham bar is the tallest, about 9 birds, the most caught, not the fewest."
+      }
+    ],
+    "real_world_check": "Reading a bar graph means comparing bar heights against the y-axis; living in groups can change how often a predator catches members."
+  },
+  {
+    "id": "MSB4-L5-03",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS2",
+    "ngss_pe": "5-LS2-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Log 81",
+      "Log 82",
+      "Log 83",
+      "Log 84",
+      "Log 85"
+    ],
+    "passage": "Millipedes feed on dead leaves and rotting wood and help break them down into soil. After a week of rain, a class counted the millipedes under five fallen logs in a park.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Log 81",
+          "value": 10
+        },
+        {
+          "label": "Log 82",
+          "value": 40
+        },
+        {
+          "label": "Log 83",
+          "value": 25
+        },
+        {
+          "label": "Log 84",
+          "value": 5
+        },
+        {
+          "label": "Log 85",
+          "value": 35
+        }
+      ],
+      "xLabel": "Log",
+      "yLabel": "Millipedes counted",
+      "caption": "Figure 1. Millipedes under five fallen logs"
+    },
+    "prompt": "Based on Figure 1, about how many millipedes were counted under Log 83?",
+    "choices": [
+      "25 millipedes",
+      "40 millipedes",
+      "5 millipedes",
+      "10 millipedes"
+    ],
+    "correct_answer": "25 millipedes",
+    "key_evidence": {
+      "refs": [
+        "Log 83"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Log 83 bar ends halfway between the 20 and 30 marks, at about 25 millipedes.",
+    "distractor_rationales": [
+      {
+        "choice": "40 millipedes",
+        "fault": "This is the tallest bar, Log 82, at the top tick, not Log 83."
+      },
+      {
+        "choice": "5 millipedes",
+        "fault": "This is the shortest bar, Log 84, not Log 83."
+      },
+      {
+        "choice": "10 millipedes",
+        "fault": "This is the Log 81 bar, which ends at the first tick, well below Log 83."
+      }
+    ],
+    "real_world_check": "Millipedes are decomposers that feed on dead plant matter and help return it to the soil.",
+    "prior_free": "How many millipedes one log shelters depends on that log alone; knowing that millipedes eat dead wood gives no count, only the bar does."
+  },
+  {
+    "id": "MSB4-L5-04",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS1",
+    "ngss_pe": "5-LS1-1",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "independent",
+    "invented": true,
+    "names_used": [
+      "Rosalind"
+    ],
+    "passage": "Rosalind wondered whether water helps moss add mass, since moss has no roots in soil. She laid a thin mat of moss on four clean bricks of one brick size, 20 cm long. The source of the moss was the north wall of her garden. The bricks sat on a porch that gave 6 hours of porch sunlight a day. She misted the mats 1, 2, 3 or 4 times a day, and wrote the sprays per day on a card beside each brick. After four weeks she dried the moss and weighed it.",
+    "graphic": null,
+    "prompt": "Which quantity was Rosalind testing as a possible cause of how heavy the moss became?",
+    "choices": [
+      "brick size",
+      "source of the moss",
+      "sprays per day",
+      "hours of porch sunlight"
+    ],
+    "correct_answer": "sprays per day",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "She misted the mats 1, 2, 3 or 4 times a day"
+        }
+      ]
+    },
+    "explanation": "Only the sprays per day took four values (1, 2, 3 and 4), so water was the possible cause Rosalind was testing; the dried moss mass was what she measured.",
+    "distractor_rationales": [
+      {
+        "choice": "brick size",
+        "fault": "All four bricks were one size, 20 cm long, so brick size had one value and was not being tested."
+      },
+      {
+        "choice": "source of the moss",
+        "fault": "All the moss came from one wall, so its source did not vary between bricks."
+      },
+      {
+        "choice": "hours of porch sunlight",
+        "fault": "All four bricks sat on one porch with 6 hours of sun a day, so sunlight did not vary."
+      }
+    ],
+    "real_world_check": "Plants, including mosses, build their mass chiefly from water and carbon dioxide from the air, so water is a sensible factor to test.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB4-L5-05",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS4",
+    "ngss_pe": "3-LS4-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In one area, rabbits of the same kind differ in fur thickness, and fur thickness is passed from parents to their young. Then the area has ten very cold winters in a row. Which is the best prediction about the rabbits after those winters?",
+    "choices": [
+      "Each thin-furred rabbit will grow a thicker coat.",
+      "The share of thick-furred rabbits will stay as it is now.",
+      "The biggest, strongest rabbits will survive whatever their fur is like.",
+      "In later years, more of the rabbits will be born with thick fur."
+    ],
+    "correct_answer": "In later years, more of the rabbits will be born with thick fur.",
+    "explanation": "Rabbits with thick fur lose less body heat, so more of them survive the cold winters and breed. Because fur thickness is inherited, more young are born with thick fur in later years.",
+    "distractor_rationales": [
+      {
+        "choice": "Each thin-furred rabbit will grow a thicker coat.",
+        "fault": "misconception: an individual changes its inherited trait over its own life; thin-furred rabbits do not become thick-furred, the share of thick-furred young rises because they survive and breed more.",
+        "misconception": "students think each animal slowly changes its body to fit a colder place",
+        "same_category": true
+      },
+      {
+        "choice": "The share of thick-furred rabbits will stay as it is now.",
+        "fault": "misconception: a population's traits cannot shift; when thick-furred rabbits survive cold winters better, they leave more young and the share rises.",
+        "misconception": "students think the mix of traits in a group of animals never shifts",
+        "same_category": true
+      },
+      {
+        "choice": "The biggest, strongest rabbits will survive whatever their fur is like.",
+        "fault": "misconception: the strongest always survive; in long cold spells the trait that matters is the one that keeps the body warm, and fur thickness is that trait here.",
+        "misconception": "students think the strongest animals always win no matter the problem",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Individuals with an inherited trait that helps them survive in their surroundings leave more offspring, so that trait becomes more common over generations.",
+    "key_category": "a prediction about the fur of the rabbits in later years"
+  },
+  {
+    "id": "MSB4-L5-06",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS2",
+    "ngss_pe": "5-LS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A hawk eats a snake. The snake had eaten mice, and the mice had eaten grass seeds. Which best explains where most of the matter in the hawk's body first came from?",
+    "choices": [
+      "Grass plants pulled it up from the soil they grew in.",
+      "Grass plants turned sunlight into the stuff their seeds are made of.",
+      "Grass plants built it from air and water.",
+      "The animals made new matter from the energy in their meals."
+    ],
+    "correct_answer": "Grass plants built it from air and water.",
+    "explanation": "The hawk's matter came from the snake, the snake's from the mice, and the mice's from grass seeds. Grass plants built that matter mainly from carbon dioxide in the air and from water.",
+    "distractor_rationales": [
+      {
+        "choice": "Grass plants pulled it up from the soil they grew in.",
+        "fault": "misconception: plants get their mass from soil; soil gives only small amounts of minerals, and most plant matter is built from carbon dioxide in the air and from water.",
+        "misconception": "students think plants grow by taking in food from the soil",
+        "same_category": true
+      },
+      {
+        "choice": "Grass plants turned sunlight into the stuff their seeds are made of.",
+        "fault": "misconception: light becomes plant matter; sunlight supplies energy only, and the matter comes from air and water.",
+        "misconception": "students think plants turn sunlight itself into their leaves and seeds",
+        "same_category": true
+      },
+      {
+        "choice": "The animals made new matter from the energy in their meals.",
+        "fault": "misconception: animals create matter from food energy; animals only rearrange matter they eat, which traces back to the grass.",
+        "misconception": "students think food energy turns into new body matter inside an animal",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Matter moves along a food chain from plants to animals, and plants make their food mostly from carbon dioxide and water.",
+    "key_category": "a source of the matter in a food chain's animals"
+  },
+  {
+    "id": "MSB4-L5-07",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS4",
+    "ngss_pe": "3-LS4-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Keswin beetles",
+      "Plot 71",
+      "Plot 72",
+      "Plot 73",
+      "Plot 74"
+    ],
+    "passage": "Keswin beetles live on the ground in a park. Students released 50 beetles into each of four fenced plots with a different ground cover. Ten days later they counted the beetles still alive.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Plot 71",
+        "Plot 72",
+        "Plot 73",
+        "Plot 74"
+      ],
+      "colLabels": [
+        "Ground cover",
+        "Beetles released",
+        "Beetles alive after 10 days"
+      ],
+      "cells": [
+        [
+          "leaf litter",
+          50,
+          48
+        ],
+        [
+          "moss",
+          50,
+          16
+        ],
+        [
+          "bare soil",
+          50,
+          4
+        ],
+        [
+          "grass",
+          50,
+          30
+        ]
+      ],
+      "caption": "Table 1. Keswin beetles alive in four plots"
+    },
+    "prompt": "Based on Table 1, Plot 71 had how many times as many beetles alive after 10 days as Plot 73?",
+    "choices": [
+      "12 times",
+      "3 times",
+      "11 times",
+      "4 times"
+    ],
+    "correct_answer": "12 times",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "Plot 71 had 48 beetles alive and Plot 73 had 4; 48 / 4 = 12, so Plot 71 had 12 times as many.",
+    "distractor_rationales": [
+      {
+        "choice": "3 times",
+        "fault": "This divides by the Plot 72 count (48 / 16), the wrong plot."
+      },
+      {
+        "choice": "11 times",
+        "fault": "This divides the difference (48 - 4 = 44) by 4 instead of dividing 48 by 4."
+      },
+      {
+        "choice": "4 times",
+        "fault": "This is the Plot 73 count of 4 beetles itself, not a comparison."
+      }
+    ],
+    "real_world_check": "In a given habitat some organisms survive well and others less well, so survival counts differ between places.",
+    "prior_free": "Knowing beetles survive better under cover gives a direction, not the size of the gap; the counts 48 and 4 exist only in this table."
+  },
+  {
+    "id": "MSB4-L5-08",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS4",
+    "ngss_pe": "3-LS4-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Pond Ettrick"
+    ],
+    "passage": "Students counted the newts in Pond Ettrick every two years. A long dry spell lowered the water in the pond from year 3 to year 7.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              80
+            ],
+            [
+              2,
+              60
+            ],
+            [
+              4,
+              30
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              8,
+              40
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Year",
+      "yLabel": "Newts counted",
+      "caption": "Figure 1. Newts counted in Pond Ettrick"
+    },
+    "prompt": "Based on Figure 1, about how many newts were counted in year 6?",
+    "choices": [
+      "60 newts",
+      "25 newts",
+      "80 newts",
+      "10 newts"
+    ],
+    "correct_answer": "10 newts",
+    "key_evidence": {
+      "refs": [
+        [
+          6,
+          10
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The year 6 point is the lowest on the graph, halfway between 0 and the first tick at 20, so about 10 newts were counted.",
+    "distractor_rationales": [
+      {
+        "choice": "60 newts",
+        "fault": "This is the year 2 point, before the dry spell, not year 6."
+      },
+      {
+        "choice": "25 newts",
+        "fault": "This value is not plotted; the year 6 point sits halfway between 0 and 20, not near 25."
+      },
+      {
+        "choice": "80 newts",
+        "fault": "This is the highest point, year 0, at the top tick."
+      }
+    ],
+    "real_world_check": "When a habitat changes, such as a pond drying, fewer of the organisms living there may survive.",
+    "prior_free": "A dry spell suggests fewer newts, but how many were left in year 6 can only be read from this graph."
+  },
+  {
+    "id": "MSB4-L5-09",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS4",
+    "ngss_pe": "3-LS4-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "no-change",
+    "invented": true,
+    "names_used": [
+      "Treleaven Wood"
+    ],
+    "passage": "A new road was built along the edge of Treleaven Wood in year 0. Every two years, students counted the ground beetles caught in traps at the edge of the wood.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              36
+            ],
+            [
+              2,
+              38
+            ],
+            [
+              4,
+              35
+            ],
+            [
+              6,
+              37
+            ],
+            [
+              8,
+              36
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Years after the road was built",
+      "yLabel": "Ground beetles caught",
+      "caption": "Figure 1. Ground beetles caught at the edge of Treleaven Wood"
+    },
+    "prompt": "Based on Figure 1, how did the beetle count change from year 0 to year 8?",
+    "choices": [
+      "The beetle count stayed the same.",
+      "The beetle count increased, then fell.",
+      "The beetle count rose, then leveled off.",
+      "The beetle count declined, then increased."
+    ],
+    "correct_answer": "The beetle count stayed the same.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          36
+        ],
+        [
+          8,
+          36
+        ]
+      ]
+    },
+    "explanation": "All five points lie between 35 and 38 beetles, a flat line on an axis that starts at 0, so the count stayed the same.",
+    "distractor_rationales": [
+      {
+        "choice": "The beetle count increased, then fell.",
+        "fault": "The points do not climb and then drop; they stay between 35 and 38 the whole time."
+      },
+      {
+        "choice": "The beetle count rose, then leveled off.",
+        "fault": "There is no early rise; the count is already about 36 in year 0 and stays there."
+      },
+      {
+        "choice": "The beetle count declined, then increased.",
+        "fault": "There is no dip and recovery; every count lies between 35 and 38."
+      }
+    ],
+    "real_world_check": "A change to a habitat does not harm every organism; some populations survive a change with little effect.",
+    "prior_free": "Many students expect a new road to lower the count, so only the plotted counts show that it did not change."
+  },
+  {
+    "id": "MSB4-L5-10",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS3",
+    "ngss_pe": "3-LS3-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Meriden guppies",
+      "Tank Corbel",
+      "Tank Ode",
+      "Tank Faber",
+      "Tank Linnell",
+      "Tank Pritchett"
+    ],
+    "passage": "A class raised young fish called Meriden guppies. The young came from two parent pairs, Pair 1 and Pair 2. The class put ten young fish into each of five tanks. Some tanks were warmer than others, and the fish in some tanks got more food. After eight weeks the class measured the tail of every fish and found the average tail length for each tank. Table 1 shows the results.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Tank Corbel",
+        "Tank Faber",
+        "Tank Pritchett",
+        "Tank Linnell",
+        "Tank Ode"
+      ],
+      "colLabels": [
+        "Parents",
+        "Water (°C)",
+        "Food (pinches per day)",
+        "Average tail (mm)"
+      ],
+      "cells": [
+        [
+          "Pair 1",
+          24,
+          2,
+          18
+        ],
+        [
+          "Pair 2",
+          28,
+          2,
+          25
+        ],
+        [
+          "Pair 2",
+          24,
+          2,
+          23
+        ],
+        [
+          "Pair 1",
+          24,
+          4,
+          21
+        ],
+        [
+          "Pair 2",
+          24,
+          4,
+          26
+        ]
+      ],
+      "caption": "Table 1. Tail length of young guppies in five tanks"
+    },
+    "prompt": "To test only whether the parents affect tail length, the young in Tank Corbel should be compared with the young in which tank?",
+    "choices": [
+      "Tank Ode",
+      "Tank Pritchett",
+      "Tank Faber",
+      "Tank Linnell"
+    ],
+    "correct_answer": "Tank Pritchett",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "explanation": "Tank Pritchett matches Tank Corbel in water (24 °C) and food (2 pinches per day) and differs only in the parents (Pair 2, not Pair 1).",
+    "distractor_rationales": [
+      {
+        "choice": "Tank Ode",
+        "fault": "Tank Ode differs from Tank Corbel in parents and in food (4 pinches, not 2), so two things differ."
+      },
+      {
+        "choice": "Tank Faber",
+        "fault": "Tank Faber differs from Tank Corbel in parents and in water temperature (28 °C, not 24 °C)."
+      },
+      {
+        "choice": "Tank Linnell",
+        "fault": "Tank Linnell has the same parents as Tank Corbel and differs only in food, so it tests food."
+      }
+    ],
+    "real_world_check": "Young animals inherit traits from their parents, and a fair comparison of parents needs every other condition to match."
+  },
+  {
+    "id": "MSB4-L5-11",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS1",
+    "ngss_pe": "4-LS1-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Varrow fish"
+    ],
+    "passage": "Students tested how Varrow fish find food. In each trial a fish started at one end of a tank, and food sat at the other end inside a small box. Some boxes were clear glass, so a fish could see the food but not smell it. Other boxes were black mesh, so a fish could smell the food but not see it. The students ran trials in a lit room and in a dark room. In the lit room, fish swam to the glass box in 9 of 10 trials and to the mesh box in 2 of 10. In the dark room, fish swam to the glass box in 1 of 10 trials and to the mesh box in 2 of 10.",
+    "graphic": null,
+    "prompt": "Which claim do these results support?",
+    "choices": [
+      "The fish mostly used their sense of smell to find food.",
+      "The fish found food just as well in the dark room.",
+      "The fish reached the mesh box far more often in the dark room.",
+      "Varrow fish rely mainly on their eyes to locate their food."
+    ],
+    "correct_answer": "Varrow fish rely mainly on their eyes to locate their food.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "fish swam to the glass box in 9 of 10 trials"
+        },
+        {
+          "quote": "fish swam to the glass box in 1 of 10 trials"
+        }
+      ]
+    },
+    "explanation": "Fish found the food they could see (glass box) in 9 of 10 lit trials, but almost never found food they could only smell, and lost the glass-box food in the dark. Sight, which needs light, is what led them to food.",
+    "distractor_rationales": [
+      {
+        "choice": "The fish mostly used their sense of smell to find food.",
+        "fault": "Not supported: fish reached the mesh box, the smell-only box, in just 2 of 10 trials in either room."
+      },
+      {
+        "choice": "The fish found food just as well in the dark room.",
+        "fault": "Contradicted: in the dark, fish reached the glass box in 1 of 10 trials, compared with 9 of 10 in the light."
+      },
+      {
+        "choice": "The fish reached the mesh box far more often in the dark room.",
+        "fault": "Contradicted: the mesh box was reached in 2 of 10 trials in both rooms, not more often in the dark."
+      }
+    ],
+    "real_world_check": "Animals take in information through different senses, and an animal that finds food by sight needs light to do it."
+  },
+  {
+    "id": "MSB4-L5-12",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS4",
+    "ngss_pe": "3-LS4-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A bat lives in a pitch-dark cave. Each night it flies through the cave and catches moths in midair, making high squeaks as it flies. Which body part does the bat mainly use to find the moths?",
+    "choices": [
+      "sniffing nose",
+      "feeler whiskers",
+      "night-vision eyes",
+      "large ears"
+    ],
+    "correct_answer": "large ears",
+    "explanation": "The bat's squeaks bounce off the moths, and its large ears pick up the echoes, which tell it where each moth is. In a pitch-dark cave, hearing works where sight cannot.",
+    "distractor_rationales": [
+      {
+        "choice": "sniffing nose",
+        "fault": "misconception: insect-eating bats track flying moths by smell; they find them by hearing the echoes of their own squeaks.",
+        "misconception": "students think bats sniff out insects the way a dog finds food",
+        "same_category": true
+      },
+      {
+        "choice": "feeler whiskers",
+        "fault": "misconception: whiskers let a bat feel for prey in the dark; a moth in midair is out of reach of any whisker.",
+        "misconception": "students think animals in the dark feel their way to food with whiskers",
+        "same_category": true
+      },
+      {
+        "choice": "night-vision eyes",
+        "fault": "misconception: bats see in the dark with special eyes; in a pitch-dark cave there is no light for any eye to use.",
+        "misconception": "students think night animals have eyes that see with no light at all",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Many bats survive in dark places by echolocation: they make high sounds and use their ears to hear the echoes from prey.",
+    "key_category": "a bat body part used to sense prey"
+  },
+  {
+    "id": "MSB4-L5-13",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS2",
+    "ngss_pe": "3-LS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Small fish of one kind often swim close together in a large school. When a shark attacks a school, any one fish is less likely to be eaten than a fish swimming alone. Which best explains why?",
+    "choices": [
+      "A fish in a school grows bigger than one alone and is harder to swallow.",
+      "So many fish dart about that the shark cannot easily pick one, so it often misses.",
+      "Sharks hunt only fish that are alone and leave every school untouched.",
+      "The fish in a school work together, so they can fight the shark off."
+    ],
+    "correct_answer": "So many fish dart about that the shark cannot easily pick one, so it often misses.",
+    "explanation": "A shark must single out one fish to catch it. A mass of moving fish makes it hard to follow any one, and the attack is spread over many fish, so each fish is safer than one swimming alone.",
+    "distractor_rationales": [
+      {
+        "choice": "A fish in a school grows bigger than one alone and is harder to swallow.",
+        "fault": "misconception: living in a group makes each member grow larger; schooling fish are no bigger than fish of the same kind living alone.",
+        "misconception": "students think animals in a group grow bigger and stronger than loners",
+        "same_category": true
+      },
+      {
+        "choice": "Sharks hunt only fish that are alone and leave every school untouched.",
+        "fault": "misconception: predators never attack groups; sharks do attack schools, but each fish's chance of being the one caught is lower.",
+        "misconception": "students think a predator will not go near a big group at all",
+        "same_category": true
+      },
+      {
+        "choice": "The fish in a school work together, so they can fight the shark off.",
+        "fault": "misconception: group members fight off a predator; small schooling fish cannot fight a shark and flee instead.",
+        "misconception": "students think animals in groups team up to beat a predator in a fight",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Being part of a group can help animals survive, for example by making it harder for a predator to target one individual.",
+    "key_category": "a way that living in a group lowers one fish's risk of being eaten"
+  },
+  {
+    "id": "MSB4-L5-14",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS2",
+    "ngss_pe": "5-LS2-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Bin Kettley",
+      "Bin Ralston",
+      "Bin Ofelia",
+      "Bin Wendle"
+    ],
+    "passage": "Students put 200 g of apple slices into each of four compost bins. They weighed the apple left in each bin on day 10 and on day 20.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Bin Kettley",
+        "Bin Ralston",
+        "Bin Ofelia",
+        "Bin Wendle"
+      ],
+      "colLabels": [
+        "Day 0 (g)",
+        "Day 10 (g)",
+        "Day 20 (g)"
+      ],
+      "cells": [
+        [
+          200,
+          150,
+          90
+        ],
+        [
+          200,
+          120,
+          70
+        ],
+        [
+          200,
+          170,
+          40
+        ],
+        [
+          200,
+          110,
+          60
+        ]
+      ],
+      "caption": "Table 1. Mass of apple left in four compost bins"
+    },
+    "prompt": "Based on Table 1, in the bin with the least apple left on day 20, how much apple was left on day 10?",
+    "choices": [
+      "110 g",
+      "40 g",
+      "170 g",
+      "200 g"
+    ],
+    "correct_answer": "170 g",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "Bin Ofelia had the least apple left on day 20 (40 g). Its day 10 mass was 170 g.",
+    "distractor_rationales": [
+      {
+        "choice": "110 g",
+        "fault": "This is the day 10 mass for Bin Wendle, the bin with the least apple on day 10, not on day 20."
+      },
+      {
+        "choice": "40 g",
+        "fault": "This is the day 20 mass of Bin Ofelia; the question asks for its day 10 mass."
+      },
+      {
+        "choice": "200 g",
+        "fault": "This is the starting mass on day 0, the same in every bin."
+      }
+    ],
+    "real_world_check": "Decomposers such as fungi and bacteria break down dead plant matter, so its mass goes down over time.",
+    "prior_free": "Decomposition lowers the mass, but which bin ended lowest and its day 10 value appear only in this table."
+  },
+  {
+    "id": "MSB4-L5-15",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS3",
+    "ngss_pe": "3-LS3-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase-then-decrease",
+    "invented": true,
+    "names_used": [
+      "Kilmory violets"
+    ],
+    "passage": "Cuttings from one Kilmory violet plant were potted with different amounts of plant food mixed into the soil. All the cuttings have the same genes. After eight weeks, students counted the flowers on each plant.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          12,
+          2
+        ]
+      ],
+      "xLabel": "Plant food mixed into the soil (g)",
+      "yLabel": "Flowers per plant",
+      "caption": "Figure 1. Flowers on Kilmory violet cuttings"
+    },
+    "prompt": "According to Figure 1, what happened to the number of flowers as more plant food was mixed into the soil?",
+    "choices": [
+      "The flower count increased.",
+      "The flower count rose, then fell.",
+      "The flower count fell.",
+      "The flower count rose, then leveled off."
+    ],
+    "correct_answer": "The flower count rose, then fell.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          12,
+          2
+        ]
+      ]
+    },
+    "explanation": "The flower count climbs from about 2 with no plant food to 11 at 6 g, then drops back to about 2 at 12 g: it rose, then fell.",
+    "distractor_rationales": [
+      {
+        "choice": "The flower count increased.",
+        "fault": "Above about 6 g the points drop, from 11 flowers to 2, so it did not keep increasing."
+      },
+      {
+        "choice": "The flower count fell.",
+        "fault": "From 0 to 6 g the points climb from 2 to 11 flowers, so it did not only fall."
+      },
+      {
+        "choice": "The flower count rose, then leveled off.",
+        "fault": "After the peak the points fall steeply instead of staying near 11 flowers."
+      }
+    ],
+    "real_world_check": "The environment, such as the amount of plant food in the soil, can change a trait like flowering even among plants with the same genes; too much plant food harms plants.",
+    "prior_free": "Knowing that plant food helps plants does not say whether flowering keeps rising or drops past some amount; only these points show the peak."
+  },
+  {
+    "id": "MSB4-L5-16",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS3",
+    "ngss_pe": "3-LS3-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Glasson guinea pigs",
+      "Sow Rinley",
+      "Sow Ashlin",
+      "Sow Brackley",
+      "Sow Tamsworth"
+    ],
+    "passage": "A farmer keeps Glasson guinea pigs. Some have spotted coats and some have plain coats, and the farmer wanted to see how coats pass from mothers to young. Over one summer, four mother guinea pigs, called sows, each raised several litters. The farmer wrote down the coat of each sow and counted how many of her young had spotted coats and how many had plain coats. Table 1 shows the counts.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Sow Rinley",
+        "Sow Ashlin",
+        "Sow Brackley",
+        "Sow Tamsworth"
+      ],
+      "colLabels": [
+        "Coat of the sow",
+        "Young with spotted coats",
+        "Young with plain coats"
+      ],
+      "cells": [
+        [
+          "spotted",
+          17,
+          3
+        ],
+        [
+          "plain",
+          0,
+          20
+        ],
+        [
+          "spotted",
+          13,
+          7
+        ],
+        [
+          "spotted",
+          15,
+          5
+        ]
+      ],
+      "caption": "Table 1. Coats of young guinea pigs from four sows"
+    },
+    "prompt": "Of the spotted sows, one had the most young with plain coats. Based on Table 1, how many of her young had plain coats?",
+    "choices": [
+      "20 young",
+      "3 young",
+      "7 young",
+      "5 young"
+    ],
+    "correct_answer": "7 young",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          2
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The spotted sows are Rinley, Brackley and Tamsworth, with 3, 7 and 5 plain-coated young. Sow Brackley had the most, 7.",
+    "distractor_rationales": [
+      {
+        "choice": "20 young",
+        "fault": "This is Sow Ashlin, but she has a plain coat, so she is not one of the spotted sows."
+      },
+      {
+        "choice": "3 young",
+        "fault": "This is Sow Rinley, the spotted sow with the fewest plain-coated young."
+      },
+      {
+        "choice": "5 young",
+        "fault": "This is Sow Tamsworth, who had fewer plain-coated young than Sow Brackley."
+      }
+    ],
+    "real_world_check": "Offspring inherit traits from their parents but can differ from them, so a spotted mother can have some plain young.",
+    "prior_free": "Knowing that young can differ from a parent gives no counts; which spotted sow had the most plain young is only in the table."
+  },
+  {
+    "id": "MSB4-L5-17",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS3",
+    "ngss_pe": "3-LS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A mother dog's ears flop down. Last year she tore one ear on a fence. Her owner trims her tail fur short, and her collar has rubbed a bare patch on her neck. Which feature are her puppies most likely to share with her?",
+    "choices": [
+      "a torn ear",
+      "trimmed tail fur",
+      "a neck patch",
+      "drooping ear shape"
+    ],
+    "correct_answer": "drooping ear shape",
+    "explanation": "Ear shape is an inherited trait passed from parents to young. The torn ear, trimmed fur and rubbed patch were caused by events in the mother's life, so they are not inherited.",
+    "distractor_rationales": [
+      {
+        "choice": "a torn ear",
+        "fault": "misconception: injuries are passed to young; a torn ear is caused by an accident and is not inherited.",
+        "misconception": "students think an injury to a parent shows up again in its young",
+        "same_category": true
+      },
+      {
+        "choice": "trimmed tail fur",
+        "fault": "misconception: changes made to a parent's body are inherited; trimming does not change the genes passed to puppies.",
+        "misconception": "students think puppies get fur like the parent has after a haircut",
+        "same_category": true
+      },
+      {
+        "choice": "a neck patch",
+        "fault": "misconception: marks a parent gets during life are inherited; the rubbed patch comes from the collar.",
+        "misconception": "students think a mark the mother gets in her life is passed on at birth",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Inherited traits pass from parents to offspring, while features caused by injury or by the environment are not inherited.",
+    "key_category": "a body feature a dog can have"
+  },
+  {
+    "id": "MSB4-L5-18",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS1",
+    "ngss_pe": "4-LS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A frog sits still on a leaf. A fly lands a short distance away, and in a blink the fly is gone and the frog's mouth is closing. Which body part most likely caught the fly?",
+    "choices": [
+      "forelimbs",
+      "tongue",
+      "toothed jaws",
+      "sucking throat"
+    ],
+    "correct_answer": "tongue",
+    "explanation": "A frog's long, sticky tongue flips out of its mouth, sticks to the fly and pulls it back in a fraction of a second, so the tongue caught the fly.",
+    "distractor_rationales": [
+      {
+        "choice": "forelimbs",
+        "fault": "misconception: frogs grab prey with their front legs; the front legs support the body and are far too slow and short to snatch a fly.",
+        "misconception": "students think frogs grab insects with their hands like a person",
+        "same_category": true
+      },
+      {
+        "choice": "toothed jaws",
+        "fault": "misconception: frogs snap prey with teeth like a dog; a frog's few small teeth only help hold food once it is in the mouth.",
+        "misconception": "students think a frog bites its food out of the air with teeth",
+        "same_category": true
+      },
+      {
+        "choice": "sucking throat",
+        "fault": "misconception: frogs suck flies in like a vacuum; a frog on land flicks out its sticky tongue instead.",
+        "misconception": "students think a frog pulls food in by sucking air",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Animals have structures that help them get food; a frog catches insects with a long sticky tongue attached at the front of its mouth.",
+    "key_category": "a frog body part"
+  },
+  {
+    "id": "MSB4-L5-19",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS1",
+    "ngss_pe": "4-LS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A cat is shut in a closet with no windows, and the door seals out all light. A toy mouse lies in front of the cat, but the cat cannot see it. Which best explains why?",
+    "choices": [
+      "There is no light to bounce off the toy into its eyes.",
+      "The cat's eyes have not had enough time to get used to the dark.",
+      "The darkness fills the closet and blocks the cat's view of the toy.",
+      "The cat's eyes send out beams of light that are too weak in the dark."
+    ],
+    "correct_answer": "There is no light to bounce off the toy into its eyes.",
+    "explanation": "An animal sees an object when light reflects off it and enters the eyes. In the sealed closet there is no light to reflect off the toy, so none reaches the cat's eyes.",
+    "distractor_rationales": [
+      {
+        "choice": "The cat's eyes have not had enough time to get used to the dark.",
+        "fault": "misconception: eyes adjust to total darkness given time; eyes can only adjust to dim light, and with no light at all there is nothing to see.",
+        "misconception": "students think eyes will see in total darkness if you wait long enough",
+        "same_category": true
+      },
+      {
+        "choice": "The darkness fills the closet and blocks the cat's view of the toy.",
+        "fault": "misconception: darkness is a substance that blocks sight; darkness is only the absence of light.",
+        "misconception": "students think darkness is a thing that gets in the way of seeing",
+        "same_category": true
+      },
+      {
+        "choice": "The cat's eyes send out beams of light that are too weak in the dark.",
+        "fault": "misconception: eyes see by sending out light; eyes take light in, and a cat's eyes give out none.",
+        "misconception": "students think eyes shine light outward onto things in order to see them",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Animals see objects when light reflected from the objects enters their eyes; with no light, nothing can be seen.",
+    "key_category": "a reason an animal can or cannot see an object"
+  },
+  {
+    "id": "MSB4-L6-01",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-6",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "duckweed line J-84"
+    ],
+    "passage": "Duckweed is a tiny floating plant made of small leaf-like parts called fronds. Students grew duckweed line J-84 in four bowls of pond water under lamps that shone for different hours each day. After 10 days they counted the fronds in each bowl.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Bowl 1",
+        "Bowl 2",
+        "Bowl 3",
+        "Bowl 4"
+      ],
+      "colLabels": [
+        "Light (hours per day)",
+        "Fronds after 10 days"
+      ],
+      "cells": [
+        [
+          4,
+          120
+        ],
+        [
+          8,
+          200
+        ],
+        [
+          12,
+          260
+        ],
+        [
+          16,
+          290
+        ]
+      ],
+      "caption": "Table 1. Fronds of duckweed line J-84 after 10 days"
+    },
+    "prompt": "If the frond count rises evenly from 8 to 12 hours of light per day, about how many fronds would a bowl given 10 hours per day hold after 10 days?",
+    "choices": [
+      "230 fronds",
+      "260 fronds",
+      "160 fronds",
+      "310 fronds"
+    ],
+    "correct_answer": "230 fronds",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "10 hours is halfway between 8 hours (200 fronds) and 12 hours (260 fronds). Halfway between 200 and 260 is 230 fronds.",
+    "distractor_rationales": [
+      {
+        "choice": "260 fronds",
+        "fault": "This is the printed count for 12 hours, not an estimate for 10 hours."
+      },
+      {
+        "choice": "160 fronds",
+        "fault": "This is halfway between the 4-hour and 8-hour counts, the wrong interval."
+      },
+      {
+        "choice": "310 fronds",
+        "fault": "This lies above every listed count, past the 16-hour result, so it cannot belong to 10 hours."
+      }
+    ],
+    "real_world_check": "Plants use light energy in photosynthesis to make the sugars they grow from, so more light can mean more growth, up to a limit.",
+    "prior_free": "MS-LS1-6 says light drives photosynthesis but gives no number for this line; the 10-hour count can only be estimated from the table."
+  },
+  {
+    "id": "MSB4-L6-02",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Line G-12",
+      "Line G-15",
+      "Line G-18"
+    ],
+    "passage": "Each sunflower line differs from normal sunflowers by a change in one gene for an enzyme that builds oil in the seeds. Students pressed the oil from 100 g of seeds of each kind.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Normal",
+          "value": 40
+        },
+        {
+          "label": "Line G-12",
+          "value": 25
+        },
+        {
+          "label": "Line G-15",
+          "value": 10
+        },
+        {
+          "label": "Line G-18",
+          "value": 35
+        }
+      ],
+      "xLabel": "Sunflower",
+      "yLabel": "Oil in 100 g of seeds (g)",
+      "caption": "Figure 1. Seed oil of normal sunflowers and three lines"
+    },
+    "prompt": "Based on Figure 1, how much more oil did 100 g of normal sunflower seeds hold than 100 g of Line G-12 seeds?",
+    "choices": [
+      "25 g",
+      "35 g",
+      "15 g",
+      "30 g"
+    ],
+    "correct_answer": "15 g",
+    "key_evidence": {
+      "refs": [
+        "Normal",
+        "Line G-12"
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The normal bar reaches 40 g and the Line G-12 bar ends halfway between 20 and 30 g, at 25 g; 40 - 25 = 15 g.",
+    "distractor_rationales": [
+      {
+        "choice": "25 g",
+        "fault": "This is the Line G-12 bar itself, not the difference from the normal seeds."
+      },
+      {
+        "choice": "35 g",
+        "fault": "This is the Line G-18 bar, a different line, not a difference."
+      },
+      {
+        "choice": "30 g",
+        "fault": "This is the normal oil minus Line G-15 (40 - 10), the wrong line."
+      }
+    ],
+    "real_world_check": "A change in a gene can change the protein it codes for and so change a trait such as how much oil a seed stores.",
+    "prior_free": "MS-LS3-1 says a gene change can alter a protein and a trait, but not by how much; the oil gap for this line is only in the bars."
+  },
+  {
+    "id": "MSB4-L6-03",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Brenton"
+    ],
+    "passage": "In an orchard owned by the Brenton family, moth caterpillars feed on apple leaves. Every three weeks, students counted the caterpillars on ten trees and found the average number per tree.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              45
+            ],
+            [
+              3,
+              120
+            ],
+            [
+              6,
+              90
+            ],
+            [
+              9,
+              15
+            ],
+            [
+              12,
+              30
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Week",
+      "yLabel": "Caterpillars per tree",
+      "caption": "Figure 1. Caterpillars on apple trees in the Brenton orchard"
+    },
+    "prompt": "Based on Figure 1, about how many caterpillars per tree were counted in week 9?",
+    "choices": [
+      "120 caterpillars",
+      "45 caterpillars",
+      "15 caterpillars",
+      "90 caterpillars"
+    ],
+    "correct_answer": "15 caterpillars",
+    "key_evidence": {
+      "refs": [
+        [
+          9,
+          15
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The week 9 point is the lowest on the graph, halfway between 0 and the first tick at 30, so about 15 caterpillars per tree.",
+    "distractor_rationales": [
+      {
+        "choice": "120 caterpillars",
+        "fault": "This is the highest point, week 3, at the top tick."
+      },
+      {
+        "choice": "45 caterpillars",
+        "fault": "This is the week 0 point, not week 9."
+      },
+      {
+        "choice": "90 caterpillars",
+        "fault": "This is the week 6 point, before the count dropped."
+      }
+    ],
+    "real_world_check": "A population grows when food is plentiful and falls when its food runs short.",
+    "prior_free": "Knowing that food limits a population does not give the size of the drop; the week 9 count is only on the graph."
+  },
+  {
+    "id": "MSB4-L6-04",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Daverly pond"
+    ],
+    "passage": "Backswimmers are water bugs that hunt mosquito larvae. Students filled four tubs with water from Daverly pond and put 40 mosquito larvae in each tub, along with pond weed for cover. They added 0, 2, 4 or 6 backswimmers to the tubs. The tubs sat side by side in a shaded yard. After five days the students counted the mosquito larvae still alive. Table 1 shows the results.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Tub 1",
+        "Tub 2",
+        "Tub 3",
+        "Tub 4"
+      ],
+      "colLabels": [
+        "Backswimmers added",
+        "Larvae at start",
+        "Larvae alive after 5 days"
+      ],
+      "cells": [
+        [
+          0,
+          4,
+          38
+        ],
+        [
+          2,
+          4,
+          29
+        ],
+        [
+          4,
+          4,
+          17
+        ],
+        [
+          6,
+          4,
+          12
+        ]
+      ],
+      "caption": "Table 1. Mosquito larvae alive after five days"
+    },
+    "prompt": "Based on Table 1, how many more mosquito larvae were alive after five days in the tub with no backswimmers than in the tub with 2 backswimmers?",
+    "choices": [
+      "26 larvae",
+      "21 larvae",
+      "29 larvae",
+      "9 larvae"
+    ],
+    "correct_answer": "9 larvae",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The tub with no backswimmers had 38 larvae alive and the tub with 2 backswimmers had 29; 38 - 29 = 9.",
+    "distractor_rationales": [
+      {
+        "choice": "26 larvae",
+        "fault": "This compares the tub with no backswimmers to the tub with 6 (38 - 12), the wrong tub."
+      },
+      {
+        "choice": "21 larvae",
+        "fault": "This compares the tub with no backswimmers to the tub with 4 (38 - 17), the wrong tub."
+      },
+      {
+        "choice": "29 larvae",
+        "fault": "This is the count alive in the 2-backswimmer tub itself, not a difference."
+      }
+    ],
+    "real_world_check": "Predators lower the survival of their prey, so more predators usually means fewer prey survive.",
+    "prior_free": "Predation lowers survival, but how many fewer larvae survived with 2 backswimmers appears only in this table."
+  },
+  {
+    "id": "MSB4-L6-05",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A canyon wall shows ten rock layers stacked flat, one on top of another. Fossils of a spiral-shelled sea animal appear in the lowest four layers but in none of the upper six, which hold many other sea fossils. Which best explains this pattern?",
+    "choices": [
+      "That kind of animal had died out before the upper layers formed.",
+      "The lowest layers are the youngest, where the animal had just appeared.",
+      "Over time, the shells sank through the rock into the lowest layers.",
+      "The animals swam down to the deepest water, which is where the lowest layers lie today."
+    ],
+    "correct_answer": "That kind of animal had died out before the upper layers formed.",
+    "explanation": "In flat layers the lowest formed first. The animal's fossils stop partway up although other sea fossils continue, so the animal had died out by the time the upper layers formed.",
+    "distractor_rationales": [
+      {
+        "choice": "The lowest layers are the youngest, where the animal had just appeared.",
+        "fault": "misconception: lower layers are younger; in undisturbed flat layers the lowest are the oldest, so the animal lived early and is missing later.",
+        "misconception": "students think rock layers at the bottom were laid down most recently",
+        "same_category": true
+      },
+      {
+        "choice": "Over time, the shells sank through the rock into the lowest layers.",
+        "fault": "misconception: fossils move through solid rock; a fossil stays in the layer where the animal was buried.",
+        "misconception": "students think fossils slowly sink down through rock over time",
+        "same_category": true
+      },
+      {
+        "choice": "The animals swam down to the deepest water, which is where the lowest layers lie today.",
+        "fault": "misconception: depth in the rock means deeper water at the same time; each layer formed on the sea floor of its own time, one after another.",
+        "misconception": "students think the bottom rock layers were the deep part of the same sea",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "In undisturbed rock layers older layers lie below younger ones, and the fossil record shows that some kinds of organisms died out.",
+    "key_category": "a reason a fossil appears in only some rock layers"
+  },
+  {
+    "id": "MSB4-L6-06",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A new kind of snail reached a lake. It eats the same algae on rocks as a native snail, and it does not eat other snails or their eggs. Over five years the native snails became rare. Which best explains why?",
+    "choices": [
+      "The new snails ate algae that the native snails would otherwise have eaten.",
+      "The new snails fought the native snails and pushed them off the rocks.",
+      "The new snails crowded the rocks so tightly that the natives could not breathe.",
+      "The native snails turned into the new kind after years beside them."
+    ],
+    "correct_answer": "The new snails ate algae that the native snails would otherwise have eaten.",
+    "explanation": "Both snails eat the same algae, a limited resource. The new snails took algae the native snails would have eaten, so fewer native snails could survive and reproduce.",
+    "distractor_rationales": [
+      {
+        "choice": "The new snails fought the native snails and pushed them off the rocks.",
+        "fault": "misconception: competition means physical fighting; snails compete by using up the same food, not by fighting.",
+        "misconception": "students think animals that compete must fight each other",
+        "same_category": true
+      },
+      {
+        "choice": "The new snails crowded the rocks so tightly that the natives could not breathe.",
+        "fault": "misconception: crowding uses up the air; snails in a lake take oxygen from the water, and crowding on rocks does not take it away.",
+        "misconception": "students think being crowded leaves animals without air to breathe",
+        "same_category": true
+      },
+      {
+        "choice": "The native snails turned into the new kind after years beside them.",
+        "fault": "misconception: one kind of animal turns into another by living near it; a snail stays the kind it was born, and its young are its own kind.",
+        "misconception": "students think one kind of animal can change into another kind nearby",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "When two populations depend on the same limited resource, they compete, and the population that gets less of it can shrink.",
+    "key_category": "a reason a population falls after a newcomer arrives"
+  },
+  {
+    "id": "MSB4-L6-07",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-4",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Vine Mabey",
+      "Vine Halbury",
+      "Vine Pelham",
+      "Vine Quinlan"
+    ],
+    "passage": "A squash flower must get pollen, often carried by bees, before a fruit can form. Students watched four squash vines for a week.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Vine Mabey",
+        "Vine Halbury",
+        "Vine Pelham",
+        "Vine Quinlan"
+      ],
+      "colLabels": [
+        "Flowers",
+        "Bee visits per hour",
+        "Fruits formed"
+      ],
+      "cells": [
+        [
+          20,
+          22,
+          9
+        ],
+        [
+          35,
+          30,
+          14
+        ],
+        [
+          50,
+          18,
+          16
+        ],
+        [
+          30,
+          10,
+          12
+        ]
+      ],
+      "caption": "Table 1. Flowers, bee visits and fruits on four squash vines"
+    },
+    "prompt": "Based on Table 1, how many fruits formed on the vine that had the most bee visits per hour?",
+    "choices": [
+      "16 fruits",
+      "9 fruits",
+      "12 fruits",
+      "14 fruits"
+    ],
+    "correct_answer": "14 fruits",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "Vine Halbury had the most bee visits, 30 per hour, and 14 fruits formed on it.",
+    "distractor_rationales": [
+      {
+        "choice": "16 fruits",
+        "fault": "This is Vine Pelham, which had the most flowers and fruits but only 18 visits per hour."
+      },
+      {
+        "choice": "9 fruits",
+        "fault": "This is Vine Mabey, which had the second-most visits (22 per hour)."
+      },
+      {
+        "choice": "12 fruits",
+        "fault": "This is Vine Quinlan, which had the fewest visits (10 per hour)."
+      }
+    ],
+    "real_world_check": "Many flowering plants depend on animals such as bees to carry pollen, and fruits form only from pollinated flowers.",
+    "prior_free": "Bees help fruits form, but which vine had the most visits and its fruit count are only in the table."
+  },
+  {
+    "id": "MSB4-L6-08",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Line Tay",
+      "Line Morven",
+      "Line Pendarves",
+      "Line Winterbourne"
+    ],
+    "passage": "Each tomato line has a change in one gene for a protein that controls how many cells a fruit makes. Normal fruits of this tomato average 80 g. Students weighed ripe fruits from each line.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Normal",
+          "value": 80
+        },
+        {
+          "label": "Line Morven",
+          "value": 60
+        },
+        {
+          "label": "Line Tay",
+          "value": 30
+        },
+        {
+          "label": "Line Pendarves",
+          "value": 10
+        },
+        {
+          "label": "Line Winterbourne",
+          "value": 50
+        }
+      ],
+      "xLabel": "Tomato line",
+      "yLabel": "Average fruit mass (g)",
+      "caption": "Figure 1. Fruit mass of normal tomatoes and four lines"
+    },
+    "prompt": "Based on Figure 1, which line's fruits weighed less than half the normal mass but more than 20 g?",
+    "choices": [
+      "Line Tay",
+      "Line Morven",
+      "Line Pendarves",
+      "Line Winterbourne"
+    ],
+    "correct_answer": "Line Tay",
+    "key_evidence": {
+      "refs": [
+        "Line Tay",
+        "Normal"
+      ]
+    },
+    "explanation": "Half the normal mass is 40 g. Line Tay's bar ends halfway between 20 and 40 g, at about 30 g, the only line between 20 g and 40 g.",
+    "distractor_rationales": [
+      {
+        "choice": "Line Morven",
+        "fault": "Its fruits weigh about 60 g, more than half of 80 g."
+      },
+      {
+        "choice": "Line Pendarves",
+        "fault": "Its fruits weigh about 10 g, less than 20 g."
+      },
+      {
+        "choice": "Line Winterbourne",
+        "fault": "Its fruits weigh about 50 g, more than half of 80 g (40 g)."
+      }
+    ],
+    "real_world_check": "A change in a gene can change a protein and so change a trait, such as how large a plant's fruits grow."
+  },
+  {
+    "id": "MSB4-L6-09",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-3",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "increase-then-level",
+    "invented": true,
+    "names_used": [
+      "Garvock bread mold"
+    ],
+    "passage": "Students sealed a damp slice of bread with Garvock bread mold in a jar. Mold is a decomposer. Every two days they measured the total mass of carbon dioxide the jar had given off since day 0.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              40
+            ],
+            [
+              4,
+              75
+            ],
+            [
+              6,
+              100
+            ],
+            [
+              8,
+              115
+            ],
+            [
+              10,
+              120
+            ],
+            [
+              12,
+              122
+            ],
+            [
+              14,
+              123
+            ],
+            [
+              16,
+              123
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Day",
+      "yLabel": "Total carbon dioxide given off (mg)",
+      "caption": "Figure 1. Carbon dioxide given off by Garvock bread mold in a sealed jar"
+    },
+    "prompt": "Based on Figure 1, how did the total carbon dioxide given off change over the 16 days?",
+    "choices": [
+      "The gas total increased.",
+      "The gas total fell.",
+      "The gas total stayed the same, then rose.",
+      "The gas total rose, then leveled off."
+    ],
+    "correct_answer": "The gas total rose, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          115
+        ],
+        [
+          16,
+          123
+        ]
+      ]
+    },
+    "explanation": "The total climbs from 0 to about 115 mg by day 8, then stays between 120 and 123 mg through day 16: it rose, then leveled off.",
+    "distractor_rationales": [
+      {
+        "choice": "The gas total increased.",
+        "fault": "After day 10 the points stay between 120 and 123 mg instead of continuing to climb."
+      },
+      {
+        "choice": "The gas total fell.",
+        "fault": "The total starts at 0 and climbs to about 123 mg; a running total never falls here."
+      },
+      {
+        "choice": "The gas total stayed the same, then rose.",
+        "fault": "The total climbs at once from day 0; there is no flat start."
+      }
+    ],
+    "real_world_check": "Decomposers such as mold release carbon dioxide as they break down dead matter; in a sealed jar their output slows as their food or oxygen runs low.",
+    "prior_free": "Knowing that mold gives off carbon dioxide does not say whether the total keeps climbing or levels off within 16 days; only the graph shows it."
+  },
+  {
+    "id": "MSB4-L6-10",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-6",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "dependent",
+    "invented": true,
+    "names_used": [
+      "Coralie"
+    ],
+    "passage": "Coralie's class had an idea about a school lawn mown every week for many years: the plantain weeds there would come to bloom on shorter stalks, because tall stalks get cut before their seeds ripen. The class marked out two plots, one on the mown lawn and one in an unmown field nearby, each with a lawn plot size of 4 square meters. The mower blade level on the school lawn was 5 cm. In May the class found the stalk height of 50 blooming plantains in each plot, and they tallied the number of seed heads on those plants for a seed swap.",
+    "graphic": null,
+    "prompt": "Which quantity would show the class whether its idea was right?",
+    "choices": [
+      "stalk height",
+      "lawn plot size",
+      "number of seed heads",
+      "mower blade level"
+    ],
+    "correct_answer": "stalk height",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "found the stalk height of 50 blooming plantains in each plot"
+        }
+      ]
+    },
+    "explanation": "The idea is that plantains on the mown lawn now bloom on shorter stalks. Comparing stalk height between the mown and unmown plots answers it.",
+    "distractor_rationales": [
+      {
+        "choice": "lawn plot size",
+        "fault": "The class chose 4 square meters for both plots; it is a condition of the study, not an outcome."
+      },
+      {
+        "choice": "number of seed heads",
+        "fault": "The seed heads were tallied for a seed swap; a count of seed heads does not show whether stalks are shorter."
+      },
+      {
+        "choice": "mower blade level",
+        "fault": "The blade level is how the lawn was mown, a condition, not something that shows a change in the plants."
+      }
+    ],
+    "real_world_check": "When an environment removes individuals with one trait before they reproduce, the opposite trait can become more common over generations.",
+    "option_roles": [
+      "result",
+      "setting",
+      "result",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB4-L6-11",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Quarley beans"
+    ],
+    "passage": "Quarley beans normally grow to about 60 cm. Students compared normal plants with three mutant groups, P, Q and R. Each group has one change in the code of a gene for a growth protein. In group P, the change made the protein a different shape, and the plants grew to 25 cm. In group Q, the change did not alter the protein at all, and the plants grew to 61 cm. In group R, the change made the protein stop partway, and the plants grew to 12 cm. All plants grew in one greenhouse in rich soil.",
+    "graphic": null,
+    "prompt": "Which claim do these results support?",
+    "choices": [
+      "Every change in the gene made the plants shorter than normal.",
+      "A change in the gene's code did not always change plant height.",
+      "Group Q grew taller because its protein was improved.",
+      "The gene changes happened because the beans were grown in poor soil."
+    ],
+    "correct_answer": "A change in the gene's code did not always change plant height.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "the change did not alter the protein at all, and the plants grew to 61 cm"
+        }
+      ]
+    },
+    "explanation": "Groups P and R changed the protein and grew short, but group Q's change left the protein the same and the plants grew to a normal 61 cm. So a change in the code did not always change height.",
+    "distractor_rationales": [
+      {
+        "choice": "Every change in the gene made the plants shorter than normal.",
+        "fault": "Contradicted: group Q plants grew to 61 cm, as tall as normal plants (about 60 cm)."
+      },
+      {
+        "choice": "Group Q grew taller because its protein was improved.",
+        "fault": "Not supported: the change did not alter group Q's protein at all, and 61 cm is about normal."
+      },
+      {
+        "choice": "The gene changes happened because the beans were grown in poor soil.",
+        "fault": "Not supported: the groups already carried the changes, and all plants grew in rich soil."
+      }
+    ],
+    "real_world_check": "Mutations can be harmful, helpful or have no effect, depending on whether and how they change the protein."
+  },
+  {
+    "id": "MSB4-L6-12",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A white squirrel is born to two gray parents. No squirrel in the family before had white fur. Tests show that one gene for fur color in the white squirrel has a changed code that was not in either parent's cells. Which process produced this new form of the gene?",
+    "choices": [
+      "mixing",
+      "adaptation",
+      "mutation",
+      "crossbreeding"
+    ],
+    "correct_answer": "mutation",
+    "explanation": "The changed code was in neither parent's cells, so it was not inherited. A change in the code of a gene is a mutation.",
+    "distractor_rationales": [
+      {
+        "choice": "mixing",
+        "fault": "misconception: a new trait comes from the parents mixing their traits; mixing parents' traits only combines forms of genes the parents already carry, and neither parent carried this one.",
+        "misconception": "students think a new color appears when the parents' colors mix together",
+        "same_category": true
+      },
+      {
+        "choice": "adaptation",
+        "fault": "misconception: an animal adapts its own genes to fit its life; a newborn's genes are set before birth and do not change to suit it.",
+        "misconception": "students think animals change their genes to fit their surroundings",
+        "same_category": true
+      },
+      {
+        "choice": "crossbreeding",
+        "fault": "misconception: a new trait must come from a cross with another kind; both parents are gray squirrels of the same kind.",
+        "misconception": "students think a new trait means one parent was a different kind of animal",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "A mutation is a change in the code of a gene; mutations are the source of new forms of genes.",
+    "key_category": "a process that could give an animal a new trait"
+  },
+  {
+    "id": "MSB4-L6-13",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "On a beach with pale sand, most mice of one kind have pale fur. In each generation a few dark-furred mice are born. Owls hunt the mice at dusk. Which best explains why dark mice stay rare on this beach?",
+    "choices": [
+      "Dark fur comes from a recessive allele, so it can never become common.",
+      "Owls spot dark mice against pale sand and catch more of them.",
+      "Dark mice are born weaker, so most of them die before they grow up.",
+      "Pale sand always turns the young mice pale."
+    ],
+    "correct_answer": "Owls spot dark mice against pale sand and catch more of them.",
+    "explanation": "Dark mice stand out on pale sand, so owls find and eat more of them before they breed. Fewer dark mice pass on their fur color, so dark fur stays rare.",
+    "distractor_rationales": [
+      {
+        "choice": "Dark fur comes from a recessive allele, so it can never become common.",
+        "fault": "misconception: recessive traits always stay rare; recessive traits can become common, and how common a trait is depends on survival and reproduction.",
+        "misconception": "students think a recessive trait can never be the common one",
+        "same_category": true
+      },
+      {
+        "choice": "Dark mice are born weaker, so most of them die before they grow up.",
+        "fault": "misconception: an unusual color means a weaker animal; fur color does not make a mouse weaker, and the dark mice die more often because owls see them.",
+        "misconception": "students think animals that look different are born weak or sick",
+        "same_category": true
+      },
+      {
+        "choice": "Pale sand always turns the young mice pale.",
+        "fault": "misconception: the surroundings change an animal's inherited trait; sand does not change fur color, which is set by the mouse's genes.",
+        "misconception": "students think the place an animal lives changes its color directly",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "In natural selection, individuals whose traits make them easier for predators to find survive and reproduce less, so those traits stay uncommon.",
+    "key_category": "a reason a fur color stays rare in a population"
+  },
+  {
+    "id": "MSB4-L6-14",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-4",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Site Bram",
+      "Site Ottery",
+      "Site Penberthy",
+      "Site Abbotsholme"
+    ],
+    "passage": "Ecologists counted the kinds of plants growing at four grassland sites before and after a two-year drought.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Site Bram",
+        "Site Ottery",
+        "Site Penberthy",
+        "Site Abbotsholme"
+      ],
+      "colLabels": [
+        "Kinds of plants before drought",
+        "Kinds of plants after drought"
+      ],
+      "cells": [
+        [
+          20,
+          15
+        ],
+        [
+          36,
+          30
+        ],
+        [
+          30,
+          28
+        ],
+        [
+          24,
+          12
+        ]
+      ],
+      "caption": "Table 1. Kinds of plants at four grassland sites"
+    },
+    "prompt": "Based on Table 1, which site lost more than one tenth but less than one fifth of its kinds of plants during the drought?",
+    "choices": [
+      "Site Ottery",
+      "Site Bram",
+      "Site Penberthy",
+      "Site Abbotsholme"
+    ],
+    "correct_answer": "Site Ottery",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "Site Ottery lost 36 - 30 = 6 of 36 kinds, one sixth. One sixth is more than one tenth and less than one fifth.",
+    "distractor_rationales": [
+      {
+        "choice": "Site Bram",
+        "fault": "Site Bram lost 5 of 20 kinds, one fourth, which is more than one fifth."
+      },
+      {
+        "choice": "Site Penberthy",
+        "fault": "Site Penberthy lost 2 of 30 kinds, about one fifteenth, which is less than one tenth."
+      },
+      {
+        "choice": "Site Abbotsholme",
+        "fault": "Site Abbotsholme lost 12 of 24 kinds, one half, far more than one fifth."
+      }
+    ],
+    "real_world_check": "A disruption such as a drought can reduce the number of kinds of organisms in an ecosystem, by different amounts in different places."
+  },
+  {
+    "id": "MSB4-L6-15",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase",
+    "invented": true,
+    "names_used": [
+      "Galloway lupines"
+    ],
+    "passage": "A gardener crossed pairs of Galloway lupines of many heights and grew their seeds in one bed. For each pair she found the mean height of the two parents and the mean height of their offspring.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          20,
+          24
+        ],
+        [
+          25,
+          26
+        ],
+        [
+          30,
+          31
+        ],
+        [
+          35,
+          33
+        ],
+        [
+          40,
+          38
+        ],
+        [
+          45,
+          41
+        ],
+        [
+          50,
+          45
+        ],
+        [
+          55,
+          46
+        ],
+        [
+          60,
+          52
+        ]
+      ],
+      "xLabel": "Mean height of parents (cm)",
+      "yLabel": "Mean height of offspring (cm)",
+      "caption": "Figure 1. Parent height and offspring height in Galloway lupines"
+    },
+    "prompt": "Based on Figure 1, how did the mean height of the offspring change as the mean height of the parents went up?",
+    "choices": [
+      "Offspring height rose.",
+      "Offspring height decreased.",
+      "Offspring height fell, then rose.",
+      "Offspring height rose, then leveled off."
+    ],
+    "correct_answer": "Offspring height rose.",
+    "key_evidence": {
+      "refs": [
+        [
+          20,
+          24
+        ],
+        [
+          60,
+          52
+        ]
+      ]
+    },
+    "explanation": "From parents averaging 20 cm to parents averaging 60 cm, offspring height climbs from about 24 cm to 52 cm with no flat part: it rose.",
+    "distractor_rationales": [
+      {
+        "choice": "Offspring height decreased.",
+        "fault": "Offspring height goes from about 24 cm to 52 cm as parent height goes up, so it did not decrease."
+      },
+      {
+        "choice": "Offspring height fell, then rose.",
+        "fault": "There is no early dip; the lowest offspring height is at the shortest parents."
+      },
+      {
+        "choice": "Offspring height rose, then leveled off.",
+        "fault": "The points keep climbing to 52 cm at the tallest parents instead of flattening."
+      }
+    ],
+    "real_world_check": "Offspring inherit genes from both parents, so for a trait like height taller parents tend to have taller offspring.",
+    "prior_free": "Height is partly inherited, but whether offspring height keeps rising or levels off for tall parents is set only by these points."
+  },
+  {
+    "id": "MSB4-L6-16",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Elstow clover",
+      "Field Sim",
+      "Field Dunrae",
+      "Field Tremayne",
+      "Field Throckmorton"
+    ],
+    "passage": "Soil beside an old zinc mine holds a lot of zinc, which harms most plants. Students collected seeds of Elstow clover from four fields at different distances from the mine. They planted the seeds in trays of soil dug from beside the mine. Some fields gave many seeds and some gave few, so the numbers planted were not equal. Six weeks later the students counted the seedlings still alive.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Field Dunrae",
+        "Field Tremayne",
+        "Field Throckmorton",
+        "Field Sim"
+      ],
+      "colLabels": [
+        "Seeds planted",
+        "Seedlings alive after 6 weeks"
+      ],
+      "cells": [
+        [
+          20,
+          12
+        ],
+        [
+          50,
+          30
+        ],
+        [
+          40,
+          18
+        ],
+        [
+          80,
+          20
+        ]
+      ],
+      "caption": "Table 1. Elstow clover seedlings alive in soil from beside the mine"
+    },
+    "prompt": "Based on Table 1, which field's seeds had the smallest percent of seedlings survive?",
+    "choices": [
+      "Field Dunrae",
+      "Field Tremayne",
+      "Field Throckmorton",
+      "Field Sim"
+    ],
+    "correct_answer": "Field Sim",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "explanation": "Field Sim had 20 of 80 seedlings survive, 25 percent, the smallest share. Field Dunrae had the fewest alive but from far fewer seeds.",
+    "distractor_rationales": [
+      {
+        "choice": "Field Dunrae",
+        "fault": "Field Dunrae had the fewest seedlings alive (12), but 12 of 20 is 60 percent, a large share."
+      },
+      {
+        "choice": "Field Tremayne",
+        "fault": "30 of 50 seedlings survived, 60 percent."
+      },
+      {
+        "choice": "Field Throckmorton",
+        "fault": "18 of 40 seedlings survived, 45 percent, more than Field Sim's share."
+      }
+    ],
+    "real_world_check": "Plants from populations that carry a helpful trait, such as tolerance of zinc, survive better in harsh soil than plants without it."
+  },
+  {
+    "id": "MSB4-L6-17",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-8",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Kelso walks from a sunny beach into a dim cabin. As he steps inside, his eyes adjust to the dim light. Which quantity of his eyes increases so that more light can enter them?",
+    "choices": [
+      "lens width",
+      "eyeball size",
+      "pupil opening size",
+      "rod cell count"
+    ],
+    "correct_answer": "pupil opening size",
+    "explanation": "In dim light the iris muscles relax and the pupil opens wider, so more light passes into the eye to reach the light-sensing cells.",
+    "distractor_rationales": [
+      {
+        "choice": "lens width",
+        "fault": "misconception: the lens widens to collect more light; the lens changes shape to focus, and the pupil sets how much light enters.",
+        "misconception": "students think the lens grows wider in the dark to gather light",
+        "same_category": true
+      },
+      {
+        "choice": "eyeball size",
+        "fault": "misconception: the eyeball itself swells in the dark; the eyeball keeps its size, and only the pupil opening widens.",
+        "misconception": "students think the whole eye gets bigger when it is dark",
+        "same_category": true
+      },
+      {
+        "choice": "rod cell count",
+        "fault": "misconception: the eye grows more light-sensing cells in the dark; no new cells form in minutes, and cells do not let light in.",
+        "misconception": "students think eyes make new light-sensing cells when it gets dark",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sense receptors respond to stimuli, and the iris widens the pupil in dim light so more light enters the eye.",
+    "key_category": "a quantity of the eye that could change"
+  },
+  {
+    "id": "MSB4-L6-18",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A girl's cells cannot make a protein her body uses because a stretch of her DNA has an error. Doctors place working copies of that stretch of DNA into some of her cells, and those cells begin to make the protein. Which process did the doctors use?",
+    "choices": [
+      "gene therapy",
+      "tissue cloning",
+      "selective breeding",
+      "antibiotic treatment"
+    ],
+    "correct_answer": "gene therapy",
+    "explanation": "Adding working copies of a gene to a person's cells so that they make a missing protein is gene therapy.",
+    "distractor_rationales": [
+      {
+        "choice": "tissue cloning",
+        "fault": "misconception: cloning repairs genes; cloning copies cells or organisms with the same genes, including the gene that does not work.",
+        "misconception": "students think cloning cells is a way to fix a broken gene",
+        "same_category": true
+      },
+      {
+        "choice": "selective breeding",
+        "fault": "misconception: any change to genes is breeding; selective breeding chooses which organisms reproduce over generations and cannot change one person's cells.",
+        "misconception": "students think any change to inherited traits is done by breeding",
+        "same_category": true
+      },
+      {
+        "choice": "antibiotic treatment",
+        "fault": "misconception: medicines fix genes; antibiotics kill bacteria and do not add genes to a person's cells.",
+        "misconception": "students think a strong medicine can fix any disease, even a gene problem",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Gene therapy is a technology that adds or replaces genes in a person's cells to treat a disease caused by a gene that does not work.",
+    "key_category": "a medical or genetic technology"
+  },
+  {
+    "id": "MSB4-L6-19",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A man has an operation that removes a large part of his small intestine. He keeps eating the same meals as before. Which prediction is best supported?",
+    "choices": [
+      "His stomach will take in the nutrients instead, since it holds the food first.",
+      "Less digested food will reach his blood, since less intestine is left.",
+      "His liver will absorb the nutrients instead.",
+      "His body will burn less food each day now that his intestine is shorter."
+    ],
+    "correct_answer": "Less digested food will reach his blood, since less intestine is left.",
+    "explanation": "The small intestine is where most digested nutrients pass into the blood. With much of it removed, less of the digested food can be taken in.",
+    "distractor_rationales": [
+      {
+        "choice": "His stomach will take in the nutrients instead, since it holds the food first.",
+        "fault": "misconception: the stomach absorbs most nutrients; the stomach breaks food down, but nearly all nutrients pass into the blood in the small intestine.",
+        "misconception": "students think food goes into the blood mostly from the stomach",
+        "same_category": true
+      },
+      {
+        "choice": "His liver will absorb the nutrients instead.",
+        "fault": "misconception: the liver takes nutrients straight from food; food never passes through the liver, which only receives nutrients after they reach the blood.",
+        "misconception": "students think the liver soaks up food as it passes by",
+        "same_category": true
+      },
+      {
+        "choice": "His body will burn less food each day now that his intestine is shorter.",
+        "fault": "misconception: a shorter gut means the body uses less food; his cells use the same energy, so he may lose weight instead.",
+        "misconception": "students think a smaller body part means the body uses less food",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "The digestive system breaks food down and the small intestine passes the nutrients into the blood, which carries them to the body's cells.",
+    "key_category": "a prediction about where digested food enters the body"
+  },
+  {
+    "id": "MSB4-L7-01",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Wexmoor Park"
+    ],
+    "passage": "Tree swallows nest only in holes, such as old woodpecker holes in dead trees. Rangers counted the swallow nests at five sites in Wexmoor Park, which had more or fewer dead trees standing.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Site 2",
+          "value": 14
+        },
+        {
+          "label": "Site 5",
+          "value": 30
+        },
+        {
+          "label": "Site 7",
+          "value": 22
+        },
+        {
+          "label": "Site 9",
+          "value": 46
+        },
+        {
+          "label": "Site 11",
+          "value": 8
+        }
+      ],
+      "xLabel": "Site",
+      "yLabel": "Swallow nests counted",
+      "caption": "Figure 1. Tree swallow nests at five sites in Wexmoor Park"
+    },
+    "prompt": "Based on Figure 1, about how many swallow nests were counted at Site 9?",
+    "choices": [
+      "46 nests",
+      "8 nests",
+      "30 nests",
+      "14 nests"
+    ],
+    "correct_answer": "46 nests",
+    "key_evidence": {
+      "refs": [
+        "Site 9"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Site 9 bar is the tallest in Figure 1 and reaches the top tick of the axis, 46 nests.",
+    "distractor_rationales": [
+      {
+        "choice": "8 nests",
+        "fault": "the value of the shortest bar, Site 11, not Site 9"
+      },
+      {
+        "choice": "30 nests",
+        "fault": "the height of the Site 5 bar, read from the wrong site"
+      },
+      {
+        "choice": "14 nests",
+        "fault": "the height of the Site 2 bar, read from the wrong site"
+      }
+    ],
+    "real_world_check": "When a resource such as nest holes limits a population, more of the resource supports more nesting pairs.",
+    "prior_free": "Knowing that nest sites limit swallows does not tell how many nests were counted at Site 9."
+  },
+  {
+    "id": "MSB4-L7-02",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-5",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease",
+    "invented": true,
+    "names_used": [
+      "fern line N-47"
+    ],
+    "passage": "Students grew plants of fern line N-47 in four shade houses that let through 25%, 50%, 75% or 100% of full sunlight. After eight weeks, they measured the area of the newest fully opened leaves.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              25,
+              64
+            ],
+            [
+              50,
+              51
+            ],
+            [
+              75,
+              40
+            ],
+            [
+              100,
+              28
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Light level (% of full sunlight)",
+      "yLabel": "Average leaf area (cm²)",
+      "caption": "Figure 1. Leaf area of fern line N-47 plants grown at four light levels"
+    },
+    "prompt": "Based on Figure 1, how did the average leaf area change as the light level went from 25% to 100% of full sunlight?",
+    "choices": [
+      "The leaf area grew.",
+      "The leaf area dropped.",
+      "The leaf area rose, then fell.",
+      "The leaf area leveled off, then fell."
+    ],
+    "correct_answer": "The leaf area dropped.",
+    "key_evidence": {
+      "refs": [
+        [
+          25,
+          64
+        ],
+        [
+          100,
+          28
+        ]
+      ]
+    },
+    "explanation": "Each point is lower than the one before it (64, 51, 40 and 28 cm²), so the leaf area dropped across the whole range of light levels.",
+    "distractor_rationales": [
+      {
+        "choice": "The leaf area grew.",
+        "fault": "the leaf area went from 64 cm² down to 28 cm², so it never grew"
+      },
+      {
+        "choice": "The leaf area rose, then fell.",
+        "fault": "the very first step, from 25% to 50% light, already falls from 64 to 51 cm²"
+      },
+      {
+        "choice": "The leaf area leveled off, then fell.",
+        "fault": "there is no flat stretch: every step falls by 11 to 13 cm²"
+      }
+    ],
+    "real_world_check": "Many plants grow smaller, thicker leaves in bright light and larger, thinner leaves in shade, so leaf size can fall as light rises.",
+    "prior_free": "Most students expect more light to make bigger leaves; only these data show this fern's leaves shrinking as light rises."
+  },
+  {
+    "id": "MSB4-L7-03",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "dependent",
+    "invented": true,
+    "names_used": [
+      "sorrel line R-22"
+    ],
+    "passage": "Plants of sorrel line R-22 grow either hairy leaves or smooth leaves. Dalia's class asked whether hairy leaves protect a sorrel plant from garden snails. On Monday they potted six hairy plants and six smooth plants and lined up all twelve pots inside a glass tank. A sticker on the rim of every pot showed its leaf type. After a short talk about the number of snails, the class released ten hungry snails among the pots. On Thursday the snails came out first. They went onto a balance together, since the class also wanted to see how much the group had fed: the combined mass of the snails was 41 g, up from 38 g on Monday. Then two students checked one pot at a time and agreed on the number of chewed holes.",
+    "graphic": null,
+    "prompt": "Which quantity did the class need to compare between hairy and smooth plants to answer its question?",
+    "choices": [
+      "leaf type",
+      "number of chewed holes",
+      "number of snails",
+      "combined mass of the snails"
+    ],
+    "correct_answer": "number of chewed holes",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "agreed on the number of chewed holes"
+        }
+      ]
+    },
+    "explanation": "The question is whether hairy leaves protect a plant, so the class must compare damage on hairy and smooth plants; the number of chewed holes, checked pot by pot with the leaf type on each sticker, does that.",
+    "distractor_rationales": [
+      {
+        "choice": "leaf type",
+        "fault": "leaf type (hairy or smooth) is what the class set up to compare; it is a setting, not a measured result"
+      },
+      {
+        "choice": "number of snails",
+        "fault": "the class chose ten snails before the trial; it is a setting, not a measurement"
+      },
+      {
+        "choice": "combined mass of the snails",
+        "fault": "it was measured, but for all ten snails together, so it cannot show whether hairy or smooth plants were eaten less"
+      }
+    ],
+    "real_world_check": "In an investigation the dependent variable is the measured result that answers the question; a measurement that cannot separate the groups cannot answer it.",
+    "option_roles": [
+      "setting",
+      "result",
+      "setting",
+      "result"
+    ]
+  },
+  {
+    "id": "MSB4-L7-04",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Natural selection can change a population only through differences that parents pass on to their young. In a flock of seed-eating birds, which of these is an example of such a difference?",
+    "choices": [
+      "inborn beak length",
+      "worn claws",
+      "a broken wing",
+      "sun-bleached feathers"
+    ],
+    "correct_answer": "inborn beak length",
+    "explanation": "Beak length a bird is born with is set by its genes and passed to its young, so natural selection can act on it; wear, injury and fading are not inherited.",
+    "distractor_rationales": [
+      {
+        "choice": "worn claws",
+        "fault": "misconception: wear on an adult's claws is passed to its young; worn claws come from use and are not in the genes",
+        "misconception": "students think body changes an animal picks up from use are passed to its young",
+        "same_category": true
+      },
+      {
+        "choice": "a broken wing",
+        "fault": "misconception: an injury can be inherited; a broken wing changes no genes, so chicks hatch with normal wings",
+        "misconception": "students think injuries a parent suffers can show up in its offspring",
+        "same_category": true
+      },
+      {
+        "choice": "sun-bleached feathers",
+        "fault": "misconception: color faded by sunlight is passed on; fading happens to grown feathers and is not inherited",
+        "misconception": "students think changes the environment makes to an adult's body become part of what its young inherit",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Natural selection acts on inherited variation; traits acquired during an individual's life, such as injuries or wear, are not passed to offspring.",
+    "key_category": "a difference among individual birds"
+  },
+  {
+    "id": "MSB4-L7-05",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In a kind of mouse, one gene holds the instructions for a protein that carries black pigment into each growing hair. A mouse is born with a change in this gene, and the protein it makes no longer works. Which quantity in the mouse is most directly affected?",
+    "choices": [
+      "number of its genes",
+      "number of hairs on it",
+      "darkness of every new hair",
+      "count of its chromosomes"
+    ],
+    "correct_answer": "darkness of every new hair",
+    "explanation": "The gene codes for the protein that moves pigment into hairs; when that protein fails, less pigment reaches each hair, so the fur is paler.",
+    "distractor_rationales": [
+      {
+        "choice": "number of its genes",
+        "fault": "misconception: a mutation changes how many genes the mouse has; it alters the code inside one gene, and the number of genes stays as it was",
+        "misconception": "students think a mutation removes a gene or adds one, so the gene count changes",
+        "same_category": true
+      },
+      {
+        "choice": "number of hairs on it",
+        "fault": "misconception: a fur gene controls how many hairs grow; this protein only carries pigment into hairs that grow anyway",
+        "misconception": "students think a gene for fur works by making the animal grow more or fewer hairs",
+        "same_category": true
+      },
+      {
+        "choice": "count of its chromosomes",
+        "fault": "misconception: a gene change adds or removes a chromosome; a change inside one gene leaves the chromosome count as it was",
+        "misconception": "students think a gene change means the mouse gained or lost a whole chromosome",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "A mutation can change a protein's structure and function, which can change a trait such as fur color without changing the number of genes or chromosomes.",
+    "key_category": "a quantity in a mouse that a gene change could alter"
+  },
+  {
+    "id": "MSB4-L7-06",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-8",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "With her eyes closed, Rosa touches an ice cube with one fingertip. Right away she knows that what she touched is cold. Which statement best explains how she knows?",
+    "choices": [
+      "The cold itself travels up through her arm until it reaches her brain.",
+      "Her fingertip senses the cold and feels it on its own, without her brain.",
+      "Receptor cells in her skin send nerve messages that her brain reads as cold.",
+      "Blood flowing past the ice carries the cold feeling up to her brain."
+    ],
+    "correct_answer": "Receptor cells in her skin send nerve messages that her brain reads as cold.",
+    "explanation": "Temperature receptors in the skin respond to the cold and send signals along nerves to the brain, which interprets them as the feeling of cold.",
+    "distractor_rationales": [
+      {
+        "choice": "The cold itself travels up through her arm until it reaches her brain.",
+        "fault": "misconception: the cold moves to the brain; nothing cold travels up the arm, only nerve signals do",
+        "misconception": "students think the stimulus itself, the cold, moves through the body to the brain",
+        "same_category": true
+      },
+      {
+        "choice": "Her fingertip senses the cold and feels it on its own, without her brain.",
+        "fault": "misconception: feeling happens in the fingertip; skin receptors only send signals, and the brain produces the feeling of cold",
+        "misconception": "students think a feeling happens in the body part that is touched, not in the brain",
+        "same_category": true
+      },
+      {
+        "choice": "Blood flowing past the ice carries the cold feeling up to her brain.",
+        "fault": "misconception: blood carries sensations; messages from the skin travel along nerves, not in the blood",
+        "misconception": "students think blood carries feelings or messages from the skin to the brain",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sensory receptors respond to stimuli and send messages through nerves to the brain, where they are processed into a perception.",
+    "key_category": "an account of how a person senses that something is cold"
+  },
+  {
+    "id": "MSB4-L7-07",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Tube W-1",
+      "Tube W-2",
+      "Tube W-3",
+      "Tube W-4"
+    ],
+    "passage": "Students mixed stomach juice from a lab supply with water in four tubes, each set to a different acidity (pH). They dropped 500 mg of cooked egg white into each tube and kept the tubes warm for four hours. Then they weighed the egg white left.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Tube W-1",
+        "Tube W-2",
+        "Tube W-3",
+        "Tube W-4"
+      ],
+      "colLabels": [
+        "pH",
+        "Egg white at start (mg)",
+        "Egg white left (mg)"
+      ],
+      "cells": [
+        [
+          2,
+          500,
+          140
+        ],
+        [
+          4,
+          500,
+          310
+        ],
+        [
+          6,
+          500,
+          455
+        ],
+        [
+          8,
+          500,
+          492
+        ]
+      ],
+      "caption": "Table 1. Egg white left after four hours in stomach juice at four pH values"
+    },
+    "prompt": "Based on Table 1, how many milligrams of egg white were digested in Tube W-2?",
+    "choices": [
+      "310 mg",
+      "190 mg",
+      "455 mg",
+      "360 mg"
+    ],
+    "correct_answer": "190 mg",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "Tube W-2 started with 500 mg of egg white and had 310 mg left, so 500 - 310 = 190 mg was digested.",
+    "distractor_rationales": [
+      {
+        "choice": "310 mg",
+        "fault": "the mass LEFT in Tube W-2, not the mass digested"
+      },
+      {
+        "choice": "455 mg",
+        "fault": "the mass left in Tube W-3, the wrong row and the wrong quantity"
+      },
+      {
+        "choice": "360 mg",
+        "fault": "the mass digested in Tube W-1 (500 - 140), the wrong row"
+      }
+    ],
+    "real_world_check": "Stomach enzymes digest protein fastest in strongly acidic juice and slow down as the pH rises toward neutral.",
+    "prior_free": "Knowing that the stomach digests protein does not give how much egg white was digested in Tube W-2."
+  },
+  {
+    "id": "MSB4-L7-08",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Strain Iva",
+      "Strain Garvey",
+      "Strain Pembroke",
+      "Strain Ashcombery"
+    ],
+    "passage": "Hens of four quail strains each carry a different change in the gene for a protein that builds eggshells. Students measured the shell thickness of ten eggs from each strain and the force needed to crack each egg, then averaged the results.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Strain Iva",
+        "Strain Garvey",
+        "Strain Pembroke",
+        "Strain Ashcombery"
+      ],
+      "colLabels": [
+        "Shell thickness (mm)",
+        "Force to crack the egg (N)"
+      ],
+      "cells": [
+        [
+          0.21,
+          14
+        ],
+        [
+          0.18,
+          12
+        ],
+        [
+          0.22,
+          7
+        ],
+        [
+          0.24,
+          16
+        ]
+      ],
+      "caption": "Table 1. Average eggshell thickness and cracking force for four quail strains"
+    },
+    "prompt": "Based on Table 1, which strain laid eggs that cracked under the least force?",
+    "choices": [
+      "Strain Iva",
+      "Strain Garvey",
+      "Strain Ashcombery",
+      "Strain Pembroke"
+    ],
+    "correct_answer": "Strain Pembroke",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Strain Pembroke's eggs cracked at 7 N, the least force, even though their shells (0.22 mm) were not the thinnest.",
+    "distractor_rationales": [
+      {
+        "choice": "Strain Iva",
+        "fault": "its eggs needed 14 N to crack, twice the 7 N of Strain Pembroke"
+      },
+      {
+        "choice": "Strain Garvey",
+        "fault": "it had the thinnest shells (0.18 mm), but its eggs still needed 12 N to crack"
+      },
+      {
+        "choice": "Strain Ashcombery",
+        "fault": "its eggs needed the most force, 16 N, to crack"
+      }
+    ],
+    "real_world_check": "A change in a gene can change the structure of the protein it codes for, which can weaken a body structure such as an eggshell even when its thickness is normal."
+  },
+  {
+    "id": "MSB4-L7-09",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "copepod line Q-17"
+    ],
+    "passage": "Ecologists added copepods of line Q-17, tiny animals that eat algae, to a newly filled garden pond. Every two weeks they counted the copepods in one liter of pond water.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              40
+            ],
+            [
+              2,
+              120
+            ],
+            [
+              4,
+              240
+            ],
+            [
+              6,
+              420
+            ],
+            [
+              8,
+              480
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time (weeks)",
+      "yLabel": "Copepods per liter",
+      "caption": "Figure 1. Copepods of line Q-17 per liter of pond water over eight weeks"
+    },
+    "prompt": "If the copepods multiplied evenly from week 4 to week 6, about how many were in one liter of pond water at week 5?",
+    "choices": [
+      "420 per liter",
+      "200 per liter",
+      "540 per liter",
+      "330 per liter"
+    ],
+    "correct_answer": "330 per liter",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          240
+        ],
+        [
+          6,
+          420
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "The count was 240 per liter at week 4 and 420 at week 6; halfway between them, week 5 gives (240 + 420) / 2 = 330 per liter.",
+    "distractor_rationales": [
+      {
+        "choice": "420 per liter",
+        "fault": "the count at week 6, not week 5"
+      },
+      {
+        "choice": "200 per liter",
+        "fault": "below even the week-4 count of 240, so it runs the wrong way"
+      },
+      {
+        "choice": "540 per liter",
+        "fault": "above the highest count on the graph (480 at week 8); it carries the steep rise on past week 6"
+      }
+    ],
+    "real_world_check": "A population with plenty of food grows quickly at first and then more slowly as resources become limiting.",
+    "prior_free": "Knowing that populations grow when food is plentiful does not give this pond's copepod count at week 5."
+  },
+  {
+    "id": "MSB4-L7-10",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase",
+    "invented": true,
+    "names_used": [
+      "Brevick shrub"
+    ],
+    "passage": "Ecologists counted Brevick shrubs and grass seedlings in 11 plots of a dry grassland.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          4,
+          15
+        ],
+        [
+          5,
+          14
+        ],
+        [
+          5,
+          17
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          7,
+          22
+        ],
+        [
+          8,
+          21
+        ]
+      ],
+      "xLabel": "Brevick shrubs per plot",
+      "yLabel": "Grass seedlings per square meter",
+      "caption": "Figure 1. Grass seedlings and Brevick shrubs in 11 grassland plots"
+    },
+    "prompt": "Based on the scatterplot, what pattern links the Brevick shrub count to the grass seedling count?",
+    "choices": [
+      "The seedling count fell.",
+      "The seedling count rose, then fell.",
+      "The seedling count dropped, then rose.",
+      "The seedling count increased."
+    ],
+    "correct_answer": "The seedling count increased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          6
+        ],
+        [
+          7,
+          22
+        ]
+      ]
+    },
+    "explanation": "Plots with more Brevick shrubs had more grass seedlings across the whole range, from about 6 per square meter with no shrubs to about 21 with 7 or 8 shrubs.",
+    "distractor_rationales": [
+      {
+        "choice": "The seedling count fell.",
+        "fault": "plots with more shrubs had more seedlings, from about 6 up to about 21"
+      },
+      {
+        "choice": "The seedling count rose, then fell.",
+        "fault": "the highest counts are at 6 to 8 shrubs; there is no fall at the right"
+      },
+      {
+        "choice": "The seedling count dropped, then rose.",
+        "fault": "the fewest seedlings are at 0 shrubs; there is no early drop"
+      }
+    ],
+    "real_world_check": "Some shrubs improve the soil or shelter seedlings so that nearby plants grow better (facilitation), while others crowd plants out; field data decide which.",
+    "prior_free": "Shrubs can crowd out grass or help it; only these data show which happened in these plots."
+  },
+  {
+    "id": "MSB4-L7-11",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-4",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Ristow plover",
+      "Hessle Spit"
+    ],
+    "passage": "Ristow plovers lay their eggs in a shallow scrape on open beach sand, and both parents can take turns guarding the nest. A team watched 60 nests on Hessle Spit for one season. At some nests both parents guarded by day and by night. At others only the female or only the male stayed, and at some nests nobody stayed at night. The team counted the chicks that left each nest able to fly and averaged the counts for each group of nests.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Both parents",
+        "Female only",
+        "Male only",
+        "No one at night"
+      ],
+      "colLabels": [
+        "Nests watched",
+        "Chicks fledged per nest (average)"
+      ],
+      "cells": [
+        [
+          18,
+          3.3
+        ],
+        [
+          15,
+          2.2
+        ],
+        [
+          12,
+          1.8
+        ],
+        [
+          15,
+          0.6
+        ]
+      ],
+      "caption": "Table 1. Chicks fledged from Ristow plover nests with four guarding patterns"
+    },
+    "prompt": "Based on Table 1, nests guarded by both parents fledged how many times as many chicks per nest as nests with no one at night?",
+    "choices": [
+      "1.5 times",
+      "2.7 times",
+      "0.2 times",
+      "5.5 times"
+    ],
+    "correct_answer": "5.5 times",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "Nests guarded by both parents averaged 3.3 chicks and nests with no one at night averaged 0.6, so 3.3 / 0.6 = 5.5 times as many.",
+    "distractor_rationales": [
+      {
+        "choice": "1.5 times",
+        "fault": "3.3 / 2.2 compares both-parent nests with female-only nests, the wrong row"
+      },
+      {
+        "choice": "2.7 times",
+        "fault": "3.3 - 0.6 = 2.7 is a difference, not how many times as many"
+      },
+      {
+        "choice": "0.2 times",
+        "fault": "0.6 / 3.3 (about 0.2), the ratio turned upside down"
+      }
+    ],
+    "real_world_check": "Parental care such as guarding a nest raises the share of young that survive, which increases reproductive success.",
+    "prior_free": "Knowing that guarding helps chicks survive does not give how many times as many chicks fledged."
+  },
+  {
+    "id": "MSB4-L7-12",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In a kind of moth, each body cell holds 30 chromosomes, and egg and sperm cells normally hold 15. Suppose a moth's egg and sperm cells kept all 30 chromosomes instead. If such an egg and sperm joined, what would most likely be true of the young moth's body cells?",
+    "choices": [
+      "They would hold 30 chromosomes after the egg dropped half of its own.",
+      "They would hold 30 chromosomes taken from the mother's egg alone.",
+      "They would hold 60 chromosomes each.",
+      "They would hold 15 chromosomes, half of what a body cell holds."
+    ],
+    "correct_answer": "They would hold 60 chromosomes each.",
+    "explanation": "Each sex cell would bring 30 chromosomes, so the joined cell and every body cell grown from it would hold 30 + 30 = 60; normally halving to 15 keeps the young at 30.",
+    "distractor_rationales": [
+      {
+        "choice": "They would hold 30 chromosomes after the egg dropped half of its own.",
+        "fault": "misconception: the egg trims its extra chromosomes at joining; the egg and sperm each bring all they carry, so 30 + 30 = 60",
+        "misconception": "students think fertilization itself sets the chromosome number back to normal",
+        "same_category": true
+      },
+      {
+        "choice": "They would hold 30 chromosomes taken from the mother's egg alone.",
+        "fault": "misconception: the young use only the mother's chromosomes; the sperm's chromosomes join the egg's, so both sets end up in the young",
+        "misconception": "students think offspring get their chromosomes mainly from the mother because the egg is bigger",
+        "same_category": true
+      },
+      {
+        "choice": "They would hold 15 chromosomes, half of what a body cell holds.",
+        "fault": "misconception: young get half the body-cell number; it is the sex cells that normally hold half, and here they hold 30 each",
+        "misconception": "students think offspring cells have half as many chromosomes as their parents' body cells",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sex cells carry half the body-cell chromosome number, so joining an egg and a sperm restores the full number; without that halving, the number would double each generation.",
+    "key_category": "a prediction about the chromosome number of offspring"
+  },
+  {
+    "id": "MSB4-L7-13",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A brown rabbit and a gray rabbit mate and have a litter of seven young. Which prediction about the litter is most likely correct?",
+    "choices": [
+      "The young will differ from one another in several traits.",
+      "All seven young will be copies of one parent.",
+      "Each young rabbit will be a perfect half-and-half blend of both parents.",
+      "Every young rabbit will look like its father, whose traits are the stronger ones."
+    ],
+    "correct_answer": "The young will differ from one another in several traits.",
+    "explanation": "In sexual reproduction each young rabbit gets a different combination of alleles from its two parents, so littermates differ from one another in several traits.",
+    "distractor_rationales": [
+      {
+        "choice": "All seven young will be copies of one parent.",
+        "fault": "misconception: young are copies of one parent; each young gets half its genes from each parent, in a new combination",
+        "misconception": "students think offspring are copies of either the mother or the father",
+        "same_category": true
+      },
+      {
+        "choice": "Each young rabbit will be a perfect half-and-half blend of both parents.",
+        "fault": "misconception: traits blend evenly; genes are passed as separate alleles, so a young rabbit can show one parent's trait fully or a trait neither parent shows",
+        "misconception": "students think every trait of an offspring is a halfway mix of its two parents",
+        "same_category": true
+      },
+      {
+        "choice": "Every young rabbit will look like its father, whose traits are the stronger ones.",
+        "fault": "misconception: the father's traits win; which allele shows depends on the alleles, not on which parent gave them",
+        "misconception": "students think the father's traits are stronger and show up in all of the young",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sexual reproduction combines alleles from two parents in new ways, so offspring of the same parents vary from one another.",
+    "key_category": "a prediction about the traits of offspring from sexual reproduction"
+  },
+  {
+    "id": "MSB4-L7-14",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-6",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "moth line K-71",
+      "Forest Sorel",
+      "Forest Rothery",
+      "Forest Ulvin",
+      "Forest Wimsett"
+    ],
+    "passage": "Springs have warmed in four oak forests, so oak leaves now open earlier. Caterpillars of moth line K-71 feed only on young oak leaves, and the time of year an egg hatches is inherited. Researchers found the percent of caterpillars that hatched early, in generation 1 and again in generation 6.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Forest Sorel",
+        "Forest Rothery",
+        "Forest Ulvin",
+        "Forest Wimsett"
+      ],
+      "colLabels": [
+        "Early hatchers, generation 1 (%)",
+        "Early hatchers, generation 6 (%)"
+      ],
+      "cells": [
+        [
+          8,
+          22
+        ],
+        [
+          6,
+          51
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          3,
+          70
+        ]
+      ],
+      "caption": "Table 1. Caterpillars of moth line K-71 that hatched early in four forests"
+    },
+    "prompt": "Based on Table 1, by how many more percentage points did the share of early hatchers rise in Forest Wimsett than in Forest Sorel?",
+    "choices": [
+      "48 points",
+      "53 points",
+      "14 points",
+      "45 points"
+    ],
+    "correct_answer": "53 points",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "(v0 - v1) - (v2 - v3)"
+    },
+    "explanation": "Forest Wimsett rose from 3% to 70%, 67 points; Forest Sorel rose from 8% to 22%, 14 points; 67 - 14 = 53 percentage points more.",
+    "distractor_rationales": [
+      {
+        "choice": "48 points",
+        "fault": "70 - 22 compares only the generation-6 values and ignores where each forest started"
+      },
+      {
+        "choice": "14 points",
+        "fault": "Forest Sorel's own rise (22 - 8), not the difference between the two forests"
+      },
+      {
+        "choice": "45 points",
+        "fault": "Forest Rothery's rise (51 - 6), the wrong forest"
+      }
+    ],
+    "real_world_check": "When an inherited trait such as hatching time lets more young find food, that trait becomes more common in the population over generations.",
+    "prior_free": "The standard predicts that early hatchers become more common, not how much more their share rose in one forest than in another."
+  },
+  {
+    "id": "MSB4-L7-15",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Bag Orme",
+      "Bag Fenmore",
+      "Bag Gaskelton",
+      "Bag Hensleyford"
+    ],
+    "passage": "Students buried four mesh bags of dead leaves in four soils. Bags Fenmore and Orme held 60 g of leaves at the start; Bags Gaskelton and Hensleyford held 90 g. After ten weeks they dug up the bags, dried them and weighed the leaves that were left (Figure 1).",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Bag Fenmore",
+          "value": 22
+        },
+        {
+          "label": "Bag Gaskelton",
+          "value": 40
+        },
+        {
+          "label": "Bag Hensleyford",
+          "value": 61
+        },
+        {
+          "label": "Bag Orme",
+          "value": 35
+        }
+      ],
+      "xLabel": "Bag",
+      "yLabel": "Leaves left after 10 weeks (g)",
+      "caption": "Figure 1. Mass of leaves left in four buried bags"
+    },
+    "prompt": "In which bag did decomposers break down the greatest mass of leaves?",
+    "choices": [
+      "Bag Fenmore",
+      "Bag Orme",
+      "Bag Hensleyford",
+      "Bag Gaskelton"
+    ],
+    "correct_answer": "Bag Gaskelton",
+    "key_evidence": {
+      "refs": [
+        "Bag Gaskelton",
+        "Bag Fenmore"
+      ]
+    },
+    "explanation": "Bag Gaskelton started with 90 g and had about 40 g left, so about 50 g broke down, more than Bag Fenmore (about 38 g), Bag Hensleyford (about 29 g) or Bag Orme (about 25 g).",
+    "distractor_rationales": [
+      {
+        "choice": "Bag Fenmore",
+        "fault": "the least was left (about 22 g), but it started with only 60 g, so about 38 g broke down, less than in Bag Gaskelton"
+      },
+      {
+        "choice": "Bag Orme",
+        "fault": "it started with 60 g and about 35 g was left, so only about 25 g broke down"
+      },
+      {
+        "choice": "Bag Hensleyford",
+        "fault": "the most was left (about 61 of 90 g), so only about 29 g broke down"
+      }
+    ],
+    "real_world_check": "Decomposers break down dead leaves and return their matter to the soil; the mass broken down is the starting mass minus the mass left."
+  },
+  {
+    "id": "MSB4-L7-16",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Cardle Quarry",
+      "Bed Tarn",
+      "Bed Ostrey",
+      "Bed Morvaine",
+      "Bed Quillanton"
+    ],
+    "passage": "Geologists studied four rock beds exposed in the wall of Cardle Quarry. From each bed they took 20 kg of rock, split it into thin slabs and sorted every fossil they found. They counted the kinds of land plants and the kinds of sea animals among the fossils. They also found the age of each bed from a layer of volcanic ash inside it. Table 1 shows the results.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Bed Tarn",
+        "Bed Ostrey",
+        "Bed Morvaine",
+        "Bed Quillanton"
+      ],
+      "colLabels": [
+        "Age (million years)",
+        "Kinds of land plants",
+        "Kinds of sea animals"
+      ],
+      "cells": [
+        [
+          410,
+          2,
+          9
+        ],
+        [
+          380,
+          8,
+          5
+        ],
+        [
+          330,
+          11,
+          7
+        ],
+        [
+          365,
+          6,
+          12
+        ]
+      ],
+      "caption": "Table 1. Age and fossil kinds of four beds at Cardle Quarry"
+    },
+    "prompt": "The geologists want a bed that is older than 350 million years and holds more than 6 kinds of land plants. Based on Table 1, which bed meets both conditions?",
+    "choices": [
+      "Bed Tarn",
+      "Bed Ostrey",
+      "Bed Morvaine",
+      "Bed Quillanton"
+    ],
+    "correct_answer": "Bed Ostrey",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "Bed Ostrey is 380 million years old, older than 350, and holds 8 kinds of land plants, more than 6; no other bed meets both conditions.",
+    "distractor_rationales": [
+      {
+        "choice": "Bed Tarn",
+        "fault": "it is old enough (410 million years) but holds only 2 kinds of land plants; its 9 is the count of sea animals"
+      },
+      {
+        "choice": "Bed Morvaine",
+        "fault": "it holds 11 kinds of land plants but is only 330 million years old"
+      },
+      {
+        "choice": "Bed Quillanton",
+        "fault": "it is 365 million years old, but 6 kinds of land plants is not more than 6"
+      }
+    ],
+    "real_world_check": "Rock beds can be dated from volcanic ash layers, and fossil counts by age show how the variety of land plants changed over time."
+  },
+  {
+    "id": "MSB4-L7-17",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Teskey Basin"
+    ],
+    "passage": "Darkling beetles of one kind on Teskey Basin are either pale tan or brown. Brown beetles warm up faster in sunlight. In spring, researchers marked 60 pale and 60 brown beetles on the open ground of the basin, and another 60 of each color on a shaded slope nearby. The summer that followed was the hottest on record. In autumn they searched both sites for marked beetles. On the open ground they found 38 pale and 19 brown beetles alive. On the shaded slope they found 41 pale and 43 brown beetles alive.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by the results?",
+    "choices": [
+      "On the open ground, pale beetles survived the summer better than brown ones.",
+      "Color mattered little on the shaded slope.",
+      "More brown beetles survived on the shaded slope than on the open ground.",
+      "Over half of the brown beetles on the open ground survived."
+    ],
+    "correct_answer": "Over half of the brown beetles on the open ground survived.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "On the open ground they found 38 pale and 19 brown beetles alive"
+        }
+      ]
+    },
+    "explanation": "Only 19 of the 60 brown beetles marked on the open ground were found alive, about a third, so the claim that over half survived contradicts the results.",
+    "distractor_rationales": [
+      {
+        "choice": "On the open ground, pale beetles survived the summer better than brown ones.",
+        "fault": "supported: 38 of 60 pale beetles were found alive on the open ground, against 19 of 60 brown ones"
+      },
+      {
+        "choice": "Color mattered little on the shaded slope.",
+        "fault": "supported: 41 pale and 43 brown beetles of 60 each were found alive on the slope"
+      },
+      {
+        "choice": "More brown beetles survived on the shaded slope than on the open ground.",
+        "fault": "supported: 43 of 60 brown beetles survived on the slope, against 19 of 60 on the open ground"
+      }
+    ],
+    "real_world_check": "In a heat wave, individuals whose color keeps them cooler are more likely to survive, so survival can differ by color where the heat is strongest."
+  },
+  {
+    "id": "MSB4-L7-18",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Two bean plants that each carry one allele for tall stems (T) and one allele for short stems (t) are crossed. A student draws a Punnett square for the cross. Which quantity can the Punnett square predict?",
+    "choices": [
+      "which seeds grow tall",
+      "chance an offspring is tall",
+      "number of offspring born",
+      "exact count of tall offspring"
+    ],
+    "correct_answer": "chance an offspring is tall",
+    "explanation": "A Punnett square shows the possible allele combinations and how likely each is; for Tt x Tt, each offspring has a 3 in 4 chance of being tall.",
+    "distractor_rationales": [
+      {
+        "choice": "which seeds grow tall",
+        "fault": "misconception: the square tells which seeds will be tall; it gives only the chance for each seed",
+        "misconception": "students think a Punnett square predicts the trait of each particular offspring",
+        "same_category": true
+      },
+      {
+        "choice": "number of offspring born",
+        "fault": "misconception: four boxes mean four offspring; the square says nothing about how many seeds form",
+        "misconception": "students think the four boxes of a Punnett square stand for four offspring",
+        "same_category": true
+      },
+      {
+        "choice": "exact count of tall offspring",
+        "fault": "misconception: the square gives exact numbers; it gives probabilities, and real counts vary",
+        "misconception": "students think a 3-to-1 ratio means exactly three tall offspring for every short one",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Punnett squares predict the probability of each genotype and trait among offspring, not exact counts or the number of offspring.",
+    "key_category": "a quantity about the offspring of a genetic cross"
+  },
+  {
+    "id": "MSB4-L7-19",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A grasshopper eats 10 g of grass over a week but gains only 1 g of body mass. The grasshopper is healthy. Which statement best explains what happened to most of the mass of the grass it ate?",
+    "choices": [
+      "Most of it turned into body heat, which escaped into the air.",
+      "Most of it was changed into energy for hopping, and that energy was used up and gone.",
+      "Most of it left as droppings or as gases and water released by its cells.",
+      "Most of it is still in its gut being digested and will add to its body mass later."
+    ],
+    "correct_answer": "Most of it left as droppings or as gases and water released by its cells.",
+    "explanation": "Matter is not destroyed: much of the grass passes out as droppings, and much of what is digested is broken down in cellular respiration and leaves as carbon dioxide and water; only a small part builds new body mass.",
+    "distractor_rationales": [
+      {
+        "choice": "Most of it turned into body heat, which escaped into the air.",
+        "fault": "misconception: matter turns into heat; heat is energy, and the matter itself leaves as droppings, carbon dioxide and water",
+        "misconception": "students think the matter in food turns into heat, which weighs nothing",
+        "same_category": true
+      },
+      {
+        "choice": "Most of it was changed into energy for hopping, and that energy was used up and gone.",
+        "fault": "misconception: food matter becomes energy and vanishes; atoms are not destroyed, they leave the body in wastes and gases",
+        "misconception": "students think matter in food is turned into energy and disappears when the energy is used",
+        "same_category": true
+      },
+      {
+        "choice": "Most of it is still in its gut being digested and will add to its body mass later.",
+        "fault": "misconception: all eaten food ends up as body mass; after a week most of it has already left the body",
+        "misconception": "students think all of the food an animal eats eventually becomes part of its body",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Consumers store only a small fraction of the food they eat as new body mass; the rest leaves as wastes and as carbon dioxide and water from respiration.",
+    "key_category": "an account of where the matter in eaten food ends up"
+  },
+  {
+    "id": "MSB4-L8-01",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "fly line Y-38"
+    ],
+    "passage": "Larvae of fly line Y-38 carry a change in the gene for a growth protein. Students raised them on fresh food and, every second day, measured 20 larvae from end to end.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              8,
+              24
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time (days)",
+      "yLabel": "Average larva length (mm)",
+      "caption": "Figure 1. Average body length of fly line Y-38 larvae over eight days"
+    },
+    "prompt": "Based on Figure 1, how long were the larvae on day 4?",
+    "choices": [
+      "12 mm",
+      "3 mm",
+      "24 mm",
+      "18 mm"
+    ],
+    "correct_answer": "12 mm",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          12
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The day-4 point sits at 12 mm, about halfway up the axis, between the day-2 point (8 mm) and the day-6 point (19 mm).",
+    "distractor_rationales": [
+      {
+        "choice": "3 mm",
+        "fault": "the day-0 length, the lowest point on the graph"
+      },
+      {
+        "choice": "24 mm",
+        "fault": "the day-8 length, the highest point on the graph"
+      },
+      {
+        "choice": "18 mm",
+        "fault": "a value between the day-6 and day-8 points, not the day-4 point"
+      }
+    ],
+    "real_world_check": "Changes in a gene for a protein can change how an organism grows, and growth over time is measured, not predicted.",
+    "prior_free": "Knowing that genes affect growth does not give these larvae's length on day 4; it must be read from the graph."
+  },
+  {
+    "id": "MSB4-L8-02",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease-then-level",
+    "invented": true,
+    "names_used": [
+      "pepper line S-52"
+    ],
+    "passage": "A grower let plants of pepper line S-52 pollinate themselves for eight generations, planting seeds from each generation to grow the next. Each generation she sowed 200 seeds and found the percent that came up as seedlings.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              94
+            ],
+            [
+              1,
+              83
+            ],
+            [
+              2,
+              74
+            ],
+            [
+              3,
+              66
+            ],
+            [
+              4,
+              61
+            ],
+            [
+              5,
+              58
+            ],
+            [
+              6,
+              57
+            ],
+            [
+              7,
+              58
+            ],
+            [
+              8,
+              57
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Generation",
+      "yLabel": "Seeds that sprouted (%)",
+      "caption": "Figure 1. Sprouting of pepper line S-52 seeds over eight generations"
+    },
+    "prompt": "According to the graph, what happened to the share of seeds that came up, from generation 0 to generation 8?",
+    "choices": [
+      "The sprouting rate declined.",
+      "The sprouting rate stayed the same.",
+      "The sprouting rate dropped, then leveled off.",
+      "The sprouting rate rose, then leveled off."
+    ],
+    "correct_answer": "The sprouting rate dropped, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          94
+        ],
+        [
+          5,
+          58
+        ],
+        [
+          8,
+          57
+        ]
+      ]
+    },
+    "explanation": "The rate fell from 94% at generation 0 to 58% at generation 5, then stayed at 57 to 58% through generation 8.",
+    "distractor_rationales": [
+      {
+        "choice": "The sprouting rate declined.",
+        "fault": "it fell only until about generation 5; from generation 5 to 8 it stayed near 57 to 58%"
+      },
+      {
+        "choice": "The sprouting rate stayed the same.",
+        "fault": "it fell from 94% to about 57%"
+      },
+      {
+        "choice": "The sprouting rate rose, then leveled off.",
+        "fault": "it never rose; the first steps all fall"
+      }
+    ],
+    "real_world_check": "Repeated self-pollination makes offspring more alike and can expose harmful recessive alleles, so seed vigor often falls for a few generations and then levels off.",
+    "prior_free": "The standard says self-pollinated offspring get genes from one parent; it does not say how sprouting changes over the generations."
+  },
+  {
+    "id": "MSB4-L8-03",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-5",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "controlled",
+    "invented": true,
+    "names_used": [
+      "mustard line B-417"
+    ],
+    "passage": "Over three growing seasons, Ines's class grew fast-cycling plants of mustard line B-417 under a grow light. Before the first season, the class read the seed packet and talked about the soil, the light timer and the number of seeds sown. They argued longest about the choice of parents. One team would save seeds only from its six tallest plants; the other team would save seeds from six plants drawn by lottery. At the start of each season, each team sowed forty seeds into a fresh tray, and a label on the tray gave the team and the season number. Every few days a student swapped the trays, so a tray's shelf spot moved between the top and bottom shelf. At flowering, the class measured the height of every plant.",
+    "graphic": null,
+    "prompt": "Which of these did the class keep at one value for every tray in the investigation?",
+    "choices": [
+      "shelf spot",
+      "season number",
+      "choice of parents",
+      "number of seeds sown"
+    ],
+    "correct_answer": "number of seeds sown",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "each team sowed forty seeds into a fresh tray"
+        }
+      ]
+    },
+    "explanation": "Every tray, in every season and for both teams, was sown with forty seeds, so the number of seeds sown was held at one value.",
+    "distractor_rationales": [
+      {
+        "choice": "shelf spot",
+        "fault": "the trays were swapped between the top and bottom shelf every few days, so the shelf spot moved"
+      },
+      {
+        "choice": "season number",
+        "fault": "the trays were labeled for season 1, 2 or 3, so it took several values"
+      },
+      {
+        "choice": "choice of parents",
+        "fault": "one team used its tallest plants and the other a lottery; this is the setting the class was testing"
+      }
+    ],
+    "real_world_check": "A controlled variable is a setting held at one value for every group so that it cannot explain differences in the result.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB4-L8-04",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Some fossils preserve part of an organism's body. Others, called trace fossils, preserve only a sign of what an animal did while it was alive. Which of these is an example of a trace fossil?",
+    "choices": [
+      "fossil dinosaur footprints",
+      "a trilobite shell",
+      "ancient petrified tree trunks",
+      "frozen woolly mammoth carcasses"
+    ],
+    "correct_answer": "fossil dinosaur footprints",
+    "explanation": "Footprints record an animal's walking, an activity, not its body, so fossil footprints are trace fossils.",
+    "distractor_rationales": [
+      {
+        "choice": "a trilobite shell",
+        "fault": "misconception: a hard body part counts as a trace; a shell is part of the animal's body, so it is a body fossil",
+        "misconception": "students think any fossil of a hard part, like a shell, is only a trace of the animal",
+        "same_category": true
+      },
+      {
+        "choice": "ancient petrified tree trunks",
+        "fault": "misconception: wood turned to stone is a trace; petrified wood keeps the shape of the tree's own body, so it is a body fossil",
+        "misconception": "students think a fossil whose material was replaced by minerals is a trace fossil",
+        "same_category": true
+      },
+      {
+        "choice": "frozen woolly mammoth carcasses",
+        "fault": "misconception: preserved remains are traces; a frozen mammoth is the animal's body itself",
+        "misconception": "students think any remains of an extinct animal, however preserved, count as a trace fossil",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Trace fossils such as footprints, burrows and nests record an organism's activity; shells, bones, wood and frozen remains are body fossils.",
+    "key_category": "a kind of fossil"
+  },
+  {
+    "id": "MSB4-L8-05",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "For many years, fishers on Lake Strathey have kept every fish longer than 40 cm and released smaller ones. Adult size in this kind of fish varies, and part of that variation is inherited. What will most likely happen to the fish in the lake over many generations?",
+    "choices": [
+      "Each adult fish will slowly shrink in length as the fishing goes on.",
+      "Small, early-breeding fish will make up a larger share of the adults over time.",
+      "The average adult size will rise as the largest fish do most of the breeding.",
+      "The average adult size will stay the same over the coming generations."
+    ],
+    "correct_answer": "Small, early-breeding fish will make up a larger share of the adults over time.",
+    "explanation": "Fish over 40 cm are removed, so fish that breed while still small leave more young; because size is partly inherited, small adults become a larger share of the population.",
+    "distractor_rationales": [
+      {
+        "choice": "Each adult fish will slowly shrink in length as the fishing goes on.",
+        "fault": "misconception: individual fish evolve in their lifetime; adults do not shrink, the population changes as the survivors breed",
+        "misconception": "students think individual animals change their own bodies in response to danger, so a population evolves within one lifetime",
+        "same_category": true
+      },
+      {
+        "choice": "The average adult size will rise as the largest fish do most of the breeding.",
+        "fault": "misconception: the biggest always breed most; here the big fish are removed before they can breed much",
+        "misconception": "students think the largest, strongest individuals always leave the most young, whatever else is happening",
+        "same_category": true
+      },
+      {
+        "choice": "The average adult size will stay the same over the coming generations.",
+        "fault": "misconception: harvesting cannot change a population's traits; removing large fish favors the inherited small size",
+        "misconception": "students think human activities such as fishing cannot change the traits of a wild population",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Selective harvesting acts like natural selection: when large individuals are removed, inherited traits for small size and early breeding become more common.",
+    "key_category": "a prediction about how a population's adult size changes over generations"
+  },
+  {
+    "id": "MSB4-L8-06",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-7",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "radish line V-83"
+    ],
+    "passage": "Students soaked 50 seeds of radish line V-83 in water, then sealed them in a jar with a carbon dioxide sensor. On four days in a row, they measured how much carbon dioxide the seeds gave off in one hour.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Day 1",
+        "Day 2",
+        "Day 3",
+        "Day 4"
+      ],
+      "colLabels": [
+        "Carbon dioxide given off (mL per hour)"
+      ],
+      "cells": [
+        [
+          5
+        ],
+        [
+          12
+        ],
+        [
+          24
+        ],
+        [
+          30
+        ]
+      ],
+      "caption": "Table 1. Carbon dioxide given off by soaked radish seeds"
+    },
+    "prompt": "Based on Table 1, the seeds gave off how many times as much carbon dioxide per hour on day 3 as on day 1?",
+    "choices": [
+      "6.0 times",
+      "2.0 times",
+      "4.8 times",
+      "19.0 times"
+    ],
+    "correct_answer": "4.8 times",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "On day 3 the seeds gave off 24 mL per hour and on day 1 they gave off 5 mL per hour; 24 / 5 = 4.8 times as much.",
+    "distractor_rationales": [
+      {
+        "choice": "6.0 times",
+        "fault": "30 / 5 uses day 4, not day 3"
+      },
+      {
+        "choice": "2.0 times",
+        "fault": "24 / 12 compares day 3 with day 2, not day 1"
+      },
+      {
+        "choice": "19.0 times",
+        "fault": "24 - 5 = 19 is a difference, not how many times as much"
+      }
+    ],
+    "real_world_check": "Germinating seeds break down stored food by cellular respiration, releasing more carbon dioxide as growth speeds up.",
+    "prior_free": "Knowing that seeds respire does not give how many times faster they released carbon dioxide on day 3."
+  },
+  {
+    "id": "MSB4-L8-07",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Line Tov",
+      "Line Senna",
+      "Line Ulwenna",
+      "Line Vargastrom"
+    ],
+    "passage": "Biologists made four lines of a glowing bacterium. Each line has a different change in the gene for its glow protein. They grew each line in a dish, counted the cells and measured the total glow from the dish.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Line Tov",
+        "Line Senna",
+        "Line Ulwenna",
+        "Line Vargastrom"
+      ],
+      "colLabels": [
+        "Cells (millions)",
+        "Total glow (units)"
+      ],
+      "cells": [
+        [
+          40,
+          480
+        ],
+        [
+          20,
+          300
+        ],
+        [
+          10,
+          220
+        ],
+        [
+          30,
+          390
+        ]
+      ],
+      "caption": "Table 1. Cell counts and glow of four bacterium lines"
+    },
+    "prompt": "Based on Table 1, which line gave off the most glow per million cells?",
+    "choices": [
+      "Line Tov",
+      "Line Ulwenna",
+      "Line Senna",
+      "Line Vargastrom"
+    ],
+    "correct_answer": "Line Ulwenna",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Line Ulwenna gave 220 / 10 = 22 units per million cells, the highest; the other lines give 12, 15 and 13.",
+    "distractor_rationales": [
+      {
+        "choice": "Line Tov",
+        "fault": "it gave the most total glow (480 units) but had the most cells; 480 / 40 = 12 units per million"
+      },
+      {
+        "choice": "Line Senna",
+        "fault": "300 / 20 = 15 units per million cells, less than 22"
+      },
+      {
+        "choice": "Line Vargastrom",
+        "fault": "390 / 30 = 13 units per million cells, less than 22"
+      }
+    ],
+    "real_world_check": "A change in a gene can change the structure of the protein it codes for, so the protein can work better or worse."
+  },
+  {
+    "id": "MSB4-L8-08",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-4",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Call Ilka",
+      "Call Osgood",
+      "Call Delancey",
+      "Call Brathwaite"
+    ],
+    "passage": "Female tree frogs move toward the calls of males. Biologists hid four speakers at the edge of a pond, each playing a recorded call. Call Osgood played for 20 minutes; the other three calls played for 10 minutes. They counted the females that reached each speaker (Figure 1).",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Call Brathwaite",
+          "value": 20
+        },
+        {
+          "label": "Call Delancey",
+          "value": 15
+        },
+        {
+          "label": "Call Ilka",
+          "value": 30
+        },
+        {
+          "label": "Call Osgood",
+          "value": 48
+        }
+      ],
+      "xLabel": "Recorded call",
+      "yLabel": "Females that reached the speaker",
+      "caption": "Figure 1. Female tree frogs drawn to four recorded calls"
+    },
+    "prompt": "Which call drew the most females per 10 minutes of playing?",
+    "choices": [
+      "Call Ilka",
+      "Call Osgood",
+      "Call Delancey",
+      "Call Brathwaite"
+    ],
+    "correct_answer": "Call Ilka",
+    "key_evidence": {
+      "refs": [
+        "Call Ilka",
+        "Call Osgood"
+      ]
+    },
+    "explanation": "Call Ilka drew about 30 females in 10 minutes; Call Osgood drew about 48 in 20 minutes, which is only about 24 per 10 minutes.",
+    "distractor_rationales": [
+      {
+        "choice": "Call Osgood",
+        "fault": "its bar is the tallest (about 48), but it played twice as long, so about 24 females per 10 minutes"
+      },
+      {
+        "choice": "Call Delancey",
+        "fault": "about 15 females in 10 minutes, half as many as Call Ilka"
+      },
+      {
+        "choice": "Call Brathwaite",
+        "fault": "about 20 females in 10 minutes, fewer than Call Ilka's 30"
+      }
+    ],
+    "real_world_check": "Many female animals choose mates by their calls or displays, so some calls attract more mates and raise a male's chance of reproducing."
+  },
+  {
+    "id": "MSB4-L8-09",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-4",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "decrease-then-increase",
+    "invented": true,
+    "names_used": [
+      "Saddler Brook"
+    ],
+    "passage": "A town's treated wastewater enters Saddler Brook at one pipe. Students sampled the brook bed at points from the pipe to 6 km downstream and counted the kinds of insect larvae in each sample.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          14
+        ],
+        [
+          0.5,
+          11
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1.5,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2.5,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3.5,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4.5,
+          9
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          5.5,
+          13
+        ],
+        [
+          6,
+          15
+        ]
+      ],
+      "xLabel": "Distance below the pipe (km)",
+      "yLabel": "Kinds of insect larvae per sample",
+      "caption": "Figure 1. Kinds of insect larvae in samples below the pipe on Saddler Brook"
+    },
+    "prompt": "Based on Figure 1, how did the number of kinds of insect larvae change from the pipe to 6 km downstream?",
+    "choices": [
+      "The insect variety fell.",
+      "The insect variety increased.",
+      "The insect variety dropped, then increased.",
+      "The insect variety rose, then fell."
+    ],
+    "correct_answer": "The insect variety dropped, then increased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          14
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          6,
+          15
+        ]
+      ]
+    },
+    "explanation": "The samples fall from 14 kinds at the pipe to about 4 kinds at 3 km, then climb back to 15 kinds at 6 km.",
+    "distractor_rationales": [
+      {
+        "choice": "The insect variety fell.",
+        "fault": "after about 3 km the counts climb back up to 15"
+      },
+      {
+        "choice": "The insect variety increased.",
+        "fault": "the counts first fall, from 14 at the pipe to about 4 at 3 km"
+      },
+      {
+        "choice": "The insect variety rose, then fell.",
+        "fault": "the counts fall first and rise last, the reverse of this shape"
+      }
+    ],
+    "real_world_check": "Wastewater can use up oxygen downstream as it decays, so insect variety drops where oxygen is lowest and recovers farther downstream.",
+    "prior_free": "Students may expect the harm to last all the way downstream or to fade at once; only these data show the dip and the recovery."
+  },
+  {
+    "id": "MSB4-L8-10",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-8",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Volunteer Imra",
+      "Volunteer Tobiah",
+      "Volunteer Ottiline",
+      "Volunteer Bartholomaus"
+    ],
+    "passage": "Mr. Okafor's class tested how much smell helps people name a flavor. Each volunteer tasted 12 fruit drinks, one at a time, and named the fruit. In the first round the volunteer's nose was open. In the second round, with 12 fresh cups in a new order, a soft clip held the nose closed. Volunteers sipped water between drinks. Table 1 shows how many of the 12 drinks each volunteer named correctly.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Volunteer Imra",
+        "Volunteer Tobiah",
+        "Volunteer Ottiline",
+        "Volunteer Bartholomaus"
+      ],
+      "colLabels": [
+        "Correct with nose open",
+        "Correct with nose clipped"
+      ],
+      "cells": [
+        [
+          11,
+          6
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "caption": "Table 1. Fruit drinks named correctly out of 12"
+    },
+    "prompt": "Based on Table 1, whose score dropped by the greatest number of drinks when the nose was clipped?",
+    "choices": [
+      "Volunteer Imra",
+      "Volunteer Tobiah",
+      "Volunteer Bartholomaus",
+      "Volunteer Ottiline"
+    ],
+    "correct_answer": "Volunteer Bartholomaus",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "explanation": "Volunteer Bartholomaus went from 10 correct to 3, a drop of 7, the largest; the other volunteers dropped by 5, 3 and 4.",
+    "distractor_rationales": [
+      {
+        "choice": "Volunteer Imra",
+        "fault": "the score fell from 11 to 6, a drop of 5, less than 7"
+      },
+      {
+        "choice": "Volunteer Tobiah",
+        "fault": "the lowest clipped score (2), but it dropped only 3, from 5"
+      },
+      {
+        "choice": "Volunteer Ottiline",
+        "fault": "the highest open score (12), but it dropped only 4, to 8"
+      }
+    ],
+    "real_world_check": "Much of what we call flavor comes from smell receptors in the nose, so blocking the nose makes flavors harder to identify."
+  },
+  {
+    "id": "MSB4-L8-11",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "moss line Q-93"
+    ],
+    "passage": "Moss line Q-93 coats its leaves with wax made by one enzyme. A botanist studied five mutant lines of the moss, each with a different change in the gene for that enzyme. For each line she measured how much of the enzyme the cells made, as a percent of the amount in normal moss, and the mass of wax on one square centimeter of leaf. Table 1 lists the lines from least enzyme to most.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Mutant 1",
+        "Mutant 2",
+        "Mutant 3",
+        "Mutant 4",
+        "Mutant 5"
+      ],
+      "colLabels": [
+        "Enzyme made (% of normal)",
+        "Leaf wax (µg per cm²)"
+      ],
+      "cells": [
+        [
+          10,
+          6
+        ],
+        [
+          30,
+          20
+        ],
+        [
+          60,
+          34
+        ],
+        [
+          80,
+          39
+        ],
+        [
+          100,
+          41
+        ]
+      ],
+      "caption": "Table 1. Enzyme made and leaf wax in five mutant lines of moss"
+    },
+    "prompt": "Assume leaf wax changes at a steady rate between the listed enzyme amounts. About how much wax would form on a leaf of a line making 45% of the normal amount of enzyme?",
+    "choices": [
+      "20.0 µg per cm²",
+      "27.0 µg per cm²",
+      "41.0 µg per cm²",
+      "18.5 µg per cm²"
+    ],
+    "correct_answer": "27.0 µg per cm²",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0 + (v1 - v0) * (45 - 30) / (60 - 30)"
+    },
+    "explanation": "45% is halfway between 30% (20 µg per cm²) and 60% (34 µg per cm²), so at a steady rate the wax is 20 + (34 - 20) / 2 = 27.0 µg per cm².",
+    "distractor_rationales": [
+      {
+        "choice": "20.0 µg per cm²",
+        "fault": "the wax for the line making 30% of the enzyme, not 45%"
+      },
+      {
+        "choice": "41.0 µg per cm²",
+        "fault": "the wax for the line making 100% of the enzyme, the wrong row"
+      },
+      {
+        "choice": "18.5 µg per cm²",
+        "fault": "45% of the 41 µg made at full enzyme; wax does not rise in step with the enzyme percent"
+      }
+    ],
+    "real_world_check": "When a mutation lowers the amount of a working enzyme, less of the enzyme's product is made, though the product can level off once enough enzyme is present.",
+    "prior_free": "The standard says gene changes alter proteins; only these data give the wax for a line making 45% of the enzyme."
+  },
+  {
+    "id": "MSB4-L8-12",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A bacterium copies its DNA, grows longer and then splits down the middle into two new cells that carry the same genes. What is this process called?",
+    "choices": [
+      "budding",
+      "binary fission",
+      "regeneration",
+      "cell differentiation"
+    ],
+    "correct_answer": "binary fission",
+    "explanation": "A bacterium that copies its DNA and splits evenly into two cells with the same genes is reproducing asexually by binary fission.",
+    "distractor_rationales": [
+      {
+        "choice": "budding",
+        "fault": "misconception: any one-parent splitting is budding; in budding a small outgrowth forms on the parent and breaks off, while this cell splits evenly in two",
+        "misconception": "students think every kind of reproduction with one parent is called budding",
+        "same_category": true
+      },
+      {
+        "choice": "regeneration",
+        "fault": "misconception: splitting in two is regrowing lost parts; regeneration replaces a damaged or lost body part, and nothing was lost here",
+        "misconception": "students think a living thing that splits and regrows is regenerating",
+        "same_category": true
+      },
+      {
+        "choice": "cell differentiation",
+        "fault": "misconception: forming two cells is differentiation; differentiation makes cells specialize for different jobs, and these two cells are alike",
+        "misconception": "students think any process that produces new cells is called cell differentiation",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Bacteria reproduce asexually by binary fission, splitting into two cells with the same genetic information as the parent.",
+    "key_category": "a process by which living things reproduce or form new cells"
+  },
+  {
+    "id": "MSB4-L8-13",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Early in its growth, a human embryo has some body features that the adult does not have. Which of these is an example of such a feature?",
+    "choices": [
+      "breathing gills",
+      "scaly skin",
+      "fins for swimming",
+      "a short tail"
+    ],
+    "correct_answer": "a short tail",
+    "explanation": "For a few weeks a human embryo has a short tail with small vertebrae; it shrinks away before birth, a feature shared with the embryos of other vertebrates.",
+    "distractor_rationales": [
+      {
+        "choice": "breathing gills",
+        "fault": "misconception: human embryos grow working gills; the folds in the neck never take in oxygen and become parts of the jaw, ear and throat",
+        "misconception": "students think human embryos grow working fish gills because the neck folds look like gills",
+        "same_category": true
+      },
+      {
+        "choice": "scaly skin",
+        "fault": "misconception: an embryo passes through a reptile stage; human embryos never grow scales",
+        "misconception": "students think an embryo passes through a reptile stage with scaly skin",
+        "same_category": true
+      },
+      {
+        "choice": "fins for swimming",
+        "fault": "misconception: an embryo passes through a fish stage; limb buds grow into arms and legs, never fins",
+        "misconception": "students think a human embryo passes through a fish stage with fins",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Early human embryos have a tail that later regresses, one of several embryo features shared with other vertebrates that point to common ancestry.",
+    "key_category": "a body feature of a developing vertebrate"
+  },
+  {
+    "id": "MSB4-L8-14",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-6",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Wendmoor Heath"
+    ],
+    "passage": "A flower with a long, narrow tube spread across Wendmoor Heath. Moths that drink its nectar vary in the length of their mouthparts, and that length is inherited. Every ten generations, researchers caught moths and found the percent with long mouthparts.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Generation 0",
+        "Generation 10",
+        "Generation 20",
+        "Generation 30",
+        "Generation 40"
+      ],
+      "colLabels": [
+        "Moths with long mouthparts (%)"
+      ],
+      "cells": [
+        [
+          8
+        ],
+        [
+          19
+        ],
+        [
+          37
+        ],
+        [
+          61
+        ],
+        [
+          72
+        ]
+      ],
+      "caption": "Table 1. Moths with long mouthparts on Wendmoor Heath"
+    },
+    "prompt": "Assume the percent changed at a steady rate between the listed generations. In about which generation did the percent of moths with long mouthparts first reach 49%?",
+    "choices": [
+      "20",
+      "25",
+      "49",
+      "32"
+    ],
+    "correct_answer": "25",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "expr": "20 + 10 * (49 - v0) / (v1 - v0)"
+    },
+    "explanation": "49% lies halfway between 37% (generation 20) and 61% (generation 30), so at a steady rate it was first reached at about generation 25.",
+    "distractor_rationales": [
+      {
+        "choice": "20",
+        "fault": "at generation 20 only 37% of moths had long mouthparts, below 49%"
+      },
+      {
+        "choice": "49",
+        "fault": "49 is the percent named in the question, not a generation"
+      },
+      {
+        "choice": "32",
+        "fault": "by generation 30 the percent was already 61%, so 49% came before generation 30"
+      }
+    ],
+    "real_world_check": "When an inherited trait helps individuals feed and reproduce, its share in a population rises over generations.",
+    "prior_free": "The standard predicts that the share with long mouthparts rises, not the generation in which it reached 49%."
+  },
+  {
+    "id": "MSB4-L8-15",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-4",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Kilmory Forest"
+    ],
+    "passage": "Four streams in Kilmory Forest each had a road pipe that blocked trout from swimming upstream. The pipes were replaced with open bridges in different years: Stream 2 in 2016, Stream 5 in 2019, Stream 8 in 2021 and Stream 11 in 2023. In 2024, rangers counted the young trout above each crossing (Figure 1).",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Stream 2",
+          "value": 40
+        },
+        {
+          "label": "Stream 5",
+          "value": 56
+        },
+        {
+          "label": "Stream 8",
+          "value": 30
+        },
+        {
+          "label": "Stream 11",
+          "value": 12
+        }
+      ],
+      "xLabel": "Stream",
+      "yLabel": "Young trout above the crossing",
+      "caption": "Figure 1. Young trout counted in 2024 above four replaced crossings"
+    },
+    "prompt": "Based on the passage and Figure 1, about how many young trout were counted above the crossing that was replaced in 2019?",
+    "choices": [
+      "12 trout",
+      "56 trout",
+      "40 trout",
+      "22 trout"
+    ],
+    "correct_answer": "56 trout",
+    "key_evidence": {
+      "refs": [
+        "Stream 5"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The passage says the Stream 5 crossing was replaced in 2019, and the Stream 5 bar is the tallest in Figure 1, at the top tick, 56 young trout.",
+    "distractor_rationales": [
+      {
+        "choice": "12 trout",
+        "fault": "the shortest bar, Stream 11, whose crossing was replaced in 2023"
+      },
+      {
+        "choice": "40 trout",
+        "fault": "Stream 2's bar, the crossing replaced in 2016, not 2019"
+      },
+      {
+        "choice": "22 trout",
+        "fault": "no bar sits near 22; it is a misread between the two shortest bars"
+      }
+    ],
+    "real_world_check": "Removing a barrier lets fish reach habitat upstream, and how many return differs from stream to stream.",
+    "prior_free": "Knowing that fish return when a barrier is removed does not give the count above the crossing replaced in 2019."
+  },
+  {
+    "id": "MSB4-L8-16",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-5",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Tessary"
+    ],
+    "passage": "Farmers near Tessary planted strips of wildflowers along the edges of five cabbage fields and left five similar fields without strips. No insecticide was sprayed on any of the ten fields. Through the summer, researchers trapped ground beetles, which eat caterpillars, and checked 100 cabbages in every field for caterpillar damage. Fields with strips averaged 42 beetles per trap and 18 damaged cabbages. Fields without strips averaged 15 beetles per trap and 39 damaged cabbages. The strips used about 5% of the planted area of each field that had them.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by the results?",
+    "choices": [
+      "Fields with flower strips held more ground beetles than fields without them.",
+      "Fewer cabbages were damaged in fields that had flower strips.",
+      "Caterpillars damaged cabbages about equally in both sets of fields.",
+      "The strips took up a small part of each field."
+    ],
+    "correct_answer": "Caterpillars damaged cabbages about equally in both sets of fields.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "Fields with strips averaged 42 beetles per trap and 18 damaged cabbages"
+        }
+      ]
+    },
+    "explanation": "Fields with strips averaged 18 damaged cabbages of 100 and fields without averaged 39, more than twice as many, so the damage was not about equal.",
+    "distractor_rationales": [
+      {
+        "choice": "Fields with flower strips held more ground beetles than fields without them.",
+        "fault": "supported: 42 beetles per trap with strips against 15 without"
+      },
+      {
+        "choice": "Fewer cabbages were damaged in fields that had flower strips.",
+        "fault": "supported: 18 damaged cabbages of 100 with strips against 39 without"
+      },
+      {
+        "choice": "The strips took up a small part of each field.",
+        "fault": "supported: the strips used about 5% of the planted area of each field that had them"
+      }
+    ],
+    "real_world_check": "Planting habitat such as flower strips can support predators of crop pests, a design solution that protects both biodiversity and crops."
+  },
+  {
+    "id": "MSB4-L8-17",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A poison damages the mitochondria in a mouse's muscle cells, but the rest of each cell keeps working. What will most likely happen in those muscle cells?",
+    "choices": [
+      "They will release less energy from sugar.",
+      "Their nuclei will start supplying the energy the cells use instead.",
+      "They will make extra energy by taking in more oxygen through their membranes.",
+      "They will get their energy from their chloroplasts instead."
+    ],
+    "correct_answer": "They will release less energy from sugar.",
+    "explanation": "Mitochondria are where cells release energy from sugar; with them damaged, the muscle cells release less energy.",
+    "distractor_rationales": [
+      {
+        "choice": "Their nuclei will start supplying the energy the cells use instead.",
+        "fault": "misconception: the nucleus can supply energy; it holds the genetic instructions, and releasing energy from sugar happens in the mitochondria",
+        "misconception": "students think the nucleus is the cell's energy center because it is called the control center",
+        "same_category": true
+      },
+      {
+        "choice": "They will make extra energy by taking in more oxygen through their membranes.",
+        "fault": "misconception: taking in oxygen makes energy by itself; oxygen is used in the mitochondria to release energy from sugar, so it cannot help here",
+        "misconception": "students think oxygen itself is a source of energy for the body",
+        "same_category": true
+      },
+      {
+        "choice": "They will get their energy from their chloroplasts instead.",
+        "fault": "misconception: animal cells have chloroplasts; mouse cells have none, and chloroplasts make sugar rather than release its energy",
+        "misconception": "students think all cells, including animal cells, have chloroplasts that make energy",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Mitochondria carry out cellular respiration, releasing energy from sugar; animal cells have no chloroplasts and the nucleus does not supply energy.",
+    "key_category": "a prediction about how a cell part affects a cell's energy"
+  },
+  {
+    "id": "MSB4-L8-18",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Algae grow in Lake Fenby, where the water holds very little phosphorus, a mineral nutrient. Heavy rains then wash phosphorus-rich fertilizer from nearby farms into the lake. What will most likely happen to the algae over the next few weeks?",
+    "choices": [
+      "The algae will stay the same, because algae make all their food from sunlight.",
+      "The algae will decrease, because any fertilizer from a farm poisons living things.",
+      "The algae will be back to normal within a day, because a lake keeps its own balance.",
+      "The algae will probably increase, because more of a nutrient they lacked is now in the water."
+    ],
+    "correct_answer": "The algae will probably increase, because more of a nutrient they lacked is now in the water.",
+    "explanation": "Phosphorus was in short supply, so it limited how much the algae could grow; adding it removes that limit and the algae population grows.",
+    "distractor_rationales": [
+      {
+        "choice": "The algae will stay the same, because algae make all their food from sunlight.",
+        "fault": "misconception: algae need only sunlight; they also need mineral nutrients such as phosphorus, so adding it lets them grow",
+        "misconception": "students think producers need only sunlight, not minerals, to grow",
+        "same_category": true
+      },
+      {
+        "choice": "The algae will decrease, because any fertilizer from a farm poisons living things.",
+        "fault": "misconception: fertilizer poisons algae; fertilizer supplies the nutrients that plants and algae use",
+        "misconception": "students think any farm chemical harms every living thing it reaches",
+        "same_category": true
+      },
+      {
+        "choice": "The algae will be back to normal within a day, because a lake keeps its own balance.",
+        "fault": "misconception: a lake restores its balance at once; the added phosphorus stays in the water and fuels growth for weeks",
+        "misconception": "students think nature keeps populations in balance, so a lake quickly returns to normal on its own",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "When a limiting nutrient such as phosphorus is added to a lake, algae populations can grow quickly, forming an algal bloom.",
+    "key_category": "a prediction about how a nutrient change affects a population of producers"
+  }
+]

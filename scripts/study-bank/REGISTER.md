@@ -6870,3 +6870,19 @@ structural checks are pre-flight only. See CLAUDE.md.
   (whole group, one passage, strictly increasing created_at, Part 1 standalone) via `src/lib/study/itep-stage-check.ts`
   (jest, each rule break-tested); `verify-itep-draw.ts` checks passage sets are drawn whole and in authored order.
   Pool after v1: Part 1 7, Part 2 2 passages, Part 3 0; ten forms need 20 / 10 / 10.
+
+- **2026-10-31 — MAP Science b4: 240 authored (Physical 95, Life 75, Earth 70), stopped before graders.** Prereg
+  `MAP-SCIENCE-B4.prereg.md` (gate unchanged: stage 1 rules 1-9 + rule 10 A1, stage 2 key-visible audit, release on
+  agent passes). Brief version **b4** cut (blocking + blind-only): B33-B43, B38 replaces B31 (each model distractor a
+  held misconception of the key's category, declared per distractor; graders judge `b4_one_sensible`), B39 bans
+  need/will change. Rule 10d checkers (`--rules b4`), each firing on b3 full's named items and quiet when disabled
+  (`science-b4/validate-b4-rules.mjs`): VARPLAN 11/11 (E5-10 a stated miss), SHORTLBL 5/5, KEYWORD 4/4, ECHOBAL 3/3,
+  XKEY both pairs, LAMARCK 5/5, MISCDECL presence. **Found while building ECHOBAL:** batch 3's per-item ECHO ban made the
+  lone stem-echo claim option a distractor in 95% of cases in every area (key share 4-5%, against 12-30% in batch 2) —
+  the inverse tell again, unnamed by any grader. b4 drops the ban for the distribution. Six parallel Claude authors;
+  0 EMPTY; stage 0/0b clean (sci-check b4 240 ok, batch clean, probe vs 367 live/staged + 502 earlier items 0 refused,
+  366 REVIEW lines all answered in `science-b4/XDUP-REVIEW.md`). **37 of 240 first drafts (15%) reused a system on
+  its PE** against live or earlier rows despite the plan step; 43 rewrites over five rounds before 0 duplicates
+  remained — next brief should hand authors the live systems per PE. Risk recorded: Physical "W W" names on 81% of
+  name-bearing items. Packets: `scratchpad/map-science-b4/packets/` (+ `GRADER-PROMPT.md`); next step is six grader
+  spawns.

@@ -1,0 +1,5197 @@
+[
+  {
+    "id": "MSB4-E5-01",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS3",
+    "ngss_pe": "5-ESS3-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Dunlavey"
+    ],
+    "passage": "The town of Dunlavey put new trash bins along its main road in February. On the first Saturday of some months, volunteers picked up the litter along the road and counted the pieces.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "January",
+          "value": 80
+        },
+        {
+          "label": "March",
+          "value": 70
+        },
+        {
+          "label": "May",
+          "value": 30
+        },
+        {
+          "label": "July",
+          "value": 20
+        }
+      ],
+      "xLabel": "Month",
+      "yLabel": "Pieces of litter picked up",
+      "caption": "Figure 1. Litter picked up along the main road of Dunlavey"
+    },
+    "prompt": "Based on Figure 1, how many fewer pieces of litter were picked up in May than in January?",
+    "choices": [
+      "60 pieces",
+      "30 pieces",
+      "50 pieces",
+      "40 pieces"
+    ],
+    "correct_answer": "50 pieces",
+    "key_evidence": {
+      "refs": [
+        "January",
+        "May"
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The January bar reaches the top tick, 80 pieces, and the May bar sits halfway between 20 and 40, at 30 pieces. 80 - 30 = 50 fewer pieces.",
+    "distractor_rationales": [
+      {
+        "choice": "60 pieces",
+        "fault": "subtracts July from January (80 - 20), the wrong second bar"
+      },
+      {
+        "choice": "30 pieces",
+        "fault": "reads the May bar by itself instead of subtracting it from the January bar"
+      },
+      {
+        "choice": "40 pieces",
+        "fault": "subtracts May from March (70 - 30), the wrong first bar"
+      }
+    ],
+    "real_world_check": "Placing trash bins where people walk is a way a community can reduce litter in its environment.",
+    "prior_free": "Knowing that trash bins can reduce litter does not give the number of pieces on this road in any month; only the bars do."
+  },
+  {
+    "id": "MSB4-E5-02",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS1",
+    "ngss_pe": "4-ESS1-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease",
+    "invented": true,
+    "names_used": [
+      "Skerrin Head"
+    ],
+    "passage": "Ripple marks are small ridges that moving water leaves in sand, and some harden into rock. Students counted the ripple marks in one meter of rock at five heights up the flat layers of the cliff at Skerrin Head.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              24
+            ],
+            [
+              2,
+              21
+            ],
+            [
+              4,
+              15
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Height above the cliff base (m)",
+      "yLabel": "Ripple marks per meter of rock",
+      "caption": "Figure 1. Ripple marks at five heights in the Skerrin Head cliff"
+    },
+    "prompt": "Based on Figure 1, what happened to the ripple marks per meter from the base of the cliff to 8 m up?",
+    "choices": [
+      "Its count decreased.",
+      "Its count rose.",
+      "Its count rose, then fell.",
+      "Its count fell, then leveled off."
+    ],
+    "correct_answer": "Its count decreased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          24
+        ],
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    "explanation": "The points fall from 24 ripple marks per meter at the base to 21, 15, 9 and 4 at 8 m. Each higher point is lower than the one before, so the count decreased.",
+    "distractor_rationales": [
+      {
+        "choice": "Its count rose.",
+        "fault": "every point above 0 m is lower than the one below it, so the count never went up"
+      },
+      {
+        "choice": "Its count rose, then fell.",
+        "fault": "the count never went up; the 2 m point (21) is already below the 0 m point (24)"
+      },
+      {
+        "choice": "Its count fell, then leveled off.",
+        "fault": "the drops get bigger, not smaller: 3, 6, 6 and 5 marks, and the last point is still lowest"
+      }
+    ],
+    "real_world_check": "In flat layers, higher rock is younger, so a change in features such as ripple marks going up a cliff records how the place changed over time.",
+    "prior_free": "Knowing that layers record change over time does not say whether ripple marks become more or fewer here, or in what shape; only the points show it."
+  },
+  {
+    "id": "MSB4-E5-03",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS2",
+    "ngss_pe": "4-ESS2-1",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Ilsabet"
+    ],
+    "passage": "Ilsabet's class built a model stream in a long tray of damp sand. They carved a channel with one sharp bend. They pushed 10 toothpicks into the sand along the outside edge of the bend and 10 along the inside edge. First they poured a bucket of water slowly down the channel. Then they rebuilt the bend, put in new toothpicks, and poured a bucket of water fast. A toothpick fell when the sand under it washed away. After the slow pour, 4 toothpicks had fallen on the outside edge and 1 on the inside edge. After the fast pour, 9 had fallen on the outside edge and 3 on the inside edge.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by the results?",
+    "choices": [
+      "More toothpicks fell on the outside of the bend than the inside in both pours.",
+      "The fast pour knocked over more toothpicks than the slow pour on both edges.",
+      "Pouring fast instead of slowly added more fallen toothpicks outside than inside.",
+      "The inside edge lost more toothpicks in the fast pour than the outside edge lost in the slow pour."
+    ],
+    "correct_answer": "The inside edge lost more toothpicks in the fast pour than the outside edge lost in the slow pour.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "After the fast pour, 9 had fallen on the outside edge and 3 on the inside edge"
+        }
+      ]
+    },
+    "explanation": "The inside edge lost 3 toothpicks in the fast pour, and the outside edge lost 4 in the slow pour. 3 is fewer than 4, so the results contradict this claim. The other three claims match the counts.",
+    "distractor_rationales": [
+      {
+        "choice": "More toothpicks fell on the outside of the bend than the inside in both pours.",
+        "fault": "supported: 4 outside vs 1 inside (slow) and 9 outside vs 3 inside (fast)"
+      },
+      {
+        "choice": "The fast pour knocked over more toothpicks than the slow pour on both edges.",
+        "fault": "supported: outside 9 vs 4 and inside 3 vs 1"
+      },
+      {
+        "choice": "Pouring fast instead of slowly added more fallen toothpicks outside than inside.",
+        "fault": "supported: the outside edge went up by 5 (4 to 9), the inside edge by only 2 (1 to 3)"
+      }
+    ],
+    "real_world_check": "Moving water wears away the outside of a stream bend faster than the inside, and faster water erodes more."
+  },
+  {
+    "id": "MSB4-E5-04",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS1",
+    "ngss_pe": "4-ESS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A team digging near an old riverbank sorts everything it finds into boxes. One box is labeled \"Fossils.\" Which of these belongs in that box?",
+    "choices": [
+      "a footprint in sandstone",
+      "a fresh deer bone",
+      "an old clay pot",
+      "a sparkling quartz crystal"
+    ],
+    "correct_answer": "a footprint in sandstone",
+    "explanation": "A fossil is the preserved remains or trace of a living thing from long ago. A footprint pressed into mud that hardened into sandstone is a trace fossil: it records an animal that lived there. Fossils do not have to be bones.",
+    "distractor_rationales": [
+      {
+        "choice": "a fresh deer bone",
+        "fault": "misconception: any bone dug up is a fossil; a fossil is the preserved remains or trace of a living thing from long ago, and a bone from a recently dead deer is not",
+        "misconception": "students think any bone found in the ground is a fossil, however recently the animal died",
+        "same_category": true
+      },
+      {
+        "choice": "an old clay pot",
+        "fault": "misconception: old objects made by people are fossils; a clay pot is an artifact, not the remains or trace of a living thing",
+        "misconception": "students think anything old that people dig up, like pottery or arrowheads, is a fossil",
+        "same_category": true
+      },
+      {
+        "choice": "a sparkling quartz crystal",
+        "fault": "misconception: crystals and minerals in rock are fossils; a crystal grows from minerals and was never part of a living thing",
+        "misconception": "students think shiny crystals or oddly shaped minerals found in rock are fossils",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Trace fossils such as footprints and burrows preserved in rock are fossils; artifacts, minerals and recent bones are not.",
+    "key_category": "something found buried in rock or soil"
+  },
+  {
+    "id": "MSB4-E5-05",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS3",
+    "ngss_pe": "3-ESS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A farmer puts a pointed metal rod on the peak of a barn roof. A thick copper cable runs from the rod down the outside wall to a long metal stake driven into the ground. During a storm, lightning strikes the rod. What will most likely happen next?",
+    "choices": [
+      "The rod will hold the lightning inside it until the storm is over.",
+      "The metal cable will get hot and set the barn wall on fire.",
+      "The rod will throw the lightning bolt back up into the cloud.",
+      "The charge will flow down the cable into the ground."
+    ],
+    "correct_answer": "The charge will flow down the cable into the ground.",
+    "explanation": "A lightning rod gives the strike an easy metal path. The current runs down the thick copper cable and spreads into the ground through the stake, so it does not pass through the barn.",
+    "distractor_rationales": [
+      {
+        "choice": "The rod will hold the lightning inside it until the storm is over.",
+        "fault": "misconception: a lightning rod stores the charge; it is a path that carries the charge onward, and metal cannot hold a lightning bolt",
+        "misconception": "students think a lightning rod catches lightning and stores its electricity like a battery",
+        "same_category": true
+      },
+      {
+        "choice": "The metal cable will get hot and set the barn wall on fire.",
+        "fault": "misconception: metal makes a strike more dangerous; a thick copper cable carries the current to the ground without setting the wall on fire, which is why it is used",
+        "misconception": "students think metal attracts lightning and makes a strike more likely to start a fire",
+        "same_category": true
+      },
+      {
+        "choice": "The rod will throw the lightning bolt back up into the cloud.",
+        "fault": "misconception: a rod bounces or repels lightning; the current follows the metal path down into the ground",
+        "misconception": "students think a lightning rod pushes lightning away or sends it back into the sky",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "A lightning rod connected by a cable to a ground stake carries the current of a strike safely into the ground.",
+    "key_category": "an outcome of a lightning strike on a barn with a lightning rod"
+  },
+  {
+    "id": "MSB4-E5-06",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS1",
+    "ngss_pe": "4-ESS1-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Point Ardeth"
+    ],
+    "passage": "Students studied four flat rock layers in a sea cliff at Point Ardeth. Layer 1 is on top. They measured how thick each layer is and named the kind of rock in it.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Layer 1",
+        "Layer 2",
+        "Layer 3",
+        "Layer 4"
+      ],
+      "colLabels": [
+        "Thickness (cm)",
+        "Kind of rock"
+      ],
+      "cells": [
+        [
+          35,
+          "sandstone"
+        ],
+        [
+          120,
+          "limestone"
+        ],
+        [
+          48,
+          "shale"
+        ],
+        [
+          90,
+          "mudstone"
+        ]
+      ],
+      "caption": "Table 1. Rock layers in the sea cliff at Point Ardeth"
+    },
+    "prompt": "Based on Table 1, how much thicker is the limestone layer than the shale layer?",
+    "choices": [
+      "168 cm",
+      "85 cm",
+      "120 cm",
+      "72 cm"
+    ],
+    "correct_answer": "72 cm",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The limestone is Layer 2, 120 cm thick. The shale is Layer 3, 48 cm thick. 120 - 48 = 72 cm.",
+    "distractor_rationales": [
+      {
+        "choice": "168 cm",
+        "fault": "adds the two layers (120 + 48) instead of finding the difference"
+      },
+      {
+        "choice": "85 cm",
+        "fault": "subtracts the top layer (35 cm) from the limestone layer instead of the shale layer"
+      },
+      {
+        "choice": "120 cm",
+        "fault": "reads the limestone layer by itself and does not subtract the shale layer"
+      }
+    ],
+    "real_world_check": "Each rock layer records a time when one kind of sediment built up, so layers differ in thickness and rock type.",
+    "prior_free": "Knowing that layers record different times gives no thickness; the difference must be read from the right two rows."
+  },
+  {
+    "id": "MSB4-E5-07",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS1",
+    "ngss_pe": "4-ESS1-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Quarry Tobyn",
+      "Quarry Pembury",
+      "Quarry Haverlund",
+      "Quarry Thistlewood"
+    ],
+    "passage": "Long ago, a volcano dropped one layer of gray ash across a whole region. Students found that same ash layer in the walls of four quarries. They measured how far below the ground surface it lies. The rock above the ash built up after the ash fell.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Quarry Tobyn",
+          "value": 6
+        },
+        {
+          "label": "Quarry Pembury",
+          "value": 11
+        },
+        {
+          "label": "Quarry Haverlund",
+          "value": 14
+        },
+        {
+          "label": "Quarry Thistlewood",
+          "value": 9
+        }
+      ],
+      "xLabel": "Quarry",
+      "yLabel": "Depth of ash layer below surface (m)",
+      "caption": "Figure 1. Depth of one ash layer at four quarries"
+    },
+    "prompt": "Based on Figure 1, at which quarry did the most rock build up after the ash fell?",
+    "choices": [
+      "Quarry Tobyn",
+      "Quarry Pembury",
+      "Quarry Haverlund",
+      "Quarry Thistlewood"
+    ],
+    "correct_answer": "Quarry Haverlund",
+    "key_evidence": {
+      "refs": [
+        "Quarry Haverlund"
+      ]
+    },
+    "explanation": "All the rock above the ash formed after the ash fell, so the deeper the ash, the more rock built up on top of it. Quarry Haverlund has the tallest bar, 14 m.",
+    "distractor_rationales": [
+      {
+        "choice": "Quarry Tobyn",
+        "fault": "its ash lies only 6 m down, the least rock built up above it"
+      },
+      {
+        "choice": "Quarry Pembury",
+        "fault": "its ash lies 11 m down, less than the 14 m at Quarry Haverlund"
+      },
+      {
+        "choice": "Quarry Thistlewood",
+        "fault": "its ash lies 9 m down, less than the 14 m at Quarry Haverlund"
+      }
+    ],
+    "real_world_check": "In undisturbed layers, rock above a layer formed after it, so a thicker cover means more material built up later."
+  },
+  {
+    "id": "MSB4-E5-08",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS1",
+    "ngss_pe": "5-ESS1-2",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Pellingham"
+    ],
+    "passage": "Students in the town of Pellingham recorded the time of sunrise every two weeks, starting at midsummer in week 0. The graph shows each sunrise as minutes after 5:00 a.m.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              30
+            ],
+            [
+              2,
+              34
+            ],
+            [
+              4,
+              44
+            ],
+            [
+              6,
+              58
+            ],
+            [
+              8,
+              72
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Week",
+      "yLabel": "Sunrise (minutes after 5:00 a.m.)",
+      "caption": "Figure 1. Sunrise times in Pellingham after midsummer"
+    },
+    "prompt": "Based on Figure 1, what is the best estimate of the sunrise time in week 5, in minutes after 5:00 a.m.?",
+    "choices": [
+      "51 min",
+      "65 min",
+      "34 min",
+      "80 min"
+    ],
+    "correct_answer": "51 min",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          44
+        ],
+        [
+          6,
+          58
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "Week 5 is halfway between week 4 (44 minutes) and week 6 (58 minutes). Halfway between 44 and 58 is 51 minutes.",
+    "distractor_rationales": [
+      {
+        "choice": "65 min",
+        "fault": "estimates halfway between weeks 6 and 8, the wrong pair of points"
+      },
+      {
+        "choice": "34 min",
+        "fault": "reads the week 2 point instead of estimating between weeks 4 and 6"
+      },
+      {
+        "choice": "80 min",
+        "fault": "goes past the last point instead of reading between weeks 4 and 6"
+      }
+    ],
+    "real_world_check": "After midsummer the Sun rises a little later each week, and the change grows as the season moves on.",
+    "prior_free": "Knowing that sunrise comes later after midsummer gives the direction only; the minutes for week 5 need the plotted points."
+  },
+  {
+    "id": "MSB4-E5-09",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS2",
+    "ngss_pe": "5-ESS2-1",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase",
+    "invented": true,
+    "names_used": [
+      "Lake Quessel"
+    ],
+    "passage": "Lake Quessel is small and has no streams flowing in or out. On eight afternoons, a ranger measured how fast the wind blew over the lake and the height of the waves near the dock.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          4,
+          6
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          16,
+          22
+        ],
+        [
+          20,
+          26
+        ],
+        [
+          24,
+          31
+        ],
+        [
+          28,
+          37
+        ],
+        [
+          32,
+          42
+        ]
+      ],
+      "xLabel": "How fast the wind blew (km/h)",
+      "yLabel": "Wave height (cm)",
+      "caption": "Figure 1. Wind and waves at Lake Quessel"
+    },
+    "prompt": "Based on Figure 1, how did the wave height change as the wind blew faster?",
+    "choices": [
+      "The wave height decreased.",
+      "The wave height rose.",
+      "The wave height fell, then rose.",
+      "The wave height rose, then leveled off."
+    ],
+    "correct_answer": "The wave height rose.",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          6
+        ],
+        [
+          32,
+          42
+        ]
+      ]
+    },
+    "explanation": "The points climb from 6 cm at 4 km/h to 42 cm at 32 km/h, and the last three keep going up by 5 or 6 cm each. The wave height rose across the whole range.",
+    "distractor_rationales": [
+      {
+        "choice": "The wave height decreased.",
+        "fault": "the faster winds go with taller waves, not shorter ones"
+      },
+      {
+        "choice": "The wave height fell, then rose.",
+        "fault": "the wave height never drops; even the first two points go up, from 6 to 11 cm"
+      },
+      {
+        "choice": "The wave height rose, then leveled off.",
+        "fault": "the last points keep climbing (31, 37, 42 cm), so the height did not level off"
+      }
+    ],
+    "real_world_check": "Wind blowing over water (atmosphere acting on hydrosphere) builds waves, and stronger wind makes taller waves.",
+    "prior_free": "A student could expect the waves on a small lake to stop growing at strong winds; only the points show whether they level off here."
+  },
+  {
+    "id": "MSB4-E5-10",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS3",
+    "ngss_pe": "4-ESS3-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "independent",
+    "invented": true,
+    "names_used": [
+      "Teo"
+    ],
+    "passage": "Teo's group built a model of a net that stops rocks rolling down a hill. They leaned a board against three books to make a ramp, after checking that the board length matched a meter stick. They taped a square of garden netting across the bottom. Their four squares came from a garden store, and the width of the holes was printed on the tags: 5, 10, 15 or 20 mm. Before every try, Teo counted out the number of glass marbles, 30, and checked the size of each glass marble with a ruler: 12 mm. A partner let the marbles go at the top, and the group counted how many got through. They tried the squares in a mixed-up order.",
+    "graphic": null,
+    "prompt": "Which quantity did the group test to see how it affects how many marbles get through?",
+    "choices": [
+      "the board length",
+      "the width of the holes",
+      "the number of glass marbles",
+      "the size of each glass marble"
+    ],
+    "correct_answer": "the width of the holes",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "the width of the holes was printed on the tags: 5, 10, 15 or 20 mm"
+        }
+      ]
+    },
+    "explanation": "The four netting squares had holes 5, 10, 15 and 20 mm wide. Hole width is the only quantity the passage gives four values for, so it is what the group tested.",
+    "distractor_rationales": [
+      {
+        "choice": "the board length",
+        "fault": "the group used one 1-meter board for all four squares; it is part of the setup, not what was tested"
+      },
+      {
+        "choice": "the number of glass marbles",
+        "fault": "Teo counted out 30 marbles before every try, so the number was part of the setup, not what was tested"
+      },
+      {
+        "choice": "the size of each glass marble",
+        "fault": "every marble measured 12 mm; the marbles were part of the setup, not what was tested"
+      }
+    ],
+    "real_world_check": "Engineers design rockfall nets to reduce the impact of falling rock, and the opening size decides what passes through.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB4-E5-11",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS1",
+    "ngss_pe": "5-ESS1-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Ysolde"
+    ],
+    "passage": "Ysolde's group used a lamp as the Sun and a globe as Earth in a dark room. They stuck four paper dots on the globe, from the equator to near the North Pole. With the globe's top tipped toward the lamp, they turned the globe once every 60 seconds and timed how long each dot stayed in the lamplight. Then they tipped the top away from the lamp and timed the dots again.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Dot 1",
+        "Dot 2",
+        "Dot 3",
+        "Dot 4"
+      ],
+      "colLabels": [
+        "Place on globe",
+        "Seconds lit, top toward lamp",
+        "Seconds lit, top away from lamp"
+      ],
+      "cells": [
+        [
+          "equator",
+          30,
+          30
+        ],
+        [
+          "middle",
+          36,
+          24
+        ],
+        [
+          "far north",
+          42,
+          18
+        ],
+        [
+          "near pole",
+          60,
+          0
+        ]
+      ],
+      "caption": "Table 1. Seconds each dot stayed lit in one 60-second turn"
+    },
+    "prompt": "Based on Table 1, how many seconds did Dot 3 stay lit in one turn when the globe's top was tipped toward the lamp?",
+    "choices": [
+      "30 s",
+      "42 s",
+      "18 s",
+      "36 s"
+    ],
+    "correct_answer": "42 s",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "In the Dot 3 row, the column for the top tipped toward the lamp reads 42 seconds.",
+    "distractor_rationales": [
+      {
+        "choice": "30 s",
+        "fault": "reads Dot 1, at the equator, instead of Dot 3"
+      },
+      {
+        "choice": "18 s",
+        "fault": "reads Dot 3 in the top-away column instead of the top-toward column"
+      },
+      {
+        "choice": "36 s",
+        "fault": "reads Dot 2 instead of Dot 3"
+      }
+    ],
+    "real_world_check": "As Earth spins, each place moves from daylight into darkness; with the axis tipped toward the Sun, northern places spend longer in daylight.",
+    "prior_free": "Knowing that spinning causes day and night gives no number of seconds for one dot; the value must be read from the correct row and column."
+  },
+  {
+    "id": "MSB4-E5-12",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS2",
+    "ngss_pe": "5-ESS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "After a soft, steady rain, the puddles on a flat lawn are gone within an hour, though the air is cool and cloudy. A shovel shows the soil below is now wet 20 cm deep. Which process removed most of the puddle water?",
+    "choices": [
+      "seeping down into the soil",
+      "evaporating into the air",
+      "pulled up by the grass",
+      "running off the lawn"
+    ],
+    "correct_answer": "seeping down into the soil",
+    "explanation": "The soil under the lawn is wet 20 cm deep an hour after the rain, so the water moved down into the ground. Cool, cloudy air slows evaporation, and a flat lawn gives the water no slope to run off.",
+    "distractor_rationales": [
+      {
+        "choice": "evaporating into the air",
+        "fault": "misconception: puddles disappear mostly by evaporating; in one cool, cloudy hour little water evaporates, and the wet soil 20 cm down shows where it went",
+        "misconception": "students think puddles always vanish because the water dries up into the air",
+        "same_category": true
+      },
+      {
+        "choice": "pulled up by the grass",
+        "fault": "misconception: grass drinks up a puddle quickly; roots take up water slowly, far too little to empty puddles in an hour, and the soil is now wet",
+        "misconception": "students think plants soak up puddles quickly, like a sponge",
+        "same_category": true
+      },
+      {
+        "choice": "running off the lawn",
+        "fault": "misconception: rainwater mostly flows away over the ground; on a flat lawn the water has no slope to run down, and the wet soil shows it soaked in",
+        "misconception": "students think rainwater always flows off into streams and drains",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Rain that lands on soil can soak into the ground (geosphere), which is one way the hydrosphere and geosphere interact.",
+    "key_category": "a process that moves rainwater after it lands"
+  },
+  {
+    "id": "MSB4-E5-13",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS3",
+    "ngss_pe": "5-ESS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A farmer usually leaves a field of bare soil after the fall harvest. This year she plants clover over the whole field for the winter. What will most likely happen in the field during the heavy rains of early spring?",
+    "choices": [
+      "The clover will have eaten the food in the soil.",
+      "More rain will run off the field than in other years.",
+      "Less of the topsoil will wash off the field into the ditch.",
+      "The clover roots will break the soil into dust that washes away."
+    ],
+    "correct_answer": "Less of the topsoil will wash off the field into the ditch.",
+    "explanation": "Clover leaves break the force of the falling rain and its roots hold the soil together, so less topsoil washes off than from a bare field.",
+    "distractor_rationales": [
+      {
+        "choice": "The clover will have eaten the food in the soil.",
+        "fault": "misconception: plants eat soil; plants make their food from air, water and light, and clover roots even add nitrogen to soil",
+        "misconception": "students think plants get their food by eating the soil, so they use it up",
+        "same_category": true
+      },
+      {
+        "choice": "More rain will run off the field than in other years.",
+        "fault": "misconception: plants block water from soaking in; plant cover slows water and lets more of it soak into the ground",
+        "misconception": "students think plants cover the ground like a roof and keep rain from soaking in",
+        "same_category": true
+      },
+      {
+        "choice": "The clover roots will break the soil into dust that washes away.",
+        "fault": "misconception: roots loosen soil so it erodes more; roots hold soil particles together",
+        "misconception": "students think roots stir up and loosen soil, so a planted field loses more of it",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Cover crops protect soil from erosion by rain, a practice communities use to protect land and water.",
+    "key_category": "a change to a farm field during spring rains"
+  },
+  {
+    "id": "MSB4-E5-14",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS2",
+    "ngss_pe": "5-ESS2-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Corrabeg"
+    ],
+    "passage": "Scientists measured how much fresh water is stored on the island of Corrabeg. The island has an ice cap on its mountain, water underground in its rocks, lakes, and rivers.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Ice cap",
+        "Underground water",
+        "Lakes",
+        "Rivers"
+      ],
+      "colLabels": [
+        "Fresh water (million cubic meters)"
+      ],
+      "cells": [
+        [
+          1260
+        ],
+        [
+          840
+        ],
+        [
+          210
+        ],
+        [
+          35
+        ]
+      ],
+      "caption": "Table 1. Fresh water stored on Corrabeg"
+    },
+    "prompt": "Based on Table 1, the ice cap holds how many times as much fresh water as the island's lakes?",
+    "choices": [
+      "6.0 times",
+      "36.0 times",
+      "4.0 times",
+      "1.5 times"
+    ],
+    "correct_answer": "6.0 times",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "The ice cap holds 1,260 million cubic meters and the lakes hold 210. 1,260 / 210 = 6.0 times.",
+    "distractor_rationales": [
+      {
+        "choice": "36.0 times",
+        "fault": "divides the ice cap by the rivers (1,260 / 35), the wrong second row"
+      },
+      {
+        "choice": "4.0 times",
+        "fault": "divides the underground water by the lakes (840 / 210), the wrong first row"
+      },
+      {
+        "choice": "1.5 times",
+        "fault": "divides the ice cap by the underground water (1,260 / 840), the wrong second row"
+      }
+    ],
+    "real_world_check": "Most fresh water is stored as ice and underground water, and much less in lakes and rivers.",
+    "prior_free": "Knowing that most fresh water is ice and groundwater does not give these amounts; the ratio needs the two rows."
+  },
+  {
+    "id": "MSB4-E5-15",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS3",
+    "ngss_pe": "4-ESS3-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Ketterdon",
+      "Mill Lorca",
+      "Mill Rossett",
+      "Mill Fennimoor",
+      "Mill Brightwater"
+    ],
+    "passage": "Four small generators on mountain streams near the village of Ketterdon turn moving water into electricity. The table shows the electricity each one made in April, when the mountain snow thaws, and in August.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Mill Lorca",
+        "Mill Rossett",
+        "Mill Fennimoor",
+        "Mill Brightwater"
+      ],
+      "colLabels": [
+        "April (kWh)",
+        "August (kWh)"
+      ],
+      "cells": [
+        [
+          520,
+          80
+        ],
+        [
+          590,
+          30
+        ],
+        [
+          300,
+          340
+        ],
+        [
+          250,
+          350
+        ]
+      ],
+      "caption": "Table 1. Electricity made by four stream generators"
+    },
+    "prompt": "Based on Table 1, which generator made the most electricity in April and August together?",
+    "choices": [
+      "Mill Lorca",
+      "Mill Rossett",
+      "Mill Fennimoor",
+      "Mill Brightwater"
+    ],
+    "correct_answer": "Mill Fennimoor",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Adding the two months: Mill Lorca 600, Mill Rossett 620, Mill Fennimoor 300 + 340 = 640, Mill Brightwater 600 kWh. Mill Fennimoor has the greatest total.",
+    "distractor_rationales": [
+      {
+        "choice": "Mill Lorca",
+        "fault": "its total is 520 + 80 = 600 kWh, less than 640 kWh"
+      },
+      {
+        "choice": "Mill Rossett",
+        "fault": "it made the most in April, but its total is 590 + 30 = 620 kWh, less than 640 kWh"
+      },
+      {
+        "choice": "Mill Brightwater",
+        "fault": "it made the most in August, but its total is 250 + 350 = 600 kWh, less than 640 kWh"
+      }
+    ],
+    "real_world_check": "Moving water is a natural energy resource; a stream generator makes more electricity when more water flows."
+  },
+  {
+    "id": "MSB4-E5-16",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS2",
+    "ngss_pe": "4-ESS2-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Cup Ixel",
+      "Cup Brigham",
+      "Cup Kingsmere",
+      "Cup Fairbrother"
+    ],
+    "passage": "Students mixed plaster with water and poured it into four paper cups. Before it hardened, they pressed bean seeds into the top of each cup. They watered the cups every day. As the seeds sprouted, their roots pushed down into the plaster and cracked it. At week 1 and again at week 3, the students measured the longest crack in each cup.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Cup Ixel",
+        "Cup Brigham",
+        "Cup Kingsmere",
+        "Cup Fairbrother"
+      ],
+      "colLabels": [
+        "Seeds planted",
+        "Longest crack at week 1 (mm)",
+        "Longest crack at week 3 (mm)"
+      ],
+      "cells": [
+        [
+          4,
+          9,
+          26
+        ],
+        [
+          2,
+          4,
+          15
+        ],
+        [
+          6,
+          14,
+          29
+        ],
+        [
+          8,
+          12,
+          22
+        ]
+      ],
+      "caption": "Table 1. Cracks made by sprouting bean roots in plaster"
+    },
+    "prompt": "Based on Table 1, in which cup did the longest crack grow the most from week 1 to week 3?",
+    "choices": [
+      "Cup Brigham",
+      "Cup Ixel",
+      "Cup Kingsmere",
+      "Cup Fairbrother"
+    ],
+    "correct_answer": "Cup Ixel",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "explanation": "The growth from week 1 to week 3 is 26 - 9 = 17 mm in Cup Ixel, 11 mm in Cup Brigham, 15 mm in Cup Kingsmere and 10 mm in Cup Fairbrother. Cup Ixel grew the most.",
+    "distractor_rationales": [
+      {
+        "choice": "Cup Brigham",
+        "fault": "its crack grew 15 - 4 = 11 mm, less than 17 mm"
+      },
+      {
+        "choice": "Cup Kingsmere",
+        "fault": "it had the longest crack at week 3, but that crack grew only 29 - 14 = 15 mm"
+      },
+      {
+        "choice": "Cup Fairbrother",
+        "fault": "it had the most seeds, but its crack grew only 22 - 12 = 10 mm"
+      }
+    ],
+    "real_world_check": "Growing plant roots can widen cracks and break rock apart, a kind of weathering by living things."
+  },
+  {
+    "id": "MSB4-E5-17",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS2",
+    "ngss_pe": "4-ESS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A geologist sorts changes to rock and soil into two lists, one for weathering and one for erosion. Which of these is an example that belongs on the erosion list?",
+    "choices": [
+      "frost splitting a boulder",
+      "a river moving pebbles",
+      "lichens crumbling a gravestone",
+      "roots cracking the pavement"
+    ],
+    "correct_answer": "a river moving pebbles",
+    "explanation": "Erosion moves pieces to a new place. A river carrying pebbles downstream moves them. Frost, lichens and roots all break rock where it is, which is weathering.",
+    "distractor_rationales": [
+      {
+        "choice": "frost splitting a boulder",
+        "fault": "misconception: any breaking of rock is erosion; frost splitting a boulder breaks it where it sits, which is weathering",
+        "misconception": "students think erosion means rock breaking apart, so ice cracking a rock is erosion",
+        "same_category": true
+      },
+      {
+        "choice": "lichens crumbling a gravestone",
+        "fault": "misconception: rock wearing down in place is erosion; lichens break down the stone where it is, which is weathering by living things",
+        "misconception": "students think any rock that crumbles or wears down is being eroded",
+        "same_category": true
+      },
+      {
+        "choice": "roots cracking the pavement",
+        "fault": "misconception: anything that breaks up hard ground is erosion; roots crack the pavement in place without carrying pieces away, which is weathering",
+        "misconception": "students think tree roots breaking pavement is erosion because the ground is damaged",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Erosion is the carrying away of weathered material by water, wind, ice or gravity; breaking rock in place is weathering.",
+    "key_category": "a change to the rock and soil at Earth's surface"
+  },
+  {
+    "id": "MSB4-E5-18",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS3",
+    "ngss_pe": "3-ESS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In a mountain town where deep snow falls every winter, most houses have steep roofs. Builders say steep roofs help keep the houses safe in snowstorms. Which statement best explains how?",
+    "choices": [
+      "A steep roof peak is nearer the Sun and warmer.",
+      "Falling snowflakes bounce off a steep roof instead of landing.",
+      "Snow slides off a steep roof before it piles up too high.",
+      "A steep roof holds a thicker blanket of snow, which keeps the house warm."
+    ],
+    "correct_answer": "Snow slides off a steep roof before it piles up too high.",
+    "explanation": "Heavy snow piled on a roof can break it. On a steep roof the snow slides off before it can build up to a dangerous weight.",
+    "distractor_rationales": [
+      {
+        "choice": "A steep roof peak is nearer the Sun and warmer.",
+        "fault": "misconception: higher means closer to the Sun and warmer; a roof peak a few meters higher is no closer to the Sun in any way that matters",
+        "misconception": "students think things that are higher up are closer to the Sun, so they get warmer",
+        "same_category": true
+      },
+      {
+        "choice": "Falling snowflakes bounce off a steep roof instead of landing.",
+        "fault": "misconception: snowflakes bounce off slopes; snow lands on a steep roof and then slides, it does not bounce away",
+        "misconception": "students think snowflakes bounce off a slanted surface the way a ball would",
+        "same_category": true
+      },
+      {
+        "choice": "A steep roof holds a thicker blanket of snow, which keeps the house warm.",
+        "fault": "misconception: more snow on a roof makes a house safer; a steep roof holds less snow, and heavy snow is the danger",
+        "misconception": "students think a thick layer of snow on a roof protects the house because snow keeps heat in",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Steep roofs shed snow, a design that reduces damage from heavy snowfall, a weather-related hazard.",
+    "key_category": "a way the shape of a roof affects the snow on it"
+  },
+  {
+    "id": "MSB4-E6-01",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Morvenna"
+    ],
+    "passage": "On the island of Morvenna, geologists found lava flows of known ages. Rain and air slowly turn the outside of the dark lava rock into a pale crust called a weathering rind. They measured the rind on rocks from four flows.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Flow 1",
+        "Flow 2",
+        "Flow 3",
+        "Flow 4"
+      ],
+      "colLabels": [
+        "Age of flow (thousand years)",
+        "Rind thickness (mm)"
+      ],
+      "cells": [
+        [
+          2,
+          0.4
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          20,
+          1.8
+        ],
+        [
+          40,
+          2.6
+        ]
+      ],
+      "caption": "Table 1. Weathering rinds on lava flows of Morvenna"
+    },
+    "prompt": "A fifth flow on the island is 14 thousand years old. Based on Table 1, what is the best estimate of the rind thickness on its rocks?",
+    "choices": [
+      "1.0 mm",
+      "2.2 mm",
+      "0.7 mm",
+      "1.4 mm"
+    ],
+    "correct_answer": "1.4 mm",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "14 thousand years is halfway between the 8-thousand-year flow (1.0 mm) and the 20-thousand-year flow (1.8 mm). Halfway between 1.0 and 1.8 is 1.4 mm.",
+    "distractor_rationales": [
+      {
+        "choice": "1.0 mm",
+        "fault": "reads the 8-thousand-year flow instead of estimating between 8 and 20 thousand years"
+      },
+      {
+        "choice": "2.2 mm",
+        "fault": "estimates between the 20- and 40-thousand-year flows, the wrong pair of rows"
+      },
+      {
+        "choice": "0.7 mm",
+        "fault": "falls below the 8-thousand-year flow (1.0 mm), but a 14-thousand-year flow is older and should have a thicker rind"
+      }
+    ],
+    "real_world_check": "Weathering acts slowly at the surface, so older exposed rock has had more time to weather and carries a thicker rind.",
+    "prior_free": "Knowing that rock weathers over time gives no thickness for a 14-thousand-year flow; the estimate needs the table rows."
+  },
+  {
+    "id": "MSB4-E6-02",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-5",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Station Ivel",
+      "Station Kestle",
+      "Station Abernant",
+      "Station Rendlesham"
+    ],
+    "passage": "At dawn, four weather stations around one bay reported the air temperature and the dew point, the temperature at which the water vapor in the air would begin to condense.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Station Ivel",
+        "Station Kestle",
+        "Station Abernant",
+        "Station Rendlesham"
+      ],
+      "colLabels": [
+        "Air temperature (°C)",
+        "Dew point (°C)"
+      ],
+      "cells": [
+        [
+          8,
+          3
+        ],
+        [
+          12,
+          11
+        ],
+        [
+          16,
+          14
+        ],
+        [
+          14,
+          9
+        ]
+      ],
+      "caption": "Table 1. Dawn readings at four weather stations"
+    },
+    "prompt": "Fog forms when the air cools to within 1 °C of its dew point. Based on Table 1, at which station was fog most likely forming at dawn?",
+    "choices": [
+      "Station Kestle",
+      "Station Ivel",
+      "Station Abernant",
+      "Station Rendlesham"
+    ],
+    "correct_answer": "Station Kestle",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "At Station Kestle the air was 12 °C and the dew point 11 °C, a gap of 1 °C, which meets the fog rule. The gaps at the other stations are 5, 2 and 5 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "Station Ivel",
+        "fault": "it was the coldest station, but its air (8 °C) was 5 °C above its dew point (3 °C)"
+      },
+      {
+        "choice": "Station Abernant",
+        "fault": "it had the highest dew point, but its air was 2 °C above it (16 vs 14 °C)"
+      },
+      {
+        "choice": "Station Rendlesham",
+        "fault": "its air (14 °C) was 5 °C above its dew point (9 °C)"
+      }
+    ],
+    "real_world_check": "Fog and clouds form when air cools to near its dew point and water vapor condenses into droplets."
+  },
+  {
+    "id": "MSB4-E6-03",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-4",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Run Treadwell",
+      "Run Ebbel",
+      "Run Saddler",
+      "Run Merriwell",
+      "Run Hawksworthy",
+      "Run Ormskirk"
+    ],
+    "passage": "Students tested what makes water from the air collect on cold cans. They filled metal cans with water at 2 °C or 12 °C. Some cans were bare metal and some were painted black. They set each can in a closed plastic box, where a small humidifier made the air either 40% or 80% humid. After 20 minutes, they wiped each can with a dry paper towel and weighed the water the towel picked up.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Run Treadwell",
+        "Run Ebbel",
+        "Run Ormskirk",
+        "Run Hawksworthy",
+        "Run Merriwell",
+        "Run Saddler"
+      ],
+      "colLabels": [
+        "Water in can (°C)",
+        "Air dampness (% humid)",
+        "Can surface",
+        "Water collected (g)"
+      ],
+      "cells": [
+        [
+          2,
+          40,
+          "bare",
+          1.2
+        ],
+        [
+          12,
+          40,
+          "bare",
+          0.3
+        ],
+        [
+          2,
+          40,
+          "painted",
+          1.3
+        ],
+        [
+          12,
+          80,
+          "bare",
+          1.8
+        ],
+        [
+          2,
+          80,
+          "painted",
+          4.1
+        ],
+        [
+          2,
+          80,
+          "bare",
+          3.9
+        ]
+      ],
+      "caption": "Table 1. Water collected on cold cans"
+    },
+    "prompt": "The students want to test only whether the dampness of the air changes how much water collects. Which run should they compare with Run Treadwell?",
+    "choices": [
+      "Run Ebbel",
+      "Run Merriwell",
+      "Run Hawksworthy",
+      "Run Saddler"
+    ],
+    "correct_answer": "Run Saddler",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    "explanation": "Run Treadwell used 2 °C water, 40% humid air and a bare can. Run Saddler also used 2 °C water and a bare can, but 80% humid air. Air dampness is the only difference, so the pair tests it alone.",
+    "distractor_rationales": [
+      {
+        "choice": "Run Ebbel",
+        "fault": "it differs from Run Treadwell only in the water temperature (12 °C), not the dampness of the air"
+      },
+      {
+        "choice": "Run Merriwell",
+        "fault": "it differs in air dampness but also in the can surface (painted), so two things changed"
+      },
+      {
+        "choice": "Run Hawksworthy",
+        "fault": "it differs in air dampness but also in the water temperature (12 °C), so two things changed"
+      }
+    ],
+    "real_world_check": "Water vapor condenses on a cold surface, and more condenses when the air holds more water vapor."
+  },
+  {
+    "id": "MSB4-E6-04",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Through a small telescope, the rings of Saturn look like one smooth, flat band around the planet. Space probes that flew close to the rings found out what they are really made of. What are the rings made of?",
+    "choices": [
+      "clouds of hot gas",
+      "bands of bent light",
+      "a single solid rock disk",
+      "chunks of ice and rock"
+    ],
+    "correct_answer": "chunks of ice and rock",
+    "explanation": "Close-up images and measurements show that Saturn's rings are made of countless separate pieces of ice and rock, from dust-sized grains to house-sized chunks, each orbiting the planet.",
+    "distractor_rationales": [
+      {
+        "choice": "clouds of hot gas",
+        "fault": "misconception: rings are gas like the planet's air; the rings are cold solid pieces, not hot gas",
+        "misconception": "students think the rings are made of gas, like the giant planet itself",
+        "same_category": true
+      },
+      {
+        "choice": "bands of bent light",
+        "fault": "misconception: rings are an effect of light, not matter; the rings are real material that probes flew past and photographed up close",
+        "misconception": "students think planet rings are light, like a halo or a rainbow around the planet",
+        "same_category": true
+      },
+      {
+        "choice": "a single solid rock disk",
+        "fault": "misconception: the rings are one solid sheet; they are countless separate pieces, each orbiting the planet on its own",
+        "misconception": "students think the rings are one solid, flat plate like a record around the planet",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Saturn's rings consist of many separate particles, mostly water ice with some rock, each in its own orbit.",
+    "key_category": "what a planet's rings are made of"
+  },
+  {
+    "id": "MSB4-E6-05",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Hikers find fossil sea shells in layers of limestone near the top of a mountain, thousands of meters above the sea. Which statement best explains how the shells got there?",
+    "choices": [
+      "Long ago the ocean was deep enough to cover the mountain peak.",
+      "The rock formed on a seafloor and was later pushed up.",
+      "Seabirds carried the shells up the mountain and dropped them there.",
+      "The shells formed inside the rock as its minerals took on shell shapes."
+    ],
+    "correct_answer": "The rock formed on a seafloor and was later pushed up.",
+    "explanation": "The shells were buried in sediment on an ancient seafloor, which hardened into limestone. Over millions of years, forces in Earth's crust slowly pushed that rock up thousands of meters into a mountain.",
+    "distractor_rationales": [
+      {
+        "choice": "Long ago the ocean was deep enough to cover the mountain peak.",
+        "fault": "misconception: sea level once rose over today's mountains; the sea has never stood thousands of meters higher, and the rock itself was lifted",
+        "misconception": "students think the oceans were once so deep that they covered even the highest mountains",
+        "same_category": true
+      },
+      {
+        "choice": "Seabirds carried the shells up the mountain and dropped them there.",
+        "fault": "misconception: animals carried the shells up; birds could not place shells inside solid layers of rock, and the limestone itself formed in the sea",
+        "misconception": "students think animals or birds carried the sea shells up to where they are found",
+        "same_category": true
+      },
+      {
+        "choice": "The shells formed inside the rock as its minerals took on shell shapes.",
+        "fault": "misconception: fossils grow from minerals in rock; fossil shells are the remains of animals that once lived",
+        "misconception": "students think fossils are just rocks that grew into the shape of shells or bones",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Marine fossils on mountains formed in seafloor sediment that was later uplifted by slow movements of Earth's crust.",
+    "key_category": "an explanation of how sea fossils reach high ground"
+  },
+  {
+    "id": "MSB4-E6-06",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Vessaline",
+      "Arvo",
+      "Delmont",
+      "Sirrel",
+      "Wenna"
+    ],
+    "passage": "A space telescope studied four icy worlds that circle the star Vessaline, far out beyond its other planets.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Arvo",
+        "Delmont",
+        "Sirrel",
+        "Wenna"
+      ],
+      "colLabels": [
+        "Width (km)",
+        "Time to orbit the star (years)",
+        "Surface temperature (°C)"
+      ],
+      "cells": [
+        [
+          1200,
+          248,
+          -221
+        ],
+        [
+          2350,
+          560,
+          -238
+        ],
+        [
+          900,
+          311,
+          -226
+        ],
+        [
+          1700,
+          190,
+          -214
+        ]
+      ],
+      "caption": "Table 1. Four icy worlds of the star Vessaline"
+    },
+    "prompt": "Based on Table 1, how wide is the world that takes the longest time to orbit its star?",
+    "choices": [
+      "1700 km",
+      "900 km",
+      "2350 km",
+      "1200 km"
+    ],
+    "correct_answer": "2350 km",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "expr": "v1"
+    },
+    "explanation": "Delmont takes 560 years to orbit Vessaline, the longest time in the table. Its width is 2350 km.",
+    "distractor_rationales": [
+      {
+        "choice": "1700 km",
+        "fault": "reads Wenna, which has the shortest orbit (190 years), not the longest"
+      },
+      {
+        "choice": "900 km",
+        "fault": "reads the narrowest world, Sirrel, which has the second-longest orbit (311 years), not the longest"
+      },
+      {
+        "choice": "1200 km",
+        "fault": "reads Arvo, whose orbit takes 248 years, not the longest"
+      }
+    ],
+    "real_world_check": "Worlds farther from their star take longer to orbit and are colder, but a world's width is not set by its distance.",
+    "prior_free": "No law gives a world's width from its orbit time; the value must be read from the row with the longest orbit."
+  },
+  {
+    "id": "MSB4-E6-07",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Avenue Vint",
+      "Avenue Dorsey",
+      "Avenue Quennell",
+      "Avenue Brackenbury"
+    ],
+    "passage": "A city tried a different streetlight cover on each of four avenues. Some covers aim the light down at the street; others let light spill upward. On one clear, moonless night, a meter pointed straight up measured the glow of the night sky above each avenue.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Avenue Vint",
+          "value": 42
+        },
+        {
+          "label": "Avenue Dorsey",
+          "value": 30
+        },
+        {
+          "label": "Avenue Quennell",
+          "value": 18
+        },
+        {
+          "label": "Avenue Brackenbury",
+          "value": 55
+        }
+      ],
+      "xLabel": "Avenue",
+      "yLabel": "Sky glow (meter units)",
+      "caption": "Figure 1. Night-sky glow above four avenues"
+    },
+    "prompt": "Based on Figure 1, above which avenue was the night sky darkest?",
+    "choices": [
+      "Avenue Vint",
+      "Avenue Quennell",
+      "Avenue Dorsey",
+      "Avenue Brackenbury"
+    ],
+    "correct_answer": "Avenue Quennell",
+    "key_evidence": {
+      "refs": [
+        "Avenue Quennell"
+      ]
+    },
+    "explanation": "The darkest sky has the least glow. Avenue Quennell has the shortest bar, about 18 units.",
+    "distractor_rationales": [
+      {
+        "choice": "Avenue Vint",
+        "fault": "its sky glow (42 units) is higher than Avenue Quennell's, so its sky was brighter"
+      },
+      {
+        "choice": "Avenue Dorsey",
+        "fault": "its sky glow (30 units) is higher than Avenue Quennell's (18 units)"
+      },
+      {
+        "choice": "Avenue Brackenbury",
+        "fault": "it has the tallest bar, the brightest sky of the four"
+      }
+    ],
+    "real_world_check": "Light aimed upward from streetlights brightens the night sky; shielded lights reduce this human impact."
+  },
+  {
+    "id": "MSB4-E6-08",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-4",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Velmoor"
+    ],
+    "passage": "The city of Velmoor checked how much electricity four apartment buildings used in July. The graph shows the average for one apartment in each building.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Building 1",
+          "value": 400
+        },
+        {
+          "label": "Building 2",
+          "value": 800
+        },
+        {
+          "label": "Building 3",
+          "value": 100
+        },
+        {
+          "label": "Building 4",
+          "value": 600
+        }
+      ],
+      "xLabel": "Building",
+      "yLabel": "Electricity per apartment in July (kWh)",
+      "caption": "Figure 1. Electricity used per apartment in four Velmoor buildings"
+    },
+    "prompt": "Based on Figure 1, about how much electricity did one apartment in Building 4 use in July?",
+    "choices": [
+      "600 kWh",
+      "400 kWh",
+      "800 kWh",
+      "100 kWh"
+    ],
+    "correct_answer": "600 kWh",
+    "key_evidence": {
+      "refs": [
+        "Building 4"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Building 4 bar reaches the tick at 600 kWh, three quarters of the way to the top value of 800.",
+    "distractor_rationales": [
+      {
+        "choice": "400 kWh",
+        "fault": "reads Building 1 instead of Building 4"
+      },
+      {
+        "choice": "800 kWh",
+        "fault": "reads the tallest bar, Building 2, instead of Building 4"
+      },
+      {
+        "choice": "100 kWh",
+        "fault": "reads the shortest bar, Building 3, instead of Building 4"
+      }
+    ],
+    "real_world_check": "Electricity use per person is one part of how much energy a community consumes.",
+    "prior_free": "Nothing in the standard predicts one building's use; the value must be read off its own bar."
+  },
+  {
+    "id": "MSB4-E6-09",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-6",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Buoy Tressa"
+    ],
+    "passage": "Buoy Tressa floats in the open ocean. Every three months for one year, it recorded the temperature of the water at the sea surface.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              12
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              6,
+              14
+            ],
+            [
+              9,
+              20
+            ],
+            [
+              12,
+              13
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Month",
+      "yLabel": "Sea-surface temperature (°C)",
+      "caption": "Figure 1. Sea-surface temperature at Buoy Tressa"
+    },
+    "prompt": "Based on Figure 1, what was the coldest sea-surface temperature the buoy recorded?",
+    "choices": [
+      "20 °C",
+      "9 °C",
+      "13 °C",
+      "16 °C"
+    ],
+    "correct_answer": "9 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          9
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The lowest point on the graph is at month 3, at 9 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "20 °C",
+        "fault": "reads the highest point, the warmest reading, at month 9"
+      },
+      {
+        "choice": "13 °C",
+        "fault": "reads the last reading, at month 12, not the coldest"
+      },
+      {
+        "choice": "16 °C",
+        "fault": "is not a plotted reading; it lies between the month 6 and month 9 points"
+      }
+    ],
+    "real_world_check": "Sea-surface temperature rises and falls through the year as the Sun heats the ocean more in one season than another.",
+    "prior_free": "Knowing that the ocean warms in summer does not give this buoy's coldest reading; it must be read off the graph."
+  },
+  {
+    "id": "MSB4-E6-10",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "dependent",
+    "invented": true,
+    "names_used": [
+      "Anouk"
+    ],
+    "passage": "Anouk wondered whether a bigger flood leaves more mud on a lake bottom. Her class built a model lake. 1. Pour 20 L of water into a clear tank; a line on the glass marks the amount of water in the tank. 2. Stir 50 g of fine mud into a jug of water and pour it in as one flood; a scale gives the mass of mud poured in. 3. Each morning, shine a flashlight through the tank to check the cloudiness of the water and see whether the mud has settled. 4. When the water is clear, press a ruler against the glass to find the layer thickness. 5. Pour floods of 100 g, 150 g and 200 g in turn, repeating steps 3 and 4.",
+    "graphic": null,
+    "prompt": "Which quantity tells Anouk whether her idea is right?",
+    "choices": [
+      "the layer thickness",
+      "the cloudiness of the water",
+      "the mass of mud poured in",
+      "the amount of water in the tank"
+    ],
+    "correct_answer": "the layer thickness",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "press a ruler against the glass to find the layer thickness"
+        }
+      ]
+    },
+    "explanation": "Her idea links flood size to how much mud is left on the bottom. The ruler reading of the layer thickness after each flood measures that.",
+    "distractor_rationales": [
+      {
+        "choice": "the cloudiness of the water",
+        "fault": "it is a real measurement, but it only tells the class when the mud has settled, not how much mud each flood left"
+      },
+      {
+        "choice": "the mass of mud poured in",
+        "fault": "Anouk chose this amount (50, 100, 150 or 200 g); it is the size of the flood, not the result"
+      },
+      {
+        "choice": "the amount of water in the tank",
+        "fault": "it is part of the setup, the 20 L poured in at the start, not a result"
+      }
+    ],
+    "real_world_check": "Sediment settles in layers on lake floors, and a larger load of sediment lays down a thicker layer.",
+    "option_roles": [
+      "result",
+      "result",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB4-E6-11",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Teodora"
+    ],
+    "passage": "Teodora's class modeled how wind-blown sand wears away rock. They stood a stick of chalk in a box and weighed it. A hair dryer blew a spoonful of sand at the chalk for two minutes, and they weighed the chalk again. They tested fine sand and coarse sand, with the dryer 10 cm or 30 cm from the chalk, using a new stick for each test. With fine sand, the chalk lost 0.4 g at 10 cm and 0.1 g at 30 cm. With coarse sand, the chalk lost 1.1 g at 10 cm and 0.5 g at 30 cm.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by the results?",
+    "choices": [
+      "Coarse sand removed more chalk than fine sand at both distances.",
+      "The chalk lost more mass with the dryer at 10 cm than at 30 cm, for both kinds of sand.",
+      "Coarse sand blown from 30 cm wore away more chalk than fine sand blown from 10 cm.",
+      "Moving the dryer closer added more loss for fine sand than coarse."
+    ],
+    "correct_answer": "Moving the dryer closer added more loss for fine sand than coarse.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "With fine sand, the chalk lost 0.4 g at 10 cm and 0.1 g at 30 cm"
+        }
+      ]
+    },
+    "explanation": "Moving the dryer from 30 cm to 10 cm added 0.3 g of loss with fine sand (0.1 to 0.4 g) but 0.6 g with coarse sand (0.5 to 1.1 g). The added loss was smaller for fine sand, so the results contradict this claim.",
+    "distractor_rationales": [
+      {
+        "choice": "Coarse sand removed more chalk than fine sand at both distances.",
+        "fault": "supported: 1.1 vs 0.4 g at 10 cm and 0.5 vs 0.1 g at 30 cm"
+      },
+      {
+        "choice": "The chalk lost more mass with the dryer at 10 cm than at 30 cm, for both kinds of sand.",
+        "fault": "supported: fine 0.4 vs 0.1 g and coarse 1.1 vs 0.5 g"
+      },
+      {
+        "choice": "Coarse sand blown from 30 cm wore away more chalk than fine sand blown from 10 cm.",
+        "fault": "supported: 0.5 g is more than 0.4 g"
+      }
+    ],
+    "real_world_check": "Wind carrying sand wears away rock by abrasion, and larger, faster-moving grains wear it away faster."
+  },
+  {
+    "id": "MSB4-E6-12",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A cliff shows flat rock layers broken along a slanted crack. Every layer on one side of the crack sits 2 m lower than the matching layer on the other side. What is this feature called?",
+    "choices": [
+      "a syncline",
+      "an intrusion",
+      "a fault",
+      "an unconformity"
+    ],
+    "correct_answer": "a fault",
+    "explanation": "A fault is a break in rock where the rock on one side has moved past the rock on the other side. The matching layers are offset 2 m along the crack, so this is a fault.",
+    "distractor_rationales": [
+      {
+        "choice": "a syncline",
+        "fault": "misconception: any drop in layers is a fold; a syncline bends layers down without breaking them, but these layers are broken and moved",
+        "misconception": "students think layers that sit lower on one side have been folded downward",
+        "same_category": true
+      },
+      {
+        "choice": "an intrusion",
+        "fault": "misconception: any crack cutting through layers is an intrusion; an intrusion is rock that pushed in as magma, not a break where layers slid",
+        "misconception": "students think any line that cuts across rock layers must be magma that pushed in",
+        "same_category": true
+      },
+      {
+        "choice": "an unconformity",
+        "fault": "misconception: any break in layers is an unconformity; an unconformity is a gap in time between layers, not a crack that offsets them",
+        "misconception": "students think every break or gap seen in a set of layers is an unconformity",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "A fault is a fracture along which rock layers have moved relative to each other, offsetting matching layers.",
+    "key_category": "a feature seen in rock layers"
+  },
+  {
+    "id": "MSB4-E6-13",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "The Arctic is warming faster than most of Earth. As more sea ice melts each summer, more dark ocean water lies open to the Sun. Which statement best explains why this speeds up the warming?",
+    "choices": [
+      "Melting ice releases heat that warms the nearby air and water.",
+      "Open water lets heat from deep inside Earth escape into the air.",
+      "Dark open water absorbs more sunlight than white ice does.",
+      "The thin ozone layer lets more of the Sun's heat reach the Arctic."
+    ],
+    "correct_answer": "Dark open water absorbs more sunlight than white ice does.",
+    "explanation": "White ice reflects most sunlight back to space. Dark open water absorbs most of it, so the ocean warms, which melts more ice and opens still more dark water.",
+    "distractor_rationales": [
+      {
+        "choice": "Melting ice releases heat that warms the nearby air and water.",
+        "fault": "misconception: melting gives off heat; melting ice takes in heat from its surroundings",
+        "misconception": "students think ice gives off heat as it melts, so melting warms the air",
+        "same_category": true
+      },
+      {
+        "choice": "Open water lets heat from deep inside Earth escape into the air.",
+        "fault": "misconception: heat from Earth's interior drives surface warming; that heat is tiny and steady and did not change as the ice melted",
+        "misconception": "students think global warming comes from heat rising out of Earth's hot interior",
+        "same_category": true
+      },
+      {
+        "choice": "The thin ozone layer lets more of the Sun's heat reach the Arctic.",
+        "fault": "misconception: the ozone hole causes global warming; ozone loss lets in more ultraviolet light, not the extra heat behind Arctic warming",
+        "misconception": "students think the hole in the ozone layer is what lets in the heat that warms the planet",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sea ice reflects most sunlight while open ocean absorbs most of it, so losing ice increases warming (ice-albedo feedback).",
+    "key_category": "a cause of extra warming in the Arctic"
+  },
+  {
+    "id": "MSB4-E6-14",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "no-change",
+    "invented": true,
+    "names_used": [
+      "Ushara"
+    ],
+    "passage": "A rover on the planet Ushara recorded how many hours of daylight its landing site had. It took a reading every 3 Ushara months, over one Ushara year of 12 months.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              11
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              12,
+              11
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Ushara month",
+      "yLabel": "Hours of daylight",
+      "caption": "Figure 1. Daylight at the rover site on Ushara"
+    },
+    "prompt": "Based on Figure 1, how did the hours of daylight at the rover's site change over the Ushara year?",
+    "choices": [
+      "Its daylight was decreasing.",
+      "Its daylight was constant.",
+      "Its daylight was rising, then falling.",
+      "Its daylight was falling, then constant."
+    ],
+    "correct_answer": "Its daylight was constant.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          11
+        ],
+        [
+          12,
+          11
+        ]
+      ]
+    },
+    "explanation": "All five readings, from month 0 to month 12, are 11 hours, so the daylight at the site stayed the same all year.",
+    "distractor_rationales": [
+      {
+        "choice": "Its daylight was decreasing.",
+        "fault": "every reading is 11 hours, so the daylight never went down"
+      },
+      {
+        "choice": "Its daylight was rising, then falling.",
+        "fault": "no reading is higher or lower than another; all five are 11 hours"
+      },
+      {
+        "choice": "Its daylight was falling, then constant.",
+        "fault": "the first reading (11 hours) is the same as the rest, so there was no fall first"
+      }
+    ],
+    "real_world_check": "Daylight changes through the year only on a planet whose axis is tilted; with no tilt, each place gets the same daylight in every season.",
+    "prior_free": "The student is not told whether Ushara is tilted, so only the readings show whether the daylight changed over its year."
+  },
+  {
+    "id": "MSB4-E6-15",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-4",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "no-change",
+    "invented": true,
+    "names_used": [
+      "Varrowmere"
+    ],
+    "passage": "A water agency studied eight towns in the Varrowmere region, from small villages to a city. For each town it found the number of people and the water used per person each day.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          5,
+          152
+        ],
+        [
+          10,
+          147
+        ],
+        [
+          15,
+          155
+        ],
+        [
+          20,
+          149
+        ],
+        [
+          25,
+          151
+        ],
+        [
+          30,
+          146
+        ],
+        [
+          35,
+          154
+        ],
+        [
+          40,
+          150
+        ]
+      ],
+      "xLabel": "Town population (thousands)",
+      "yLabel": "Water used per person (L per day)",
+      "caption": "Figure 1. Town size and water use in the Varrowmere region"
+    },
+    "prompt": "Based on Figure 1, how did the water used per person change as town population went up?",
+    "choices": [
+      "Water use per person decreased.",
+      "Water use per person increased, then fell.",
+      "Water use per person stayed the same.",
+      "Water use per person rose, then leveled off."
+    ],
+    "correct_answer": "Water use per person stayed the same.",
+    "key_evidence": {
+      "refs": [
+        [
+          5,
+          152
+        ],
+        [
+          40,
+          150
+        ]
+      ]
+    },
+    "explanation": "Every town, from 5 thousand to 40 thousand people, uses between 146 and 155 L per person per day, with no pattern up or down. Water use per person stayed about the same.",
+    "distractor_rationales": [
+      {
+        "choice": "Water use per person decreased.",
+        "fault": "the largest towns use about as much per person (146-154 L) as the smallest (147-155 L)"
+      },
+      {
+        "choice": "Water use per person increased, then fell.",
+        "fault": "there is no rise and fall; the points scatter between 146 and 155 L at every size"
+      },
+      {
+        "choice": "Water use per person rose, then leveled off.",
+        "fault": "there is no early rise; the smallest towns already use about 150 L per person"
+      }
+    ],
+    "real_world_check": "Total water use grows with population, but use per person depends on habits and need not change with town size.",
+    "prior_free": "A student could expect bigger towns to use more or less water per person; only the cloud of points shows there is no pattern."
+  },
+  {
+    "id": "MSB4-E6-16",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Delphine"
+    ],
+    "passage": "Tsunami warnings depend on knowing how fast a wave crosses the ocean. Delphine's class tested how water depth affects wave travel in a model. They poured water into a long, flat tray to depths of 2, 4, 8 and 12 cm. For each depth, they lifted one end of the tray a little and dropped it to start a single wave, then timed how long the wave took to travel 1 m along the tray. They ran each depth three times and recorded the average time.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Test 1",
+        "Test 2",
+        "Test 3",
+        "Test 4"
+      ],
+      "colLabels": [
+        "Water depth (cm)",
+        "Time to travel 1 m (s)"
+      ],
+      "cells": [
+        [
+          2,
+          2.4
+        ],
+        [
+          4,
+          1.6
+        ],
+        [
+          8,
+          1.2
+        ],
+        [
+          12,
+          0.9
+        ]
+      ],
+      "caption": "Table 1. Time for a wave to cross 1 m of tray at four water depths"
+    },
+    "prompt": "The class plans a test with water 6 cm deep. Based on Table 1, what is the best estimate of the time for the wave to travel 1 m?",
+    "choices": [
+      "1.4 s",
+      "1.8 s",
+      "0.9 s",
+      "1.6 s"
+    ],
+    "correct_answer": "1.4 s",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "A depth of 6 cm is halfway between 4 cm (1.6 s) and 8 cm (1.2 s). Halfway between 1.6 and 1.2 is 1.4 s.",
+    "distractor_rationales": [
+      {
+        "choice": "1.8 s",
+        "fault": "uses the 2 cm and 4 cm rows, the wrong pair, which give times above 1.6 s"
+      },
+      {
+        "choice": "0.9 s",
+        "fault": "reads the 12 cm depth, which is deeper than 6 cm and gives a faster wave"
+      },
+      {
+        "choice": "1.6 s",
+        "fault": "reads the 4 cm depth instead of estimating between 4 cm and 8 cm"
+      }
+    ],
+    "real_world_check": "Long waves such as tsunamis travel faster in deeper water, which forecasters use to estimate when a tsunami will reach a coast.",
+    "prior_free": "Knowing that waves move faster in deeper water gives no time for a 6 cm depth; the estimate needs the two table rows around it."
+  },
+  {
+    "id": "MSB4-E6-17",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A dry city on the coast has little fresh water. It builds a plant that takes the dissolved salt out of ocean water so people can drink it. What is this process called?",
+    "choices": [
+      "aeration",
+      "sand filtering",
+      "chlorine treatment",
+      "desalination"
+    ],
+    "correct_answer": "desalination",
+    "explanation": "Taking dissolved salt out of seawater to make fresh water is called desalination. Filters, chlorine and bubbling air treat water in other ways but leave the salt in it.",
+    "distractor_rationales": [
+      {
+        "choice": "aeration",
+        "fault": "misconception: bubbling air through water removes what is dissolved in it; aeration adds oxygen and removes some gases, but the salt stays dissolved",
+        "misconception": "students think bubbling air through water cleans everything out of it, salt included",
+        "same_category": true
+      },
+      {
+        "choice": "sand filtering",
+        "fault": "misconception: a sand filter removes salt; it catches solid bits, but dissolved salt passes straight through with the water",
+        "misconception": "students think pouring salt water through sand or a filter strains the salt out",
+        "same_category": true
+      },
+      {
+        "choice": "chlorine treatment",
+        "fault": "misconception: adding chlorine makes seawater safe to drink; chlorine kills germs but leaves all the salt in the water",
+        "misconception": "students think adding chlorine is what turns any water, even seawater, into drinking water",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Desalination removes dissolved salts from seawater, while filtration, aeration and chlorination do not remove dissolved salt.",
+    "key_category": "a process for treating water"
+  },
+  {
+    "id": "MSB4-E6-18",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "At noon, the Moon passes in front of the Sun and hides all of it from the town of Ilvar; the sky there goes dark for two minutes. At that moment, a person in a city 3,000 km away is also on the daytime side of Earth. What will that person most likely see?",
+    "choices": [
+      "A Sun that looks partly covered by the Moon, or not covered by it.",
+      "A lunar eclipse, with the Moon turning a reddish color.",
+      "The same total eclipse, with the daytime sky turning dark.",
+      "The Sun hidden behind the shadow of Earth instead of the Moon."
+    ],
+    "correct_answer": "A Sun that looks partly covered by the Moon, or not covered by it.",
+    "explanation": "The Moon is much smaller than Earth, so its full shadow covers only a narrow path, about 100-200 km wide. A person 3,000 km away is outside it and sees at most part of the Sun covered.",
+    "distractor_rationales": [
+      {
+        "choice": "A lunar eclipse, with the Moon turning a reddish color.",
+        "fault": "misconception: a solar and a lunar eclipse are the same event; a lunar eclipse happens at full moon, when the Moon is on the night side, not at a solar eclipse",
+        "misconception": "students mix up solar and lunar eclipses and think both happen at the same time",
+        "same_category": true
+      },
+      {
+        "choice": "The same total eclipse, with the daytime sky turning dark.",
+        "fault": "misconception: everyone on the daytime side sees a total eclipse; the Moon's full shadow covers only a narrow path on Earth",
+        "misconception": "students think a total eclipse is seen from the whole daytime side of Earth at once",
+        "same_category": true
+      },
+      {
+        "choice": "The Sun hidden behind the shadow of Earth instead of the Moon.",
+        "fault": "misconception: a solar eclipse is caused by Earth's shadow; Earth's shadow falls on the Moon in a lunar eclipse, while the Sun is hidden only by the Moon",
+        "misconception": "students think eclipses of the Sun happen when Earth's shadow covers it",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "During a solar eclipse the Moon's umbra covers a narrow path; places outside it see a partial eclipse or none.",
+    "key_category": "what a viewer sees in the sky during a solar eclipse"
+  },
+  {
+    "id": "MSB4-E7-01",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Ferrowick"
+    ],
+    "passage": "Washing clothes sheds tiny plastic threads that drain into streams. A town put lint filters on the washing machines in one neighborhood. Before and after, students sampled water at four points along Ferrowick Creek below the town and counted the plastic threads in each liter.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Point 1",
+        "Point 2",
+        "Point 3",
+        "Point 4"
+      ],
+      "colLabels": [
+        "Threads per liter before filters",
+        "Threads per liter after filters"
+      ],
+      "cells": [
+        [
+          60,
+          25
+        ],
+        [
+          72,
+          18
+        ],
+        [
+          45,
+          15
+        ],
+        [
+          36,
+          20
+        ]
+      ],
+      "caption": "Table 1. Plastic threads in Ferrowick Creek water"
+    },
+    "prompt": "Based on Table 1, at Point 1 the thread count before the filters was how many times the count after the filters?",
+    "choices": [
+      "4.0 times",
+      "3.0 times",
+      "3.3 times",
+      "2.4 times"
+    ],
+    "correct_answer": "2.4 times",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "At Point 1 the count was 60 threads per liter before the filters and 25 after. 60 / 25 = 2.4, so the count before was 2.4 times the count after.",
+    "distractor_rationales": [
+      {
+        "choice": "4.0 times",
+        "fault": "divides the Point 2 row (72 / 18), the wrong point"
+      },
+      {
+        "choice": "3.0 times",
+        "fault": "divides the Point 3 row (45 / 15), the wrong point"
+      },
+      {
+        "choice": "3.3 times",
+        "fault": "divides Point 1 before (60) by Point 2 after (18), mixing two rows"
+      }
+    ],
+    "real_world_check": "Filters that catch fibers at the source reduce the plastic that reaches streams, a way to minimize a human impact on water.",
+    "prior_free": "Knowing that filters cut pollution says the count fell, not by what factor at Point 1; only the two Point 1 cells give that."
+  },
+  {
+    "id": "MSB4-E7-02",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Tub Lisle",
+      "Tub Ulma",
+      "Tub Corrin",
+      "Tub Westcott",
+      "Tub Haverstock"
+    ],
+    "passage": "Strong shaking can make wet, loose sand act almost like a liquid, so buildings on it sink. Students set a block on sand in each tub, poured in water, shook the tub on a shake table and measured how far the block sank.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Tub Lisle",
+        "Tub Ulma",
+        "Tub Corrin",
+        "Tub Westcott",
+        "Tub Haverstock"
+      ],
+      "colLabels": [
+        "Water level below sand top (cm)",
+        "Block mass (g)",
+        "Shaking time (s)",
+        "Block sank (mm)"
+      ],
+      "cells": [
+        [
+          2,
+          400,
+          20,
+          18
+        ],
+        [
+          2,
+          600,
+          20,
+          25
+        ],
+        [
+          8,
+          400,
+          40,
+          6
+        ],
+        [
+          2,
+          400,
+          40,
+          27
+        ],
+        [
+          8,
+          400,
+          20,
+          3
+        ]
+      ],
+      "caption": "Table 1. Model buildings on shaken wet sand"
+    },
+    "prompt": "The students want to test only whether the water level in the sand affects how far the block sinks. Which tub should they compare with Tub Lisle?",
+    "choices": [
+      "Tub Ulma",
+      "Tub Corrin",
+      "Tub Haverstock",
+      "Tub Westcott"
+    ],
+    "correct_answer": "Tub Haverstock",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    "explanation": "Tub Lisle has water 2 cm below the sand top, a 400 g block and 20 s of shaking. Tub Haverstock matches it in block mass and shaking time and differs only in water level (8 cm), so only it isolates the water level.",
+    "distractor_rationales": [
+      {
+        "choice": "Tub Ulma",
+        "fault": "differs from Tub Lisle in block mass, not in water level"
+      },
+      {
+        "choice": "Tub Corrin",
+        "fault": "differs from Tub Lisle in water level AND shaking time, so the two cannot be told apart"
+      },
+      {
+        "choice": "Tub Westcott",
+        "fault": "differs from Tub Lisle only in shaking time; its water level is the same 2 cm"
+      }
+    ],
+    "real_world_check": "Saturated loose sand loses strength when shaken (liquefaction), which engineers study to decide where and how to build in earthquake zones."
+  },
+  {
+    "id": "MSB4-E7-03",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Isaro"
+    ],
+    "passage": "Students made a scale model of the star Isaro and its four planets along a school hallway. In their model, 1 m stood for 20 million km. They taped a paper star to the wall at one end of the hallway. Then they walked out with a tape measure and set a bead for each planet on the floor. Planet 1 went 3 m from the star, Planet 2 went 5 m from the star, and Planet 3 went 8 m from the star. Planet 4 went 30 m from the star, near the far doors. They wrote each planet's distance on a card beside its bead.",
+    "graphic": null,
+    "prompt": "Which claim is supported by the students' model?",
+    "choices": [
+      "The four planets are spaced at nearly equal gaps from one another.",
+      "Planet 4 is about two times as distant as Planet 3.",
+      "Planet 3 is closer to the star than it is to Planet 4.",
+      "Planet 1 is closer to the star than to Planet 2."
+    ],
+    "correct_answer": "Planet 3 is closer to the star than it is to Planet 4.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "Planet 4 went 30 m from the star"
+        }
+      ]
+    },
+    "explanation": "Planet 3 sits 8 m from the star and 30 - 8 = 22 m from Planet 4, so it is closer to the star than to Planet 4. The model supports this claim.",
+    "distractor_rationales": [
+      {
+        "choice": "The four planets are spaced at nearly equal gaps from one another.",
+        "fault": "the gaps are 3 m, 2 m, 3 m and then 22 m, so they are not equal"
+      },
+      {
+        "choice": "Planet 4 is about two times as distant as Planet 3.",
+        "fault": "Planet 4 is 30 m out and Planet 3 is 8 m out, almost four times, not two"
+      },
+      {
+        "choice": "Planet 1 is closer to the star than to Planet 2.",
+        "fault": "Planet 1 is 3 m from the star but only 2 m from Planet 2, so it is closer to Planet 2"
+      }
+    ],
+    "real_world_check": "Scale models show that distances between planets in a star system can differ greatly, with outer gaps much larger than inner ones."
+  },
+  {
+    "id": "MSB4-E7-04",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Two igneous rocks contain the same minerals. One formed when magma hardened deep underground, and its crystals are as big as peas. The other formed when lava hardened on the surface, and its crystals are too tiny to see. Which statement best explains the difference in crystal size?",
+    "choices": [
+      "The underground rock is older, and its crystals kept growing after it hardened.",
+      "The magma underground cooled slowly, giving its crystals time to grow.",
+      "Weight from rock above pressed small crystals into big ones.",
+      "Wind and rain wore the lava's large crystals down into tiny ones."
+    ],
+    "correct_answer": "The magma underground cooled slowly, giving its crystals time to grow.",
+    "explanation": "Magma deep underground is insulated by the rock around it, so it cools over a long time and its crystals have time to grow large. Lava on the surface cools quickly, so its crystals stay tiny.",
+    "distractor_rationales": [
+      {
+        "choice": "The underground rock is older, and its crystals kept growing after it hardened.",
+        "fault": "misconception: crystals in solid rock keep growing with age; growth stops once the rock is solid, and crystal size is set while it cools",
+        "misconception": "students think crystals in a rock keep getting bigger the older the rock is",
+        "same_category": true
+      },
+      {
+        "choice": "Weight from rock above pressed small crystals into big ones.",
+        "fault": "misconception: pressure fuses small crystals into large ones; crystal size comes from how long crystals have to grow as the melt cools",
+        "misconception": "students think squeezing makes small grains join into bigger crystals",
+        "same_category": true
+      },
+      {
+        "choice": "Wind and rain wore the lava's large crystals down into tiny ones.",
+        "fault": "misconception: weathering makes the fine grains; the fine crystals formed when the lava cooled fast, before any weathering",
+        "misconception": "students think small grains in a rock always come from the rock being worn down",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "In igneous rock, slow cooling produces large crystals and fast cooling produces small crystals.",
+    "key_category": "a cause of crystal size in igneous rock"
+  },
+  {
+    "id": "MSB4-E7-05",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Along one coast, the plate under the ocean floor is sliding beneath the edge of a continent by about 5 cm each year. Suppose this keeps going for millions of years. Which prediction is best?",
+    "choices": [
+      "Volcanoes and earthquakes will keep forming along the edge of the continent.",
+      "The edge of the continent will slowly sink under the ocean with the plate.",
+      "The ocean will dry up as its floor slides away under the land.",
+      "The two plates will lock together, and the shaking there will stop."
+    ],
+    "correct_answer": "Volcanoes and earthquakes will keep forming along the edge of the continent.",
+    "explanation": "Where an ocean plate slides beneath a continent, the sinking plate sticks and slips, causing earthquakes, and rock above it melts to feed volcanoes. As long as the sliding continues, both keep forming along that edge.",
+    "distractor_rationales": [
+      {
+        "choice": "The edge of the continent will slowly sink under the ocean with the plate.",
+        "fault": "misconception: the continent goes down with the ocean plate; continental rock is too light to sink, so it rides over the denser ocean plate",
+        "misconception": "students think that when two plates meet, the one being pushed on sinks under the sea",
+        "same_category": true
+      },
+      {
+        "choice": "The ocean will dry up as its floor slides away under the land.",
+        "fault": "misconception: the sea water leaves with the sinking floor; new ocean floor forms elsewhere, and the water stays in the ocean basin",
+        "misconception": "students think the ocean water goes wherever the ocean floor goes",
+        "same_category": true
+      },
+      {
+        "choice": "The two plates will lock together, and the shaking there will stop.",
+        "fault": "misconception: plate motion stops once plates meet; the plate keeps sliding, and the sticking and slipping is what makes earthquakes",
+        "misconception": "students think that once two plates touch, they stop moving and the ground becomes still",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "At ocean-continent subduction zones, the denser oceanic plate sinks beneath the continent, producing a belt of earthquakes and volcanoes along the continental edge.",
+    "key_category": "a prediction of what happens where one plate slides under another"
+  },
+  {
+    "id": "MSB4-E7-06",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-5",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Thurlow"
+    ],
+    "passage": "Each spring, rangers record the day of the year when the ice melts off Lake Thurlow. Day 100 is April 10. The table gives the average ice-out day for the ten years around each listed year.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "1980",
+        "1990",
+        "2000",
+        "2010",
+        "2020"
+      ],
+      "colLabels": [
+        "Average ice-out day (day of the year)"
+      ],
+      "cells": [
+        [
+          118
+        ],
+        [
+          115
+        ],
+        [
+          110
+        ],
+        [
+          104
+        ],
+        [
+          96
+        ]
+      ],
+      "caption": "Table 1. Ice-out on Lake Thurlow"
+    },
+    "prompt": "Based on Table 1, what is the best estimate of the average ice-out day for 2005?",
+    "choices": [
+      "107 days",
+      "113 days",
+      "100 days",
+      "115 days"
+    ],
+    "correct_answer": "107 days",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "2005 is halfway between 2000 (day 110) and 2010 (day 104). Halfway between 110 and 104 is (110 + 104) / 2 = 107.",
+    "distractor_rationales": [
+      {
+        "choice": "113 days",
+        "fault": "estimates between 1990 and 2000, the wrong interval"
+      },
+      {
+        "choice": "100 days",
+        "fault": "estimates between 2010 and 2020, the wrong interval"
+      },
+      {
+        "choice": "115 days",
+        "fault": "reads the 1990 row instead of estimating between 2000 and 2010"
+      }
+    ],
+    "real_world_check": "As average temperatures rise, lake ice melts earlier in spring, one of the observed effects of global warming.",
+    "prior_free": "Warming suggests earlier melting but gives no 2005 value; only the 2000 and 2010 averages in this table fix it."
+  },
+  {
+    "id": "MSB4-E7-07",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Bay Odum",
+      "Bay Gresley",
+      "Bay Pendragon",
+      "Bay Merriwether",
+      "Bay Tinsall"
+    ],
+    "passage": "A tidal power station makes electricity as the tide flows in and out of a bay. One company's turbines work only where the tidal range, the height difference between high and low tide, is more than 6 m. Its gates cannot handle a range above 9 m. Figure 1 shows the tidal range at five bays.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Bay Odum",
+          "value": 4.5
+        },
+        {
+          "label": "Bay Merriwether",
+          "value": 7.5
+        },
+        {
+          "label": "Bay Gresley",
+          "value": 10.5
+        },
+        {
+          "label": "Bay Pendragon",
+          "value": 12
+        },
+        {
+          "label": "Bay Tinsall",
+          "value": 3
+        }
+      ],
+      "xLabel": "Bay",
+      "yLabel": "Tidal range (m)",
+      "caption": "Figure 1. Tidal range at five bays"
+    },
+    "prompt": "Based on Figure 1, at which bay could the company build its station?",
+    "choices": [
+      "Bay Odum",
+      "Bay Merriwether",
+      "Bay Gresley",
+      "Bay Pendragon"
+    ],
+    "correct_answer": "Bay Merriwether",
+    "key_evidence": {
+      "refs": [
+        "Bay Merriwether"
+      ]
+    },
+    "explanation": "The Bay Merriwether bar sits halfway between the 6 m and 9 m ticks, at 7.5 m, the only range between 6 m and 9 m.",
+    "distractor_rationales": [
+      {
+        "choice": "Bay Odum",
+        "fault": "its range, halfway between 3 m and 6 m, is too small for the turbines"
+      },
+      {
+        "choice": "Bay Gresley",
+        "fault": "its range, halfway between 9 m and 12 m, is above the 9 m the gates can handle"
+      },
+      {
+        "choice": "Bay Pendragon",
+        "fault": "its range reaches the top tick, 12 m, far above the 9 m limit"
+      }
+    ],
+    "real_world_check": "Tidal energy is unevenly distributed because tidal range depends on the shape of each coast and bay."
+  },
+  {
+    "id": "MSB4-E7-08",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-2",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Yardley"
+    ],
+    "passage": "Astronomers tracked Comet Yardley as it swung around its star. Every 5 days they worked out how fast the comet was moving.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              9
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              10,
+              17
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              20,
+              36
+            ],
+            [
+              25,
+              27
+            ],
+            [
+              30,
+              16
+            ],
+            [
+              35,
+              12
+            ],
+            [
+              40,
+              10
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Day",
+      "yLabel": "Speed of Comet Yardley (km/s)",
+      "caption": "Figure 1. Speed of Comet Yardley"
+    },
+    "prompt": "Based on Figure 1, about how fast was Comet Yardley moving on day 20?",
+    "choices": [
+      "26 km/s",
+      "9 km/s",
+      "16 km/s",
+      "36 km/s"
+    ],
+    "correct_answer": "36 km/s",
+    "key_evidence": {
+      "refs": [
+        [
+          20,
+          36
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "On day 20 the line reaches the top tick of the speed axis, 36 km/s.",
+    "distractor_rationales": [
+      {
+        "choice": "26 km/s",
+        "fault": "reads day 15 instead of day 20"
+      },
+      {
+        "choice": "9 km/s",
+        "fault": "reads day 0, the start of the record"
+      },
+      {
+        "choice": "16 km/s",
+        "fault": "reads day 30 instead of day 20"
+      }
+    ],
+    "real_world_check": "A comet in a stretched orbit moves fastest when it is closest to its star, because the star's gravity speeds it up as it falls inward.",
+    "prior_free": "Students may know a comet speeds up near its star, but its speed on day 20 appears only on this graph."
+  },
+  {
+    "id": "MSB4-E7-09",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-5",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase-then-level",
+    "invented": true,
+    "names_used": [
+      "Pinderfield"
+    ],
+    "passage": "Foresters measured the carbon stored in the trees on nine plots in the Pinderfield Forest. The plots had been replanted at different times, so their trees were of different ages.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          5,
+          12
+        ],
+        [
+          10,
+          35
+        ],
+        [
+          15,
+          58
+        ],
+        [
+          20,
+          80
+        ],
+        [
+          30,
+          105
+        ],
+        [
+          40,
+          118
+        ],
+        [
+          50,
+          121
+        ],
+        [
+          60,
+          119
+        ],
+        [
+          70,
+          124
+        ]
+      ],
+      "xLabel": "Age of trees (years)",
+      "yLabel": "Carbon stored (tonnes per hectare)",
+      "caption": "Figure 1. Carbon stored on the Pinderfield Forest plots"
+    },
+    "prompt": "Based on Figure 1, how did the carbon stored change as the age of the trees increased?",
+    "choices": [
+      "The carbon stored decreased.",
+      "The carbon stored leveled off, then increased.",
+      "The carbon stored stayed the same.",
+      "The carbon stored rose, then leveled off."
+    ],
+    "correct_answer": "The carbon stored rose, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          5,
+          12
+        ],
+        [
+          40,
+          118
+        ],
+        [
+          70,
+          124
+        ]
+      ]
+    },
+    "explanation": "Carbon stored climbs from 12 tonnes per hectare at 5 years to 118 at 40 years, then stays near 120 from 40 to 70 years. It rose, then leveled off.",
+    "distractor_rationales": [
+      {
+        "choice": "The carbon stored decreased.",
+        "fault": "older plots store more carbon than the 5-year plot, so it did not decrease"
+      },
+      {
+        "choice": "The carbon stored leveled off, then increased.",
+        "fault": "the steep rise comes first, from 5 to 30 years; the flat part comes after 40 years"
+      },
+      {
+        "choice": "The carbon stored stayed the same.",
+        "fault": "it climbs from 12 to about 120 tonnes per hectare before flattening"
+      }
+    ],
+    "real_world_check": "A regrowing forest takes up carbon dioxide quickly while young and more slowly as it matures, so its stored carbon levels off.",
+    "prior_free": "Knowing that growing trees store carbon does not say whether storage keeps rising or flattens, or at what age; only these plots show it."
+  },
+  {
+    "id": "MSB4-E7-10",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-6",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Run Aki",
+      "Run Orley",
+      "Run Pendower",
+      "Run Wickersley",
+      "Run Jessop"
+    ],
+    "passage": "Winds that blow over the ocean push the surface water along and make currents. Students modeled this with a long tray of water and an electric fan at one end. For each run they chose a fan setting and switched on the fan. They floated one cork on the surface and hung a second cork on a thread so that it drifted 5 cm below the surface. After one minute they measured how far each cork had drifted from the fan end. Table 1 shows their results.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Run Aki",
+        "Run Orley",
+        "Run Pendower",
+        "Run Wickersley",
+        "Run Jessop"
+      ],
+      "colLabels": [
+        "Fan setting",
+        "Surface cork drift (cm)",
+        "Deep cork drift (cm)"
+      ],
+      "cells": [
+        [
+          "medium",
+          34,
+          16
+        ],
+        [
+          "low",
+          20,
+          12
+        ],
+        [
+          "high",
+          50,
+          28
+        ],
+        [
+          "high",
+          46,
+          30
+        ],
+        [
+          "medium",
+          30,
+          18
+        ]
+      ],
+      "caption": "Table 1. Cork drift in one minute"
+    },
+    "prompt": "In which run did the cork at the surface drift at least twice as far as the cork 5 cm down?",
+    "choices": [
+      "Run Aki",
+      "Run Orley",
+      "Run Pendower",
+      "Run Wickersley"
+    ],
+    "correct_answer": "Run Aki",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "explanation": "In Run Aki the surface cork drifted 34 cm and the deep cork 16 cm; twice 16 is 32, and 34 is more than 32. In every other run the surface drift is less than twice the deep drift.",
+    "distractor_rationales": [
+      {
+        "choice": "Run Orley",
+        "fault": "its surface cork drifted 20 cm, less than twice its deep cork's 12 cm (24 cm)"
+      },
+      {
+        "choice": "Run Pendower",
+        "fault": "its surface cork drifted 50 cm, less than twice its deep cork's 28 cm (56 cm)"
+      },
+      {
+        "choice": "Run Wickersley",
+        "fault": "its surface cork drifted 46 cm, less than twice its deep cork's 30 cm (60 cm)"
+      }
+    ],
+    "real_world_check": "Wind drives surface ocean currents, and the water moves most at the surface and less with depth."
+  },
+  {
+    "id": "MSB4-E7-11",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A town pumps its water from a layer of sandy rock that holds water underground. Rain and melting snow soak down and refill this layer. Planners want to know whether pumping will make the water table keep dropping year after year. They must compare the amount pumped each year with which quantity?",
+    "choices": [
+      "well depth",
+      "recharge rate",
+      "total water stored",
+      "underground river speed"
+    ],
+    "correct_answer": "recharge rate",
+    "explanation": "The water table holds steady only if the water that soaks in each year (the recharge rate) at least matches the water pumped out. If pumping is larger, the level keeps falling.",
+    "distractor_rationales": [
+      {
+        "choice": "well depth",
+        "fault": "misconception: a deeper well keeps the water table from dropping; depth changes where the pump reaches, not how fast the layer refills",
+        "misconception": "students think drilling the well deeper stops the water from running low",
+        "same_category": true
+      },
+      {
+        "choice": "total water stored",
+        "fault": "misconception: a large store means the level never drops; if pumping is faster than refilling, the level falls whatever the store",
+        "misconception": "students think a big underground supply can be pumped without the level going down",
+        "same_category": true
+      },
+      {
+        "choice": "underground river speed",
+        "fault": "misconception: groundwater sits in fast underground rivers; it fills the spaces between sand grains and moves slowly",
+        "misconception": "students think groundwater flows in underground rivers like the ones on the surface",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Groundwater is used up when withdrawal exceeds the rate at which precipitation recharges the aquifer.",
+    "key_category": "a quantity planners compare with groundwater pumping"
+  },
+  {
+    "id": "MSB4-E7-12",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Tonight people on Earth see the whole face of the Moon lit up, a bright round disk. An astronaut stands on the side of the Moon that faces Earth and looks up at Earth. What will Earth most likely look like to the astronaut?",
+    "choices": [
+      "Fully lit, since sunlight lighting the Moon also lights the half of Earth facing it",
+      "Partly hidden, since the Moon's shadow covers the half of Earth facing it",
+      "Half lit, since Earth's spin turns half of it toward the Sun",
+      "Dark or nearly so, since its night side is the side turned toward the astronaut"
+    ],
+    "correct_answer": "Dark or nearly so, since its night side is the side turned toward the astronaut",
+    "explanation": "At full Moon, Earth lies between the Sun and the Moon, so the half of Earth facing the Moon is the night half. From the Moon, Earth looks dark, a \"new Earth\".",
+    "distractor_rationales": [
+      {
+        "choice": "Fully lit, since sunlight lighting the Moon also lights the half of Earth facing it",
+        "fault": "misconception: both bodies look full at once; at full Moon the Sun is behind Earth as seen from the Moon, so the Moon sees Earth's night side",
+        "misconception": "students think the Moon and Earth always show each other the same phase",
+        "same_category": true
+      },
+      {
+        "choice": "Partly hidden, since the Moon's shadow covers the half of Earth facing it",
+        "fault": "misconception: a shadow causes phases; Earth's look depends on how much of its sunlit half faces the Moon, not on a shadow",
+        "misconception": "students think phases happen because a shadow covers part of the body",
+        "same_category": true
+      },
+      {
+        "choice": "Half lit, since Earth's spin turns half of it toward the Sun",
+        "fault": "misconception: Earth's spin sets its phase; the phase depends on where the Moon is in its orbit, and at full Moon the Moon faces Earth's night side",
+        "misconception": "students think the daily spin of Earth causes the phases",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "The phases of Earth seen from the Moon are opposite to the phases of the Moon seen from Earth.",
+    "key_category": "a prediction of how Earth looks from the Moon"
+  },
+  {
+    "id": "MSB4-E7-13",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Asteroid Brannoc",
+      "Asteroid Felder",
+      "Asteroid Tamarind",
+      "Asteroid Quillon",
+      "Asteroid Hesper"
+    ],
+    "passage": "A space telescope measured what percent of the sunlight striking each of five asteroids is reflected back into space.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Brannoc",
+          "value": 4
+        },
+        {
+          "label": "Felder",
+          "value": 6
+        },
+        {
+          "label": "Tamarind",
+          "value": 16
+        },
+        {
+          "label": "Quillon",
+          "value": 12
+        },
+        {
+          "label": "Hesper",
+          "value": 10
+        }
+      ],
+      "xLabel": "Asteroid",
+      "yLabel": "Sunlight reflected (%)",
+      "caption": "Figure 1. Sunlight reflected by five asteroids"
+    },
+    "prompt": "Based on Figure 1, about what percent of the sunlight striking Asteroid Felder does it reflect?",
+    "choices": [
+      "14%",
+      "4%",
+      "6%",
+      "16%"
+    ],
+    "correct_answer": "6%",
+    "key_evidence": {
+      "refs": [
+        "Felder"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Felder bar stops halfway between the 4% and 8% ticks, at 6%.",
+    "distractor_rationales": [
+      {
+        "choice": "14%",
+        "fault": "misreads the bar as halfway between the 12% and 16% ticks, where no bar stops"
+      },
+      {
+        "choice": "4%",
+        "fault": "reads the Brannoc bar, the shortest one"
+      },
+      {
+        "choice": "16%",
+        "fault": "reads the Tamarind bar at the top tick"
+      }
+    ],
+    "real_world_check": "Asteroids differ in how much sunlight they reflect, a property astronomers measure to learn their surfaces and sizes.",
+    "prior_free": "No standard tells how much light an invented asteroid reflects; only the height of its bar gives the value."
+  },
+  {
+    "id": "MSB4-E7-14",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "increase-then-decrease",
+    "invented": true,
+    "names_used": [
+      "Pernell"
+    ],
+    "passage": "Lagoon Pernell is a shallow body of seawater that is cut off from the open ocean for part of the year. Scientists measured how salty its water was at the start of each month.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              30
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              35
+            ],
+            [
+              3,
+              39
+            ],
+            [
+              4,
+              43
+            ],
+            [
+              5,
+              46
+            ],
+            [
+              6,
+              41
+            ],
+            [
+              7,
+              36
+            ],
+            [
+              8,
+              31
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Month",
+      "yLabel": "Salt in the water (g per liter)",
+      "caption": "Figure 1. Saltiness of Lagoon Pernell"
+    },
+    "prompt": "Based on Figure 1, how did the saltiness of the lagoon change from month 0 to month 8?",
+    "choices": [
+      "The saltiness fell, then rose.",
+      "The saltiness remained the same.",
+      "The saltiness rose, then leveled off.",
+      "The saltiness increased, then fell."
+    ],
+    "correct_answer": "The saltiness increased, then fell.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          46
+        ],
+        [
+          8,
+          31
+        ]
+      ]
+    },
+    "explanation": "The salt rises from 30 g per liter at month 0 to 46 at month 5, then falls to 31 at month 8. It increased, then fell.",
+    "distractor_rationales": [
+      {
+        "choice": "The saltiness fell, then rose.",
+        "fault": "the order is reversed: the salt climbs first, to month 5, and drops after"
+      },
+      {
+        "choice": "The saltiness remained the same.",
+        "fault": "the salt climbs from 30 to 46 g per liter, then drops to 31"
+      },
+      {
+        "choice": "The saltiness rose, then leveled off.",
+        "fault": "after month 5 the salt drops back to 31 g per liter instead of staying near 46"
+      }
+    ],
+    "real_world_check": "Evaporation removes water but leaves salt behind, so a cut-off lagoon grows saltier until rain or inflowing water dilutes it.",
+    "prior_free": "Evaporation explains rising salt, but whether it kept rising, leveled off or fell back is shown only by this record."
+  },
+  {
+    "id": "MSB4-E7-15",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Ardenvale"
+    ],
+    "passage": "Some atoms in rocks change into other atoms. Each atom has the same chance of changing each year, which lets scientists find the ages of rocks. Students at Ardenvale School modeled this with 240 number cubes. Each cube had one face painted red. They shook all the cubes in a box and poured them out. Every cube that landed red side up had \"changed,\" so they set it aside. They counted the cubes left, then shook again with only those cubes. They did this six times.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Start",
+        "Shake 1",
+        "Shake 2",
+        "Shake 3",
+        "Shake 4",
+        "Shake 5",
+        "Shake 6"
+      ],
+      "colLabels": [
+        "Cubes left after the shake"
+      ],
+      "cells": [
+        [
+          240
+        ],
+        [
+          199
+        ],
+        [
+          167
+        ],
+        [
+          138
+        ],
+        [
+          116
+        ],
+        [
+          96
+        ],
+        [
+          81
+        ]
+      ],
+      "caption": "Table 1. Number cubes left after each shake"
+    },
+    "prompt": "Based on Table 1, how many more cubes were set aside in shake 1 than in shake 5?",
+    "choices": [
+      "15 cubes",
+      "21 cubes",
+      "103 cubes",
+      "20 cubes"
+    ],
+    "correct_answer": "21 cubes",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "expr": "(v0 - v1) - (v2 - v3)"
+    },
+    "explanation": "Shake 1 set aside 240 - 199 = 41 cubes. Shake 5 set aside 116 - 96 = 20 cubes. 41 - 20 = 21 more cubes in shake 1.",
+    "distractor_rationales": [
+      {
+        "choice": "15 cubes",
+        "fault": "uses the cubes set aside in shake 6 (96 - 81) as the answer, the wrong shake"
+      },
+      {
+        "choice": "103 cubes",
+        "fault": "subtracts the cubes LEFT after shake 5 from those left after shake 1 (199 - 96)"
+      },
+      {
+        "choice": "20 cubes",
+        "fault": "gives only the cubes set aside in shake 5 (116 - 96), not the difference"
+      }
+    ],
+    "real_world_check": "In radioactive decay each atom has a fixed chance of decaying per unit time, so fewer atoms decay each period as fewer remain.",
+    "prior_free": "The model predicts fewer cubes set aside each shake, but the counts for shakes 1 and 5 come only from the table."
+  },
+  {
+    "id": "MSB4-E7-16",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Sand that settled on an old sea floor lies buried under many more layers. Over millions of years, the weight above squeezes the grains closer, and minerals left by water glue them together into sandstone. Which pair of processes turned the sand into rock?",
+    "choices": [
+      "compaction and cementation",
+      "melting and cooling",
+      "weathering and erosion",
+      "drying and baking"
+    ],
+    "correct_answer": "compaction and cementation",
+    "explanation": "The weight of the layers above pressing the grains together is compaction, and minerals from water gluing the grains is cementation. Together they turn sediment into sedimentary rock.",
+    "distractor_rationales": [
+      {
+        "choice": "melting and cooling",
+        "fault": "misconception: all rock forms from melted rock; this sand never melted, it was pressed and glued",
+        "misconception": "students think every rock forms by melting and then cooling",
+        "same_category": true
+      },
+      {
+        "choice": "weathering and erosion",
+        "fault": "misconception: these processes form rock; they break rock down and carry it away rather than turn sediment into rock",
+        "misconception": "students mix up the processes that break rock down with the ones that build it",
+        "same_category": true
+      },
+      {
+        "choice": "drying and baking",
+        "fault": "misconception: sand hardens into rock by drying out and being baked like a brick; buried sand is wet and is pressed and cemented",
+        "misconception": "students think sand turns to stone the way mud bricks harden when they dry in the sun",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Sediment becomes sedimentary rock through compaction under overlying layers and cementation by minerals deposited from groundwater.",
+    "key_category": "a pair of rock-cycle processes"
+  },
+  {
+    "id": "MSB4-E7-17",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "The Sun's gravity holds eight planets, their moons, and many asteroids and comets in orbit around it. The Sun together with all of these objects makes up one system. What is this system called?",
+    "choices": [
+      "local universe",
+      "solar system",
+      "planetary nebula",
+      "star constellation"
+    ],
+    "correct_answer": "solar system",
+    "explanation": "One star and everything its gravity holds in orbit around it, planets, moons, asteroids and comets, is the solar system.",
+    "distractor_rationales": [
+      {
+        "choice": "local universe",
+        "fault": "misconception: the solar system is the universe; the universe holds billions of galaxies, far beyond one star's system",
+        "misconception": "students think the Sun and its planets make up the whole universe",
+        "same_category": true
+      },
+      {
+        "choice": "planetary nebula",
+        "fault": "misconception: the name means a cloud with planets; a planetary nebula is a glowing shell of gas thrown off by a dying star",
+        "misconception": "students think a planetary nebula is a group of planets because of its name",
+        "same_category": true
+      },
+      {
+        "choice": "star constellation",
+        "fault": "misconception: a constellation is a real group held together; it is only a pattern of stars seen from Earth, at very different distances",
+        "misconception": "students think the stars of a constellation are close together and bound to each other",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "The solar system consists of the Sun and the planets, moons, asteroids and comets held in orbit by its gravity.",
+    "key_category": "a system of objects in space held by gravity"
+  },
+  {
+    "id": "MSB4-E8-01",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-5",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Station Ulf",
+      "Station Brisco",
+      "Station Merriden",
+      "Station Halverstoke",
+      "Station Doyle"
+    ],
+    "passage": "Weather stations in five places compared their average yearly temperature for 2011 to 2020 with their average for 1951 to 1960. Figure 1 shows how much warmer each station was in the later years.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Station Ulf",
+          "value": 0.8
+        },
+        {
+          "label": "Station Brisco",
+          "value": 2.6
+        },
+        {
+          "label": "Station Merriden",
+          "value": 1.6
+        },
+        {
+          "label": "Station Halverstoke",
+          "value": 1.2
+        },
+        {
+          "label": "Station Doyle",
+          "value": 0.6
+        }
+      ],
+      "xLabel": "Station",
+      "yLabel": "Warming (°C)",
+      "caption": "Figure 1. Warming at five weather stations"
+    },
+    "prompt": "Based on Figure 1, which station warmed the most?",
+    "choices": [
+      "Station Brisco",
+      "Station Ulf",
+      "Station Merriden",
+      "Station Halverstoke"
+    ],
+    "correct_answer": "Station Brisco",
+    "key_evidence": {
+      "refs": [
+        "Station Brisco"
+      ]
+    },
+    "explanation": "The Station Brisco bar is the tallest and reaches the top tick, so Brisco warmed the most.",
+    "distractor_rationales": [
+      {
+        "choice": "Station Ulf",
+        "fault": "its bar is one of the shortest, well below the Brisco bar"
+      },
+      {
+        "choice": "Station Merriden",
+        "fault": "its bar is the second tallest, clearly below the Brisco bar at the top tick"
+      },
+      {
+        "choice": "Station Halverstoke",
+        "fault": "its bar reaches less than half the height of the Brisco bar"
+      }
+    ],
+    "real_world_check": "Average temperatures have risen in most places, but by different amounts in different regions."
+  },
+  {
+    "id": "MSB4-E8-02",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Vespera",
+      "World Quell",
+      "World Ormsund",
+      "World Ixworth",
+      "World Brede",
+      "World Kastell"
+    ],
+    "passage": "A probe mapped five rocky worlds that circle the star Vespera. On each world, it measured the height of the tallest volcano.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Ormsund",
+          "value": 6
+        },
+        {
+          "label": "Ixworth",
+          "value": 9
+        },
+        {
+          "label": "Quell",
+          "value": 24
+        },
+        {
+          "label": "Brede",
+          "value": 15
+        },
+        {
+          "label": "Kastell",
+          "value": 12
+        }
+      ],
+      "xLabel": "World",
+      "yLabel": "Height of tallest volcano (km)",
+      "caption": "Figure 1. Tallest volcanoes on the worlds of Vespera"
+    },
+    "prompt": "Based on Figure 1, about how tall is the tallest volcano on World Quell?",
+    "choices": [
+      "15 km",
+      "24 km",
+      "6 km",
+      "12 km"
+    ],
+    "correct_answer": "24 km",
+    "key_evidence": {
+      "refs": [
+        "Quell"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Quell bar reaches the top tick of the axis, 24 km.",
+    "distractor_rationales": [
+      {
+        "choice": "15 km",
+        "fault": "reads the Brede bar, the second tallest"
+      },
+      {
+        "choice": "6 km",
+        "fault": "reads the Ormsund bar, the shortest one"
+      },
+      {
+        "choice": "12 km",
+        "fault": "reads the Kastell bar, which stops at the halfway tick"
+      }
+    ],
+    "real_world_check": "Rocky worlds differ in the size of their surface features, such as volcanoes, which can be measured from orbit.",
+    "prior_free": "The volcano heights belong to these worlds alone; no standard predicts them, so only the bar gives Quell's value."
+  },
+  {
+    "id": "MSB4-E8-03",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-3",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Marlpit"
+    ],
+    "passage": "A class at Marlpit School wanted to see how much water could be saved by turning off the tap while brushing teeth. Four students each brushed for two minutes at the same sink on two days. On one day the tap ran the whole time. On the other day they turned it on only to wet the brush and to rinse. A bucket under the drain caught the water, and the students measured it with a measuring jug.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Student 1",
+        "Student 2",
+        "Student 3",
+        "Student 4"
+      ],
+      "colLabels": [
+        "Water used, tap running (L)",
+        "Water used, tap off while brushing (L)"
+      ],
+      "cells": [
+        [
+          12,
+          1.5
+        ],
+        [
+          8.4,
+          1.2
+        ],
+        [
+          14,
+          1.4
+        ],
+        [
+          13.5,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Water used while brushing teeth"
+    },
+    "prompt": "Based on Table 1, for Student 2 the water used with the tap running was how many times the water used with the tap off?",
+    "choices": [
+      "8.0 times",
+      "7.2 times",
+      "10.0 times",
+      "7.0 times"
+    ],
+    "correct_answer": "7.0 times",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "Student 2 used 8.4 L with the tap running and 1.2 L with it off. 8.4 / 1.2 = 7.0, so Student 2 used 7.0 times as much with the tap running.",
+    "distractor_rationales": [
+      {
+        "choice": "8.0 times",
+        "fault": "divides the Student 1 row (12.0 / 1.5), the wrong student"
+      },
+      {
+        "choice": "7.2 times",
+        "fault": "subtracts (8.4 - 1.2) instead of dividing"
+      },
+      {
+        "choice": "10.0 times",
+        "fault": "divides the Student 3 row (14.0 / 1.4), the wrong student"
+      }
+    ],
+    "real_world_check": "Turning off running water when it is not needed is a way to reduce household water use and the strain on water supplies.",
+    "prior_free": "Knowing that turning off the tap saves water does not give the factor for Student 2; only that student's two measured amounts do."
+  },
+  {
+    "id": "MSB4-E8-04",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "On a muggy summer afternoon, a weather report says the air is holding 90% of the water vapor it could hold at its present temperature. Which quantity is the report giving?",
+    "choices": [
+      "cloud cover",
+      "rainfall total",
+      "relative humidity",
+      "precipitation chance"
+    ],
+    "correct_answer": "relative humidity",
+    "explanation": "Relative humidity is the amount of water vapor in the air compared with the most the air could hold at that temperature, given as a percent.",
+    "distractor_rationales": [
+      {
+        "choice": "cloud cover",
+        "fault": "misconception: how cloudy it is measures the vapor in the air; clouds are condensed drops, and clear air can hold a lot of invisible vapor",
+        "misconception": "students think the amount of water in the air is how cloudy the sky looks",
+        "same_category": true
+      },
+      {
+        "choice": "rainfall total",
+        "fault": "misconception: a report about water in the air is a rain measurement; rainfall is the depth of water that fell, not a percent of the vapor the air could hold",
+        "misconception": "students think the water the air holds is the same as the rain that has fallen",
+        "same_category": true
+      },
+      {
+        "choice": "precipitation chance",
+        "fault": "misconception: the percent in a forecast always tells how wet the air is; a chance of rain is the likelihood of rain falling, not the vapor held",
+        "misconception": "students think the percent chance of rain tells how much water is in the air",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Relative humidity is the ratio, as a percent, of the water vapor in the air to the maximum it could hold at that temperature.",
+    "key_category": "a quantity in a weather report"
+  },
+  {
+    "id": "MSB4-E8-05",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Tonight the Moon lies directly between Earth and the Sun, so the Sun and the Moon pull on Earth's oceans along nearly the same line. Which prediction about the tides over the next day is best?",
+    "choices": [
+      "There will be no tides, since the Moon is dark tonight.",
+      "High tides will be higher than usual, as the two tugs combine.",
+      "The tides will be weaker than usual, since the Sun's pull cancels the Moon's.",
+      "The tides will match those on other days, as the Sun is too distant to affect them."
+    ],
+    "correct_answer": "High tides will be higher than usual, as the two tugs combine.",
+    "explanation": "When the Sun and Moon line up, as at new moon and full moon, their tidal pulls combine, so high tides are higher and low tides lower than usual (spring tides).",
+    "distractor_rationales": [
+      {
+        "choice": "There will be no tides, since the Moon is dark tonight.",
+        "fault": "misconception: the Moon's light makes tides; tides come from the Moon's gravity, which acts whether or not its lit side faces Earth",
+        "misconception": "students think the Moon must be shining for it to cause tides",
+        "same_category": true
+      },
+      {
+        "choice": "The tides will be weaker than usual, since the Sun's pull cancels the Moon's.",
+        "fault": "misconception: in a line the two pulls oppose; lined up at new moon they combine, which makes the largest tidal range",
+        "misconception": "students think the Sun pulls the oceans away from the Moon and cancels its tides",
+        "same_category": true
+      },
+      {
+        "choice": "The tides will match those on other days, as the Sun is too distant to affect them.",
+        "fault": "misconception: the Sun has no effect on tides; its tidal pull is about half the Moon's and clearly changes tide heights",
+        "misconception": "students think only the Moon has anything to do with tides",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Spring tides, with the largest tidal range, occur at new and full moon when the Sun's and Moon's gravitational pulls on the oceans line up.",
+    "key_category": "a prediction about ocean tides"
+  },
+  {
+    "id": "MSB4-E8-06",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Post Kenna",
+      "Post Wynstay",
+      "Post Pellworth",
+      "Post Marchington",
+      "Post Gidley"
+    ],
+    "passage": "On sloping ground, soil creeps slowly downhill and carries anything set in it. Surveyors drove posts into five hillsides and later measured how far each post had been carried. They watched some posts for more years than others.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Post Kenna",
+        "Post Wynstay",
+        "Post Pellworth",
+        "Post Marchington",
+        "Post Gidley"
+      ],
+      "colLabels": [
+        "Years watched",
+        "Distance carried (mm)"
+      ],
+      "cells": [
+        [
+          2,
+          18
+        ],
+        [
+          6,
+          30
+        ],
+        [
+          4,
+          24
+        ],
+        [
+          10,
+          40
+        ],
+        [
+          5,
+          35
+        ]
+      ],
+      "caption": "Table 1. How far five posts were carried by creeping soil"
+    },
+    "prompt": "Based on Table 1, which post was carried the least distance per year?",
+    "choices": [
+      "Post Kenna",
+      "Post Wynstay",
+      "Post Pellworth",
+      "Post Marchington"
+    ],
+    "correct_answer": "Post Marchington",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "explanation": "Post Marchington was carried 40 mm in 10 years, 4 mm per year. The others were carried 9, 5, 6 and 7 mm per year, so Marchington moved the least per year even though it moved the most millimeters in all.",
+    "distractor_rationales": [
+      {
+        "choice": "Post Kenna",
+        "fault": "it was carried the fewest millimeters (18 mm), but in only 2 years, which is 9 mm per year"
+      },
+      {
+        "choice": "Post Wynstay",
+        "fault": "it was carried 30 mm in 6 years, which is 5 mm per year, more than 4 mm per year"
+      },
+      {
+        "choice": "Post Pellworth",
+        "fault": "it was carried 24 mm in 4 years, which is 6 mm per year"
+      }
+    ],
+    "real_world_check": "Soil creep moves soil downslope by a few millimeters per year, a slow surface process that changes landscapes over time."
+  },
+  {
+    "id": "MSB4-E8-07",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Haskett",
+      "River Selby"
+    ],
+    "passage": "The growing town of Haskett sends its treated wastewater into the River Selby. Scientists measured how much oxygen was in the river water at points downstream of the town's outlet.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              7.5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4.5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              6.5
+            ],
+            [
+              7,
+              7.5
+            ],
+            [
+              8,
+              8.5
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Distance downstream of the outlet (km)",
+      "yLabel": "Oxygen in the water (mg per liter)",
+      "caption": "Figure 1. Oxygen in the River Selby below Haskett"
+    },
+    "prompt": "Based on Figure 1, how much oxygen was in the water 4 km downstream of the outlet?",
+    "choices": [
+      "9.0 mg/L",
+      "5.5 mg/L",
+      "4.0 mg/L",
+      "7.0 mg/L"
+    ],
+    "correct_answer": "4.0 mg/L",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          4
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "At 4 km the line reaches its lowest point, 4.0 mg per liter, just below the 4.5 tick.",
+    "distractor_rationales": [
+      {
+        "choice": "9.0 mg/L",
+        "fault": "reads the point at the outlet, 0 km, at the top of the axis"
+      },
+      {
+        "choice": "5.5 mg/L",
+        "fault": "misreads the low point as halfway between two ticks above it, where no point sits"
+      },
+      {
+        "choice": "7.0 mg/L",
+        "fault": "reads a value near 1 km or 7 km, not 4 km"
+      }
+    ],
+    "real_world_check": "Bacteria breaking down wastewater use up oxygen in the water downstream of an outlet, and the river regains oxygen farther on.",
+    "prior_free": "A student may expect oxygen to dip below the outlet, but the value at 4 km is set only by this river's data."
+  },
+  {
+    "id": "MSB4-E8-08",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-3",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease-then-level",
+    "invented": true,
+    "names_used": [
+      "Ostrova"
+    ],
+    "passage": "In year 0, the towns around Lake Ostrova stopped selling dishwasher soaps that contain phosphorus, a nutrient that feeds algae. Every summer, scientists tested the lake water for phosphorus.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              60
+            ],
+            [
+              1,
+              47
+            ],
+            [
+              2,
+              37
+            ],
+            [
+              3,
+              30
+            ],
+            [
+              4,
+              26
+            ],
+            [
+              5,
+              24
+            ],
+            [
+              6,
+              23
+            ],
+            [
+              7,
+              24
+            ],
+            [
+              8,
+              23
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Year",
+      "yLabel": "Phosphorus (micrograms per liter)",
+      "caption": "Figure 1. Phosphorus in Lake Ostrova"
+    },
+    "prompt": "According to the graph, what happened to the lake's phosphorus in the years after the soaps were taken off the shelves?",
+    "choices": [
+      "The phosphorus rose.",
+      "The phosphorus remained the same.",
+      "The phosphorus fell, then leveled off.",
+      "The phosphorus fell, then rose."
+    ],
+    "correct_answer": "The phosphorus fell, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          60
+        ],
+        [
+          5,
+          24
+        ],
+        [
+          8,
+          23
+        ]
+      ]
+    },
+    "explanation": "Phosphorus falls from 60 micrograms per liter in year 0 to 24 in year 5, then stays between 23 and 24 through year 8. It fell, then leveled off.",
+    "distractor_rationales": [
+      {
+        "choice": "The phosphorus rose.",
+        "fault": "every value after year 0 is lower than 60, so it did not rise"
+      },
+      {
+        "choice": "The phosphorus remained the same.",
+        "fault": "it dropped from 60 to about 23 micrograms per liter"
+      },
+      {
+        "choice": "The phosphorus fell, then rose.",
+        "fault": "after year 5 it stays near 23 to 24 instead of climbing back"
+      }
+    ],
+    "real_world_check": "Cutting a nutrient source lowers its level in a lake, often down to a new steady level set by remaining sources.",
+    "prior_free": "A ban predicts less phosphorus, but not whether it keeps falling, levels off or climbs back; only these readings show it."
+  },
+  {
+    "id": "MSB4-E8-09",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "decrease-then-increase",
+    "invented": true,
+    "names_used": [
+      "Carrick"
+    ],
+    "passage": "Geologists measured the average size of the grains of sand and mud in the flat, undisturbed rock layers of the Carrick cliff, working from its base up to its top.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          0.9
+        ],
+        [
+          5,
+          0.8
+        ],
+        [
+          10,
+          0.5
+        ],
+        [
+          15,
+          0.3
+        ],
+        [
+          20,
+          0.1
+        ],
+        [
+          25,
+          0.15
+        ],
+        [
+          30,
+          0.4
+        ],
+        [
+          35,
+          0.6
+        ],
+        [
+          40,
+          0.8
+        ]
+      ],
+      "xLabel": "Height above the base of the cliff (m)",
+      "yLabel": "Average grain size (mm)",
+      "caption": "Figure 1. Grain size in the Carrick cliff"
+    },
+    "prompt": "Based on Figure 1, how did the average grain size change going up the cliff?",
+    "choices": [
+      "The grain size decreased, then increased.",
+      "The grain size rose.",
+      "The grain size rose, then fell.",
+      "The grain size remained the same."
+    ],
+    "correct_answer": "The grain size decreased, then increased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0.9
+        ],
+        [
+          20,
+          0.1
+        ],
+        [
+          40,
+          0.8
+        ]
+      ]
+    },
+    "explanation": "From the base to 20 m the grain size drops from 0.9 mm to 0.1 mm, and from 20 m to the top it climbs back to 0.8 mm. It decreased, then increased.",
+    "distractor_rationales": [
+      {
+        "choice": "The grain size rose.",
+        "fault": "the grains get finer from 0.9 mm to 0.1 mm by 20 m before they coarsen, so the size did not simply rise"
+      },
+      {
+        "choice": "The grain size rose, then fell.",
+        "fault": "the order is reversed: the grains get finer first, up to 20 m, and coarser above it"
+      },
+      {
+        "choice": "The grain size remained the same.",
+        "fault": "it changes from 0.9 mm down to 0.1 mm and back up to 0.8 mm"
+      }
+    ],
+    "real_world_check": "Coarse grains settle in shallow, fast-moving water and fine grains in deep, calm water, so grain size in a stack of layers records past changes in water depth.",
+    "prior_free": "No rule says whether the grains in this cliff got finer, coarser or both going up; only these measurements show it."
+  },
+  {
+    "id": "MSB4-E8-10",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Brookfield"
+    ],
+    "passage": "Students at Brookfield School wanted to know what makes a hillside slide. They built four piles of the same damp sand on trays, with slopes of 20°, 30°, 35° and 40°. They sprayed each pile with water, one squirt at a time, and counted the squirts until part of the pile slid down. The 20° pile never slid, even after 30 squirts. The 30° pile slid after 18 squirts, the 35° pile after 9, and the 40° pile after 3.",
+    "graphic": null,
+    "prompt": "Which claim is supported by the students' results?",
+    "choices": [
+      "The steeper a pile was, the less water it took to make it slide.",
+      "Every pile slid once enough water had been added to it.",
+      "The slope of a pile made no difference to when it slid down.",
+      "Only the piles that got the most water slid down."
+    ],
+    "correct_answer": "The steeper a pile was, the less water it took to make it slide.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "the 40° pile after 3"
+        }
+      ]
+    },
+    "explanation": "Steeper piles slid after fewer squirts: 18 at 30°, 9 at 35° and 3 at 40°, and the 20° pile did not slide at all. So steeper piles needed less water to slide.",
+    "distractor_rationales": [
+      {
+        "choice": "Every pile slid once enough water had been added to it.",
+        "fault": "the 20° pile never slid, even after 30 squirts"
+      },
+      {
+        "choice": "The slope of a pile made no difference to when it slid down.",
+        "fault": "the counts change with slope, from 18 squirts at 30° to 3 at 40°"
+      },
+      {
+        "choice": "Only the piles that got the most water slid down.",
+        "fault": "the 40° pile slid after just 3 squirts, the least water of any pile that slid"
+      }
+    ],
+    "real_world_check": "Steeper slopes are less stable, and added water reduces the grip between grains, so steep, wet slopes fail most readily."
+  },
+  {
+    "id": "MSB4-E8-11",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Forecasters sort hurricanes into categories from 1 to 5 so that people know how much damage to expect. A hurricane moves up from category 2 to category 3. Which quantity must have increased?",
+    "choices": [
+      "width of the storm",
+      "amount of rain dropped",
+      "highest sustained wind speed",
+      "sea temperature beneath it"
+    ],
+    "correct_answer": "highest sustained wind speed",
+    "explanation": "Hurricane categories are set by the storm's highest sustained wind speed. Moving from category 2 to 3 means those winds crossed the category 3 threshold.",
+    "distractor_rationales": [
+      {
+        "choice": "width of the storm",
+        "fault": "misconception: a bigger storm is a higher category; the category depends on wind speed, and a small storm can be category 5",
+        "misconception": "students think the larger a hurricane looks on a map, the stronger it is",
+        "same_category": true
+      },
+      {
+        "choice": "amount of rain dropped",
+        "fault": "misconception: more rain means a higher category; rainfall is not used to set the category, and weak storms can drop the most rain",
+        "misconception": "students think the rainiest hurricanes are the highest category",
+        "same_category": true
+      },
+      {
+        "choice": "sea temperature beneath it",
+        "fault": "misconception: the category is a measure of how warm the water is; warm water feeds storms, but the category is set by the storm's winds",
+        "misconception": "students think a hurricane's category tells how warm the ocean under it is",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "The Saffir-Simpson scale assigns hurricane categories 1 to 5 by maximum sustained wind speed.",
+    "key_category": "a quantity used to rank storms"
+  },
+  {
+    "id": "MSB4-E8-12",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Planets and large moons are round, but most small asteroids are lumpy, like potatoes. Which statement best explains this difference?",
+    "choices": [
+      "A large body's strong gravity squeezes its material into a ball.",
+      "Large bodies spin faster, and fast spinning smooths their corners into a ball shape.",
+      "Dust striking large bodies for billions of years wore their edges down until they were round.",
+      "Small asteroids were chipped in crashes, but large bodies were too big for objects to hit."
+    ],
+    "correct_answer": "A large body's strong gravity squeezes its material into a ball.",
+    "explanation": "A large body has enough mass that its gravity pulls all its material toward its center, which makes it a sphere. A small asteroid's gravity is too weak to reshape its rock, so it keeps a lumpy shape.",
+    "distractor_rationales": [
+      {
+        "choice": "Large bodies spin faster, and fast spinning smooths their corners into a ball shape.",
+        "fault": "misconception: spinning makes a body round; spin actually flattens a body a little, and gravity is what pulls it into a ball",
+        "misconception": "students think planets are round because spinning rounds them off like a ball of dough",
+        "same_category": true
+      },
+      {
+        "choice": "Dust striking large bodies for billions of years wore their edges down until they were round.",
+        "fault": "misconception: worn edges make planets round; impacts make craters and pits, and small asteroids are struck too yet stay lumpy",
+        "misconception": "students think space dust wears planets smooth the way water rounds river stones",
+        "same_category": true
+      },
+      {
+        "choice": "Small asteroids were chipped in crashes, but large bodies were too big for objects to hit.",
+        "fault": "misconception: big bodies are not hit; large bodies are covered in craters from many collisions",
+        "misconception": "students think only small objects in space get hit by other objects",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Bodies above a certain mass are pulled into nearly spherical shapes by their own gravity; smaller bodies can keep irregular shapes.",
+    "key_category": "a cause of the shape of a body in space"
+  },
+  {
+    "id": "MSB4-E8-13",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-4",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Brenmoor"
+    ],
+    "passage": "As the towns of the Brenmoor Valley grew, they pumped more groundwater. Engineers measured the depth from the ground surface down to the water table in four wells in 2005 and again in 2025.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Well 1",
+        "Well 2",
+        "Well 3",
+        "Well 4"
+      ],
+      "colLabels": [
+        "Depth to water in 2005 (m)",
+        "Depth to water in 2025 (m)"
+      ],
+      "cells": [
+        [
+          12,
+          19.5
+        ],
+        [
+          8.5,
+          12
+        ],
+        [
+          15,
+          26
+        ],
+        [
+          11,
+          17.5
+        ]
+      ],
+      "caption": "Table 1. Depth to the water table in four wells"
+    },
+    "prompt": "Based on Table 1, how many meters more did the water table drop at Well 3 than at Well 4?",
+    "choices": [
+      "3.5 m",
+      "6.5 m",
+      "4.5 m",
+      "8.5 m"
+    ],
+    "correct_answer": "4.5 m",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "expr": "(v1 - v0) - (v3 - v2)"
+    },
+    "explanation": "Well 3 dropped 26.0 - 15.0 = 11.0 m and Well 4 dropped 17.5 - 11.0 = 6.5 m. 11.0 - 6.5 = 4.5 m more at Well 3.",
+    "distractor_rationales": [
+      {
+        "choice": "3.5 m",
+        "fault": "compares Well 3 with Well 1 (11.0 - 7.5), the wrong well"
+      },
+      {
+        "choice": "6.5 m",
+        "fault": "gives only the drop at Well 4 (17.5 - 11.0), not the difference"
+      },
+      {
+        "choice": "8.5 m",
+        "fault": "subtracts the 2025 depths (26.0 - 17.5) without using the 2005 depths"
+      }
+    ],
+    "real_world_check": "When a growing population pumps groundwater faster than it is replaced, the water table drops.",
+    "prior_free": "Knowing that heavy pumping lowers the water table does not give either well's drop; only the four depths in the table do."
+  },
+  {
+    "id": "MSB4-E8-14",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Ondrel"
+    ],
+    "passage": "Astronomers tracked four comets as each one swung past the star Ondrel. For each comet they recorded how close it came to the star, the width of its solid core and the length of its glowing tail at that time.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Comet 1",
+        "Comet 2",
+        "Comet 3",
+        "Comet 4"
+      ],
+      "colLabels": [
+        "Closest distance to Ondrel (million km)",
+        "Width of solid core (km)",
+        "Tail length (million km)"
+      ],
+      "cells": [
+        [
+          150,
+          8,
+          12
+        ],
+        [
+          60,
+          3,
+          30
+        ],
+        [
+          90,
+          12,
+          21
+        ],
+        [
+          220,
+          5,
+          6
+        ]
+      ],
+      "caption": "Table 1. Four comets near the star Ondrel"
+    },
+    "prompt": "Based on Table 1, how long was the tail of the comet with the narrowest solid core?",
+    "choices": [
+      "12 million km",
+      "30 million km",
+      "21 million km",
+      "6 million km"
+    ],
+    "correct_answer": "30 million km",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expr": "v1"
+    },
+    "explanation": "The narrowest solid core is Comet 2's, 3 km wide. Its tail was 30 million km long.",
+    "distractor_rationales": [
+      {
+        "choice": "12 million km",
+        "fault": "gives the tail of Comet 1, whose core (8 km) is not the narrowest"
+      },
+      {
+        "choice": "21 million km",
+        "fault": "gives the tail of Comet 3, the comet with the widest core, not the narrowest"
+      },
+      {
+        "choice": "6 million km",
+        "fault": "gives the tail of Comet 4, whose 5 km core is wider than Comet 2's 3 km core"
+      }
+    ],
+    "real_world_check": "A comet's tail of gas and dust grows when sunlight heats its icy core near a star, reaching tens of millions of kilometers.",
+    "prior_free": "Knowing that comets grow tails near a star gives no tail length; only the table links the narrowest core to its tail."
+  },
+  {
+    "id": "MSB4-E8-15",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-6",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Tray Ely",
+      "Tray Corin",
+      "Tray Hollins",
+      "Tray Ravensholt",
+      "Tray Dunster"
+    ],
+    "passage": "Different ground surfaces warm and cool at different rates, which helps make breezes. Students collected surface material from five places near the school, put the same mass of each in its own tray, and named each tray for the place it came from. They set all five trays side by side outdoors on a sunny day and read a thermometer in each tray at 6 a.m., at 2 p.m. and at 10 p.m.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Tray Ely",
+        "Tray Corin",
+        "Tray Hollins",
+        "Tray Ravensholt",
+        "Tray Dunster"
+      ],
+      "colLabels": [
+        "Temperature at 6 a.m. (°C)",
+        "Temperature at 2 p.m. (°C)",
+        "Temperature at 10 p.m. (°C)"
+      ],
+      "cells": [
+        [
+          15,
+          22,
+          19
+        ],
+        [
+          13,
+          34,
+          21
+        ],
+        [
+          14,
+          29,
+          24
+        ],
+        [
+          12,
+          38,
+          18
+        ],
+        [
+          13,
+          21,
+          15
+        ]
+      ],
+      "caption": "Table 1. Temperatures of five trays of surface material"
+    },
+    "prompt": "Based on Table 1, which tray's temperature dropped the least from 2 p.m. to 10 p.m.?",
+    "choices": [
+      "Tray Corin",
+      "Tray Hollins",
+      "Tray Ravensholt",
+      "Tray Ely"
+    ],
+    "correct_answer": "Tray Ely",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "explanation": "From 2 p.m. to 10 p.m. Tray Ely dropped from 22 °C to 19 °C, only 3 degrees. The others dropped 13, 5, 20 and 6 degrees.",
+    "distractor_rationales": [
+      {
+        "choice": "Tray Corin",
+        "fault": "it dropped from 34 °C to 21 °C, 13 degrees"
+      },
+      {
+        "choice": "Tray Hollins",
+        "fault": "it dropped from 29 °C to 24 °C, 5 degrees, more than 3 degrees"
+      },
+      {
+        "choice": "Tray Ravensholt",
+        "fault": "it dropped from 38 °C to 18 °C, 20 degrees, the most of all"
+      }
+    ],
+    "real_world_check": "Materials such as water warm and cool slowly while dry soil and rock change temperature quickly, and this uneven heating drives local winds."
+  },
+  {
+    "id": "MSB4-E8-16",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In some fossils, minerals carried by groundwater slowly fill and replace the once-living material, so the fossil turns to stone but keeps the original shape. Which of these is an example of this kind of fossil?",
+    "choices": [
+      "an ant in amber",
+      "a carbonized fern leaf film",
+      "a mammoth frozen in permafrost",
+      "a petrified tree trunk"
+    ],
+    "correct_answer": "a petrified tree trunk",
+    "explanation": "In petrified wood, minerals from groundwater filled and replaced the wood, so the trunk is now stone that keeps the wood's shape and even its rings.",
+    "distractor_rationales": [
+      {
+        "choice": "an ant in amber",
+        "fault": "misconception: every fossil has turned to stone; an ant in amber keeps its own body, sealed in hardened tree sap",
+        "misconception": "students think all fossils are living things that have turned into rock",
+        "same_category": true
+      },
+      {
+        "choice": "a carbonized fern leaf film",
+        "fault": "misconception: a dark leaf film is stone that replaced the leaf; it is a thin layer of carbon left from the leaf itself after other materials escaped",
+        "misconception": "students think the dark print of a leaf in rock is the leaf turned to stone",
+        "same_category": true
+      },
+      {
+        "choice": "a mammoth frozen in permafrost",
+        "fault": "misconception: frozen remains have become stone; a frozen mammoth keeps its original flesh and hair, with no minerals replacing it",
+        "misconception": "students think any ancient remains found in the ground have been turned to stone",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Petrified wood forms when minerals from groundwater fill and replace plant tissue; amber, freezing and carbon films preserve organisms in other ways.",
+    "key_category": "a fossil and the way it was preserved"
+  },
+  {
+    "id": "MSB4-E8-17",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "GPS stations far inland on the two continents on either side of the Atlantic Ocean show that the continents are moving apart by about 2 cm each year. Which statement best explains this?",
+    "choices": [
+      "Rising seas from melting ice are pushing the two shores apart.",
+      "The plates under the ocean spread apart at a ridge where new seafloor forms.",
+      "Waves wearing away both coasts are making the land on each side drift farther away.",
+      "Earth's spin is flinging the continents outward from each other a little more each year."
+    ],
+    "correct_answer": "The plates under the ocean spread apart at a ridge where new seafloor forms.",
+    "explanation": "The Atlantic has a mid-ocean ridge along its middle. Magma rises there and forms new seafloor as the plates on either side spread apart, carrying the continents with them.",
+    "distractor_rationales": [
+      {
+        "choice": "Rising seas from melting ice are pushing the two shores apart.",
+        "fault": "misconception: added water pushes continents; sea-level rise floods coasts but cannot move whole continents",
+        "misconception": "students think the ocean widens because more water presses the land back",
+        "same_category": true
+      },
+      {
+        "choice": "Waves wearing away both coasts are making the land on each side drift farther away.",
+        "fault": "misconception: coastal erosion moves continents; erosion removes beach and cliff but cannot move stations far inland",
+        "misconception": "students think the ocean grows wider because waves eat away its shores",
+        "same_category": true
+      },
+      {
+        "choice": "Earth's spin is flinging the continents outward from each other a little more each year.",
+        "fault": "misconception: Earth's rotation drives continents apart; plates are moved by forces inside Earth, not by its spin",
+        "misconception": "students think the spinning Earth slowly throws its continents outward",
+        "same_category": true
+      }
+    ],
+    "real_world_check": "Seafloor spreading at mid-ocean ridges moves plates apart, widening the Atlantic by a few centimeters per year.",
+    "key_category": "a cause of two continents moving apart"
+  }
+]

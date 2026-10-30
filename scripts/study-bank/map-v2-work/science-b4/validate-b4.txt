@@ -1,0 +1,65 @@
+read 230 batch-3-full and 224 batch-2 items
+
+== 1. each checker fires on its named b3-full items and goes quiet when disabled
+ok   VARPLAN on: catches 11 of 11 named (all)
+ok   VARPLAN disabled: 0 named items still flagged
+ok   SHORTLBL on: catches 5 of 5 named (all)
+ok   SHORTLBL disabled: 0 named items still flagged
+ok   KEYWORD on: catches 4 of 4 named (all)
+ok   KEYWORD disabled: 0 named items still flagged
+ok   ECHOBAL on: catches 3 of 3 named (all)
+ok   ECHOBAL disabled: 0 named items still flagged
+ok   XKEY on: catches 4 of 4 named (all)
+ok   XKEY disabled: 0 named items still flagged
+ok   LAMARCK on: catches 5 of 5 named (all)
+ok   LAMARCK disabled: 0 named items still flagged
+ok   VARPLAN stated miss: E5-10 (one option after a recording verb) is NOT caught; recorded in the prereg
+ok   XKEY names the exact pairs E8-04 -> E8-13 (1) and E8-07 -> E8-18 (1)
+
+== 2. MISCDECL (presence of the B31 declarations)
+ok   P7-17 as written (no declarations) is refused
+ok   P7-17 with key_category and per-distractor misconception + same_category passes
+ok   one distractor declared off-category is refused
+ok   MISCDECL disabled: quiet
+
+== 3. ECHO: the per-item ban is OFF under b4 (ECHOBAL replaces it) and unchanged under b3f
+ok   b3f: a key alone repeating "pollen" is refused per item (old ban)
+ok   b4: the same item is not refused per item (judged as a distribution)
+
+== 4. band edges (synthetic distributions on b3-full Earth conditions items)
+ok   SHORTLBL Earth 0 of 5 short cores keyed -> fires
+ok   SHORTLBL Earth 2 of 7 (29%) -> quiet
+ok   SHORTLBL Earth 5 of 10 (50%) -> fires (over-keyed is a tell too)
+
+== 5. reach on batch 2 (224; graders named only an ECHO pattern there), printed not gated
+  VARPLAN: 0 refusals
+  SHORTLBL: 3 refusals -> SHORTLBL batch: 1 of 14 one- or two-letter label cores are keys (7%; band 15-40%, no-tell 25%). b3-full: "Ux, Oz,  || SHORTLBL Physical Science: 0 of 5 one- or two-letter label cores are keys (0%; band 15-40%, no-tell 25%). b3-full: || SHORTLBL Earth and Space Science: 1 of 7 one- or two-letter label cores are keys (14%; band 15-40%, no-tell 25%). 
+  KEYWORD: 0 refusals
+  ECHOBAL: 0 refusals
+  XKEY: 18 refusals -> XKEY MSB2-L6-16's text names "eye color", a term option of MSB2-L5-04 (b3-full E8-04 -> E8-13 "seawall"); a studen || XKEY MSB2-L7-01's text names "budding", a term option of MSB2-L6-04 (b3-full E8-04 -> E8-13 "seawall"); a student  || XKEY MSB2-L7-01's text names "budding", a term option of MSB2-L7-13 (b3-full E8-04 -> E8-13 "seawall"); a student  || XKEY MSB2-P6-09's text names "loudness", a term option of MSB2-P5-17 (b3-full E8-04 -> E8-13 "seawall"); a student || XKEY MSB2-P8-15's text names "wave height", a term option of MSB2-P5-17 (b3-full E8-04 -> E8-13 "seawall"); a stud || XKEY MSB2-P7-03's text names "wool", a term option of MSB2-P6-17 (b3-full E8-04 -> E8-13 "seawall"); a student who || XKEY MSB2-P6-06's text names "acceleration", a term option of MSB2-P7-17 (b3-full E8-04 -> E8-13 "seawall"); a stu || XKEY MSB2-P8-07's text names "kinetic energy", a term option of MSB2-P7-17 (its KEY) (b3-full E8-04 -> E8-13 "seaw || XKEY MSB2-P8-10's text names "kinetic energy", a term option of MSB2-P7-17 (its KEY) (b3-full E8-04 -> E8-13 "seaw || XKEY MSB2-E8-15's text names "wind speed", a term option of MSB2-E5-19 (its KEY) (b3-full E8-04 -> E8-13 "seawall" || XKEY MSB2-E8-11's text names "air temperature", a term option of MSB2-E5-19 (b3-full E8-04 -> E8-13 "seawall"); a  || XKEY MSB2-E8-09's text names "a solar eclipse", a term option of MSB2-E6-13 (its KEY) (b3-full E8-04 -> E8-13 "sea || XKEY MSB2-E6-17's text names "weathering", a term option of MSB2-E7-13 (b3-full E8-04 -> E8-13 "seawall"); a stude || XKEY MSB2-E7-19's text names "weathering", a term option of MSB2-E7-13 (b3-full E8-04 -> E8-13 "seawall"); a stude || XKEY MSB2-E5-08's text names "rainfall", a term option of MSB2-E8-12 (b3-full E8-04 -> E8-13 "seawall"); a student || XKEY MSB2-E6-07's text names "rainfall", a term option of MSB2-E8-12 (b3-full E8-04 -> E8-13 "seawall"); a student || XKEY MSB2-E5-07's text names "hours of daylight", a term option of MSB2-E8-12 (b3-full E8-04 -> E8-13 "seawall");  || XKEY MSB2-E7-01's text names "hours of daylight", a term option of MSB2-E8-12 (b3-full E8-04 -> E8-13 "seawall"); 
+  LAMARCK: 1 items (L5-18)
+  b3-full lines beyond the named items (also printed, not gated):
+    VARPLAN batch: 11 of 12 variable passages share the sentence plan REC (MSB3-L5-17, MSB3-L6-03, MSB3-L7-16, MSB3-L8-16, MSB3-P5-17, MSB3-P6-10, MSB3-P7-11, MSB3-P8-0
+    VARPLAN Life Science: 4 of 4 variable passages share the sentence plan REC (MSB3-L5-17, MSB3-L6-03, MSB3-L7-16, MSB3-L8-16); b3-full graders read "wrote down / note
+    VARPLAN Physical Science: 4 of 4 variable passages share the sentence plan REC (MSB3-P5-17, MSB3-P6-10, MSB3-P7-11, MSB3-P8-02); b3-full graders read "wrote down / 
+    VARPLAN Earth and Space Science: 3 of 4 variable passages share the sentence plan REC (MSB3-E6-03, MSB3-E7-10, MSB3-E8-12); b3-full graders read "wrote down / noted
+    SHORTLBL Earth and Space Science: 0 of 5 one- or two-letter label cores are keys (0%; band 15-40%, no-tell 25%). b3-full: "Ux, Oz, Qi, Uo, Al" never the key. Use la
+    KEYWORD Physical Science claim: "energy" is on 5 keys and 1 distractors (P = 4.6e-3 at 1-in-4; MSB3-P7-04, MSB3-P7-17, MSB3-P7-18, MSB3-P8-17, MSB3-P8-18); b3-full 
+    ECHOBAL batch claim: of 66 options that alone echo a stem word, 3 are keys (5%, under 10%): the inverse tell, "the echoing option is a distractor"
+    ECHOBAL Life Science term: of 7 options that alone echo a stem word, 4 are keys (57%, band <= 40%, no-tell 25%; MSB3-L6-04, MSB3-L6-18, MSB3-L7-18, MSB3-L8-18); b3-
+    ECHOBAL Life Science claim: of 20 options that alone echo a stem word, 1 are keys (5%, under 10%): the inverse tell, "the echoing option is a distractor"
+    ECHOBAL Physical Science claim: of 20 options that alone echo a stem word, 1 are keys (5%, under 10%): the inverse tell, "the echoing option is a distractor"
+    ECHOBAL Earth and Space Science claim: of 26 options that alone echo a stem word, 1 are keys (4%, under 10%): the inverse tell, "the echoing option is a distractor"
+    XKEY MSB3-L6-13's text names "chloroplast", a term option of MSB3-L7-05 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E7-12's text names "an atom", a term option of MSB3-P6-06 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E8-10's text names "the period", a term option of MSB3-P6-18 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E8-11's text names "the planet's mass", a term option of MSB3-P8-12 (its KEY) (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E7-17's text names "bay", a term option of MSB3-E5-12 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-L8-14's text names "dam", a term option of MSB3-E8-13 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E8-04's text names "seawall", a term option of MSB3-E8-13 (its KEY) (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E8-07's text names "air pressure", a term option of MSB3-E8-18 (its KEY) (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-P5-03's text names "air temperature", a term option of MSB3-E8-18 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-P7-14's text names "air temperature", a term option of MSB3-E8-18 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+    XKEY MSB3-E5-13's text names "season", a term option of MSB3-E8-19 (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it
+
+VALIDATION OK: every b4 checker catches its named b3-full items (VARPLAN 11 of 12, E5-10 stated) and vanishes when disabled

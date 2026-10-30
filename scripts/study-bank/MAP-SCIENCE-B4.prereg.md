@@ -200,3 +200,72 @@ Recorded below by the coordinator after the tools were built and break-tested an
 - `scratchpad/map-science-b4/live-map-science.json` 7e6dfc93b30bfc0e
 
 No `src/` change, no database write, no new environment variable.
+
+---
+
+# Addendum S (2026-10-31): authoring record and stage 0 / 0b, written before any grader
+
+No rule above changed, and no tool listed in the fingerprints above changed (sci-check `ef45c8d5ff4d9ba5`, sci-packet
+`ad80de852c5bbcbe` re-hashed at packet time). New files after the fingerprints: `science-b4/build-packets.sh`,
+`science-b4/XDUP-REVIEW.md`, `science-b4/AUTHOR-PROMPT.md`, `science-b4/REVIEW-PROMPT.md`, and the records below.
+
+## Authoring
+
+Six parallel Claude author agents (L56, L78, P56, P78, E56, E78) wrote all 240 slots from the frozen b4 brief, each after a
+per-slot system plan (`science-b4/plans/`). **0 EMPTY** (F1 holds). Sources `science-b4/src/src-<cell>.mjs` ->
+`expand.mjs` -> `science-b4/items/{L,P,E}.json` (75 / 95 / 70). No slot swapped.
+
+## XDUP review: 43 rewrites before packets
+
+The first full probe and batch pass printed 408 REVIEW lines. Fresh Claude adjudicators (only the two items and the rule)
+judged 49 pairs duplicate on **37 batch-4 items** (Life 12, Physical 20, Earth 5); the authors rewrote each on a new system
+and concept. Round 2 (111 new or touched lines) found 4 more (L7-12, P8-09, P8-22, P6-13); the coordinator judged two
+further P8-22 versions duplicates (ball-and-stick models beside P7-15; four solids timed melting beside live MSB1-P7-09).
+Final: **366 REVIEW lines, all answered, 0 duplicates** (`science-b4/XDUP-REVIEW.md`). So B42's plan step did not stop
+same-system collisions with the live and earlier banks: 37 of 240 first drafts (15%) reused a system on its PE. Lesson for
+the next brief: give authors the live systems per PE as a list before planning, not only a grep instruction.
+
+## Stage 0 / 0b (all exit 0 on the final files)
+
+| check | Life 75 | Physical 95 | Earth 70 | batch 240 |
+|---|---|---|---|---|
+| `sci-check --rules b4` | 75 ok | 95 ok | 70 ok | batch clean (exit 0) |
+| `probe-live-b4.mjs` (367 live/staged + b2 224 + p1 24 + p2 24 + b3f 230) | | | | 0 refused, 336 REVIEW (35 PEPAIR) |
+| batch XDUP-REVIEW (cross-author stem route) | | | | 30 |
+| `sci-check --rules b3p2` (reference only) | 7 fail | 8 fail | 8 fail | every failure is the per-item ECHO ban that b4 replaces with ECHOBAL by design; 0 other failures |
+
+**The 10d checkers on the batch** (`science-b4/sci-check-batch-b4.txt`): VARPLAN no plan feature in any of 10 variable
+passages; SHORTLBL no 1-2-letter label core used; KEYWORD most key-heavy word per area "water" 3/4, "energy" 3/7, "form" 3/4
+(all P > 0.05; batch 3 full "energy" was 5/6); ECHOBAL lone-echo key share 20-23% in every area x format (batch 3: Life term
+57%, claims 4-5%); XKEY 0 hits; LAMARCK 0; MISCDECL all 79 model items declared. Distributions: BARPOS 2/2/2 per area;
+BAREXT 33%; TRENDFORM compound/simple 24%/26%; RANKBAL flat; CLAIMBAL marked-option key share 21/20/25%; FILLER 0 reused
+among 512 option texts; ORDER within caps; cliche keys 0.
+
+**Recorded risks for rule 10 (reported checks only):** NAMESHAPE puts **Physical "W W" names on 54 of 67** name-bearing
+items (81%) and Earth single-word names on 30 of 46 (65%), above B29's "about a third". NAMETPL is under its threshold in
+every area (closest Life "-ey" x7, P = 1.2e-3 against 0.001). No name template has been a both-grader 3+ pattern so far.
+Authors flagged their own weakest keys in their replies (e.g. P8-13 inference vs supported; P7-22 weakly documented
+misconceptions; E8-04 "rainfall total" a weak misconception; L8-12 process mix-ups); none was edited by the coordinator.
+
+## Packets (b3-full layout)
+
+`scratchpad/map-science-b4/packets/`: `<area>/grader-cold.md` (life 75 / phys 95 / earth 70 items, 0 KEY lines, 0 declared
+misconceptions, no prior_free or option roles), copies in `<area>-g1/` and `<area>-g2/`, keyed packets only in
+`hold/<area>-keyed.md` (75 / 95 / 70 KEY lines; 81 / 84 / 72 declared misconception lines = 3 per model item), and
+`GRADER-PROMPT.md` (= `science-b4/GRADER-PROMPT.md`). Six grader spawns, by the coordinator of a later session. This
+session stops here: no grader, auditor or attack ran; nothing staged; no database write.
+
+## Fingerprints at packet time (sha256, first 16)
+
+- `map-v2-work/science-b4/items/L.json` 13b2e9c6571ec121
+- `map-v2-work/science-b4/items/P.json` 396e048136cff763
+- `map-v2-work/science-b4/items/E.json` cc72e7e3a0d5d975
+- `map-v2-work/science-b4/XDUP-REVIEW.md` fdd6e15b15597e2e
+- `map-v2-work/science-b4/GRADER-PROMPT.md` 87645bc6eb558b28
+- `map-v2-work/science-b4/build-packets.sh` 95be7fd32ccec46f
+- `scratchpad/map-science-b4/packets/life/grader-cold.md` e90bd086c90fd248
+- `scratchpad/map-science-b4/packets/phys/grader-cold.md` 890fbdc7ba9eed39
+- `scratchpad/map-science-b4/packets/earth/grader-cold.md` 450a4ccdd4f2beaf
+- `scratchpad/map-science-b4/packets/hold/life-keyed.md` 833e76679d55085a
+- `scratchpad/map-science-b4/packets/hold/phys-keyed.md` 632350519cd1655b
+- `scratchpad/map-science-b4/packets/hold/earth-keyed.md` fdc9e36c90bb90e3
