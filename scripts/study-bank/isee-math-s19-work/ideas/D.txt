@@ -1,0 +1,41 @@
+D01 :: arc&length|length of (the )?arc :: arc length of a 60 degree arc in circle of radius 9
+D02 :: inscribed angle|central angle&inscribed :: inscribed angle intercepts arc of 110 degrees measure
+D03 :: sphere|hemisphere :: volume of hemisphere radius 3
+D04 :: radius is doubled&height|doubl(e|ed|ing) the radius&(halv|height) :: cylinder radius doubled height halved volume ratio
+D05 :: 30-60-90|30°-60°-90°|30, 60, (and )?90 :: 30-60-90 triangle hypotenuse 10 longer leg
+D06 :: L-shaped|L shape :: L-shaped room perimeter from given sides
+D07 :: quarter circles?|quarter-circle :: square side 8 with quarter circle at each corner radius 4 shaded area
+D08 :: semicircles?&(track|ends?)|two semicircles :: running track rectangle 100 by 60 with semicircle ends perimeter
+D09 :: triangular prism :: triangular prism volume right triangle base 6 8 length 10
+D10 :: pyramid&volume :: square pyramid base 6 height 10 volume
+D11 :: (cubes|blocks)&(fit|packed)&box :: how many 2-inch cubes fit in box 10 by 6 by 4 inches
+D12 :: revolutions|wheel&(turns|rotations) :: wheel diameter 70 cm revolutions to travel 1.1 km
+D13 :: regular hexagon&area :: regular hexagon side 4 area
+D14 :: cubic yards?|cubic feet&cubic yard :: concrete slab 18 ft by 12 ft by 6 in cubic yards
+D15 :: poured&into&(cylind|box|container)|pour(s|ed) all :: water from full cylinder radius 3 height 8 poured into box 6 by 4 depth
+D16 :: angle&between&diagonals|diagonals&angle :: rectangle diagonals form 50 degree angle with long side; acute angle between diagonals
+D18 :: (area|perimeter)&(semicircle|half circle)&(diameter|on top) :: window rectangle 4 by 3 with semicircle on top area
+D19 :: (ratio|percent)&(surface area|volume)&cube&edge&(increase|doubl|tripl) :: cube edge increased 50 percent surface area percent increase
+D20 :: complementary&supplementary&(ratio|twice|three times) :: two complementary angles in ratio 2 to 7 larger supplement
+D21 :: (triangle|triangles)&angles?&ratio&\d ?: ?\d ?: ?\d :: triangle angles in ratio 2:3:4 largest angle
+D23 :: (trapezoid|parallelogram)&angles?&(consecutive|adjacent)&(x|degrees) :: parallelogram one angle 4 times adjacent find smaller
+D24 :: (perimeter|area)&(rectangle|square)&(cut|divided)&(two|four) (congruent|identical) :: square cut into 4 congruent rectangles each perimeter 30 square area
+D27 :: (circle|circles)&circumference&(increase|increased) by&radius :: circumference increases by 10 pi radius increases by
+D29 :: (equilateral|isosceles) triangle&perimeter&(side|base)&(x|more than) :: isosceles triangle perimeter 50 base 6 less than each leg find base
+D31 :: (fence|fencing)&(circular|circle)&(diameter|radius) :: circular garden fence 44 m pi 22/7 area
+D32 :: (cone|cylinder)&same (base|radius) and (height|same height)&(ratio|times) :: cone and cylinder same base and height cylinder volume 90 cone volume
+D33 :: (volume|capacity)&liters?&(cm|centimeters)&(1 liter|1,000 cubic) :: tank 50 cm by 40 cm by 30 cm liters
+D34 :: (tile|tiles)&(square|rectangular) floor|cover(s|ed)? (the|a) floor&tiles :: floor 4.8 m by 3.6 m with 30 cm square tiles count
+D37 :: (triangle)&(midpoints?)&(area|perimeter)&(smaller|connect) :: triangle midpoints joined area of small triangle from area 48
+D39 :: (rectangle|rectangular)&(diagonal)&(length|width)&(ratio|\d ?: ?\d) :: rectangle sides ratio 3:4 diagonal 25 area
+D40 :: (square)&(area)&(diagonal)&(doubl|twice) :: square whose diagonal equals side of another square area ratio
+D41 :: (circle)&(radius)&(area)&(numerically equal|same number|equal to its circumference) :: circle whose area numerically equals its circumference radius
+D42 :: (ramp|wheelchair)&(rise|slope) :: wheelchair ramp rise 1 per 12 run height 30 inches ramp horizontal length feet
+D43 :: (frame|border|mat)&(picture|photo)&(width|uniform) :: picture 8 by 10 frame width 2 area of frame
+D45 :: (clock|minute hand)&(tip|travels|distance)&(inches|cm) :: minute hand 6 cm tip distance in 20 minutes
+D47 :: (angles?)&(around a point|full turn|360)&(x|ratio) :: angles around a point x 2x 3x 4x largest
+D48 :: (similar)&(volume)&(ratio|scale)&(surface|area) :: similar solids surface area ratio 4:9 volume ratio
+D49 :: (area)&(triangle)&(base|height)&(increase|increased)&(percent) :: triangle base +20 percent height -20 percent area change
+D51 :: (sector)&(perimeter) :: perimeter of sector radius 6 angle 90 degrees
+D54 :: (angle)&(isosceles)&(vertex|apex)&(base angles?)&(x|times) :: isosceles triangle vertex angle is 3 times a base angle; vertex angle
+D56 :: (polygon)&(sides)&(sum of (the )?(interior|exterior))&(times|twice) :: polygon whose interior angle sum is 4 times exterior sum sides

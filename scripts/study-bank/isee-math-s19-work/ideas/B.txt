@@ -1,0 +1,52 @@
+B01 :: euros?&yen|exchange&fee&% :: One euro is worth 1.25 dollars and one dollar 150 yen; changes 300 euros to yen and office keeps 4% fee
+B02 :: scale of 1 ?: ?\d+&area :: map scale 1:50000 field 3 cm by 2 cm actual area in square kilometers
+B03 :: get (one|1) free|buy (two|three|2|3)&free :: pens 2 dollars each buy 3 get 1 free cost of 18 pens
+B04 :: single discount|equivalent to a single|one discount of :: successive discounts of 20 percent and 15 percent equal a single discount of what percent
+B05 :: commission :: salesperson earns 4 percent commission on first 5000 of sales and 6 percent above; earned 380 total sales
+B06 :: percent error :: estimated 48 actual 60 percent error
+B07 :: (selling|sale) price&cost&percent of the (selling|sale) price :: markup 25 percent of cost; profit is what percent of selling price
+B08 :: percentage points?&percent (increase|change) :: interest rate rose from 4 percent to 5 percent; percent increase in the rate
+B09 :: stops? for&minutes&every hour|breaks? :: machine makes 12 parts every 5 minutes but stops 10 minutes each hour; parts in 8 hours
+B10 :: takes&minutes&same (route|distance|path)&speed :: Ana walks to school in 12 minutes Ben 15 minutes same route Ana 5 km/h Ben speed
+B11 :: mg|milligrams&(kg|kilogram)&dose :: dose 15 mg per kg child 22 kg liquid 50 mg per 5 mL how many mL
+B12 :: model&volume&(1:|1/|scale) :: scale model 1 to 20 model tank holds 3 liters real tank holds liters
+B13 :: back to (its|the) original|return(s)? to (its|the) original :: price increased 25 percent what percent decrease returns it to original
+B14 :: kilometers per hour&meters per second|km/h&m/s :: car 72 km per hour in meters per second
+B15 :: (tax|taxed)&brackets?|first \$?\d+,?\d* (is|are) taxed :: tax 10 percent on first 10000 and 20 percent on income above; tax 3400 income
+B16 :: tip&split|share the (bill|cost) equally :: three friends share bill 72 plus 15 percent tip one pays 10 more
+B17 :: concentration|per liter&dilute|diluted :: syrup diluted 1 part to 4 parts water; how much syrup in 2 liters of drink
+B18 :: per (square )?(foot|meter)&paint&cans?|gallon covers :: one can of paint covers 350 square feet two coats wall area
+B19 :: unit price&per ounce|cents per ounce :: 18 oz for 4.50 vs 24 oz for 5.76 difference in cents per ounce
+B20 :: percent of&are (boys|girls)&percent of (the )?(boys|girls) :: 60 percent of class are girls 25 percent of girls and 50 percent of boys wear glasses what percent wear glasses
+B21 :: speed&increased by&percent&time :: speed increased by 25 percent time decreases by what percent
+B22 :: hours&minutes&per hour&how (far|many miles) :: drives 2 hours 45 minutes at 56 miles per hour distance
+B23 :: price per pound&pounds&mixture|mixed&per pound :: mix 3 lb nuts at 6 dollars per lb with 5 lb at 4.40 per lb; price per lb of mixture
+B24 :: earns?&per hour&(after|takes home)&percent :: earns 18 dollars per hour 35 hours; 22 percent withheld; take-home pay
+B25 :: (ratio|rate)&heart|beats per minute :: heart beats 75 times per minute; beats in 2.5 hours
+B26 :: (inches|feet) per second&miles per hour|feet per second :: 60 miles per hour in feet per second
+B27 :: rainfall&inches&per hour|inches of rain :: rain falls 0.4 inches per hour from 9:30 to 2:15 total inches
+B28 :: percent of the (votes|vote)|votes&percent :: candidate got 45 percent of 2400 votes needs 50 percent plus one how many more
+B29 :: (enlarged|reduced)&percent&photocopier|copier :: photocopier reduces to 80 percent twice; final length of 15 cm line
+B30 :: (shrink|shrank|shrinks)&percent :: fabric shrinks 4 percent in length; buy length to end with 3 meters
+B31 :: (profit|earn)&percent&sold (half|some)&rest|remaining at :: bought 60 items at 5 dollars sells 40 at 8 and rest at 4 percent profit
+B32 :: ratio&changes? to&add(ed)? (some|more)&(water|juice) :: juice ratio 2 to 3 concentrate to water in 10 liters how much water to add to make 1 to 3
+B33 :: earn(s|ed)?&interest&(months|month) :: simple interest 6 percent annual for 8 months on 1500
+B34 :: (cost|price)&(dozen|dozens)&each :: eggs 3.60 per dozen how much for 30 eggs
+B35 :: (ratio|scale)&blueprint|floor plan :: floor plan 1 inch represents 8 feet room 2.5 by 1.75 inches area square feet
+B36 :: pages&reads?&(hour and|1 hour \d+ minutes|minutes per page) :: reads 36 pages in 1 hour 20 minutes how long for 99 pages
+B37 :: per cent of (his|her) (salary|income)&rent&remaining|of the remainder :: spends 30 percent of income on rent and 25 percent of remainder on food, 1260 left
+B38 :: more than&percent&less than&percent&compared|is what percent of :: A is 20 percent more than C and B is 25 percent less than C; A is what percent of B
+B39 :: (rate|speed)&upstream|downstream|current :: boat 18 km/h still water current 3 km/h trip 30 km downstream and back time
+B40 :: gallons?&liters?&(convert|1 gallon) :: 1 gallon is 3.8 liters car uses 7 liters per 100 km miles per gallon conversion
+B41 :: quarts?|pints?&cups? :: punch recipe 3 quarts how many 1-cup servings 1 quart is 4 cups
+B42 :: (salary|wage|pay)&raise&percent&(then|later) cut :: wage raised 10 percent then cut 10 percent net change
+B43 :: speed of sound|lightning&thunder :: thunder heard 6 seconds after lightning sound 340 m/s distance km
+B44 :: depreciat :: car loses 15 percent of value each year 20000 value after 2 years
+B45 :: (ratio|rate)&calories?&grams? :: 1 gram fat 9 calories serving 240 calories 30 percent from fat grams of fat
+B46 :: (km|kilometers?) per liter&cost|liters per 100 :: car 8 liters per 100 km fuel 1.75 per liter cost of 360 km trip
+B47 :: percent of&water&dries?|dried :: grapes 90 percent water dried to raisins 20 percent water weight from 50 kg
+B48 :: (tank|pool)&(fills?|drains?)&percent&(full|empty)&minutes :: tank 30 percent full after 12 minutes of filling at constant rate from empty; minutes from 30 to 75 percent
+B49 :: pace&minutes per (mile|kilometer) :: runner pace 5 minutes 24 seconds per km, 10 km time
+B51 :: average speed&(stops?|break) :: travels 150 km in 2 hours then stops 30 minutes then 90 km in 1.5 hours average speed whole trip incl stop
+B54 :: (salt|sugar)&evaporat :: 20 liters of 5 percent salt water evaporates to 8 percent salt how much water evaporated
+B55 :: rent&split&(proportion|square feet|by area) :: rent 1800 split in proportion to room areas 12 15 18 square meters largest share

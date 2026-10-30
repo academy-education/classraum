@@ -1,0 +1,326 @@
+[
+ {
+  "id": "E01",
+  "q": "leaves at \\d+:\\d+ a\\.m\\.&arrives at \\d+:\\d+ p\\.m\\.|how long is the trip",
+  "idea": "train leaves 10:47 a.m. arrives 3:18 p.m. how long",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 913b7525 ssat: Walking from home to the station at 4 kilometers per hour, Ravi arrives 7 minutes after his train has left. Wa",
+   "0.40 b382e607 ssat: A train arrives at a station at a random time between 8:00 a.m. and 8:30 a.m., with every moment equally likel"
+  ]
+ },
+ {
+  "id": "E02",
+  "q": "pattern&3, 8, 15, 24|n\\(n ?\\+ ?2\\)",
+  "idea": "pattern 3 8 15 24 35 20th number",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 28ff6d8e map: Wen writes two number patterns. Each pattern keeps going in the same way. Pattern A: 68, 65, 62, 59, ... Patte",
+   "0.49 38d152fa map: Mia writes two number patterns. Pattern A begins with 1, and each number after that is 3 more than the number "
+  ]
+ },
+ {
+  "id": "E03",
+  "q": "liters per hour|gallons per (minute|hour)&liters",
+  "idea": "faucet 2.5 gallons per minute liters per hour 1 gal = 3.8 L",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.26 ff584805 act: A tank holds 700 gallons of water when full. Starting from empty, a pump fills the tank at 25 gallons per minu",
+   "0.21 eb9b9d6c isee: What is the value of (2.5 x 10^3)(4 x 10^2)?"
+  ]
+ },
+ {
+  "id": "E04",
+  "q": "posts?&(every|apart)&(perimeter|around|rectangular)",
+  "idea": "fence posts every 4 m around rectangular field 48 by 36 how many posts",
+  "kw_hits": 1,
+  "kw": [
+   "d388f27b-37f [live act/act-math-v16 Integrating Essential Skills easy] :: A rectangular garden measures 66 feet by 30 feet. A fence is built along its entire boundary, with a post at each corner and posts every 6 feet along each side. How many posts are used in all?"
+  ],
+  "tfidf": [
+   "0.53 d388f27b act: A rectangular garden measures 66 feet by 30 feet. A fence is built along its entire boundary, with a post at e",
+   "0.24 52c13cf9 act: A rectangular field has a perimeter of 240 meters and a length of 70 meters. What is the area of the field, in"
+  ]
+ },
+ {
+  "id": "E05",
+  "q": "square centimeters&square meters?|square meters?&square centimeters",
+  "idea": "3.2 square meters in square centimeters",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 351b59f5 isee: The diagonal of a square measures 10 centimeters. What is the area of the square, in square centimeters?",
+   "0.47 073b6359 isee: A square is inscribed in a circle of radius 5 centimeters, so that all four vertices of the square lie on the "
+  ]
+ },
+ {
+  "id": "E06",
+  "q": "hexagons&(row|chain)&perimeter",
+  "idea": "row of n regular hexagons sharing sides perimeter with side 1",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.27 339b1ba7 act: Matrix A has first row 2, -1 and second row 0, 5. Matrix B has first row 1, 6 and second row 5, -3. What is th",
+   "0.27 bb7a96c5 act: Matrix A has first row (3, -1) and second row (2, 4). Matrix B has first row (5, 0) and second row (-2, 7). In"
+  ]
+ },
+ {
+  "id": "E08",
+  "q": "days&(from|between)&(March|April|May|June)&(inclusive|through|including)",
+  "idea": "how many days from March 15 through May 4 inclusive",
+  "kw_hits": 1,
+  "kw": [
+   "dd4aae1b-2f5 [live act/act-math-v29 Integrating Essential Skills hard] :: Leo rides the city bus with a monthly pass. This March has 31 days, and March 1 is a Sunday. On each weekday (Monday through Friday) Leo rides the bus to work and back home, except on Monday, March 16, a holiday, when he does not ride at all. On every Wednesday he also rides from home to the gym and back. On every Saturday he rides the bus to a class but gets a ride home, so he rides only one way. He takes no other bus rides. The March pass costs $96.50, and his employer pays $31.25 of that. On 3 of the days he works, Leo takes the express bus to work and back, and each express ride carries a $1.35 surcharge on top of the pass. Counting each one-way ride as one trip, what is Leo's cost per t"
+  ],
+  "tfidf": [
+   "0.39 392a306a act: What is the mean of the integers from 12 through 40, inclusive?",
+   "0.32 6d1800ac isee: How many integers from 50 through 300, inclusive, are multiples of 7 ?"
+  ]
+ },
+ {
+  "id": "E09",
+  "q": "acres?|hectares?",
+  "idea": "field 1.5 hectares in square meters;",
+  "kw_hits": 4,
+  "kw": [
+   "a7714407-345 [live act/act-math-v26 Algebra medium] :: A farm harvested wheat from two fields. Field A has an area of 14.5 hectares, and field B has an area of 22.3 hectares. Field A produced 20% more wheat per hectare than field B did. Together the two fields produced 196.4 metric tons of wheat. To the nearest hundredth, how many metric tons of wheat per hectare did field B produce?",
+   "e5d1e751-253 [live sat/math-v6-psda-hard Problem-Solving and Data Analysis medium] :: The table shows the number of fields in a growers' association that produced each of five yields, in bushels per acre, last season. Four additional fields, each of which produced 52 bushels per acre, were reported after the table was compiled. What is the median yield, in bushels per acre, for all of these fields?",
+   "PSDA-H3-02 [prior sat-psda-hard-v3.batch.json] :: The table shows the number of fields in a growers' association that produced each of five yields, in bushels per acre, last season. Four additional fields, each of which produced 52 bushels per acre, were reported after the table was compiled. What is the median yield, in bushels per acre, for all of these fields?",
+   "PSDA-H3-06 [prior sat-psda-hard-v3.batch.json] :: The bar graph shows the number of hectares a farm planted in each of four crops this season. The number of hectares planted in soy is what percent of the number of hectares planted in maize?"
+  ],
+  "tfidf": [
+   "0.55 52c13cf9 act: A rectangular field has a perimeter of 240 meters and a length of 70 meters. What is the area of the field, in",
+   "0.48 a092c626 isee: A rectangular training field is 20 meters longer than it is wide, and its area is 4800 square meters. What is "
+  ]
+ },
+ {
+  "id": "E10",
+  "q": "triangular numbers?|dots&triangle&rows",
+  "idea": "triangular arrangement of dots rows 1 2 3; 20th triangular number",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.39 0fe65df7 map: A tent is shaped like a triangular prism with no floor. Each of its two triangular ends has a base of 8 feet a",
+   "0.30 3267fcc5 sat: In the xy-plane, the solution set of the system of inequalities y ≤ -x + 10, y ≥ (1/2)x - 2, and x ≥ 0 is a tr"
+  ]
+ },
+ {
+  "id": "E11",
+  "q": "halfway between&(a\\.m|p\\.m|o'clock)",
+  "idea": "time halfway between 9:40 a.m. and 2:10 p.m.",
+  "kw_hits": 1,
+  "kw": [
+   "ddfe7763-b0b [live ssat/ssat-math-s16 Math medium] :: Train A leaves station P at 9:00 a.m. and travels toward station Q. Train B leaves station Q at 9:40 a.m. and travels toward P on a parallel track, at a speed 20 kilometers per hour greater than train A's. Each train keeps a constant speed. The trains pass each other at 12:00 noon, exactly halfway between P and Q. What is train A's speed, in kilometers per hour?"
+  ],
+  "tfidf": [
+   "0.70 d9d17101 ssat: What number is exactly halfway between 1/4 and 5/6 on a number line?",
+   "0.38 2f64a1e3 sat: If x + y = 10 and x^2 - y^2 = 40, what is the value of x - y?"
+  ]
+ },
+ {
+  "id": "E14",
+  "q": "feet per second|ft/s",
+  "idea": "60 miles per hour in feet per second",
+  "kw_hits": 4,
+  "kw": [
+   "6659759e-ec3 [live sat/sat-math-v29-full Advanced Math medium] :: A ball is launched straight up from a platform. Its height above the ground, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt + 8, where v is the launch speed, in feet per second. What is the least whole-number value of v for which the ball reaches a height of at least 100 feet?",
+   "96a4008a-794 [live act/act-math-v26 Integrating Essential Skills medium] :: The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temperature in degrees Fahrenheit. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. During a storm the air temperature is 40 degrees Celsius. A video recorded at 30 frames per second shows a lightning flash first appearing in frame number 1,046 and its thunder first heard in frame number 1,268; consecutive frames are 1/30 second apart. Assuming the light arrives instantly, how far away was the lightning, to the nearest thousandth of a mile? (1 mile = 5,280 feet)",
+   "bd9dc0c7-2ab [live act/act-math-v29 Integrating Essential Skills medium] :: From the security checkpoint to her gate, Maya travels 1,350 feet along a straight airport concourse. Along the way are two moving walkways, both moving toward her gate at 1.9 feet per second; the first walkway is 320 feet long and the second is 260 feet long. For the rest of the distance she walks on the floor at 3.1 miles per hour. On the first walkway she keeps walking at that same pace relative to the walkway. On the second walkway she stands still and lets the walkway carry her. She does not stop anywhere else. Given that 1 mile = 5,280 feet, to the nearest second, how many seconds does it take Maya to get from the checkpoint to her gate?",
+   "SM29F-P04 [prior sat-math-v29-full-p.batch.json] :: A ball is launched straight up from a platform. Its height above the ground, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt + 8, where v is the launch speed, in feet per second. What is the least whole-number value of v for which the ball reaches a height of at least 100 feet?"
+  ],
+  "tfidf": [
+   "0.62 c37b9e6b isee: A car travels 60 miles at a steady 30 miles per hour and then travels another 60 miles at a steady 60 miles pe",
+   "0.58 bbe55d45 ssat: Maya drives 60 miles to a lake at an average speed of 30 miles per hour and returns along the same 60 miles at"
+  ]
+ },
+ {
+  "id": "E15",
+  "q": "staircase&(squares|blocks|cubes)&(figure|step)",
+  "idea": "staircase figure n uses blocks 1+2+...+n; perimeter",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.30 1e838ada isee: The figures in a pattern are built from small squares. Figure 1 uses 5 squares, figure 2 uses 8 squares, figur",
+   "0.28 2e070f0d ssat: Maya walks from corner P to corner Q of a street grid. Q is 5 blocks east and 3 blocks north of P, and on ever"
+  ]
+ },
+ {
+  "id": "E16",
+  "q": "toothpicks|matchsticks|sticks&squares?&row",
+  "idea": "toothpicks for row of 25 squares",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.32 bb7a96c5 act: Matrix A has first row (3, -1) and second row (2, 4). Matrix B has first row (5, 0) and second row (-2, 7). In",
+   "0.31 339b1ba7 act: Matrix A has first row 2, -1 and second row 0, 5. Matrix B has first row 1, 6 and second row 5, -3. What is th"
+  ]
+ },
+ {
+  "id": "E17",
+  "q": "worked&a\\.m\\.&p\\.m\\.&(lunch|break)|hours worked",
+  "idea": "works 8:45 a.m. to 5:15 p.m. with 45 min lunch Mon-Fri weekly hours",
+  "kw_hits": 1,
+  "kw": [
+   "c555c8eb-db3 [live act/act-math-v25 Integrating Essential Skills medium] :: A paving crew of 15 workers, all working at the same constant rate, was scheduled to finish a job in 18 workdays. On the original schedule, each workday ran from 7:30 a.m. to 4:00 p.m. with a 30-minute unpaid lunch break, during which no work was done. The crew worked on this schedule for the first 8 workdays. After that, 2 workers left the crew, and the 13 remaining workers switched to workdays running from 7:00 a.m. to 4:30 p.m. with the same 30-minute lunch break. Each worker kept the same working rate. To the nearest hundredth, how many workdays in all did the job take?"
+  ],
+  "tfidf": [
+   "0.35 2cfdabca act: Seven cyclists each rode the same 30-kilometer course. Their times, listed in order of their race numbers, wer",
+   "0.33 31891202 sat: If 3^a = 5 and 3^b = 45, what is the value of b − a?"
+  ]
+ },
+ {
+  "id": "E18",
+  "q": "prints?&pages per minute&(starts?|begins?)&(finish|done|end)",
+  "idea": "printer starts at 9:15 prints 24 pages per minute 1800 pages finishes time",
+  "kw_hits": 1,
+  "kw": [
+   "7911e27e-5a6 [live ssat/ssat-math-s16 Math easy] :: Printer A prints 50 pages per minute and printer B prints 30 pages per minute. A 1,200-page job is started on printer A alone. Some time later, printer B also starts printing pages of the same job, and both printers keep printing until the job is finished, 18 minutes after printer A started. For how many minutes did printer B print?"
+  ],
+  "tfidf": [
+   "0.59 2ea56508 sat: One printer prints 18 pages per minute. Working together with a second printer, the two printers print a total",
+   "0.56 2ea09dd8 ssat: A printer prints 45 pages in 3 minutes. At this same rate, how many pages does it print in 8 minutes?"
+  ]
+ },
+ {
+  "id": "E26",
+  "q": "(degrees|°)&(Celsius|Fahrenheit)&(same|equal) (number|reading|value)",
+  "idea": "temperature where Celsius and Fahrenheit readings equal",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 f1bb6a28 isee: The formula F = (9/5)C + 32 converts a temperature of C degrees Celsius to F degrees Fahrenheit. At one temper",
+   "0.53 d30944a2 sat: The temperature F in degrees Fahrenheit is related to the temperature C in degrees Celsius by F = 1.8C + 32. A"
+  ]
+ },
+ {
+  "id": "E28",
+  "q": "(thermometer|temperature)&(drops?|falls?|rises?)&(degrees per hour|each hour)&(at what time|when)",
+  "idea": "temperature 14 degrees at 6 p.m. falls 3 degrees per hour when -4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.54 4ff65112 isee: At 6 p.m. the temperature outside was -4 degrees Fahrenheit. The temperature then fell 3 degrees each hour for",
+   "0.42 93067ee5 act: At 6:00 a.m. the temperature was 8 degrees Celsius below zero. The temperature then rose at a steady rate of 3"
+  ]
+ },
+ {
+  "id": "E29",
+  "q": "(hour hand)&(degrees)&(minutes|per minute)",
+  "idea": "how many degrees does hour hand turn from 2:00 to 4:30",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.64 44277b63 isee: How many degrees does the minute hand of a clock turn in 25 minutes?",
+   "0.52 b3086974 isee: What is the measure, in degrees, of the smaller angle between the hour hand and the minute hand of a clock at "
+  ]
+ },
+ {
+  "id": "E30",
+  "q": "(distance)&(between)&(points?)&(\\(-?\\d+, ?-?\\d+\\))&(perimeter)",
+  "idea": "perimeter of triangle with vertices (0,0) (8,6) (8,0)",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.64 fd423ed1 ssat: In the coordinate plane, a triangle has vertices at (0, 0), (6, 0) and (2, 5). What is its area, in square uni",
+   "0.62 00d49cfa isee: In the coordinate plane, a triangle has vertices at (0, 0), (8, 0), and (0, 6). Point P lies inside the triang"
+  ]
+ },
+ {
+  "id": "E31",
+  "q": "(circle)&(center)&(origin)&(passes through|through the point)",
+  "idea": "circle centered at origin passes through (6,8) area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 a1184cfc sat: A circle centered at (3, -1) is tangent to the line 4x - 3y + 5 = 0. What is the radius of the circle?",
+   "0.36 b7fee95d sat: In the xy-plane, the graphs of 3x + 4y = 7 and x - 2y = -11 intersect at point P. Line r passes through P and "
+  ]
+ },
+ {
+  "id": "E35",
+  "q": "(line segment|segment)&(divided|split)&(equal parts|congruent)&(number line)",
+  "idea": "points dividing segment from -3 to 9 into 4 equal parts third point",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 29bb739d ssat: In triangle ABC, point D is on side AB with AD equal to one third of AB, point E is on side BC with BE equal t",
+   "0.33 26d57259 sat: Dividing a polynomial p(x) by x - 3 leaves a remainder of 7. A second polynomial is formed as q(x) = (x - 5)p("
+  ]
+ },
+ {
+  "id": "E39",
+  "q": "(dilat|scale factor)&(center|origin)&(\\(-?\\d+, ?-?\\d+\\))",
+  "idea": "dilation by factor 3 about origin of (2,-5) then translate",
+  "kw_hits": 2,
+  "kw": [
+   "7bee37a9-c3d [live act/act-math-v16 Geometry easy] :: In the standard (x,y) coordinate plane, point P(5, 6) is dilated by a scale factor of 3 with the center of dilation at point C(1, 2). What is the x-coordinate of the image of P ?",
+   "d8718fd5-62f [live act/act-math-v25 Geometry medium] :: In the standard (x,y) coordinate plane, point P(7, −2) is reflected across the line y = 3. The image is then dilated by a scale factor of 1.5 with the center of dilation at the point (1, 1), producing point Q. To the nearest hundredth of a coordinate unit, what is the distance between P and Q ?"
+  ],
+  "tfidf": [
+   "0.32 7bee37a9 act: In the standard (x,y) coordinate plane, point P(5, 6) is dilated by a scale factor of 3 with the center of dil",
+   "0.32 592886d0 isee: If x + 3 is a factor of x^2 + kx - 12, what is the value of k?"
+  ]
+ },
+ {
+  "id": "E40",
+  "q": "(map|grid)&(blocks?)&(north|east|south|west)&(how far|distance|straight-line)",
+  "idea": "walks 5 blocks north 12 east straight-line distance",
+  "kw_hits": 1,
+  "kw": [
+   "fdebedce-905 [live isee/isee-math-s17 Math hard] :: A town's streets form a square grid, and each intersection is named by coordinates (x, y), with blocks 1 unit long. Five friends live at the intersections (1, 2), (2, 9), (4, 1), (11, 8), and (12, 5). They want to meet at one intersection so that the total distance the five of them walk along the streets is as small as possible. Each friend walks along the streets by a shortest route. What is the least possible total walking distance, in blocks?"
+  ],
+  "tfidf": [
+   "0.70 2e070f0d ssat: Maya walks from corner P to corner Q of a street grid. Q is 5 blocks east and 3 blocks north of P, and on ever",
+   "0.66 1da202fd ssat: Lena walks along the streets of a grid from corner P to corner Q, which is 5 blocks east and 4 blocks north of"
+  ]
+ },
+ {
+  "id": "E44",
+  "q": "(odometer|mileage)&(palindrome|reads)",
+  "idea": "odometer 15951 next palindrome miles",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.19 efbc659d act: A cyclist rode 30 miles at an average speed of 15 miles per hour and then rode another 30 miles at an average ",
+   "0.18 c37b9e6b isee: A car travels 60 miles at a steady 30 miles per hour and then travels another 60 miles at a steady 60 miles pe"
+  ]
+ },
+ {
+  "id": "E49",
+  "q": "(ascending|increasing)&(arithmetic)&(sequence)&(between)&(insert|inserted)",
+  "idea": "insert 4 numbers between 7 and 32 arithmetic sequence third inserted",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.30 407824b2 ssat: The first three terms of an arithmetic sequence are k, 2k - 1 and 4k - 8, in that order. What is the 10th term",
+   "0.27 72d2fc76 act: The first term of an arithmetic sequence is 7 and the common difference is 4. What is the 10th term of the seq"
+  ]
+ },
+ {
+  "id": "E51",
+  "q": "(stopwatch|race)&(seconds)&(hundredths|tenths)&(difference|faster)",
+  "idea": "race times 1:02.47 and 59.85 difference seconds",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.24 4c5f8ba1 isee: A runner finishes a 5-kilometer race in 22 minutes 30 seconds. Running at that same constant pace, how many se",
+   "0.20 f542281b ssat: Two numbers have a sum of 30 and a difference of 8. What is their product?"
+  ]
+ },
+ {
+  "id": "E55",
+  "q": "(sunrise|sunset|daylight)",
+  "idea": "sunrise 6:48 sunset 7:23 hours of daylight",
+  "kw_hits": 1,
+  "kw": [
+   "f9729aa0-e20 [live map/map-math-v2-data Statistics and Probability medium] :: Mia measured the depth of the snow in her yard several times on a sunny day and made a scatter plot. A line of fit for the data is y = -1.6x + 20, where x is the number of hours after sunrise and y is the snow depth in centimeters. According to the line of fit, how many hours does it take for the predicted snow depth to go down by 12 centimeters?"
+  ],
+  "tfidf": [
+   "0.21 c08ec569 sat: The function f is linear. If f(3) = 11 and f(7) = 23, what is the value of f(0) + f(10)?",
+   "0.21 8c770b89 sat: 4(x + y) + 3(x - y) = 23 5(x + y) - 2(x - y) = -23 The ordered pair (x, y) satisfies both equations shown. Wha"
+  ]
+ }
+]

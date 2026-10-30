@@ -1,0 +1,737 @@
+[
+ {
+  "id": "A201",
+  "q": "odd number of (positive )?(factors|divisors)",
+  "idea": "how many integers from 1 to 100 have an odd number of positive factors",
+  "kw_hits": 2,
+  "kw": [
+   "14a5cafd-a7e [live isee/isee-math-s16 Math medium] :: A whole number from 1 to 100, inclusive, is chosen at random. What is the probability that the number chosen has an odd number of positive divisors?",
+   "400e7491-de0 [live ssat/ssat-math-s15 Math medium] :: How many integers from 1 to 150, inclusive, have an odd number of positive divisors?"
+  ],
+  "tfidf": [
+   "0.59 13df0635 ssat: How many positive integers less than 50 have exactly three positive factors?",
+   "0.56 6b2e9374 isee: How many positive factors of 120 are NOT factors of 84?"
+  ]
+ },
+ {
+  "id": "A202",
+  "q": "three different primes&sum&(largest|greatest)",
+  "idea": "sum of three different primes is 30 largest possible",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.35 3e829ca2 isee: Five different positive integers have an average (arithmetic mean) of 10. What is the greatest possible value ",
+   "0.34 d283376d sat: The sum of three consecutive odd integers is 3 more than twice the largest of the three. What is the largest i"
+  ]
+ },
+ {
+  "id": "A203",
+  "q": "two-digit&product of (its|the) digits&even",
+  "idea": "how many two-digit numbers have a digit product that is even",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.79 88303912 ssat: Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such ",
+   "0.63 ad752aae isee: How many three-digit positive integers have at least one digit equal to 5?"
+  ]
+ },
+ {
+  "id": "A204",
+  "q": "(average|mean) of all (the )?multiples of",
+  "idea": "mean of all multiples of 7 between 100 and 200",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.60 9e8f9e42 act: How many multiples of 7 are there between 20 and 150 ?",
+   "0.58 7c86dc67 act: How many integers n with 100 ≤ n ≤ 400 are multiples of 7?"
+  ]
+ },
+ {
+  "id": "A205",
+  "q": "fraction of&(factors|divisors) of",
+  "idea": "what fraction of numbers 1 to 60 are factors of 60",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 524c72c4 act: For how many integers n with 1 <= n <= 60 is the fraction n/60 already in lowest terms?",
+   "0.51 6b2e9374 isee: How many positive factors of 120 are NOT factors of 84?"
+  ]
+ },
+ {
+  "id": "A206",
+  "q": "sum of (all )?(the )?integers from -\\d+",
+  "idea": "sum of all integers from -20 to 25",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.67 3b77ffd1 isee: What is the sum of all positive integers n for which (3n + 20)/(n + 2) is an integer?",
+   "0.58 d9090ca9 ssat: What is the sum of all the integers x that satisfy |2x + 5| <= 9 ?"
+  ]
+ },
+ {
+  "id": "A207",
+  "q": "consecutive integers&a < sqrt|between&consecutive (whole numbers|integers)&√|sqrt\\(\\d+\\)&consecutive",
+  "idea": "a and b consecutive integers a < sqrt 90 < b find a + b",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 096764e3 isee: For integers a and b, (sqrt(6) + sqrt(2))^2 = a + b sqrt(3). What is the value of a + b?",
+   "0.47 6ad816b8 isee: The sum of five consecutive integers is S. In terms of S, what is the least of the five integers?"
+  ]
+ },
+ {
+  "id": "A208",
+  "q": "n/7|n/\\d+&between \\d+/\\d+ and \\d+/\\d+&integer",
+  "idea": "integer n with n/7 between 2/3 and 3/4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.54 e7a0b82f ssat: What is the greatest integer value of x for which 3(x - 2) < x + 4?",
+   "0.52 19b064a0 act: If 3^x = 7, what is the value of 3^(x + 2) ?"
+  ]
+ },
+ {
+  "id": "A209",
+  "q": "(factors|divisors) of \\d+&perfect squares?",
+  "idea": "how many factors of 72 are perfect squares",
+  "kw_hits": 2,
+  "kw": [
+   "308fb2a6-3af [live ssat/ssat-math-v1 Math hard] :: How many of the positive divisors of 10800 are perfect squares?",
+   "f67ac394-35c [live isee/isee-math-s16 Math medium] :: One of the positive whole-number divisors of 180 is chosen at random, each divisor equally likely. What is the probability that the divisor chosen is a perfect square?"
+  ],
+  "tfidf": [
+   "0.75 870c9e39 ssat: Let N = 2^4 x 3^2 x 5. How many positive factors of N are perfect squares?",
+   "0.56 b583a0eb isee: How many perfect squares are there between 30 and 300?"
+  ]
+ },
+ {
+  "id": "A210",
+  "q": "digits (add up|sum) to 20|digit sum (of|is) 20|least.*digits.*sum",
+  "idea": "least positive integer whose digits sum to 20",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.64 277c09dd ssat: How many three-digit positive integers have digits whose sum is 5?",
+   "0.55 e8a322d6 isee: How many three-digit whole numbers have digits whose sum is 8?"
+  ]
+ },
+ {
+  "id": "A211",
+  "q": "three-digit&square|squares? of&three digits",
+  "idea": "how many positive integers n have n squared with exactly three digits",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.66 2d2f2ebf isee: If x squared + 2x - 15 = 0, what is the positive value of x?",
+   "0.57 a3b39cf9 ssat: A nonzero number x satisfies x + 1/x = 5. What is the value of x squared + 1/(x squared)?"
+  ]
+ },
+ {
+  "id": "A212",
+  "q": "1 - 2 \\+ 3 - 4|\\(-1\\)\\^1 \\+ \\(-1\\)\\^2",
+  "idea": "1 - 2 + 3 - 4 + ... + 99 - 100",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.41 3e4f4366 sat: The function g is defined by g(x) = a·3^x + c, where a and c are constants. The graph of y = g(x) in the xy-pl",
+   "0.40 70c5cc57 isee: Let E be the sum of the first 50 positive even integers, 2 + 4 + ... + 100, and let D be the sum of the first "
+  ]
+ },
+ {
+  "id": "A213",
+  "q": "palindrom",
+  "idea": "how many three-digit palindromes",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 88303912 ssat: Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such ",
+   "0.35 ad752aae isee: How many three-digit positive integers have at least one digit equal to 5?"
+  ]
+ },
+ {
+  "id": "A214",
+  "q": "1/7 \\+ 2/7|k/7|sevenths&sum",
+  "idea": "sum 1/7 + 2/7 + ... + 6/7",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.77 b1c2f5c9 act: If |x - 3| = |x + 7|, what is the value of x ?",
+   "0.68 1a843afc ssat: What is the value of -7 + 3 x (-4)?"
+  ]
+ },
+ {
+  "id": "A215",
+  "q": "(largest|greatest) prime factor of 1001|1001",
+  "idea": "largest prime factor of 1001",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 15757ffa isee: What is the greatest prime factor of 2^12 - 1 ?",
+   "0.52 d6e4fea4 ssat: What is the greatest prime factor of 2^10 - 1?"
+  ]
+ },
+ {
+  "id": "A216",
+  "q": "divisible by (each|all) of the (integers|numbers) 1 through|1 through 10&divisible",
+  "idea": "smallest number divisible by each of 1 through 10",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 2e9004f1 isee: How many of the integers from 1 through 300, inclusive, are divisible by 3 or by 5 but are NOT divisible by bo",
+   "0.50 e4c93703 act: How many integers n with 1 ≤ n ≤ 150 are divisible by 6 but NOT divisible by 4?"
+  ]
+ },
+ {
+  "id": "B201",
+  "q": "each (person|student|member) (would )?pay(s)? \\$?\\d+ less|pay \\$?\\d+ less each",
+  "idea": "bus rental 450 shared; if 5 more come each pays 3 less; how many originally",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 cd83cfb0 sat: The members of a club are sharing the cost of a bus rental equally. If each member pays $10, the total collect",
+   "0.23 e3095373 sat: The total cost C, in dollars, of renting a floor sander for h hours is given by C = 14h + 35. How many more do"
+  ]
+ },
+ {
+  "id": "B202",
+  "q": "(3/4|three-fourths) (of a )?mile&(1/5|one-fifth) (of an )?hour|miles per hour&fraction",
+  "idea": "walks 3/4 mile in 1/5 hour speed mph",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.28 1ee6f59b sat: A regional bus makes a 90-mile trip from a depot to a coastal city at a constant speed of x miles per hour and",
+   "0.25 3f06f2d6 map: A park trail is 7/8 mile around. Ana walks around it 8 times. Ben walks 2/5 as far as Ana. How many miles fart"
+  ]
+ },
+ {
+  "id": "B203",
+  "q": "words per minute",
+  "idea": "Ana types 45 wpm Ben 60 wpm; Ana takes 8 minutes longer for same document; words",
+  "kw_hits": 3,
+  "kw": [
+   "39a101f7-c24 [live act/act-math-v26 Functions medium] :: A typing student's speed, in words per minute, after t weeks of practice is modeled by the function W(t) = 70t/(t + k), where k is a positive constant. After 3 weeks of practice, the student types 40 words per minute. According to the model, after how many weeks of practice, to the nearest hundredth, will the student type 59 words per minute?",
+   "c85c108d-acc [live act/act-math-v25 Integrating Essential Skills hard] :: A transcriptionist is paid $1.50 for each minute of recorded audio she transcribes. One recording is 44 minutes long, and its speakers average 150 words per minute. She works on it in three stages. First, she types the transcript while the recording plays, pausing it as needed; she averages 60 words per minute of typing time, and the recording plays only during her typing time. Second, she proofreads the transcript at 2.5 pages per minute, where each page holds 250 words. Third, she formats the document, which takes 0.35 minute for each minute of audio. To the nearest cent, how much does she earn per hour of work on this recording?",
+   "d08f081b-585 [live map/map-math-g58-v1 Statistics and Probability medium] :: A typing teacher made a scatter plot of x, the number of minutes each student practiced typing per day, and y, the student's typing speed in words per minute. A line of fit for the data is y = 0.8x + 6. According to the line of fit, how many minutes per day of practice go with a typing speed of 48 words per minute?"
+  ],
+  "tfidf": [
+   "0.24 3f06f2d6 map: A park trail is 7/8 mile around. Ana walks around it 8 times. Ben walks 2/5 as far as Ana. How many miles fart",
+   "0.23 df5b8948 ssat: Ana has 50 percent more money than Ben. Ana gives some of her money to Ben, and then they have equal amounts. "
+  ]
+ },
+ {
+  "id": "B204",
+  "q": "half (off|price)&second|second (one|item) (is )?half",
+  "idea": "buy one get second half off effective percent discount",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.28 03b1cc3c ssat: After a 20% discount, a shirt sells for $40. What was the price of the shirt before the discount?",
+   "0.21 e6a43765 isee: A store marks the price of its stock 40 percent above cost. It sells half of the stock at the marked price and"
+  ]
+ },
+ {
+  "id": "C201",
+  "q": "average cost&per (item|unit|shirt)|cost per (item|unit) (is|was|falls)",
+  "idea": "cost 50 plus 3 per shirt; average cost per shirt 5.50; how many shirts",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 9b61b083 map: Jo has $120. She buys 3 shirts. Each shirt has a regular price of $18.50, and every shirt is on sale for 20% o",
+   "0.39 03b1cc3c ssat: After a 20% discount, a shirt sells for $40. What was the price of the shirt before the discount?"
+  ]
+ },
+ {
+  "id": "C202",
+  "q": "(third|fourth|5th|fifth) second|during the (third|fourth|fifth) second",
+  "idea": "d = 16t^2 distance fallen during the third second",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.29 6443cac7 sat: If x^(2/3) = 16, what is the value of x?",
+   "0.26 44091188 act: What is the value of 16^(3/4) ?"
+  ]
+ },
+ {
+  "id": "C203",
+  "q": "heads&legs",
+  "idea": "chickens and cows 30 heads 84 legs how many cows",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.14 a2f99450 act: Right triangle T1 has legs of lengths 2 and 6. For each n = 2, 3, 4, ..., 8, right triangle Tn has as its two ",
+   "0.13 def2553a isee: Three fair coins are tossed. You are told only that at least one of the coins landed heads. Given this, what i"
+  ]
+ },
+ {
+  "id": "C204",
+  "q": "squares? (of|differ)&consecutive&(differ|difference) by \\d+",
+  "idea": "two consecutive integers whose squares differ by 41 larger",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.38 6ad816b8 isee: The sum of five consecutive integers is S. In terms of S, what is the least of the five integers?",
+   "0.35 a2b85fcd act: The two solutions of x^2 - kx + 36 = 0 are positive integers that differ by 5. What is the value of k ?"
+  ]
+ },
+ {
+  "id": "C205",
+  "q": "think of a number|always (equals|ends|gives)|no matter what number",
+  "idea": "number trick add 5 double subtract 4 halve subtract original result",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 e0794881 sat: Lina gives her friends these instructions. Pick any number. Add 8 to it. Multiply the sum by a. Subtract 10 fr",
+   "0.19 f72d2571 act: A function f is defined by the following four steps, applied to an input x. Step 1: Subtract 0.4 from x. Step "
+  ]
+ },
+ {
+  "id": "C206",
+  "q": "tolerance|\\|w - \\d+\\||within \\d+ (grams|millimeters) of",
+  "idea": "weights within 4 grams of 500 range largest minus smallest",
+  "kw_hits": 1,
+  "kw": [
+   "ca408625-b28 [live sat/math-v3 Algebra hard] :: A greenhouse thermostat keeps the temperature T, in degrees Fahrenheit, within a tolerance band described by |T - s| <= d, where s is the setpoint and d is the tolerance; an alarm sounds exactly when the temperature reaches either boundary of the band. A technician records that the alarm sounds at exactly 66.2 degrees and at exactly 71.8 degrees. A second thermostat in the seedling room uses the same tolerance d but has its setpoint at 73.5 degrees. What is the lowest temperature, in degrees Fahrenheit, that the seedling room can reach without sounding its alarm?"
+  ],
+  "tfidf": [
+   "0.25 7e241717 sat: The sum of three consecutive even integers is 2 less than four times the smallest of the three. What is the la",
+   "0.25 de5e424f sat: The sum of three consecutive odd integers is 3 more than twice the largest of the three. What is the smallest "
+  ]
+ },
+ {
+  "id": "C207",
+  "q": "1/a ?- ?1/b|\\(1/a",
+  "idea": "(1/a - 1/b)/(1/a + 1/b) with a = 3 b = 5",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.97 e201342d ssat: If x + 1/x = 5, what is the value of x² + 1/x²?",
+   "0.84 27aff79f sat: If x + 1/x = 5, what is the value of x^2 + 1/x^2?"
+  ]
+ },
+ {
+  "id": "C208",
+  "q": "reciprocals&sum&product",
+  "idea": "two numbers with sum 8 product 12 sum of reciprocals",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.41 f542281b ssat: Two numbers have a sum of 30 and a difference of 8. What is their product?",
+   "0.40 04189d34 act: The product of 4 and the sum of a number and 3 is 8 less than 6 times the number. What is the number?"
+  ]
+ },
+ {
+  "id": "C209",
+  "q": "(both|each) (dimensions?|sides?) (are )?increased by&area (increases|increased) by",
+  "idea": "rectangle length 4 more than width both increased by 3 area increases by 57 width",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.68 c0c2d71f ssat: A rectangle is 4 cm longer than it is wide. When its length and its width are each increased by 3 cm, its area",
+   "0.53 ec4269a1 act: The length of a rectangle is 5 centimeters more than its width. If the width is increased by 2 centimeters and"
+  ]
+ },
+ {
+  "id": "C210",
+  "q": "2\\^a ?(x|×|\\*|·)? ?4\\^b",
+  "idea": "2^a times 4^b = 64 and a = b find a",
+  "kw_hits": 1,
+  "kw": [
+   "cb6f0a72-ccb [live act/act-math-v9-alg Algebra medium] :: If 2^a · 4^b = 1,024 and a - b = 1, what is the value of b ?"
+  ],
+  "tfidf": [
+   "0.70 c5c4d05e map: Find the sum 2√64 + ∛(-729), where 2√64 means 2 times the square root of 64.",
+   "0.63 70d58605 sat: If 2^x · 4^y = 64 and x + y = 5, what is the value of x?"
+  ]
+ },
+ {
+  "id": "C211",
+  "q": "sum of the first (five|5|six|6) terms&(geometric|multiplied|times)",
+  "idea": "geometric sequence 2 6 18 sum of first 5 terms",
+  "kw_hits": 1,
+  "kw": [
+   "d0e666cf-03c [live act/act-math-v19 Number and Quantity medium] :: In a geometric sequence, the first term is 3, the sum of the first three terms is 21, and the fourth term is negative. What is the sum of the first five terms of the sequence?"
+  ],
+  "tfidf": [
+   "0.84 c9f5950e act: What is the sum of the first 8 terms of the geometric sequence 3, 6, 12, 24, … ?",
+   "0.70 0485b608 act: In a geometric sequence in which every term is positive, the sum of the first 2 terms is 15 and the sum of the"
+  ]
+ },
+ {
+  "id": "C212",
+  "q": "\\(x ?\\+ ?a\\)\\(x ?\\+ ?b\\)&a\\^2 ?\\+ ?b\\^2|a\\^2 \\+ b\\^2",
+  "idea": "x^2 + 5x + 6 = (x + a)(x + b) find a^2 + b^2",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.63 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.54 0e6b2ffb act: If u = <5, -2> and v = <-3, 6>, what is 2u - v ?"
+  ]
+ },
+ {
+  "id": "C213",
+  "q": "\\(a ?\\+ ?b\\)\\^2 ?- ?\\(a ?- ?b\\)\\^2",
+  "idea": "(a + b)^2 - (a - b)^2 when ab = 6",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.83 ab3e2814 act: What is the value of a^2·b - 2a·b^2 when a = -3 and b = 2 ?",
+   "0.76 46a3076b act: The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f("
+  ]
+ },
+ {
+  "id": "C214",
+  "q": "x\\^3 - 3x\\^2 \\+ 3x - 1|\\(x - 1\\)\\^3",
+  "idea": "value of x^3 - 3x^2 + 3x - 1 at x = 11",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.74 e941be98 sat: If 2a - b = 8 and a + 3b = 11, what is the value of a + b ?",
+   "0.64 9152eace sat: If (a + b)/(a − b) = 3, what is the value of a/b?"
+  ]
+ },
+ {
+  "id": "C215",
+  "q": "positive integer (solutions|pairs)|ordered pairs&positive integers",
+  "idea": "how many pairs of positive integers x y satisfy 2x + 3y = 30",
+  "kw_hits": 4,
+  "kw": [
+   "20078518-1ee [live ssat/ssat-math-s17 Math medium] :: For all numbers a and b, the operation # is defined by a # b = ab - 8a - 8b. How many ordered pairs (a, b) of positive integers satisfy a # b = -48 ?",
+   "9a08da87-8a3 [live sat/sat-alg-0919c Algebra medium] :: How many ordered pairs of positive integers (x, y) satisfy the inequality 2x + 5y < 20?",
+   "SALG5A-05 [prior sat-alg-0919c-a.batch.json] :: How many ordered pairs of positive integers (x, y) satisfy the inequality 2x + 5y < 20?",
+   "SM26F-C11 [prior sat-math-v26-algfull-c.batch.json] :: 3x + 5y = 110"
+  ],
+  "tfidf": [
+   "0.68 9a08da87 sat: How many ordered pairs of positive integers (x, y) satisfy the inequality 2x + 5y < 20?",
+   "0.56 20078518 ssat: For all numbers a and b, the operation # is defined by a # b = ab - 8a - 8b. How many ordered pairs (a, b) of "
+  ]
+ },
+ {
+  "id": "C216",
+  "q": "1/f|1/a \\+ 1/b|lens",
+  "idea": "1/f = 1/a + 1/b a = 6 b = 3 f",
+  "kw_hits": 4,
+  "kw": [
+   "1df10ff3-1ae [live sat/v2 Algebra medium] :: The quantities R, a, and b are related by 1/R = 1/a + 1/b. If a = 12 and R = 8, what is the value of b ?",
+   "5f87018e-d80 [live sat/math-v3 Advanced Math hard] :: An optical engineer models the wavefront error E, in micrometers, of a prototype lens at signed horizontal position x millimeters from the optical axis (negative values are left of the axis) by E(x) = x^4 - k*x^2 + 49, where k is a positive calibration constant. The design specification requires the wavefront error to equal zero at exactly two distinct positions x. What is the value of k?",
+   "ce3391ed-1f0 [live sat/math-v3 Advanced Math medium] :: A camera technician uses the thin-lens relation 1/f = 1/p + 1/q, where f is the focal length of the lens, p is the distance from the object to the lens, and q is the distance from the lens to the sensor. To position the sensor for a sharp image, the technician needs q expressed in terms of f and p. Which of the following gives q in terms of f and p?",
+   "SALG2-12 [prior sat-alg-0919.batch.json] :: If 1/f = 1/p + 1/q, where f, p, and q are positive and q > f, which of the following expresses p in terms of f and q?"
+  ],
+  "tfidf": [
+   "0.84 70333b96 ssat: What is the value of 1/2 + 1/6 + 1/12 + 1/20 + 1/30?",
+   "0.83 e201342d ssat: If x + 1/x = 5, what is the value of x² + 1/x²?"
+  ]
+ },
+ {
+  "id": "D201",
+  "q": "ratio&perimeter&diagonal",
+  "idea": "rectangle sides ratio 3:4 perimeter 56 diagonal",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?",
+   "0.47 bcacdc1d isee: A rectangle has a perimeter of 34 centimeters and a diagonal of 13 centimeters. What is the area of the rectan"
+  ]
+ },
+ {
+  "id": "D202",
+  "q": "angles&triangle&(arithmetic|equally spaced|differ by the same)",
+  "idea": "triangle angles form arithmetic sequence smallest 40 largest",
+  "kw_hits": 1,
+  "kw": [
+   "495bf187-370 [live ssat/ssat-math-s17 Math hard] :: Twelve points are equally spaced around a circle. A triangle is formed by choosing three of the twelve points as its vertices. How many of these triangles have three acute angles?"
+  ],
+  "tfidf": [
+   "0.43 df8046ee ssat: The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure, in degrees, of the largest ang",
+   "0.40 608d40c8 act: The measures of the three angles of a triangle are (2x + 10)°, (3x − 5)°, and (x + 25)°. What is the measure, "
+  ]
+ },
+ {
+  "id": "D203",
+  "q": "isosceles right&hypotenuse&area",
+  "idea": "isosceles right triangle hypotenuse 10 area",
+  "kw_hits": 1,
+  "kw": [
+   "e1bfaea9-8cd [live sat/v2 Geometry and Trigonometry medium] :: An isosceles right triangle has a hypotenuse of length 10. What is the area of the triangle?"
+  ],
+  "tfidf": [
+   "0.93 e1bfaea9 sat: An isosceles right triangle has a hypotenuse of length 10. What is the area of the triangle?",
+   "0.61 d6dc3f3d ssat: The hypotenuse of an isosceles right triangle measures 18 cm. What is the length, in centimetres, of one of it"
+  ]
+ },
+ {
+  "id": "D204",
+  "q": "volume&base&surface area&(box|prism)",
+  "idea": "box volume 120 base 4 by 5 surface area",
+  "kw_hits": 3,
+  "kw": [
+   "259d4383-d9d [live isee/isee-math-s17 Math medium] :: A closed rectangular box has a square base with sides 8 inches long. The number of cubic inches in its volume is equal to the number of square inches in its total surface area. What is the height of the box, in inches?",
+   "7ea7ae73-be1 [live isee/isee-math-s2 Math medium] :: A rectangular prism has a square base with side 4 centimeters and a volume of 240 cubic centimeters. What is the total surface area of the prism, in square centimeters?",
+   "8460db13-22c [live sat/sat-math-v30-full Geometry and Trigonometry medium] :: A closed box is a rectangular prism with a square base. The height of the box is 3 times the length of one side of the base, and the volume of the box is 375 cubic inches. What is the total surface area of the box, in square inches?"
+  ],
+  "tfidf": [
+   "0.57 8460db13 sat: A closed box is a rectangular prism with a square base. The height of the box is 3 times the length of one sid",
+   "0.41 259d4383 isee: A closed rectangular box has a square base with sides 8 inches long. The number of cubic inches in its volume "
+  ]
+ },
+ {
+  "id": "D205",
+  "q": "squares&(in a row|side by side)&perimeter&area",
+  "idea": "5 identical squares in a row total area 80 perimeter of figure",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.44 1e838ada isee: The figures in a pattern are built from small squares. Figure 1 uses 5 squares, figure 2 uses 8 squares, figur",
+   "0.31 339b1ba7 act: Matrix A has first row 2, -1 and second row 0, 5. Matrix B has first row 1, 6 and second row 5, -3. What is th"
+  ]
+ },
+ {
+  "id": "D206",
+  "q": "rhombus&perimeter&diagonal",
+  "idea": "rhombus perimeter 52 one diagonal 24 area",
+  "kw_hits": 3,
+  "kw": [
+   "35294638-a3d [live ssat/ssat-math-s15 Math medium] :: A rhombus has a perimeter of 40 centimeters, and one of its diagonals is 12 centimeters long. What is the area of the rhombus, in square centimeters?",
+   "a8976cc3-07f [live act/act-math-v4gi Geometry medium] :: In the figure below, WXYZ is a rhombus and its diagonals are shown as dashed segments. All lengths are in centimeters. What is the perimeter, in centimeters, of rhombus WXYZ?",
+   "GEO3-04 [prior sat-geo-v3.batch.json] :: The diagonals of a rhombus have lengths 16 inches and 30 inches. What is the perimeter of the rhombus, in inches?"
+  ],
+  "tfidf": [
+   "0.54 9b348d2d ssat: A rhombus has diagonals of length 10 cm and 24 cm. What is the area of the rhombus, in square centimetres?",
+   "0.51 35294638 ssat: A rhombus has a perimeter of 40 centimeters, and one of its diagonals is 12 centimeters long. What is the area"
+  ]
+ },
+ {
+  "id": "D207",
+  "q": "legs&ratio&area|legs (are )?in the ratio",
+  "idea": "right triangle legs ratio 3:4 area 54 hypotenuse",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.65 a2f99450 act: Right triangle T1 has legs of lengths 2 and 6. For each n = 2, 3, 4, ..., 8, right triangle Tn has as its two ",
+   "0.54 9737e933 sat: A right triangle has legs of length 10 and 24. What is the length of the median drawn from the right angle to "
+  ]
+ },
+ {
+  "id": "D208",
+  "q": "equilateral triangle&square&(share|common) (a )?side&perimeter",
+  "idea": "square area 36 equilateral triangle on one side perimeter of pentagon",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.63 1478005f ssat: Each side of a regular pentagon measures 4 centimeters. A square has the same perimeter as the pentagon. What ",
+   "0.63 0063d453 sat: An equilateral triangle has a perimeter of 36 centimeters. What is the area of the triangle, in square centime"
+  ]
+ },
+ {
+  "id": "D209",
+  "q": "semicircle&hypotenuse",
+  "idea": "semicircle drawn on hypotenuse of 6-8-10 triangle area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 cebba20d ssat: A square is drawn inside a semicircle of radius 10 so that one side of the square lies along the diameter and ",
+   "0.44 01de543f sat: In a right triangle, the altitude drawn to the hypotenuse divides the hypotenuse into two segments of lengths "
+  ]
+ },
+ {
+  "id": "D210",
+  "q": "rectangle&inscribed in&circle|vertices of (a|the) rectangle&on (a|the) circle",
+  "idea": "rectangle inscribed in circle radius 5 one side 6 area",
+  "kw_hits": 1,
+  "kw": [
+   "6709f126-5a5 [live act/act-math-v14r Geometry medium] :: A rectangle measuring 16 centimeters by 30 centimeters is inscribed in a circle, so that all four vertices of the rectangle lie on the circle. What is the area of the circle, to the nearest square centimeter?"
+  ],
+  "tfidf": [
+   "0.56 6709f126 act: A rectangle measuring 16 centimeters by 30 centimeters is inscribed in a circle, so that all four vertices of ",
+   "0.43 073b6359 isee: A square is inscribed in a circle of radius 5 centimeters, so that all four vertices of the square lie on the "
+  ]
+ },
+ {
+  "id": "D211",
+  "q": "two angles&sum&(three|3|four|4) times the third|third angle",
+  "idea": "two angles of triangle sum to 3 times third angle third angle",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 9e3224dc map: Three straight lines cross at point O and form six angles around O. Going around O in order, the angles are an",
+   "0.43 29bb739d ssat: In triangle ABC, point D is on side AB with AD equal to one third of AB, point E is on side BC with BE equal t"
+  ]
+ },
+ {
+  "id": "D212",
+  "q": "circumference&(cylinder|can)&volume",
+  "idea": "cylinder base circumference 12 pi height 5 volume",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 9065c7db act: A right circular cylinder is inscribed in a sphere with a radius of 10 centimeters, so that the circular edge ",
+   "0.50 8d13faba sat: A cone and a cylinder have the same radius. The cylinder's height is twice the cone's height. What is the rati"
+  ]
+ },
+ {
+  "id": "D213",
+  "q": "(pool|tank)&liters per minute&(meters|m)&hours",
+  "idea": "pool 10 m by 4 m by 1.5 m filled at 200 L per min hours",
+  "kw_hits": 4,
+  "kw": [
+   "6c4b680b-16d [live isee/isee-math-s16 Math medium] :: A cube-shaped tank measures 1.2 meters along each inside edge and is completely full of water. A drain removes water at a steady 4 liters per minute. How many hours does it take to empty the tank? (1 cubic meter = 1000 liters)",
+   "6d5e1a21-ac9 [live sat/sat-psda-hard-v2 Problem-Solving and Data Analysis medium] :: The graph shows the volume of water, in liters, remaining in a tank t hours after a drain valve is opened. The water drains at a constant rate. At what rate is water leaving the tank, in liters per minute?",
+   "GEOH2-10 [prior sat-geo-h2.batch.json] :: A cylindrical tank with a radius of 1.2 meters and a height of 3 meters is filled with water to a depth of 2.4 meters. Water is then drained from the tank at a constant 45 liters per minute for 2 hours. (1 cubic meter is 1,000 liters.) What percent of the water that was originally in the tank remains, to the nearest tenth of a percent?",
+   "PSDA-H2-17 [prior sat-psda-hard-v2.batch.json] :: The graph shows the volume of water, in liters, remaining in a tank t hours after a drain valve is opened. The water drains at a constant rate. At what rate is water leaving the tank, in liters per minute?"
+  ],
+  "tfidf": [
+   "0.52 2cfdabca act: Seven cyclists each rode the same 30-kilometer course. Their times, listed in order of their race numbers, wer",
+   "0.43 057048c9 sat: An empty pool can be filled by pipe A in 6 hours. Pipe B, if left open, can drain a full pool in 9 hours. If t"
+  ]
+ },
+ {
+  "id": "D214",
+  "q": "(two )?semicircles?&(cut|removed)&rectangle",
+  "idea": "rectangle 10 by 6 with semicircles cut from the short sides remaining area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.28 0dd191a2 ssat: A rectangle has its sides parallel to the axes, and two of its opposite vertices are (-2, 1) and (4, 5). What ",
+   "0.24 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?"
+  ]
+ },
+ {
+  "id": "E201",
+  "q": "percent of (a|one) day|of a day&percent",
+  "idea": "3 hours 36 minutes is what percent of a day",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 a3c808de isee: 45 is what percent of 36?",
+   "0.31 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "E202",
+  "q": "(cm|centimeters|mm|millimeters) per day&(meters|m) per year",
+  "idea": "grows 0.5 cm per day meters per year",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.27 a28c3a2a act: A train travels at a constant 54 kilometers per hour. What is its speed in meters per second? (1 kilometer = 1",
+   "0.26 e7750c76 isee: In a certain year, March 3 is a Wednesday. On what day of the week is June 20 of that same year?"
+  ]
+ },
+ {
+  "id": "E203",
+  "q": "\\d+ minutes (after|from) \\d+:\\d+|1,?000 minutes",
+  "idea": "what time is 1000 minutes after 9:00 a.m.",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 2b58daaa act: Three buses leave a depot at 6:00 a.m. One returns every 12 minutes, one every 18 minutes, and one every 30 mi",
+   "0.43 173f4e47 ssat: A clock is set to the correct time at 9:00 a.m. and from then on it loses 4 minutes every hour. What time does"
+  ]
+ },
+ {
+  "id": "E204",
+  "q": "(how many|number of) squares&(all sizes|of any size)|squares of (all|any) size",
+  "idea": "number of squares of all sizes in a 4 by 4 grid",
+  "kw_hits": 1,
+  "kw": [
+   "7df776ef-cd3 [live isee/isee-math-s17 Math medium] :: A rectangle 4 units wide and 6 units long is divided into 24 unit squares by grid lines drawn parallel to its sides. How many squares of all sizes can be found in the figure, if each square's sides must lie along the grid lines?"
+  ],
+  "tfidf": [
+   "0.58 7df776ef isee: A rectangle 4 units wide and 6 units long is divided into 24 unit squares by grid lines drawn parallel to its ",
+   "0.43 55583726 act: A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, h"
+  ]
+ },
+ {
+  "id": "E205",
+  "q": "(how many|number of) rectangles&(strip|row|grid)",
+  "idea": "number of rectangles in a 1 by 8 strip of squares",
+  "kw_hits": 1,
+  "kw": [
+   "02047ece-b05 [live ssat/ssat-math-s17 Math easy] :: A large rectangle is divided into 24 equal small squares arranged in 4 rows and 6 columns, by lines drawn parallel to its sides. How many rectangles of any size, including squares and including the large rectangle itself, have all four of their sides lying along these lines (the drawn lines or the sides of the large rectangle)?"
+  ],
+  "tfidf": [
+   "0.48 55583726 act: A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, h",
+   "0.43 65691249 map: Two rectangles are drawn on a coordinate grid. Rectangle A has corners at (1, 1), (10, 1), (10, 10), and (1, 1"
+  ]
+ },
+ {
+  "id": "E206",
+  "q": "slope&(origin|through the origin)&midpoint",
+  "idea": "slope of line through origin and midpoint of (2,8) (6,4)",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.56 a1d88519 isee: In the coordinate plane, triangle ABC has vertices A(-6, -4), B(6, 5), and C(2, -2). Point M is the midpoint o",
+   "0.55 b7fee95d sat: In the xy-plane, the graphs of 3x + 4y = 7 and x - 2y = -11 intersect at point P. Line r passes through P and "
+  ]
+ },
+ {
+  "id": "E207",
+  "q": "(lap|track)&(400|meters)&(seconds|minute)&(kilometers per hour|km/h|meters per second)",
+  "idea": "400 m lap in 1 min 20 s speed in km/h",
+  "kw_hits": 3,
+  "kw": [
+   "19d064bf-d4a [live ssat/ssat-math-s15 Math medium] :: Two trains on parallel tracks are moving toward each other. One train is 120 meters long and travels at 45 kilometers per hour; the other is 180 meters long and travels at 63 kilometers per hour. From the moment the fronts of the trains meet, how many seconds pass until the rear ends of the trains pass each other?",
+   "80072d5d-c39 [live isee/isee-math-s16 Math hard] :: A 150-meter train traveling at 90 kilometers per hour overtakes a 210-meter train traveling at 54 kilometers per hour on a parallel track in the same direction. How many seconds pass from the moment the front of the faster train reaches the back of the slower train until the back of the faster train passes the front of the slower train?",
+   "a96bffb5-b86 [live sat/math-v4 Geometry and Trigonometry medium] :: On a city map marked in kilometers, a tram line runs in a straight track from terminal A at (2, 3) to terminal B at (14, 12). A tram travels the track at a steady 24 km/h and waits 4 minutes at each terminal before returning, so one full cycle is A to B, wait, B to A, wait. Ten trams run the line, spaced evenly in time around that cycle, so the headway at any stop is the cycle time divided by 10. What is the headway, in minutes?"
+  ],
+  "tfidf": [
+   "0.57 2cfdabca act: Seven cyclists each rode the same 30-kilometer course. Their times, listed in order of their race numbers, wer",
+   "0.29 2c65a851 isee: In a walkathon, sponsors pledge 0.75 dollars for each lap a student walks. One lap of the track is 400 meters."
+  ]
+ },
+ {
+  "id": "F201",
+  "q": "mean of the first (n|\\d+) (positive|counting|whole) (integers|numbers)",
+  "idea": "mean of first n positive integers is 12 find n",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 dab163f3 sat: Positive integers a and b satisfy a + √b = √(22 + 8√6). Find the sum a + b.",
+   "0.42 6d532d53 isee: The mean of seven numbers is 11. The mean of the first four numbers is 9, and the mean of the last four number"
+  ]
+ },
+ {
+  "id": "F202",
+  "q": "median of the first&(even|odd)",
+  "idea": "median of first 50 positive even integers",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.59 70c5cc57 isee: Let E be the sum of the first 50 positive even integers, 2 + 4 + ... + 100, and let D be the sum of the first ",
+   "0.48 c8e04d1c ssat: Three consecutive even positive integers have a product that is 20 times their sum. What is the largest of the"
+  ]
+ },
+ {
+  "id": "F203",
+  "q": "two-digit&(same|equal|identical) digits&probability|digits are the same",
+  "idea": "random two-digit number probability digits are the same",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 f49d5766 ssat: The two digits of a certain two-digit number have a sum of 12. When the two digits are reversed, the new two-d",
+   "0.55 b92e3722 isee: How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits"
+  ]
+ },
+ {
+  "id": "F204",
+  "q": "two spinners&product",
+  "idea": "spinner A 1-4 spinner B 1-3 probability product greater than 6",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.61 d37f4d7b ssat: A spinner has 8 equal sectors numbered 1 through 8. The spinner is spun twice. What is the probability that bo",
+   "0.57 3a2a77fc act: A spinner has five sections of equal area, showing $2, $4, $4, $6, and $9. The spinner is spun once. What is t"
+  ]
+ },
+ {
+  "id": "F205",
+  "q": "deviations?&(from the mean)&(sum|missing)",
+  "idea": "deviations from mean of 5 values four known find fifth",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.39 3f017af9 sat: Three values of the quadratic function f are known: f(-1) = 17, f(0) = 3, and f(1) = -7. What is the minimum v",
+   "0.38 6df004ed sat: For some constants a and b, let p(x) = ax + 5 and q(x) = 3x + b. It is known that p(5) = q(3) and p(-1) = q(-5"
+  ]
+ }
+]

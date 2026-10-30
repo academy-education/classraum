@@ -1,0 +1,31 @@
+A304 :: sum of (all )?(the )?digits&1 (to|through) (20|100|50)|digits of (all|every) (the )?(whole )?numbers from :: sum of all the digits used to write the numbers 1 through 20
+A310 :: \d+/n&integer greater than|n is a (positive )?(divisor|factor) of \d+&greater than :: how many positive integers n make 120/n an integer greater than 10
+A311 :: even three-digit&different|three-digit even&(different|distinct) digits :: how many even three-digit numbers have all digits different
+A313 :: \d \d/\d (÷|divided by) \d \d/\d :: 2 1/3 divided by 1 3/4
+A315 :: sum of the exponents|exponents in the prime factorization :: sum of exponents in prime factorization of 720
+A318 :: 5\^n ?= ?0\.04|\^n ?= ?0\.0|= 1/25&5\^ :: 5^n = 0.04 find n
+A328 :: greatest integer&x\^2 ?<|n\^2 ?< ?\d{3,} :: greatest integer x with x^2 < 2026
+B304 :: (classes|groups)&ratio&(combined|together)&ratio of (boys|girls) :: class A 27 students ratio 4:5 class B 24 ratio 2:1 combined boys to girls
+C305 :: area&x\^2 ?\+ ?\d+x ?\+ ?\d+&(side|length|width)&x ?\+ ?\d :: rectangle area x^2 + 7x + 12 one side x + 3 perimeter when x = 5
+C306 :: x\^2 ?= ?49&y\^2|greatest (possible )?value of x - y :: x^2 = 49 y^2 = 16 greatest value of x - y
+C309 :: (two-thirds|2/3) of a number&(one-fourth|1/4) of :: two-thirds of a number is at least 14 more than one-fourth of it least integer
+C316 :: parallel to&y = \dx&\(k, ?\d|through \(\d, ?\d\) and \(k :: line through (1,2) and (k,8) parallel to y = 3x find k
+C317 :: distance between&\(k, ?\d|\(\d, ?k\)&distance :: points (k,1) and (4,5) are 5 apart sum of possible k
+C325 :: sides&x, ?2x ?- ?\d|perimeter&(x|2x)&longest side :: triangle sides x 2x - 1 x + 5 perimeter 36 longest side
+D304 :: midpoint&diagonal&rectangle&(area|triangle) :: triangle from a rectangle diagonal and a side midpoint area fraction
+D306 :: perimeter&semicircular|semicircle&perimeter :: perimeter of semicircular region radius 7 using 22/7
+D308 :: (sum|total) of the (lengths of (all )?(the )?)?(12 )?edges&cube :: cube total edge length 60 volume
+D315 :: semicircles?&(on|drawn on) (each|all four) sides?&square :: square side 4 with semicircles drawn outward on each side area of figure
+D318 :: midsegment|median of (a|the) trapezoid|segment joining the midpoints of the legs :: trapezoid bases 10 and 16 segment joining midpoints of legs
+D321 :: (five-pointed )?star&(angles|tips|points)&sum :: sum of the angles at the five tips of a five-pointed star
+D324 :: inscribed&circumscribed&square&ratio|square inscribed in a circle&square circumscribed :: ratio of areas square inscribed in a circle to square circumscribed about it
+D325 :: (circular|round) (pond|pool|garden|fountain)&(path|walkway|border)&(wide|width) :: circular pond diameter 20 with 2 m path around area of path
+D327 :: bisectors?&(adjacent|linear pair|supplementary)&angle :: angle between bisectors of two supplementary adjacent angles
+E304 :: leap years? :: how many leap years from 2001 through 2100
+E308 :: vertices&\(0, ?0\)&\(a, ?0\)|\(0, ?b\)&area&hypotenuse :: right triangle vertices (0,0) (a,0) (0,b) area 24 hypotenuse 10 find a + b
+E309 :: y ?= ?x&y ?= ?-x&y ?= ?\d|lines y = x, y = -x :: area of triangle formed by y = x y = -x and y = 4
+E323 :: points with integer coordinates&(boundary|perimeter|sides) of (the )?rectangle|lattice points&rectangle :: lattice points on boundary of rectangle (0,0) to (6,4)
+E325 :: minutes per mile|minutes (to travel|for each) (one|1) mile :: 40 miles per hour in minutes per mile
+F307 :: (two|2) (specific|particular)|both (Ana|Ben|Rosa|Kim)&(chosen|selected)&probability :: choose 2 of 6 people probability two specific people are chosen
+F317 :: (intervals?|groups?)&midpoints?&(mean|estimate) :: estimate mean from grouped frequency table using interval midpoints
+F318 :: cumulative :: median from cumulative frequency table

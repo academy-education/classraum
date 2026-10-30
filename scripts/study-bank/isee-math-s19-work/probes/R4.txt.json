@@ -1,0 +1,160 @@
+[
+ {
+  "id": "A401",
+  "q": "(fewest|least number of|smallest number of) coins",
+  "idea": "fewest coins of 1 5 10 25 cents to make 99 cents",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 a4a5213a isee: Using only nickels (5 cents), dimes (10 cents), and quarters (25 cents), in how many different ways can exactl",
+   "0.45 c5b05283 ssat: A jar contains only nickels (5 cents each) and dimes (10 cents each). There are 40 coins in the jar and they a"
+  ]
+ },
+ {
+  "id": "A404",
+  "q": "how many of the (fractions|numbers)&(greater|more) than 0\\.\\d|1/2, 2/3, 3/4",
+  "idea": "how many of 1/2 2/3 ... 9/10 are greater than 0.7",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 e92b3c49 sat: If (x² − 9)/(x − 3) = 2x + 1 for x ≠ 3, what is the value of x?",
+   "0.33 e6230e95 act: If (x + 9)/2 = x - 3, what is the value of x ?"
+  ]
+ },
+ {
+  "id": "A406",
+  "q": "sqrt\\(12\\)|√12&√27|sqrt\\(\\d+\\) ?(x|×|\\*|·) ?sqrt\\(\\d+\\)",
+  "idea": "sqrt 12 times sqrt 27",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.82 d79e6160 act: If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+   "0.82 9762947b isee: If sqrt(x + 7) = 2sqrt(x - 2), what is the value of x?"
+  ]
+ },
+ {
+  "id": "A409",
+  "q": "\\(0\\.\\d\\)\\^\\d|0\\.2\\^3|0\\.\\d+\\^\\d",
+  "idea": "(0.2)^3 divided by 0.04",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.32 fdf985f5 isee: What is the value of 0.2 x 0.3 + 0.4 / 0.05?",
+   "0.31 a16cb415 act: The function f is defined by f(x) = x² − 0.2x − 5.3. Two different numbers, p and q, satisfy f(p) = q and f(q)"
+  ]
+ },
+ {
+  "id": "A413",
+  "q": "sum of the first (10|ten|twelve|12) (perfect )?squares|1\\^2 ?\\+ ?2\\^2 ?\\+ ?3\\^2|1 \\+ 4 \\+ 9 \\+ 16",
+  "idea": "sum of the first 10 perfect squares",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.69 b583a0eb isee: How many perfect squares are there between 30 and 300?",
+   "0.57 870c9e39 ssat: Let N = 2^4 x 3^2 x 5. How many positive factors of N are perfect squares?"
+  ]
+ },
+ {
+  "id": "B408",
+  "q": "(six|6) apples&(four|4) oranges|price of \\d+ (apples|pens)&(equals|is the same as)&price of \\d+",
+  "idea": "price of 6 apples equals price of 4 oranges orange 0.90 apple",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.26 d8855524 sat: The price of an item was first increased by 20% and then the new price was decreased by 15%. After both change",
+   "0.26 946342d9 sat: The price of a jacket was increased by 25 percent. Later the new price was decreased by p percent, and the res"
+  ]
+ },
+ {
+  "id": "C402",
+  "q": "y ?= ?3x ?- ?2&x ?= ?\\(y|x = \\(y",
+  "idea": "y = 3x - 2 and x = (y + 4)/2 find x",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.74 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.49 1638b4d7 sat: Dividing the product p(x) = (x^2 - x + 4)(x^3 + 4x + 2) by x^2 leaves a linear remainder ax + b. Find a + b."
+  ]
+ },
+ {
+  "id": "C410",
+  "q": "3\\^x ?/ ?9\\^y|2\\^x ?/ ?4\\^y|9\\^y|4\\^y&x - 2y",
+  "idea": "x - 2y = 5 value of 3^x divided by 9^y",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.69 cd70e2f1 isee: What is the value of (3/4 - 1/6) divided by 5/12?",
+   "0.59 7768a38b ssat: When the positive integer n is divided by 9, the remainder is 5. What is the remainder when 4n + 1 is divided "
+  ]
+ },
+ {
+  "id": "C411",
+  "q": "pages (per|each) day&(sooner|fewer days|days (earlier|less))",
+  "idea": "Kim reads 20 more pages per day than Lee finishes 360-page book 3 days sooner Lee pages per day",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 6d86c46f isee: The pages of a book are numbered 1, 2, 3, and so on, through the last page. Printing all the page numbers uses",
+   "0.34 078cb3a2 ssat: The pages of a book are numbered in order from 1 to 150. How many digits are printed in all to number the page"
+  ]
+ },
+ {
+  "id": "D405",
+  "q": "(vertices|edges|faces)&prism&(how many|number of) (edges|faces|vertices)",
+  "idea": "prism with 12 vertices number of edges",
+  "kw_hits": 1,
+  "kw": [
+   "f66c4ac2-bdb [live act/act-math-v16 Geometry easy] :: A right prism has two bases that are regular octagons. How many edges does the prism have?"
+  ],
+  "tfidf": [
+   "0.53 f66c4ac2 act: A right prism has two bases that are regular octagons. How many edges does the prism have?",
+   "0.32 7ea7ae73 isee: A rectangular prism has a square base with side 4 centimeters and a volume of 240 cubic centimeters. What is t"
+  ]
+ },
+ {
+  "id": "E405",
+  "q": "(opposite )?(vertices|corners) of a square&\\(\\d, ?\\d\\)&\\(\\d, ?\\d\\)|diagonal&square&\\(\\d, ?\\d\\)",
+  "idea": "square with opposite vertices (1,1) and (7,7) perimeter",
+  "kw_hits": 1,
+  "kw": [
+   "231c5d33-ac3 [live ssat/ssat-math-s16 Math medium] :: In the coordinate plane, the points (-1, 1) and (7, 5) are opposite vertices of a square. Which of the following is another vertex of the square?"
+  ],
+  "tfidf": [
+   "0.61 07dd35a7 ssat: In the coordinate plane, A(1, 2) and C(7, 6) are opposite vertices of square ABCD. What is the area of the squ",
+   "0.57 231c5d33 ssat: In the coordinate plane, the points (-1, 1) and (7, 5) are opposite vertices of a square. Which of the followi"
+  ]
+ },
+ {
+  "id": "E408",
+  "q": "(Mondays|Fridays|Sundays|Saturdays)&month",
+  "idea": "number of Mondays in a 31-day month starting on Saturday",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.29 bf527801 act: If 2x + 3y = 31 and 5x - 3y = 4, what is the value of y - x ?",
+   "0.22 59ada000 sat: What is the greatest integer value of n for which 9 − 4n > 2n − 31?"
+  ]
+ },
+ {
+  "id": "F405",
+  "q": "at least one vowel|three-letter&(vowel)",
+  "idea": "three-letter strings from A B C D E with repetition at least one vowel",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.26 e7c633b3 isee: How many different three-letter arrangements can be made from the letters A, B, C, D, and E if no letter may b",
+   "0.18 f6720c12 ssat: How many different arrangements of the six letters of the word LETTER have the two T's not next to each other?"
+  ]
+ },
+ {
+  "id": "F408",
+  "q": "spinner&probabilit(y|ies) (of|for)&(1/2|1/3)&(twice|two spins)&(order|different)",
+  "idea": "spinner P(A)=1/2 P(B)=1/3 rest C spun twice P(one A and one C)",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.59 d37f4d7b ssat: A spinner has 8 equal sectors numbered 1 through 8. The spinner is spun twice. What is the probability that bo",
+   "0.53 3a2a77fc act: A spinner has five sections of equal area, showing $2, $4, $4, $6, and $9. The spinner is spun once. What is t"
+  ]
+ }
+]

@@ -1,0 +1,351 @@
+[
+ {
+  "id": "A304",
+  "q": "sum of (all )?(the )?digits&1 (to|through) (20|100|50)|digits of (all|every) (the )?(whole )?numbers from",
+  "idea": "sum of all the digits used to write the numbers 1 through 20",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.32 d8972f36 isee: The digits 2, 4, 7, and 9 are each used exactly once to form two two-digit numbers. What is the greatest possi",
+   "0.31 b92e3722 isee: How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits"
+  ]
+ },
+ {
+  "id": "A310",
+  "q": "\\d+/n&integer greater than|n is a (positive )?(divisor|factor) of \\d+&greater than",
+  "idea": "how many positive integers n make 120/n an integer greater than 10",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.54 522cfb82 ssat: For how many positive integers n is (n + 40)/(n + 4) an integer?",
+   "0.47 3b77ffd1 isee: What is the sum of all positive integers n for which (3n + 20)/(n + 2) is an integer?"
+  ]
+ },
+ {
+  "id": "A311",
+  "q": "even three-digit&different|three-digit even&(different|distinct) digits",
+  "idea": "how many even three-digit numbers have all digits different",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.68 8315ff1f isee: Using the digits 1, 2, 3, 4, and 5, with no digit repeated, how many different three-digit even numbers can be",
+   "0.62 1f121c44 sat: How many three-digit numbers with all distinct digits can be formed using digits from the set {1, 2, 3, 4, 5} "
+  ]
+ },
+ {
+  "id": "A313",
+  "q": "\\d \\d/\\d (÷|divided by) \\d \\d/\\d",
+  "idea": "2 1/3 divided by 1 3/4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.78 cd70e2f1 isee: What is the value of (3/4 - 1/6) divided by 5/12?",
+   "0.67 012a20a1 isee: What is the value of 2/3 + 1/4?"
+  ]
+ },
+ {
+  "id": "A315",
+  "q": "sum of the exponents|exponents in the prime factorization",
+  "idea": "sum of exponents in prime factorization of 720",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.34 0cb69ea5 sat: The exponents a and b are real numbers such that 3^a = 7 and 2^b = 5. What is the value of the quotient (9^a)/",
+   "0.32 57a9b052 isee: Which of the following is a prime number?"
+  ]
+ },
+ {
+  "id": "A318",
+  "q": "5\\^n ?= ?0\\.04|\\^n ?= ?0\\.0|= 1/25&5\\^",
+  "idea": "5^n = 0.04 find n",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.40 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.29 dab163f3 sat: Positive integers a and b satisfy a + √b = √(22 + 8√6). Find the sum a + b."
+  ]
+ },
+ {
+  "id": "A328",
+  "q": "greatest integer&x\\^2 ?<|n\\^2 ?< ?\\d{3,}",
+  "idea": "greatest integer x with x^2 < 2026",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 e7a0b82f ssat: What is the greatest integer value of x for which 3(x - 2) < x + 4?",
+   "0.41 cccbea8f act: What is the greatest integer value of x for which 5 - 2x ≥ 11?"
+  ]
+ },
+ {
+  "id": "B304",
+  "q": "(classes|groups)&ratio&(combined|together)&ratio of (boys|girls)",
+  "idea": "class A 27 students ratio 4:5 class B 24 ratio 2:1 combined boys to girls",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.79 33056309 act: The ratio of boys to girls in a class is 3:5. If there are 32 students in the class, how many girls are in the",
+   "0.70 11fb0a44 act: In a class of 36 students, the ratio of boys to girls is 4:5. How many boys would have to join the class, with"
+  ]
+ },
+ {
+  "id": "C305",
+  "q": "area&x\\^2 ?\\+ ?\\d+x ?\\+ ?\\d+&(side|length|width)&x ?\\+ ?\\d",
+  "idea": "rectangle area x^2 + 7x + 12 one side x + 3 perimeter when x = 5",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.55 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?",
+   "0.52 4b839ba7 isee: A rectangle has a perimeter of 30 centimeters and side lengths that are whole numbers of centimeters. What is "
+  ]
+ },
+ {
+  "id": "C306",
+  "q": "x\\^2 ?= ?49&y\\^2|greatest (possible )?value of x - y",
+  "idea": "x^2 = 49 y^2 = 16 greatest value of x - y",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 6443cac7 sat: If x^(2/3) = 16, what is the value of x?",
+   "0.40 797b7195 ssat: What is the greatest integer k for which 2^k is a factor of 5^16 - 1 ?"
+  ]
+ },
+ {
+  "id": "C309",
+  "q": "(two-thirds|2/3) of a number&(one-fourth|1/4) of",
+  "idea": "two-thirds of a number is at least 14 more than one-fourth of it least integer",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 965c1489 ssat: What is two-thirds of three-fourths of 48?",
+   "0.36 f969f5a5 act: What is the least integer value of x that satisfies 5 − 3x < −13?"
+  ]
+ },
+ {
+  "id": "C316",
+  "q": "parallel to&y = \\dx&\\(k, ?\\d|through \\(\\d, ?\\d\\) and \\(k",
+  "idea": "line through (1,2) and (k,8) parallel to y = 3x find k",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.54 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.52 b759c4cd sat: In the xy-plane, the line through the points (k, 2k) and (3k − 4, 14) is parallel to the line 4x − 6y = 7. Wha"
+  ]
+ },
+ {
+  "id": "C317",
+  "q": "distance between&\\(k, ?\\d|\\(\\d, ?k\\)&distance",
+  "idea": "points (k,1) and (4,5) are 5 apart sum of possible k",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 a8d54e9d sat: If |2x - 5| = 9, what is the sum of all possible values of x?",
+   "0.39 6fd19bbc sat: If 5x^2 = 8x + 4, what is the greatest possible value of x?"
+  ]
+ },
+ {
+  "id": "C325",
+  "q": "sides&x, ?2x ?- ?\\d|perimeter&(x|2x)&longest side",
+  "idea": "triangle sides x 2x - 1 x + 5 perimeter 36 longest side",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.56 f33493e5 act: A triangle has side lengths 6, 8, and 10. A second triangle is similar to the first, and its longest side has ",
+   "0.37 291a311e map: A square has a perimeter of 44 centimeters. Each side of an equilateral triangle is 4 centimeters longer than "
+  ]
+ },
+ {
+  "id": "D304",
+  "q": "midpoint&diagonal&rectangle&(area|triangle)",
+  "idea": "triangle from a rectangle diagonal and a side midpoint area fraction",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?",
+   "0.47 a1d88519 isee: In the coordinate plane, triangle ABC has vertices A(-6, -4), B(6, 5), and C(2, -2). Point M is the midpoint o"
+  ]
+ },
+ {
+  "id": "D306",
+  "q": "perimeter&semicircular|semicircle&perimeter",
+  "idea": "perimeter of semicircular region radius 7 using 22/7",
+  "kw_hits": 1,
+  "kw": [
+   "93ee3490-600 [live ssat/ssat-math-s15 Math easy] :: A garden is shaped like a rectangle measuring 10 meters by 6 meters with a semicircle attached outward along each of the two 6-meter sides, each 6-meter side being a diameter of its semicircle. Using 3.14 for pi, what is the perimeter of the garden, in meters?"
+  ],
+  "tfidf": [
+   "0.38 08715fae isee: A circle has a radius of 7 centimeters. A square has a perimeter equal to the circumference of the circle. Usi",
+   "0.36 8ebbe83f sat: Points A, B, and P lie on a circle with center O and radius 12, and the measure of angle APB is 130 degrees. A"
+  ]
+ },
+ {
+  "id": "D308",
+  "q": "(sum|total) of the (lengths of (all )?(the )?)?(12 )?edges&cube",
+  "idea": "cube total edge length 60 volume",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.55 72fa02e1 ssat: Every edge of a cube is lengthened by the same amount, and as a result the total surface area of the cube incr",
+   "0.50 f452a6e2 isee: The total surface area of a cube is 150 square centimeters. What is the volume of the cube, in cubic centimete"
+  ]
+ },
+ {
+  "id": "D315",
+  "q": "semicircles?&(on|drawn on) (each|all four) sides?&square",
+  "idea": "square side 4 with semicircles drawn outward on each side area of figure",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.30 f66678ec sat: In triangle ABC, point D is on side AB and point E is on side AC, with segment DE parallel to side BC. AD = 6 ",
+   "0.29 4929c153 isee: In triangle ABC, point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC"
+  ]
+ },
+ {
+  "id": "D318",
+  "q": "midsegment|median of (a|the) trapezoid|segment joining the midpoints of the legs",
+  "idea": "trapezoid bases 10 and 16 segment joining midpoints of legs",
+  "kw_hits": 1,
+  "kw": [
+   "5c1a97f5-506 [live act/act-math-v15-mix Geometry easy] :: The median of a trapezoid is the segment joining the midpoints of its two nonparallel sides, and its length is the average of the lengths of the two parallel sides. In one trapezoid the median is 22 centimeters long and one of the parallel sides is 14 centimeters long. What is the length, in centimeters, of the other parallel side?"
+  ],
+  "tfidf": [
+   "0.44 767a38aa isee: A trapezoid has parallel bases of 7 cm and 13 cm and a height of 6 cm. What is its area, in square centimeters",
+   "0.37 5c1a97f5 act: The median of a trapezoid is the segment joining the midpoints of its two nonparallel sides, and its length is"
+  ]
+ },
+ {
+  "id": "D321",
+  "q": "(five-pointed )?star&(angles|tips|points)&sum",
+  "idea": "sum of the angles at the five tips of a five-pointed star",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.40 c36ccaf9 ssat: ABCDE is a convex pentagon. Its five diagonals AC, CE, EB, BD and DA are drawn, forming a five-pointed star wh",
+   "0.39 0c2d6604 act: A five-pointed star is drawn by connecting each vertex of a regular pentagon to the two vertices not next to i"
+  ]
+ },
+ {
+  "id": "D324",
+  "q": "inscribed&circumscribed&square&ratio|square inscribed in a circle&square circumscribed",
+  "idea": "ratio of areas square inscribed in a circle to square circumscribed about it",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.42 073b6359 isee: A square is inscribed in a circle of radius 5 centimeters, so that all four vertices of the square lie on the ",
+   "0.40 dc43cab8 act: In the standard (x,y) coordinate plane, a right triangle has vertices (0, 0), (10, 0), and (0, 6). To the near"
+  ]
+ },
+ {
+  "id": "D325",
+  "q": "(circular|round) (pond|pool|garden|fountain)&(path|walkway|border)&(wide|width)",
+  "idea": "circular pond diameter 20 with 2 m path around area of path",
+  "kw_hits": 1,
+  "kw": [
+   "17ec9718-c4c [live act/act-math-v18 Integrating Essential Skills easy] :: A circular fountain has a diameter of 12 feet. A paved path 3 feet wide is built around the fountain, touching its edge all the way around. Paving costs $9.50 per square foot. To the nearest dollar, what is the cost, in dollars, of paving the path?"
+  ],
+  "tfidf": [
+   "0.34 17ec9718 act: A circular fountain has a diameter of 12 feet. A paved path 3 feet wide is built around the fountain, touching",
+   "0.29 d3905bdc ssat: A rectangular swimming pool measures 14 m by 9 m. A path of uniform width 2 m is laid all the way around the o"
+  ]
+ },
+ {
+  "id": "D327",
+  "q": "bisectors?&(adjacent|linear pair|supplementary)&angle",
+  "idea": "angle between bisectors of two supplementary adjacent angles",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.39 a494995b isee: Two angles are supplementary. One angle measures 34 degrees more than the other. What is the measure, in degre",
+   "0.38 7c916239 isee: Two angles are supplementary. One of them measures 47 degrees. What is the measure of the other angle, in degr"
+  ]
+ },
+ {
+  "id": "E304",
+  "q": "leap years?",
+  "idea": "how many leap years from 2001 through 2100",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.12 61c2453d isee: Ana is 4 years older than Ben. In 6 years the sum of their ages will be 40. How old is Ben now?",
+   "0.12 7933fe52 sat: A quantity Q is modeled by Q = 800 * (1.5)^t, where t is measured in years. What is the smallest whole number "
+  ]
+ },
+ {
+  "id": "E308",
+  "q": "vertices&\\(0, ?0\\)&\\(a, ?0\\)|\\(0, ?b\\)&area&hypotenuse",
+  "idea": "right triangle vertices (0,0) (a,0) (0,b) area 24 hypotenuse 10 find a + b",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.62 fd423ed1 ssat: In the coordinate plane, a triangle has vertices at (0, 0), (6, 0) and (2, 5). What is its area, in square uni",
+   "0.53 51ddaae7 sat: If √(3x + 4) = x and x > 0, what is the value of x?"
+  ]
+ },
+ {
+  "id": "E309",
+  "q": "y ?= ?x&y ?= ?-x&y ?= ?\\d|lines y = x, y = -x",
+  "idea": "area of triangle formed by y = x y = -x and y = 4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.45 da512959 isee: In the coordinate plane, the lines y = x + 2 and y = -2x + 14 intersect at point P. What is the area of the tr",
+   "0.38 e227c75e ssat: ABCD is a parallelogram, and point P lies inside it. The area of triangle PAB is 14, the area of triangle PBC "
+  ]
+ },
+ {
+  "id": "E323",
+  "q": "points with integer coordinates&(boundary|perimeter|sides) of (the )?rectangle|lattice points&rectangle",
+  "idea": "lattice points on boundary of rectangle (0,0) to (6,4)",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 99a11025 ssat: In the coordinate plane, a triangle has vertices at (0, 0), (27, 0) and (0, 12). A point is called a lattice p",
+   "0.33 51ddaae7 sat: If √(3x + 4) = x and x > 0, what is the value of x?"
+  ]
+ },
+ {
+  "id": "E325",
+  "q": "minutes per mile|minutes (to travel|for each) (one|1) mile",
+  "idea": "40 miles per hour in minutes per mile",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.55 ddcb60c6 act: A cyclist rides 120 miles at an average speed of 60 miles per hour and then rides another 120 miles at an aver",
+   "0.53 5949f122 ssat: Maria drives 60 miles at an average speed of 30 miles per hour, and then drives another 60 miles at an average"
+  ]
+ },
+ {
+  "id": "F307",
+  "q": "(two|2) (specific|particular)|both (Ana|Ben|Rosa|Kim)&(chosen|selected)&probability",
+  "idea": "choose 2 of 6 people probability two specific people are chosen",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.44 a6505215 act: A committee of 3 people is to be chosen from a group of 8 people. How many different committees are possible?",
+   "0.44 2d0ae3d3 act: A committee of 3 people is to be chosen from a group of 7 people. How many different committees are possible?"
+  ]
+ },
+ {
+  "id": "F317",
+  "q": "(intervals?|groups?)&midpoints?&(mean|estimate)",
+  "idea": "estimate mean from grouped frequency table using interval midpoints",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.25 055b9eb2 sat: The solution to |3x − 6| ≤ 9 is the interval a ≤ x ≤ b. What is the value of b − a?",
+   "0.20 01d448d0 act: The function h is defined by h(x) = √(9 + 4x − x²) + log(7x − 5). The domain of h, the set of all real numbers"
+  ]
+ },
+ {
+  "id": "F318",
+  "q": "cumulative",
+  "idea": "median from cumulative frequency table",
+  "kw_hits": 1,
+  "kw": [
+   "461a2195-f48 [live sat/math-v4 Advanced Math hard] :: A textile mill tracks the cumulative length of cloth a loom has produced during a shift. For the first several hours, the total length in meters after t hours is W(t) = a*t^3 + b*t^2 + 12t, and the mill's technician confirms that W(t) = t*(3t + 4)*(t + k) for every t in that interval, where a, b, and k are constants. How many meters of cloth does the loom weave during the fifth hour of the shift?"
+  ],
+  "tfidf": [
+   "0.25 c5bddd10 sat: What is the median of the values in the table?",
+   "0.25 86c051c4 sat: What is the median of the values in the table?"
+  ]
+ }
+]

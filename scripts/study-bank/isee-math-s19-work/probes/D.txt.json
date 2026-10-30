@@ -1,0 +1,590 @@
+[
+ {
+  "id": "D01",
+  "q": "arc&length|length of (the )?arc",
+  "idea": "arc length of a 60 degree arc in circle of radius 9",
+  "kw_hits": 11,
+  "kw": [
+   "0d740292-d15 [live sat/v2 Geometry and Trigonometry medium] :: A sector of a circle with radius 6 has an arc length of 4π. What is the area of the sector?",
+   "3df0bbd5-b1c [live isee/isee-math-s17 Math medium] :: The three vertices of a triangle lie on a circle and divide the circle into three arcs, none of which contains a vertex in its interior. The lengths of the three arcs are in the ratio 3 : 4 : 5. What is the measure, in degrees, of the largest angle of the triangle?",
+   "46865834-6cd [live sat/v2 Geometry and Trigonometry medium] :: A sector of a circle has radius 8 and arc length 12. What is the area of the sector?",
+   "49af737c-b83 [live sat/v2 Geometry and Trigonometry medium] :: In a circle of radius 10, an arc has length 4π. What is the area of the sector bounded by that arc and the two radii to its endpoints, in terms of π?",
+   "6d19e446-47e [live isee/isee-math-s3 Math medium] :: A circle has area 36(pi) square centimeters. A sector of this circle has a central angle of 120 degrees. What is the perimeter of the sector, that is, the length of its arc plus its two straight radii, in centimeters?",
+   "6eab1bd3-70c [live act/act-math-v1 Geometry medium] :: A circle has radius 12 centimeters. What is the length, in centimeters, of an arc that subtends a central angle of 150°?",
+   "80f42b82-4f8 [live sat/v2 Geometry and Trigonometry medium] :: A sector of a circle has radius 8 and an arc length of 6π. The area of this sector can be written as kπ, where k is a constant. What is the value of k?",
+   "87a0d4df-547 [live act/act-math-v2c Geometry medium] :: A sector of a circle of radius 9 inches has an arc length of 6pi inches. To the nearest square inch, what is the area of this sector?",
+   "GEO-H2-05 [prior sat-geo-hard-v2.batch.json] :: The figure shows a parcel of land bounded on the left by a fence that meets the two parallel boundaries at right angles. All lengths are in meters. What is the area of the parcel, in square meters?",
+   "GEO-H2-15 [prior sat-geo-hard-v2.batch.json] :: The reflecting surface of a curved mirror is the arc shown, part of a circle with center O. All lengths are in centimeters. What is d, the greatest depth of the mirror below the line joining its two rim points?",
+   "GEO3-16 [prior sat-geo-v3.batch.json] :: A circle has a radius of 12 inches. An arc of this circle has a length of 9π inches. What is the radian measure of the central angle that intercepts this arc?"
+  ],
+  "tfidf": [
+   "0.57 49af737c sat: In a circle of radius 10, an arc has length 4π. What is the area of the sector bounded by that arc and the two",
+   "0.50 015b757e ssat: Points A, B, C and D lie on a circle in that order as you go around it. The four arcs between neighboring poin"
+  ]
+ },
+ {
+  "id": "D02",
+  "q": "inscribed angle|central angle&inscribed",
+  "idea": "inscribed angle intercepts arc of 110 degrees measure",
+  "kw_hits": 9,
+  "kw": [
+   "2ca0efba-f05 [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 80°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "30060a3f-e60 [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 120°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "6dc653d5-1f5 [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 140°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "734506ff-cb0 [live sat/v2 Geometry and Trigonometry medium] :: In a circle, points A, B, and C lie on the circle. The central angle AOB (where O is the center) that subtends the same arc AB as inscribed angle ACB measures 130 degrees. What is the measure, in degrees, of inscribed angle ACB?",
+   "825707e2-b9b [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 100°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "845695ed-6f6 [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 50°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "86033569-6cd [live sat/v2 Geometry and Trigonometry medium] :: Points A, B, and C lie on a circle with center O. The central angle AOC intercepts minor arc AC and measures 130°, and point B lies on the major arc. What is the measure of the inscribed angle ABC?",
+   "bf04d2be-4db [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 60°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+   "ee800731-143 [live sat/v2 Geometry and Trigonometry medium] :: In the circle with center O, central angle AOB measures 100°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?"
+  ],
+  "tfidf": [
+   "0.51 86033569 sat: Points A, B, and C lie on a circle with center O. The central angle AOC intercepts minor arc AC and measures 1",
+   "0.47 5e1aa8ed sat: Quadrilateral ABCD is inscribed in a circle. The measure of angle A is (2x + 10)° and the measure of the oppos"
+  ]
+ },
+ {
+  "id": "D03",
+  "q": "sphere|hemisphere",
+  "idea": "volume of hemisphere radius 3",
+  "kw_hits": 22,
+  "kw": [
+   "201e52e6-b9d [live act/act-math-v16 Geometry medium] :: A storage tank is shaped like a right circular cylinder with a hemisphere attached to each end. The cylinder has a radius of 3 meters and a length of 10 meters, and each hemisphere has a radius of 3 meters, so there are no flat surfaces. To the nearest tenth of a square meter, what is the total outside surface area of the tank?",
+   "27b845d4-665 [live sat/v2 Geometry and Trigonometry hard] :: A sphere is inscribed in a right circular cylinder so that the sphere touches the cylinder's side all the way around as well as its top and bottom. The cylinder has a volume of 54 cubic units. What is the volume of the sphere, in cubic units, rounded to the nearest whole number?",
+   "31e459b5-1b2 [live sat/math-v6-geo-hard Geometry and Trigonometry medium] :: A solid right circular cylinder with radius 4 centimeters and height 9 centimeters is melted down, and the metal is used to make solid spheres of radius 2 centimeters. What is the greatest number of such spheres that can be made?",
+   "32652029-9b2 [live sat/math-v3 Advanced Math hard] :: An engineer calibrates a pressure sensor whose voltage output, in millivolts, is modeled by the polynomial p(x) = x^3 - 4x^2 + ax + b, where x is the applied pressure in atmospheres and a and b are calibration constants. Bench testing shows that when p(x) is divided by (x - 3) the remainder is 10, and when p(x) is divided by (x + 2) the remainder is -45. What is the value of a?",
+   "3ed3a537-55e [live map/map-math-g58-v3 Geometry easy] :: A globe is shaped like a sphere with a diameter of 12 inches. Using 3.14 for pi, what is the volume of the globe, in cubic inches?",
+   "41320d65-b3d [live map/map-math-v2-b3-geo Geometry medium] :: A ball is shaped like a sphere. The distance around the ball at its widest part (its circumference) is 17.27 centimeters. Using 3.14 for pi, what is the volume of the ball, in cubic centimeters? Round to the nearest hundredth.",
+   "51eb5e27-874 [live act/act-math-v15-mix Geometry hard] :: The surface area of a sphere is 4πr^2 and its volume is (4/3)πr^3, where r is the radius. A sphere has a surface area of 144π square inches. What is its volume, in cubic inches?",
+   "5b9aa66e-f43 [live act/act-math-v12-mix Geometry hard] :: A storage silo is a right circular cylinder 10 meters tall with a radius of 3 meters, capped on top by a dome in the shape of a hemisphere of the same radius. What is the total volume of the silo, to the nearest tenth of a cubic meter?",
+   "604a597f-a0d [live act/act-geo-fn-0919 Geometry easy] :: A grain silo is shaped like a right circular cylinder topped by a hemisphere of the same radius. The cylinder has a diameter of 6 meters and a height of 10 meters. To the nearest tenth of a cubic meter, what is the total volume of the silo?",
+   "62148a8d-763 [live sat/v2 Geometry and Trigonometry medium] :: A sphere's radius is increased by 20%. By what factor is the sphere's volume multiplied?",
+   "70d778dc-62a [live map/map-math-v2-geo Geometry hard] :: An ice cream cone is shaped like a cone with a radius of 3 centimeters and a height of 17 centimeters. A scoop of ice cream shaped like a sphere with a radius of 3 centimeters sits on the cone. The scoop melts, and all of it flows into the cone. How many cubic centimeters of the cone are still empty? Use 3.14 for pi.",
+   "7302a074-e81 [live act/act-math-v29 Number and Quantity medium] :: A satellite travels in a circular orbit 254 miles above Earth's surface. Earth is modeled as a sphere with a radius of 6,371 kilometers, and the satellite completes one orbit every 92 minutes 41 seconds. Using 1 mile = 1.609344 kilometers, what is the satellite's speed, to the nearest kilometer per hour?",
+   "87dd3f60-e5d [live sat/v2 Geometry and Trigonometry medium] :: Sphere A has radius 2 and sphere B has radius 5. The volume of sphere B is how many times the volume of sphere A?",
+   "9065c7db-495 [live act/act-math-v18 Geometry medium] :: A right circular cylinder is inscribed in a sphere with a radius of 10 centimeters, so that the circular edge of each base of the cylinder lies on the sphere. The height of the cylinder is 12 centimeters. To the nearest cubic centimeter, what is the volume of the cylinder?",
+   "bdbbfc01-46a [live sat/v2 Geometry and Trigonometry medium] :: A sphere has a surface area of 144π square inches. What is its volume, in cubic inches, in terms of π?",
+   "df9d97ca-632 [live sat/v2 Geometry and Trigonometry medium] :: Two spheres have radii in the ratio 2 to 5. The smaller sphere has a volume of 16 cubic inches. What is the volume, in cubic inches, of the larger sphere?",
+   "e8bf76f4-8fc [live sat/v2 Geometry and Trigonometry hard] :: A sphere is inscribed in a right circular cylinder so that the sphere touches the cylinder's top face, bottom face, and lateral surface. If the volume of the cylinder is 54π cubic units, what is the volume of the sphere?",
+   "fbbda2b0-542 [live map/map-math-v2-geo Geometry hard] :: A stone mortar is a solid cylinder with a radius of 8 centimeters and a height of 10 centimeters. A bowl shaped like half of a sphere, with a radius of 6 centimeters, is carved into the center of its flat upper face. Using 3.14 for pi, what is the volume of the stone that is left, in cubic centimeters?",
+   "febebc63-c7d [live sat/math-v4 Geometry and Trigonometry hard] :: A baker mounds dough into a dome shaped like a hemisphere resting flat on a tray. Before proofing the dough occupies 452 cm^3; after proofing it occupies 836 cm^3, and the dough keeps its hemispherical shape the entire time. The height of the dome is the distance from the tray to the top of the dome. To the nearest tenth of a centimeter, by how much does the height of the dome increase during proofing?",
+   "GEOH2-17 [prior sat-geo-h2.batch.json] :: A solid metal sphere with a radius of 5 centimeters is melted down and recast, with no loss of metal, into solid cylinders each with a radius of 2 centimeters and a height of 3 centimeters. What is the greatest number of complete cylinders that can be made?",
+   "GEO-H1-18 [prior sat-geo-hard-v1.batch.json] :: A solid right circular cylinder with radius 4 centimeters and height 9 centimeters is melted down, and the metal is used to make solid spheres of radius 2 centimeters. What is the greatest number of such spheres that can be made?",
+   "GEO3-06 [prior sat-geo-v3.batch.json] :: A sphere has a surface area of 144π square inches. What is the volume of the sphere, in cubic inches?"
+  ],
+  "tfidf": [
+   "0.47 201e52e6 act: A storage tank is shaped like a right circular cylinder with a hemisphere attached to each end. The cylinder h",
+   "0.37 5b9aa66e act: A storage silo is a right circular cylinder 10 meters tall with a radius of 3 meters, capped on top by a dome "
+  ]
+ },
+ {
+  "id": "D04",
+  "q": "radius is doubled&height|doubl(e|ed|ing) the radius&(halv|height)",
+  "idea": "cylinder radius doubled height halved volume ratio",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 8d13faba sat: A cone and a cylinder have the same radius. The cylinder's height is twice the cone's height. What is the rati",
+   "0.46 6a959e2e isee: A cylinder has a radius of 3 cm and a height of 10 cm. What is its volume, in cubic centimeters, in terms of p"
+  ]
+ },
+ {
+  "id": "D05",
+  "q": "30-60-90|30°-60°-90°|30, 60, (and )?90",
+  "idea": "30-60-90 triangle hypotenuse 10 longer leg",
+  "kw_hits": 1,
+  "kw": [
+   "6bb66faf-86e [live sat/v2 Geometry and Trigonometry medium] :: A 30-60-90 right triangle has an area of 18√3. What is the length of its hypotenuse?"
+  ],
+  "tfidf": [
+   "0.56 6bb66faf sat: A 30-60-90 right triangle has an area of 18√3. What is the length of its hypotenuse?",
+   "0.51 2e9619e1 isee: A right triangle has a hypotenuse of 17 cm and one leg of 8 cm. What is the length of the other leg, in centim"
+  ]
+ },
+ {
+  "id": "D06",
+  "q": "L-shaped|L shape",
+  "idea": "L-shaped room perimeter from given sides",
+  "kw_hits": 6,
+  "kw": [
+   "40224df6-c72 [live ssat/ssat-math-s10 Math easy] :: A rectangular room measures 9 metres by 6 metres. A square alcove of side 3 metres is cut out of one corner, so that the floor is L-shaped. What is the area of the floor, in square metres?",
+   "8d545633-bf8 [live isee/isee-math-s6 Math hard] :: A rectangular piece measuring 3 centimeters by 4 centimeters is cut away from one corner of a square whose sides are 10 centimeters, leaving an L-shaped figure. What is the perimeter of the L-shaped figure, in centimeters?",
+   "ba66cfe2-694 [live isee/isee-math-s5 Math easy] :: A rectangle is 12 cm wide and 9 cm tall. A 3 cm by 4 cm rectangle is cut out of its top right corner, leaving an L-shaped figure. What is the perimeter of the L-shaped figure, in centimeters?",
+   "e0338860-885 [live ssat/ssat-math-q9 Math medium] :: A patio is an L-shaped region. Walking around its edge in order, the six straight sides measure 14 m, 6 m, 5 m, 4 m, 9 m and 10 m, and every corner is a right angle. What is the perimeter of the patio, in metres?",
+   "fbbda2b0-542 [live map/map-math-v2-geo Geometry hard] :: A stone mortar is a solid cylinder with a radius of 8 centimeters and a height of 10 centimeters. A bowl shaped like half of a sphere, with a radius of 6 centimeters, is carved into the center of its flat upper face. Using 3.14 for pi, what is the volume of the stone that is left, in cubic centimeters?",
+   "febebc63-c7d [live sat/math-v4 Geometry and Trigonometry hard] :: A baker mounds dough into a dome shaped like a hemisphere resting flat on a tray. Before proofing the dough occupies 452 cm^3; after proofing it occupies 836 cm^3, and the dough keeps its hemispherical shape the entire time. The height of the dome is the distance from the tray to the top of the dome. To the nearest tenth of a centimeter, by how much does the height of the dome increase during proofing?"
+  ],
+  "tfidf": [
+   "0.31 1f00fc89 isee: Working alone, Ana can paint a room in 6 hours and Ben can paint the same room in 3 hours. Working together at",
+   "0.30 8d545633 isee: A rectangular piece measuring 3 centimeters by 4 centimeters is cut away from one corner of a square whose sid"
+  ]
+ },
+ {
+  "id": "D07",
+  "q": "quarter circles?|quarter-circle",
+  "idea": "square side 8 with quarter circle at each corner radius 4 shaded area",
+  "kw_hits": 2,
+  "kw": [
+   "d03c531b-7be [live act/act-math-v6-geo Geometry medium] :: A square pane of glass measures 14 inches on each side. A quarter circle of radius 14 inches, centered at one corner of the square, is cut out and removed. Using 22/7 for π, what is the area of the piece that remains, in square inches?",
+   "d44d9606-14b [live ssat/ssat-math-s12 Math medium] :: A square has sides of 10 cm. A quarter circle of radius 10 cm is drawn inside the square, centred on one of its corners. The region inside the square but outside the quarter circle has an area of 100 - k times pi square centimetres. What is the value of k?"
+  ],
+  "tfidf": [
+   "0.44 d44d9606 ssat: A square has sides of 10 cm. A quarter circle of radius 10 cm is drawn inside the square, centred on one of it",
+   "0.37 d03c531b act: A square pane of glass measures 14 inches on each side. A quarter circle of radius 14 inches, centered at one "
+  ]
+ },
+ {
+  "id": "D08",
+  "q": "semicircles?&(track|ends?)|two semicircles",
+  "idea": "running track rectangle 100 by 60 with semicircle ends perimeter",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.30 93ee3490 ssat: A garden is shaped like a rectangle measuring 10 meters by 6 meters with a semicircle attached outward along e",
+   "0.30 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?"
+  ]
+ },
+ {
+  "id": "D09",
+  "q": "triangular prism",
+  "idea": "triangular prism volume right triangle base 6 8 length 10",
+  "kw_hits": 3,
+  "kw": [
+   "0fe65df7-947 [live map/map-math-v2-geo Geometry easy] :: A tent is shaped like a triangular prism with no floor. Each of its two triangular ends has a base of 8 feet and a height of 3 feet, and each slanted side of a triangular end is 5 feet long. The tent is 10 feet long. Fabric covers the two triangular ends and the two slanted rectangular sides. How many square feet of fabric are used?",
+   "190db370-99a [live ssat/ssat-math-s15 Math easy] :: A tent is shaped like a triangular prism 10 feet long. Each triangular end has sides of 5 feet, 5 feet and 8 feet, with the 8-foot side on the ground. What is the volume of the tent, in cubic feet?",
+   "ad3559af-6c1 [live map/map-math-v2-geo Geometry medium] :: A wooden block is a rectangular prism 20 centimeters long, 10 centimeters wide, and 8 centimeters tall. A straight groove is cut into the upper face along the whole 20-centimeter length. The groove is shaped like a triangular prism: each end of the groove is a triangle 4 centimeters wide at the block's upper face and 3 centimeters deep. What is the volume of the wood that is left, in cubic centimeters?"
+  ],
+  "tfidf": [
+   "0.40 0fe65df7 map: A tent is shaped like a triangular prism with no floor. Each of its two triangular ends has a base of 8 feet a",
+   "0.39 7ea7ae73 isee: A rectangular prism has a square base with side 4 centimeters and a volume of 240 cubic centimeters. What is t"
+  ]
+ },
+ {
+  "id": "D10",
+  "q": "pyramid&volume",
+  "idea": "square pyramid base 6 height 10 volume",
+  "kw_hits": 5,
+  "kw": [
+   "e97a9db1-e36 [live isee/isee-math-s15 Math medium] :: A solid pyramid has a square base 10 centimeters on each side. Each of its four triangular faces has a height (slant height) of 13 centimeters, measured from the middle of a base edge up to the top point. What is the volume of the pyramid, in cubic centimeters? (The volume of a pyramid is (1/3) x base area x height.)",
+   "f7417f90-18f [live act/act-math-v10-mix Geometry medium] :: A right pyramid has a square base with edges 12 centimeters long. Its slant height, the distance from the apex to the midpoint of a base edge, is 10 centimeters. What is the volume of the pyramid, in cubic centimeters?",
+   "f965f855-734 [live sat/sat-math-v30-full Geometry and Trigonometry easy] :: A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height of the prism is 9 centimeters. The volumes of the two blocks differ by how many cubic centimeters?",
+   "ALG-H2-19 [prior sat-alg-hard-v2.batch.json] :: The volume of a pyramid is given by V = (1/3)Bh, where B is the area of its base and h is its height. Which of the following gives B in terms of V and h?",
+   "GEO3-13 [prior sat-geo-v3.batch.json] :: A right pyramid has a square base with edges of length 24 feet, and the slant height of each triangular face is 15 feet. What is the volume of the pyramid, in cubic feet?"
+  ],
+  "tfidf": [
+   "0.79 e97a9db1 isee: A solid pyramid has a square base 10 centimeters on each side. Each of its four triangular faces has a height ",
+   "0.66 f7417f90 act: A right pyramid has a square base with edges 12 centimeters long. Its slant height, the distance from the apex"
+  ]
+ },
+ {
+  "id": "D11",
+  "q": "(cubes|blocks)&(fit|packed)&box",
+  "idea": "how many 2-inch cubes fit in box 10 by 6 by 4 inches",
+  "kw_hits": 1,
+  "kw": [
+   "4fc04268-38a [live ssat/ssat-math-s16 Math medium] :: Solid cubes with edges 2 inches long are packed, without being cut, into a closed rectangular box whose inside measures 5 inches by 7 inches by 9 inches. Every cube must have its edges parallel to the edges of the box. What is the greatest number of cubes that can fit in the box?"
+  ],
+  "tfidf": [
+   "0.53 4fc04268 ssat: Solid cubes with edges 2 inches long are packed, without being cut, into a closed rectangular box whose inside",
+   "0.52 cf696225 map: A box shaped like a rectangular prism is filled completely, with no gaps, with 3,168 cubes that are each 1/4 i"
+  ]
+ },
+ {
+  "id": "D12",
+  "q": "revolutions|wheel&(turns|rotations)",
+  "idea": "wheel diameter 70 cm revolutions to travel 1.1 km",
+  "kw_hits": 3,
+  "kw": [
+   "2cc1a7d3-78d [live sat/math-v4 Problem-Solving and Data Analysis medium] :: In a bell tower, a drive gear with 32 teeth meshes with a gear that has 20 teeth. Fixed to the same shaft as that 20-tooth gear is a 24-tooth gear, which meshes with a 90-tooth gear carrying the striking cam. The cam trips the hammer 3 times per revolution. If the drive gear turns at a constant 45 revolutions per minute, how many times does the hammer strike in 20 minutes?",
+   "3ae0e679-396 [live ssat/ssat-math-s16 Math medium] :: A wheel of radius 2 centimeters rolls without slipping around the outside of a square whose sides are 10 centimeters long, always touching the square, until it returns to its starting position. How many centimeters does the center of the wheel travel?",
+   "e2483fdf-b1f [live act/act-math-v26 Functions medium] :: A wheel with a radius of 0.8 meter turns counterclockwise at a constant 4 revolutions per second about an axle that is 2.0 meters above the floor. A reflector on the rim is level with the axle and to its right at time t = 0. To the nearest hundredth of a meter, how high above the floor is the reflector at t = 0.29 second?"
+  ],
+  "tfidf": [
+   "0.47 92388a14 ssat: A wheel has a diameter of 35 cm. Taking pi to be 22/7, how many complete revolutions does the wheel make while",
+   "0.32 3ae0e679 ssat: A wheel of radius 2 centimeters rolls without slipping around the outside of a square whose sides are 10 centi"
+  ]
+ },
+ {
+  "id": "D13",
+  "q": "regular hexagon&area",
+  "idea": "regular hexagon side 4 area",
+  "kw_hits": 8,
+  "kw": [
+   "19043762-679 [live act/act-math-v6-geo Geometry medium] :: Two regular hexagons are similar. The ratio of the perimeter of the smaller hexagon to the perimeter of the larger hexagon is 3 to 5. The area of the smaller hexagon is 45 square inches. What is the area of the larger hexagon, in square inches?",
+   "476503b5-77a [live ssat/ssat-math-s17 Math medium] :: ABCDEF is a regular hexagon with an area of 72 square units. Triangles ACE and BDF are drawn inside it, and together they form a six-pointed star. What is the area of the star, that is, of the region that lies inside at least one of the two triangles?",
+   "6757203e-305 [live sat/math-v4 Geometry and Trigonometry medium] :: In a beekeeper's hive, each honeycomb cell is a regular hexagonal prism whose hexagonal opening has side length 2.7 mm and whose depth is 11.5 mm. One frame contains 6800 such cells, and at harvest each cell is filled to 90% of its volume with honey of density 1.42 g per cubic centimeter. To the nearest gram, what mass of honey does one frame hold? (The area of a regular hexagon of side s is (3*sqrt(3)/2)*s^2.)",
+   "69afefdd-25c [live act/act-math-v15-mix Geometry hard] :: A regular hexagon has sides that are each 8 centimeters long. The area of an equilateral triangle with side s is (√3/4)s^2. What is the area of the hexagon, in square centimeters?",
+   "7985f484-158 [live act/act-math-v4gi Geometry hard] :: An equilateral triangle and a regular hexagon have equal perimeters. The area of the triangle is 36√3 square centimeters. What is the area, in square centimeters, of the hexagon?",
+   "813f4f75-6b1 [live act/act-math-v28 Geometry medium] :: A patio is shaped like a regular hexagon with sides 3.4 meters long. A walkway 1.7 meters wide surrounds the patio. The outer edge of the walkway is also a regular hexagon, and each of its six sides is parallel to a side of the patio and 1.7 meters from it. To the nearest hundredth of a square meter, what is the area of the walkway?",
+   "853252d2-1e5 [live sat/v2 Geometry and Trigonometry hard] :: A regular hexagon has a side length of 6. What is its area, rounded to the nearest whole number?",
+   "fffd6df7-d56 [live isee/isee-math-s16 Math hard] :: A regular hexagon and an equilateral triangle have the same perimeter. The area of the triangle is 36 square inches. What is the area of the hexagon, in square inches?"
+  ],
+  "tfidf": [
+   "0.75 69afefdd act: A regular hexagon has sides that are each 8 centimeters long. The area of an equilateral triangle with side s ",
+   "0.75 853252d2 sat: A regular hexagon has a side length of 6. What is its area, rounded to the nearest whole number?"
+  ]
+ },
+ {
+  "id": "D14",
+  "q": "cubic yards?|cubic feet&cubic yard",
+  "idea": "concrete slab 18 ft by 12 ft by 6 in cubic yards",
+  "kw_hits": 3,
+  "kw": [
+   "018c3ce7-d0f [live act/act-math-v7-ies Integrating Essential Skills easy] :: A bin holds 4 cubic yards of gravel. There are 27 cubic feet in 1 cubic yard. How many cubic feet of gravel does the bin hold?",
+   "4f90b061-fdd [live act/act-math-v29 Integrating Essential Skills hard] :: A landscaper must haul 37 cubic yards of wet topsoil from a supply yard to a job site 11 miles away, using one truck. Wet topsoil weighs 2,300 pounds per cubic yard. The truck's bed holds up to 7 cubic yards, but the truck may carry at most 14,000 pounds of topsoil on any one load. At the yard, a loader puts topsoil into the truck at a rate of 0.55 cubic yard per minute, and at the job site each load takes 9 minutes to dump. The truck averages 40 miles per hour when loaded and 50 miles per hour when empty. The job starts when the loader begins filling the first load and ends when the last load has been dumped; the truck does not return to the yard after the last load. Every load except possi",
+   "6102150c-d41 [live act/act-math-v18 Integrating Essential Skills medium] :: A rectangular patio slab is to be 18 feet long, 12 feet wide, and 4 inches thick. Concrete costs $135 per cubic yard, where 1 yard = 3 feet, and the supplier charges for exactly the volume used. What is the cost of the concrete for the slab, in dollars?"
+  ],
+  "tfidf": [
+   "0.51 6102150c act: A rectangular patio slab is to be 18 feet long, 12 feet wide, and 4 inches thick. Concrete costs $135 per cubi",
+   "0.27 4fdaccb4 act: A builder pours concrete into a cylindrical hole 30 centimeters in diameter and 1.3 meters deep. The bottom 10"
+  ]
+ },
+ {
+  "id": "D15",
+  "q": "poured&into&(cylind|box|container)|pour(s|ed) all",
+  "idea": "water from full cylinder radius 3 height 8 poured into box 6 by 4 depth",
+  "kw_hits": 3,
+  "kw": [
+   "09cf7bc0-4d2 [live act/act-math-v2c Geometry medium] :: A cylindrical container with a radius of 4 inches is filled with water to a depth of 9 inches. All of the water is then poured into an empty cylindrical container with a radius of 6 inches. What is the depth of the water, in inches, in the second container?",
+   "17f937c3-5b1 [live isee/isee-math-s2 Math hard] :: A cylindrical tank with radius 6 centimeters and height 10 centimeters holds water to a depth of 4 centimeters. All of the water is poured into an empty rectangular container whose base measures 9 centimeters by 8 centimeters and which is tall enough to hold it. What is the depth of the water in the rectangular container, in centimeters?",
+   "807a4ea6-f86 [live act/act-math-v1 Geometry hard] :: A rectangular container with interior dimensions 10 cm by 6 cm by 4 cm is completely filled with water. All of the water is poured into an empty cylindrical container with an interior radius of 4 cm. To the nearest hundredth of a centimeter, how deep is the water in the cylinder?"
+  ],
+  "tfidf": [
+   "0.40 17f937c3 isee: A cylindrical tank with radius 6 centimeters and height 10 centimeters holds water to a depth of 4 centimeters",
+   "0.38 6a959e2e isee: A cylinder has a radius of 3 cm and a height of 10 cm. What is its volume, in cubic centimeters, in terms of p"
+  ]
+ },
+ {
+  "id": "D16",
+  "q": "angle&between&diagonals|diagonals&angle",
+  "idea": "rectangle diagonals form 50 degree angle with long side; acute angle between diagonals",
+  "kw_hits": 2,
+  "kw": [
+   "c36ccaf9-325 [live ssat/ssat-math-s17 Math medium] :: ABCDE is a convex pentagon. Its five diagonals AC, CE, EB, BD and DA are drawn, forming a five-pointed star whose points are A, B, C, D and E. The angle of the star at each point is the angle between the two diagonals drawn from that point: angle CAD at A, angle DBE at B, angle ECA at C, angle ADB at D and angle BEC at E. The angle of the star at A measures 25 degrees and the angle at B measures 29 degrees. The angles of the star at C, D and E are equal to each other. What is the measure, in degrees, of the angle of the star at C?",
+   "f9bf8c47-0ed [live map/map-math-g58-v3 Geometry hard] :: A rhombus has diagonals that are 24 centimeters and 18 centimeters long, and each of its four sides is 15 centimeters long. The height of the rhombus is the distance between two opposite sides, measured at a right angle to them. What is the height of the rhombus, in centimeters?"
+  ],
+  "tfidf": [
+   "0.46 f70fab31 act: In rectangle ABCD, diagonal AC makes an angle of 32° with side AB. The two diagonals of the rectangle intersec",
+   "0.34 97423e2c isee: A convex polygon has 12 sides. How many diagonals does it have?"
+  ]
+ },
+ {
+  "id": "D18",
+  "q": "(area|perimeter)&(semicircle|half circle)&(diameter|on top)",
+  "idea": "window rectangle 4 by 3 with semicircle on top area",
+  "kw_hits": 5,
+  "kw": [
+   "67ab567e-e16 [live act/act-math-v29 Geometry medium] :: A window is shaped like a rectangle with a semicircle on top of it; the top side of the rectangle is the diameter of the semicircle. A metal frame runs along the entire outer edge of the window (the bottom side, the two vertical sides, and the curved top) and also straight across the window along the diameter of the semicircle. The frame uses 24 feet of metal in all, and each vertical side of the rectangle is 5 feet long. To the nearest hundredth of a square foot, what is the area of the window?",
+   "93ee3490-600 [live ssat/ssat-math-s15 Math easy] :: A garden is shaped like a rectangle measuring 10 meters by 6 meters with a semicircle attached outward along each of the two 6-meter sides, each 6-meter side being a diameter of its semicircle. Using 3.14 for pi, what is the perimeter of the garden, in meters?",
+   "a42ff916-fbe [live act/act-math-v1 Geometry medium] :: A figure consists of a rectangle 12 inches long and 8 inches wide with a semicircle attached along one of the 8-inch sides, the diameter of the semicircle being that side. What is the total area of the figure, in square inches?",
+   "cebba20d-746 [live ssat/ssat-math-s16 Math medium] :: A square is drawn inside a semicircle of radius 10 so that one side of the square lies along the diameter and the other two vertices of the square lie on the curved part of the semicircle. What is the area of the square?",
+   "ee23ab22-b2d [live isee/isee-math-s16 Math hard] :: A square is drawn inside a semicircle of radius 5 inches so that one side of the square lies along the diameter of the semicircle and the other two vertices of the square lie on the curved arc. What is the area of the square, in square inches?"
+  ],
+  "tfidf": [
+   "0.74 67ab567e act: A window is shaped like a rectangle with a semicircle on top of it; the top side of the rectangle is the diame",
+   "0.37 a42ff916 act: A figure consists of a rectangle 12 inches long and 8 inches wide with a semicircle attached along one of the "
+  ]
+ },
+ {
+  "id": "D19",
+  "q": "(ratio|percent)&(surface area|volume)&cube&edge&(increase|doubl|tripl)",
+  "idea": "cube edge increased 50 percent surface area percent increase",
+  "kw_hits": 1,
+  "kw": [
+   "72fa02e1-90b [live ssat/ssat-math-s15 Math medium] :: Every edge of a cube is lengthened by the same amount, and as a result the total surface area of the cube increases by 125%. By what percent does the volume of the cube increase?"
+  ],
+  "tfidf": [
+   "0.54 72fa02e1 ssat: Every edge of a cube is lengthened by the same amount, and as a result the total surface area of the cube incr",
+   "0.50 f8a8ccb8 isee: The length of a rectangle is increased by 20 percent and its width is decreased by 10 percent. By what percent"
+  ]
+ },
+ {
+  "id": "D20",
+  "q": "complementary&supplementary&(ratio|twice|three times)",
+  "idea": "two complementary angles in ratio 2 to 7 larger supplement",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.56 c927c0e0 map: Angle P and angle Q are complementary. The supplement of angle P is 40 degrees greater than the supplement of ",
+   "0.27 df8046ee ssat: The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure, in degrees, of the largest ang"
+  ]
+ },
+ {
+  "id": "D21",
+  "q": "(triangle|triangles)&angles?&ratio&\\d ?: ?\\d ?: ?\\d",
+  "idea": "triangle angles in ratio 2:3:4 largest angle",
+  "kw_hits": 4,
+  "kw": [
+   "3df0bbd5-b1c [live isee/isee-math-s17 Math medium] :: The three vertices of a triangle lie on a circle and divide the circle into three arcs, none of which contains a vertex in its interior. The lengths of the three arcs are in the ratio 3 : 4 : 5. What is the measure, in degrees, of the largest angle of the triangle?",
+   "aa36bad4-a0d [live isee/isee-math-s16 Math medium] :: At each vertex of a triangle, one exterior angle is drawn. The three exterior angles are in the ratio 3 : 4 : 5. What is the measure of the largest INTERIOR angle of the triangle, in degrees?",
+   "df8046ee-1bd [live ssat/ssat-math-s6 Math medium] :: The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure, in degrees, of the largest angle?",
+   "f1adc880-d2c [live act/act-math-v17 Geometry medium] :: The measures of the three exterior angles of a triangle, one at each vertex, are in the ratio 4 : 5 : 6. What is the measure, in degrees, of the largest interior angle of the triangle?"
+  ],
+  "tfidf": [
+   "0.88 df8046ee ssat: The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure, in degrees, of the largest ang",
+   "0.66 608d40c8 act: The measures of the three angles of a triangle are (2x + 10)°, (3x − 5)°, and (x + 25)°. What is the measure, "
+  ]
+ },
+ {
+  "id": "D23",
+  "q": "(trapezoid|parallelogram)&angles?&(consecutive|adjacent)&(x|degrees)",
+  "idea": "parallelogram one angle 4 times adjacent find smaller",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.33 3838c246 isee: A parallelogram has sides of length 8 centimeters and 6 centimeters, and one of its angles measures 60 degrees",
+   "0.31 1f4eed1b map: A triangle has a base of 16 centimeters and a height of 9 centimeters. A parallelogram has the same area as th"
+  ]
+ },
+ {
+  "id": "D24",
+  "q": "(perimeter|area)&(rectangle|square)&(cut|divided)&(two|four) (congruent|identical)",
+  "idea": "square cut into 4 congruent rectangles each perimeter 30 square area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.37 65691249 map: Two rectangles are drawn on a coordinate grid. Rectangle A has corners at (1, 1), (10, 1), (10, 10), and (1, 1",
+   "0.30 219c9757 isee: A square has an area of 121 square inches. What is its perimeter, in inches?"
+  ]
+ },
+ {
+  "id": "D27",
+  "q": "(circle|circles)&circumference&(increase|increased) by&radius",
+  "idea": "circumference increases by 10 pi radius increases by",
+  "kw_hits": 1,
+  "kw": [
+   "fc669fec-307 [live isee/isee-math-s16 Math medium] :: When the radius of a circle is increased by 2 centimeters, the area of the circle increases by 40(pi) square centimeters. What is the circumference of the ORIGINAL circle, in centimeters?"
+  ],
+  "tfidf": [
+   "0.46 fc669fec isee: When the radius of a circle is increased by 2 centimeters, the area of the circle increases by 40(pi) square c",
+   "0.34 dff2c3a8 map: On the line 3x + 5y = 55, as x increases from 7 to 37, by how much does y decrease?"
+  ]
+ },
+ {
+  "id": "D29",
+  "q": "(equilateral|isosceles) triangle&perimeter&(side|base)&(x|more than)",
+  "idea": "isosceles triangle perimeter 50 base 6 less than each leg find base",
+  "kw_hits": 1,
+  "kw": [
+   "GEOH2-06 [prior sat-geo-h2.batch.json] :: An isosceles triangle has two sides of length 13 and an area of 60. There is more than one such triangle. What is the greatest possible perimeter of the triangle, to the nearest tenth?"
+  ],
+  "tfidf": [
+   "0.37 74a7e9c6 act: An isosceles triangle has a perimeter of 62 centimeters, and each of its two congruent sides is 23 centimeters",
+   "0.33 3a895c5a sat: If log base 2 of x plus log base 2 of y equals 5, and x = 4y, what is the value of y?"
+  ]
+ },
+ {
+  "id": "D31",
+  "q": "(fence|fencing)&(circular|circle)&(diameter|radius)",
+  "idea": "circular garden fence 44 m pi 22/7 area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 33520d51 map: On a map drawn on a coordinate plane, each unit stands for 1 meter. A rectangular garden has corners at (-10, ",
+   "0.34 5d6f2a16 isee: A square has a perimeter of 48 meters. A rectangular garden has the same area as the square, and the garden is"
+  ]
+ },
+ {
+  "id": "D32",
+  "q": "(cone|cylinder)&same (base|radius) and (height|same height)&(ratio|times)",
+  "idea": "cone and cylinder same base and height cylinder volume 90 cone volume",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.90 8d13faba sat: A cone and a cylinder have the same radius. The cylinder's height is twice the cone's height. What is the rati",
+   "0.60 0368de0f isee: A right circular cone has a base radius of 6 centimeters and a slant height of 10 centimeters. What is the vol"
+  ]
+ },
+ {
+  "id": "D33",
+  "q": "(volume|capacity)&liters?&(cm|centimeters)&(1 liter|1,000 cubic)",
+  "idea": "tank 50 cm by 40 cm by 30 cm liters",
+  "kw_hits": 2,
+  "kw": [
+   "d46badaa-6cf [live act/act-math-v29 Number and Quantity medium] :: A cylindrical tank has a wall that is exactly 0.8 centimeter thick. Its outside diameter is measured as 88 centimeters, rounded to the nearest centimeter, and its inside height is measured as 130 centimeters, rounded to the nearest 10 centimeters. The inside diameter equals the outside diameter minus twice the wall thickness. An engineer uses the least possible inside volume of the tank as its safe capacity. To the nearest liter, what is that least possible volume? (1 liter = 1,000 cubic centimeters)",
+   "GEO-H1-07 [prior sat-geo-hard-v1.batch.json] :: A rectangular tank has interior dimensions 1.2 meters by 80 centimeters by 50 centimeters. Given that 1 liter is equal to 1,000 cubic centimeters, what is the capacity of the tank, in liters?"
+  ],
+  "tfidf": [
+   "0.51 54ebff64 sat: Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment",
+   "0.49 9dd66412 isee: A water tank is 2/5 full. After 18 more liters of water are added, the tank is 7/10 full. What is the total ca"
+  ]
+ },
+ {
+  "id": "D34",
+  "q": "(tile|tiles)&(square|rectangular) floor|cover(s|ed)? (the|a) floor&tiles",
+  "idea": "floor 4.8 m by 3.6 m with 30 cm square tiles count",
+  "kw_hits": 6,
+  "kw": [
+   "0bf95836-141 [live act/act-math-v3nq Number and Quantity medium] :: A rectangular floor measures 168 centimeters by 252 centimeters. It is to be covered completely, with no overlap and no cutting, by identical square tiles whose side length is a whole number of centimeters. What is the smallest number of tiles that can be used?",
+   "0d9acd0c-2f4 [live act/act-math-v4gi Integrating Essential Skills medium] :: A rectangular floor measures 156 inches by 108 inches. The floor is to be covered completely by identical square tiles whose side length, in inches, is a whole number, and no tile may be cut. What is the smallest number of tiles that can be used?",
+   "0fdc560e-8b8 [live act/act-ies-alg-0919 Integrating Essential Skills medium] :: A rectangular floor measures 84 inches by 60 inches. It is to be covered completely with identical square tiles, with no gaps and no tile cut. If the tiles are as large as possible, how many tiles are needed?",
+   "269ea4b8-12d [live ssat/ssat-math-s17 Math medium] :: A rectangular floor 20 feet long and 8 feet wide is covered with square tiles, each 1 foot on a side, laid in straight rows and columns. A straight line is drawn from one corner of the floor to the opposite corner. Through how many of the tiles does the line pass? (A tile is counted only if the line passes through its interior.)",
+   "c4bcb060-094 [live ssat/ssat-math-s2 Math hard] :: A rectangular floor measures 12 feet by 15 feet. It is to be covered completely with square tiles that measure 6 inches on each side. How many tiles are needed?",
+   "ec40f310-576 [live act/act-math-v18 Integrating Essential Skills medium] :: A rectangular floor that is 12 feet by 15 feet is covered exactly with 1-foot-square tiles. Every tile that touches an edge of the floor is blue and costs $3.20; every other tile is white and costs $2.15. What is the total cost of the tiles, in dollars?"
+  ],
+  "tfidf": [
+   "0.35 0fdc560e act: A rectangular floor measures 84 inches by 60 inches. It is to be covered completely with identical square tile",
+   "0.35 c4bcb060 ssat: A rectangular floor measures 12 feet by 15 feet. It is to be covered completely with square tiles that measure"
+  ]
+ },
+ {
+  "id": "D37",
+  "q": "(triangle)&(midpoints?)&(area|perimeter)&(smaller|connect)",
+  "idea": "triangle midpoints joined area of small triangle from area 48",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 e227c75e ssat: ABCD is a parallelogram, and point P lies inside it. The area of triangle PAB is 14, the area of triangle PBC ",
+   "0.34 84f59e76 isee: A triangle has vertices A(-2, -1), B(6, 3), and C(1, 7). What is the area of the triangle, in square units?"
+  ]
+ },
+ {
+  "id": "D39",
+  "q": "(rectangle|rectangular)&(diagonal)&(length|width)&(ratio|\\d ?: ?\\d)",
+  "idea": "rectangle sides ratio 3:4 diagonal 25 area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.58 016a95ed ssat: A rectangle has a perimeter of 34 and a diagonal of length 13. What is the area of the rectangle?",
+   "0.48 bcacdc1d isee: A rectangle has a perimeter of 34 centimeters and a diagonal of 13 centimeters. What is the area of the rectan"
+  ]
+ },
+ {
+  "id": "D40",
+  "q": "(square)&(area)&(diagonal)&(doubl|twice)",
+  "idea": "square whose diagonal equals side of another square area ratio",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 351b59f5 isee: The diagonal of a square measures 10 centimeters. What is the area of the square, in square centimeters?",
+   "0.51 a58806d4 sat: A square has an area of 50. What is the length of its diagonal?"
+  ]
+ },
+ {
+  "id": "D41",
+  "q": "(circle)&(radius)&(area)&(numerically equal|same number|equal to its circumference)",
+  "idea": "circle whose area numerically equals its circumference radius",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.42 72c9687f isee: A circle has a circumference of 12 pi centimeters. What is its area, in square centimeters?",
+   "0.38 fc669fec isee: When the radius of a circle is increased by 2 centimeters, the area of the circle increases by 40(pi) square c"
+  ]
+ },
+ {
+  "id": "D42",
+  "q": "(ramp|wheelchair)&(rise|slope)",
+  "idea": "wheelchair ramp rise 1 per 12 run height 30 inches ramp horizontal length feet",
+  "kw_hits": 3,
+  "kw": [
+   "2104e510-b06 [live act/act-math-v4gi Geometry medium] :: A skateboard ramp rises 7 feet vertically over a horizontal distance of 24 feet. What is the sine of the angle the ramp makes with the level ground, to the nearest hundredth?",
+   "2c78978e-694 [live sat/v2 Geometry and Trigonometry medium] :: A straight ramp has a length of 25 feet and rises at an angle whose sine is 0.28. What is the horizontal distance, in feet, covered by the ramp?",
+   "7db86aea-3b1 [live map/map-math-v2-geo Geometry easy] :: A wheelchair ramp rises 1.2 meters over a horizontal distance of 5 meters. How long is the sloped surface of the ramp, to the nearest hundredth of a meter?"
+  ],
+  "tfidf": [
+   "0.59 7db86aea map: A wheelchair ramp rises 1.2 meters over a horizontal distance of 5 meters. How long is the sloped surface of t",
+   "0.56 2c78978e sat: A straight ramp has a length of 25 feet and rises at an angle whose sine is 0.28. What is the horizontal dista"
+  ]
+ },
+ {
+  "id": "D43",
+  "q": "(frame|border|mat)&(picture|photo)&(width|uniform)",
+  "idea": "picture 8 by 10 frame width 2 area of frame",
+  "kw_hits": 2,
+  "kw": [
+   "59607aa6-6ed [live sat/sat-adv-v11 Advanced Math medium] :: A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border?",
+   "SAM11-15 [prior sat-adv-v11.batch.json] :: A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border?"
+  ],
+  "tfidf": [
+   "0.24 6757203e sat: In a beekeeper's hive, each honeycomb cell is a regular hexagonal prism whose hexagonal opening has side lengt",
+   "0.22 9a48aefe isee: A wire 72 centimeters long is bent, with no overlap and nothing left over, to form all 12 edges of a cube-shap"
+  ]
+ },
+ {
+  "id": "D45",
+  "q": "(clock|minute hand)&(tip|travels|distance)&(inches|cm)",
+  "idea": "minute hand 6 cm tip distance in 20 minutes",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.52 b3086974 isee: What is the measure, in degrees, of the smaller angle between the hour hand and the minute hand of a clock at ",
+   "0.48 44277b63 isee: How many degrees does the minute hand of a clock turn in 25 minutes?"
+  ]
+ },
+ {
+  "id": "D47",
+  "q": "(angles?)&(around a point|full turn|360)&(x|ratio)",
+  "idea": "angles around a point x 2x 3x 4x largest",
+  "kw_hits": 2,
+  "kw": [
+   "284f4f3a-d50 [live ssat/ssat-math-q9 Math medium] :: Each exterior angle of a regular polygon measures 24°. What is the sum of the interior angles of that polygon, in degrees?",
+   "57b1a2c1-97c [live act/act-math-v6-geo Geometry easy] :: In the figure below, lines l and m are parallel and are cut by transversal t. The two marked angles are corresponding angles. What is the value of x?"
+  ],
+  "tfidf": [
+   "0.57 71ebf2ef isee: Three straight lines pass through the same point, forming six angles around that point. Two of these angles th",
+   "0.55 df8046ee ssat: The three angles of a triangle are in the ratio 2 : 3 : 4. What is the measure, in degrees, of the largest ang"
+  ]
+ },
+ {
+  "id": "D48",
+  "q": "(similar)&(volume)&(ratio|scale)&(surface|area)",
+  "idea": "similar solids surface area ratio 4:9 volume ratio",
+  "kw_hits": 2,
+  "kw": [
+   "24c11c48-073 [live sat/math-v6-geo-hard Geometry and Trigonometry medium] :: Cone A and cone B are similar right circular cones. The ratio of the lateral surface area of cone A to the lateral surface area of cone B is 4 to 9. The volume of cone A is 32 cubic centimeters. What is the volume of cone B, in cubic centimeters?",
+   "GEO-H1-02 [prior sat-geo-hard-v1.batch.json] :: Cone A and cone B are similar right circular cones. The ratio of the lateral surface area of cone A to the lateral surface area of cone B is 4 to 9. The volume of cone A is 32 cubic centimeters. What is the volume of cone B, in cubic centimeters?"
+  ],
+  "tfidf": [
+   "0.32 2a41c958 sat: Two triangles are similar. The ratio of their perimeters is 3 to 5. If the area of the smaller triangle is 27 ",
+   "0.30 72aabff2 isee: Two similar triangles have corresponding sides in the ratio 2 : 3. The smaller triangle has an area of 20 squa"
+  ]
+ },
+ {
+  "id": "D49",
+  "q": "(area)&(triangle)&(base|height)&(increase|increased)&(percent)",
+  "idea": "triangle base +20 percent height -20 percent area change",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 476e0857 isee: 20 is what percent of 25?",
+   "0.43 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "D51",
+  "q": "(sector)&(perimeter)",
+  "idea": "perimeter of sector radius 6 angle 90 degrees",
+  "kw_hits": 3,
+  "kw": [
+   "6d19e446-47e [live isee/isee-math-s3 Math medium] :: A circle has area 36(pi) square centimeters. A sector of this circle has a central angle of 120 degrees. What is the perimeter of the sector, that is, the length of its arc plus its two straight radii, in centimeters?",
+   "c78c3313-b2a [live ssat/ssat-math-s16 Math medium] :: A sector of a circle (the region bounded by two radii and the arc between them) has radius 6 centimeters. The perimeter of the sector, which is the two radii plus the arc, is 20 centimeters. What is the area of the sector, in square centimeters?",
+   "GEOH2-03 [prior sat-geo-h2.batch.json] :: A sector of a circle has a perimeter of 44 centimeters (two radii plus the arc) and an area of 120 square centimeters. The radius of the circle is greater than 11 centimeters. What is the measure of the sector's central angle, in radians, to the nearest tenth?"
+  ],
+  "tfidf": [
+   "0.64 63f3de60 sat: A sector of a circle of radius 6 has area 12π. What is the measure, in degrees, of the sector's central angle?",
+   "0.56 7168c6c5 act: A sector of a circle of radius 6 inches has an area of 10π square inches. What is the measure, in degrees, of "
+  ]
+ },
+ {
+  "id": "D54",
+  "q": "(angle)&(isosceles)&(vertex|apex)&(base angles?)&(x|times)",
+  "idea": "isosceles triangle vertex angle is 3 times a base angle; vertex angle",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.48 990c8858 isee: In triangle ABC, the exterior angle at vertex C measures 130 degrees. The measure of angle A is 4 times the me",
+   "0.45 9e3224dc map: Three straight lines cross at point O and form six angles around O. Going around O in order, the angles are an"
+  ]
+ },
+ {
+  "id": "D56",
+  "q": "(polygon)&(sides)&(sum of (the )?(interior|exterior))&(times|twice)",
+  "idea": "polygon whose interior angle sum is 4 times exterior sum sides",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.65 f77d5b82 ssat: In a certain regular polygon, each interior angle measures exactly 5 times the measure of each exterior angle.",
+   "0.64 284f4f3a ssat: Each exterior angle of a regular polygon measures 24°. What is the sum of the interior angles of that polygon,"
+  ]
+ }
+]

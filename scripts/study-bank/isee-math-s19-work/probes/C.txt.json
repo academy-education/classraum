@@ -1,0 +1,550 @@
+[
+ {
+  "id": "C01",
+  "q": "no solution&k|has no solution",
+  "idea": "for what k does 3x - k = kx + 6 have no solution",
+  "kw_hits": 44,
+  "kw": [
+   "06563cc7-236 [live sat/v2 Algebra medium] :: In the system of equations 3x − 5y = 12 and 9x + ky = 30, there is no solution. What is the value of k?",
+   "0e6131fc-c65 [live act/act-math-v1 Algebra medium] :: For what value of k does the system 3x − 6y = 9 and kx − 4y = 5 have NO solution?",
+   "185059cf-755 [live sat/v2 Algebra medium] :: In the system ax + 6y = 15 and 4x + 3y = 9, the system has no solution. What is the value of a?",
+   "1eb3e800-347 [live sat/sat-math-v16-adv Algebra hard] :: The system of equations 3x − 5y = 8 and ax + 15y = 7, where a is a constant, has no solution. What is the value of a?",
+   "27d3c42d-d4e [live ssat/ssat-math-s15 Math medium] :: For what value of k does the system of equations 3x + ky = 7 and 9x + 12y = 20 have no solution?",
+   "29b0f14c-58b [live sat/v2 Algebra hard] :: The system of equations 3x + ky = 7 and 12x + 20y = 9 has no solution. What is the value of k ?",
+   "49b75ef8-aa8 [live sat/math-v9-alg-hard Algebra medium] :: In the system of equations 3x + ky = 12 and 6x + 10y = 7, k is a constant. If the system has no solution, what is the value of k?",
+   "5222b188-79b [live sat/sat-alg-hard-v1 Algebra medium] :: In the equation 4(kx - 2) - 3x = 5(x + 6) - 3, k is a constant. If the equation has no solution, what is the value of k?",
+   "54c8aaf9-9a8 [live sat/sat-math-v20-adv Advanced Math medium] :: k/(x − 3) = (4x + 4)/(x − 3) − 6",
+   "64b5e844-5d3 [live act/act-unit-0918 Algebra medium] :: For what value of k does the system 2x − 3y = 11 and kx + 12y = 5 have no solution?",
+   "6e7adc6d-daa [live sat/sat-alg-hard-v1 Algebra medium] :: In the equation a(4x - 3) + 5x = 3(7x + 2) - 8, a is a constant. If the equation has no solution, what is the value of a?",
+   "723a5bbb-e99 [live sat/v2 Algebra medium] :: The system of equations 3x − 4y = 12 and ax − 8y = 15 has no solution. What is the value of a?",
+   "7b51a34c-56b [live sat/sat-alg-hard-v1 Algebra medium] :: In the system of equations 6x - 4y = 10 and cx + 6y = 21, c is a constant. If the system has no solution, what is the value of c?",
+   "7f5cc5ee-2b2 [live sat/sat-math-v18-adv Advanced Math hard] :: In the equation below, k is a constant.",
+   "866a7560-e7a [live sat/sat-alg-hard-v1 Algebra medium] :: In the equation 5(wx - 2) - 4x = 26x + 9, w is a constant. If the equation has no solution, what is the value of w?",
+   "90306af7-4d4 [live sat/sat-math-v19-alg Algebra hard] :: (k − 2)x + 18y = 27",
+   "91e525ac-fe6 [live sat/sat-alg-hard-v1 Algebra hard] :: In the inequality 3(2x + 5) - 4x ≤ 2(x + c), c is a constant. What is the greatest integer value of c for which the inequality has no solution?",
+   "ae096f06-d98 [live sat/v2 Algebra medium] :: In the system of equations 3x + ky = 7 and 6x + 8y = 5, k is a constant. If the system has no solution, what is the value of k?",
+   "c0ede046-b41 [live sat/v2 Algebra medium] :: The system of equations ax - 3y = 12 and 4x + 6y = -7 has no solution. What is the value of a?",
+   "c5b7076a-ac2 [live sat/v2 Algebra medium] :: The system of equations ax + 3y = 6 and 4x + 6y = 9 has no solution. What is the value of a?",
+   "ce41c32a-cf0 [live sat/sat-math-v22-alg Algebra hard] :: kx + 3y = k + 12",
+   "d04021e1-041 [live act/act-math-v9-alg Algebra medium] :: For what value of k does the equation 3(2x - 1) = kx + 7 have NO solution?",
+   "e0714e93-ea2 [live sat/v2 Algebra medium] :: In the following system of equations, k is a constant.",
+   "e3069e2d-c07 [live act/act-math-v2-alg Algebra hard] :: For what value of k does the system of equations 3x + ky = 12 and 6x + 10y = 7 have no solution?",
+   "SALG-22 [prior sat-alg-0918.batch.json] :: In the xy-plane, the system of equations y = 4x - 3 and 2y - 8x = k, where k is a constant, has no solution for every value of k except one. What is that value of k?",
+   "SALGB-05 [prior sat-alg-0918b.batch.json] :: In the equation 2(4x - 3) + kx = 3(x + 7) - 4, k is a constant. If the equation has no solution, what is the value of k?",
+   "SALG5C-02 [prior sat-alg-0919c-c.batch.json] :: In the equation k(4x + 3) - 9 = 6(x - k) + 8x, k is a constant. If the equation has no solution, what is the value of k ?",
+   "ALG-H4-01 [prior sat-alg-h4.batch.json] :: In the system of equations 2x + 9y = 5 and 8x + ky = 3, k is a constant. If the system has no solution, what is the value of k?",
+   "ALG-H4-18 [prior sat-alg-h4.batch.json] :: In the equation 3(kx - 2) = 12x + 9, k is a constant. If the equation has no solution, what is the value of k?",
+   "ALG-H5-12 [prior sat-alg-h5.batch.json] :: In the equation 5(3x - 2) + a = bx + 6, a and b are constants. If the equation has no solution, what is the value of b?",
+   "AL-H-01 [prior sat-alg-hard-v1.batch.json] :: In the equation a(4x - 3) + 5x = 3(7x + 2) - 8, a is a constant. If the equation has no solution, what is the value of a?",
+   "AL-H-03 [prior sat-alg-hard-v1.batch.json] :: In the equation 4(kx - 2) - 3x = 5(x + 6) - 3, k is a constant. If the equation has no solution, what is the value of k?",
+   "AL-H-06 [prior sat-alg-hard-v1.batch.json] :: In the equation 5(wx - 2) - 4x = 26x + 9, w is a constant. If the equation has no solution, what is the value of w?",
+   "AL-H-13 [prior sat-alg-hard-v1.batch.json] :: In the system of equations 6x - 4y = 10 and cx + 6y = 21, c is a constant. If the system has no solution, what is the value of c?",
+   "AL-H-22 [prior sat-alg-hard-v1.batch.json] :: In the inequality 3(2x + 5) - 4x ≤ 2(x + c), c is a constant. What is the greatest integer value of c for which the inequality has no solution?",
+   "ALG-H2-02 [prior sat-alg-hard-v2.batch.json] :: ax + 3y = 9",
+   "ALG-H4-01 [prior sat-alg-hard-v4.batch.json] :: In the system of equations 3x + ky = 12 and 6x + 10y = 7, k is a constant. If the system has no solution, what is the value of k?",
+   "SM16L-02 [prior sat-math-v16-adv.kept.batch.json] :: The system of equations 3x − 5y = 8 and ax + 15y = 7, where a is a constant, has no solution. What is the value of a?",
+   "SM18A-A4 [prior sat-math-v18-adv-a.batch.json] :: (5x − 9)/(x − 4) + 3 = k/(x − 4)",
+   "SM18A-B4 [prior sat-math-v18-adv-b.batch.json] :: In the equation below, k is a constant.",
+   "SM19L-A1 [prior sat-math-v19-alg-a.batch.json] :: (k − 2)x + 18y = 27",
+   "SM20A-A7 [prior sat-math-v20-adv-a.batch.json] :: k/(x − 3) = (4x + 4)/(x − 3) − 6",
+   "SM22L-A1 [prior sat-math-v22-alg-a.batch.json] :: kx + 3y = k + 12",
+   "SM26F-C01 [prior sat-math-v26-algfull-c.batch.json] :: 12x - 8y = 7"
+  ],
+  "tfidf": [
+   "0.71 0e6131fc act: For what value of k does the system 3x − 6y = 9 and kx − 4y = 5 have NO solution?",
+   "0.67 d04021e1 act: For what value of k does the equation 3(2x - 1) = kx + 7 have NO solution?"
+  ]
+ },
+ {
+  "id": "C02",
+  "q": "in \\d+ years&twice as old as (she|he) was&years ago",
+  "idea": "In 6 years Ana will be twice as old as she was 9 years ago",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.75 84eb5c93 ssat: Five years ago, Ana was three times as old as Ben was then. In four years, Ana will be twice as old as Ben wil",
+   "0.48 65edd1f7 sat: Dana is 3 years older than her brother. In 6 years, Dana will be twice as old as her brother was 4 years ago. "
+  ]
+ },
+ {
+  "id": "C03",
+  "q": "a \\+ b = &b \\+ c = &(a|c) \\+ (c|a) =",
+  "idea": "a+b=10 b+c=14 a+c=12 find a+b+c",
+  "kw_hits": 1,
+  "kw": [
+   "688a6c96-8b4 [live ssat/ssat-math-s15 Math easy] :: The numbers a, b and c satisfy a + b = 7, b + c = 19 and a + c = 16. What is the greatest of the three numbers a, b and c?"
+  ],
+  "tfidf": [
+   "0.53 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.40 76d57097 act: If (3x)/4 + 5 = 14, what is the value of x ?"
+  ]
+ },
+ {
+  "id": "C04",
+  "q": "at most&per minute&plan|no more than&per minute",
+  "idea": "phone plan 20 dollars plus 0.15 per minute bill at most 35 max minutes",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 98e89432 act: Phone plan A costs $20 per month plus $0.15 for each minute of calls. Phone plan B costs $35 per month, which ",
+   "0.41 bcd4961e ssat: Plan A for a phone costs $20 per month plus $0.05 per minute of calls. Plan B costs $8 per month plus $0.11 pe"
+  ]
+ },
+ {
+  "id": "C05",
+  "q": "ax\\^2|a x\\^2&f\\(3\\)|f\\(x\\) = ax",
+  "idea": "f(x) = ax^2 and f(3) = 36 find f(5)",
+  "kw_hits": 5,
+  "kw": [
+   "3a56e4b1-bb2 [live sat/sat-math-v25-adv Advanced Math medium] :: For a constant a, the function f(x) = (ax^2 + 2x - 31)/(2x^2 - 17) gets closer and closer to 3 as x grows without bound. Find f(3).",
+   "SM15A-14 [prior sat-math-v15-adv.batch.json] :: The quadratic function f has zeros at x = -1 and x = 5, and f(2) = -36. If f(x) = ax^2 + bx + c, where a, b, and c are constants, what is the value of a + b + c?",
+   "SM16A-16 [prior sat-math-v16-adv.batch.json] :: The function f is defined by f(x) = ax^2 + bx + c, where a, b, and c are constants. The zeros of f are -3 and 7, and f(0) = -42. What is the value of a?",
+   "SM17A-B1 [prior sat-math-v17-adv-b.batch.json] :: The graph of the quadratic function f(x) = ax^2 + bx + c crosses the x-axis at (-2, 0) and (3, 0), and the minimum value of f is -150. What is the value of a?",
+   "SM25V-C12 [prior sat-math-v25-adv-c.batch.json] :: For a constant a, the function f(x) = (ax^2 + 2x - 31)/(2x^2 - 17) gets closer and closer to 3 as x grows without bound. Find f(3)."
+  ],
+  "tfidf": [
+   "0.56 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.40 a3c808de isee: 45 is what percent of 36?"
+  ]
+ },
+ {
+  "id": "C06",
+  "q": "\\(x\\^2 - 9\\)|x\\^2 - 9\\)/|\\(x\\^2 - 16\\)/",
+  "idea": "(x^2 - 9)/(x + 3) evaluated at x = 7",
+  "kw_hits": 5,
+  "kw": [
+   "b9027c70-cec [live act/act-math-v8-fn Functions easy] :: The function f is defined by f(x) = (x + 5)/(x^2 - 9). For which of the following values of x is f(x) undefined?",
+   "bf82f494-61c [live act/act-math-v7-alg Algebra medium] :: If (x^2 - 9)/(x^2 - 6x + 9) = 4 and x is not equal to 3, what is the value of x ?",
+   "bf9164cd-e26 [live sat/v2 Advanced Math medium] :: For x != 3/2 and x != -1, the expression (4x^2 - 9)/(2x^2 - x - 3) is equivalent to (ax + b)/(x + 1). What is the value of a + b?",
+   "AM-H-05 [prior sat-adv-hard-v1.batch.json] :: For x > 3, which of the following is equivalent to 2x/(x^2 - 9) - 1/(x - 3) ?",
+   "AM2-23 [prior sat-adv-hard-v2.batch.json] :: The function g is defined by g(x) = (x^2 - x - 6)/(x^2 - 9). In the xy-plane, the graph of y = g(x) has a vertical asymptote at one value of x and a hole, a single removed point, at another value of x. At which value of x is the hole?"
+  ],
+  "tfidf": [
+   "0.28 e6230e95 act: If (x + 9)/2 = x - 3, what is the value of x ?",
+   "0.26 19b064a0 act: If 3^x = 7, what is the value of 3^(x + 2) ?"
+  ]
+ },
+ {
+  "id": "C07",
+  "q": "what is the value of x/y|value of y/x|x/y\\?",
+  "idea": "3x + 2y = 5x - 4y find x/y",
+  "kw_hits": 1,
+  "kw": [
+   "5419ab2d-9b6 [live act/act-math-v18 Algebra easy] :: For nonzero numbers x and y with x ≠ y, (3x + 2y)/(x − y) = 5. What is the value of x/y ?"
+  ],
+  "tfidf": [
+   "0.73 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.48 5b269623 sat: The number x satisfies 2^(x + 2) · 5^(x - 1) = 800. Using this equation, find the value of the product 2^x · 5"
+  ]
+ },
+ {
+  "id": "C08",
+  "q": "inequality&(tickets|t-shirts|cups)&at least&profit|break even",
+  "idea": "club sells cups at 3 each cost 80 setup and 1.40 each; least cups for profit over 100",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.41 43ed3621 isee: A recipe calls for 3 cups of flour for every 2 cups of sugar. A baker plans to use 9 cups of sugar and already",
+   "0.31 2cd72a07 ssat: One batch of trail mix uses 4 cups of oats, 3 spoonfuls of honey and 2 cups of nuts. A shop has 300 cups of oa"
+  ]
+ },
+ {
+  "id": "C09",
+  "q": "consecutive&multiples of (3|5)|consecutive multiples",
+  "idea": "three consecutive multiples of 7 sum to 168 largest",
+  "kw_hits": 1,
+  "kw": [
+   "SM14L-20 [prior sat-math-v14-alg.batch.json] :: The sum of three consecutive multiples of 7 is 168. What is the greatest of these three multiples?"
+  ],
+  "tfidf": [
+   "0.52 804a4f50 sat: The product of two consecutive positive even integers is 168. What is their sum?",
+   "0.50 d283376d sat: The sum of three consecutive odd integers is 3 more than twice the largest of the three. What is the largest i"
+  ]
+ },
+ {
+  "id": "C10",
+  "q": "\\(a \\+ b\\)\\^2|\\(x \\+ y\\)\\^2&xy",
+  "idea": "(x + y)^2 = 49 and xy = 10 find x^2 + y^2",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.36 7ea6c7a6 act: If 4^x = 10, what is the value of 2^(2x + 3)?"
+  ]
+ },
+ {
+  "id": "C12",
+  "q": "f\\(2x\\)|f\\(x \\+ 1\\)&f\\(x\\) =",
+  "idea": "f(x) = 3x - 5 find f(2x) - 2f(x)",
+  "kw_hits": 4,
+  "kw": [
+   "b998bd75-29f [live sat/sat-math-v14 Advanced Math medium] :: The function f is defined by f(x) = x^2 - 4. The function g is defined by g(x) = 2f(x + 1) - 3. What is the value of g(2)?",
+   "SADV7B-07 [prior sat-adv-0919e-b.batch.json] :: The function f is defined by f(x) = 4·5^(3x). If f(x + 1) = c·f(x) for every value of x, what is the value of c?",
+   "SM14A-13 [prior sat-math-v14-adv.batch.json] :: The function f is defined by f(x) = x^2 - 4. The function g is defined by g(x) = 2f(x + 1) - 3. What is the value of g(2)?",
+   "SM25V-D01 [prior sat-math-v25-adv-d.batch.json] :: A power function has the form f(x) = ax^n, with a and n positive constants. Doubling any positive input multiplies the output by 8, that is, f(2x) = 8f(x) whenever x > 0. Given that f(3) = 54, compute f(5)."
+  ],
+  "tfidf": [
+   "0.70 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.52 5b269623 sat: The number x satisfies 2^(x + 2) · 5^(x - 1) = 800. Using this equation, find the value of the product 2^x · 5"
+  ]
+ },
+ {
+  "id": "C14",
+  "q": "\\d+x - \\d+ ?(<|>|≤|≥) ?\\d+&greatest integer|least integer&satisf",
+  "idea": "least integer x with 5 - 2x < -9",
+  "kw_hits": 1,
+  "kw": [
+   "e4371cfc-b46 [live act/act-math-v1 Algebra easy] :: What is the greatest integer x that satisfies the inequality 4x - 7 ≤ 2x + 8?"
+  ],
+  "tfidf": [
+   "0.62 f969f5a5 act: What is the least integer value of x that satisfies 5 − 3x < −13?",
+   "0.54 e2a99abd sat: How many integer values of x satisfy |2x − 5| < 9?"
+  ]
+ },
+ {
+  "id": "C17",
+  "q": "if 3x = 4y = 6z|= 4y =",
+  "idea": "if 2a = 3b = 4c and a + b + c = 26 find a",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.56 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.40 1988c5aa sat: The system of equations 3x + 2y = 26 and 5x - 3y = 18 has solution (x, y). What is the value of 2x + 5y?"
+  ]
+ },
+ {
+  "id": "C18",
+  "q": "average of x and y&average of|mean of x and y",
+  "idea": "mean of x and y is 15 mean of x, y, z is 18 find z",
+  "kw_hits": 1,
+  "kw": [
+   "a216f3f1-93c [live ssat/ssat-math-s10 Math medium] :: The average of x and y is 14, and the average of y and z is 22. What is the value of z - x?"
+  ],
+  "tfidf": [
+   "0.56 6d532d53 isee: The mean of seven numbers is 11. The mean of the first four numbers is 9, and the mean of the last four number",
+   "0.52 2f5f72f3 act: The mean of a set of 8 numbers is 15, and the mean of a different set of 12 numbers is 20. What is the mean of"
+  ]
+ },
+ {
+  "id": "C20",
+  "q": "substitute|in terms of t&x = \\d+t&y =",
+  "idea": "x = 2t + 1 and y = 4t - 3 express y in terms of x; value of y when x = 9",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.44 6bb72b33 sat: A right circular cylinder has a radius of 4 and a height of 10. What is its total surface area? (Express your ",
+   "0.34 46a3076b act: The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f("
+  ]
+ },
+ {
+  "id": "C25",
+  "q": "(cost|price)&(two|2) (shirts|pens|notebooks)&(three|3)&(cost|price)",
+  "idea": "2 shirts and 3 ties cost 85; 3 shirts and 2 ties cost 90; one shirt and one tie",
+  "kw_hits": 1,
+  "kw": [
+   "f54217d6-7c0 [live ssat/ssat-math-s10 Math medium] :: A shop sells notebooks at $3.60 each. Under an offer, for every two notebooks bought at full price a third notebook is free. A customer leaves with 12 notebooks. How many dollars does the customer pay?"
+  ],
+  "tfidf": [
+   "0.42 9b61b083 map: Jo has $120. She buys 3 shirts. Each shirt has a regular price of $18.50, and every shirt is on sale for 20% o",
+   "0.36 5ef07c07 isee: All T-shirts at a store have the same regular price. During a sale, a customer who buys three T-shirts at the "
+  ]
+ },
+ {
+  "id": "C26",
+  "q": "\\(2x ?\\+ ?\\d\\)\\(x|\\(x ?\\+ ?\\d\\)\\(x ?- ?\\d\\)&coefficient|constant term",
+  "idea": "product (2x + 3)(x - 4) coefficient of x",
+  "kw_hits": 4,
+  "kw": [
+   "9ff759c8-d37 [live sat/sat-adv-v11 Advanced Math medium] :: The polynomial p is defined by p(x) = (x - 4)(2x + 1)(x + 3). What is the coefficient of x in p(x) ?",
+   "f13a9c3e-a24 [live act/act-math-v25 Algebra medium] :: In the expression (2x + 7)(x + k) − (x − 4)², k is a constant. When the expression is expanded and like terms are combined, the result has no x term. What is the constant term of the result?",
+   "AM2-20 [prior sat-adv-hard-v2.batch.json] :: In the expansion of (2x + 3)(x - 5), what is the coefficient of x ?",
+   "SAM11-14 [prior sat-adv-v11.batch.json] :: The polynomial p is defined by p(x) = (x - 4)(2x + 1)(x + 3). What is the coefficient of x in p(x) ?"
+  ],
+  "tfidf": [
+   "0.61 9ff759c8 sat: The polynomial p is defined by p(x) = (x - 4)(2x + 1)(x + 3). What is the coefficient of x in p(x) ?",
+   "0.57 62e7d55d act: When the product (2x - 3)(x² + 4x - 1) is written as a polynomial in standard form, what is the coefficient of"
+  ]
+ },
+ {
+  "id": "C29",
+  "q": "equation&line&slope&passes through&parallel to",
+  "idea": "line parallel to y = 2x - 3 through (4, 1) y-intercept",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.77 3d7a3f09 sat: Line k is parallel to the line 2x + y = 5 and passes through the point (3, 4). What is the y-coordinate of the",
+   "0.72 108da464 sat: In the xy-plane, a line passes through the point (4, -3), and the y-intercept of the line is 3 times its x-int"
+  ]
+ },
+ {
+  "id": "C30",
+  "q": "graph&crosses&x-axis&y = \\d|x-intercept",
+  "idea": "x-intercept of 3x - 4y = 24",
+  "kw_hits": 9,
+  "kw": [
+   "0e9432fc-282 [live sat/sat-math-v25-adv Advanced Math medium] :: The polynomial p is defined by p(x) = (x - 3)^2(x + 1)^3(x - 6)^4(2x + 5). In the xy-plane, the graph of y = p(x) crosses the x-axis at some of its x-intercepts and touches the x-axis without crossing it at the others. What is the sum of the x-coordinates of the x-intercepts at which the graph crosses the x-axis?",
+   "4873d49b-628 [live act/act-math-v25 Functions medium] :: In the standard (x,y) coordinate plane, the graph of y = 2^x is stretched vertically by a factor of 6, and the resulting graph is then translated 2 units to the right and 11 units down. To the nearest thousandth, what is the x-coordinate of the point where the final graph crosses the x-axis?",
+   "7bffd615-c5f [live sat/sat-math-v18-adv Advanced Math hard] :: The graph of the polynomial function f in the xy-plane touches the x-axis at x = 3 without crossing it, crosses the x-axis at x = −2 and at x = −1, and has no other x-intercepts. The y-intercept of the graph is (0, −6), and f has the least possible degree for such a graph. What is the value of f(1)?",
+   "9d2e69ce-3dc [live act/act-math-v29 Algebra hard] :: In the standard (x,y) coordinate plane, the graph of y = 1.6x² − 7x + c, where c is a constant, crosses the x-axis at points A and B. The vertex V of the graph and the points A and B are the vertices of an equilateral triangle. To the nearest hundredth, what is the value of c ?",
+   "a523eeb4-404 [live sat/sat-form24 Advanced Math hard] :: The polynomial p has degree 4. In the xy-plane, the graph of y = p(x) crosses the x-axis at (−3, 0) and (2, 0), and touches the x-axis at (5, 0) without crossing it. These are the only x-intercepts, and p(0) = 450. What is the value of p(1)?",
+   "SADV7D-07 [prior sat-adv-0919e-d.batch.json] :: The polynomial p has degree 4. In the xy-plane, the graph of y = p(x) crosses the x-axis at (−3, 0) and (2, 0), and touches the x-axis at (5, 0) without crossing it. These are the only x-intercepts, and p(0) = 450. What is the value of p(1)?",
+   "SM18A-B5 [prior sat-math-v18-adv-b.batch.json] :: The graph of the polynomial function f in the xy-plane touches the x-axis at x = 3 without crossing it, crosses the x-axis at x = −2 and at x = −1, and has no other x-intercepts. The y-intercept of the graph is (0, −6), and f has the least possible degree for such a graph. What is the value of f(1)?",
+   "SM24L-B10 [prior sat-math-v24-alg-b.batch.json] :: 3x + 4y = 2k + 5",
+   "SM25V-C03 [prior sat-math-v25-adv-c.batch.json] :: The polynomial p is defined by p(x) = (x - 3)^2(x + 1)^3(x - 6)^4(2x + 5). In the xy-plane, the graph of y = p(x) crosses the x-axis at some of its x-intercepts and touches the x-axis without crossing it at the others. What is the sum of the x-coordinates of the x-intercepts at which the graph crosses the x-axis?"
+  ],
+  "tfidf": [
+   "0.71 108da464 sat: In the xy-plane, a line passes through the point (4, -3), and the y-intercept of the line is 3 times its x-int",
+   "0.60 64ad18c9 sat: The function f is linear. In the xy-plane, the graph of y = f(x) - 5 has an x-intercept at x = 2, and the grap"
+  ]
+ },
+ {
+  "id": "C31",
+  "q": "f\\(x\\) ?= ?\\d?x ?[+-] ?\\d&f\\(a\\) ?= ?\\d+&a",
+  "idea": "f(x) = 4x - 7 and f(a) = 29 find a",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.58 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.52 05d545ec sat: Real numbers x and y satisfy x + y = 7 and x^2 + y^2 = 29. What is the value of xy?"
+  ]
+ },
+ {
+  "id": "C33",
+  "q": "\\d+\\^x ?= ?\\d+&\\d+\\^\\(x|value of \\d\\^\\(x",
+  "idea": "if 3^x = 7 find 9^x",
+  "kw_hits": 9,
+  "kw": [
+   "19b064a0-8c8 [live act/act-math-v9-alg Algebra medium] :: If 3^x = 7, what is the value of 3^(x + 2) ?",
+   "4534dd16-fb5 [live sat/sat-form24 Advanced Math medium] :: What is the solution to the equation 2^(x + 3) + 2^x = 2304 ?",
+   "79be58aa-974 [live sat/v2 Advanced Math medium] :: If 8^x = 4^(x + 1), what is the value of x?",
+   "83a077fb-8c4 [live map/map-math-v2-num Real and Complex Number Systems hard] :: The number x makes the equation 3^x = 10 true. What is the value of 9^x + 3^(x + 3)?",
+   "86af0ced-3c3 [live sat/v2 Advanced Math medium] :: What value of x satisfies 4^x = 8^(x - 1)?",
+   "c4f4813b-8b1 [live ssat/ssat-math-s16 Math medium] :: If 2^x = 3 and 3^y = 4, what is the value of 2^(xy) ?",
+   "cb4d1dd1-bf4 [live sat/v2 Algebra medium] :: If 4^x = 8^(x − 1), what is the value of x?",
+   "SADV7B-12 [prior sat-adv-0919e-b.batch.json] :: What is the solution to the equation 2^(x + 3) + 2^x = 2304 ?",
+   "SM25V-B11 [prior sat-math-v25-adv-b.batch.json] :: Suppose 3^x = 49. Evaluate the sum 3^(x/2) + 3^(-x/2), giving your answer to two decimal places."
+  ],
+  "tfidf": [
+   "0.72 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.44 dab0d3b0 sat: For nonzero constants a and b, let f(x) = ax^3 + bx + 7. Given that f(-2) = 16, find f(2)."
+  ]
+ },
+ {
+  "id": "C35",
+  "q": "sum of two numbers is&difference&product",
+  "idea": "two numbers sum 23 difference 7 product",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.71 f542281b ssat: Two numbers have a sum of 30 and a difference of 8. What is their product?",
+   "0.38 c08ec569 sat: The function f is linear. If f(3) = 11 and f(7) = 23, what is the value of f(0) + f(10)?"
+  ]
+ },
+ {
+  "id": "C36",
+  "q": "inverse of&f\\(x\\)|f\\^-1|f\\^\\(-1\\)",
+  "idea": "inverse of f(x) = (x - 4)/3 evaluated at 5",
+  "kw_hits": 6,
+  "kw": [
+   "16a2cd24-997 [live sat/sat-form24 Advanced Math medium] :: The table gives the values of the functions f and g for five values of x.",
+   "2cb66bb6-ba8 [live act/act-math-v28 Functions medium] :: The function f is defined by f(x) = 0.4x^2 + 3 for x ≥ 0, and f^(−1) is the inverse of f. To the nearest thousandth, what is the average rate of change of f^(−1) from x = 5 to x = 13?",
+   "2d4a5d45-563 [live act/act-math-v29 Functions hard] :: The function f is defined by f(x) = √(x − 3) + 1 for x ≥ 3, and f⁻¹ is the inverse of f. In the standard (x,y) coordinate plane, the line x + y = 11 intersects the graph of y = f(x) at point P and intersects the graph of y = f⁻¹(x) at point Q. To the nearest hundredth of a coordinate unit, what is the distance PQ ?",
+   "SADV7D-03 [prior sat-adv-0919e-d.batch.json] :: The table gives the values of the functions f and g for five values of x.",
+   "AM2-08 [prior sat-adv-hard-v2.batch.json] :: The function f is defined by f(x) = 3x - 5, and the function h is defined by h(x) = f^-1(2x), where f^-1 is the inverse of f. What is the value of h(4) ?",
+   "SM17A-A4 [prior sat-math-v17-adv-a.batch.json] :: The function f is defined by f(x) = (5x + 12)/(x - 3) for x not equal to 3. The inverse of f can be written as f^-1(x) = (3x + a)/(x - b), where a and b are constants. What is the value of ab?"
+  ],
+  "tfidf": [
+   "0.40 41202e47 sat: The function f is defined by f(x) = (5x − 2)/(x − 3) for all x ≠ 3, and f⁻¹ is the inverse function of f. What",
+   "0.40 cf9ac61d sat: The function f is defined by f(x) = (2x + 5)/(x - 3) for x not equal to 3. What is the value of f-inverse(1)?"
+  ]
+ },
+ {
+  "id": "C38",
+  "q": "hours&\\d+ dollars per hour&(saved|save)&weeks",
+  "idea": "earns 12 per hour babysitting saved 150 needs 420 how many more hours",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.25 588e3313 isee: Anna saves $12 in her first week and, in each week after that, $3 more than she saved the week before. How man",
+   "0.20 08df7bb7 ssat: Fifteen friends agree to share the $420 cost of renting a bus equally. Three of them drop out, and the other f"
+  ]
+ },
+ {
+  "id": "C39",
+  "q": "(cost|charge)&fixed&per&same (cost|total)&how many",
+  "idea": "two gyms 40 plus 5 per visit vs 25 plus 8 per visit same cost visits",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.45 7a086d32 isee: A bowling alley charges s dollars for shoe rental on each visit plus g dollars for each game bowled. Mia visit",
+   "0.38 401aaac9 sat: A climbing gym offers two plans. Plan A has a one-time fee of k dollars plus $12 per visit. Plan B has a one-t"
+  ]
+ },
+ {
+  "id": "C42",
+  "q": "(x ?- ?\\d)\\^2 ?= ?\\d+&values? of x&(sum|product)",
+  "idea": "(x - 3)^2 = 25 sum of solutions",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.71 bbaf5787 sat: If (x + 6)/(x - 2) = x/3, what is the sum of all solutions?",
+   "0.68 e7830fe0 sat: What is the sum of all solutions to |2x − 5| = x + 4?"
+  ]
+ },
+ {
+  "id": "C43",
+  "q": "(k|c)&(make|so that)&perfect square&x\\^2",
+  "idea": "value of c making x^2 - 12x + c a perfect square",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 a7ed80da ssat: What is the least positive integer n such that n/2 is a perfect square and n/3 is a perfect cube?",
+   "0.53 812ad5db act: What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?"
+  ]
+ },
+ {
+  "id": "C44",
+  "q": "point&lies on (the )?line&y = \\dx&k",
+  "idea": "point (k, 2k - 1) lies on line y = 3x - 5 find k",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.48 fe4be473 sat: A line in the xy-plane passes through the points (-2, 5) and (4, -7). The point (k, -1) also lies on this line"
+  ]
+ },
+ {
+  "id": "C45",
+  "q": "\\d+% of x&\\d+% of y&x/y|percent of x is",
+  "idea": "20 percent of x equals 30 percent of y; x/y ratio",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.60 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is",
+   "0.56 5de37fe5 isee: What number is 30 percent of 40 percent of 250?"
+  ]
+ },
+ {
+  "id": "C49",
+  "q": "\\d/x ?\\+ ?\\d/x|\\d/\\(x\\)|1/x ?\\+ ?1/",
+  "idea": "1/x + 1/(2x) = 1/4 find x",
+  "kw_hits": 5,
+  "kw": [
+   "07ae7c97-63d [live isee/isee-math-s16 Math medium] :: The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y?",
+   "4813dd35-d60 [live act/act-math-v7-alg Algebra medium] :: For x not equal to 0 and x not equal to 3, which of the following expressions is equivalent to (1/x + 1/3)/(1/x - 1/3) ?",
+   "dd21e2ec-725 [live ssat/ssat-math-s6 Math medium] :: If 1/x + 1/y = 5/12 and x = 4, what is the value of y?",
+   "fb087ad2-c2b [live act/act-math-v16 Algebra easy] :: The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y ?",
+   "SADV5B-05 [prior sat-adv-0919c-b.batch.json] :: For nonzero numbers x and y, 1/x + 1/y = 3/4 and xy = 12. What is the value of (x − y)² ?"
+  ],
+  "tfidf": [
+   "0.65 3e0b1db8 sat: If x + 1/x = 4, what is the value of x^2 + 1/x^2?",
+   "0.63 2fad5363 ssat: What is the value of 2/3 + 1/4 - 1/2?"
+  ]
+ },
+ {
+  "id": "C50",
+  "q": "(x ?\\+ ?\\d)/(x ?- ?\\d) ?= ?\\d",
+  "idea": "(x + 5)/(x - 1) = 3",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.85 e201342d ssat: If x + 1/x = 5, what is the value of x² + 1/x²?",
+   "0.82 1fca5f69 sat: If 2/(x − 1) = 5/(3x + 4), what is the value of x?"
+  ]
+ },
+ {
+  "id": "C52",
+  "q": "tens digit&units digit&(twice|three times|sum)",
+  "idea": "two-digit number tens digit twice units digit and number minus reverse is 27",
+  "kw_hits": 1,
+  "kw": [
+   "c4d1e2cb-d88 [live sat/v2 Algebra medium] :: A two-digit number equals 7 times the sum of its digits, and its tens digit is 3 more than its units digit. What is the number?"
+  ],
+  "tfidf": [
+   "0.73 c4d1e2cb sat: A two-digit number equals 7 times the sum of its digits, and its tens digit is 3 more than its units digit. Wh",
+   "0.56 88303912 ssat: Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such "
+  ]
+ },
+ {
+  "id": "C53",
+  "q": "when x = \\d+, y = \\d+&linear&when x =",
+  "idea": "y linear in x, y = 11 when x = 2 and y = 26 when x = 7, y when x = 10",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.56 46a3076b act: The function f is defined by f(x) = 2x + 6 when x < 3, and f(x) = x^2 - 4 when x >= 3. What is the value of f(",
+   "0.51 ab3e2814 act: What is the value of a^2·b - 2a·b^2 when a = -3 and b = 2 ?"
+  ]
+ },
+ {
+  "id": "C55",
+  "q": "if x ?\\+ ?2y ?= ?\\d+&(3x|2x) ?\\+ ?(6y|4y)",
+  "idea": "x + 2y = 7 value of 3x + 6y - 4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.92 51bab9f4 sat: If (3x - 7)/4 - (x - 5)/6 = 2, what is the value of x?",
+   "0.92 fc957e28 isee: If 2x - 3y = 7, what is the value of 6y - 4x + 5?"
+  ]
+ },
+ {
+  "id": "C56",
+  "q": "(sequence|term)&f\\(n\\) ?= ?|a_n|nth term ?= ?\\d+n",
+  "idea": "nth term 5n - 3 which term equals 97",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.67 991e1a22 act: In a certain sequence, the 1st term is 40 and the 2nd term is 44. For every n ≥ 2, the difference between the ",
+   "0.55 cfaedc0b isee: In an arithmetic sequence, the sum of the 3rd term and the 8th term is 50, and the 5th term is 22. What is the"
+  ]
+ },
+ {
+  "id": "C59",
+  "q": "(pool|tank)&(level|depth)&(drops?|rises?)&(cm|inches) per (hour|minute)&when",
+  "idea": "pool depth 180 cm drains 12 cm per hour other fills from 0 at 18 cm per hour when equal",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.27 6b8e16f8 act: A rectangular swimming pool is 24 feet long and 12 feet wide and has a flat bottom. It now holds water to a de",
+   "0.25 057048c9 sat: An empty pool can be filled by pipe A in 6 hours. Pipe B, if left open, can drain a full pool in 9 hours. If t"
+  ]
+ },
+ {
+  "id": "C62",
+  "q": "x\\^\\(?\\d/\\d\\)?|x\\^0\\.5|square root of x&\\d+",
+  "idea": "x^(2/3) = 16 positive x",
+  "kw_hits": 15,
+  "kw": [
+   "038a2550-978 [live sat/sat-math-v16-adv Advanced Math hard] :: What is the greatest solution to the equation x^(2/3) − 5x^(1/3) + 6 = 0?",
+   "08720f36-1ae [live isee/isee-math-s4 Math medium] :: The number x satisfies 0 < x < 1. Which of the following expressions has the greatest value?",
+   "11eb02a4-b65 [live sat/sat-adv-h3 Advanced Math medium] :: If x^(3/4) = 27 and x > 0, what is the value of x?",
+   "363fa231-e3c [live sat/v2 Advanced Math medium] :: If x^(3/2) = 27 and x > 0, what is the value of x?",
+   "6443cac7-474 [live sat/v2 Advanced Math medium] :: If x^(2/3) = 16, what is the value of x?",
+   "b84fc6a0-6e1 [live sat/sat-math-v25-adv Advanced Math medium] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+   "bf5e72d3-fce [live sat/sat-adv-0919b Advanced Math medium] :: The function f is defined by f(x) = a · x^(3/2) + b, where a and b are constants. If f(0) = 5 and f(4) = 29, what is the value of f(9)?",
+   "ebfc7b64-a8c [live isee/isee-math-s17 Math easy] :: The positive number x satisfies x^(3/4) = 27. What is the value of x^(1/2) ?",
+   "SADV-01 [prior sat-adv-0918.batch.json] :: For x > 0, which of the following is equivalent to (√(x³) · ∛x) / x^(1/6) ?",
+   "SADV3-11 [prior sat-adv-0919b.batch.json] :: The function f is defined by f(x) = a · x^(3/2) + b, where a and b are constants. If f(0) = 5 and f(4) = 29, what is the value of f(9)?",
+   "AH3-21 [prior sat-adv-h3.batch.json] :: If x^(3/4) = 27 and x > 0, what is the value of x?",
+   "ADV6-21 [prior sat-adv-v6.batch.json] :: For x > 0, which expression is equivalent to x^(3/4) · x^(1/2)?",
+   "SM16A-09 [prior sat-math-v16-adv.kept.batch.json] :: What is the greatest solution to the equation x^(2/3) − 5x^(1/3) + 6 = 0?",
+   "SM20A-C2 [prior sat-math-v20-adv-c.batch.json] :: (x^a)(⁴√(x³)) / √x = x^(5/2)",
+   "SM25V-B04 [prior sat-math-v25-adv-b.batch.json] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?"
+  ],
+  "tfidf": [
+   "0.77 6443cac7 sat: If x^(2/3) = 16, what is the value of x?",
+   "0.70 44091188 act: What is the value of 16^(3/4) ?"
+  ]
+ },
+ {
+  "id": "C63",
+  "q": "input&output&machine|function machine",
+  "idea": "function machine multiplies by 3 then subtracts 4; output 23; input",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 0c5bb627 sat: f(x) = 3x - 11 For the function f defined above, the output at input 3n + 3 must stay below 60 more than twice",
+   "0.38 990e3a50 sat: Seven input-output pairs of a function f are listed in the first table. x | f(x) -3 | 17 -2 | 20 -1 | 15 0 | 8"
+  ]
+ }
+]

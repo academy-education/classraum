@@ -1,0 +1,62 @@
+A201 :: odd number of (positive )?(factors|divisors) :: how many integers from 1 to 100 have an odd number of positive factors
+A202 :: three different primes&sum&(largest|greatest) :: sum of three different primes is 30 largest possible
+A203 :: two-digit&product of (its|the) digits&even :: how many two-digit numbers have a digit product that is even
+A204 :: (average|mean) of all (the )?multiples of :: mean of all multiples of 7 between 100 and 200
+A205 :: fraction of&(factors|divisors) of :: what fraction of numbers 1 to 60 are factors of 60
+A206 :: sum of (all )?(the )?integers from -\d+ :: sum of all integers from -20 to 25
+A207 :: consecutive integers&a < sqrt|between&consecutive (whole numbers|integers)&√|sqrt\(\d+\)&consecutive :: a and b consecutive integers a < sqrt 90 < b find a + b
+A208 :: n/7|n/\d+&between \d+/\d+ and \d+/\d+&integer :: integer n with n/7 between 2/3 and 3/4
+A209 :: (factors|divisors) of \d+&perfect squares? :: how many factors of 72 are perfect squares
+A210 :: digits (add up|sum) to 20|digit sum (of|is) 20|least.*digits.*sum :: least positive integer whose digits sum to 20
+A211 :: three-digit&square|squares? of&three digits :: how many positive integers n have n squared with exactly three digits
+A212 :: 1 - 2 \+ 3 - 4|\(-1\)\^1 \+ \(-1\)\^2 :: 1 - 2 + 3 - 4 + ... + 99 - 100
+A213 :: palindrom :: how many three-digit palindromes
+A214 :: 1/7 \+ 2/7|k/7|sevenths&sum :: sum 1/7 + 2/7 + ... + 6/7
+A215 :: (largest|greatest) prime factor of 1001|1001 :: largest prime factor of 1001
+A216 :: divisible by (each|all) of the (integers|numbers) 1 through|1 through 10&divisible :: smallest number divisible by each of 1 through 10
+B201 :: each (person|student|member) (would )?pay(s)? \$?\d+ less|pay \$?\d+ less each :: bus rental 450 shared; if 5 more come each pays 3 less; how many originally
+B202 :: (3/4|three-fourths) (of a )?mile&(1/5|one-fifth) (of an )?hour|miles per hour&fraction :: walks 3/4 mile in 1/5 hour speed mph
+B203 :: words per minute :: Ana types 45 wpm Ben 60 wpm; Ana takes 8 minutes longer for same document; words
+B204 :: half (off|price)&second|second (one|item) (is )?half :: buy one get second half off effective percent discount
+C201 :: average cost&per (item|unit|shirt)|cost per (item|unit) (is|was|falls) :: cost 50 plus 3 per shirt; average cost per shirt 5.50; how many shirts
+C202 :: (third|fourth|5th|fifth) second|during the (third|fourth|fifth) second :: d = 16t^2 distance fallen during the third second
+C203 :: heads&legs :: chickens and cows 30 heads 84 legs how many cows
+C204 :: squares? (of|differ)&consecutive&(differ|difference) by \d+ :: two consecutive integers whose squares differ by 41 larger
+C205 :: think of a number|always (equals|ends|gives)|no matter what number :: number trick add 5 double subtract 4 halve subtract original result
+C206 :: tolerance|\|w - \d+\||within \d+ (grams|millimeters) of :: weights within 4 grams of 500 range largest minus smallest
+C207 :: 1/a ?- ?1/b|\(1/a :: (1/a - 1/b)/(1/a + 1/b) with a = 3 b = 5
+C208 :: reciprocals&sum&product :: two numbers with sum 8 product 12 sum of reciprocals
+C209 :: (both|each) (dimensions?|sides?) (are )?increased by&area (increases|increased) by :: rectangle length 4 more than width both increased by 3 area increases by 57 width
+C210 :: 2\^a ?(x|×|\*|·)? ?4\^b :: 2^a times 4^b = 64 and a = b find a
+C211 :: sum of the first (five|5|six|6) terms&(geometric|multiplied|times) :: geometric sequence 2 6 18 sum of first 5 terms
+C212 :: \(x ?\+ ?a\)\(x ?\+ ?b\)&a\^2 ?\+ ?b\^2|a\^2 \+ b\^2 :: x^2 + 5x + 6 = (x + a)(x + b) find a^2 + b^2
+C213 :: \(a ?\+ ?b\)\^2 ?- ?\(a ?- ?b\)\^2 :: (a + b)^2 - (a - b)^2 when ab = 6
+C214 :: x\^3 - 3x\^2 \+ 3x - 1|\(x - 1\)\^3 :: value of x^3 - 3x^2 + 3x - 1 at x = 11
+C215 :: positive integer (solutions|pairs)|ordered pairs&positive integers :: how many pairs of positive integers x y satisfy 2x + 3y = 30
+C216 :: 1/f|1/a \+ 1/b|lens :: 1/f = 1/a + 1/b a = 6 b = 3 f
+D201 :: ratio&perimeter&diagonal :: rectangle sides ratio 3:4 perimeter 56 diagonal
+D202 :: angles&triangle&(arithmetic|equally spaced|differ by the same) :: triangle angles form arithmetic sequence smallest 40 largest
+D203 :: isosceles right&hypotenuse&area :: isosceles right triangle hypotenuse 10 area
+D204 :: volume&base&surface area&(box|prism) :: box volume 120 base 4 by 5 surface area
+D205 :: squares&(in a row|side by side)&perimeter&area :: 5 identical squares in a row total area 80 perimeter of figure
+D206 :: rhombus&perimeter&diagonal :: rhombus perimeter 52 one diagonal 24 area
+D207 :: legs&ratio&area|legs (are )?in the ratio :: right triangle legs ratio 3:4 area 54 hypotenuse
+D208 :: equilateral triangle&square&(share|common) (a )?side&perimeter :: square area 36 equilateral triangle on one side perimeter of pentagon
+D209 :: semicircle&hypotenuse :: semicircle drawn on hypotenuse of 6-8-10 triangle area
+D210 :: rectangle&inscribed in&circle|vertices of (a|the) rectangle&on (a|the) circle :: rectangle inscribed in circle radius 5 one side 6 area
+D211 :: two angles&sum&(three|3|four|4) times the third|third angle :: two angles of triangle sum to 3 times third angle third angle
+D212 :: circumference&(cylinder|can)&volume :: cylinder base circumference 12 pi height 5 volume
+D213 :: (pool|tank)&liters per minute&(meters|m)&hours :: pool 10 m by 4 m by 1.5 m filled at 200 L per min hours
+D214 :: (two )?semicircles?&(cut|removed)&rectangle :: rectangle 10 by 6 with semicircles cut from the short sides remaining area
+E201 :: percent of (a|one) day|of a day&percent :: 3 hours 36 minutes is what percent of a day
+E202 :: (cm|centimeters|mm|millimeters) per day&(meters|m) per year :: grows 0.5 cm per day meters per year
+E203 :: \d+ minutes (after|from) \d+:\d+|1,?000 minutes :: what time is 1000 minutes after 9:00 a.m.
+E204 :: (how many|number of) squares&(all sizes|of any size)|squares of (all|any) size :: number of squares of all sizes in a 4 by 4 grid
+E205 :: (how many|number of) rectangles&(strip|row|grid) :: number of rectangles in a 1 by 8 strip of squares
+E206 :: slope&(origin|through the origin)&midpoint :: slope of line through origin and midpoint of (2,8) (6,4)
+E207 :: (lap|track)&(400|meters)&(seconds|minute)&(kilometers per hour|km/h|meters per second) :: 400 m lap in 1 min 20 s speed in km/h
+F201 :: mean of the first (n|\d+) (positive|counting|whole) (integers|numbers) :: mean of first n positive integers is 12 find n
+F202 :: median of the first&(even|odd) :: median of first 50 positive even integers
+F203 :: two-digit&(same|equal|identical) digits&probability|digits are the same :: random two-digit number probability digits are the same
+F204 :: two spinners&product :: spinner A 1-4 spinner B 1-3 probability product greater than 6
+F205 :: deviations?&(from the mean)&(sum|missing) :: deviations from mean of 5 values four known find fifth

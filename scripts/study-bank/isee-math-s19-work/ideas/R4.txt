@@ -1,0 +1,14 @@
+A401 :: (fewest|least number of|smallest number of) coins :: fewest coins of 1 5 10 25 cents to make 99 cents
+A404 :: how many of the (fractions|numbers)&(greater|more) than 0\.\d|1/2, 2/3, 3/4 :: how many of 1/2 2/3 ... 9/10 are greater than 0.7
+A406 :: sqrt\(12\)|√12&√27|sqrt\(\d+\) ?(x|×|\*|·) ?sqrt\(\d+\) :: sqrt 12 times sqrt 27
+A409 :: \(0\.\d\)\^\d|0\.2\^3|0\.\d+\^\d :: (0.2)^3 divided by 0.04
+A413 :: sum of the first (10|ten|twelve|12) (perfect )?squares|1\^2 ?\+ ?2\^2 ?\+ ?3\^2|1 \+ 4 \+ 9 \+ 16 :: sum of the first 10 perfect squares
+B408 :: (six|6) apples&(four|4) oranges|price of \d+ (apples|pens)&(equals|is the same as)&price of \d+ :: price of 6 apples equals price of 4 oranges orange 0.90 apple
+C402 :: y ?= ?3x ?- ?2&x ?= ?\(y|x = \(y :: y = 3x - 2 and x = (y + 4)/2 find x
+C410 :: 3\^x ?/ ?9\^y|2\^x ?/ ?4\^y|9\^y|4\^y&x - 2y :: x - 2y = 5 value of 3^x divided by 9^y
+C411 :: pages (per|each) day&(sooner|fewer days|days (earlier|less)) :: Kim reads 20 more pages per day than Lee finishes 360-page book 3 days sooner Lee pages per day
+D405 :: (vertices|edges|faces)&prism&(how many|number of) (edges|faces|vertices) :: prism with 12 vertices number of edges
+E405 :: (opposite )?(vertices|corners) of a square&\(\d, ?\d\)&\(\d, ?\d\)|diagonal&square&\(\d, ?\d\) :: square with opposite vertices (1,1) and (7,7) perimeter
+E408 :: (Mondays|Fridays|Sundays|Saturdays)&month :: number of Mondays in a 31-day month starting on Saturday
+F405 :: at least one vowel|three-letter&(vowel) :: three-letter strings from A B C D E with repetition at least one vowel
+F408 :: spinner&probabilit(y|ies) (of|for)&(1/2|1/3)&(twice|two spins)&(order|different) :: spinner P(A)=1/2 P(B)=1/3 rest C spun twice P(one A and one C)

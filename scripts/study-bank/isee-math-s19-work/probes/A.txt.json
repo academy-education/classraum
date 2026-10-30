@@ -1,0 +1,592 @@
+[
+ {
+  "id": "A01",
+  "q": "rounded&nearest ten&nearest hundred",
+  "idea": "A whole number rounded to the nearest ten is 350 and rounded to the nearest hundred is 300. How many whole numbers satisfy both",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.41 853252d2 sat: A regular hexagon has a side length of 6. What is its area, rounded to the nearest whole number?",
+   "0.37 5621443f sat: If 9^x + 6^x = 12(4^x), what is the value of (9^x + 4^x)/6^x, rounded to the nearest hundredth?"
+  ]
+ },
+ {
+  "id": "A02",
+  "q": "value of the (first|second|digit)&times (as great as|the value)",
+  "idea": "In 34.04 the value of the first 4 is how many times the value of the second 4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.27 b0685d95 isee: Two positive numbers are in the ratio 7 : 3. When 20 is subtracted from the first number and 20 is added to th",
+   "0.25 e8f9af26 sat: 6x - 2k = 4x + 6 4x + k = 38 In the two equations above, k is the same constant. The solution to the first equ"
+  ]
+ },
+ {
+  "id": "A03",
+  "q": "halfway between&/",
+  "idea": "What number is halfway between 1/6 and 1/4 on the number line",
+  "kw_hits": 1,
+  "kw": [
+   "d9d17101-106 [live ssat/ssat-math-q9 Math medium] :: What number is exactly halfway between 1/4 and 5/6 on a number line?"
+  ],
+  "tfidf": [
+   "0.93 d9d17101 ssat: What number is exactly halfway between 1/4 and 5/6 on a number line?",
+   "0.31 70333b96 ssat: What is the value of 1/2 + 1/6 + 1/12 + 1/20 + 1/30?"
+  ]
+ },
+ {
+  "id": "A04",
+  "q": "perfect squares?&perfect cubes?",
+  "idea": "How many integers from 1 to 200 are perfect squares or perfect cubes",
+  "kw_hits": 3,
+  "kw": [
+   "812ad5db-a17 [live act/act-math-v20 Number and Quantity medium] :: What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?",
+   "a7ed80da-060 [live ssat/ssat-math-s15 Math hard] :: What is the least positive integer n such that n/2 is a perfect square and n/3 is a perfect cube?",
+   "c2b4a2da-843 [live isee/isee-math-s17 Math hard] :: Starting from 1, the counting numbers are listed in order, but every number that is a perfect square or a perfect cube is left out. The list begins 2, 3, 5, 6, 7, 10, 11, .... What is the 100th number in the list?"
+  ],
+  "tfidf": [
+   "0.65 b583a0eb isee: How many perfect squares are there between 30 and 300?",
+   "0.61 812ad5db act: What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?"
+  ]
+ },
+ {
+  "id": "A05",
+  "q": "sum of the digits&10\\^",
+  "idea": "What is the sum of the digits of 10^25 minus 7 written out",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 9264dd12 ssat: How many digits does the number 2^10 x 5^6 have when it is written out in full?",
+   "0.40 691faf19 isee: How many zeros are at the end of the number 25^6 x 12^5 when it is written out in full?"
+  ]
+ },
+ {
+  "id": "A06",
+  "q": "sqrt\\(\\d+\\) ?[+-] ?sqrt\\(\\d+\\)|√\\d+ ?[+-] ?√",
+  "idea": "sqrt 75 plus sqrt 48 minus sqrt 27 equals k sqrt 3 find k",
+  "kw_hits": 4,
+  "kw": [
+   "096764e3-bc0 [live isee/isee-math-s16 Math medium] :: For integers a and b, (sqrt(6) + sqrt(2))^2 = a + b sqrt(3). What is the value of a + b?",
+   "198c3b9d-f07 [live ssat/ssat-math-s17 Math medium] :: In the coordinate plane, A is the point (2, 3) and B is the point (10, 7). Point P can be any point on the x-axis. What is the least possible value of AP + PB?",
+   "51941786-967 [live act/act-math-v1 Number and Quantity easy] :: The expression √50 + √18 - √8 can be written as √k for some positive integer k. What is k?",
+   "7bcbf5d3-914 [live act/act-math-v8-nq Number and Quantity easy] :: The sum sqrt(50) + sqrt(18) can be written in the form k x sqrt(2), where k is a positive integer. What is the value of k ?"
+  ],
+  "tfidf": [
+   "0.81 d79e6160 act: If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+   "0.80 9762947b isee: If sqrt(x + 7) = 2sqrt(x - 2), what is the value of x?"
+  ]
+ },
+ {
+  "id": "A07",
+  "q": "10\\^\\(?-\\d&10\\^|x 10\\^-|× 10\\^-",
+  "idea": "scientific notation product 3.6 x 10^4 times 5 x 10^-7",
+  "kw_hits": 2,
+  "kw": [
+   "053be4cb-809 [live act/act-math-v10-mix Number and Quantity easy] :: What is the value of (6 × 10^-3)(1.5 × 10^8), written in scientific notation?",
+   "c7a666be-385 [live act/act-math-v1 Number and Quantity medium] :: The quotient (6.4 × 10^8) ÷ (1.6 × 10^-3) can be written as 4 × 10^k. What is the value of k?"
+  ],
+  "tfidf": [
+   "0.65 053be4cb act: What is the value of (6 × 10^-3)(1.5 × 10^8), written in scientific notation?",
+   "0.59 4fa5b3fb act: What is (6 × 10⁸) ÷ (1.5 × 10⁻³) expressed in scientific notation?"
+  ]
+ },
+ {
+  "id": "A08",
+  "q": "0\\.0\\d+ ?(÷|divided by|/) ?0\\.\\d",
+  "idea": "0.0042 divided by 0.06",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.25 cd70e2f1 isee: What is the value of (3/4 - 1/6) divided by 5/12?",
+   "0.23 29201b80 isee: What is the least integer greater than 1 that leaves a remainder of 1 when it is divided by 4, when it is divi"
+  ]
+ },
+ {
+  "id": "A09",
+  "q": "lies between&fraction|between (\\d+/\\d+) and (\\d+/\\d+)",
+  "idea": "Which fraction lies between 5/8 and 2/3",
+  "kw_hits": 1,
+  "kw": [
+   "35b0d52b-b13 [live ssat/ssat-math-s16 Math easy] :: Which of the following numbers lies between 5/8 and 7/11 on the number line?"
+  ],
+  "tfidf": [
+   "0.52 35b0d52b ssat: Which of the following numbers lies between 5/8 and 7/11 on the number line?",
+   "0.36 c30001dc sat: Let h(x) = f(x) + kx, where f(x) = 3x + 2 and k is a constant. In the xy-plane, for every x with 1 ≤ x ≤ 3, th"
+  ]
+ },
+ {
+  "id": "A10",
+  "q": "sum of two (different )?prime|two primes?&sum|as the sum of two prime",
+  "idea": "In how many ways can 40 be written as the sum of two primes",
+  "kw_hits": 1,
+  "kw": [
+   "53ac1476-0dc [live isee/isee-math-s15 Math easy] :: Two prime numbers have a sum of 31. What is their product?"
+  ],
+  "tfidf": [
+   "0.37 7097d0a8 ssat: The number 45 can be written as a sum of two or more consecutive positive integers in several ways; one way is",
+   "0.29 0f2111a6 act: For i = √(−1), the number (2 + 3i)² can be written in the form a + bi, where a and b are real numbers. What is"
+  ]
+ },
+ {
+  "id": "A11",
+  "q": "decimal places&between|hundredths&between",
+  "idea": "How many numbers with exactly two decimal places lie strictly between 3.4 and 3.5",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.29 f1e21e9b isee: For how many positive integers n does the decimal form of 1/n terminate with exactly 4 digits after the decima",
+   "0.28 c45ca0fb ssat: When two sevenths is written as a decimal, the digits after the decimal point repeat in a block of six. What i"
+  ]
+ },
+ {
+  "id": "A12",
+  "q": "feet long&cut into&pieces&/",
+  "idea": "A board 7 1/2 feet long is cut into pieces 5/8 foot long how many pieces",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 312dafc9 ssat: Three ropes are 36 meters, 60 meters, and 150 meters long. All three ropes are cut into pieces that all have t",
+   "0.53 e89c0d63 map: Rosa has some pieces of ribbon. The table shows her line plot data: each row gives a length, in yards, and the"
+  ]
+ },
+ {
+  "id": "A13",
+  "q": "\\^\\(?-1\\)?&\\+",
+  "idea": "(2^-1 + 3^-1)^-1 negative exponent reciprocal of sum",
+  "kw_hits": 5,
+  "kw": [
+   "2558f7ef-ce5 [live act/act-math-v8-fn Functions medium] :: The function f is defined by f(x) = (3x + 2)/5. What is the value of f^-1(4)?",
+   "39c18bef-767 [live act/act-math-v4-fn Functions easy] :: The function h is defined by h(x) = (x + 9)/2. What is the value of h^-1(4)?",
+   "e7b61f1c-3fd [live act/act-math-v4-fn Functions medium] :: The functions f and g are defined by f(x) = 2x - 1 and g(x) = x/4 + 3. The function h is defined by h(x) = f(g(x)). What is the value of h^-1(9)?",
+   "SM17A-A4 [prior sat-math-v17-adv-a.batch.json] :: The function f is defined by f(x) = (5x + 12)/(x - 3) for x not equal to 3. The inverse of f can be written as f^-1(x) = (3x + a)/(x - b), where a and b are constants. What is the value of ab?",
+   "SM25V-D12 [prior sat-math-v25-adv-d.batch.json] :: Let f(x) = 2^(x - 2) + 3, and let f^-1 denote its inverse. Two points on the graph of y = f^-1(x) in the xy-plane are (35, a) and (b, 5). Compute the product ab."
+  ],
+  "tfidf": [
+   "0.46 5a5839fa sat: The sum of a positive number and its reciprocal is 10/3. What is the larger of the two possible values of the ",
+   "0.40 6ea409c5 sat: What is the negative solution to the equation 3/(x-2) + 2/(x+2) = 1?"
+  ]
+ },
+ {
+  "id": "A14",
+  "q": "12!|10!|8!&/",
+  "idea": "12 factorial divided by 10 factorial times 2 factorial",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.14 cd70e2f1 isee: What is the value of (3/4 - 1/6) divided by 5/12?",
+   "0.11 438c0943 act: When the positive integer n is divided by 12, the remainder is 5. What is the remainder when n^2 is divided by"
+  ]
+ },
+ {
+  "id": "A15",
+  "q": "\\d+\\^2 - \\d+\\^2|\\d+² - \\d+²|101\\^2|99\\^2",
+  "idea": "101 squared minus 99 squared",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.64 a3b39cf9 ssat: A nonzero number x satisfies x + 1/x = 5. What is the value of x squared + 1/(x squared)?",
+   "0.61 2d2f2ebf isee: If x squared + 2x - 15 = 0, what is the positive value of x?"
+  ]
+ },
+ {
+  "id": "A16",
+  "q": "integers&between&-\\d+/\\d",
+  "idea": "How many integers lie between -7/2 and 11/3",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.45 dabce601 sat: The points (−2, 5), (1, k), and (7, −7) lie on the same line in the xy-plane. What is the value of k?",
+   "0.41 35b0d52b ssat: Which of the following numbers lies between 5/8 and 7/11 on the number line?"
+  ]
+ },
+ {
+  "id": "A17",
+  "q": "6\\^\\d+&2\\^\\d+&3\\^\\d+",
+  "idea": "6^10 divided by 2^8 times 3^9",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 cd70e2f1 isee: What is the value of (3/4 - 1/6) divided by 5/12?",
+   "0.45 08c0b345 sat: When the polynomial p(x) = x^3 - 4x^2 + kx - 6 is divided by (x - 3), the remainder is 9. What is the value of"
+  ]
+ },
+ {
+  "id": "A18",
+  "q": "exactly (six|6|eight|8) (positive )?(divisors|factors)",
+  "idea": "smallest positive integer with exactly 6 positive divisors",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.64 851c490c isee: How many positive integers less than 100 have exactly three positive divisors?",
+   "0.63 d3e93e51 isee: For a positive integer n, let D(n) be the number of positive divisors of n. For example, D(6) = 4 because 6 ha"
+  ]
+ },
+ {
+  "id": "A19",
+  "q": "reciprocals&divisors|divisors&reciprocal",
+  "idea": "sum of reciprocals of the divisors of 28",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 ddef9e0b isee: What is the sum of all the positive divisors of 20?",
+   "0.38 9191d421 ssat: For how many whole numbers n from 1 to 200, inclusive, is the sum of all the positive divisors of n an odd num"
+  ]
+ },
+ {
+  "id": "A20",
+  "q": "how many rectangles&area|whole-number (side )?lengths&area (of|is)",
+  "idea": "how many different rectangles with whole-number sides have area 48",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 65691249 map: Two rectangles are drawn on a coordinate grid. Rectangle A has corners at (1, 1), (10, 1), (10, 10), and (1, 1",
+   "0.42 55583726 act: A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, h"
+  ]
+ },
+ {
+  "id": "A21",
+  "q": "odd (numbers|integers)&first&sum",
+  "idea": "sum of the first n odd numbers is 400 find n",
+  "kw_hits": 1,
+  "kw": [
+   "70c5cc57-4a5 [live isee/isee-math-s15 Math easy] :: Let E be the sum of the first 50 positive even integers, 2 + 4 + ... + 100, and let D be the sum of the first 50 positive odd integers, 1 + 3 + ... + 99. What is E - D?"
+  ],
+  "tfidf": [
+   "0.39 70f7fd0c isee: The sum of three consecutive odd integers is 3 greater than twice the largest of the three. What is that sum?",
+   "0.36 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal."
+  ]
+ },
+ {
+  "id": "A22",
+  "q": "0\\.\\d+&repeating&fraction|repeating decimal",
+  "idea": "repeating decimal 0.363636 as fraction sum of numerator and denominator",
+  "kw_hits": 1,
+  "kw": [
+   "24fbd00c-1e7 [live isee/isee-math-s17 Math medium] :: The decimal 0.2454545... has a 2 in the tenths place, followed by the block 45 repeating forever. When this decimal is written as a fraction in lowest terms, what is the numerator?"
+  ],
+  "tfidf": [
+   "0.45 24fbd00c isee: The decimal 0.2454545... has a 2 in the tenths place, followed by the block 45 repeating forever. When this de",
+   "0.35 bde1402b ssat: Each fraction below is in lowest terms. Which one is equal to a decimal that ends rather than repeating foreve"
+  ]
+ },
+ {
+  "id": "A23",
+  "q": "cube root|∛|\\^\\(1/3\\)",
+  "idea": "cube root of 0.000125",
+  "kw_hits": 18,
+  "kw": [
+   "038a2550-978 [live sat/sat-math-v16-adv Advanced Math hard] :: What is the greatest solution to the equation x^(2/3) − 5x^(1/3) + 6 = 0?",
+   "27b1da07-8ac [live sat/sat-adv-0919 Advanced Math medium] :: For x > 1, (∛(x²))ᵏ / x = x⁵, where k is a constant. What is the value of k?",
+   "328959b4-2f9 [live act/act-math-v29 Functions medium] :: The function f has an inverse function, and f⁻¹(x) = x + ∛x for every real number x. The function g is defined by g(x) = 2f(x − 1.5) − 3, and g also has an inverse function. To the nearest hundredth, what is the value of g⁻¹(8) ?",
+   "448ad65f-7c4 [live sat/sat-math-v25-adv Advanced Math medium] :: For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b?",
+   "4b7f5b66-ebf [live act/act-math-v11 Algebra easy] :: What is the solution of the equation ∛(x + 5) = −3 ?",
+   "4d103310-286 [live sat/sat-math-v12 Advanced Math easy] :: If the cube root of (2x - 5) is equal to 3, what is the value of x?",
+   "60eec395-021 [live act/act-math-v16 Number and Quantity medium] :: Let a = 2^(1/2), b = 3^(1/3), and c = 6^(1/6). Which of the following correctly orders a, b, and c ?",
+   "b84fc6a0-6e1 [live sat/sat-math-v25-adv Advanced Math medium] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+   "c58b6e45-ab3 [live act/act-math-v26 Algebra easy] :: For exactly one real number x, the cube root of x³ + 6x² + 3 is equal to x + 2; that is, ∛(x³ + 6x² + 3) = x + 2. To the nearest hundredth, what is x ?",
+   "c5c4d05e-aca [live map/map-math-v2-num Real and Complex Number Systems easy] :: Find the sum 2√64 + ∛(-729), where 2√64 means 2 times the square root of 64.",
+   "ff4e3917-517 [live map/map-math-v2-num Real and Complex Number Systems easy] :: Sofia divides the square root of 256 by the cube root of 64, written √256 ÷ ∛64. What quotient does she get?",
+   "SADV-01 [prior sat-adv-0918.batch.json] :: For x > 0, which of the following is equivalent to (√(x³) · ∛x) / x^(1/6) ?",
+   "SADV2-13 [prior sat-adv-0919.batch.json] :: For x > 1, (∛(x²))ᵏ / x = x⁵, where k is a constant. What is the value of k?",
+   "SM12A-03 [prior sat-math-v12-adv.batch.json] :: If the cube root of (2x - 5) is equal to 3, what is the value of x?",
+   "SM16A-09 [prior sat-math-v16-adv.kept.batch.json] :: What is the greatest solution to the equation x^(2/3) − 5x^(1/3) + 6 = 0?",
+   "SM25V-B04 [prior sat-math-v25-adv-b.batch.json] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+   "SM25V-B08 [prior sat-math-v25-adv-b.batch.json] :: For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b?",
+   "SM25V-B14 [prior sat-math-v25-adv-b.batch.json] :: In the equation (x - 1)^(4/3) = 16, the left side means the fourth power of the real cube root of x - 1. Multiplying together every real x that satisfies the equation gives what product?"
+  ],
+  "tfidf": [
+   "0.56 4d103310 sat: If the cube root of (2x - 5) is equal to 3, what is the value of x?",
+   "0.43 c58b6e45 act: For exactly one real number x, the cube root of x³ + 6x² + 3 is equal to x + 2; that is, ∛(x³ + 6x² + 3) = x +"
+  ]
+ },
+ {
+  "id": "A24",
+  "q": "between&square root|sqrt\\(n\\)|√n",
+  "idea": "how many integers n satisfy 4 < sqrt n < 6",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.76 096764e3 isee: For integers a and b, (sqrt(6) + sqrt(2))^2 = a + b sqrt(3). What is the value of a + b?",
+   "0.66 16b8e24e isee: How many integers x satisfy |x - 2| + |x + 4| <= 10?"
+  ]
+ },
+ {
+  "id": "A25",
+  "q": "multiple of&and a multiple of&least|least common multiple of 12, 18|lcm",
+  "idea": "least common multiple of 12 18 and 30",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.69 1c2bea78 ssat: For how many positive integers n is the least common multiple of n and 18 equal to 180?",
+   "0.64 ac44cdd7 isee: The least common multiple of a positive integer n and 18 is 180. What is the sum of all the possible values of"
+  ]
+ },
+ {
+  "id": "A26",
+  "q": "product of&consecutive&even|consecutive even&product",
+  "idea": "product of two consecutive even integers is 168",
+  "kw_hits": 1,
+  "kw": [
+   "804a4f50-d8d [live sat/v2 Algebra medium] :: The product of two consecutive positive even integers is 168. What is their sum?"
+  ],
+  "tfidf": [
+   "0.93 804a4f50 sat: The product of two consecutive positive even integers is 168. What is their sum?",
+   "0.64 c8e04d1c ssat: Three consecutive even positive integers have a product that is 20 times their sum. What is the largest of the"
+  ]
+ },
+ {
+  "id": "A27",
+  "q": "greatest&less than&square root|largest integer less than",
+  "idea": "largest integer less than sqrt 300",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 d79e6160 act: If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+   "0.49 9762947b isee: If sqrt(x + 7) = 2sqrt(x - 2), what is the value of x?"
+  ]
+ },
+ {
+  "id": "A28",
+  "q": "reciprocal of&decimal|reciprocal of 0\\.",
+  "idea": "reciprocal of 0.08",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 5a5839fa sat: The sum of a positive number and its reciprocal is 10/3. What is the larger of the two possible values of the ",
+   "0.00 000333a3 map: A music center rents out practice rooms. It charges a one-time booking fee of $4 plus $5 for each hour, and pa"
+  ]
+ },
+ {
+  "id": "A29",
+  "q": "\\(-\\d\\)\\^\\d&÷|/ \\(1/\\d\\)",
+  "idea": "signed powers then division by fraction (-2)^3 - (-3)^2 / (1/3) x 2",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.35 45dc48a2 isee: Each of 65 campers signed up for at least one of three activities: 40 signed up for archery, 32 for canoeing, ",
+   "0.29 a5bc0f1e act: If f(x) = 3x² - 2x + 1, what is the value of f(-2)?"
+  ]
+ },
+ {
+  "id": "A30",
+  "q": "packs of&packs of&same number|as many&as&packs",
+  "idea": "pencils in packs of 6 pens packs of 8 equal number fewer than 100 how many packs",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.31 bccc997e sat: A hiker is packing water bottles that weigh 1.2 kilograms each and food packs that weigh 0.8 kilogram each. Th",
+   "0.29 0a91ae97 sat: A dietitian describes sample packs containing p grams of pumpkin seeds and q grams of quinoa. The nutrition pa"
+  ]
+ },
+ {
+  "id": "A31",
+  "q": "greatest common factor of n and|gcf of n and",
+  "idea": "n multiple of 8 gcf of n and 90 is 30 least n",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.48 00edaf09 map: Ana uses prime factorization to find the greatest common factor (GCF) and the least common multiple (LCM) of 6",
+   "0.47 497fc08b act: The positive integer n is a multiple of 21, and n^2 is a multiple of 8. What is the least possible value of n "
+  ]
+ },
+ {
+  "id": "A32",
+  "q": "2\\^\\d+ ?(x|×|\\*) ?5\\^\\d+&digits",
+  "idea": "number of digits of 2^10 times 5^7",
+  "kw_hits": 1,
+  "kw": [
+   "9264dd12-7e0 [live ssat/ssat-math-s14 Math easy] :: How many digits does the number 2^10 x 5^6 have when it is written out in full?"
+  ],
+  "tfidf": [
+   "0.48 1bac61ef ssat: A positive integer N has exactly 15 digits: four 9s, three 7s, two 5s and six 2s, arranged in some order. What",
+   "0.46 455a3dfe sat: A two-digit number is 6 more than 5 times the sum of its digits. When its digits are reversed, the resulting n"
+  ]
+ },
+ {
+  "id": "A33",
+  "q": "1/2 \\+ 1/4 \\+ 1/8|\\+ 1/16",
+  "idea": "sum 1/2 + 1/4 + 1/8 + 1/16 + 1/32",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.77 89e60ed3 sat: If 2^(3x − 1) = 32, what is the value of 4^(x + 1)?",
+   "0.73 cf6db388 sat: If 4^(x + 1) = 8^(x - 1), what is the value of x?"
+  ]
+ },
+ {
+  "id": "A34",
+  "q": "estimate&√|closest to&sqrt",
+  "idea": "which is closest to sqrt 150 + sqrt 50",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.72 d79e6160 act: If sqrt(x) = 3 x sqrt(5) and x > 0, what is the value of x ?",
+   "0.72 9762947b isee: If sqrt(x + 7) = 2sqrt(x - 2), what is the value of x?"
+  ]
+ },
+ {
+  "id": "A35",
+  "q": "integer&closest to&/ |which integer is closest to",
+  "idea": "which integer is closest to 47/6 times 2.95",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.32 51f1e63c sat: If 6x + 5y = 52 and 5x + 6y = 47, what is the value of x + y?",
+   "0.30 abdb0f0f act: For i = sqrt(-1), what is the value of i^47 ?"
+  ]
+ },
+ {
+  "id": "A36",
+  "q": "a/b&b/c&c/d|a/b = &b/c =",
+  "idea": "a/b = 2/3, b/c = 4/5, c/d = 3/8 find a/d",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.77 850dae84 map: Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+   "0.52 a6f942cd act: If f(x) = (3x − 5)/2, what is the value of f⁻¹(8)?"
+  ]
+ },
+ {
+  "id": "A37",
+  "q": "sum of the (positive )?(even|odd) (factors|divisors)",
+  "idea": "sum of the odd divisors of 120",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.62 9191d421 ssat: For how many whole numbers n from 1 to 200, inclusive, is the sum of all the positive divisors of n an odd num",
+   "0.59 400e7491 ssat: How many integers from 1 to 150, inclusive, have an odd number of positive divisors?"
+  ]
+ },
+ {
+  "id": "A38",
+  "q": "1 - 1/2|\\(1 - 1/\\d\\)\\(1 - 1/",
+  "idea": "product (1 - 1/2)(1 - 1/3)...(1 - 1/10)",
+  "kw_hits": 2,
+  "kw": [
+   "31c64416-2cd [live ssat/ssat-math-s14 Math medium] :: What is the value of the product (1 - 1/4)(1 - 1/9)(1 - 1/16) ... (1 - 1/100), in which each factor has the form 1 - 1/(n^2) and n takes every whole-number value from 2 to 10?",
+   "e9968f0b-bb6 [live isee/isee-math-s16 Math hard] :: What is the value of the product (1 - 1/2^2)(1 - 1/3^2)(1 - 1/4^2) x ... x (1 - 1/10^2), which has one factor for each whole number from 2 through 10?"
+  ],
+  "tfidf": [
+   "0.85 e9968f0b isee: What is the value of the product (1 - 1/2^2)(1 - 1/3^2)(1 - 1/4^2) x ... x (1 - 1/10^2), which has one factor ",
+   "0.82 b8099166 sat: What value of x satisfies 1/(x - 1) + 1/(x + 1) = 10/(x^2 - 1)?"
+  ]
+ },
+ {
+  "id": "A39",
+  "q": "\\d+% of \\d+% of|percent of \\d+ percent of",
+  "idea": "\\d+% of \\d+% of|percent of \\d+ percent of",
+  "kw_hits": 1,
+  "kw": [
+   "5de37fe5-c26 [live isee/isee-math-s6 Math medium] :: What number is 30 percent of 40 percent of 250?"
+  ],
+  "tfidf": [
+   "0.82 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is",
+   "0.72 5de37fe5 isee: What number is 30 percent of 40 percent of 250?"
+  ]
+ },
+ {
+  "id": "A40",
+  "q": "opposite of the reciprocal|negative reciprocal&number",
+  "idea": "number line opposite reciprocal",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 5a5839fa sat: The sum of a positive number and its reciprocal is 10/3. What is the larger of the two possible values of the ",
+   "0.21 37831b53 sat: Lines p and q in the xy-plane use the same two numbers, m and n, in opposite roles: line p has slope m and y-i"
+  ]
+ },
+ {
+  "id": "A41",
+  "q": "digits?&reversed&difference|reverse.*digits&subtract",
+  "idea": "two-digit number minus its reversal is 36 with digit sum 10",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 88303912 ssat: Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such ",
+   "0.46 c4d1e2cb sat: A two-digit number equals 7 times the sum of its digits, and its tens digit is 3 more than its units digit. Wh"
+  ]
+ },
+ {
+  "id": "A42",
+  "q": "exponent&last two digits|last two digits",
+  "idea": "last two digits of 7^20",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 b92e3722 isee: How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits",
+   "0.41 1bac61ef ssat: A positive integer N has exactly 15 digits: four 9s, three 7s, two 5s and six 2s, arranged in some order. What"
+  ]
+ },
+ {
+  "id": "A43",
+  "q": "which of the following is (closest|nearest) to",
+  "idea": "which is closest to 0.49 x 81.2 / 0.198",
+  "kw_hits": 5,
+  "kw": [
+   "6c8f7cb6-d90 [live act/act-math-v1 Functions hard] :: Given that log 2 ≈ 0.301 and log 3 ≈ 0.477, which of the following is closest to log 12?",
+   "8794c479-b7e [live act/act-math-v20 Functions medium] :: The function f is defined by f(x) = log₂(x + a) + b, where a and b are constants and a > 0. In the standard (x,y) coordinate plane, the graph of y = f(x) passes through the points (0, 3) and (6, 5). Which of the following is closest to f(14) ?",
+   "d0b8276c-9d5 [live sat/sat-adv-0919 Advanced Math medium] :: The number of bacteria in a culture doubles every 6 hours. There are 1200 bacteria in the culture now. Which of the following is closest to the number of bacteria in the culture 16 hours from now?",
+   "e457dda5-4f8 [live sat/v2 Problem-Solving and Data Analysis medium] :: The value of an investment is modeled by V = 5000(1.08)^t, where t is the number of years after it is opened. Which of the following is closest to the percent increase in the value from year 2 to year 4?",
+   "SADV2-05 [prior sat-adv-0919.batch.json] :: The number of bacteria in a culture doubles every 6 hours. There are 1200 bacteria in the culture now. Which of the following is closest to the number of bacteria in the culture 16 hours from now?"
+  ],
+  "tfidf": [
+   "0.19 8794c479 act: The function f is defined by f(x) = log₂(x + a) + b, where a and b are constants and a > 0. In the standard (x",
+   "0.15 e457dda5 sat: The value of an investment is modeled by V = 5000(1.08)^t, where t is the number of years after it is opened. "
+  ]
+ },
+ {
+  "id": "A44",
+  "q": "9\\.\\d+ ?(x|×) ?10\\^&(\\+|plus)&\\d\\.\\d+ ?(x|×) ?10\\^",
+  "idea": "9.2 x 10^5 + 8 x 10^4 in scientific notation",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.69 053be4cb act: What is the value of (6 × 10^-3)(1.5 × 10^8), written in scientific notation?",
+   "0.61 4fa5b3fb act: What is (6 × 10⁸) ÷ (1.5 × 10⁻³) expressed in scientific notation?"
+  ]
+ },
+ {
+  "id": "A45",
+  "q": "how many (whole numbers|integers)&both&multiples? of&factors? of",
+  "idea": "numbers that are both multiples of 6 and factors of 360",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.47 6b2e9374 isee: How many positive factors of 120 are NOT factors of 84?",
+   "0.45 63622d00 act: How many positive integers less than 300 are multiples of 4 but are NOT multiples of 6 ?"
+  ]
+ },
+ {
+  "id": "A46",
+  "q": "greatest&three-digit&divisible by&remainder",
+  "idea": "greatest three-digit number that leaves remainder 3 when divided by 7 and 5",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.70 248358cb ssat: A positive integer N leaves a remainder of 3 when it is divided by 5, and a remainder of 2 when it is divided ",
+   "0.70 5181200f act: What is the least positive integer that leaves a remainder of 3 when divided by 8 and a remainder of 4 when di"
+  ]
+ },
+ {
+  "id": "A47",
+  "q": "product of all the (positive )?(divisors|factors)",
+  "idea": "product of all positive divisors of 12",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.74 ddef9e0b isee: What is the sum of all the positive divisors of 20?",
+   "0.60 9191d421 ssat: For how many whole numbers n from 1 to 200, inclusive, is the sum of all the positive divisors of n an odd num"
+  ]
+ },
+ {
+  "id": "A48",
+  "q": "x is a positive integer&x/\\d+ & \\d+/x|both&are integers",
+  "idea": "how many positive integers n make both n/6 and 90/n integers",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 522cfb82 ssat: For how many positive integers n is (n + 40)/(n + 4) an integer?",
+   "0.47 46246340 ssat: How many of the integers 1, 2, 3, ..., 100 can be written in the form a^2 - b^2, where a and b are positive in"
+  ]
+ }
+]

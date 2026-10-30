@@ -1,0 +1,1542 @@
+[
+ {
+  "id": "Q001",
+  "prompt": "What is the value of 14! / (12! x 2!) ? (For a positive integer n, n! is the product of the whole numbers from 1 through n.)",
+  "choices": [
+   "182",
+   "91",
+   "105",
+   "156"
+  ],
+  "correct_answer": "91"
+ },
+ {
+  "id": "Q002",
+  "prompt": "Five identical squares are placed side by side in a row to form a rectangle. The total area is 80 square centimeters. What is the perimeter of the rectangle, in centimeters?",
+  "choices": [
+   "64",
+   "80",
+   "192",
+   "48"
+  ],
+  "correct_answer": "48"
+ },
+ {
+  "id": "Q003",
+  "prompt": "How many different rectangles with whole-number side lengths have an area of 36 square units? (A 4-by-9 rectangle and a 9-by-4 rectangle count as the same rectangle, and a square counts as a rectangle.)",
+  "choices": [
+   "4",
+   "18",
+   "9",
+   "5"
+  ],
+  "correct_answer": "5"
+ },
+ {
+  "id": "Q004",
+  "prompt": "The number 10^20 - 36 is written out in full. What is the sum of its digits?",
+  "choices": [
+   "190",
+   "181",
+   "172",
+   "216"
+  ],
+  "correct_answer": "172"
+ },
+ {
+  "id": "Q005",
+  "prompt": "Kim reads 20 more pages per day than Lee. Each reads the same 360-page book, and Kim finishes 3 days sooner than Lee. How many pages per day does Lee read?",
+  "choices": [
+   "6",
+   "49",
+   "120",
+   "40"
+  ],
+  "correct_answer": "40"
+ },
+ {
+  "id": "Q006",
+  "prompt": "A is 20 percent more than C, and B is 25 percent less than C. A is what percent of B?",
+  "choices": [
+   "90",
+   "62.5",
+   "160",
+   "145"
+  ],
+  "correct_answer": "160"
+ },
+ {
+  "id": "Q007",
+  "prompt": "A triangle has vertices at (0, 0), (9, 0) and (9, 12) in the coordinate plane. What is its perimeter?",
+  "choices": [
+   "36",
+   "21",
+   "42",
+   "30"
+  ],
+  "correct_answer": "36"
+ },
+ {
+  "id": "Q008",
+  "prompt": "A rectangular sheet of paper is 12 centimeters long and 8 centimeters wide. It is folded in half so that its two 12-centimeter sides lie on top of each other. What is the perimeter of the folded shape, in centimeters?",
+  "choices": [
+   "28",
+   "40",
+   "48",
+   "32"
+  ],
+  "correct_answer": "32"
+ },
+ {
+  "id": "Q009",
+  "prompt": "Ana types 45 words per minute and Ben types 60 words per minute. Typing the same document, Ana takes 8 minutes longer than Ben. How many words are in the document?",
+  "choices": [
+   "120",
+   "840",
+   "480",
+   "1440"
+  ],
+  "correct_answer": "1440"
+ },
+ {
+  "id": "Q010",
+  "prompt": "A line passes through the points (2, 1) and (k, 13) and is parallel to the line y = 4x. What is the value of k?",
+  "choices": [
+   "14",
+   "5",
+   "3",
+   "50"
+  ],
+  "correct_answer": "5"
+ },
+ {
+  "id": "Q011",
+  "prompt": "Two of 6 students will be chosen at random to represent their class. What is the probability that both Mia and Leo are chosen?",
+  "choices": [
+   "1/3",
+   "1/30",
+   "1/6",
+   "1/15"
+  ],
+  "correct_answer": "1/15"
+ },
+ {
+  "id": "Q012",
+  "prompt": "How many of the integers from 1 through 1,000 are perfect squares or perfect cubes (or both)?",
+  "choices": [
+   "41",
+   "35",
+   "10",
+   "38"
+  ],
+  "correct_answer": "38"
+ },
+ {
+  "id": "Q013",
+  "prompt": "In an isosceles triangle, the angle between the two equal sides is 3 times as large as each of the other two angles. What is the measure, in degrees, of the angle between the equal sides?",
+  "choices": [
+   "108",
+   "90",
+   "36",
+   "135"
+  ],
+  "correct_answer": "108"
+ },
+ {
+  "id": "Q014",
+  "prompt": "In how many different ways can 48 be written as the sum of two prime numbers? (Writing the same two primes in the other order does not count as a different way.)",
+  "choices": [
+   "10",
+   "5",
+   "6",
+   "3"
+  ],
+  "correct_answer": "5"
+ },
+ {
+  "id": "Q015",
+  "prompt": "A card is drawn at random from a standard 52-card deck, which has 13 hearts and 12 face cards (3 of the face cards are hearts). What is the probability that the card is a heart or a face card?",
+  "choices": [
+   "11/26",
+   "25/52",
+   "19/52",
+   "3/13"
+  ],
+  "correct_answer": "11/26"
+ },
+ {
+  "id": "Q016",
+  "prompt": "At a market, 6 apples cost the same as 4 oranges. One orange costs $0.90. How many dollars does one apple cost?",
+  "choices": [
+   "0.60",
+   "3.60",
+   "0.15",
+   "1.35"
+  ],
+  "correct_answer": "0.60"
+ },
+ {
+  "id": "Q017",
+  "prompt": "Dots are arranged in rows to form a triangle: the first row has 1 dot, the second row 2 dots, the third row 3 dots, and so on. How many dots are in a triangle with 20 rows?",
+  "choices": [
+   "400",
+   "210",
+   "420",
+   "231"
+  ],
+  "correct_answer": "210"
+ },
+ {
+  "id": "Q018",
+  "prompt": "In a group of 41 students, Ana's test score was higher than the scores of exactly 75 percent of the other 40 students, and no two students had the same score. In what place did Ana finish, counting from the highest score?",
+  "choices": [
+   "20",
+   "11",
+   "30",
+   "10"
+  ],
+  "correct_answer": "11"
+ },
+ {
+  "id": "Q019",
+  "prompt": "The three angles of a triangle increase by the same number of degrees from the smallest to the largest. The smallest angle measures 40 degrees. What is the measure, in degrees, of the largest angle?",
+  "choices": [
+   "140",
+   "80",
+   "70",
+   "120"
+  ],
+  "correct_answer": "80"
+ },
+ {
+  "id": "Q020",
+  "prompt": "In a triangle, the sum of two of the angles is 3 times the third angle. What is the measure, in degrees, of the third angle?",
+  "choices": [
+   "45",
+   "90",
+   "36",
+   "60"
+  ],
+  "correct_answer": "45"
+ },
+ {
+  "id": "Q021",
+  "prompt": "Jae walks 3/4 mile in 1/5 hour at a steady pace. What is his speed, in miles per hour?",
+  "choices": [
+   "15/4",
+   "3/20",
+   "19/20",
+   "4/15"
+  ],
+  "correct_answer": "15/4"
+ },
+ {
+  "id": "Q022",
+  "prompt": "A print shop charges a $50 setup fee plus $3 for each shirt it prints. For one order, the average cost per shirt, including the setup fee, came to $5.50. How many shirts were in the order?",
+  "choices": [
+   "20",
+   "25",
+   "6",
+   "17"
+  ],
+  "correct_answer": "20"
+ },
+ {
+  "id": "Q023",
+  "prompt": "The number n is a multiple of 8, and the greatest common factor of n and 90 is 30. What is the least possible value of n?",
+  "choices": [
+   "720",
+   "120",
+   "90",
+   "240"
+  ],
+  "correct_answer": "120"
+ },
+ {
+  "id": "Q024",
+  "prompt": "If x - 2y = 5, what is the value of 3^x / 9^y ?",
+  "choices": [
+   "81",
+   "15",
+   "27",
+   "243"
+  ],
+  "correct_answer": "243"
+ },
+ {
+  "id": "Q025",
+  "prompt": "A spinner has a red sector of 72 degrees, a blue sector of 120 degrees, and a green sector that fills the rest of the circle. The spinner is spun twice. What is the probability that the first spin lands on red and the second on blue?",
+  "choices": [
+   "7/75",
+   "1/15",
+   "8/15",
+   "4/25"
+  ],
+  "correct_answer": "1/15"
+ },
+ {
+  "id": "Q026",
+  "prompt": "A train leaves at 10:47 a.m. and arrives at 3:18 p.m. on the same day. How long is the trip?",
+  "choices": [
+   "7 hours 29 minutes",
+   "5 hours 29 minutes",
+   "5 hours 31 minutes",
+   "4 hours 31 minutes"
+  ],
+  "correct_answer": "4 hours 31 minutes"
+ },
+ {
+  "id": "Q027",
+  "prompt": "A square is cut into 4 congruent rectangles by 3 lines parallel to one of its sides. Each rectangle has a perimeter of 30 centimeters. What is the area of the square, in square centimeters?",
+  "choices": [
+   "225",
+   "900",
+   "144",
+   "48"
+  ],
+  "correct_answer": "144"
+ },
+ {
+  "id": "Q028",
+  "prompt": "Lena reads 36 pages in 1 hour 20 minutes. Reading at the same rate, how many minutes will it take her to read 99 pages?",
+  "choices": [
+   "198",
+   "132",
+   "165",
+   "220"
+  ],
+  "correct_answer": "220"
+ },
+ {
+  "id": "Q029",
+  "prompt": "A triangle has sides of length x, 2x - 1 and x + 5 centimeters, and its perimeter is 36 centimeters. How long is its longest side, in centimeters?",
+  "choices": [
+   "15",
+   "19",
+   "13",
+   "8"
+  ],
+  "correct_answer": "15"
+ },
+ {
+  "id": "Q030",
+  "prompt": "The positive numbers a, b and c satisfy 2a = 3b = 4c and a + b + c = 26. What is the value of a?",
+  "choices": [
+   "12",
+   "9",
+   "13",
+   "2"
+  ],
+  "correct_answer": "12"
+ },
+ {
+  "id": "Q031",
+  "prompt": "Spinner A has 4 equal sections numbered 1 through 4, and spinner B has 3 equal sections numbered 1 through 3. Each is spun once. What is the probability that the product of the two numbers is greater than 6?",
+  "choices": [
+   "1/4",
+   "3/7",
+   "5/12",
+   "1/3"
+  ],
+  "correct_answer": "1/4"
+ },
+ {
+  "id": "Q032",
+  "prompt": "Using only pennies (1 cent), nickels (5 cents), dimes (10 cents) and quarters (25 cents), what is the fewest number of coins that make exactly 87 cents?",
+  "choices": [
+   "11",
+   "7",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6"
+ },
+ {
+  "id": "Q033",
+  "prompt": "What is the sum of all the integers from -20 through 25?",
+  "choices": [
+   "115",
+   "325",
+   "110",
+   "535"
+  ],
+  "correct_answer": "115"
+ },
+ {
+  "id": "Q034",
+  "prompt": "A spinner has 8 equal sections numbered 1 through 8. It is spun twice. What is the probability that the second number is greater than the first?",
+  "choices": [
+   "7/8",
+   "7/16",
+   "3/8",
+   "1/2"
+  ],
+  "correct_answer": "7/16"
+ },
+ {
+  "id": "Q035",
+  "prompt": "The mean of the whole numbers 1, 2, 3, ..., n is 25. What is the value of n?",
+  "choices": [
+   "25",
+   "99",
+   "49",
+   "625"
+  ],
+  "correct_answer": "49"
+ },
+ {
+  "id": "Q036",
+  "prompt": "Squares are drawn on the three sides of a right triangle. The squares on the two shorter sides have areas of 25 and 144 square units. What is the area of the square on the longest side, in square units?",
+  "choices": [
+   "289",
+   "13",
+   "169",
+   "3600"
+  ],
+  "correct_answer": "169"
+ },
+ {
+  "id": "Q037",
+  "prompt": "What time is it 1,000 minutes after 9:00 a.m.?",
+  "choices": [
+   "1:40 a.m.",
+   "7:00 p.m.",
+   "2:07 a.m.",
+   "3:40 p.m."
+  ],
+  "correct_answer": "1:40 a.m."
+ },
+ {
+  "id": "Q038",
+  "prompt": "A store sells pencils in packs of 6 and pens in packs of 8. Mia buys exactly as many pencils as pens, and she buys fewer than 100 pencils. What is the greatest total number of packs (pencil packs plus pen packs) she could have bought?",
+  "choices": [
+   "16",
+   "28",
+   "21",
+   "32"
+  ],
+  "correct_answer": "28"
+ },
+ {
+  "id": "Q039",
+  "prompt": "A fair coin is flipped 4 times. What is the probability of getting exactly 2 heads?",
+  "choices": [
+   "1/16",
+   "1/4",
+   "3/8",
+   "1/2"
+  ],
+  "correct_answer": "3/8"
+ },
+ {
+  "id": "Q040",
+  "prompt": "The length and width of a rectangle are in the ratio 4 to 3, and its perimeter is 56 centimeters. What is the length of its diagonal, in centimeters?",
+  "choices": [
+   "192",
+   "20",
+   "28",
+   "40"
+  ],
+  "correct_answer": "20"
+ },
+ {
+  "id": "Q041",
+  "prompt": "The chess club and the art club have 45 members in all, and no student belongs to both clubs. If 3 members moved from the chess club to the art club, the art club would have twice as many members as the chess club. How many members does the chess club have now?",
+  "choices": [
+   "16",
+   "33",
+   "18",
+   "12"
+  ],
+  "correct_answer": "18"
+ },
+ {
+  "id": "Q042",
+  "prompt": "A spinner lands on A with probability 1/2, on B with probability 1/3, and on C with probability 1/6. It is spun twice. What is the probability that both spins land on the same letter?",
+  "choices": [
+   "1/3",
+   "7/18",
+   "13/36",
+   "1/4"
+  ],
+  "correct_answer": "7/18"
+ },
+ {
+  "id": "Q043",
+  "prompt": "Rain fell at a steady rate of 0.4 inch per hour from 9:30 a.m. until 2:15 p.m. on the same day. How many inches of rain fell?",
+  "choices": [
+   "2.1",
+   "1.78",
+   "0.19",
+   "1.9"
+  ],
+  "correct_answer": "1.9"
+ },
+ {
+  "id": "Q044",
+  "prompt": "What is the sum of all the odd positive divisors of 120?",
+  "choices": [
+   "23",
+   "24",
+   "4",
+   "9"
+  ],
+  "correct_answer": "24"
+ },
+ {
+  "id": "Q045",
+  "prompt": "What is the value of (2^(-1) + 4^(-1))^(-1) ?",
+  "choices": [
+   "1/8",
+   "4/3",
+   "1/6",
+   "3/4"
+  ],
+  "correct_answer": "4/3"
+ },
+ {
+  "id": "Q046",
+  "prompt": "For how many positive integers n is sqrt(n) greater than 3 and less than 7?",
+  "choices": [
+   "5",
+   "3",
+   "38",
+   "39"
+  ],
+  "correct_answer": "39"
+ },
+ {
+  "id": "Q047",
+  "prompt": "The pattern 3, 8, 15, 24, 35, ... continues in the same way. What is the 20th number in the pattern?",
+  "choices": [
+   "380",
+   "399",
+   "440",
+   "420"
+  ],
+  "correct_answer": "440"
+ },
+ {
+  "id": "Q048",
+  "prompt": "Mia writes the whole numbers 1 through 20. What is the sum of all the digits she writes?",
+  "choices": [
+   "100",
+   "57",
+   "102",
+   "92"
+  ],
+  "correct_answer": "102"
+ },
+ {
+  "id": "Q049",
+  "prompt": "How many integers are greater than -17/4 and less than 13/3?",
+  "choices": [
+   "11",
+   "4",
+   "9",
+   "8"
+  ],
+  "correct_answer": "9"
+ },
+ {
+  "id": "Q050",
+  "prompt": "Two-thirds of a positive whole number is at least 14 more than one-fourth of the same number. What is the least such number?",
+  "choices": [
+   "24",
+   "34",
+   "33",
+   "21"
+  ],
+  "correct_answer": "34"
+ },
+ {
+  "id": "Q051",
+  "prompt": "The distance between the points (k, 1) and (4, 5) is 5. What is the greatest possible value of k?",
+  "choices": [
+   "9",
+   "1",
+   "5",
+   "7"
+  ],
+  "correct_answer": "7"
+ },
+ {
+  "id": "Q052",
+  "prompt": "A machine makes 12 parts every 5 minutes while it runs. It stops for 10 minutes at the end of every hour and makes nothing while stopped. How many parts does it make in 8 hours?",
+  "choices": [
+   "400",
+   "960",
+   "1152",
+   "800"
+  ],
+  "correct_answer": "960"
+ },
+ {
+  "id": "Q053",
+  "prompt": "For all x, x^2 + 5x + 6 = (x + a)(x + b), where a and b are numbers. What is the value of a^2 + b^2 ?",
+  "choices": [
+   "25",
+   "36",
+   "37",
+   "13"
+  ],
+  "correct_answer": "13"
+ },
+ {
+  "id": "Q054",
+  "prompt": "Which of the following is closest to (0.49 x 81.2) / 0.198 ?",
+  "choices": [
+   "8",
+   "200",
+   "160",
+   "20"
+  ],
+  "correct_answer": "200"
+ },
+ {
+  "id": "Q055",
+  "prompt": "If ab = 7, what is the value of (a + b)^2 - (a - b)^2 ?",
+  "choices": [
+   "0",
+   "49",
+   "28",
+   "98"
+  ],
+  "correct_answer": "28"
+ },
+ {
+  "id": "Q056",
+  "prompt": "In a parallelogram, one angle measures 30 degrees more than twice an angle next to it. What is the measure, in degrees, of the larger angle?",
+  "choices": [
+   "130",
+   "120",
+   "100",
+   "140"
+  ],
+  "correct_answer": "130"
+ },
+ {
+  "id": "Q057",
+  "prompt": "Rina went shopping with some money. At the first store she spent half of her money plus $4 more. At the second store she spent half of what was left plus $3 more. She then had $9 left. How many dollars did Rina have when she started?",
+  "choices": [
+   "40",
+   "46",
+   "58",
+   "56"
+  ],
+  "correct_answer": "56"
+ },
+ {
+  "id": "Q058",
+  "prompt": "Mr. Ortiz works from 8:45 a.m. to 5:15 p.m., Monday through Friday, and takes an unpaid 45-minute lunch each day. How many hours does he work in the week?",
+  "choices": [
+   "46.25",
+   "40.25",
+   "42.5",
+   "38.75"
+  ],
+  "correct_answer": "38.75"
+ },
+ {
+  "id": "Q059",
+  "prompt": "A two-digit number has digits whose sum is 10. When the number with its digits reversed is subtracted from the original number, the result is 36. What is the original number?",
+  "choices": [
+   "73",
+   "37",
+   "55",
+   "64"
+  ],
+  "correct_answer": "73"
+ },
+ {
+  "id": "Q060",
+  "prompt": "A triangle has an area of 48 square inches. The midpoints of its three sides are joined to form a smaller triangle. What is the area of the smaller triangle, in square inches?",
+  "choices": [
+   "24",
+   "32",
+   "16",
+   "12"
+  ],
+  "correct_answer": "12"
+ },
+ {
+  "id": "Q061",
+  "prompt": "Four numbers are placed between 7 and 32 so that the six numbers, in order, are equally spaced. What is the third of the four numbers placed?",
+  "choices": [
+   "17",
+   "22",
+   "25.75",
+   "12"
+  ],
+  "correct_answer": "22"
+ },
+ {
+  "id": "Q062",
+  "prompt": "One serving of a snack has 240 calories, and 30 percent of those calories come from fat. Each gram of fat supplies 9 calories. How many grams of fat are in one serving?",
+  "choices": [
+   "27",
+   "18",
+   "72",
+   "8"
+  ],
+  "correct_answer": "8"
+ },
+ {
+  "id": "Q063",
+  "prompt": "Angles AOB and BOC are next to each other and together form a straight angle. Angle AOB measures 70 degrees. Ray OD bisects angle AOB and ray OE bisects angle BOC. What is the measure, in degrees, of angle DOE?",
+  "choices": [
+   "110",
+   "90",
+   "70",
+   "35"
+  ],
+  "correct_answer": "90"
+ },
+ {
+  "id": "Q064",
+  "prompt": "A staircase figure is made of unit squares: the bottom row has 10 squares, the row above it 9, then 8, and so on up to a top row of 1 square, with every row lined up at the left. What is the perimeter of the figure, in units?",
+  "choices": [
+   "55",
+   "44",
+   "40",
+   "220"
+  ],
+  "correct_answer": "40"
+ },
+ {
+  "id": "Q065",
+  "prompt": "The expression sqrt(98) + sqrt(18) - sqrt(8) is equal to k sqrt(2). What is the value of k?",
+  "choices": [
+   "8",
+   "54",
+   "12",
+   "108"
+  ],
+  "correct_answer": "8"
+ },
+ {
+  "id": "Q066",
+  "prompt": "A faucet runs at 2.5 gallons per minute. One gallon is 3.8 liters. How many liters flow from the faucet in one hour?",
+  "choices": [
+   "9.5",
+   "39",
+   "150",
+   "570"
+  ],
+  "correct_answer": "570"
+ },
+ {
+  "id": "Q067",
+  "prompt": "The function f is defined by f(x) = 4x + 7. For every number x, f(3x) - 3f(x) equals the same number. What is that number?",
+  "choices": [
+   "-21",
+   "-14",
+   "28",
+   "0"
+  ],
+  "correct_answer": "-14"
+ },
+ {
+  "id": "Q068",
+  "prompt": "Two numbers have a sum of 8 and a product of 12. What is the sum of their reciprocals?",
+  "choices": [
+   "2/3",
+   "1/12",
+   "1/20",
+   "5/24"
+  ],
+  "correct_answer": "2/3"
+ },
+ {
+  "id": "Q069",
+  "prompt": "The table groups 20 numbers into intervals: 4 numbers are from 1 to 5, 10 numbers are from 6 to 10, and 6 numbers are from 11 to 15. Using the middle value of each interval (3, 8 and 13) for every number in it, what is the estimated mean of the 20 numbers?",
+  "choices": [
+   "56.7",
+   "10.5",
+   "8.5",
+   "8"
+  ],
+  "correct_answer": "8.5"
+ },
+ {
+  "id": "Q070",
+  "prompt": "A bus travels at a steady 40 miles per hour. How many minutes does it take to travel one mile?",
+  "choices": [
+   "1.5",
+   "0.67",
+   "2.5",
+   "24"
+  ],
+  "correct_answer": "1.5"
+ },
+ {
+  "id": "Q071",
+  "prompt": "A rectangle has an area of x^2 + 7x + 12 square units, and one of its sides is x + 3 units long. What is the perimeter of the rectangle when x = 6?",
+  "choices": [
+   "40",
+   "42",
+   "90",
+   "38"
+  ],
+  "correct_answer": "38"
+ },
+ {
+  "id": "Q072",
+  "prompt": "Between 2:00 and 3:00, at what time do the hour hand and the minute hand of a clock FIRST form a right angle (90 degrees)?",
+  "choices": [
+   "2:16 4/11",
+   "2:43 7/11",
+   "2:27 3/11",
+   "2:10 10/11"
+  ],
+  "correct_answer": "2:27 3/11"
+ },
+ {
+  "id": "Q073",
+  "prompt": "A fair coin is flipped 50 times and lands heads 28 times. By how much does the experimental probability of heads exceed the theoretical probability of heads?",
+  "choices": [
+   "3",
+   "0.56",
+   "0.28",
+   "0.06"
+  ],
+  "correct_answer": "0.06"
+ },
+ {
+  "id": "Q074",
+  "prompt": "An object dropped from rest falls d = 16t^2 feet in t seconds. How many feet does it fall during the third second (from t = 2 to t = 3)?",
+  "choices": [
+   "48",
+   "256",
+   "80",
+   "144"
+  ],
+  "correct_answer": "80"
+ },
+ {
+  "id": "Q075",
+  "prompt": "What is the value of x^3 - 3x^2 + 3x - 1 when x = 11?",
+  "choices": [
+   "1000",
+   "729",
+   "1331",
+   "1694"
+  ],
+  "correct_answer": "1000"
+ },
+ {
+  "id": "Q076",
+  "prompt": "A circle is centered at the origin of the coordinate plane and passes through the point (6, 8). What is the area of the circle? (Use 3.14 for pi.)",
+  "choices": [
+   "1256",
+   "615.44",
+   "314",
+   "62.8"
+  ],
+  "correct_answer": "314"
+ },
+ {
+  "id": "Q077",
+  "prompt": "The minute hand of a clock is 6 centimeters long. How far, in centimeters, does its tip travel in 25 minutes? (Use 3.14 for pi.)",
+  "choices": [
+   "31.4",
+   "37.68",
+   "18.84",
+   "15.7"
+  ],
+  "correct_answer": "15.7"
+ },
+ {
+  "id": "Q078",
+  "prompt": "A cyclist rides the same route every day. One day she rides 25 percent faster than usual. By what percent does her time for the route decrease?",
+  "choices": [
+   "25",
+   "20",
+   "75",
+   "33"
+  ],
+  "correct_answer": "20"
+ },
+ {
+  "id": "Q079",
+  "prompt": "A year is a leap year if it is divisible by 4, except that a year divisible by 100 is a leap year only if it is also divisible by 400. How many leap years are there from 2001 through 2100?",
+  "choices": [
+   "23",
+   "50",
+   "76",
+   "24"
+  ],
+  "correct_answer": "24"
+ },
+ {
+  "id": "Q080",
+  "prompt": "A cylinder has a height of 5 centimeters, and the circumference of its base is 12(pi) centimeters. What is its volume, in cubic centimeters? (Use 3.14 for pi.)",
+  "choices": [
+   "188.4",
+   "452.16",
+   "565.2",
+   "94.2"
+  ],
+  "correct_answer": "565.2"
+ },
+ {
+  "id": "Q081",
+  "prompt": "If x^2 = 49 and y^2 = 16, what is the greatest possible value of x - y ?",
+  "choices": [
+   "3",
+   "65",
+   "11",
+   "33"
+  ],
+  "correct_answer": "11"
+ },
+ {
+  "id": "Q082",
+  "prompt": "A store takes 20 percent off the price of a coat, and then takes 15 percent off the reduced price. The two discounts together are the same as a single discount of what percent off the original price?",
+  "choices": [
+   "35",
+   "12",
+   "32",
+   "3"
+  ],
+  "correct_answer": "32"
+ },
+ {
+  "id": "Q083",
+  "prompt": "A fair number cube is rolled until a 6 appears. What is the probability that the first 6 appears on the third roll?",
+  "choices": [
+   "25/216",
+   "1/6",
+   "125/216",
+   "5/36"
+  ],
+  "correct_answer": "25/216"
+ },
+ {
+  "id": "Q084",
+  "prompt": "When 720 is written as a product of powers of different primes, what is the sum of the exponents?",
+  "choices": [
+   "7",
+   "30",
+   "10",
+   "6"
+  ],
+  "correct_answer": "7"
+ },
+ {
+  "id": "Q085",
+  "prompt": "What is the value of 1/7 + 2/7 + 3/7 + 4/7 + 5/7 + 6/7 ?",
+  "choices": [
+   "7/2",
+   "21",
+   "3",
+   "6"
+  ],
+  "correct_answer": "3"
+ },
+ {
+  "id": "Q086",
+  "prompt": "A palindrome reads the same forward and backward, such as 727. How many three-digit whole numbers are palindromes?",
+  "choices": [
+   "900",
+   "450",
+   "81",
+   "90"
+  ],
+  "correct_answer": "90"
+ },
+ {
+  "id": "Q087",
+  "prompt": "What is the value of 1/2 + 1/4 + 1/8 + 1/16 + 1/32 + 1/64 ?",
+  "choices": [
+   "3/32",
+   "31/32",
+   "63/64",
+   "15/16"
+  ],
+  "correct_answer": "63/64"
+ },
+ {
+  "id": "Q088",
+  "prompt": "A square has an area of 36 square centimeters. An equilateral triangle is drawn outside the square so that one side of the triangle is a side of the square. What is the perimeter of the five-sided figure formed, in centimeters?",
+  "choices": [
+   "30",
+   "45",
+   "36",
+   "54"
+  ],
+  "correct_answer": "30"
+ },
+ {
+  "id": "Q089",
+  "prompt": "If 2^n = 0.125, what is the value of n?",
+  "choices": [
+   "-8",
+   "-3",
+   "8",
+   "-1/3"
+  ],
+  "correct_answer": "-3"
+ },
+ {
+  "id": "Q090",
+  "prompt": "A right triangle has vertices at (0, 0), (a, 0) and (0, b), where a and b are positive. Its area is 24 and its hypotenuse is 10 units long. What is the value of a + b?",
+  "choices": [
+   "14",
+   "196",
+   "2",
+   "48"
+  ],
+  "correct_answer": "14"
+ },
+ {
+  "id": "Q091",
+  "prompt": "A copy machine is set to reduce every length to 80 percent of its size. A line 15 centimeters long is copied, and then the copy is copied again on the same setting. How long, in centimeters, is the line on the second copy?",
+  "choices": [
+   "12",
+   "9",
+   "2.4",
+   "9.6"
+  ],
+  "correct_answer": "9.6"
+ },
+ {
+  "id": "Q092",
+  "prompt": "What is the value of 1^2 + 2^2 + 3^2 + ... + 10^2 ?",
+  "choices": [
+   "285",
+   "385",
+   "3025",
+   "506"
+  ],
+  "correct_answer": "385"
+ },
+ {
+  "id": "Q093",
+  "prompt": "What is the sum of the reciprocals of all the positive divisors of 12? (The reciprocals are 1/1, 1/2, 1/3, 1/4, 1/6 and 1/12.)",
+  "choices": [
+   "1/2",
+   "4/3",
+   "7/3",
+   "2"
+  ],
+  "correct_answer": "7/3"
+ },
+ {
+  "id": "Q094",
+  "prompt": "For how many positive integers n is 120/n an integer greater than 10?",
+  "choices": [
+   "8",
+   "15",
+   "16",
+   "9"
+  ],
+  "correct_answer": "8"
+ },
+ {
+  "id": "Q095",
+  "prompt": "A committee of 3 is chosen from 5 boys and 4 girls. How many different committees include at least one girl?",
+  "choices": [
+   "10",
+   "40",
+   "74",
+   "80"
+  ],
+  "correct_answer": "74"
+ },
+ {
+  "id": "Q096",
+  "prompt": "A drawer holds 5 red socks, 9 blue socks and 12 black socks. Socks are taken out one at a time without looking. What is the least number of socks that must be taken out to be certain of having at least one sock of each color?",
+  "choices": [
+   "14",
+   "22",
+   "21",
+   "15"
+  ],
+  "correct_answer": "22"
+ },
+ {
+  "id": "Q097",
+  "prompt": "A car travels at 72 kilometers per hour. What is this speed in meters per second?",
+  "choices": [
+   "20",
+   "259.2",
+   "1.2",
+   "1200"
+  ],
+  "correct_answer": "20"
+ },
+ {
+  "id": "Q098",
+  "prompt": "In a class, 40 percent of the students are girls. Of the girls, 30 percent wear glasses, and of the boys, 45 percent wear glasses. What percent of the whole class wears glasses?",
+  "choices": [
+   "27",
+   "39",
+   "12",
+   "36"
+  ],
+  "correct_answer": "39"
+ },
+ {
+  "id": "Q099",
+  "prompt": "A farm has only chickens and cows. Together they have 30 heads and 84 legs. How many chickens are there?",
+  "choices": [
+   "18",
+   "12",
+   "42",
+   "21"
+  ],
+  "correct_answer": "18"
+ },
+ {
+  "id": "Q100",
+  "prompt": "A rectangle is 10 centimeters long and 6 centimeters wide. A semicircle with each 6-centimeter side as its diameter is cut out of the rectangle. What is the area of the region that remains, in square centimeters? (Use 3.14 for pi.)",
+  "choices": [
+   "50.58",
+   "88.26",
+   "45.87",
+   "31.74"
+  ],
+  "correct_answer": "31.74"
+ },
+ {
+  "id": "Q101",
+  "prompt": "For a number t, x = 2t + 1 and y = 4t - 3. What is the value of y when x = 9?",
+  "choices": [
+   "13",
+   "33",
+   "15",
+   "17"
+  ],
+  "correct_answer": "13"
+ },
+ {
+  "id": "Q102",
+  "prompt": "A printer starts a job at 9:15 a.m. and prints 24 pages per minute without stopping. The job has 1,800 pages. At what time does the printer finish?",
+  "choices": [
+   "9:16 a.m.",
+   "4:45 p.m.",
+   "10:30 a.m.",
+   "11:15 a.m."
+  ],
+  "correct_answer": "10:30 a.m."
+ },
+ {
+  "id": "Q103",
+  "prompt": "Toothpicks are used to make a row of squares, each side of a square being one toothpick, with neighboring squares sharing a side. How many toothpicks are needed for a row of 25 squares?",
+  "choices": [
+   "100",
+   "77",
+   "101",
+   "76"
+  ],
+  "correct_answer": "76"
+ },
+ {
+  "id": "Q104",
+  "prompt": "Which integer is closest to sqrt(150) + sqrt(50) ?",
+  "choices": [
+   "19",
+   "14",
+   "12",
+   "17"
+  ],
+  "correct_answer": "19"
+ },
+ {
+  "id": "Q105",
+  "prompt": "The sum of the first n positive odd numbers, 1 + 3 + 5 + ..., is 400. What is n?",
+  "choices": [
+   "39",
+   "20",
+   "100",
+   "40"
+  ],
+  "correct_answer": "20"
+ },
+ {
+  "id": "Q106",
+  "prompt": "What is 9.2 x 10^5 + 8 x 10^4, written in scientific notation?",
+  "choices": [
+   "1.0 x 10^5",
+   "1.72 x 10^5",
+   "1.0 x 10^6",
+   "9.28 x 10^5"
+  ],
+  "correct_answer": "1.0 x 10^6"
+ },
+ {
+  "id": "Q107",
+  "prompt": "What is the mean of all the multiples of 9 that are between 100 and 200?",
+  "choices": [
+   "99",
+   "150",
+   "153",
+   "108"
+  ],
+  "correct_answer": "153"
+ },
+ {
+  "id": "Q108",
+  "prompt": "Sam earns $18 an hour and works 35 hours in a week. His employer withholds 22 percent of his pay for taxes. How many dollars does Sam take home that week?",
+  "choices": [
+   "491.40",
+   "138.60",
+   "49.14",
+   "383.29"
+  ],
+  "correct_answer": "491.40"
+ },
+ {
+  "id": "Q109",
+  "prompt": "Point M is the midpoint of the segment from (2, 8) to (6, 4). What is the slope of the line through the origin and M?",
+  "choices": [
+   "1/4",
+   "3/2",
+   "2/3",
+   "-1"
+  ],
+  "correct_answer": "3/2"
+ },
+ {
+  "id": "Q110",
+  "prompt": "What is the value of (-2)^3 - (-3)^2 / (1/3) x 2 ?",
+  "choices": [
+   "-21.5",
+   "-46",
+   "-62",
+   "46"
+  ],
+  "correct_answer": "-62"
+ },
+ {
+  "id": "Q111",
+  "prompt": "What is the sum of all the values of x that satisfy (x - 3)^2 = 25?",
+  "choices": [
+   "-16",
+   "10",
+   "6",
+   "-2"
+  ],
+  "correct_answer": "6"
+ },
+ {
+  "id": "Q112",
+  "prompt": "How many two-digit whole numbers have digits whose product is even?",
+  "choices": [
+   "65",
+   "45",
+   "25",
+   "70"
+  ],
+  "correct_answer": "65"
+ },
+ {
+  "id": "Q113",
+  "prompt": "The legs of a right triangle are in the ratio 3 to 4, and the area of the triangle is 54 square centimeters. What is the length of the hypotenuse, in centimeters?",
+  "choices": [
+   "12",
+   "15",
+   "5",
+   "21"
+  ],
+  "correct_answer": "15"
+ },
+ {
+  "id": "Q114",
+  "prompt": "One euro is worth 1.25 dollars, and one dollar is worth 150 yen. A traveler changes 300 euros into yen, and the exchange office keeps a 4% fee from the yen. How many yen does the traveler receive?",
+  "choices": [
+   "43200",
+   "36000",
+   "34560",
+   "54000"
+  ],
+  "correct_answer": "54000"
+ },
+ {
+  "id": "Q115",
+  "prompt": "A two-digit whole number is chosen at random. What is the probability that its two digits are the same?",
+  "choices": [
+   "1/11",
+   "11/90",
+   "1/9",
+   "1/10"
+  ],
+  "correct_answer": "1/10"
+ },
+ {
+  "id": "Q116",
+  "prompt": "The squares of two consecutive positive integers differ by 41. What is the product of the two integers?",
+  "choices": [
+   "420",
+   "380",
+   "210",
+   "441"
+  ],
+  "correct_answer": "420"
+ },
+ {
+  "id": "Q117",
+  "prompt": "A square has sides of 4 centimeters. A semicircle is drawn outward on each side of the square, using that side as its diameter. What is the total area of the figure, in square centimeters? (Use 3.14 for pi.)",
+  "choices": [
+   "116.48",
+   "41.12",
+   "66.24",
+   "28.56"
+  ],
+  "correct_answer": "41.12"
+ },
+ {
+  "id": "Q118",
+  "prompt": "A machine takes an input number, doubles it, adds 6 to the result, divides that result by 4, and finally subtracts 3. The output is 7. What was the value inside the machine right after 6 was added?",
+  "choices": [
+   "17",
+   "40",
+   "28",
+   "34"
+  ],
+  "correct_answer": "40"
+ },
+ {
+  "id": "Q119",
+  "prompt": "If a = 3 and b = 5, what is the value of (1/a - 1/b) / (1/a + 1/b) ?",
+  "choices": [
+   "8/15",
+   "2/5",
+   "1/4",
+   "4"
+  ],
+  "correct_answer": "1/4"
+ },
+ {
+  "id": "Q120",
+  "prompt": "What is the median of the first 50 positive even integers, 2, 4, 6, ..., 100?",
+  "choices": [
+   "25",
+   "51",
+   "2",
+   "52"
+  ],
+  "correct_answer": "51"
+ },
+ {
+  "id": "Q121",
+  "prompt": "How many of the fractions 1/2, 2/3, 3/4, 4/5, 5/6, 6/7, 7/8, 8/9 and 9/10 are greater than 0.8?",
+  "choices": [
+   "9",
+   "3",
+   "5",
+   "6"
+  ],
+  "correct_answer": "5"
+ },
+ {
+  "id": "Q122",
+  "prompt": "A school fair runs every day from March 15 through May 4, including both of those days. How many days does the fair run? (March has 31 days and April has 30 days.)",
+  "choices": [
+   "45",
+   "52",
+   "49",
+   "51"
+  ],
+  "correct_answer": "51"
+ },
+ {
+  "id": "Q123",
+  "prompt": "What is the value of 53^2 - 47^2 ?",
+  "choices": [
+   "36",
+   "10000",
+   "1200",
+   "600"
+  ],
+  "correct_answer": "600"
+ },
+ {
+  "id": "Q124",
+  "prompt": "A board 9 3/4 feet long is cut into pieces that are each 3/8 foot long, with nothing left over. How many pieces are there?",
+  "choices": [
+   "18",
+   "25",
+   "26",
+   "24"
+  ],
+  "correct_answer": "26"
+ },
+ {
+  "id": "Q125",
+  "prompt": "Three points divide the segment of the number line from -3 to 9 into 4 equal parts. What is the value of the point that is third from -3?",
+  "choices": [
+   "0",
+   "9",
+   "6",
+   "4.2"
+  ],
+  "correct_answer": "6"
+ },
+ {
+  "id": "Q126",
+  "prompt": "Class A has 27 students, and the ratio of boys to girls in it is 4 to 5. Class B has 36 students, and the ratio of boys to girls in it is 2 to 1. The two classes are combined. What fraction of the combined group are boys?",
+  "choices": [
+   "4/7",
+   "4/9",
+   "5/9",
+   "1/2"
+  ],
+  "correct_answer": "4/7"
+ },
+ {
+  "id": "Q127",
+  "prompt": "Ten test scores are 70, 72, 75, 75, 80, 84, 85, 88, 90 and x. The median of the ten scores is 81. What is the value of x?",
+  "choices": [
+   "80",
+   "82",
+   "78",
+   "81"
+  ],
+  "correct_answer": "82"
+ },
+ {
+  "id": "Q128",
+  "prompt": "A committee of 3 is chosen from a group of 7 people. Rosa must be on the committee. How many different committees are possible?",
+  "choices": [
+   "21",
+   "30",
+   "35",
+   "15"
+  ],
+  "correct_answer": "15"
+ },
+ {
+  "id": "Q129",
+  "prompt": "A car's odometer shows 15951 miles, which reads the same forward and backward. What is the least number of miles the car must travel before the odometer next shows a number that reads the same forward and backward?",
+  "choices": [
+   "10",
+   "110",
+   "210",
+   "1000"
+  ],
+  "correct_answer": "110"
+ },
+ {
+  "id": "Q130",
+  "prompt": "In a race, one swimmer finished in 1:02.47 (1 minute 2.47 seconds) and another in 59.85 seconds. By how many seconds did the faster swimmer win?",
+  "choices": [
+   "42.62",
+   "2.62",
+   "57.38",
+   "3.62"
+  ],
+  "correct_answer": "2.62"
+ },
+ {
+  "id": "Q131",
+  "prompt": "How many positive multiples of 10 are factors of 360?",
+  "choices": [
+   "7",
+   "36",
+   "9",
+   "24"
+  ],
+  "correct_answer": "9"
+ },
+ {
+  "id": "Q132",
+  "prompt": "In 6 years, Ana will be twice as old as she was 9 years ago. How old is Ana now?",
+  "choices": [
+   "21",
+   "15",
+   "12",
+   "24"
+  ],
+  "correct_answer": "24"
+ },
+ {
+  "id": "Q133",
+  "prompt": "A time is exactly halfway between 9:40 a.m. and 2:10 p.m. on the same day. How many minutes after 9:40 a.m. is it?",
+  "choices": [
+   "235",
+   "165",
+   "135",
+   "270"
+  ],
+  "correct_answer": "135"
+ },
+ {
+  "id": "Q134",
+  "prompt": "3 hours 36 minutes is what percent of one day?",
+  "choices": [
+   "30",
+   "15",
+   "36",
+   "23"
+  ],
+  "correct_answer": "15"
+ },
+ {
+  "id": "Q135",
+  "prompt": "An empty tank is filled with water at a constant rate. After 12 minutes the tank is 30 percent full. How many more minutes will it take for the tank to go from 30 percent full to 75 percent full?",
+  "choices": [
+   "18",
+   "45",
+   "30",
+   "27"
+  ],
+  "correct_answer": "18"
+ },
+ {
+  "id": "Q136",
+  "prompt": "A right triangle has legs of 12 centimeters and 16 centimeters. A semicircle is drawn with the hypotenuse as its diameter. What is the area of the semicircle, in square centimeters? (Use 3.14 for pi.)",
+  "choices": [
+   "31.4",
+   "628",
+   "157",
+   "1256"
+  ],
+  "correct_answer": "157"
+ },
+ {
+  "id": "Q137",
+  "prompt": "For how many positive integers n does n^2 have exactly three digits?",
+  "choices": [
+   "31",
+   "22",
+   "23",
+   "32"
+  ],
+  "correct_answer": "22"
+ },
+ {
+  "id": "Q138",
+  "prompt": "Some whole numbers round to 350 when rounded to the nearest ten and also round to 300 when rounded to the nearest hundred. What is the sum of all such whole numbers?",
+  "choices": [
+   "1735",
+   "3445",
+   "3495",
+   "2085"
+  ],
+  "correct_answer": "1735"
+ },
+ {
+  "id": "Q139",
+  "prompt": "A club sells cups for $3.00 each. Making the cups costs $80 to set up plus $1.40 for each cup. What is the least number of cups the club must make and sell to earn a profit of more than $100?",
+  "choices": [
+   "60",
+   "13",
+   "129",
+   "113"
+  ],
+  "correct_answer": "113"
+ },
+ {
+  "id": "Q140",
+  "prompt": "What is the smallest positive integer that has exactly 6 positive divisors?",
+  "choices": [
+   "12",
+   "6",
+   "20",
+   "64"
+  ],
+  "correct_answer": "12"
+ }
+]

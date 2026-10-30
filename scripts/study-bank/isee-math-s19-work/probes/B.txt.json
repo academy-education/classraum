@@ -1,0 +1,637 @@
+[
+ {
+  "id": "B01",
+  "q": "euros?&yen|exchange&fee&%",
+  "idea": "One euro is worth 1.25 dollars and one dollar 150 yen; changes 300 euros to yen and office keeps 4% fee",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.34 90c83a76 ssat: A traveler changes $400 into euros at a rate of 0.90 euro per dollar. Later she changes all of those euros bac",
+   "0.31 ff761ac8 act: A traveler exchanges 500 U.S. dollars for euros at a rate of 0.92 euro per dollar. The exchange office first d"
+  ]
+ },
+ {
+  "id": "B02",
+  "q": "scale of 1 ?: ?\\d+&area",
+  "idea": "map scale 1:50000 field 3 cm by 2 cm actual area in square kilometers",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.39 67c173fe act: On a map, 1 centimeter represents 2.5 kilometers. A rectangular park measures 4 centimeters by 6 centimeters o",
+   "0.38 35165576 act: On a map, 2.5 centimeters represents an actual distance of 15 kilometers. Two towns are 9 centimeters apart on"
+  ]
+ },
+ {
+  "id": "B03",
+  "q": "get (one|1) free|buy (two|three|2|3)&free",
+  "idea": "pens 2 dollars each buy 3 get 1 free cost of 18 pens",
+  "kw_hits": 2,
+  "kw": [
+   "2a543eec-f9d [live act/act-math-v11 Integrating Essential Skills medium] :: A shop sells notebooks for $6 each and runs an offer: buy 3 notebooks and get a 4th free. Ana has $84 to spend and wants as many notebooks as possible. How many notebooks can she take home?",
+   "659498cb-31b [live isee/isee-math-s16 Math medium] :: A store sells the same shampoo in four offers."
+  ],
+  "tfidf": [
+   "0.61 2830c940 ssat: A shop sells pens at 3 for $2.40. At this rate, what is the cost of 7 pens, in dollars?",
+   "0.61 1d11a826 isee: A vendor buys pens at the rate of 3 pens for $2 and sells all of them at the rate of 2 pens for $3. How many p"
+  ]
+ },
+ {
+  "id": "B04",
+  "q": "single discount|equivalent to a single|one discount of",
+  "idea": "successive discounts of 20 percent and 15 percent equal a single discount of what percent",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is",
+   "0.38 476e0857 isee: 20 is what percent of 25?"
+  ]
+ },
+ {
+  "id": "B05",
+  "q": "commission",
+  "idea": "salesperson earns 4 percent commission on first 5000 of sales and 6 percent above; earned 380 total sales",
+  "kw_hits": 4,
+  "kw": [
+   "09fb9083-0cb [live sat/sat-math-v30-full Problem-Solving and Data Analysis medium] :: A store sells a lamp for $40. The lamp costs the store $25, and the store also pays a salesperson a commission on the sale of a lamp equal to 5% of the lamp's selling price, but never more than $1.92. The store's profit on a lamp is its selling price minus the store's cost and the commission. The store lowers the lamp's selling price by 10%. By what percent must the number of lamps sold increase so that the store's total profit from lamps stays the same, to the nearest tenth of a percent?",
+   "4b0e7779-edb [live act/act-math-v12-mix Integrating Essential Skills medium] :: A sales associate earns a commission of 5% on the first 4,000 dollars of her monthly sales and 8% on the portion of her monthly sales above 4,000 dollars. In a month in which her sales total 9,500 dollars, how many dollars of commission does she earn?",
+   "b28ffe33-6cd [live act/act-math-v4gi Integrating Essential Skills medium] :: A gallery sells a painting for an artist and keeps 12% of the sale price as its commission. The artist receives the rest, which is $1,540. What was the sale price of the painting, in dollars?",
+   "ALG6-16 [prior sat-alg-v6.batch.json] :: A salesperson pays a commission of 12% of the amount of each sale and keeps the rest. After one sale she kept $3,300. What was the amount of that sale, in dollars?"
+  ],
+  "tfidf": [
+   "0.46 4b0e7779 act: A sales associate earns a commission of 5% on the first 4,000 dollars of her monthly sales and 8% on the porti",
+   "0.33 467beafb ssat: The sales tax rate in a town rose from 8 percent to 10 percent. By what percent did the sales tax on a $200 pu"
+  ]
+ },
+ {
+  "id": "B06",
+  "q": "percent error",
+  "idea": "estimated 48 actual 60 percent error",
+  "kw_hits": 3,
+  "kw": [
+   "0c45f7f0-2b2 [live act/act-math-v29 Integrating Essential Skills easy] :: Before checking out, Dana estimates the total cost of 6 items by rounding each item's price to the nearest dollar and adding the rounded prices. The prices of the items are $4.07, $7.59, $12.68, $16.89, $21.62, and $27.91. To the nearest hundredth of a percent, what is the percent error of Dana's estimate of the total cost?",
+   "5769ba53-f50 [live act/act-math-v29 Integrating Essential Skills easy] :: A quick rule for estimating a temperature in degrees Fahrenheit (°F) from a temperature in degrees Celsius (°C) is to double the Celsius temperature and add 30. The exact conversion is F = 1.8C + 32. Pablo uses the quick rule to estimate the Fahrenheit equivalent of 28°C. To the nearest hundredth of a percent, what is the percent error of Pablo's estimate?",
+   "afb1c85c-413 [live map/map-math-v2-oa Operations and Algebraic Thinking hard] :: Mia estimated that a rock had a mass of 102 grams. Her estimate was more than the actual mass, and the percent error of her estimate was 20%. What is the actual mass of the rock, in grams?"
+  ],
+  "tfidf": [
+   "0.38 afb1c85c map: Mia estimated that a rock had a mass of 102 grams. Her estimate was more than the actual mass, and the percent",
+   "0.28 b6f57116 sat: A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage poi"
+  ]
+ },
+ {
+  "id": "B07",
+  "q": "(selling|sale) price&cost&percent of the (selling|sale) price",
+  "idea": "markup 25 percent of cost; profit is what percent of selling price",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 a4655e8c act: A store buys a jacket for $72 and sets a selling price so that the store's profit is 25% of the selling price.",
+   "0.42 04775f12 ssat: A store sets the selling price of every item so that its profit on the item is 25 percent of the selling price"
+  ]
+ },
+ {
+  "id": "B08",
+  "q": "percentage points?&percent (increase|change)",
+  "idea": "interest rate rose from 4 percent to 5 percent; percent increase in the rate",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.51 467beafb ssat: The sales tax rate in a town rose from 8 percent to 10 percent. By what percent did the sales tax on a $200 pu",
+   "0.50 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "B09",
+  "q": "stops? for&minutes&every hour|breaks?",
+  "idea": "machine makes 12 parts every 5 minutes but stops 10 minutes each hour; parts in 8 hours",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 172e10ae sat: A machine produces 1440 parts per 8-hour shift. Inspection rejects 12.5 percent of the parts produced. An orde",
+   "0.42 19d534a5 act: Three identical machines working together produce 240 parts in 4 hours. Each machine works at that same consta"
+  ]
+ },
+ {
+  "id": "B10",
+  "q": "takes&minutes&same (route|distance|path)&speed",
+  "idea": "Ana walks to school in 12 minutes Ben 15 minutes same route Ana 5 km/h Ben speed",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.53 3f06f2d6 map: A park trail is 7/8 mile around. Ana walks around it 8 times. Ben walks 2/5 as far as Ana. How many miles fart",
+   "0.45 df5b8948 ssat: Ana has 50 percent more money than Ben. Ana gives some of her money to Ben, and then they have equal amounts. "
+  ]
+ },
+ {
+  "id": "B11",
+  "q": "mg|milligrams&(kg|kilogram)&dose",
+  "idea": "dose 15 mg per kg child 22 kg liquid 50 mg per 5 mL how many mL",
+  "kw_hits": 2,
+  "kw": [
+   "94fbbabd-929 [live act/act-math-v11 Integrating Essential Skills medium] :: A liquid medicine is prescribed at 12 mg per kilogram of body mass per day, divided into 4 equal doses. The liquid contains 30 mg of medicine per milliliter. How many milliliters should a child with a mass of 25 kg be given in ONE dose?",
+   "PSDA-H3-20 [prior sat-psda-hard-v3.batch.json] :: A trial protocol specifies a daily dose of 12 milligrams of a drug per kilogram of body mass, given as 3 equal doses spread through the day. How many milligrams of the drug should a participant with a body mass of 68 kilograms receive in each dose?"
+  ],
+  "tfidf": [
+   "0.47 94fbbabd act: A liquid medicine is prescribed at 12 mg per kilogram of body mass per day, divided into 4 equal doses. The li",
+   "0.24 0d1c620e sat: If 5x + 4y = 22 and 3x + 8y = 30, what is the value of x ?"
+  ]
+ },
+ {
+  "id": "B12",
+  "q": "model&volume&(1:|1/|scale)",
+  "idea": "scale model 1 to 20 model tank holds 3 liters real tank holds liters",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.55 54ebff64 sat: Tank A holds 960 liters of water and is draining at a constant rate of 6 liters per minute. At the same moment",
+   "0.46 c118bf85 isee: Water drains from a tank at a constant rate. After 4 minutes of draining, the tank holds 78 liters; after 9 mi"
+  ]
+ },
+ {
+  "id": "B13",
+  "q": "back to (its|the) original|return(s)? to (its|the) original",
+  "idea": "price increased 25 percent what percent decrease returns it to original",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.58 946342d9 sat: The price of a jacket was increased by 25 percent. Later the new price was decreased by p percent, and the res",
+   "0.50 c1aab049 ssat: The radius of a cylinder is increased by 20 percent, and its height is decreased by 25 percent. The new volume"
+  ]
+ },
+ {
+  "id": "B14",
+  "q": "kilometers per hour&meters per second|km/h&m/s",
+  "idea": "car 72 km per hour in meters per second",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 77bf13ae act: A car is traveling at 45 kilometers per hour when it begins to speed up with constant acceleration. During the",
+   "0.44 a28c3a2a act: A train travels at a constant 54 kilometers per hour. What is its speed in meters per second? (1 kilometer = 1"
+  ]
+ },
+ {
+  "id": "B15",
+  "q": "(tax|taxed)&brackets?|first \\$?\\d+,?\\d* (is|are) taxed",
+  "idea": "tax 10 percent on first 10000 and 20 percent on income above; tax 3400 income",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.35 e403f607 sat: A first sample of 50 households has a mean annual income of 62,000 dollars. A second sample of 150 households ",
+   "0.34 467beafb ssat: The sales tax rate in a town rose from 8 percent to 10 percent. By what percent did the sales tax on a $200 pu"
+  ]
+ },
+ {
+  "id": "B16",
+  "q": "tip&split|share the (bill|cost) equally",
+  "idea": "three friends share bill 72 plus 15 percent tip one pays 10 more",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.44 679e14a6 ssat: A restaurant bill comes to $48.00 before the tip. A tip of 18 percent of the bill is added. What is the total ",
+   "0.30 e8493c40 sat: A group of n people shares a restaurant bill. The bill total is T dollars, a coupon takes d dollars off the to"
+  ]
+ },
+ {
+  "id": "B17",
+  "q": "concentration|per liter&dilute|diluted",
+  "idea": "syrup diluted 1 part to 4 parts water; how much syrup in 2 liters of drink",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 1ab80136 isee: A cook has 300 grams of syrup that is 40 percent sugar by mass, the rest being water. She boils the syrup unti",
+   "0.28 ed3420d0 act: A recipe uses 3/4 cup of syrup for every 10 pancakes. Syrup is sold only in bottles containing 16 fluid ounces"
+  ]
+ },
+ {
+  "id": "B18",
+  "q": "per (square )?(foot|meter)&paint&cans?|gallon covers",
+  "idea": "one can of paint covers 350 square feet two coats wall area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.55 9b5591de act: A cylindrical water tank has a diameter of 10 feet and a height of 12 feet. Its curved side and its top are to",
+   "0.38 b4b9485b isee: A rectangular room is 10 meters long and 5 meters wide, and its walls are 2.5 meters high. All four walls (but"
+  ]
+ },
+ {
+  "id": "B19",
+  "q": "unit price&per ounce|cents per ounce",
+  "idea": "18 oz for 4.50 vs 24 oz for 5.76 difference in cents per ounce",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.33 e697bff8 act: A store sells laundry detergent in two sizes. A 40-ounce bottle costs $9.20, and a 64-ounce bottle costs $13.4",
+   "0.24 a4a5213a isee: Using only nickels (5 cents), dimes (10 cents), and quarters (25 cents), in how many different ways can exactl"
+  ]
+ },
+ {
+  "id": "B20",
+  "q": "percent of&are (boys|girls)&percent of (the )?(boys|girls)",
+  "idea": "60 percent of class are girls 25 percent of girls and 50 percent of boys wear glasses what percent wear glasses",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.39 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is",
+   "0.39 33056309 act: The ratio of boys to girls in a class is 3:5. If there are 32 students in the class, how many girls are in the"
+  ]
+ },
+ {
+  "id": "B21",
+  "q": "speed&increased by&percent&time",
+  "idea": "speed increased by 25 percent time decreases by what percent",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 476e0857 isee: 20 is what percent of 25?",
+   "0.46 c1aab049 ssat: The radius of a cylinder is increased by 20 percent, and its height is decreased by 25 percent. The new volume"
+  ]
+ },
+ {
+  "id": "B22",
+  "q": "hours&minutes&per hour&how (far|many miles)",
+  "idea": "drives 2 hours 45 minutes at 56 miles per hour distance",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 0c99ac2d isee: A bus must cover 300 miles in 6 hours. It drives the first 2 hours at an average speed of 45 miles per hour. A",
+   "0.47 5949f122 ssat: Maria drives 60 miles at an average speed of 30 miles per hour, and then drives another 60 miles at an average"
+  ]
+ },
+ {
+  "id": "B23",
+  "q": "price per pound&pounds&mixture|mixed&per pound",
+  "idea": "mix 3 lb nuts at 6 dollars per lb with 5 lb at 4.40 per lb; price per lb of mixture",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.23 dacb3eb1 isee: A box of cereal used to hold 500 grams and cost $5.00. The box now holds 400 grams and costs $4.40. By what pe",
+   "0.22 2cd72a07 ssat: One batch of trail mix uses 4 cups of oats, 3 spoonfuls of honey and 2 cups of nuts. A shop has 300 cups of oa"
+  ]
+ },
+ {
+  "id": "B24",
+  "q": "earns?&per hour&(after|takes home)&percent",
+  "idea": "earns 18 dollars per hour 35 hours; 22 percent withheld; take-home pay",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.29 6078f045 isee: Sam earns $6 more per hour than Lee. Sam's pay for 5 hours of work equals Lee's pay for 8 hours of work. What ",
+   "0.25 c6076e63 ssat: Maya drives from her home to a lake at an average speed of 40 miles per hour and returns home along the same r"
+  ]
+ },
+ {
+  "id": "B25",
+  "q": "(ratio|rate)&heart|beats per minute",
+  "idea": "heart beats 75 times per minute; beats in 2.5 hours",
+  "kw_hits": 1,
+  "kw": [
+   "772accad-8b7 [live act/act-math-v26 Number and Quantity medium] :: Biologists model the resting heart rate H, in beats per minute, of a mammal with body mass M kilograms by H = 241M^(−1/4). Under this model, the resting heart rate of animal B is 25% lower than the resting heart rate of animal A, whose mass is 5.5 kilograms. To the nearest hundredth of a kilogram, what is the mass of animal B ?"
+  ],
+  "tfidf": [
+   "0.33 772accad act: Biologists model the resting heart rate H, in beats per minute, of a mammal with body mass M kilograms by H = ",
+   "0.19 eb9b9d6c isee: What is the value of (2.5 x 10^3)(4 x 10^2)?"
+  ]
+ },
+ {
+  "id": "B26",
+  "q": "(inches|feet) per second&miles per hour|feet per second",
+  "idea": "60 miles per hour in feet per second",
+  "kw_hits": 4,
+  "kw": [
+   "6659759e-ec3 [live sat/sat-math-v29-full Advanced Math medium] :: A ball is launched straight up from a platform. Its height above the ground, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt + 8, where v is the launch speed, in feet per second. What is the least whole-number value of v for which the ball reaches a height of at least 100 feet?",
+   "96a4008a-794 [live act/act-math-v26 Integrating Essential Skills medium] :: The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temperature in degrees Fahrenheit. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. During a storm the air temperature is 40 degrees Celsius. A video recorded at 30 frames per second shows a lightning flash first appearing in frame number 1,046 and its thunder first heard in frame number 1,268; consecutive frames are 1/30 second apart. Assuming the light arrives instantly, how far away was the lightning, to the nearest thousandth of a mile? (1 mile = 5,280 feet)",
+   "bd9dc0c7-2ab [live act/act-math-v29 Integrating Essential Skills medium] :: From the security checkpoint to her gate, Maya travels 1,350 feet along a straight airport concourse. Along the way are two moving walkways, both moving toward her gate at 1.9 feet per second; the first walkway is 320 feet long and the second is 260 feet long. For the rest of the distance she walks on the floor at 3.1 miles per hour. On the first walkway she keeps walking at that same pace relative to the walkway. On the second walkway she stands still and lets the walkway carry her. She does not stop anywhere else. Given that 1 mile = 5,280 feet, to the nearest second, how many seconds does it take Maya to get from the checkpoint to her gate?",
+   "SM29F-P04 [prior sat-math-v29-full-p.batch.json] :: A ball is launched straight up from a platform. Its height above the ground, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt + 8, where v is the launch speed, in feet per second. What is the least whole-number value of v for which the ball reaches a height of at least 100 feet?"
+  ],
+  "tfidf": [
+   "0.62 c37b9e6b isee: A car travels 60 miles at a steady 30 miles per hour and then travels another 60 miles at a steady 60 miles pe",
+   "0.58 bbe55d45 ssat: Maya drives 60 miles to a lake at an average speed of 30 miles per hour and returns along the same 60 miles at"
+  ]
+ },
+ {
+  "id": "B27",
+  "q": "rainfall&inches&per hour|inches of rain",
+  "idea": "rain falls 0.4 inches per hour from 9:30 to 2:15 total inches",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.42 13c9683a act: Rain that falls on a shed roof drains into a rain barrel that holds 55 gallons. The roof covers a horizontal a",
+   "0.42 d4e52eb4 act: A closed rectangular box measures 5 inches by 8 inches by 3 inches. What is the total surface area of the box,"
+  ]
+ },
+ {
+  "id": "B28",
+  "q": "percent of the (votes|vote)|votes&percent",
+  "idea": "candidate got 45 percent of 2400 votes needs 50 percent plus one how many more",
+  "kw_hits": 1,
+  "kw": [
+   "61a7f7c9-b51 [live isee/isee-math-s15 Math easy] :: In an election between two candidates, every voter chose exactly one of them. The winner received 60 percent of the votes and won by 300 votes. How many votes were cast in all?"
+  ],
+  "tfidf": [
+   "0.32 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is",
+   "0.31 61a7f7c9 isee: In an election between two candidates, every voter chose exactly one of them. The winner received 60 percent o"
+  ]
+ },
+ {
+  "id": "B29",
+  "q": "(enlarged|reduced)&percent&photocopier|copier",
+  "idea": "photocopier reduces to 80 percent twice; final length of 15 cm line",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.21 cb6f32f9 isee: Sixty percent of what number is equal to 45 percent of 80?",
+   "0.19 d02bfb48 sat: In the equation x^2 - 15x + k = 0, one root is twice the other. What is the value of k?"
+  ]
+ },
+ {
+  "id": "B30",
+  "q": "(shrink|shrank|shrinks)&percent",
+  "idea": "fabric shrinks 4 percent in length; buy length to end with 3 meters",
+  "kw_hits": 1,
+  "kw": [
+   "723f920d-cc2 [live sat/math-v4 Problem-Solving and Data Analysis medium] :: A drapery workshop cuts rectangular curtain panels from unwashed cotton, each panel 180 cm long and 150 cm wide. Washing a panel shrinks its length by 5 percent and its width by 3.5 percent. To the nearest tenth of a percent, by what percent does a panel's area decrease when it is washed?"
+  ],
+  "tfidf": [
+   "0.56 9a15b14a act: A quilter needs 5 strips of fabric. After the fabric is washed, each strip must be 0.82 meter long plus a seam",
+   "0.23 735a75be act: A swimming pool is 25 meters long and 10 meters wide. Along its length, the floor is level at a depth of 1.2 m"
+  ]
+ },
+ {
+  "id": "B31",
+  "q": "(profit|earn)&percent&sold (half|some)&rest|remaining at",
+  "idea": "bought 60 items at 5 dollars sells 40 at 8 and rest at 4 percent profit",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.38 eee02deb sat: A vendor buys exactly 40 items. Small items cost 8 dollars each, large items cost 15 dollars each, and the ven",
+   "0.38 123ebbf8 ssat: At a stall, 40% of the items sold cost 4 dollars each. Every other item sold cost either 9 dollars or 14 dolla"
+  ]
+ },
+ {
+  "id": "B32",
+  "q": "ratio&changes? to&add(ed)? (some|more)&(water|juice)",
+  "idea": "juice ratio 2 to 3 concentrate to water in 10 liters how much water to add to make 1 to 3",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 d642ea7f ssat: A tank holds 40 liters of a mixture that is 25 percent concentrate. Some of the mixture is drained and replace",
+   "0.33 eaac0b34 sat: A photo lab mixes film developer by combining concentrate and water in the ratio 2:13 by volume. One filled pr"
+  ]
+ },
+ {
+  "id": "B33",
+  "q": "earn(s|ed)?&interest&(months|month)",
+  "idea": "simple interest 6 percent annual for 8 months on 1500",
+  "kw_hits": 2,
+  "kw": [
+   "ada5584b-d69 [live map/map-math-v2-b2-oa Operations and Algebraic Thinking medium] :: Rosa puts $5,000 in a savings account that earns 4.5% simple interest per year. She leaves the money in the account for 20 months and makes no other deposits or withdrawals. How many dollars of interest does the account earn in the 20 months?",
+   "ed3fb691-4d0 [live act/act-math-v14r Integrating Essential Skills medium] :: A savings certificate pays simple interest at an annual rate of 5.5% of the amount deposited. A deposit of $2,400 is left in the certificate for 8 months. How many dollars of interest does the deposit earn in those 8 months?"
+  ],
+  "tfidf": [
+   "0.50 46e00c27 isee: Ana deposits $2,500 in an account that pays 6 percent simple annual interest. Ben deposits $2,000 in a differe",
+   "0.43 ed3fb691 act: A savings certificate pays simple interest at an annual rate of 5.5% of the amount deposited. A deposit of $2,"
+  ]
+ },
+ {
+  "id": "B34",
+  "q": "(cost|price)&(dozen|dozens)&each",
+  "idea": "eggs 3.60 per dozen how much for 30 eggs",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.40 46c2321e isee: One batch of a cookie recipe uses 5 cups of flour, 3 eggs, and 2/3 cup of butter. A baker has 52 cups of flour",
+   "0.36 21edcff2 act: A family tracks the monthly cost of a fixed basket of groceries: 3 gallons of milk, 6 dozen eggs, 5 loaves of "
+  ]
+ },
+ {
+  "id": "B35",
+  "q": "(ratio|scale)&blueprint|floor plan",
+  "idea": "floor plan 1 inch represents 8 feet room 2.5 by 1.75 inches area square feet",
+  "kw_hits": 1,
+  "kw": [
+   "6f7ecb49-338 [live map/map-math-v2-b3-geo Geometry easy] :: A floor plan of a classroom uses the scale 3 centimeters = 5 meters. On the floor plan, the classroom is a rectangle 12 centimeters long and 4.5 centimeters wide. What is the actual area of the classroom, in square meters?"
+  ],
+  "tfidf": [
+   "0.40 eba6d334 act: A rectangular room is 12 feet by 15 feet with walls 8 feet high. The walls contain one door measuring 3 feet b",
+   "0.38 8b58ad7e act: A room measures 12 feet by 15 feet. Carpet for the room costs 28 dollars per square YARD, and 1 square yard eq"
+  ]
+ },
+ {
+  "id": "B36",
+  "q": "pages&reads?&(hour and|1 hour \\d+ minutes|minutes per page)",
+  "idea": "reads 36 pages in 1 hour 20 minutes how long for 99 pages",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 4d2b142a ssat: A printer produces 3 pages every 8 seconds, working at a constant rate. How many pages does it produce in 1 ho",
+   "0.49 2ea09dd8 ssat: A printer prints 45 pages in 3 minutes. At this same rate, how many pages does it print in 8 minutes?"
+  ]
+ },
+ {
+  "id": "B37",
+  "q": "per cent of (his|her) (salary|income)&rent&remaining|of the remainder",
+  "idea": "spends 30 percent of income on rent and 25 percent of remainder on food, 1260 left",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.31 476e0857 isee: 20 is what percent of 25?",
+   "0.31 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "B38",
+  "q": "more than&percent&less than&percent&compared|is what percent of",
+  "idea": "A is 20 percent more than C and B is 25 percent less than C; A is what percent of B",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.78 476e0857 isee: 20 is what percent of 25?",
+   "0.67 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "B39",
+  "q": "(rate|speed)&upstream|downstream|current",
+  "idea": "boat 18 km/h still water current 3 km/h trip 30 km downstream and back time",
+  "kw_hits": 7,
+  "kw": [
+   "09ff2413-f1f [live isee/isee-math-s16 Math medium] :: A rower can row at 20 kilometers per hour in still water. On a river, rowing a certain distance upstream takes her 4 times as long as rowing the same distance downstream. What is the speed of the current, in kilometers per hour?",
+   "204411b1-219 [live sat/v2 Algebra medium] :: A boat travels 24 miles downstream in 2 hours and the same 24 miles upstream in 3 hours. What is the speed of the boat in still water, in miles per hour?",
+   "4dfb9cfe-9d0 [live act/act-math-v9-alg Algebra medium] :: A boat travels 48 miles downstream in 3 hours and makes the return trip of 48 miles upstream in 4 hours. Assuming the boat's own speed and the current's speed are each constant, what is the speed of the current, in miles per hour?",
+   "8f8c414d-bc9 [live sat/math-v3 Advanced Math hard] :: Two rival messaging apps launch a growth report. App Notio currently has 5,000 subscribers and gains subscribers at a constant rate of 450 per month. App Pulse currently has 1,200 subscribers, and its subscriber count increases by 20% each month. According to these models, after how many months will Pulse's subscriber count first exceed Notio's?",
+   "dd8525be-d6b [live sat/math-v9-alg-hard Algebra medium] :: A boat traveling on a river covers 48 kilometers downstream in 3 hours and covers the same 48 kilometers upstream in 4 hours. The boat's speed in still water and the speed of the current are each constant. What is the speed of the current, in kilometers per hour?",
+   "e077084e-813 [live sat/v2 Algebra medium] :: A boat travels 36 miles downstream in 2 hours and returns the same 36 miles upstream in 3 hours. What is the speed of the boat in still water, in miles per hour?",
+   "ALG-H4-10 [prior sat-alg-hard-v4.batch.json] :: A boat traveling on a river covers 48 kilometers downstream in 3 hours and covers the same 48 kilometers upstream in 4 hours. The boat's speed in still water and the speed of the current are each constant. What is the speed of the current, in kilometers per hour?"
+  ],
+  "tfidf": [
+   "0.47 dd8525be sat: A boat traveling on a river covers 48 kilometers downstream in 3 hours and covers the same 48 kilometers upstr",
+   "0.46 b6186ee6 map: A rowboat moves at 5.65 kilometers per hour in still water. Going downstream, the current makes it go 0.25 kil"
+  ]
+ },
+ {
+  "id": "B40",
+  "q": "gallons?&liters?&(convert|1 gallon)",
+  "idea": "1 gallon is 3.8 liters car uses 7 liters per 100 km miles per gallon conversion",
+  "kw_hits": 2,
+  "kw": [
+   "10a7a9a0-bc4 [live act/act-math-v13-ies Integrating Essential Skills medium] :: In one country gasoline costs 1.60 euros per liter. There are 3.8 liters in 1 gallon, and 1 euro is worth 1.15 dollars. To the nearest cent, what is this price of gasoline in dollars per gallon?",
+   "f3b337dd-6ab [live sat/v2 Problem-Solving and Data Analysis medium] :: A car travels 90 kilometers using 6 liters of fuel. At this same fuel efficiency, how many miles can the car travel on 10 gallons of fuel? (Use 1 mile = 1.6 kilometers and 1 gallon = 3.8 liters.)"
+  ],
+  "tfidf": [
+   "0.42 10a7a9a0 act: In one country gasoline costs 1.60 euros per liter. There are 3.8 liters in 1 gallon, and 1 euro is worth 1.15",
+   "0.40 a6b4af2a isee: Car A travels 40 miles on each gallon of gasoline, and Car B travels 25 miles on each gallon. Car A costs $3,0"
+  ]
+ },
+ {
+  "id": "B41",
+  "q": "quarts?|pints?&cups?",
+  "idea": "punch recipe 3 quarts how many 1-cup servings 1 quart is 4 cups",
+  "kw_hits": 1,
+  "kw": [
+   "1d71f04c-8c6 [live isee/isee-math-s8 Math medium] :: Three quarters of a cup of sugar is enough for 12 cookies. At the same rate, how many cups of sugar are needed for 30 cookies?"
+  ],
+  "tfidf": [
+   "0.40 9251cc42 isee: A muffin recipe that makes 8 servings calls for 2 1/2 cups of flour and 3/4 cup of sugar. A baker has 6 cups o",
+   "0.40 5f208e19 act: A recipe uses 3 tablespoons of oil for every 4 servings. There are 16 tablespoons in 1 cup. How many cups of o"
+  ]
+ },
+ {
+  "id": "B42",
+  "q": "(salary|wage|pay)&raise&percent&(then|later) cut",
+  "idea": "wage raised 10 percent then cut 10 percent net change",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.35 54e6fd65 act: Over a two-year period, Kai's hourly wage rose from $24.80 to $27.90. During the same two years, consumer pric",
+   "0.35 ac72db59 act: A worker's hourly wage increased from $18.50 to $20.35. By what percent did the hourly wage increase?"
+  ]
+ },
+ {
+  "id": "B43",
+  "q": "speed of sound|lightning&thunder",
+  "idea": "thunder heard 6 seconds after lightning sound 340 m/s distance km",
+  "kw_hits": 1,
+  "kw": [
+   "96a4008a-794 [live act/act-math-v26 Integrating Essential Skills medium] :: The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temperature in degrees Fahrenheit. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. During a storm the air temperature is 40 degrees Celsius. A video recorded at 30 frames per second shows a lightning flash first appearing in frame number 1,046 and its thunder first heard in frame number 1,268; consecutive frames are 1/30 second apart. Assuming the light arrives instantly, how far away was the lightning, to the nearest thousandth of a mile? (1 mile = 5,280 feet)"
+  ],
+  "tfidf": [
+   "0.29 96a4008a act: The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temper",
+   "0.20 9be20541 act: The sound level L, in decibels, of a sound with intensity I is L = 10 log(I/I₀), where I₀ is a fixed reference"
+  ]
+ },
+ {
+  "id": "B44",
+  "q": "depreciat",
+  "idea": "car loses 15 percent of value each year 20000 value after 2 years",
+  "kw_hits": 1,
+  "kw": [
+   "7dc9de45-737 [live sat/v2 Problem-Solving and Data Analysis medium] :: The value of a machine depreciates by 15% of its value each year. If the machine is worth $20,000 now, what will it be worth after 2 years, to the nearest dollar?"
+  ],
+  "tfidf": [
+   "0.53 fb23ecf8 act: A car purchased for $24,000 loses 15% of its value each year. To the nearest dollar, what is the value of the ",
+   "0.35 a81e85ba ssat: A machine loses 20 percent of its value each year, with each year's loss figured on its value at the start of "
+  ]
+ },
+ {
+  "id": "B45",
+  "q": "(ratio|rate)&calories?&grams?",
+  "idea": "1 gram fat 9 calories serving 240 calories 30 percent from fat grams of fat",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.37 968fbec0 sat: A feed blend is made from two ingredients measured by weight, so the number of scoops of each need not be a wh",
+   "0.12 dacb3eb1 isee: A box of cereal used to hold 500 grams and cost $5.00. The box now holds 400 grams and costs $4.40. By what pe"
+  ]
+ },
+ {
+  "id": "B46",
+  "q": "(km|kilometers?) per liter&cost|liters per 100",
+  "idea": "car 8 liters per 100 km fuel 1.75 per liter cost of 360 km trip",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.54 e1920c40 ssat: Car P uses 8 liters of fuel for every 100 kilometers it travels. Car Q travels 15 kilometers on each liter of ",
+   "0.52 005c4e15 sat: A car's fuel consumption is 6.5 liters per 100 kilometers. Fuel costs 1.62 dollars per liter. What is the fuel"
+  ]
+ },
+ {
+  "id": "B47",
+  "q": "percent of&water&dries?|dried",
+  "idea": "grapes 90 percent water dried to raisins 20 percent water weight from 50 kg",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.35 d9aaff4b ssat: A 60-kilogram load of fresh fruit is 75 percent water by weight. After drying, the fruit is 40 percent water b",
+   "0.33 4de5ccab isee: The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is"
+  ]
+ },
+ {
+  "id": "B48",
+  "q": "(tank|pool)&(fills?|drains?)&percent&(full|empty)&minutes",
+  "idea": "tank 30 percent full after 12 minutes of filling at constant rate from empty; minutes from 30 to 75 percent",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 6ab5005c sat: Two tanks, P and Q, are being filled with water, each at its own constant rate. Tank P contained 40 liters 3 m",
+   "0.41 5b2fe2cc sat: A water tank is 30% full. After 1,080 liters of water are pumped in, the tank is 75% full. Water is then drain"
+  ]
+ },
+ {
+  "id": "B49",
+  "q": "pace&minutes per (mile|kilometer)",
+  "idea": "runner pace 5 minutes 24 seconds per km, 10 km time",
+  "kw_hits": 3,
+  "kw": [
+   "9de1786a-b2c [live sat/sat-math-v29-full Algebra easy] :: Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+   "SM29F-D07 [prior sat-math-v29-full-d.batch.json] :: Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+   "PSDA5-11 [prior sat-psda-v5.batch.json] :: A runner holds a constant pace of 4.8 minutes per kilometer. There are approximately 1.61 kilometers in 1 mile. At this pace, how many minutes does the runner take to run 3 miles, to the nearest tenth of a minute?"
+  ],
+  "tfidf": [
+   "0.52 4c5f8ba1 isee: A runner finishes a 5-kilometer race in 22 minutes 30 seconds. Running at that same constant pace, how many se",
+   "0.36 9de1786a sat: Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. Sh"
+  ]
+ },
+ {
+  "id": "B51",
+  "q": "average speed&(stops?|break)",
+  "idea": "travels 150 km in 2 hours then stops 30 minutes then 90 km in 1.5 hours average speed whole trip incl stop",
+  "kw_hits": 6,
+  "kw": [
+   "1b7083b0-a33 [live sat/math-v4 Geometry and Trigonometry medium] :: On a city planner's grid, a bus shelter sits at the point (-6, 8) and a transit hub sits at the point (18, 15). One grid unit represents 0.6 km, and a proposed shuttle would run in a straight line between the two points at an average speed of 26 km/h including stops. To the nearest tenth of a minute, how long would one trip take?",
+   "2033dca9-fa9 [live act/act-math-v16 Integrating Essential Skills easy] :: A train trip of 240 kilometers took 3 hours in all, including one 15-minute stop at a station during which the train did not move. To the nearest tenth, what was the train's average speed, in kilometers per hour, while it was moving?",
+   "496e5c11-d74 [live act/act-math-v29 Integrating Essential Skills medium] :: A light-rail line runs 23.6 kilometers from one end station to the other and has 15 stations in all, including the two end stations. While moving, the train averages 46 kilometers per hour, except on a 4.8-kilometer section that climbs a steep grade, where its average speed while moving is 20% less than that. On each trip, the train stops for 35 seconds at every station other than the two end stations. To the nearest tenth of a minute, how many minutes does a trip take, from the moment the train leaves one end station until it arrives at the other?",
+   "4c19786a-e12 [live act/act-unit-0918 Integrating Essential Skills medium] :: A train leaves a station at 9:47 a.m. and travels 306 kilometers at an average speed of 90 kilometers per hour without stopping. At what time does the train arrive?",
+   "67f8dd66-b37 [live isee/isee-math-s16 Math medium] :: A bus makes one trip between two towns, including a single 10-minute stop. Whenever it is moving, it travels at 45 kilometers per hour. Its average speed for the whole trip, counting the stop, is 36 kilometers per hour. How many kilometers apart are the towns?",
+   "981ee172-306 [live ssat/ssat-math-s16 Math easy] :: Without stops, a bus travels at an average speed of 75 kilometers per hour. Including the time it spends at stops, its average speed is 60 kilometers per hour. On average, how many minutes per hour does the bus spend stopped?"
+  ],
+  "tfidf": [
+   "0.32 981ee172 ssat: Without stops, a bus travels at an average speed of 75 kilometers per hour. Including the time it spends at st",
+   "0.32 67f8dd66 isee: A bus makes one trip between two towns, including a single 10-minute stop. Whenever it is moving, it travels a"
+  ]
+ },
+ {
+  "id": "B54",
+  "q": "(salt|sugar)&evaporat",
+  "idea": "20 liters of 5 percent salt water evaporates to 8 percent salt how much water evaporated",
+  "kw_hits": 1,
+  "kw": [
+   "0255c863-e2f [live act/act-unit-0918 Integrating Essential Skills medium] :: A container holds 400 milliliters of a salt solution that is 15 percent salt by volume. How many milliliters of water must evaporate from the container so that the remaining solution is 24 percent salt?"
+  ],
+  "tfidf": [
+   "0.54 0255c863 act: A container holds 400 milliliters of a salt solution that is 15 percent salt by volume. How many milliliters o",
+   "0.23 8e908d43 ssat: A chemist mixes 30 liters of a 20 percent acid solution with 20 liters of a 45 percent acid solution. She then"
+  ]
+ },
+ {
+  "id": "B55",
+  "q": "rent&split&(proportion|square feet|by area)",
+  "idea": "rent 1800 split in proportion to room areas 12 15 18 square meters largest share",
+  "kw_hits": 1,
+  "kw": [
+   "aa68b56f-480 [live act/act-math-v25 Integrating Essential Skills medium] :: Three roommates share an apartment whose rent is $2,535 per month. Of the rent, $705 covers the shared kitchen and living room and is split equally among the three roommates. The remaining $1,830 is split in proportion to the floor areas of the roommates' bedrooms, where a closet counts as part of the bedroom it opens into. Ari's bedroom is 13.5 feet by 14 feet and has no closet. Bo's bedroom is 12 feet by 11 feet and has a closet with a floor area of 15 square feet. Cy's bedroom is 10.5 feet by 11 feet and has no closet. To the nearest cent, how much rent does Cy pay each month?"
+  ],
+  "tfidf": [
+   "0.28 aa68b56f act: Three roommates share an apartment whose rent is $2,535 per month. Of the rent, $705 covers the shared kitchen",
+   "0.22 8b58ad7e act: A room measures 12 feet by 15 feet. Carpet for the room costs 28 dollars per square YARD, and 1 square yard eq"
+  ]
+ }
+]

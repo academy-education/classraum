@@ -1,0 +1,27 @@
+E01 :: leaves at \d+:\d+ a\.m\.&arrives at \d+:\d+ p\.m\.|how long is the trip :: train leaves 10:47 a.m. arrives 3:18 p.m. how long
+E02 :: pattern&3, 8, 15, 24|n\(n ?\+ ?2\) :: pattern 3 8 15 24 35 20th number
+E03 :: liters per hour|gallons per (minute|hour)&liters :: faucet 2.5 gallons per minute liters per hour 1 gal = 3.8 L
+E04 :: posts?&(every|apart)&(perimeter|around|rectangular) :: fence posts every 4 m around rectangular field 48 by 36 how many posts
+E05 :: square centimeters&square meters?|square meters?&square centimeters :: 3.2 square meters in square centimeters
+E06 :: hexagons&(row|chain)&perimeter :: row of n regular hexagons sharing sides perimeter with side 1
+E08 :: days&(from|between)&(March|April|May|June)&(inclusive|through|including) :: how many days from March 15 through May 4 inclusive
+E09 :: acres?|hectares? :: field 1.5 hectares in square meters; 
+E10 :: triangular numbers?|dots&triangle&rows :: triangular arrangement of dots rows 1 2 3; 20th triangular number
+E11 :: halfway between&(a\.m|p\.m|o'clock) :: time halfway between 9:40 a.m. and 2:10 p.m.
+E14 :: feet per second|ft/s :: 60 miles per hour in feet per second
+E15 :: staircase&(squares|blocks|cubes)&(figure|step) :: staircase figure n uses blocks 1+2+...+n; perimeter
+E16 :: toothpicks|matchsticks|sticks&squares?&row :: toothpicks for row of 25 squares
+E17 :: worked&a\.m\.&p\.m\.&(lunch|break)|hours worked :: works 8:45 a.m. to 5:15 p.m. with 45 min lunch Mon-Fri weekly hours
+E18 :: prints?&pages per minute&(starts?|begins?)&(finish|done|end) :: printer starts at 9:15 prints 24 pages per minute 1800 pages finishes time
+E26 :: (degrees|°)&(Celsius|Fahrenheit)&(same|equal) (number|reading|value) :: temperature where Celsius and Fahrenheit readings equal
+E28 :: (thermometer|temperature)&(drops?|falls?|rises?)&(degrees per hour|each hour)&(at what time|when) :: temperature 14 degrees at 6 p.m. falls 3 degrees per hour when -4
+E29 :: (hour hand)&(degrees)&(minutes|per minute) :: how many degrees does hour hand turn from 2:00 to 4:30
+E30 :: (distance)&(between)&(points?)&(\(-?\d+, ?-?\d+\))&(perimeter) :: perimeter of triangle with vertices (0,0) (8,6) (8,0)
+E31 :: (circle)&(center)&(origin)&(passes through|through the point) :: circle centered at origin passes through (6,8) area
+E35 :: (line segment|segment)&(divided|split)&(equal parts|congruent)&(number line) :: points dividing segment from -3 to 9 into 4 equal parts third point
+E39 :: (dilat|scale factor)&(center|origin)&(\(-?\d+, ?-?\d+\)) :: dilation by factor 3 about origin of (2,-5) then translate
+E40 :: (map|grid)&(blocks?)&(north|east|south|west)&(how far|distance|straight-line) :: walks 5 blocks north 12 east straight-line distance
+E44 :: (odometer|mileage)&(palindrome|reads) :: odometer 15951 next palindrome miles
+E49 :: (ascending|increasing)&(arithmetic)&(sequence)&(between)&(insert|inserted) :: insert 4 numbers between 7 and 32 arithmetic sequence third inserted
+E51 :: (stopwatch|race)&(seconds)&(hundredths|tenths)&(difference|faster) :: race times 1:02.47 and 59.85 difference seconds
+E55 :: (sunrise|sunset|daylight) :: sunrise 6:48 sunset 7:23 hours of daylight

@@ -1,0 +1,360 @@
+[
+ {
+  "id": "F01",
+  "q": "spun twice&greater than the first|second number is greater",
+  "idea": "spinner 1-8 spun twice probability second greater than first",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.66 d37f4d7b ssat: A spinner has 8 equal sectors numbered 1 through 8. The spinner is spun twice. What is the probability that bo",
+   "0.51 162c436e isee: A spinner is divided into 5 regions of equal size, 2 of which are red. The spinner is spun twice, and the spin"
+  ]
+ },
+ {
+  "id": "F02",
+  "q": "must be on the committee|(must|has to) be (chosen|included)",
+  "idea": "committee of 3 from 7 Rosa must be on it",
+  "kw_hits": 1,
+  "kw": [
+   "99ddcd43-7cd [live ssat/ssat-math-s17 Math hard] :: Integers are to be chosen from 1 through 40, inclusive, with no integer chosen more than once. What is the least number of integers that must be chosen to be certain that two of the chosen integers have a sum that is a multiple of 8?"
+  ],
+  "tfidf": [
+   "0.32 b61b148b isee: A committee of 3 students is to be chosen from a group of 8 students. Two of the 8, Rina and Theo, refuse to s",
+   "0.31 a6211d87 isee: Rosa and Tom stand 12 kilometers apart on a straight trail and start walking toward each other at the same mom"
+  ]
+ },
+ {
+  "id": "F03",
+  "q": "median of the (ten|10) (scores|numbers)&x",
+  "idea": "ten scores with x median 81 find x",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.51 6869e76a isee: If 3^(2n) = 81^(n - 2), what is the value of n?",
+   "0.51 0da96925 ssat: If 3^(x + 2) = 81, what is the value of 3^x?"
+  ]
+ },
+ {
+  "id": "F04",
+  "q": "interquartile|quartile",
+  "idea": "interquartile range of data set 3 5 7 8 9 11 14 20",
+  "kw_hits": 16,
+  "kw": [
+   "1655ab1f-76e [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: A data set consists of the ten values 3, 7, 8, 12, 15, 18, 21, 26, 30, 40. Using the convention that the first quartile is the median of the lower five values and the third quartile is the median of the upper five values, a value is called an outlier if it is more than 1.5 times the interquartile range above the third quartile. The value 40 is replaced by a value v that is greater than 26 and lies exactly at that upper boundary. What is the value of v?",
+   "2651c472-897 [live sat/v2 Problem-Solving and Data Analysis medium] :: Consider the data set 2, 5, 7, 10, 14, 16, 21. What is the interquartile range (IQR) of this data set?",
+   "37c22f27-c90 [live sat/v2 Problem-Solving and Data Analysis medium] :: A data set has the following five-number summary: minimum 12, first quartile 18, median 25, third quartile 34, maximum 50. Using the rule that a value is an outlier if it lies more than 1.5 times the interquartile range beyond a quartile, which of the following is true?",
+   "5330c5f4-40b [live act/act-math-v6-geo Statistics and Probability medium] :: The eight values below are listed in increasing order: 3, 7, 8, 12, 14, 18, 21, 25. What is the interquartile range of these values?",
+   "5b0f6d34-277 [live map/map-math-v2-b4-data Statistics and Probability medium] :: The numbers of minutes that eleven bus trips took were 61, 35, 56, 17, 13, 15, 31, 19, 33, 23, and 16. Use this rule for quartiles: the first quartile is the median of the five values below the median, and the third quartile is the median of the five values above the median; the median itself is left out of both groups. How many minutes greater is the range of the trip times than the interquartile range?",
+   "5bbe533e-d9e [live isee/isee-math-s2 Math medium] :: The daily rainfall totals, in millimeters, for eight days were 3, 6, 8, 12, 14, 16, 20, 26. What is the interquartile range of these eight values?",
+   "622ad1bd-c6b [live map/map-math-v2-data Statistics and Probability medium] :: Twelve students took a quiz. Their scores were 16, 4, 21, 12, 9, 22, 15, 7, 20, 13, 17, and 11. The third quartile is the median of the upper half of the scores. What is the third quartile of the 12 scores?",
+   "7fdd586a-4a9 [live act/act-math-v3-sp Statistics and Probability medium] :: For a data set, the first quartile Q1 is the median of the lower half of the values and the third quartile Q3 is the median of the upper half, and the interquartile range is IQR = Q3 - Q1. A value is called an outlier if it is greater than Q3 + 1.5(IQR) or less than Q1 - 1.5(IQR). For the data set 8, 12, 14, 15, 17, 18, 19, 42, what is the value of Q3 + 1.5(IQR)?",
+   "a7698dbb-532 [live act/act-math-v3sp Statistics and Probability medium] :: What is the interquartile range of the data set 8, 11, 13, 17, 21, 25, 26, 27, 31, 34 ?",
+   "b76ff091-724 [live map/map-math-v2-data Statistics and Probability hard] :: A farmer weighed nine plums picked at random from each of two trees. The masses, in grams, are shown in the table. For each tree, find the first quartile as the middle of the four masses below the median and the third quartile as the middle of the four masses above the median; the median is left out of both groups of four. How many grams greater is the interquartile range of the Tree B masses than the interquartile range of the Tree A masses?",
+   "c002bd60-7e4 [live map/map-math-v2-data Statistics and Probability hard] :: The table shows the cooking times, in minutes, of 8 recipes in Book A and 8 recipes in Book B. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half. How many minutes greater is the interquartile range of the Book A times than the interquartile range of the Book B times?",
+   "cc281547-8ce [live act/act-math-v29 Statistics and Probability medium] :: A teacher listed the test scores of the 19 students in a class in increasing order. She reported only this summary of the scores:",
+   "d3516b22-992 [live map/map-math-v2-data Statistics and Probability easy] :: A box plot shows the prices, in dollars, of the used bikes at a shop. The left whisker starts at 10, the box starts at 18, the line inside the box is at 24, the box ends at 35, and the right whisker ends at 47. What is the interquartile range of the prices, in dollars?",
+   "eecc709e-755 [live map/map-math-v2-data Statistics and Probability hard] :: Eight sunflower seedlings have heights, in centimeters, of 18, 27, 12, 13, 3, 9, 26, and 10. A ninth seedling that is 33 centimeters tall is added. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half; when the number of values is odd, the median is not included in either half. By how many centimeters does the interquartile range increase when the ninth seedling is added?",
+   "f8b85ff5-47d [live map/map-math-g58-v1 Statistics and Probability hard] :: A teacher asked 13 students how many books they read over the summer. The table shows how many students gave each answer. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half, and when the number of values is odd, the median itself is not included in either half. What is the interquartile range of the 13 answers?",
+   "PSDA-H-17 [prior sat-psda-hard-v1.batch.json] :: A data set consists of the ten values 3, 7, 8, 12, 15, 18, 21, 26, 30, 40. Using the convention that the first quartile is the median of the lower five values and the third quartile is the median of the upper five values, a value is called an outlier if it is more than 1.5 times the interquartile range above the third quartile. The value 40 is replaced by a value v that is greater than 26 and lies exactly at that upper boundary. What is the value of v?"
+  ],
+  "tfidf": [
+   "0.66 2651c472 sat: Consider the data set 2, 5, 7, 10, 14, 16, 21. What is the interquartile range (IQR) of this data set?",
+   "0.58 a7698dbb act: What is the interquartile range of the data set 8, 11, 13, 17, 21, 25, 26, 27, 31, 34 ?"
+  ]
+ },
+ {
+  "id": "F05",
+  "q": "expected (value|winnings|number)&(game|spin|roll)",
+  "idea": "game spin wins 5 with prob 1/4 loses 2 otherwise expected value",
+  "kw_hits": 4,
+  "kw": [
+   "275d68d9-1b8 [live act/act-math-v25 Statistics and Probability medium] :: In a game, a player rolls two fair 6-sided dice, each numbered 1 through 6. If the sum of the two numbers is 8 or the two dice show the same number, the player wins $11. If the sum is 5, the player wins $6. Otherwise, the player loses $3.50. To the nearest cent, what is the expected value, in dollars, of the player's net winnings for one game?",
+   "2db03a90-154 [live act/act-math-v1 Statistics and Probability medium] :: In a carnival game, a player wins $9 with probability 1/3, wins $2 with probability 1/4, and wins nothing otherwise. What is the expected value, in dollars, of the player's winnings from one play?",
+   "2dd0e1ab-4ed [live act/act-math-v1 Statistics and Probability hard] :: In a game, a player wins $10 with probability 1/5, wins $2 with probability 1/2, and otherwise loses $4. What is the expected value of the game, in dollars, for one play?",
+   "3a2a77fc-8ed [live act/act-math-v6-geo Statistics and Probability easy] :: A spinner has five sections of equal area, showing $2, $4, $4, $6, and $9. The spinner is spun once. What is the expected value, in dollars, of the amount shown?"
+  ],
+  "tfidf": [
+   "0.63 2dd0e1ab act: In a game, a player wins $10 with probability 1/5, wins $2 with probability 1/2, and otherwise loses $4. What ",
+   "0.44 2db03a90 act: In a carnival game, a player wins $9 with probability 1/3, wins $2 with probability 1/4, and wins nothing othe"
+  ]
+ },
+ {
+  "id": "F06",
+  "q": "(table|survey)&(given that|if (a|the) (student|person) (is|chosen) (is )?a (girl|boy))&probability",
+  "idea": "two-way table conditional probability student is a girl given plays piano",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.18 5d2342a5 act: Of the 200 students at a school, 120 play a sport, 80 belong to a club, and 50 do both. If a student who plays",
+   "0.18 fb7cfaae ssat: A club has 5 boys and 4 girls. A committee of 2 members is to be chosen from the club. How many different comm"
+  ]
+ },
+ {
+  "id": "F07",
+  "q": "at least one&probability&(three|3|four|4)",
+  "idea": "probability at least one head in 4 coin flips",
+  "kw_hits": 22,
+  "kw": [
+   "0541a182-eb1 [live act/act-math-v16 Statistics and Probability easy] :: A red die and a blue die, each a fair 6-sided die numbered 1 through 6, are rolled. Given that the sum of the two numbers rolled is 8, what is the probability that at least one of the two dice shows a 3 ?",
+   "057e1454-2f0 [live sat/v2 Problem-Solving and Data Analysis medium] :: In a group of 150 students, 90 take Spanish and 70 take French; 30 of these students take both languages. If one student is selected at random from among those who take at least one of the two languages, what is the probability that the selected student takes French?",
+   "102cb4c3-aef [live act/act-math-v1 Statistics and Probability hard] :: A basketball player makes each free throw with probability 0.6, independently of other attempts. If she attempts 3 free throws, what is the probability that she makes AT LEAST one?",
+   "1041775b-796 [live sat/v2 Problem-Solving and Data Analysis medium] :: A bag contains 4 red and 6 blue marbles. Two marbles are drawn at random without replacement. What is the probability that at least one marble is red? Express as a decimal rounded to the nearest hundredth.",
+   "14e12b54-ba8 [live act/act-math-v11s Statistics and Probability easy] :: A fitness club has 120 members. Of these, 80 hold a Standard membership and 40 hold a Premium membership. Last week 28 of the Standard members and 25 of the Premium members attended at least one class. One of the club's Premium members is selected at random. What is the probability that this member attended at least one class last week?",
+   "41461d08-ed5 [live sat/v2 Problem-Solving and Data Analysis medium] :: A bag contains 4 red marbles and 6 blue marbles. Three marbles are drawn at random without replacement. What is the probability that at least one of the marbles drawn is red? Give the answer as a fraction in lowest terms.",
+   "446571fb-d7e [live act/act-math-v28 Statistics and Probability hard] :: In a race, a runner clears 12 hurdles in order. The first 6 hurdles are low hurdles, and she knocks over each low hurdle with probability 0.04. The last 6 hurdles are high hurdles, and she knocks over each high hurdle with probability 0.05. Whether she knocks over a hurdle is independent of what happens at every other hurdle. To the nearest thousandth, what is the probability that she knocks over at least one of the 12 hurdles and the first hurdle she knocks over is a high hurdle?",
+   "4611c4dc-0eb [live act/act-math-v29 Statistics and Probability hard] :: A lab must test blood samples from 480 people for a virus. Each person is infected with probability 0.02, independently of the others. The samples are divided into 60 groups of 8. For each group, the lab first tests a mixture of all 8 samples. If that test is negative, no more tests are done on that group. If it is positive, the 8 samples are split into two halves of 4, and a mixture of each half is tested. Every half whose test is positive then has each of its 4 samples tested on its own. A mixture tests positive exactly when it contains a sample from at least one infected person. To the nearest tenth, what is the expected total number of tests the lab performs for the 480 people?",
+   "791c568e-353 [live sat/v2 Problem-Solving and Data Analysis medium] :: A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that at least one of the two marbles is blue? Express the answer as a fraction in lowest terms.",
+   "7eaa1e3f-708 [live act/act-math-v6-geo Statistics and Probability easy] :: A fair coin is flipped 3 times. What is the probability that at least one of the flips lands heads?",
+   "89e17b66-a0d [live isee/isee-math-s5 Math hard] :: A bag holds 5 red marbles and 3 blue marbles. A marble is drawn, its color noted, and it is put back; then a second marble is drawn. What is the probability that at least one of the two marbles is blue?",
+   "9508dbec-51f [live act/act-math-v25 Statistics and Probability medium] :: A box contains 12 cards, 5 of which are red and 7 of which are blue. Two cards are drawn at random without replacement. Given that at least one of the two cards drawn is red, what is the probability, to the nearest hundredth, that both cards are red?",
+   "97f64136-519 [live ssat/ssat-math-s15 Math easy] :: Ana, Ben and Cal each try to solve a puzzle, working independently. The probabilities that they solve it are 1/2, 1/3 and 1/4, respectively. What is the probability that at least one of them solves the puzzle?",
+   "a26e7cbc-568 [live sat/v2 Problem-Solving and Data Analysis medium] :: A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random without replacement. What is the probability that at least one of the marbles drawn is blue? Give your answer as a fraction.",
+   "aca74bb7-020 [live act/act-math-v1 Statistics and Probability medium] :: Two independent events A and B have probabilities P(A) = 0.3 and P(B) = 0.4. What is the probability that at least one of the two events occurs?",
+   "b24af6cc-4e8 [live act/act-math-v29 Statistics and Probability easy] :: A company sends each data file to its backup center over two routes at the same time. Route 1 passes through two relay stations, R and S, one after the other, and a file gets through on route 1 only if both R and S are working. Route 2 is a direct link that does not use R or S. On a given day, R is working with probability 0.95, S is working with probability 0.70, and the direct link is working with probability 0.60, and these three are independent. To the nearest thousandth, what is the probability that a file sent that day reaches the backup center by at least one of the two routes?",
+   "b9a99757-2fb [live act/act-math-v3sp Statistics and Probability medium] :: A machine has 3 components that operate independently. On any given day, each component fails with probability 0.1. What is the probability that AT LEAST ONE of the 3 components fails on a given day?",
+   "c71dac18-26f [live sat/v2 Problem-Solving and Data Analysis medium] :: During a 3-day festival, the probability that it rains on any given day is 0.2, independent from day to day. What is the probability that it rains on at least one of the three days? Round to the nearest thousandth.",
+   "cfcc3c7f-90b [live ssat/ssat-math-s17 Math medium] :: Three fair six-sided dice, each numbered 1 through 6, are rolled. The sum of the three numbers showing is 9. Given this, what is the probability that at least one of the three dice shows a 6?",
+   "def2553a-5a0 [live isee/isee-math-s16 Math medium] :: Three fair coins are tossed. You are told only that at least one of the coins landed heads. Given this, what is the probability that all three coins landed heads?",
+   "e9df18e9-f08 [live sat/v2 Problem-Solving and Data Analysis medium] :: Each of three independent components in a device works properly with probability 0.9. Assuming the components fail independently, what is the probability that at least one of the three components fails?",
+   "eeaf4a0b-a69 [live sat/v2 Problem-Solving and Data Analysis medium] :: A fair coin is flipped 4 times. What is the probability of getting at least one head?"
+  ],
+  "tfidf": [
+   "0.55 eeaf4a0b sat: A fair coin is flipped 4 times. What is the probability of getting at least one head?",
+   "0.51 7eaa1e3f act: A fair coin is flipped 3 times. What is the probability that at least one of the flips lands heads?"
+  ]
+ },
+ {
+  "id": "F08",
+  "q": "histogram|intervals?&frequency",
+  "idea": "frequency table by intervals which interval contains median",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.31 055b9eb2 sat: The solution to |3x − 6| ≤ 9 is the interval a ≤ x ≤ b. What is the value of b − a?",
+   "0.25 01d448d0 act: The function h is defined by h(x) = √(9 + 4x − x²) + log(7x − 5). The domain of h, the set of all real numbers"
+  ]
+ },
+ {
+  "id": "F09",
+  "q": "percentile",
+  "idea": "scored at 80th percentile in class of 30 how many scored lower",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.57 3bf86516 ssat: In a class, 6 students scored 70, 9 students scored 80, 4 students scored 85 and 6 students scored 95 on a tes",
+   "0.51 8240ae17 ssat: On a quiz, 5 students scored 6, 4 students scored 7, 6 students scored 8, 3 students scored 9, and 2 students "
+  ]
+ },
+ {
+  "id": "F10",
+  "q": "deck of (52|playing) cards|standard deck",
+  "idea": "card drawn from standard deck probability face card or heart",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.33 fd6d3894 ssat: A box holds 8 cards. Each card is colored on both sides: 4 cards are red on both sides, 1 card is blue on both",
+   "0.30 6a1058c8 map: Ms. Cole wants to estimate how many of the 1,000 students at her school have a library card. She asks a random"
+  ]
+ },
+ {
+  "id": "F11",
+  "q": "odds",
+  "idea": "odds in favor 3 to 5 probability",
+  "kw_hits": 1,
+  "kw": [
+   "2f789391-370 [live act/act-math-v12-mix Statistics and Probability easy] :: At a county fair, the odds in favour of a certain ticket winning a prize are 3 to 5. That is, for every 3 winning tickets there are 5 tickets that do not win. If one ticket is drawn at random, what is the probability that it wins a prize?"
+  ],
+  "tfidf": [
+   "0.33 d0113a70 sat: If a Party A voter is chosen at random, what is the probability they favor the measure?",
+   "0.21 2f789391 act: At a county fair, the odds in favour of a certain ticket winning a prize are 3 to 5. That is, for every 3 winn"
+  ]
+ },
+ {
+  "id": "F12",
+  "q": "sample&(defective|expected number|estimate)&(shipment|batch|population)",
+  "idea": "sample 50 bulbs 3 defective; shipment 1200 estimate defective",
+  "kw_hits": 6,
+  "kw": [
+   "38fc3aa8-17b [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: A sports news website posted an online poll asking visitors whether a city should build a new stadium using public funds. Of the 12000 visitors who chose to respond, 78 percent answered yes. A columnist concluded that about 78 percent of the city's residents support using public funds for the stadium. Which of the following best explains why the columnist's conclusion is not justified?",
+   "5bd49b13-76e [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: From a random sample of 100 commuters, a transit agency estimated the mean one-way commute time and reported a plausible interval from 41 minutes to 49 minutes, centered at the sample mean. The agency then takes a second random sample of 400 commuters from the same population and obtains the same sample mean and the same sample standard deviation. The margin of error is inversely proportional to the square root of the sample size. What is the upper bound, in minutes, of the plausible interval from the second sample?",
+   "b6f57116-44c [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage points for the estimated proportion who favor a policy. Assuming the same population proportion and confidence level, and that the margin of error is inversely proportional to the square root of the sample size, approximately how many adults would need to be sampled for the margin of error to be 2 percentage points?",
+   "PSDA-H-04 [prior sat-psda-hard-v1.batch.json] :: From a random sample of 100 commuters, a transit agency estimated the mean one-way commute time and reported a plausible interval from 41 minutes to 49 minutes, centered at the sample mean. The agency then takes a second random sample of 400 commuters from the same population and obtains the same sample mean and the same sample standard deviation. The margin of error is inversely proportional to the square root of the sample size. What is the upper bound, in minutes, of the plausible interval from the second sample?",
+   "PSDA-H-29 [prior sat-psda-hard-v1.batch.json] :: A sports news website posted an online poll asking visitors whether a city should build a new stadium using public funds. Of the 12000 visitors who chose to respond, 78 percent answered yes. A columnist concluded that about 78 percent of the city's residents support using public funds for the stadium. Which of the following best explains why the columnist's conclusion is not justified?",
+   "PSDA-H-31 [prior sat-psda-hard-v1.batch.json] :: A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage points for the estimated proportion who favor a policy. Assuming the same population proportion and confidence level, and that the margin of error is inversely proportional to the square root of the sample size, approximately how many adults would need to be sampled for the margin of error to be 2 percentage points?"
+  ],
+  "tfidf": [
+   "0.46 f410f5c5 act: A box contains 10 light bulbs, 4 of which are defective. An inspector tests the bulbs one at a time, in random",
+   "0.38 201f6838 act: Each light bulb made at a factory is defective with probability 0.05, independently of every other bulb. The b"
+  ]
+ },
+ {
+  "id": "F13",
+  "q": "experimental|theoretical",
+  "idea": "coin 50 flips 28 heads experimental minus theoretical",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.44 7eaa1e3f act: A fair coin is flipped 3 times. What is the probability that at least one of the flips lands heads?",
+   "0.43 e85ebf63 isee: A fair coin is flipped three times. What is the probability that all three flips land heads?"
+  ]
+ },
+ {
+  "id": "F15",
+  "q": "(mean|average)&(new|added) (student|value)&(increased|raised) by",
+  "idea": "class of 24 mean 76; new student raises mean to 77; new score",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.42 35e51866 isee: A class of 40 students took a test and the mean score for the whole class was 82. The 24 girls in the class ha",
+   "0.36 77cf1f91 sat: In a class, the 12 boys have a mean test score of 78 and the girls have a mean test score of 85. If the mean s"
+  ]
+ },
+ {
+  "id": "F23",
+  "q": "(letters?)&(word)&(probability|chosen at random)&(vowel|consonant)",
+  "idea": "letter chosen from MISSISSIPPI probability S",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.36 e7c633b3 isee: How many different three-letter arrangements can be made from the letters A, B, C, D, and E if no letter may b",
+   "0.26 d5b11087 act: One integer is chosen at random from the integers 1 through 12. What is the probability that the integer chose"
+  ]
+ },
+ {
+  "id": "F26",
+  "q": "(license plates?|codes?)&(letters?)&(digits?)",
+  "idea": "plate 2 letters followed by 3 digits count",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.23 37672194 map: Ana can fold 9 letters per minute, and Ben can fold 7 letters per minute. They work together, each at a steady",
+   "0.20 b92e3722 isee: How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits"
+  ]
+ },
+ {
+  "id": "F30",
+  "q": "(probability)&(not)&(complement|does not|will not)&(rain|win)",
+  "idea": "probability of rain 0.35 not rain both days independent",
+  "kw_hits": 2,
+  "kw": [
+   "c61cf662-1d3 [live ssat/ssat-math-s16 Math easy] :: The probability of rain on Saturday is 40 percent and the probability of rain on Sunday is 30 percent, and rain on one day does not affect rain on the other. What is the probability that it rains on exactly one of the two days?",
+   "f796e391-e35 [live map/map-math-v2-b4-data Statistics and Probability medium] :: The probability that Jun wins his chess match on Saturday is 0.35. The probability that Mei wins her tennis match on Saturday is 0.3. The two results do not affect each other. What is the probability, as a percent, that Jun does NOT win his match and Mei wins her match?"
+  ],
+  "tfidf": [
+   "0.73 c61cf662 ssat: The probability of rain on Saturday is 40 percent and the probability of rain on Sunday is 30 percent, and rai",
+   "0.46 13c9683a act: Rain that falls on a shed roof drains into a rain barrel that holds 55 gallons. The roof covers a horizontal a"
+  ]
+ },
+ {
+  "id": "F31",
+  "q": "(geometric|random point)&(probability)&(circle|square)&(inside|inscribed)",
+  "idea": "point chosen in square probability inside inscribed circle",
+  "kw_hits": 1,
+  "kw": [
+   "e29e2b41-ea7 [live act/act-math-v3-sp Statistics and Probability easy] :: A square dartboard measures 10 inches on each side. A shaded square region measuring 4 inches on each side lies entirely inside the dartboard. A dart lands at a random point on the dartboard. What is the probability that the dart lands in the shaded region?"
+  ],
+  "tfidf": [
+   "0.52 1dab02ca isee: A circle is inscribed in a square whose side is 10 cm. What is the area of the region inside the square but ou",
+   "0.50 187e8b55 act: A square is inscribed in a circle of radius 5 inches, so that all four vertices of the square lie on the circl"
+  ]
+ },
+ {
+  "id": "F36",
+  "q": "(probability)&(two|2) (cards?|tiles?|balls?)&(numbered)&(product|sum)&(even|odd)",
+  "idea": "two tiles numbered 1-9 drawn without replacement product even probability",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.50 f770e0cd isee: A box holds six tickets numbered 1, 2, 3, 4, 5, and 6. Two tickets are drawn at random without replacement. Wh",
+   "0.43 33e4e41c act: A box contains 20 tiles numbered 1 through 20, and no two tiles carry the same number. One tile is drawn at ra"
+  ]
+ },
+ {
+  "id": "F38",
+  "q": "(probability)&(spinner)&(sections?|sectors?)&(degrees|angle)",
+  "idea": "spinner sector 72 degrees red probability",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.46 162c436e isee: A spinner is divided into 5 regions of equal size, 2 of which are red. The spinner is spun twice, and the spin",
+   "0.40 63f3de60 sat: A sector of a circle of radius 6 has area 12π. What is the measure, in degrees, of the sector's central angle?"
+  ]
+ },
+ {
+  "id": "F39",
+  "q": "(subsets?|selections?)&(at least)&(one|1) (girl|boy|vowel)",
+  "idea": "committee 3 from 5 boys 4 girls at least one girl",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.67 fb7cfaae ssat: A club has 5 boys and 4 girls. A committee of 2 members is to be chosen from the club. How many different comm",
+   "0.52 75804bb7 ssat: The ratio of boys to girls in a drama club is 3 to 5. After 4 more boys join and no one leaves, there are equa"
+  ]
+ },
+ {
+  "id": "F43",
+  "q": "(probability)&(rolls?|tossed)&(until|first)&(six|6|head)",
+  "idea": "probability first six appears on third roll",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.43 2e106ddb sat: A data set is summarized by the following value-frequency pairs: the value 1 appears 4 times, the value 2 appe",
+   "0.37 8d714517 isee: In a game, a player rolls a fair six-sided number cube once. A roll of 6 wins $14, a roll of 4 or 5 wins $4, a"
+  ]
+ },
+ {
+  "id": "F47",
+  "q": "(probability)&(randomly chosen|at random)&(two-digit)&(divisible|multiple|prime)",
+  "idea": "two-digit number chosen at random probability it is a multiple of 3 or 4",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.70 3327b7b9 isee: An integer is chosen at random from the integers 1 through 20, inclusive. What is the probability that it is a",
+   "0.68 99f7ac04 act: An integer is chosen at random from the integers 1 through 72, inclusive. What is the probability that the cho"
+  ]
+ },
+ {
+  "id": "F50",
+  "q": "(diagonals?|lines?)&(points?)&(circle)&(how many) (segments|chords|triangles)",
+  "idea": "8 points on circle number of triangles",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.42 366f0f14 isee: A triangle has a perimeter of 15 centimeters, and each of its three sides is a whole number of centimeters. Ho",
+   "0.41 08debade sat: In the xy-plane, the graph of x² + y² − 6x + 8y = 0 is a circle. The circle intersects the x-axis at two point"
+  ]
+ },
+ {
+  "id": "F55",
+  "q": "(four|4)&(coins?)&(exactly (two|2) heads)",
+  "idea": "probability exactly two heads in four flips",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.60 7eaa1e3f act: A fair coin is flipped 3 times. What is the probability that at least one of the flips lands heads?",
+   "0.60 e85ebf63 isee: A fair coin is flipped three times. What is the probability that all three flips land heads?"
+  ]
+ },
+ {
+  "id": "F57",
+  "q": "(sample space|outcomes)&(equally likely)&(three|3) (children|kids)&(girls?|boys?)",
+  "idea": "family 3 children probability exactly 2 girls",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.38 4075c6f2 isee: A survey of the 18 families on one street found that 6 families have exactly 1 child, 3 families have exactly ",
+   "0.33 f44b3ec7 isee: A job can be done in 15 days by 4 adults working together, or in 15 days by 6 children working together. All a"
+  ]
+ },
+ {
+  "id": "F58",
+  "q": "(tree diagram|two stages|first bag|second bag)&(probability)",
+  "idea": "bag A 3 red 2 blue bag B 1 red 4 blue choose bag then marble P(red)",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.69 3b34e255 act: Bag A holds 2 red marbles and 3 blue marbles. Bag B holds 4 red marbles and 1 blue marble. One marble is drawn",
+   "0.67 5ba608e0 act: Bag 1 contains 7 red marbles and 4 blue marbles. Bag 2 contains 3 red marbles and 6 blue marbles. Two marbles "
+  ]
+ }
+]

@@ -1,0 +1,48 @@
+A01 :: rounded&nearest ten&nearest hundred :: A whole number rounded to the nearest ten is 350 and rounded to the nearest hundred is 300. How many whole numbers satisfy both
+A02 :: value of the (first|second|digit)&times (as great as|the value) :: In 34.04 the value of the first 4 is how many times the value of the second 4
+A03 :: halfway between&/ :: What number is halfway between 1/6 and 1/4 on the number line
+A04 :: perfect squares?&perfect cubes? :: How many integers from 1 to 200 are perfect squares or perfect cubes
+A05 :: sum of the digits&10\^ :: What is the sum of the digits of 10^25 minus 7 written out
+A06 :: sqrt\(\d+\) ?[+-] ?sqrt\(\d+\)|√\d+ ?[+-] ?√ :: sqrt 75 plus sqrt 48 minus sqrt 27 equals k sqrt 3 find k
+A07 :: 10\^\(?-\d&10\^|x 10\^-|× 10\^- :: scientific notation product 3.6 x 10^4 times 5 x 10^-7
+A08 :: 0\.0\d+ ?(÷|divided by|/) ?0\.\d :: 0.0042 divided by 0.06
+A09 :: lies between&fraction|between (\d+/\d+) and (\d+/\d+) :: Which fraction lies between 5/8 and 2/3
+A10 :: sum of two (different )?prime|two primes?&sum|as the sum of two prime :: In how many ways can 40 be written as the sum of two primes
+A11 :: decimal places&between|hundredths&between :: How many numbers with exactly two decimal places lie strictly between 3.4 and 3.5
+A12 :: feet long&cut into&pieces&/ :: A board 7 1/2 feet long is cut into pieces 5/8 foot long how many pieces
+A13 :: \^\(?-1\)?&\+ :: (2^-1 + 3^-1)^-1 negative exponent reciprocal of sum
+A14 :: 12!|10!|8!&/ :: 12 factorial divided by 10 factorial times 2 factorial
+A15 :: \d+\^2 - \d+\^2|\d+² - \d+²|101\^2|99\^2 :: 101 squared minus 99 squared
+A16 :: integers&between&-\d+/\d :: How many integers lie between -7/2 and 11/3
+A17 :: 6\^\d+&2\^\d+&3\^\d+ :: 6^10 divided by 2^8 times 3^9
+A18 :: exactly (six|6|eight|8) (positive )?(divisors|factors) :: smallest positive integer with exactly 6 positive divisors
+A19 :: reciprocals&divisors|divisors&reciprocal :: sum of reciprocals of the divisors of 28
+A20 :: how many rectangles&area|whole-number (side )?lengths&area (of|is) :: how many different rectangles with whole-number sides have area 48
+A21 :: odd (numbers|integers)&first&sum :: sum of the first n odd numbers is 400 find n
+A22 :: 0\.\d+&repeating&fraction|repeating decimal :: repeating decimal 0.363636 as fraction sum of numerator and denominator
+A23 :: cube root|∛|\^\(1/3\) :: cube root of 0.000125
+A24 :: between&square root|sqrt\(n\)|√n :: how many integers n satisfy 4 < sqrt n < 6
+A25 :: multiple of&and a multiple of&least|least common multiple of 12, 18|lcm :: least common multiple of 12 18 and 30
+A26 :: product of&consecutive&even|consecutive even&product :: product of two consecutive even integers is 168
+A27 :: greatest&less than&square root|largest integer less than :: largest integer less than sqrt 300
+A28 :: reciprocal of&decimal|reciprocal of 0\. :: reciprocal of 0.08
+A29 :: \(-\d\)\^\d&÷|/ \(1/\d\) :: signed powers then division by fraction (-2)^3 - (-3)^2 / (1/3) x 2
+A30 :: packs of&packs of&same number|as many&as&packs :: pencils in packs of 6 pens packs of 8 equal number fewer than 100 how many packs
+A31 :: greatest common factor of n and|gcf of n and :: n multiple of 8 gcf of n and 90 is 30 least n
+A32 :: 2\^\d+ ?(x|×|\*) ?5\^\d+&digits :: number of digits of 2^10 times 5^7
+A33 :: 1/2 \+ 1/4 \+ 1/8|\+ 1/16 :: sum 1/2 + 1/4 + 1/8 + 1/16 + 1/32
+A34 :: estimate&√|closest to&sqrt :: which is closest to sqrt 150 + sqrt 50
+A35 :: integer&closest to&/ |which integer is closest to :: which integer is closest to 47/6 times 2.95
+A36 :: a/b&b/c&c/d|a/b = &b/c = :: a/b = 2/3, b/c = 4/5, c/d = 3/8 find a/d
+A37 :: sum of the (positive )?(even|odd) (factors|divisors) :: sum of the odd divisors of 120
+A38 :: 1 - 1/2|\(1 - 1/\d\)\(1 - 1/ :: product (1 - 1/2)(1 - 1/3)...(1 - 1/10)
+A39 :: \d+% of \d+% of|percent of \d+ percent of :: \d+% of \d+% of|percent of \d+ percent of
+A40 :: opposite of the reciprocal|negative reciprocal&number :: number line opposite reciprocal
+A41 :: digits?&reversed&difference|reverse.*digits&subtract :: two-digit number minus its reversal is 36 with digit sum 10
+A42 :: exponent&last two digits|last two digits :: last two digits of 7^20
+A43 :: which of the following is (closest|nearest) to :: which is closest to 0.49 x 81.2 / 0.198
+A44 :: 9\.\d+ ?(x|×) ?10\^&(\+|plus)&\d\.\d+ ?(x|×) ?10\^ :: 9.2 x 10^5 + 8 x 10^4 in scientific notation
+A45 :: how many (whole numbers|integers)&both&multiples? of&factors? of :: numbers that are both multiples of 6 and factors of 360
+A46 :: greatest&three-digit&divisible by&remainder :: greatest three-digit number that leaves remainder 3 when divided by 7 and 5
+A47 :: product of all the (positive )?(divisors|factors) :: product of all positive divisors of 12
+A48 :: x is a positive integer&x/\d+ & \d+/x|both&are integers :: how many positive integers n make both n/6 and 90/n integers

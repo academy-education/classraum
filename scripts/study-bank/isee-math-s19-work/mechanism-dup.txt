@@ -1,0 +1,77 @@
+live math rows read: 4204 of table count 4204 {"map":218,"sat":1676,"isee":709,"act":986,"ssat":615}; excluded by cohort: 0; scored against 4204
+candidates: 138; declared-mechanism items: 0; tiers FLAG >= 16 with shared structure / >= 24 tags only, near >= 12
+WARNING: 34 candidate(s) carry no mechanism term (unscorable by this check): IM19A-01, IM19A-02, IM19A-06, IM19A-07, IM19A-09, IM19A-10, IM19A-12, IM19A-16, IM19A-18, IM19A-25, IM19A-28, IM19A-30, IM19A-32, IM19A-34, IM19A-35, IM19B-02, IM19B-09, IM19B-14, IM19C-02, IM19C-03, IM19C-04, IM19C-05, IM19C-08, IM19C-09, IM19C-11, IM19C-12, IM19C-14, IM19C-15, IM19C-22, IM19D-13, IM19E-02, IM19E-11, IM19E-13, IM19R-01
+near IM19B-03 [Math] ~ act/act-math-v10-mix 38347b78 [Geometry] score 13.3 coverage 85%
+      terms: similar 4.0; prism_box 3.5; volume 3.2; unit_convert 2.5
+      cand: A model of a water tank is built so that every length on the model is 1/20 of the matching length on the real tank. The model holds 3 liters. How many
+      othr: A cone-shaped paper cup is held point down. The cup is 12 centimeters deep. Water is poured in until the water is 6 centimeters deep. What fraction of
+near IM19B-03 [Math] ~ sat/v2 62148a8d [Geometry and Trigonometry] score 13.1 coverage 84%
+      terms: similar 4.0; prism_box 3.5; volume 3.2; factor 2.3
+      cand: A model of a water tank is built so that every length on the model is 1/20 of the matching length on the real tank. The model holds 3 liters. How many
+      othr: A sphere's radius is increased by 20%. By what factor is the sphere's volume multiplied?
+near IM19B-03 [Math] ~ ssat/ssat-math-s15 72fa02e1 [Math] score 13.1 coverage 84%
+      terms: similar 4.0; prism_box 3.5; volume 3.2; factor 2.3
+      cand: A model of a water tank is built so that every length on the model is 1/20 of the matching length on the real tank. The model holds 3 liters. How many
+      othr: Every edge of a cube is lengthened by the same amount, and as a result the total surface area of the cube increases by 125%. By what percent does the 
+near IM19B-03 [Math] ~ sat/v2 9ffde554 [Geometry and Trigonometry] score 13.1 coverage 84%
+      terms: similar 4.0; prism_box 3.5; volume 3.2; factor 2.3
+      cand: A model of a water tank is built so that every length on the model is 1/20 of the matching length on the real tank. The model holds 3 liters. How many
+      othr: A right circular cone with its apex pointing straight down has height 12 and is partially filled with water. The water reaches a depth of 8, measured 
+near IM19B-03 [Math] ~ sat/math-v6-geo-hard a072ec7a [Geometry and Trigonometry] score 13.1 coverage 84%
+      terms: similar 4.0; prism_box 3.5; volume 3.2; factor 2.3
+      cand: A model of a water tank is built so that every length on the model is 1/20 of the matching length on the real tank. The model holds 3 liters. How many
+      othr: A right circular cone with height 15 centimeters is held with its vertex pointing down and its axis vertical. Water is poured in until the depth of th
+near IM19B-05 [Math] ~ act/act-math-v16 2033dca9 [Integrating Essential Skills] score 13.7 coverage 63%
+      terms: speed_dt 4.5; speed 3.5; movers 3.3; percent_of 2.4
+      cand: A cyclist rides the same route every day. One day she rides 25 percent faster than usual. By what percent does her time for the route decrease?
+      othr: A train trip of 240 kilometers took 3 hours in all, including one 15-minute stop at a station during which the train did not move. To the nearest tent
+near IM19B-05 [Math] ~ sat/v2 40b7798b [Problem-Solving and Data Analysis] score 13.7 coverage 63%
+      terms: speed_dt 4.5; speed 3.5; movers 3.3; percent_of 2.4
+      cand: A cyclist rides the same route every day. One day she rides 25 percent faster than usual. By what percent does her time for the route decrease?
+      othr: A car travels at a constant speed. The table shows the total distance the car has traveled after 1, 2, 3, and 4 hours. What is the car's speed, in mil
+near IM19D-01 [Math] ~ ssat/ssat-math-s15 c1aab049 [Math] score 17.0 coverage 100%
+      terms: cylinder 4.8; proportion_var 3.8; volume 3.2; circle 2.8; factor 2.3
+      cand: A cylinder has a volume of 40 cubic centimeters. A second cylinder has 3 times the radius and half the height of the first. What is the volume of the 
+      othr: The radius of a cylinder is increased by 20 percent, and its height is decreased by 25 percent. The new volume is what percent of the original volume?
+near IM19D-01 [Math] ~ sat/v2 1a2b9655 [Geometry and Trigonometry] score 13.1 coverage 77%
+      terms: cylinder 4.8; volume 3.2; circle 2.8; factor 2.3
+      cand: A cylinder has a volume of 40 cubic centimeters. A second cylinder has 3 times the radius and half the height of the first. What is the volume of the 
+      othr: A right circular cone has a slant height of 13 and a base radius of 5. What is the volume of the cone?
+near IM19D-01 [Math] ~ sat/math-v6-geo-hard 31e459b5 [Geometry and Trigonometry] score 13.1 coverage 77%
+      terms: cylinder 4.8; volume 3.2; circle 2.8; factor 2.3
+      cand: A cylinder has a volume of 40 cubic centimeters. A second cylinder has 3 times the radius and half the height of the first. What is the volume of the 
+      othr: A solid right circular cylinder with radius 4 centimeters and height 9 centimeters is melted down, and the metal is used to make solid spheres of radi
+near IM19D-01 [Math] ~ sat/v2 6bb72b33 [Geometry and Trigonometry] score 13.1 coverage 77%
+      terms: cylinder 4.8; volume 3.2; circle 2.8; factor 2.3
+      cand: A cylinder has a volume of 40 cubic centimeters. A second cylinder has 3 times the radius and half the height of the first. What is the volume of the 
+      othr: A right circular cylinder has a radius of 4 and a height of 10. What is its total surface area? (Express your answer in terms of pi.)
+near IM19D-01 [Math] ~ sat/math-v6-geo-hard a072ec7a [Geometry and Trigonometry] score 12.2 coverage 72%
+      terms: proportion_var 3.8; volume 3.2; circle 2.8; factor 2.3
+      cand: A cylinder has a volume of 40 cubic centimeters. A second cylinder has 3 times the radius and half the height of the first. What is the volume of the 
+      othr: A right circular cone with height 15 centimeters is held with its vertex pointing down and its axis vertical. Water is poured in until the depth of th
+near IM19D-05 [Math] ~ act/act-math-v26 9c5c5495 [Geometry] score 12.1 coverage 73%
+      terms: taxes_tips 4.9; arc_sector 4.4; circle 2.8
+      cand: The minute hand of a clock is 6 centimeters long. How far, in centimeters, does its tip travel in 25 minutes? (Use 3.14 for pi.)
+      othr: A windshield wiper arm is 50 centimeters long from its pivot to its tip. The rubber blade is attached along the outer 35 centimeters of the arm, so th
+near IM19D-14 [Math] ~ isee/isee-math-s10 47638532 [Math] score 14.5 coverage 100%
+      terms: cylinder 4.8; numbers{5,3.14} 3.7; volume 3.2; circle 2.8
+      cand: A cylinder has a height of 5 centimeters, and the circumference of its base is 12(pi) centimeters. What is its volume, in cubic centimeters? (Use 3.14
+      othr: A closed can is a right circular cylinder with radius 5 centimeters and height 10 centimeters. Using pi = 3.14, what is its total surface area, in squ
+near IM19D-14 [Math] ~ sat/math-v4 c928be0b [Geometry and Trigonometry] score 12.7 coverage 100%
+      terms: cylinder 4.8; volume 3.2; circle 2.8; numbers{5,12} 1.9
+      cand: A cylinder has a height of 5 centimeters, and the circumference of its base is 12(pi) centimeters. What is its volume, in cubic centimeters? (Use 3.14
+      othr: A water-filter cartridge is a right circular cylinder of outer diameter 12 cm and height 30 cm, bored through along its axis by a cylindrical hollow c
+near IM19E-04 [Math] ~ sat/sat-math-v12 7c27e30c [Algebra] score 12.2 coverage 100%
+      terms: clock_time 4.6; head_start 3.9; numbers{9,40,10} 3.7
+      cand: A time is exactly halfway between 9:40 a.m. and 2:10 p.m. on the same day. How many minutes after 9:40 a.m. is it?
+      othr: Two cyclists are 440 kilometers apart on a straight road and ride toward each other. Cyclist A leaves at 9:00 a.m. at a constant 40 kilometers per hou
+near IM19R-11 [Math] ~ ssat/ssat-math-s15 5160698a [Math] score 12.4 coverage 100%
+      terms: numbers{70,80,90} 6.0; median 3.9; mean 2.5
+      cand: Ten test scores are 70, 72, 75, 75, 80, 84, 85, 88, 90 and x. The median of the ten scores is 81. What is the value of x?
+      othr: On a quiz, 6 students scored 70, 5 students scored 80, and k students scored 90. No other scores were recorded. The median of all the scores is 80. Wh
+near IM19R-11 [Math] ~ ssat/ssat-math-s17 d991ac17 [Math] score 12.4 coverage 100%
+      terms: numbers{70,85,88} 6.0; median 3.9; mean 2.5
+      cand: Ten test scores are 70, 72, 75, 75, 80, 84, 85, 88, 90 and x. The median of the ten scores is 81. What is the value of x?
+      othr: Five different integers are added in pairs in every possible way, giving ten sums. The ten sums are 33, 36, 51, 55, 66, 70, 73, 85, 88 and 103. What i
+
+138 candidates x 4204 live rows + within-batch: 0 FLAG(s), 18 near (12-16), top 5 per candidate. Flags are for a hand read; the reader decides mechanism.

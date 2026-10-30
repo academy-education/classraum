@@ -1,0 +1,72 @@
+=== check-key-extremity
+isee-math-s19              key at an extreme   64/131   =  48.9%  (chance 50.0%)  p=0.861   printed ascending 4/131   skipped 4
+
+LIVE sat/math (all)        key at an extreme  568/1575  =  36.1%  (chance 50.0%)  p=<0.001   printed ascending 665/1575   skipped 101
+  live Advanced Math       key at an extreme  222/533   =  41.7%  (chance 50.0%)  p=<0.001   printed ascending 258/533   skipped 15
+  live Algebra             key at an extreme  191/548   =  34.9%  (chance 50.0%)  p=<0.001   printed ascending 260/548   skipped 10
+  live Geometry and Trigonometry key at an extreme   75/217   =  34.6%  (chance 50.0%)  p=<0.001   printed ascending 49/217   skipped 47
+  live Problem-Solving and Data Analysis key at an extreme   80/277   =  28.9%  (chance 50.0%)  p=<0.001   printed ascending 98/277   skipped 29
+=== check-run-middle
+scripts/study-bank/isee-math-s19-work/isee-math-s19.batch.json
+  scorable 131 of 135  (4 unscorable — fewer than 3 numeric options)
+  CONSTRUCTED control (mean m/k over the scored items): 8.8%
+  items with EXACTLY ONE run middle: 38   <- the exploitable shape
+    ...and it IS the key: 9 = 23.7%   chance 25.0%   margin -1.3pts
+    ids: IM19A-02 IM19A-09 IM19B-02 IM19D-18 IM19E-09 IM19E-12 IM19F-02 IM19F-07 IM19R-10
+  NB a hit is a question, not a verdict — the canonical distractor trio for a
+     ceiling item is inherently an AP. Ask whether the run follows from the
+     error paths or from the chosen numbers before repairing.
+=== check-option-pair-constant
+scripts/study-bank/isee-math-s19-work/isee-math-s19.batch.json
+  scorable 131 of 135  (4 unscorable — fewer than 3 numeric options, or a non-numeric key)
+  key pairs to a constant at all: 0 of 131 = 0.0%   <- NOT a defect rate; the supplement is usually a good distractor
+  items with EXACTLY ONE such pair: 4   <- the exploitable shape
+    ...key is in it: 0 = 0.0%   control 50.0%   margin -50.0pts
+    a solver finding the pair and guessing between its two members scores 0.0% vs 25.0%
+=== check-key-is-sum
+scripts/study-bank/isee-math-s19-work/isee-math-s19.batch.json
+  scorable 131 of 135  (4 unscorable — fewer than 3 numeric options)
+  items with EXACTLY ONE sum node: 10   <- the exploitable shape
+  --- products (a separate channel; sums already cover differences) ---
+  scorable for products: 131
+  items with EXACTLY ONE product node: 4   <- the exploitable shape
+    ...and it IS the key: 0 = 0.0%
+    ...and it IS the key: 1 = 10.0%   control 25.0%   margin -15.0pts
+    ids: IM19B-04
+=== check-sign-pair
+isee-math-s19                      n= 131  pair sets   2 =   1.5%   key in pair   0/2 =   0.0% (chance 50.0%)   key is the positive member 0.0% (chance ~25%)   (under 8 pair sets: printed, not evidence)
+
+LIVE sat/math                      n=1575  pair sets  71 =   4.5%   key in pair  26/71 =  36.6% (chance 59.2%)   key is the positive member 18.3% (chance ~25%)
+  Advanced Math                    n= 533  pair sets  40 =   7.5%   key in pair  11/40 =  27.5% (chance 58.8%)   key is the positive member 12.5% (chance ~25%)
+  Algebra                          n= 548  pair sets  29 =   5.3%   key in pair  15/29 =  51.7% (chance 60.3%)   key is the positive member 27.6% (chance ~25%)
+  Geometry and Trigonometry        n= 217  pair sets   2 =   0.9%   key in pair   0/2 =   0.0% (chance 50.0%)   key is the positive member 0.0% (chance ~25%)   (under 8 pair sets: printed, not evidence)
+  Problem-Solving and Data Analysis n= 277  no +-pair in any set — nothing to read
+  band easy                        n=  69  pair sets   2 =   2.9%   key in pair   0/2 =   0.0% (chance 50.0%)   key is the positive member 0.0% (chance ~25%)   (under 8 pair sets: printed, not evidence)
+  band medium                      n=1169  pair sets  62 =   5.3%   key in pair  24/62 =  38.7% (chance 60.5%)   key is the positive member 17.7% (chance ~25%)
+  band hard                        n= 337  pair sets   7 =   2.1%   key in pair   2/7 =  28.6% (chance 50.0%)   key is the positive member 28.6% (chance ~25%)   (under 8 pair sets: printed, not evidence)
+    cohort v2                       pair sets  45  key in pair 22/45 = 48.9%
+LIVE act/math                      n= 925  pair sets  47 =   5.1%   key in pair  32/47 =  68.1% (chance 62.8%)   key is the positive member 34.0% (chance ~25%)
+=== check-plurality-key
+isee-math-s19                scorable 18 of 135   intersection fires on 3   lands on the KEY 0/3 = 0.0% vs 25.0% control
+=== check-math-hub
+scripts/study-bank/isee-math-s19-work/isee-math-s19.batch.json
+  scorable 131 of 135   with a hub reaching >=2 of 3: 16   unscorable (non-numeric or duplicate values) 4   no hub 115
+  key-is-hub 6.3%   control 25.0%   margin -18.8pts   (over the 16 structured sets)
+  hubs: IM19A-05 (deg 2, ties 2), IM19A-30 (deg 2, ties 2)
+=== check-symbolic-hub
+isee-math-s19.batch.json              2 structured of 135   key-is-hub 0.0%   control 25.0%   margin -25.0pts
+=== stem-duplicates
+scripts/study-bank/isee-math-s19-work/isee-math-s19.batch.json: 135 of 135 items scorable, against 1520 live isee rows — 0 stem duplicate(s)
+=== math-mechanism-dup
+WARNING: 34 candidate(s) carry no mechanism term (unscorable by this check): IM19A-01, IM19A-02, IM19A-06, IM19A-07, IM19A-09, IM19A-10, IM19A-12, IM19A-16, IM19A-18, IM19A-25, IM19A-28, IM19A-30, IM19A-32, IM19A-34, IM19A-35, IM19B-02, IM19B-09, IM19B-14, IM19C-02, IM19C-03, IM19C-04, IM19C-05, IM19C-08, IM19C-09, IM19C-11, IM19C-12, IM19C-14, IM19C-15, IM19C-22, IM19D-13, IM19E-02, IM19E-11, IM19E-13, IM19R-01
+near IM19B-05 [Math] ~ act/act-math-v16 2033dca9 [Integrating Essential Skills] score 13.7 coverage 63%
+near IM19B-05 [Math] ~ sat/v2 40b7798b [Problem-Solving and Data Analysis] score 13.7 coverage 63%
+near IM19D-05 [Math] ~ act/act-math-v26 9c5c5495 [Geometry] score 12.1 coverage 73%
+near IM19D-14 [Math] ~ isee/isee-math-s10 47638532 [Math] score 14.5 coverage 100%
+near IM19D-14 [Math] ~ sat/math-v4 c928be0b [Geometry and Trigonometry] score 12.7 coverage 100%
+near IM19E-04 [Math] ~ sat/sat-math-v12 7c27e30c [Algebra] score 12.2 coverage 100%
+near IM19R-11 [Math] ~ ssat/ssat-math-s15 5160698a [Math] score 12.4 coverage 100%
+near IM19R-11 [Math] ~ ssat/ssat-math-s17 d991ac17 [Math] score 12.4 coverage 100%
+135 candidates x 4204 live rows + within-batch: 0 FLAG(s), 8 near (12-16), top 5 per candidate. Flags are for a hand read; the reader decides mechanism.
+=== shingle
+135 candidates x 4204 live + within: 18 pair(s) >= 0.35; plant CAUGHT

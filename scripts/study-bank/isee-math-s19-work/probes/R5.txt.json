@@ -1,0 +1,59 @@
+[
+ {
+  "id": "D503",
+  "q": "fold(ed)? (in half|along)&(perimeter|rectangle)",
+  "idea": "rectangle 12 by 8 folded in half along the long side perimeter of folded shape",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.33 b7a8b81d map: In the coordinate plane, a rectangle has corners at (-9, 0), (1, 0), (1, 14), and (-9, 14). The rectangle is r",
+   "0.26 4cbed9b3 ssat: A rectangular sheet of cardboard measures 20 centimeters by 12 centimeters. A square 3 centimeters on a side i"
+  ]
+ },
+ {
+  "id": "D505",
+  "q": "height&increased by&area (doubles|is doubled|twice)",
+  "idea": "triangle area doubles when height increases by 6 original height",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.37 3270da53 isee: An equilateral triangle has a height of 6 centimeters. What is the area of the triangle, in square centimeters",
+   "0.28 fc669fec isee: When the radius of a circle is increased by 2 centimeters, the area of the circle increases by 40(pi) square c"
+  ]
+ },
+ {
+  "id": "D507",
+  "q": "(cube|block)&(removed|cut out)&(corner)&surface area",
+  "idea": "2 cm cube removed from corner of 6 cm cube surface area",
+  "kw_hits": 1,
+  "kw": [
+   "0c05b715-c3f [live map/map-math-v2-geo Geometry hard] :: A wooden block is a rectangular prism 6 centimeters long, 5 centimeters wide, and 4 centimeters tall. A cube with edges 2 centimeters long is cut out of one corner of the block. What is the surface area of the block that is left, in square centimeters?"
+  ],
+  "tfidf": [
+   "0.72 76d2bdc8 act: The length of a diagonal running from one corner of a cube to the opposite corner, through the interior of the",
+   "0.70 91176741 isee: The diagonal of a cube, running through the inside of the cube from one corner to the opposite corner, is 5sqr"
+  ]
+ },
+ {
+  "id": "D510",
+  "q": "shortest (path|route)&(surface|outside)&(box|cube|room)",
+  "idea": "ant shortest path on box surface",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.29 d9c5d51c isee: The three edge lengths of a rectangular box are in the ratio 1 : 2 : 3, and the volume of the box is 48 cubic ",
+   "0.28 0f9ec8ec ssat: In the coordinate plane, what is the shortest distance from the origin to the line 3x + 4y = 24?"
+  ]
+ },
+ {
+  "id": "D511",
+  "q": "squares&(drawn on|on (the|each)) (sides|legs)&(right triangle)&area",
+  "idea": "squares on legs of right triangle areas 25 144 square on hypotenuse area",
+  "kw_hits": 0,
+  "kw": [],
+  "tfidf": [
+   "0.49 a2f99450 act: Right triangle T1 has legs of lengths 2 and 6. For each n = 2, 3, 4, ..., 8, right triangle Tn has as its two ",
+   "0.42 9737e933 sat: A right triangle has legs of length 10 and 24. What is the length of the median drawn from the right angle to "
+  ]
+ }
+]
