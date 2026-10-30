@@ -132,3 +132,23 @@ export const STOCK_MISCONCEPTIONS = {
   'changed during its life': /\b(during|in|over) (its|their|his|her) (own )?(life|lives|lifetimes?)\b|\bchanged (its|their) bod(y|ies)\b/i,
   'because they needed it': /\bbecause (it|they|the \w+) needed\b|\bneeded (it|them|to (survive|change|adapt))\b|\bin order to survive\b/i,
 }
+
+/* ===================== batch-3 rules (2026-10-31, MAP-SCIENCE-B3.prereg.md) =====================
+ * Each constant answers one cross-item pattern that BOTH graders of an area named in batch 2's cold pass
+ * (REGISTER 2026-10-31 "MAP Science batch 2 stage 1: all three areas HELD"). */
+/** TRENDPAR: everything a trend option says about direction. What is left after stripping it (the skeleton) must be
+ *  identical across the four options, so no option carries a clause, a subject or a qualifier the others lack
+ *  (Life: the key alone ended "as the water got deeper", L5-14 / L6-09 / L7-10 / L8-08). */
+export const TREND_STRIP = /\b(increased|increases|increase|increasing|decreased|decreases|decrease|decreasing|rose|rises|rise|rising|grew|grows|grow|fell|falls|fall|falling|dropped|drops|drop|declined|declines|decline|went up|goes up|go up|went down|goes down|go down|higher|lower|stayed|stays|stay|remained|remains|remain|unchanged|constant|the same|same|leveled off|levelled off|levels off|level off|then|and)\b/gi
+/** ROLESTATE: words that STATE a variable's role in a procedure. Batch 2's variable passages said "the X was the same",
+ *  "was not the same", "was the variable they changed", "was 20 cm for every tray", "set at ten" (Life L5-15, L6-16,
+ *  L7-02, L8-03; Physical P5-03, P8-03; Earth E5-12, E8-17), so the key was a string lookup. A b3 procedure describes
+ *  what was done ("poured 150 mL into four jars"; "two jars were glass and two were plastic") and the student infers. */
+export const ROLE_STATEMENT = /\b(the same|same|constant|constantly|kept|keep|keeps|held|hold|holds|changed|changes|changing|change|varied|vary|varies|varying|differed|differs|differ|different|differently|variable|variables|unchanged|identical|equal|equally|every time|each time|for every|in every|always|never|stayed|stays|set (?:at|to)|on purpose|did not (?:count|record|measure))\b/i
+/** ECHO: prompt words too generic to count as a stem echo. */
+export const ECHO_STOP = new Set('which what most likely best explains explain describes describe happen happens happened statement example structure process quantity part parts called name named these this that their there they them then than have been when into each other those about after before while where will would could should also only some more most such very much many does used using shows show question answer below above because since true false following based people person something thing things kind kinds type types different same make makes made over under during between through them most least'.split(' '))
+/** CLAIMRAT: a stated reason inside an option. Earth's misconception distractors carried "because" / "since" while the
+ *  key was the plain statement (E5-06, E5-14, E5-20, E7-05, E7-20, E8-05, E8-14). */
+export const RATIONALE = /\b(because|since|due to|as a result|so that|which means|which makes)\b|,\s*(so|as)\b/i
+/** CLAIMRAT: degree words ("much hotter", "exactly the same", "no effect"). */
+export const INTENSIFIER = /\b(much|far|exactly|very|extremely|greatly|hugely|totally|completely|entirely|really|even|a lot|at all|no effect|just as|straight)\b/i

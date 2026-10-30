@@ -32,7 +32,13 @@
  *   keys; the lone-hedged / lone-absolute option is the key at most chance-plus-one; invented names unique across
  *   authors; no near-duplicate pair inside the batch. Prints every denominator.
  *
- * RULE SETS (--rules): pilot | b1 (default; adds QUAL ROLE LABEL NAMEPROP ABS LAW, batch ABSDIS) | b2 (b1 plus, from the
+ * RULE SETS (--rules): pilot | b1 (default; adds QUAL ROLE LABEL NAMEPROP ABS LAW, batch ABSDIS) | b3 (b2 plus one check
+ *   per cross-item pattern both graders of an area named in batch 2 (MAP-SCIENCE-B3.prereg.md): TRENDPAR trend options
+ *   not parallel; ROLESTATE a variable procedure states a role; ECHO the key alone repeats a stem word; INTERP the
+ *   interpolation key is the lone unprinted value or the lone mean of two options; BARTOP the asked bar/point is the
+ *   chart's extreme or the lone option on a tick; CLAIMRAT a lone reasoned / intensified claim option; batch VARTPL
+ *   templated variable passages, CLAIMBAL reasons/intensifiers on distractors but not keys, NAMEREUSE an invented
+ *   name core in two items, ORDER numeric distractors kept in sorted order) | b2 (b1 plus, from the
  *   batch-1 REGISTER findings and the 2026-10-30 audit: INVENTED "invented" in student-facing text; LSHAPE the key is the
  *   only label of its shape; TICK a line point sits between x ticks; batch XDUP cross-author duplicate (words / key /
  *   form refuse, stem route printed as XDUP-REVIEW), KEYDUP same term/trend/claim key twice in one area, MISC a stock
@@ -48,6 +54,7 @@ import { fileURLToPath } from 'node:url'
 import {
   AREAS, PES, peBand, dciOfPe, DIFF, RIT, STIMULI, FORMATS, TREND_WORDS, CLICHES, ABSOLUTE, HEDGE, LETTERS, norm, numOf,
   QUALIFIER, RESULT_WORDS, NAME_PROPERTY, ABSOLUTE_B1, INVENTED_WORD, STOCK_MISCONCEPTIONS,
+  TREND_STRIP, ROLE_STATEMENT, ECHO_STOP, RATIONALE, INTENSIFIER,
 } from './sci-spec.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -132,7 +139,39 @@ export const B1_CHECKS = ['QUAL', 'ROLE', 'LABEL', 'NAMEPROP', 'ABS', 'LAW', 'AB
 /** Batch-2 checks (MAP-SCIENCE-B2.prereg.md): findings 1-4 of the batch-1 REGISTER entry plus the 2026-10-30
  *  key-visible audit's unreadable kink (MSB1-L8-16). `--rules b2` = every b1 check + these. */
 export const B2_CHECKS = ['INVENTED', 'LSHAPE', 'TICK', 'XDUP', 'KEYDUP', 'MISC']
-const RULESETS = ['pilot', 'b1', 'b2']
+/** Batch-3 checks (MAP-SCIENCE-B3.prereg.md): one per batch-2 rule-10 pattern. `--rules b3` = every b2 check + these. */
+export const B3_CHECKS = ['TRENDPAR', 'ROLESTATE', 'ECHO', 'INTERP', 'BARTOP', 'CLAIMRAT', 'VARTPL', 'CLAIMBAL', 'NAMEREUSE', 'ORDER']
+const RULESETS = ['pilot', 'b1', 'b2', 'b3']
+/** What a trend option says once its direction words are removed (TRENDPAR). */
+export const trendSkeleton = s => norm(String(s).replace(TREND_STRIP, ' ')).replace(/[.]/g, ' ').replace(/\s+/g, ' ').trim()
+/** Crude stem for ECHO: lower-case, one suffix off. Two words echo when one stem starts the other (>= 4 letters). */
+const stemOf = w => { const t = w.replace(/(ations?|ings?|ed|es|s|ic|al|ion)$/, ''); return t.length >= 4 ? t : w }
+const echoToks = s => [...new Set(norm(s).split(' ').map(w => w.replace(/[^a-z-]/g, '')).flatMap(w => w.split('-')).filter(w => w.length >= 4 && !STOP.has(w) && !ECHO_STOP.has(w)))].map(stemOf).filter(w => w.length >= 4)
+const echoes = (a, b) => a.startsWith(b) || b.startsWith(a)
+/** ECHO: prompt words that the key shares and no distractor shares. */
+export function stemEcho(prompt, key, others) {
+  const K = echoToks(key), D = others.flatMap(echoToks)
+  return echoToks(prompt).filter(t => K.some(k => echoes(k, t)) && !D.some(d => echoes(d, t)))
+}
+/** Every number a student can read printed in a graphic (table cells and row labels, bar values, plotted x and y). */
+export function printedNumbers(g) {
+  const out = [], push = v => { if (typeof v === 'number' && Number.isFinite(v)) out.push(v); else for (const m of String(v ?? '').matchAll(/-?\d+(?:\.\d+)?/g)) out.push(Number(m[0])) }
+  if (!g) return out
+  if (g.type === 'table') { for (const r of g.cells ?? []) for (const v of r) push(v); for (const r of g.rowLabels ?? []) push(r) }
+  else if (g.type === 'bar') for (const b of g.bars ?? []) push(b.value)
+  else for (const q of (g.type === 'line' ? g.series?.[0]?.points : g.points) ?? []) { push(q[0]); push(q[1]) }
+  return out
+}
+/** Index of every option that is the mean of two OTHER options. */
+export function meanOptions(vals) {
+  return vals.map((v, i) => vals.some((a, j) => vals.some((b, k) => j < k && j !== i && k !== i && Math.abs(v - (a + b) / 2) < 1e-9))).flatMap((x, i) => (x ? [i] : []))
+}
+/** Tick labels the renderer prints on the value axis: bar 0, 1/4 .. max; line from min(0, lowest) to the highest. */
+export function valueTicks(g) {
+  const ys = g.type === 'bar' ? g.bars.map(b => b.value) : g.series[0].points.map(q => q[1])
+  const lo = g.type === 'bar' ? 0 : Math.min(...ys, 0), hi = Math.max(...ys)
+  return [0, 1, 2, 3, 4].map(i => lo + ((hi - lo) * i) / 4)
+}
 /** Shape of a condition label as a reader sees it: words -> W, all-caps codes -> C<n>, digit runs -> D<n>. */
 export function labelShape(s) {
   return String(s).trim().split(/(\s+|-)/).filter(t => t && !/^\s+$/.test(t)).map(t => t === '-' ? '-' : /^\d+$/.test(t) ? `D${t.length}` : /^[A-Z]+$/.test(t) ? `C${t.length}` : /^[A-Z][a-z']+$/.test(t) ? 'W' : 'M').join(' ')
@@ -144,6 +183,7 @@ export function offTickX(g) {
   if (!(half > 0)) return []
   return xs.filter(x => { const r = (x - lo) / half; return Math.abs(r - Math.round(r)) > 1e-9 })
 }
+const fmtNum = v => (Number.isInteger(v) ? String(v) : String(+v.toFixed(2)))
 const xdupToks = i => toks(`${i.passage ?? ''} ${i.prompt ?? ''} ${i.correct_answer ?? ''} ${(i.choices ?? []).join(' ')}`)
 /** Cross-item duplicate test used by XDUP (inside a batch) and probe-live.mjs (against live and staged rows).
  *  Batch 1's named duplicates were mostly SEMANTIC (same PE and concept, or the same ask with the same key), so a
@@ -174,8 +214,8 @@ export function xdupReason(a, b) {
 }
 export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2', dis = opts.disabled ?? new Set()
-  const on = id => b1 && !dis.has(id), on2 = id => R === 'b2' && !dis.has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3') && !dis.has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
   for (const [k, v] of Object.entries(want)) if (it[k] !== v) add(`SLOT ${k} is ${JSON.stringify(it[k])}, slot says ${JSON.stringify(v)}`)
@@ -349,6 +389,51 @@ export function checkItem(it, slot, ex = [], opts = {}) {
     if (off.length) add(`TICK line points at x = ${off.join(', ')} fall neither on an x tick nor halfway between two (ticks every ${((Math.max(...g.series[0].points.map(q => q[0])) - Math.min(...g.series[0].points.map(q => q[0]), 0)) / 4)}); choose x values so ticks land on the data`)
   }
 
+  /* ---------- B3 rules (MAP-SCIENCE-B3.prereg.md; each from a batch-2 rule-10 pattern) ---------- */
+  const on3 = id => R === 'b3' && !dis.has(id)
+  // TRENDPAR (Life): the four trend options say the same thing apart from the direction.
+  if (on3('TRENDPAR') && slot.format === 'trend') {
+    const sk = ch.map(trendSkeleton)
+    if (new Set(sk).size > 1) add(`TRENDPAR trend options are not parallel: with the direction words removed they read ${sk.map(x => `"${x}"`).join(' | ')}; write all four in one frame (L5-14's key alone ended "as the water got deeper")`)
+  }
+  // ROLESTATE (Life, Physical, Earth): the procedure must not state any quantity's role.
+  if (on3('ROLESTATE') && slot.format === 'variable') {
+    const m = String(passage ?? '').match(ROLE_STATEMENT)
+    if (m) add(`ROLESTATE the procedure states a role ("${m[0]}"); describe what was done and let the student infer which quantity was changed, measured or held (batch 2's "the X was the same / was the variable they changed" made the key a string lookup)`)
+  }
+  // ECHO (Life): a word in the stem that only the key repeats.
+  if (on3('ECHO') && (slot.format === 'term' || slot.format === 'claim')) {
+    const e = stemEcho(it.prompt, key, others)
+    if (e.length) add(`ECHO the key alone repeats the stem word(s) ${e.map(x => `"${x}"`).join(', ')} (L6-17 "breed" -> "breeding"); share the word with distractors or drop it from the key`)
+  }
+  // INTERP (Life, Physical): interpolation casts.
+  if (on3('INTERP') && slot.format === 'values' && slot.ask === 'interpolate') {
+    const ns = ch.map(numOf)
+    if (ns.every(Boolean)) {
+      const pr = printedNumbers(g), isP = v => pr.some(x => Math.abs(x - v) < 1e-9), vals = ns.map(n => n.v)
+      if (!isP(vals[ki]) && vals.every((v, i) => i === ki || isP(v))) add(`INTERP the key ${key} is the only option not printed in the figure (L7-06 / L8-01); make at least one distractor an unprinted value`)
+      const mo = meanOptions(vals)
+      if (mo.length === 1 && mo[0] === ki) add(`INTERP the key ${key} is the only option that is the mean of two other options (P8-01); break the ladder`)
+    }
+  }
+  // BARTOP (Physical): a value read off a bar or line is not the chart's extreme and not the lone option on a tick.
+  if (on3('BARTOP') && slot.format === 'values' && slot.ask === 'read' && (g?.type === 'bar' || g?.type === 'line') && !shapeProblems(g).length) {
+    const kn = numOf(key), ys = g.type === 'bar' ? g.bars.map(b => b.value) : g.series[0].points.map(q => q[1])
+    if (kn) {
+      const eq = (a, b) => Math.abs(a - b) < 1e-9
+      if (eq(kn.v, Math.max(...ys))) add(`BARTOP the asked ${g.type === 'bar' ? 'bar' : 'point'} is the tallest in the chart and sits on the top tick (P5-07 / P6-14 / P7-01)`)
+      else if (eq(kn.v, Math.min(...ys))) add(`BARTOP the asked ${g.type === 'bar' ? 'bar' : 'point'} is the shortest in the chart (the other extreme of P5-07's tell)`)
+      const T = valueTicks(g), onT = v => T.some(t => eq(t, v)), ns = ch.map(numOf)
+      if (ns.every(Boolean) && onT(kn.v) && ns.every((n, i) => i === ki || !onT(n.v))) add(`BARTOP the key ${key} is the only option on a tick label (${T.map(fmtNum).join(', ')})`)
+    }
+  }
+  // CLAIMRAT (Earth): a stated reason or a degree word on one option, or on all but one.
+  if (on3('CLAIMRAT') && slot.format === 'claim') {
+    const r = ch.filter(c => RATIONALE.test(c)).length, n = ch.filter(c => INTENSIFIER.test(c)).length
+    if (r === 1 || r === 3) add(`CLAIMRAT ${r} of 4 claim options give a reason (because / since / , so ...): that makes a lone ${r === 1 ? 'reasoned' : 'unreasoned'} option; use 0, 2 or 4 (E5-06, E5-20)`)
+    if (n === 1 || n === 3) add(`CLAIMRAT ${n} of 4 claim options carry a degree word (much / exactly / very / no effect ...): use 0, 2 or 4 (E5-06 "much hotter", E8-14 "exactly the same")`)
+  }
+
   // LEAK
   if (g?.caption) {
     const kn = numOf(key)
@@ -376,8 +461,8 @@ export function checkItem(it, slot, ex = [], opts = {}) {
 /* ---------------- batch ---------------- */
 export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2', dis = opts.disabled ?? new Set()
-  const on = id => b1 && !dis.has(id), on2 = id => R === 'b2' && !dis.has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3') && !dis.has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
   for (const id of Object.keys(SLOT)) if (!ids.includes(id)) add(`BATCH slot ${id} neither written nor marked empty`)
@@ -455,8 +540,71 @@ export function checkBatch(items, SLOT, opts = {}) {
     for (const [k, ids] of Object.entries(per)) if (ids.length > 1) add(`BATCH MISC author ${k.split('|')[0]} uses the stock "${k.split('|')[1]}" distractor ${ids.length} times (${ids.join(', ')}); max once per author`)
     info.push(`MISC stock-misconception distractors: ${Object.values(per).reduce((n, x) => n + x.length, 0)}`)
   }
+  /* ---------- B3 batch rules ---------- */
+  const on3 = id => R === 'b3' && !dis.has(id)
+  const areas = [...new Set(live.map(area))]
+  // VARTPL (Physical P5-03 / P8-03, Earth E5-12 / E8-17): two variable passages of one area built on one template.
+  if (on3('VARTPL')) {
+    let n = 0
+    for (const ar of areas) {
+      const V = live.filter(i => area(i) === ar && SLOT[i.id]?.format === 'variable')
+      for (let a = 0; a < V.length; a++) for (let b = a + 1; b < V.length; b++) {
+        n++
+        const ra = rolePhrases(V[a].passage), shared = [...rolePhrases(V[b].passage)].filter(x => ra.has(x))
+        if (shared.length >= VARTPL_MIN) add(`BATCH VARTPL ${V[a].id} and ${V[b].id} state roles with the same ${shared.length} phrases ("${shared.join('", "')}"): one passage template`)
+      }
+    }
+    info.push(`VARTPL variable-passage pairs compared: ${n} (refuse at >= ${VARTPL_MIN} shared role-statement phrases)`)
+  }
+  // CLAIMBAL (Earth): across one area's claim items, reasons and degree words sit on keys as often as on distractors.
+  if (on3('CLAIMBAL')) {
+    for (const ar of areas) {
+      const C = live.filter(i => area(i) === ar && SLOT[i.id]?.format === 'claim')
+      if (!C.length) continue
+      const either = { test: c => RATIONALE.test(c) || INTENSIFIER.test(c) }
+      for (const [nm, re] of [['reason', RATIONALE], ['degree word', INTENSIFIER], ['reason or degree word', either]]) {
+        const k = C.filter(i => re.test(i.correct_answer)).length, d = C.reduce((s, i) => s + i.choices.filter(c => c !== i.correct_answer && re.test(c)).length, 0)
+        const sh = k + d ? k / (k + d) : null
+        info.push(`CLAIMBAL ${ar} ${nm}: on keys ${k}/${C.length}, on distractors ${d}/${3 * C.length}; key share of marked options ${sh === null ? 'n/a (none marked)' : `${(100 * sh).toFixed(0)}% (no-tell 25%)`}`)
+        if (k + d >= CLAIMBAL_MIN && (sh < CLAIMBAL_BAND[0] || sh > CLAIMBAL_BAND[1])) add(`BATCH CLAIMBAL ${ar}: of ${k + d} claim options carrying a ${nm}, ${k} are keys (${(100 * sh).toFixed(0)}%; band ${100 * CLAIMBAL_BAND[0]}-${100 * CLAIMBAL_BAND[1]}%, no-tell 25%): "${sh < 0.25 ? 'pick the plain one' : 'pick the marked one'}" (Earth b2)`)
+      }
+    }
+  }
+  // NAMEREUSE (Earth E8 "Sy" x4): an invented name core in more than one item.
+  if (on3('NAMEREUSE')) {
+    const where = {}
+    for (const i of live) for (const n of new Set((i.names_used ?? []).map(x => String(x).trim().split(/\s+/).pop()))) {
+      if (!/[A-Z0-9]/.test(n) || n.length < 2) continue
+      ;(where[n.toLowerCase()] ??= new Set()).add(i.id)
+    }
+    for (const [n, s] of Object.entries(where)) if (s.size > 1) add(`BATCH NAMEREUSE invented name "${n}" appears in ${s.size} items (${[...s].join(', ')}); one name, one item`)
+  }
+  // ORDER (Earth g1, all areas): numeric distractors left in sorted order with the key dropped in.
+  if (on3('ORDER')) {
+    for (const ar of areas) {
+      const N = live.filter(i => area(i) === ar && SLOT[i.id]?.format === 'values' && i.choices.every(c => numOf(c)))
+      if (!N.length) continue
+      const dv = i => i.choices.filter(c => c !== i.correct_answer).map(c => numOf(c).v)
+      const asc = N.filter(i => { const v = dv(i); return v[0] < v[1] && v[1] < v[2] }).length, desc = N.filter(i => { const v = dv(i); return v[0] > v[1] && v[1] > v[2] }).length
+      const cap = Math.ceil(N.length / 6) + 1
+      info.push(`ORDER ${ar}: numeric items ${N.length}, distractors ascending ${asc}, descending ${desc} (chance ${(N.length / 6).toFixed(1)} each; cap ${cap})`)
+      if (asc > cap) add(`BATCH ORDER ${ar}: ${asc} of ${N.length} numeric items list their distractors in ascending order (cap ${cap}); the key is the value out of order`)
+      if (desc > cap) add(`BATCH ORDER ${ar}: ${desc} of ${N.length} numeric items list their distractors in descending order (cap ${cap})`)
+    }
+  }
   return { p, info, fatal: false }
 }
+/** VARTPL measures the template batch 2's graders named: the same role-STATEMENT phrases ("for every", "not the same",
+ *  "changed") reused across an area's variable passages. Literal four-word overlap and function-word skeleton overlap
+ *  were measured on batch 2 first and do not separate the named pairs (P5-03~P8-03 2 spans, P6-03~P8-03 6), so they are
+ *  not used. Under b3 ROLESTATE refuses any role statement, so VARTPL is a second guard that fires only if ROLESTATE
+ *  is switched off or its list is narrowed. */
+export const VARTPL_MIN = 2
+const rolePhrases = s => new Set([...String(s ?? '').matchAll(new RegExp(ROLE_STATEMENT.source, 'gi'))].map(m => m[0].toLowerCase()))
+/** CLAIMBAL: with no tell, a marked option (reason / degree word) is the key 1 time in 4. Refuse outside 15-40% once
+ *  at least 4 options in an area's claims are marked. Fixed before batch 3; batch 2 Earth reads 0 of 9 degree words. */
+export const CLAIMBAL_BAND = [0.15, 0.4]
+export const CLAIMBAL_MIN = 4
 
 /* ---------------- CLI ---------------- */
 function slotIndex(path) {
@@ -497,6 +645,7 @@ async function suites() {
     pilot: { fixtures: F.FIXTURES, slots: F.FIXTURE_SLOTS, mutations: F.MUTATIONS, batchMutations: F.BATCH_MUTATIONS },
     b1: { fixtures: F.FIXTURES_B1, slots: F.FIXTURE_SLOTS_B1, mutations: [...F.MUTATIONS_B1_CARRIED, ...F.MUTATIONS_B1], batchMutations: [...F.BATCH_MUTATIONS, ...F.BATCH_MUTATIONS_B1] },
     b2: { fixtures: F.FIXTURES_B2, slots: F.FIXTURE_SLOTS_B2, mutations: [...F.MUTATIONS_B2_CARRIED, ...F.MUTATIONS_B2], batchMutations: [...F.BATCH_MUTATIONS, ...F.BATCH_MUTATIONS_B1, ...F.BATCH_MUTATIONS_B2] },
+    b3: { fixtures: F.FIXTURES_B3, slots: F.FIXTURE_SLOTS_B3, mutations: [...F.MUTATIONS_B3_CARRIED, ...F.MUTATIONS_B3], batchMutations: [...F.BATCH_MUTATIONS_B3_CARRIED, ...F.BATCH_MUTATIONS_B3] },
   }
 }
 async function selftest(disabled = new Set()) {
@@ -504,18 +653,19 @@ async function selftest(disabled = new Set()) {
   const a = runSuite('pilot rules', S.pilot, { rules: 'pilot' }, SELFTEST_EX)
   const b = runSuite('b1 rules', S.b1, { rules: 'b1', disabled }, SELFTEST_EX)
   const c = runSuite('b2 rules', S.b2, { rules: 'b2', disabled }, SELFTEST_EX)
-  for (const l of [...a.lines, ...b.lines, ...c.lines]) console.log(l)
+  const d = runSuite('b3 rules', S.b3, { rules: 'b3', disabled }, SELFTEST_EX)
+  for (const l of [...a.lines, ...b.lines, ...c.lines, ...d.lines]) console.log(l)
   const e = checkBatch([{ id: S.pilot.fixtures[0].id, empty: true }], { [S.pilot.fixtures[0].id]: S.pilot.slots[S.pilot.fixtures[0].id] })
   const efail = e.fatal ? 0 : 1
   console.log(`  ${e.fatal ? 'ok  ' : 'FAIL'} all-empty batch -> ${e.fatal ? 'fatal: ' + e.p[0] : 'not fatal'}`)
-  const fail = a.fail + b.fail + c.fail + efail
-  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: pilot rules ${a.n} clean + ${a.nm} item + ${a.nb} batch mutations; b1 rules ${b.n} clean + ${b.nm} item + ${b.nb} batch mutations; b2 rules ${c.n} clean + ${c.nm} item + ${c.nb} batch mutations; + all-empty fatal`)
+  const fail = a.fail + b.fail + c.fail + d.fail + efail
+  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: pilot rules ${a.n} clean + ${a.nm} item + ${a.nb} batch mutations; b1 rules ${b.n} clean + ${b.nm} item + ${b.nb} batch mutations; b2 rules ${c.n} clean + ${c.nm} item + ${c.nb} batch mutations; b3 rules ${d.n} clean + ${d.nm} item + ${d.nb} batch mutations; + all-empty fatal`)
   process.exit(fail ? 1 : 0)
 }
 /** --break-test: switch off each B1 check in turn; the b1 suite MUST then fail, and fail on that check's own fixtures. */
 async function breakTest(rules = 'b1') {
   const S = await suites(); let bad = 0
-  const suite = S[rules], label = `${rules} rules`, ids = rules === 'b2' ? [...B1_CHECKS, ...B2_CHECKS] : B1_CHECKS
+  const suite = S[rules], label = `${rules} rules`, ids = rules === 'b3' ? [...B1_CHECKS, ...B2_CHECKS, ...B3_CHECKS] : rules === 'b2' ? [...B1_CHECKS, ...B2_CHECKS] : B1_CHECKS
   const base = runSuite(label, suite, { rules }, SELFTEST_EX)
   console.log(`  control: all ${rules} checks on -> ${base.fail} failures (must be 0)`); if (base.fail) bad++
   for (const id of ids) {
@@ -534,7 +684,7 @@ if (isMain) {
   const A = process.argv.slice(2)
   const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
   const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
-  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1 or b2'); process.exit(2) }
+  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2 or b3'); process.exit(2) }
   if (A.includes('--break-test')) await breakTest(RUNOPTS.rules === 'pilot' ? 'b1' : RUNOPTS.rules)
   if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }

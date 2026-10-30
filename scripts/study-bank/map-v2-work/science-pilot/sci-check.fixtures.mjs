@@ -345,3 +345,129 @@ export const BATCH_MUTATIONS_B2 = [
   { name: 'B2 two items key the same claim in one area', expect: 'KEYDUP ', mutate: b => { const q = byId(b, 'FX-Q-01'), l = byId(b, 'FX-L-03'); q.choices[3] = l.correct_answer; q.correct_answer = l.correct_answer } },
   { name: 'B2 one author uses a stock misconception twice', expect: 'MISC ', mutate: b => { const q = byId(b, 'FX-Q-01'); q.choices[0] = 'Thin stems grew thicker during their lives.'; q.distractor_rationales[0].choice = q.choices[0]; const q2 = byId(b, 'FX-Q-02'); q2.choices[2] = 'oil changed during its life' } },
 ]
+
+/* ===================== batch-3 rules (MAP-SCIENCE-B3.prereg.md) =====================
+ * The B3 suite: the B2 fixtures with the four that a b3 check would refuse rebuilt (FX-L-02 trend options in one
+ * frame; FX-P-02 and FX-L-04 procedures that describe what was done without stating any role; FX-Q-01 claims with no
+ * lone reason or degree word; FX-E-03's key no longer echoing "Northern"), plus five new fixtures so every b3 check
+ * has a shape to fire on: an interpolation (FX-L-05), a bar read (FX-P-05), a definition-in-stem term (FX-E-05) and a
+ * second Life variable item (FX-L-06, so VARTPL has a same-area pair). Each b3 mutation reproduces the batch-2 item its
+ * graders named. Run with rules 'b3'. */
+const B3 = structuredClone(FIXTURES_B2)
+const get3 = id => B3.find(x => x.id === id)
+export const FIXTURE_SLOTS_B3 = structuredClone(FIXTURE_SLOTS_B2)
+Object.assign(get3('FX-L-02'), {
+  choices: ['It decreased.', 'It rose.', 'It stayed the same.', 'It rose, then leveled off.'],
+  correct_answer: 'It decreased.',
+  distractor_rationales: [R('It rose.', 'reverses the direction of the points'), R('It stayed the same.', 'the points fall by about 25 hundred overall'), R('It rose, then leveled off.', 'no point is higher than the one before it')],
+})
+Object.assign(get3('FX-P-02'), {
+  passage: 'Students tested how dissolving Substance M affects the temperature of water. They set out four foam cups and poured 200 mL of water into each one. A thermometer read a starting temperature of the water of 20 °C in all four cups. The mass of Substance M stirred into the cups was 5 g, 10 g, 15 g or 20 g. The stirring spoon that was used came from a drawer at random for each cup. One cup was tested in the morning and three after lunch, whenever the time of day suited the class. They read the thermometer two minutes after stirring.',
+  key_evidence: { refs: [{ quote: 'a starting temperature of the water of 20 °C in all four cups' }] },
+  explanation: 'The thermometer read 20 °C in all four cups before stirring, so the starting temperature was held at one value.',
+  distractor_rationales: [R('mass of Substance M', 'it ran from 5 g to 20 g across the cups'), R('stirring spoon that was used', 'a spoon was picked at random for each cup'), R('time of day', 'one cup was tested in the morning and three after lunch')],
+})
+Object.assign(get3('FX-L-04'), {
+  passage: 'Students grew bean line V-9 in four trays under four lamps. The lamp position above the tray was 10 cm, 20 cm, 30 cm or 40 cm. A helper poured the amount of water given each morning, 50 mL, into all four trays. The trays sat in one row on a shelf by the classroom door. After ten days the students measured the height the stems grew in each tray with a ruler, and they wrote down the number of leaves on each plant.',
+  prompt: 'The students wanted to know whether the lamp position affects how tall the bean stems get. Which quantity answers their question?',
+  key_evidence: { refs: [{ quote: 'measured the height the stems grew in each tray' }] },
+  explanation: 'The question is about how tall the stems get, so the stem height measured in each tray answers it.',
+  distractor_rationales: [R('lamp position above the tray', 'this is what the students set for each tray'), R('number of leaves on each plant', 'it was measured but it does not tell how tall the stems got'), R('amount of water given each morning', 'it was 50 mL for all four trays')],
+})
+FIXTURE_SLOTS_B3['FX-Q-01'] = FIXTURE_SLOTS_B2['FX-Q-01']
+Object.assign(get3('FX-Q-01'), {
+  prompt: 'In a dry valley, cactus plants with thicker stems store more water and survive long droughts better than thin-stemmed ones. Stem thickness is inherited. Over many droughts, what most likely happens to the cactus population?',
+  choices: ['Each thin stem grows thicker to hold water.', 'Stem thickness stays as it was.', 'Thin-stemmed cacti start to make bigger seeds.', 'More of the cacti across the area have thick stems.'],
+  correct_answer: 'More of the cacti across the area have thick stems.',
+  distractor_rationales: [R('Each thin stem grows thicker to hold water.', 'misconception: traits acquired during a lifetime are inherited'), R('Stem thickness stays as it was.', 'misconception: variation does not affect survival'), R('Thin-stemmed cacti start to make bigger seeds.', 'misconception: an unrelated advantage decides the trait')],
+})
+setChoice(get3('FX-E-03'), "Earth's tilt aims the north more directly at the Sun.", "Earth's tilt aims the top half more toward the Sun.")
+get3('FX-E-03').explanation = 'The tilted axis makes sunlight strike the top half of Earth more directly in June, and the bottom half less directly.'
+FIXTURE_SLOTS_B3['FX-L-05'] = slot('FX-L-05', 'Life Science', 6, 'mid', 'LS1', 'investigation', 'procedure+table', 'values', 'interpolate', 'C', 2)
+FIXTURE_SLOTS_B3['FX-P-05'] = slot('FX-P-05', 'Physical Science', 5, 'low', 'PS2', 'data', 'bar', 'values', 'read', 'B', 3)
+FIXTURE_SLOTS_B3['FX-E-05'] = slot('FX-E-05', 'Earth and Space Science', 7, 'mid', 'ESS2', 'model', 'scenario', 'term', 'example', 'A', 3)
+FIXTURE_SLOTS_B3['FX-L-06'] = slot('FX-L-06', 'Life Science', 8, 'high', 'LS1', 'investigation', 'procedure', 'variable', 'independent', 'D', 1)
+B3.push({
+  ...head(FIXTURE_SLOTS_B3['FX-L-05']), ngss_pe: 'MS-LS1-6', names_used: ['bean line G-3', 'Tray Gill', 'Tray Hask', 'Tray Jory', 'Tray Kemp'],
+  passage: 'Students grew seedlings of bean line G-3 in four trays under grow lamps. Each tray got a different number of hours of lamp light per day, and the students watered every tray the same way. After 14 days they measured the height of the tallest seedling in each tray. Table 1 shows their results. The class then wanted to predict the height for a number of hours they had not tested.',
+  graphic: { type: 'table', rowLabels: ['Tray Gill', 'Tray Hask', 'Tray Jory', 'Tray Kemp'], colLabels: ['Light per day (hours)', 'Height after 14 days (cm)'], cells: [[3, 6], [7, 14], [11, 18], [15, 19]], caption: 'Table 1. Seedling height of bean line G-3' },
+  prompt: 'Based on Table 1, about how tall would the tallest seedling most likely be after 14 days with 9 hours of light per day?',
+  choices: ['18 cm', '22 cm', '16 cm', '11 cm'], correct_answer: '16 cm',
+  key_evidence: { refs: [[1, 1], [2, 1]], expr: '(v0 + v1) / 2' },
+  explanation: '9 hours sits halfway between 7 hours (14 cm) and 11 hours (18 cm), so the height is about 16 cm.',
+  distractor_rationales: [R('18 cm', 'reads the 11-hour row instead of estimating between rows'), R('22 cm', 'continues the early rise past the table values'), R('11 cm', 'estimates between the 3-hour and 7-hour rows')],
+  real_world_check: 'Plants use light energy to make food, so more light usually means more growth up to a limit.',
+  prior_free: 'The standard says plants need light, not how tall this bean line grows at 9 hours of light.',
+})
+B3.push({
+  ...head(FIXTURE_SLOTS_B3['FX-P-05']), ngss_pe: '3-PS2-1', names_used: ['Spring Abel', 'Spring Brede', 'Spring Cole', 'Spring Dunmore'],
+  passage: 'Students hung the same toy weight from four springs and measured how far each spring stretched.',
+  graphic: { type: 'bar', bars: [{ label: 'Spring Abel', value: 12 }, { label: 'Spring Brede', value: 28 }, { label: 'Spring Cole', value: 40 }, { label: 'Spring Dunmore', value: 20 }], xLabel: 'Spring', yLabel: 'Stretch (cm)', caption: 'Figure 1. Stretch of four springs under one weight' },
+  prompt: 'Based on Figure 1, about how far did Spring Brede stretch?',
+  choices: ['14 cm', '28 cm', '40 cm', '21 cm'], correct_answer: '28 cm',
+  key_evidence: { refs: ['Spring Brede'], expr: 'v0' },
+  explanation: 'The Spring Brede bar ends a little below the 30 cm tick, at about 28 cm.',
+  distractor_rationales: [R('14 cm', 'reads the bar for Spring Abel'), R('40 cm', 'reads the tallest bar, Spring Cole'), R('21 cm', 'reads the bar for Spring Dunmore')],
+  real_world_check: 'A force stretches a spring, and different springs stretch different amounts under the same force.',
+  prior_free: 'Nothing in the standard says how far this invented spring stretches; only the bar shows it.',
+})
+B3.push({
+  ...head(FIXTURE_SLOTS_B3['FX-E-05']), ngss_pe: 'MS-ESS2-1', passage: null, graphic: null,
+  prompt: 'Weathering is the breaking of rock into smaller pieces where the rock sits. Which of these is an example of weathering?',
+  choices: ['ice splitting a boulder', 'lava hardening', 'wind lifting dust', 'mud settling on a lakebed'], correct_answer: 'ice splitting a boulder',
+  explanation: 'Water freezes in cracks and expands, splitting the boulder in place, which is weathering.',
+  distractor_rationales: [R('lava hardening', 'misconception: any rock change is weathering; this forms new rock'), R('wind lifting dust', 'misconception: moving pieces away is weathering; it is erosion'), R('mud settling on a lakebed', 'misconception: laying down sediment is weathering; it is deposition')],
+  real_world_check: 'Frost wedging breaks rock apart in place, a form of mechanical weathering.',
+})
+B3.push({
+  ...head(FIXTURE_SLOTS_B3['FX-L-06']), ngss_pe: 'MS-LS1-7', names_used: ['yeast strain Z-4'],
+  passage: 'A class studied how yeast strain Z-4 makes bread dough rise. Four groups made dough. The flour mixed into each bowl was 300 g, and the warm water poured into each bowl was 200 mL, with one spoon of yeast strain Z-4. The mass of sugar added was 0 g for Group 1, 5 g for Group 2, 10 g for Group 3 and 15 g for Group 4. Overnight, the shelf where the four bowls sat was beside the window. After one hour, each group marked the height of the dough on the side of its bowl.',
+  graphic: null,
+  prompt: 'Which variable did the class change on purpose?',
+  choices: ['flour mixed into each bowl', 'warm water poured into each bowl', 'shelf where the four bowls sat', 'mass of sugar added'], correct_answer: 'mass of sugar added',
+  option_roles: ['setting', 'setting', 'setting', 'setting'],
+  key_evidence: { refs: [{ quote: 'The mass of sugar added was 0 g for Group 1' }] },
+  explanation: 'Only the sugar mass is listed as 0, 5, 10 and 15 g across the four groups.',
+  distractor_rationales: [R('flour mixed into each bowl', 'each bowl got 300 g of flour'), R('warm water poured into each bowl', 'each bowl got 200 mL'), R('shelf where the four bowls sat', 'all four bowls sat on one shelf')],
+  real_world_check: 'An independent variable is the one an investigator sets to different values on purpose.',
+})
+FIXTURE_SLOTS_B3['FX-L-07'] = slot('FX-L-07', 'Life Science', 5, 'low', 'LS2', 'data', 'table', 'values', 'read', 'A', 4)
+B3.push({
+  ...head(FIXTURE_SLOTS_B3['FX-L-07']), ngss_pe: '5-LS2-1', names_used: ['plant line D-6', 'Pot Abra', 'Pot Bexley', 'Pot Corra', 'Pot Dunn'],
+  passage: null,
+  graphic: { type: 'table', rowLabels: ['Pot Abra', 'Pot Bexley', 'Pot Corra', 'Pot Dunn'], colLabels: ['Seeds sprouted'], cells: [[12], [25], [31], [18]], caption: 'Table 1. Sprouting of plant line D-6 in four pots' },
+  prompt: 'According to Table 1, how many seeds of plant line D-6 sprouted in Pot Corra?',
+  choices: ['31 seeds', '12 seeds', '25 seeds', '18 seeds'], correct_answer: '31 seeds',
+  key_evidence: { refs: [[2, 0]], expr: 'v0' },
+  explanation: 'The Pot Corra row of Table 1 reads 31.',
+  distractor_rationales: [R('12 seeds', 'reads the Pot Abra row'), R('25 seeds', 'reads the Pot Bexley row'), R('18 seeds', 'reads the Pot Dunn row')],
+  real_world_check: 'Seeds sprout when they get water, air and warmth, so counts differ from pot to pot.',
+  prior_free: 'No standard says how many seeds of this plant line sprouted in one pot; only the table does.',
+})
+export const FIXTURES_B3 = B3
+/** QUAL's two mutations named FX-L-02's old option strings; they are re-aimed below. Everything else carries. */
+export const MUTATIONS_B3_CARRIED = [...MUTATIONS_B2_CARRIED, ...MUTATIONS_B2].filter(m => !(m.on === 'FX-L-02' && m.expect === 'QUAL'))
+export const MUTATIONS_B3 = [
+  { name: 'B1 trend key carries the lone qualifier, b3 options', on: 'FX-L-02', expect: 'QUAL', mutate: it => setChoice(it, 'It decreased.', 'It decreased steadily.') },
+  { name: 'B1 three of four trend options qualified, b3 options', on: 'FX-L-02', expect: 'QUAL', mutate: it => { setChoice(it, 'It rose.', 'It rose slightly.'); setChoice(it, 'It stayed the same.', 'It stayed about the same.'); setChoice(it, 'It decreased.', 'It decreased each week.') } },
+  { name: 'B3 trend key alone carries "as ..." (L5-14 shape)', on: 'FX-L-02', expect: 'TRENDPAR', mutate: it => setChoice(it, 'It decreased.', 'It decreased as the drought went on.') },
+  { name: 'B3 compound trend option alone carries a time phrase (E-area "rose, then leveled" shape)', on: 'FX-L-02', expect: 'TRENDPAR', mutate: it => setChoice(it, 'It rose, then leveled off.', 'It rose, then leveled off after week 3.') },
+  { name: 'B3 controlled variable stated outright (P5-03 shape)', on: 'FX-P-02', expect: 'ROLESTATE', mutate: it => { it.passage = it.passage.replace('A thermometer read a starting temperature of the water of 20 °C in all four cups.', 'The starting temperature of the water was 20 °C for every cup.'); it.key_evidence.refs = [{ quote: 'The starting temperature of the water was 20 °C for every cup' }] } },
+  { name: 'B3 independent variable named as the one changed (L7-02 shape)', on: 'FX-L-06', expect: 'ROLESTATE', mutate: it => { it.passage = it.passage.replace('The mass of sugar added was', 'The mass of sugar added was the variable they changed:') } },
+  { name: 'B3 key alone repeats the stem\'s defining word (L6-17 shape)', on: 'FX-E-05', expect: 'ECHO', mutate: it => setChoice(it, 'ice splitting a boulder', 'ice breaking a boulder') },
+  { name: 'B3 interpolation key the lone unprinted value (L7-06 shape)', on: 'FX-L-05', expect: 'INTERP the key 16 cm is the only option not printed', mutate: it => { setChoice(it, '22 cm', '19 cm'); setChoice(it, '11 cm', '14 cm') } },
+  { name: 'B3 interpolation key the lone mean of two options (P8-01 shape)', on: 'FX-L-05', expect: 'INTERP the key 16 cm is the only option that is the mean', mutate: it => { setChoice(it, '18 cm', '20 cm'); setChoice(it, '11 cm', '12 cm') } },
+  { name: 'B3 asked bar is the tallest, on the top tick (P5-07 shape)', on: 'FX-P-05', expect: 'BARTOP the asked bar is the tallest', mutate: it => { it.graphic.bars[2].value = 24 } },
+  { name: 'B3 key the only option on a tick label', on: 'FX-P-05', expect: 'BARTOP the key 28 cm is the only option on a tick', mutate: it => { it.graphic.bars[2].value = 112 } },
+  { name: 'B3 misconception distractors carry reasons, key plain (E5-06 shape)', on: 'FX-E-03', expect: 'CLAIMRAT 3 of 4 claim options give a reason', mutate: it => { setChoice(it, 'Earth is closer to the Sun in June.', 'Earth is closer to the Sun, because of its orbit.'); setChoice(it, 'The Sun gives off more energy in June each year.', 'The Sun gives off more energy, since it is June.'); setChoice(it, 'Clouds block more sunlight over southern oceans in June.', 'Clouds block more sunlight in the south, because oceans are wide.') } },
+  { name: 'B3 a lone degree word on one claim option (E5-06 "much hotter")', on: 'FX-E-03', expect: 'CLAIMRAT 1 of 4 claim options carry a degree word', mutate: it => setChoice(it, 'Earth is closer to the Sun in June.', 'Earth is much closer to the Sun in June.') },
+]
+export const BATCH_MUTATIONS_B3_CARRIED = [...BATCH_MUTATIONS, ...BATCH_MUTATIONS_B1, ...BATCH_MUTATIONS_B2]
+export const BATCH_MUTATIONS_B3 = [
+  { name: 'B3 two variable passages state roles with one template (P5-03 / P8-03 shape)', expect: 'VARTPL ', mutate: b => { for (const id of ['FX-L-04', 'FX-L-06']) byId(b, id).passage += ' The room temperature was the same for every group.' } },
+  { name: 'B3 reasons on claim distractors only, two per item (E7-20 / E8-14 shape)', expect: 'CLAIMBAL ', mutate: b => {
+    const q = byId(b, 'FX-Q-01'); setChoice(q, 'Each thin stem grows thicker to hold water.', 'Each thin stem grows thicker, because it holds water.'); setChoice(q, 'Stem thickness stays as it was.', 'Stem thickness stays as it was, since rain still falls.')
+    const l = byId(b, 'FX-L-03'); setChoice(l, 'Warm dishes made more gas than cool dishes.', 'Warm dishes made more gas, because warmth speeds yeast.'); setChoice(l, 'The two warm dishes gave about the same results.', 'The two warm dishes matched, since they were kept warm.') } },
+  { name: 'B3 one invented name core in two items (E8 "Sy" shape)', expect: 'NAMEREUSE ', mutate: b => { byId(b, 'FX-L-01').names_used = ['snail line T-3', 'Pond Orrin'] } },
+  { name: 'B3 numeric distractors kept in ascending order (Earth g1 shape)', expect: 'ORDER ', mutate: b => { byId(b, 'FX-L-05').choices = ['11 cm', '18 cm', '16 cm', '22 cm']; byId(b, 'FX-L-07').choices = ['31 seeds', '12 seeds', '18 seeds', '25 seeds'] } },
+]
