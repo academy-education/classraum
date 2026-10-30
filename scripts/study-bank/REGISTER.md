@@ -6741,3 +6741,15 @@ structural checks are pre-flight only. See CLAUDE.md.
   batch 3 a new prereg adopts the Amendment A1 threshold that works for MAP Language and SSAT/ISEE reading: a pattern
   named by both graders drops its items only when it touches 3 or more shared items, and holds the area only when
   cohort-wide (50% or more). That is written before any batch-3 item exists.
+
+- **2026-10-31 — iTEP SLATE Grammar v1 pilot: 23 of 24 cleared; nothing inserted.** Prereg
+  `ITEP-SLATE-GRAMMAR-V1.prereg.md`; three author agents on the frozen brief; pre-flight `itep-grammar-check.mjs`
+  passed and was break-tested; three graders solved cold (72 picks, 0 off key) and then graded keyed on
+  COFOUNDER-BRIEF-v2 under A1. One drop: ITG1-C12 ("two days earlier" can also mean "earlier than planned", so
+  "would leave" is correct; graders a and b). **Found: Part 2 (error identification) cannot be served through
+  today's draw.** `shuffleDrawnChoices` reshuffles every `multiple_choice` row, which would scramble the segments
+  against the `[A:]..[D:]` labels printed in the sentence. Part 2 needs an unshuffled type (an `ORDERED_OR_UNUSED`
+  entry, or a check on `item_type='error_identification'`) before it is staged. Because those letters are real
+  positions, A1.1's letter exclusion was limited to Part 1 in this prereg. The survivors are in
+  `itep-grammar-v1.batch.json` (staging shape). Lessons are in `briefs/itep-slate-grammar-v1.pending.md`, including
+  a cross-author frame collision that only one grader named.

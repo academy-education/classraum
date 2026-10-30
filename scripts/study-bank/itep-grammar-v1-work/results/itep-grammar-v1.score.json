@@ -1,0 +1,131 @@
+{
+ "cohort": "itep-grammar-v1",
+ "total": 24,
+ "graders": 3,
+ "denominators": {
+  "cold_picks": 72,
+  "cold_miss": 0,
+  "cold_also_correct": 0,
+  "keyed_verdicts": 72,
+  "keyed_non_unique": 2
+ },
+ "cleared": [
+  "ITG1-C01",
+  "ITG1-C02",
+  "ITG1-C03",
+  "ITG1-C04",
+  "ITG1-C05",
+  "ITG1-C06",
+  "ITG1-C07",
+  "ITG1-C08",
+  "ITG1-C09",
+  "ITG1-C10",
+  "ITG1-C11",
+  "ITG1-E01",
+  "ITG1-E02",
+  "ITG1-E03",
+  "ITG1-E04",
+  "ITG1-E05",
+  "ITG1-E06",
+  "ITG1-E07",
+  "ITG1-E08",
+  "ITG1-E09",
+  "ITG1-E10",
+  "ITG1-E11",
+  "ITG1-E12"
+ ],
+ "dropped": {
+  "ITG1-C12": [
+   "keyed a: alternative/second_defensible: 'two days earlier' has two natural readings: before Sunday (key 'had left') or earlier than planned ('Priya told me that her older brother would leave for summer camp two days earlier' = ahead of schedule, a normal future-in-the-past report). Nothing in the sentence rules out the second reading, so a student picking 'would leave' has a reasonable complaint. Fix: 'two days before' or 'on Friday'.",
+   "keyed b: alternative/second_defensible: 'two days earlier' can be read as 'earlier than planned' (the brother would leave for camp two days ahead of schedule), under which 'would leave' (future-in-the-past in reported speech) is natural and correct; only the 'two days before Sunday' reading forces 'had left'. Fix: 'two days before' or 'on Friday'."
+  ]
+ },
+ "hold": false,
+ "patternShare": 0,
+ "patterns": [],
+ "by_part": {
+  "Part 1: Sentence Completion": {
+   "total": 12,
+   "cleared": 11
+  },
+  "Part 2: Error Identification": {
+   "total": 12,
+   "cleared": 12
+  }
+ },
+ "all_batch_patterns": {
+  "a": [
+   {
+    "pattern": "key_position",
+    "items": [
+     1,
+     3,
+     6,
+     7,
+     11,
+     13,
+     15,
+     16,
+     17,
+     18,
+     19,
+     21
+    ],
+    "evidence": "Sentence Completion keys by letter: D,A,A,A,D,D,A,B,D,A,D,D = A5 B1 C0 D6. 11 of 12 completion keys are at the outer positions A or D (about 0.3% chance if positions are uniform). C is never the key. Across all 24 items the counts are A8 B4 C3 D9. Error Identification keys (A3 B3 C3 D3) are balanced, so the skew is all in completion."
+   },
+   {
+    "pattern": "duplicate_skill_pairs",
+    "items": [
+     11,
+     12,
+     8,
+     18,
+     6,
+     7
+    ],
+    "evidence": "Pairs test the same point on the same frame, so solving one gives the other away: 11/12 careful vs carefully (comparative adverb, then adverb after 'handles'); 8/18 'should have [been] ...' passive with 'but nobody remembered'; 6/7 both 'Priya' plus a past-perfect key ('had followed', 'had left')."
+   }
+  ],
+  "b": [
+   {
+    "pattern": "key_position",
+    "items": [
+     1,
+     3,
+     6,
+     7,
+     11,
+     13,
+     15,
+     16,
+     17,
+     18,
+     19,
+     21
+    ],
+    "evidence": "Sentence Completion keys (12 items): A=5, B=1, C=0, D=6. C is never the key and B only once (P(no C in 12 at 25%) ~ 0.03). Error Identification keys are balanced (A=4, B=3, C=3, D=3); whole batch A=8, B=4, C=3, D=9. A student who never reads a completion item can drop C (and B) and pick between A and D."
+   }
+  ],
+  "c": [
+   {
+    "pattern": "key_position",
+    "items": [
+     1,
+     3,
+     6,
+     7,
+     11,
+     13,
+     15,
+     16,
+     17,
+     18,
+     19,
+     21
+    ],
+    "evidence": "Sentence Completion keys (12 items) are D,A,A,A,D,D,A,B,D,A,D,D: A=5, D=6, B=1, C=0. 11 of 12 keys sit in A or D and none in C (about 3 per letter expected; ~0.3% chance of 11+/12 in A/D under uniform placement). A no-content guesser who avoids B and C on completion items gains heavily. Error Identification keys are balanced (3/3/3/3). Whole batch: D=9, A=8, B=4, C=3."
+   }
+  ]
+ },
+ "band": "brief works, scale it"
+}

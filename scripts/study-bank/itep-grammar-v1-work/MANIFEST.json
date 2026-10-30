@@ -1,0 +1,26 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-GRAMMAR-V1.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + A1, cold solve first",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-grammar-v1.md",
+ "author_brief_sha256": "04a045c0c2dbd3e941a625d3ea75ce0294100c7d3f737fd618bfd4c4c500235b",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "cold_brief_sha256": "694226f5eb4b36ac5575422df858827f4de5d19ddb0b9f4571fa206d84a20eb6",
+ "item_files_sha256": {
+  "author-a.json": "550965c62838afb72424c39159c9b51c621299d1baef268f6d90fb4528bd1e0c",
+  "author-b.json": "a071482cf84d84a7948113feb67195766c5f6a464e890bdb9715a021a4b946a5",
+  "author-c.json": "82d31bce4aa32f4e4d748d945cca1fd89bff2a0649aa7f9dda39043e658bb4c9"
+ },
+ "packet_dir": "scratchpad/itep-grammar-v1/packet1",
+ "items": 24,
+ "graders": [
+  "a",
+  "b",
+  "c"
+ ],
+ "cold_sha256": {
+  "a": "47bacf0e2ebe72be7d02972c5a111d7a4413ad455ee05f0884bd10da4ce6a463",
+  "b": "185b176c2a49364300c31498a928eda32bd5e120fb1f30b569e092652c127bbb",
+  "c": "1215d52e25b8c83526857eedb4210c390eb763a11c68faeb466949529eacfd8a"
+ }
+}

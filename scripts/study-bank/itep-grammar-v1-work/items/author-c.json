@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ITG1-E05",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "count quantifier 'a great many' placed before the non-count noun 'practice' that follows the segment",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Kenji's cooking class [A: has taught] him [B: a lot], but he still needs [C: a great many] practice [D: with knives].",
+    "choices": ["has taught", "a lot", "a great many", "with knives"],
+    "correct_answer": "a great many",
+    "explanation": "'A great many' is used only with plural count nouns (a great many recipes). 'Practice' here is a non-count noun, so it needs a non-count quantifier such as 'a great deal of' or 'a lot of'.",
+    "distractor_rationales": {
+      "has taught": "Correct: present perfect for a class that has been teaching him up to now.",
+      "a lot": "Correct: 'a lot' can stand alone as an adverbial meaning 'much' without 'of'.",
+      "with knives": "Correct: 'practice with' a tool is the normal preposition, and 'knives' is the right irregular plural of 'knife'."
+    },
+    "student_error": {
+      "has taught": "Learners often doubt present perfect next to a 'but ... still' clause and expect past simple 'taught'.",
+      "a lot": "Learners learn 'a lot of + noun' as a chunk and think 'a lot' without 'of' is incomplete.",
+      "with knives": "Learners overgeneralise the regular plural and suspect 'knifes', or expect 'practice of' from first-language transfer."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-E06",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "object pronoun inside a compound subject at the start of the sentence",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Him and his sister] [B: take] art lessons [C: on Saturdays] with [D: their] teacher.",
+    "choices": ["Him and his sister", "take", "on Saturdays", "their"],
+    "correct_answer": "Him and his sister",
+    "explanation": "The words before the verb are the subject, so the pronoun must be in subject form: 'He and his sister take art lessons.' 'Him' is the object form and is used after a verb or preposition.",
+    "distractor_rationales": {
+      "take": "Correct: the subject is two people, so the plural verb 'take' is right.",
+      "on Saturdays": "Correct: 'on' is used with days of the week, and the plural shows a regular habit.",
+      "their": "Correct: 'their' refers to both people, the boy and his sister."
+    },
+    "student_error": {
+      "take": "Learners see the singular 'his sister' just before the verb and think it should be 'takes'.",
+      "on Saturdays": "Learners mix up 'on', 'in' and 'at' for time and may expect 'in Saturdays' or 'at Saturdays'.",
+      "their": "Learners think the possessive should match 'his sister' and choose 'her' or 'his'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-E07",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the adjective 'interested' at the end of the sentence",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Omar [A: listens to] music [B: daily], and he [C: has become] interested [D: on jazz].",
+    "choices": ["listens to", "daily", "has become", "on jazz"],
+    "correct_answer": "on jazz",
+    "explanation": "The adjective 'interested' is always followed by 'in': 'interested in jazz'. 'On' cannot follow 'interested', even though 'a book on jazz' is correct.",
+    "distractor_rationales": {
+      "listens to": "Correct: 'listen' needs 'to' before its object, and 'listens' agrees with 'Omar'.",
+      "daily": "Correct: 'daily' can be used as an adverb meaning 'every day'.",
+      "has become": "Correct: present perfect shows a change that is true now; 'become' is the irregular past participle."
+    },
+    "student_error": {
+      "listens to": "Many learners drop 'to' after 'listen' by analogy with 'hear music', or doubt the third-person -s.",
+      "daily": "Learners think 'daily' is only an adjective (a daily newspaper) and expect 'every day' here.",
+      "has become": "Learners expect the past participle 'became' or think the tense should match the present 'listens'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-E08",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "first half of a correlative pair ('either') mismatched with an unmarked 'nor' several words later",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Either] the guitarist nor the drummer [B: had been told] that the concert [C: would be moved] to [D: the larger hall].",
+    "choices": ["Either", "had been told", "would be moved", "the larger hall"],
+    "correct_answer": "Either",
+    "explanation": "Correlative conjunctions come in fixed pairs: 'either ... or' and 'neither ... nor'. Because the sentence uses 'nor', the first word must be 'Neither'.",
+    "distractor_rationales": {
+      "had been told": "Correct: past perfect passive; the telling would have happened before the past moment described.",
+      "would be moved": "Correct: in reported content after a past verb, 'will' shifts back to 'would'.",
+      "the larger hall": "Correct: comparing two halls uses the comparative 'larger', not the superlative."
+    },
+    "student_error": {
+      "had been told": "Learners find the three-word past perfect passive heavy and suspect 'was told' or 'had told'.",
+      "would be moved": "Learners do not backshift in reported clauses and expect 'will be moved'.",
+      "the larger hall": "Learners overuse the superlative after 'the' and expect 'the largest hall'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG1-E09",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "modal perfect passive missing 'been', decided by an inanimate subject far before the verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The photos from our club trip [A: should have sent] to every member [B: by the end of] May, but [C: nobody] remembered [D: to upload them online].",
+    "choices": ["should have sent", "by the end of", "nobody", "to upload them online"],
+    "correct_answer": "should have sent",
+    "explanation": "Photos cannot send anything; they are the things that are sent, so the verb must be passive. A passive with a modal perfect needs 'been': 'should have been sent'.",
+    "distractor_rationales": {
+      "by the end of": "Correct: 'by the end of' gives a deadline before a point in time.",
+      "nobody": "Correct: 'nobody' is the singular subject of 'remembered' and already makes the clause negative.",
+      "to upload them online": "Correct: 'remember to do' means not forgetting a task that still had to be done; 'them' refers to the photos."
+    },
+    "student_error": {
+      "by the end of": "Learners confuse 'by' and 'until' for deadlines, or expect 'in the end of'.",
+      "nobody": "Learners transfer double negation and think 'nobody' needs 'didn't remember', or doubt it with a past verb.",
+      "to upload them online": "Learners mix up 'remember to do' and 'remember doing' and expect 'uploading'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG1-E10",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "to-infinitive after 'imagine', which takes only a gerund",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Mei [A: has played] chess [B: since age six], and she can't imagine [C: to quit] [D: at all].",
+    "choices": ["has played", "since age six", "to quit", "at all"],
+    "correct_answer": "to quit",
+    "explanation": "Some verbs, such as 'imagine', 'enjoy' and 'avoid', are followed by the -ing form, not by 'to' + verb. The correct form is 'can't imagine quitting'.",
+    "distractor_rationales": {
+      "has played": "Correct: present perfect with 'since' for something that started in the past and continues now.",
+      "since age six": "Correct: 'since' introduces the starting point of the period.",
+      "at all": "Correct: 'at all' strengthens a negative, and 'can't' makes the sentence negative."
+    },
+    "student_error": {
+      "has played": "Learners use past simple with 'since' ('played since') or the present ('plays since') from first-language transfer.",
+      "since age six": "Learners confuse 'since' (a starting point) with 'for' (a length of time).",
+      "at all": "Learners are unsure where 'at all' is allowed and suspect it needs a question or 'not' right beside it."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-E11",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective 'careful' used to modify the verb 'handles' that sits before its object",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Since her laptop [A: broke], Daniela handles the new one [B: very careful] so it [C: doesn't get] [D: any more scratches].",
+    "choices": ["broke", "very careful", "doesn't get", "any more scratches"],
+    "correct_answer": "very careful",
+    "explanation": "The words describe how Daniela handles the laptop, so they modify a verb and need an adverb: 'very carefully'. 'Careful' is an adjective and describes a noun or follows a verb like 'be'.",
+    "distractor_rationales": {
+      "broke": "Correct: 'broke' is the irregular past of 'break' and can be used without an object.",
+      "doesn't get": "Correct: 'it' is singular, so 'doesn't' is right, and present tense fits a purpose clause with 'so'.",
+      "any more scratches": "Correct: 'any more' (two words) means 'additional' before a noun, and 'scratches' is plural."
+    },
+    "student_error": {
+      "broke": "Learners think a machine must be passive ('was broken') or overgeneralise to 'breaked'.",
+      "doesn't get": "Learners expect 'won't get' after a purpose 'so', or doubt 'doesn't' with 'it'.",
+      "any more scratches": "Learners confuse 'any more' with the one-word adverb 'anymore'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG1-E12",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "extra resumptive object pronoun inside a 'that' relative clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The cookbook [A: that] Hana's grandfather wrote [B: it] in 1985 [C: is still used] by [D: many of her relatives].",
+    "choices": ["that", "it", "is still used", "many of her relatives"],
+    "correct_answer": "it",
+    "explanation": "In a relative clause, the relative pronoun 'that' already stands for the object of 'wrote'. Adding 'it' repeats the object, so 'it' must be removed: 'The cookbook that Hana's grandfather wrote in 1985'.",
+    "distractor_rationales": {
+      "that": "Correct: 'that' introduces a relative clause about a thing.",
+      "is still used": "Correct: the subject is 'the cookbook' (singular), and the passive fits because relatives use the book.",
+      "many of her relatives": "Correct: 'many of' is used with a plural count noun after a determiner like 'her'."
+    },
+    "student_error": {
+      "that": "Learners think 'that' cannot be used for objects, or that 'which' or 'who' is required.",
+      "is still used": "Learners match the verb to the nearer noun 'grandfather' or to '1985' and doubt the passive.",
+      "many of her relatives": "Learners drop 'of' ('many her relatives') or confuse 'many' and 'much'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  }
+]

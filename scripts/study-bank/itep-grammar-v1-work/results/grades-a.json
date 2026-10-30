@@ -1,0 +1,109 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "would leave",
+  "reason": "'two days earlier' has two natural readings: before Sunday (key 'had left') or earlier than planned ('Priya told me that her older brother would leave for summer camp two days earlier' = ahead of schedule, a normal future-in-the-past report). Nothing in the sentence rules out the second reading, so a student picking 'would leave' has a reasonable complaint. Fix: 'two days before' or 'on Friday'."
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    1,
+    3,
+    6,
+    7,
+    11,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21
+   ],
+   "evidence": "Sentence Completion keys by letter: D,A,A,A,D,D,A,B,D,A,D,D = A5 B1 C0 D6. 11 of 12 completion keys are at the outer positions A or D (about 0.3% chance if positions are uniform). C is never the key. Across all 24 items the counts are A8 B4 C3 D9. Error Identification keys (A3 B3 C3 D3) are balanced, so the skew is all in completion."
+  },
+  {
+   "pattern": "duplicate_skill_pairs",
+   "items": [
+    11,
+    12,
+    8,
+    18,
+    6,
+    7
+   ],
+   "evidence": "Pairs test the same point on the same frame, so solving one gives the other away: 11/12 careful vs carefully (comparative adverb, then adverb after 'handles'); 8/18 'should have [been] ...' passive with 'but nobody remembered'; 6/7 both 'Priya' plus a past-perfect key ('had followed', 'had left')."
+  }
+ ]
+}

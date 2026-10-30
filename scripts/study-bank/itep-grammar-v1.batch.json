@@ -1,0 +1,1750 @@
+[
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "count/non-count and quantifiers",
+  "topic_tag": "count/non-count and quantifiers",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Our library doesn't have ________ information about volcanoes, so Ms. Okafor brought some books from home.",
+   "choices": [
+    "many",
+    "little",
+    "a few",
+    "much"
+   ],
+   "correct_answer": "much",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "'Information' is a non-count noun, so it takes 'much', not 'many' or 'a few'. In a negative sentence, 'not ... much' means 'only a small amount', which explains why the teacher brought extra books.",
+   "distractor_rationales": [
+    {
+     "choice": "many",
+     "why": "'Many' is used only with plural count nouns; 'information' is non-count."
+    },
+    {
+     "choice": "little",
+     "why": "'Little' fits a non-count noun, but 'doesn't have little information' means the library has a lot, which contradicts the teacher needing to bring books."
+    },
+    {
+     "choice": "a few",
+     "why": "'A few' is used only with plural count nouns; 'information' has no plural."
+    }
+   ]
+  },
+  "content_hash": "86c9f7295de769016bc3110a926b5654",
+  "word_count": 16,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "count vs non-count quantifier (many / a few vs much / little), decided by the non-count noun 'information' and the 'so' result clause",
+    "ordered_choices": false,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 1
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C01",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "many": "Learners treat 'information' as countable because it is countable in their first language (Korean, Spanish, French 'informations').",
+      "little": "Learners know 'little' goes with non-count nouns and pick it on form alone, without noticing the negative 'doesn't' reverses its meaning.",
+      "a few": "Learners think of information as separate facts and choose a count quantifier meaning 'a small number'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "prepositions after a head word",
+  "topic_tag": "prepositions after a head word",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Our school library is famous ________ its old maps.",
+   "choices": [
+    "with",
+    "of",
+    "about",
+    "for"
+   ],
+   "correct_answer": "for",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "The adjective 'famous' is followed by 'for' when we name the reason someone or something is well known: famous for its maps. The other prepositions do not follow 'famous' with this meaning.",
+   "distractor_rationales": [
+    {
+     "choice": "with",
+     "why": "'Famous with' names the people who know something (famous with tourists), not the reason it is known."
+    },
+    {
+     "choice": "of",
+     "why": "'Famous' is never followed by 'of' + the thing it is known for."
+    },
+    {
+     "choice": "about",
+     "why": "'About' follows words like 'talk' or 'worried', not 'famous'."
+    }
+   ]
+  },
+  "content_hash": "b881b4070457da9a61fcce778e12dce2",
+  "word_count": 9,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the adjective 'famous' (for / of / with / about)",
+    "ordered_choices": false,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C02",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "with": "Learners translate 'having' directly: the library 'with' old maps, so famous 'with' its maps.",
+      "of": "Learners overuse 'of' as an all-purpose link after adjectives, by analogy with 'proud of' and 'full of'.",
+      "about": "Learners link 'famous' to 'talking about' something and carry the preposition over."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "gerund vs infinitive",
+  "topic_tag": "gerund vs infinitive",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "After losing two games, the chess club members decided ________ every Friday after school.",
+   "choices": [
+    "practicing",
+    "to practicing",
+    "to practice",
+    "practice"
+   ],
+   "correct_answer": "to practice",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "The verb 'decide' is followed by a to-infinitive: decide to do something. It does not take a gerund, a bare infinitive, or 'to' + a gerund.",
+   "distractor_rationales": [
+    {
+     "choice": "practicing",
+     "why": "'Decide' does not take a gerund object; that pattern belongs to verbs like 'enjoy' and 'finish'."
+    },
+    {
+     "choice": "to practicing",
+     "why": "'To' + gerund is used when 'to' is a preposition (look forward to practicing); after 'decide', 'to' is part of the infinitive, so the base form follows."
+    },
+    {
+     "choice": "practice",
+     "why": "A bare infinitive follows modals like 'can' and 'must', not 'decide'."
+    }
+   ]
+  },
+  "content_hash": "c6c25a1a251e3e3bd9670d989d368f5e",
+  "word_count": 14,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "verb complement after 'decide' (to-infinitive vs gerund vs bare infinitive vs 'to' + gerund)",
+    "ordered_choices": false,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C03",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "practicing": "Learners overgeneralise the gerund after verbs of choice and plans, as with 'consider practicing' or 'enjoy practicing'.",
+      "to practicing": "Learners mix up the infinitive 'to' with the prepositional 'to' of 'look forward to' and 'be used to'.",
+      "practice": "Learners drop 'to' by analogy with modal verbs and with 'let' and 'make'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "conditionals",
+  "topic_tag": "conditionals",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "If Priya ________ the safety rules during yesterday's experiment, she would not have broken the glass beaker.",
+   "choices": [
+    "followed",
+    "had followed",
+    "would have followed",
+    "has followed"
+   ],
+   "correct_answer": "had followed",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "This is a third conditional: it imagines a different past ('during yesterday's experiment') with a past result ('would not have broken'). The if-clause of a third conditional uses the past perfect, 'had followed'.",
+   "distractor_rationales": [
+    {
+     "choice": "followed",
+     "why": "The past simple in the if-clause makes a second conditional about the present or a general habit; it cannot describe an unreal event fixed in yesterday's experiment."
+    },
+    {
+     "choice": "would have followed",
+     "why": "'Would have' belongs in the result clause, not in the if-clause, in standard English."
+    },
+    {
+     "choice": "has followed",
+     "why": "The present perfect cannot be used with a finished past time like 'yesterday', and it does not express an unreal condition."
+    }
+   ]
+  },
+  "content_hash": "454082c5e63c5635f81455d8b05192d7",
+  "word_count": 17,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "verb form in the if-clause of a third conditional about a past event (past perfect vs past simple vs present perfect vs 'would have')",
+    "ordered_choices": false,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C04",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "followed": "Learners use the second-conditional pattern they know best for every unreal condition, ignoring the past time marker.",
+      "would have followed": "Learners copy 'would have' from the result clause into both halves, a pattern also heard in casual speech.",
+      "has followed": "Learners link 'have + past participle' in the result clause to the present perfect and choose 'has followed' to match."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "relative pronouns and clauses",
+  "topic_tag": "relative pronouns and clauses",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "The public library ________ my friends and I do our homework closes at six on Fridays.",
+   "choices": [
+    "that",
+    "when",
+    "where",
+    "who"
+   ],
+   "correct_answer": "where",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "The clause 'my friends and I do our homework' is already complete: it has a subject and an object, so nothing is missing for a relative pronoun to replace. When a relative clause tells us the place in which something happens, we join it with 'where'.",
+   "distractor_rationales": [
+    {
+     "choice": "that",
+     "why": "'That' must stand for a missing subject or object inside the clause, and 'do our homework' already has both; the place would need 'in which', not 'that'."
+    },
+    {
+     "choice": "when",
+     "why": "'When' introduces a relative clause about a time, but 'library' is a place."
+    },
+    {
+     "choice": "who",
+     "why": "'Who' refers to people, and a library is not a person."
+    }
+   ]
+  },
+  "content_hash": "0b0d0753cbbb9be7c0241aab4f861ff9",
+  "word_count": 16,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative word for a place where the relative clause is already complete (where vs that vs when vs who)",
+    "ordered_choices": false,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C05",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "that": "Learners are taught that 'that' can replace any relative pronoun and use it even when the clause has no gap.",
+      "when": "Learners mix up the two relative adverbs 'when' and 'where', especially when a time ('at six on Fridays') appears in the sentence.",
+      "who": "Learners treat a library as an institution of people and choose a person pronoun."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "passive voice",
+  "topic_tag": "passive voice",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "The test tubes in the science lab should ________ before the experiment started, but nobody remembered to do it.",
+   "choices": [
+    "be cleaned",
+    "have been cleaned",
+    "have been cleaning",
+    "have cleaned"
+   ],
+   "correct_answer": "have been cleaned",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "The test tubes do not clean anything; someone else cleans them, so the verb must be passive. Because the sentence criticises something that did not happen in the past ('started', 'remembered'), we use the past modal passive: should + have been + past participle.",
+   "distractor_rationales": [
+    {
+     "choice": "be cleaned",
+     "why": "'Should be cleaned' is passive but refers to the present or future; it cannot describe a missed action before a past event."
+    },
+    {
+     "choice": "have been cleaning",
+     "why": "This is active and continuous, so it says the test tubes themselves were doing the cleaning."
+    },
+    {
+     "choice": "have cleaned",
+     "why": "This is active, so it makes the test tubes the cleaners instead of the things being cleaned."
+    }
+   ]
+  },
+  "content_hash": "a969cc550fb8d0bbb1526a7933ac728c",
+  "word_count": 19,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "passive vs active after a past modal 'should' (have been cleaned / be cleaned / have cleaned / have been cleaning)",
+    "ordered_choices": false,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C06",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "be cleaned": "Learners remember 'modal + be + past participle' as the passive pattern and do not add 'have' for past time.",
+      "have been cleaning": "Learners see 'have been' and assume it is passive, not noticing the '-ing' form makes it active continuous.",
+      "have cleaned": "Learners form the past modal correctly but forget that an object-like subject needs the passive."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "pronoun case and reference",
+  "topic_tag": "pronoun case and reference",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Mr. Diaz runs the robotics club, and the students like ________ a lot.",
+   "choices": [
+    "him",
+    "his",
+    "he",
+    "himself"
+   ],
+   "correct_answer": "him",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "The blank is the object of the verb 'like', so it needs the object pronoun 'him'. 'He' is for subjects, 'his' shows possession, and 'himself' is used only when the subject and object are the same person.",
+   "distractor_rationales": [
+    {
+     "choice": "his",
+     "why": "'His' is a possessive and needs a noun after it (his club) or must mean 'the thing that belongs to him', which makes no sense here."
+    },
+    {
+     "choice": "he",
+     "why": "'He' is a subject pronoun and cannot be the object of 'like'."
+    },
+    {
+     "choice": "himself",
+     "why": "A reflexive pronoun is used only when it refers back to the subject; the subject here is 'the students', not Mr. Diaz."
+    }
+   ]
+  },
+  "content_hash": "d11bda29c5675af72c6350c180a8a13b",
+  "word_count": 13,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "third-person masculine pronoun form in object position after a verb (him / his / he / himself)",
+    "ordered_choices": false,
+    "authored_key_slot": "A",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C07",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "his": "Learners confuse 'him' and 'his' because they sound alike and both come after the verb.",
+      "he": "Learners whose first language does not change pronoun form by position keep the subject form everywhere.",
+      "himself": "Learners think the reflexive adds emphasis and use it for any object referring to a man."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "verb tense and aspect",
+  "topic_tag": "verb tense and aspect",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Yesterday our class ________ a short video about the planets in science.",
+   "choices": [
+    "watched",
+    "watches",
+    "has watched",
+    "will watch"
+   ],
+   "correct_answer": "watched",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "'Yesterday' names a finished time in the past, so the verb must be in the simple past: 'watched'. The present, the present perfect and the future cannot describe a finished action yesterday.",
+   "distractor_rationales": [
+    {
+     "choice": "watches",
+     "why": "The simple present describes habits or facts now, not an action yesterday."
+    },
+    {
+     "choice": "has watched",
+     "why": "The present perfect is not used with a finished past time such as 'yesterday'."
+    },
+    {
+     "choice": "will watch",
+     "why": "The future describes something that has not happened yet, which contradicts 'yesterday'."
+    }
+   ]
+  },
+  "content_hash": "e5689822453046bc502ed9d9c1418e02",
+  "word_count": 12,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "A1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "simple past vs simple present vs present perfect vs future, decided by the time word 'Yesterday'",
+    "ordered_choices": false,
+    "authored_key_slot": "A",
+    "authored_key_len_rank": 1
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C08",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "watches": "Learners whose first language marks time with words rather than verb endings keep the present form and let 'yesterday' carry the meaning.",
+      "has watched": "Learners use the present perfect for any completed action, as in many European languages where it is the normal past.",
+      "will watch": "Learners confuse 'yesterday' and 'tomorrow' at the beginner level."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "subject-verb agreement",
+  "topic_tag": "subject-verb agreement",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Grandma usually ________ the train, but today she is driving.",
+   "choices": [
+    "took",
+    "takes",
+    "take",
+    "taking"
+   ],
+   "correct_answer": "takes",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "'Usually' describes a present habit, so the verb is present simple. The subject 'Grandma' is third-person singular, so the verb needs -s: 'takes'.",
+   "distractor_rationales": [
+    {
+     "choice": "took",
+     "why": "Past simple clashes with the present contrast 'but today she is driving', which shows the habit is still true now."
+    },
+    {
+     "choice": "take",
+     "why": "The base form does not agree with the singular subject 'Grandma'."
+    },
+    {
+     "choice": "taking",
+     "why": "An -ing form cannot be the main verb without 'is'."
+    }
+   ]
+  },
+  "content_hash": "fd3d60d6357533de19fcdcb5b90064e8",
+  "word_count": 10,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "finite and non-finite forms of 'take' after a third-person singular subject with a present-habit adverb, contrasted with a present-progressive 'today' clause",
+    "ordered_choices": false,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C09",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "took": "Learners link 'usually' with stories about the past and pick a past form.",
+      "take": "Dropping third-person -s is the most common agreement error, especially for speakers of languages without verb agreement such as Korean or Chinese.",
+      "taking": "Learners copy the -ing pattern of 'is driving' later in the sentence and forget the auxiliary."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "conjunctions and connectors",
+  "topic_tag": "conjunctions and connectors",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "________ the long delay at the airport, we still reached our hotel before dinner.",
+   "choices": [
+    "Although",
+    "Because of",
+    "In spite of",
+    "Since"
+   ],
+   "correct_answer": "In spite of",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "The blank is followed by a noun phrase ('the long delay'), not a clause, so it needs a preposition. 'Still' shows a contrast, so the meaning is concession: 'In spite of' is a concessive preposition.",
+   "distractor_rationales": [
+    {
+     "choice": "Although",
+     "why": "Has the right contrast meaning, but it is a conjunction and must be followed by a clause with a verb."
+    },
+    {
+     "choice": "Because of",
+     "why": "Can come before a noun phrase, but it gives a reason, which contradicts 'still'."
+    },
+    {
+     "choice": "Since",
+     "why": "As a conjunction of reason it needs a clause and gives the wrong meaning; as a time word it makes no sense with 'the long delay'."
+    }
+   ]
+  },
+  "content_hash": "0b4f9736b25fec1c2d7c54fe78fa15a1",
+  "word_count": 14,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "concession vs cause crossed with clause-taking conjunction vs noun-phrase-taking preposition, decided by 'still' and a following noun phrase",
+    "ordered_choices": false,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C10",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "Although": "Learners choose by meaning alone and do not check whether a clause or a noun phrase follows.",
+      "Because of": "Learners see a problem (a delay) and a result and assume a cause-effect link, ignoring 'still'.",
+      "Since": "Learners treat 'since' as a general linking word that can start any opening phrase."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 1: Sentence Completion",
+  "subskill": "adjective vs adverb",
+  "topic_tag": "adjective vs adverb",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the word or phrase that correctly completes the sentence.",
+   "passage": "Since his knee injury, Omar plays soccer ________ than he used to.",
+   "choices": [
+    "careful",
+    "carefully",
+    "more careful",
+    "more carefully"
+   ],
+   "correct_answer": "more carefully",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "The word describes how Omar plays, an action verb, so it must be an adverb. 'Than' shows a comparison, so the adverb must be comparative: 'more carefully'.",
+   "distractor_rationales": [
+    {
+     "choice": "careful",
+     "why": "An adjective cannot describe the verb 'plays', and there is no comparative form before 'than'."
+    },
+    {
+     "choice": "carefully",
+     "why": "Correct adverb, but 'than' needs a comparative form."
+    },
+    {
+     "choice": "more careful",
+     "why": "Comparative, but an adjective cannot describe how someone plays."
+    }
+   ]
+  },
+  "content_hash": "4b466d309dc745f95aa33aff945ae0a8",
+  "word_count": 12,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 1: Sentence Completion",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective vs adverb crossed with base vs comparative, after an action verb and before 'than'",
+    "ordered_choices": false,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-C11",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "careful": "Learners use the adjective form for every describing word, a common transfer from languages that do not mark adverbs.",
+      "carefully": "Learners notice the verb needs an adverb but do not connect the comparison to 'than' at the end.",
+      "more careful": "Learners notice 'than' and form a comparative but keep the adjective, as in 'He is more careful'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "verb tense and aspect",
+  "topic_tag": "verb tense and aspect",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Yesterday, Dad [A: set] up a tent [B: behind] our house, and we [C: eat] lunch [D: inside] it.",
+   "choices": [
+    "set",
+    "behind",
+    "eat",
+    "inside"
+   ],
+   "correct_answer": "eat",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "'Yesterday' puts the whole sentence in the past, so both actions need the past simple. 'Set' is correct because its past form is the same as its base form, but 'eat' must change to 'ate'.",
+   "distractor_rationales": [
+    {
+     "choice": "set",
+     "why": "Correct: 'set' is an irregular verb whose past form is also 'set'."
+    },
+    {
+     "choice": "behind",
+     "why": "Correct: 'behind' is the right preposition of place for 'our house'."
+    },
+    {
+     "choice": "inside",
+     "why": "Correct: 'inside it' is a normal way to say 'in the tent'."
+    }
+   ]
+  },
+  "content_hash": "66753b8c89e27c0c00e8908102cf7a90",
+  "word_count": 15,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "present simple used for a completed past event, decided by 'Yesterday' outside any segment, next to tense-ambiguous irregular 'set'",
+    "ordered_choices": true,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 1
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E01",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "set": "Learners expect every past verb to end in -ed and think it should be 'setted'.",
+      "behind": "Learners confuse place prepositions and think 'back of' or 'at behind' is needed.",
+      "inside": "Learners think 'inside of it' or 'in inside' is required."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "comparatives and superlatives",
+  "topic_tag": "comparatives and superlatives",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Diego's new bike was [A: much cheaper] than [B: his old one], yet it is [C: nearly] as fast [D: than his coach's bike].",
+   "choices": [
+    "much cheaper",
+    "his old one",
+    "nearly",
+    "than his coach's bike"
+   ],
+   "correct_answer": "than his coach's bike",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "A comparison of equality uses 'as ... as'. After 'as fast' the sentence must continue with 'as', so 'than his coach's bike' should be 'as his coach's bike'.",
+   "distractor_rationales": [
+    {
+     "choice": "much cheaper",
+     "why": "Correct: 'much' is the normal word to make a comparative stronger."
+    },
+    {
+     "choice": "his old one",
+     "why": "Correct: 'one' replaces 'bike' so the noun is not repeated."
+    },
+    {
+     "choice": "nearly",
+     "why": "Correct: 'nearly' is an adverb that can come before 'as fast as'."
+    }
+   ]
+  },
+  "content_hash": "ce6cd8b9671f3c469a7bdcacd7d0af32",
+  "word_count": 20,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "'than' used to close an 'as ... as' equality comparison, with the opening 'as' outside every segment",
+    "ordered_choices": true,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E02",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "much cheaper": "Learners think 'very cheaper' or 'more cheaper' is needed and doubt 'much'.",
+      "his old one": "Learners expect the noun to be repeated ('his old bike') and suspect 'one'.",
+      "nearly": "Learners confuse 'nearly' with the adjective 'near' and think 'near as fast' is right."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "parallel structure",
+  "topic_tag": "parallel structure",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "On trips, my brother likes [A: to swim] each morning, [B: reading] on the beach at noon, and [C: to explore] the town before [D: going] to bed.",
+   "choices": [
+    "to swim",
+    "reading",
+    "to explore",
+    "going"
+   ],
+   "correct_answer": "reading",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "Items joined in a list with 'and' must have the same form. The list after 'likes' is 'to swim ... and to explore', so the middle item must also be an infinitive: 'to read'.",
+   "distractor_rationales": [
+    {
+     "choice": "to swim",
+     "why": "Correct: 'like' can be followed by an infinitive, and it sets the pattern for the list."
+    },
+    {
+     "choice": "to explore",
+     "why": "Correct: it matches 'to swim', the first item in the list."
+    },
+    {
+     "choice": "going",
+     "why": "Correct: after the preposition 'before', a verb takes the -ing form."
+    }
+   ]
+  },
+  "content_hash": "6412f0604db0448c96f244a85e868d8a",
+  "word_count": 24,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "one gerund inside a three-item infinitive list after 'likes', with a correct gerund after 'before' as a decoy",
+    "ordered_choices": true,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E03",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "to swim": "Learners have learned 'like + -ing' and think the infinitive after 'likes' is wrong.",
+      "to explore": "Learners notice the list mixes forms and wrongly fix the last item instead of the odd one in the middle.",
+      "going": "Learners think 'before' should be followed by 'to go' or 'go', like a verb after 'to'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "subject-verb agreement",
+  "topic_tag": "subject-verb agreement",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "The trophies [A: that] our team [B: has won] [C: over the past ten years] [D: is displayed] in a glass case near the gym.",
+   "choices": [
+    "that",
+    "has won",
+    "over the past ten years",
+    "is displayed"
+   ],
+   "correct_answer": "is displayed",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "The subject of the main verb is 'The trophies', which is plural, so the verb must be 'are displayed'. The singular 'our team' belongs to the relative clause and correctly takes 'has won'.",
+   "distractor_rationales": [
+    {
+     "choice": "that",
+     "why": "Correct: 'that' introduces a relative clause about things."
+    },
+    {
+     "choice": "has won",
+     "why": "Correct: it agrees with the singular subject 'our team', and present perfect fits 'over the past ten years'."
+    },
+    {
+     "choice": "over the past ten years",
+     "why": "Correct: this time phrase is normal with the present perfect."
+    }
+   ]
+  },
+  "content_hash": "abb51a9bfe3c0a40dcc74190bd6f2714",
+  "word_count": 21,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "main verb agreeing with a plural head noun separated by a relative clause containing a singular subject",
+    "ordered_choices": true,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E04",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "that": "Learners think 'which' is required for things or that 'who' is needed because a team is people.",
+      "has won": "Learners see the plural 'trophies' earlier and think the verb should be 'have won'.",
+      "over the past ten years": "Learners think the present perfect needs 'for' or 'since' and doubt 'over'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "count/non-count and quantifiers",
+  "topic_tag": "count/non-count and quantifiers",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Kenji's cooking class [A: has taught] him [B: a lot], but he still needs [C: a great many] practice [D: with knives].",
+   "choices": [
+    "has taught",
+    "a lot",
+    "a great many",
+    "with knives"
+   ],
+   "correct_answer": "a great many",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "'A great many' is used only with plural count nouns (a great many recipes). 'Practice' here is a non-count noun, so it needs a non-count quantifier such as 'a great deal of' or 'a lot of'.",
+   "distractor_rationales": [
+    {
+     "choice": "has taught",
+     "why": "Correct: present perfect for a class that has been teaching him up to now."
+    },
+    {
+     "choice": "a lot",
+     "why": "Correct: 'a lot' can stand alone as an adverbial meaning 'much' without 'of'."
+    },
+    {
+     "choice": "with knives",
+     "why": "Correct: 'practice with' a tool is the normal preposition, and 'knives' is the right irregular plural of 'knife'."
+    }
+   ]
+  },
+  "content_hash": "d0d9c57e3ee5870fe720479de13e5a86",
+  "word_count": 18,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "count quantifier 'a great many' placed before the non-count noun 'practice' that follows the segment",
+    "ordered_choices": true,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E05",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "has taught": "Learners often doubt present perfect next to a 'but ... still' clause and expect past simple 'taught'.",
+      "a lot": "Learners learn 'a lot of + noun' as a chunk and think 'a lot' without 'of' is incomplete.",
+      "with knives": "Learners overgeneralise the regular plural and suspect 'knifes', or expect 'practice of' from first-language transfer."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "pronoun case and reference",
+  "topic_tag": "pronoun case and reference",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "[A: Him and his sister] [B: take] art lessons [C: on Saturdays] with [D: their] teacher.",
+   "choices": [
+    "Him and his sister",
+    "take",
+    "on Saturdays",
+    "their"
+   ],
+   "correct_answer": "Him and his sister",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "The words before the verb are the subject, so the pronoun must be in subject form: 'He and his sister take art lessons.' 'Him' is the object form and is used after a verb or preposition.",
+   "distractor_rationales": [
+    {
+     "choice": "take",
+     "why": "Correct: the subject is two people, so the plural verb 'take' is right."
+    },
+    {
+     "choice": "on Saturdays",
+     "why": "Correct: 'on' is used with days of the week, and the plural shows a regular habit."
+    },
+    {
+     "choice": "their",
+     "why": "Correct: 'their' refers to both people, the boy and his sister."
+    }
+   ]
+  },
+  "content_hash": "95c763e17df23ae67d19665a1dd5e91e",
+  "word_count": 12,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "object pronoun inside a compound subject at the start of the sentence",
+    "ordered_choices": true,
+    "authored_key_slot": "A",
+    "authored_key_len_rank": 4
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E06",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "take": "Learners see the singular 'his sister' just before the verb and think it should be 'takes'.",
+      "on Saturdays": "Learners mix up 'on', 'in' and 'at' for time and may expect 'in Saturdays' or 'at Saturdays'.",
+      "their": "Learners think the possessive should match 'his sister' and choose 'her' or 'his'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "prepositions after a head word",
+  "topic_tag": "prepositions after a head word",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Omar [A: listens to] music [B: daily], and he [C: has become] interested [D: on jazz].",
+   "choices": [
+    "listens to",
+    "daily",
+    "has become",
+    "on jazz"
+   ],
+   "correct_answer": "on jazz",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "The adjective 'interested' is always followed by 'in': 'interested in jazz'. 'On' cannot follow 'interested', even though 'a book on jazz' is correct.",
+   "distractor_rationales": [
+    {
+     "choice": "listens to",
+     "why": "Correct: 'listen' needs 'to' before its object, and 'listens' agrees with 'Omar'."
+    },
+    {
+     "choice": "daily",
+     "why": "Correct: 'daily' can be used as an adverb meaning 'every day'."
+    },
+    {
+     "choice": "has become",
+     "why": "Correct: present perfect shows a change that is true now; 'become' is the irregular past participle."
+    }
+   ]
+  },
+  "content_hash": "8375d68de97ec0cbfd74cb6975b581f0",
+  "word_count": 12,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the adjective 'interested' at the end of the sentence",
+    "ordered_choices": true,
+    "authored_key_slot": "D",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E07",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "listens to": "Many learners drop 'to' after 'listen' by analogy with 'hear music', or doubt the third-person -s.",
+      "daily": "Learners think 'daily' is only an adjective (a daily newspaper) and expect 'every day' here.",
+      "has become": "Learners expect the past participle 'became' or think the tense should match the present 'listens'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "conjunctions and connectors",
+  "topic_tag": "conjunctions and connectors",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "[A: Either] the guitarist nor the drummer [B: had been told] that the concert [C: would be moved] to [D: the larger hall].",
+   "choices": [
+    "Either",
+    "had been told",
+    "would be moved",
+    "the larger hall"
+   ],
+   "correct_answer": "Either",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "Correlative conjunctions come in fixed pairs: 'either ... or' and 'neither ... nor'. Because the sentence uses 'nor', the first word must be 'Neither'.",
+   "distractor_rationales": [
+    {
+     "choice": "had been told",
+     "why": "Correct: past perfect passive; the telling would have happened before the past moment described."
+    },
+    {
+     "choice": "would be moved",
+     "why": "Correct: in reported content after a past verb, 'will' shifts back to 'would'."
+    },
+    {
+     "choice": "the larger hall",
+     "why": "Correct: comparing two halls uses the comparative 'larger', not the superlative."
+    }
+   ]
+  },
+  "content_hash": "f6804bf3c977f5a3c6708f1c8bc3a4e7",
+  "word_count": 19,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "first half of a correlative pair ('either') mismatched with an unmarked 'nor' several words later",
+    "ordered_choices": true,
+    "authored_key_slot": "A",
+    "authored_key_len_rank": 1
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E08",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "had been told": "Learners find the three-word past perfect passive heavy and suspect 'was told' or 'had told'.",
+      "would be moved": "Learners do not backshift in reported clauses and expect 'will be moved'.",
+      "the larger hall": "Learners overuse the superlative after 'the' and expect 'the largest hall'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "passive voice",
+  "topic_tag": "passive voice",
+  "difficulty": "hard",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "The photos from our club trip [A: should have sent] to every member [B: by the end of] May, but [C: nobody] remembered [D: to upload them online].",
+   "choices": [
+    "should have sent",
+    "by the end of",
+    "nobody",
+    "to upload them online"
+   ],
+   "correct_answer": "should have sent",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "hard",
+   "explanation": "Photos cannot send anything; they are the things that are sent, so the verb must be passive. A passive with a modal perfect needs 'been': 'should have been sent'.",
+   "distractor_rationales": [
+    {
+     "choice": "by the end of",
+     "why": "Correct: 'by the end of' gives a deadline before a point in time."
+    },
+    {
+     "choice": "nobody",
+     "why": "Correct: 'nobody' is the singular subject of 'remembered' and already makes the clause negative."
+    },
+    {
+     "choice": "to upload them online",
+     "why": "Correct: 'remember to do' means not forgetting a task that still had to be done; 'them' refers to the photos."
+    }
+   ]
+  },
+  "content_hash": "fb7e5a6d6fa5b05b65c3151651e5277f",
+  "word_count": 24,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "modal perfect passive missing 'been', decided by an inanimate subject far before the verb",
+    "ordered_choices": true,
+    "authored_key_slot": "A",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E09",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "by the end of": "Learners confuse 'by' and 'until' for deadlines, or expect 'in the end of'.",
+      "nobody": "Learners transfer double negation and think 'nobody' needs 'didn't remember', or doubt it with a past verb.",
+      "to upload them online": "Learners mix up 'remember to do' and 'remember doing' and expect 'uploading'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "gerund vs infinitive",
+  "topic_tag": "gerund vs infinitive",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Mei [A: has played] chess [B: since age six], and she can't imagine [C: to quit] [D: at all].",
+   "choices": [
+    "has played",
+    "since age six",
+    "to quit",
+    "at all"
+   ],
+   "correct_answer": "to quit",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "Some verbs, such as 'imagine', 'enjoy' and 'avoid', are followed by the -ing form, not by 'to' + verb. The correct form is 'can't imagine quitting'.",
+   "distractor_rationales": [
+    {
+     "choice": "has played",
+     "why": "Correct: present perfect with 'since' for something that started in the past and continues now."
+    },
+    {
+     "choice": "since age six",
+     "why": "Correct: 'since' introduces the starting point of the period."
+    },
+    {
+     "choice": "at all",
+     "why": "Correct: 'at all' strengthens a negative, and 'can't' makes the sentence negative."
+    }
+   ]
+  },
+  "content_hash": "ee35188516142b81afd53e206d29a844",
+  "word_count": 15,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "to-infinitive after 'imagine', which takes only a gerund",
+    "ordered_choices": true,
+    "authored_key_slot": "C",
+    "authored_key_len_rank": 2
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E10",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "has played": "Learners use past simple with 'since' ('played since') or the present ('plays since') from first-language transfer.",
+      "since age six": "Learners confuse 'since' (a starting point) with 'for' (a length of time).",
+      "at all": "Learners are unsure where 'at all' is allowed and suspect it needs a question or 'not' right beside it."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "adjective vs adverb",
+  "topic_tag": "adjective vs adverb",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "Since her laptop [A: broke], Daniela handles the new one [B: very careful] so it [C: doesn't get] [D: any more scratches].",
+   "choices": [
+    "broke",
+    "very careful",
+    "doesn't get",
+    "any more scratches"
+   ],
+   "correct_answer": "very careful",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "The words describe how Daniela handles the laptop, so they modify a verb and need an adverb: 'very carefully'. 'Careful' is an adjective and describes a noun or follows a verb like 'be'.",
+   "distractor_rationales": [
+    {
+     "choice": "broke",
+     "why": "Correct: 'broke' is the irregular past of 'break' and can be used without an object."
+    },
+    {
+     "choice": "doesn't get",
+     "why": "Correct: 'it' is singular, so 'doesn't' is right, and present tense fits a purpose clause with 'so'."
+    },
+    {
+     "choice": "any more scratches",
+     "why": "Correct: 'any more' (two words) means 'additional' before a noun, and 'scratches' is plural."
+    }
+   ]
+  },
+  "content_hash": "3f8d66d2272b88009a1002aaa4574668",
+  "word_count": 18,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective 'careful' used to modify the verb 'handles' that sits before its object",
+    "ordered_choices": true,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 3
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E11",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "broke": "Learners think a machine must be passive ('was broken') or overgeneralise to 'breaked'.",
+      "doesn't get": "Learners expect 'won't get' after a purpose 'so', or doubt 'doesn't' with 'it'.",
+      "any more scratches": "Learners confuse 'any more' with the one-word adverb 'anymore'."
+     }
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "grammar",
+  "domain": "Part 2: Error Identification",
+  "subskill": "relative pronouns and clauses",
+  "topic_tag": "relative pronouns and clauses",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "error_identification",
+  "passage_group_id": null,
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Choose the underlined word or phrase that is NOT correct.",
+   "passage": "The cookbook [A: that] Hana's grandfather wrote [B: it] in 1985 [C: is still used] by [D: many of her relatives].",
+   "choices": [
+    "that",
+    "it",
+    "is still used",
+    "many of her relatives"
+   ],
+   "correct_answer": "it",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "In a relative clause, the relative pronoun 'that' already stands for the object of 'wrote'. Adding 'it' repeats the object, so 'it' must be removed: 'The cookbook that Hana's grandfather wrote in 1985'.",
+   "distractor_rationales": [
+    {
+     "choice": "that",
+     "why": "Correct: 'that' introduces a relative clause about a thing."
+    },
+    {
+     "choice": "is still used",
+     "why": "Correct: the subject is 'the cookbook' (singular), and the passive fits because relatives use the book."
+    },
+    {
+     "choice": "many of her relatives",
+     "why": "Correct: 'many of' is used with a plural count noun after a determiner like 'her'."
+    }
+   ]
+  },
+  "content_hash": "5cd10e8b27225add9edb025f9c8b87d0",
+  "word_count": 17,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-grammar-v1",
+  "verify_meta": {
+   "method_id": "itep-grammar-v1-agent3+cfg-v2-cold",
+   "itep": {
+    "part": "Part 2: Error Identification",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "extra resumptive object pronoun inside a 'that' relative clause",
+    "ordered_choices": true,
+    "authored_key_slot": "B",
+    "authored_key_len_rank": 1
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITG1-E12",
+    "qc": {
+     "gate": "ITEP-SLATE-GRAMMAR-V1.prereg.md: pre-flight + 3 graders cold-then-keyed on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-grammar-v1-work/results/itep-grammar-v1.score.json"
+    },
+    "authored": {
+     "student_error": {
+      "that": "Learners think 'that' cannot be used for objects, or that 'which' or 'who' is required.",
+      "is still used": "Learners match the verb to the nearer noun 'grandfather' or to '1985' and doubt the passive.",
+      "many of her relatives": "Learners drop 'of' ('many her relatives') or confuse 'many' and 'much'."
+     }
+    }
+   }
+  }
+ }
+]

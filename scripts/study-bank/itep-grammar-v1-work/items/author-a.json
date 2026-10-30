@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ITG1-C01",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "count vs non-count quantifier (many / a few vs much / little), decided by the non-count noun 'information' and the 'so' result clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our library doesn't have ________ information about volcanoes, so Ms. Okafor brought some books from home.",
+    "choices": ["many", "little", "a few", "much"],
+    "correct_answer": "much",
+    "explanation": "'Information' is a non-count noun, so it takes 'much', not 'many' or 'a few'. In a negative sentence, 'not ... much' means 'only a small amount', which explains why the teacher brought extra books.",
+    "distractor_rationales": {
+      "many": "'Many' is used only with plural count nouns; 'information' is non-count.",
+      "little": "'Little' fits a non-count noun, but 'doesn't have little information' means the library has a lot, which contradicts the teacher needing to bring books.",
+      "a few": "'A few' is used only with plural count nouns; 'information' has no plural."
+    },
+    "student_error": {
+      "many": "Learners treat 'information' as countable because it is countable in their first language (Korean, Spanish, French 'informations').",
+      "little": "Learners know 'little' goes with non-count nouns and pick it on form alone, without noticing the negative 'doesn't' reverses its meaning.",
+      "a few": "Learners think of information as separate facts and choose a count quantifier meaning 'a small number'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG1-C02",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the adjective 'famous' (for / of / with / about)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our school library is famous ________ its old maps.",
+    "choices": ["with", "of", "about", "for"],
+    "correct_answer": "for",
+    "explanation": "The adjective 'famous' is followed by 'for' when we name the reason someone or something is well known: famous for its maps. The other prepositions do not follow 'famous' with this meaning.",
+    "distractor_rationales": {
+      "with": "'Famous with' names the people who know something (famous with tourists), not the reason it is known.",
+      "of": "'Famous' is never followed by 'of' + the thing it is known for.",
+      "about": "'About' follows words like 'talk' or 'worried', not 'famous'."
+    },
+    "student_error": {
+      "with": "Learners translate 'having' directly: the library 'with' old maps, so famous 'with' its maps.",
+      "of": "Learners overuse 'of' as an all-purpose link after adjectives, by analogy with 'proud of' and 'full of'.",
+      "about": "Learners link 'famous' to 'talking about' something and carry the preposition over."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-C03",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "verb complement after 'decide' (to-infinitive vs gerund vs bare infinitive vs 'to' + gerund)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "After losing two games, the chess club members decided ________ every Friday after school.",
+    "choices": ["practicing", "to practicing", "to practice", "practice"],
+    "correct_answer": "to practice",
+    "explanation": "The verb 'decide' is followed by a to-infinitive: decide to do something. It does not take a gerund, a bare infinitive, or 'to' + a gerund.",
+    "distractor_rationales": {
+      "practicing": "'Decide' does not take a gerund object; that pattern belongs to verbs like 'enjoy' and 'finish'.",
+      "to practicing": "'To' + gerund is used when 'to' is a preposition (look forward to practicing); after 'decide', 'to' is part of the infinitive, so the base form follows.",
+      "practice": "A bare infinitive follows modals like 'can' and 'must', not 'decide'."
+    },
+    "student_error": {
+      "practicing": "Learners overgeneralise the gerund after verbs of choice and plans, as with 'consider practicing' or 'enjoy practicing'.",
+      "to practicing": "Learners mix up the infinitive 'to' with the prepositional 'to' of 'look forward to' and 'be used to'.",
+      "practice": "Learners drop 'to' by analogy with modal verbs and with 'let' and 'make'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG1-C04",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "verb form in the if-clause of a third conditional about a past event (past perfect vs past simple vs present perfect vs 'would have')",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "If Priya ________ the safety rules during yesterday's experiment, she would not have broken the glass beaker.",
+    "choices": ["followed", "had followed", "would have followed", "has followed"],
+    "correct_answer": "had followed",
+    "explanation": "This is a third conditional: it imagines a different past ('during yesterday's experiment') with a past result ('would not have broken'). The if-clause of a third conditional uses the past perfect, 'had followed'.",
+    "distractor_rationales": {
+      "followed": "The past simple in the if-clause makes a second conditional about the present or a general habit; it cannot describe an unreal event fixed in yesterday's experiment.",
+      "would have followed": "'Would have' belongs in the result clause, not in the if-clause, in standard English.",
+      "has followed": "The present perfect cannot be used with a finished past time like 'yesterday', and it does not express an unreal condition."
+    },
+    "student_error": {
+      "followed": "Learners use the second-conditional pattern they know best for every unreal condition, ignoring the past time marker.",
+      "would have followed": "Learners copy 'would have' from the result clause into both halves, a pattern also heard in casual speech.",
+      "has followed": "Learners link 'have + past participle' in the result clause to the present perfect and choose 'has followed' to match."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-C05",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative word for a place where the relative clause is already complete (where vs that vs when vs who)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The public library ________ my friends and I do our homework closes at six on Fridays.",
+    "choices": ["that", "when", "where", "who"],
+    "correct_answer": "where",
+    "explanation": "The clause 'my friends and I do our homework' is already complete: it has a subject and an object, so nothing is missing for a relative pronoun to replace. When a relative clause tells us the place in which something happens, we join it with 'where'.",
+    "distractor_rationales": {
+      "that": "'That' must stand for a missing subject or object inside the clause, and 'do our homework' already has both; the place would need 'in which', not 'that'.",
+      "when": "'When' introduces a relative clause about a time, but 'library' is a place.",
+      "who": "'Who' refers to people, and a library is not a person."
+    },
+    "student_error": {
+      "that": "Learners are taught that 'that' can replace any relative pronoun and use it even when the clause has no gap.",
+      "when": "Learners mix up the two relative adverbs 'when' and 'where', especially when a time ('at six on Fridays') appears in the sentence.",
+      "who": "Learners treat a library as an institution of people and choose a person pronoun."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-C06",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "passive vs active after a past modal 'should' (have been cleaned / be cleaned / have cleaned / have been cleaning)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The test tubes in the science lab should ________ before the experiment started, but nobody remembered to do it.",
+    "choices": ["be cleaned", "have been cleaned", "have been cleaning", "have cleaned"],
+    "correct_answer": "have been cleaned",
+    "explanation": "The test tubes do not clean anything; someone else cleans them, so the verb must be passive. Because the sentence criticises something that did not happen in the past ('started', 'remembered'), we use the past modal passive: should + have been + past participle.",
+    "distractor_rationales": {
+      "be cleaned": "'Should be cleaned' is passive but refers to the present or future; it cannot describe a missed action before a past event.",
+      "have been cleaning": "This is active and continuous, so it says the test tubes themselves were doing the cleaning.",
+      "have cleaned": "This is active, so it makes the test tubes the cleaners instead of the things being cleaned."
+    },
+    "student_error": {
+      "be cleaned": "Learners remember 'modal + be + past participle' as the passive pattern and do not add 'have' for past time.",
+      "have been cleaning": "Learners see 'have been' and assume it is passive, not noticing the '-ing' form makes it active continuous.",
+      "have cleaned": "Learners form the past modal correctly but forget that an object-like subject needs the passive."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG1-C07",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "third-person masculine pronoun form in object position after a verb (him / his / he / himself)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Mr. Diaz runs the robotics club, and the students like ________ a lot.",
+    "choices": ["him", "his", "he", "himself"],
+    "correct_answer": "him",
+    "explanation": "The blank is the object of the verb 'like', so it needs the object pronoun 'him'. 'He' is for subjects, 'his' shows possession, and 'himself' is used only when the subject and object are the same person.",
+    "distractor_rationales": {
+      "his": "'His' is a possessive and needs a noun after it (his club) or must mean 'the thing that belongs to him', which makes no sense here.",
+      "he": "'He' is a subject pronoun and cannot be the object of 'like'.",
+      "himself": "A reflexive pronoun is used only when it refers back to the subject; the subject here is 'the students', not Mr. Diaz."
+    },
+    "student_error": {
+      "his": "Learners confuse 'him' and 'his' because they sound alike and both come after the verb.",
+      "he": "Learners whose first language does not change pronoun form by position keep the subject form everywhere.",
+      "himself": "Learners think the reflexive adds emphasis and use it for any object referring to a man."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-C08",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "simple past vs simple present vs present perfect vs future, decided by the time word 'Yesterday'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Yesterday our class ________ a short video about the planets in science.",
+    "choices": ["watched", "watches", "has watched", "will watch"],
+    "correct_answer": "watched",
+    "explanation": "'Yesterday' names a finished time in the past, so the verb must be in the simple past: 'watched'. The present, the present perfect and the future cannot describe a finished action yesterday.",
+    "distractor_rationales": {
+      "watches": "The simple present describes habits or facts now, not an action yesterday.",
+      "has watched": "The present perfect is not used with a finished past time such as 'yesterday'.",
+      "will watch": "The future describes something that has not happened yet, which contradicts 'yesterday'."
+    },
+    "student_error": {
+      "watches": "Learners whose first language marks time with words rather than verb endings keep the present form and let 'yesterday' carry the meaning.",
+      "has watched": "Learners use the present perfect for any completed action, as in many European languages where it is the normal past.",
+      "will watch": "Learners confuse 'yesterday' and 'tomorrow' at the beginner level."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  }
+]

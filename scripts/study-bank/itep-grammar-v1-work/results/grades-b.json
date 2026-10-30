@@ -1,0 +1,97 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "would leave",
+  "reason": "'two days earlier' can be read as 'earlier than planned' (the brother would leave for camp two days ahead of schedule), under which 'would leave' (future-in-the-past in reported speech) is natural and correct; only the 'two days before Sunday' reading forces 'had left'. Fix: 'two days before' or 'on Friday'."
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    1,
+    3,
+    6,
+    7,
+    11,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21
+   ],
+   "evidence": "Sentence Completion keys (12 items): A=5, B=1, C=0, D=6. C is never the key and B only once (P(no C in 12 at 25%) ~ 0.03). Error Identification keys are balanced (A=4, B=3, C=3, D=3); whole batch A=8, B=4, C=3, D=9. A student who never reads a completion item can drop C (and B) and pick between A and D."
+  }
+ ]
+}

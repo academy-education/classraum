@@ -1,0 +1,99 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique",
+  "note": "Note only: 'to swim'/'to explore' are not rivals; the list has two infinitives and one gerund, so 'reading' is the single outlier and 'going' after 'before' is correctly a gerund."
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique",
+  "note": "Note only: 'would leave' is ruled out by 'two days earlier' (anterior to Sunday evening)."
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique",
+  "note": "Note only: 'any more scratches' is correct as two words (quantity), so it is not a second error."
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique",
+  "note": "Note only: the was/is shift is justified (price at purchase vs current speed)."
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique",
+  "note": "Note only: 'little' clashes with the negative; 'many' fails with uncountable 'information'."
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    1,
+    3,
+    6,
+    7,
+    11,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21
+   ],
+   "evidence": "Sentence Completion keys (12 items) are D,A,A,A,D,D,A,B,D,A,D,D: A=5, D=6, B=1, C=0. 11 of 12 keys sit in A or D and none in C (about 3 per letter expected; ~0.3% chance of 11+/12 in A/D under uniform placement). A no-content guesser who avoids B and C on completion items gains heavily. Error Identification keys are balanced (3/3/3/3). Whole batch: D=9, A=8, B=4, C=3."
+  }
+ ]
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ITG1-C09",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "finite and non-finite forms of 'take' after a third-person singular subject with a present-habit adverb, contrasted with a present-progressive 'today' clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Grandma usually ________ the train, but today she is driving.",
+    "choices": ["took", "takes", "take", "taking"],
+    "correct_answer": "takes",
+    "explanation": "'Usually' describes a present habit, so the verb is present simple. The subject 'Grandma' is third-person singular, so the verb needs -s: 'takes'.",
+    "distractor_rationales": {
+      "took": "Past simple clashes with the present contrast 'but today she is driving', which shows the habit is still true now.",
+      "take": "The base form does not agree with the singular subject 'Grandma'.",
+      "taking": "An -ing form cannot be the main verb without 'is'."
+    },
+    "student_error": {
+      "took": "Learners link 'usually' with stories about the past and pick a past form.",
+      "take": "Dropping third-person -s is the most common agreement error, especially for speakers of languages without verb agreement such as Korean or Chinese.",
+      "taking": "Learners copy the -ing pattern of 'is driving' later in the sentence and forget the auxiliary."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG1-C10",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "concession vs cause crossed with clause-taking conjunction vs noun-phrase-taking preposition, decided by 'still' and a following noun phrase",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________ the long delay at the airport, we still reached our hotel before dinner.",
+    "choices": ["Although", "Because of", "In spite of", "Since"],
+    "correct_answer": "In spite of",
+    "explanation": "The blank is followed by a noun phrase ('the long delay'), not a clause, so it needs a preposition. 'Still' shows a contrast, so the meaning is concession: 'In spite of' is a concessive preposition.",
+    "distractor_rationales": {
+      "Although": "Has the right contrast meaning, but it is a conjunction and must be followed by a clause with a verb.",
+      "Because of": "Can come before a noun phrase, but it gives a reason, which contradicts 'still'.",
+      "Since": "As a conjunction of reason it needs a clause and gives the wrong meaning; as a time word it makes no sense with 'the long delay'."
+    },
+    "student_error": {
+      "Although": "Learners choose by meaning alone and do not check whether a clause or a noun phrase follows.",
+      "Because of": "Learners see a problem (a delay) and a result and assume a cause-effect link, ignoring 'still'.",
+      "Since": "Learners treat 'since' as a general linking word that can start any opening phrase."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-C11",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective vs adverb crossed with base vs comparative, after an action verb and before 'than'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Since his knee injury, Omar plays soccer ________ than he used to.",
+    "choices": ["careful", "carefully", "more careful", "more carefully"],
+    "correct_answer": "more carefully",
+    "explanation": "The word describes how Omar plays, an action verb, so it must be an adverb. 'Than' shows a comparison, so the adverb must be comparative: 'more carefully'.",
+    "distractor_rationales": {
+      "careful": "An adjective cannot describe the verb 'plays', and there is no comparative form before 'than'.",
+      "carefully": "Correct adverb, but 'than' needs a comparative form.",
+      "more careful": "Comparative, but an adjective cannot describe how someone plays."
+    },
+    "student_error": {
+      "careful": "Learners use the adjective form for every describing word, a common transfer from languages that do not mark adverbs.",
+      "carefully": "Learners notice the verb needs an adverb but do not connect the comparison to 'than' at the end.",
+      "more careful": "Learners notice 'than' and form a comparative but keep the adjective, as in 'He is more careful'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-C12",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "backshifted vs unshifted forms crossed with earlier vs later time, in a past-tense report with 'two days earlier'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "On Sunday evening, Priya told me that her older brother ________ for summer camp two days earlier.",
+    "choices": ["had left", "will leave", "has left", "would leave"],
+    "correct_answer": "had left",
+    "explanation": "The report uses the past verb 'told', and the leaving happened before the telling ('two days earlier'). An action earlier than another past moment takes the past perfect: 'had left'.",
+    "distractor_rationales": {
+      "will leave": "Future tense points after now, but the leaving happened before Sunday, and the report is in the past.",
+      "has left": "Present perfect cannot be used with a finished past time like 'two days earlier' and is not shifted back after 'told'.",
+      "would leave": "This is the future seen from the past, meaning after Sunday, which contradicts 'two days earlier'."
+    },
+    "student_error": {
+      "will leave": "Learners keep the speaker's original tense and ignore the time phrase, a common error when reporting plans.",
+      "has left": "Learners report Priya's likely words ('He has left') without shifting the tense back.",
+      "would leave": "Learners know that 'will' becomes 'would' in reported speech and apply the rule without checking the time order."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG1-E01",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "present simple used for a completed past event, decided by 'Yesterday' outside any segment, next to tense-ambiguous irregular 'set'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yesterday, Dad [A: set] up a tent [B: behind] our house, and we [C: eat] lunch [D: inside] it.",
+    "choices": ["set", "behind", "eat", "inside"],
+    "correct_answer": "eat",
+    "explanation": "'Yesterday' puts the whole sentence in the past, so both actions need the past simple. 'Set' is correct because its past form is the same as its base form, but 'eat' must change to 'ate'.",
+    "distractor_rationales": {
+      "set": "Correct: 'set' is an irregular verb whose past form is also 'set'.",
+      "behind": "Correct: 'behind' is the right preposition of place for 'our house'.",
+      "inside": "Correct: 'inside it' is a normal way to say 'in the tent'."
+    },
+    "student_error": {
+      "set": "Learners expect every past verb to end in -ed and think it should be 'setted'.",
+      "behind": "Learners confuse place prepositions and think 'back of' or 'at behind' is needed.",
+      "inside": "Learners think 'inside of it' or 'in inside' is required."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG1-E02",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "'than' used to close an 'as ... as' equality comparison, with the opening 'as' outside every segment",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Diego's new bike was [A: much cheaper] than [B: his old one], yet it is [C: nearly] as fast [D: than his coach's bike].",
+    "choices": ["much cheaper", "his old one", "nearly", "than his coach's bike"],
+    "correct_answer": "than his coach's bike",
+    "explanation": "A comparison of equality uses 'as ... as'. After 'as fast' the sentence must continue with 'as', so 'than his coach's bike' should be 'as his coach's bike'.",
+    "distractor_rationales": {
+      "much cheaper": "Correct: 'much' is the normal word to make a comparative stronger.",
+      "his old one": "Correct: 'one' replaces 'bike' so the noun is not repeated.",
+      "nearly": "Correct: 'nearly' is an adverb that can come before 'as fast as'."
+    },
+    "student_error": {
+      "much cheaper": "Learners think 'very cheaper' or 'more cheaper' is needed and doubt 'much'.",
+      "his old one": "Learners expect the noun to be repeated ('his old bike') and suspect 'one'.",
+      "nearly": "Learners confuse 'nearly' with the adjective 'near' and think 'near as fast' is right."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG1-E03",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "one gerund inside a three-item infinitive list after 'likes', with a correct gerund after 'before' as a decoy",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "On trips, my brother likes [A: to swim] each morning, [B: reading] on the beach at noon, and [C: to explore] the town before [D: going] to bed.",
+    "choices": ["to swim", "reading", "to explore", "going"],
+    "correct_answer": "reading",
+    "explanation": "Items joined in a list with 'and' must have the same form. The list after 'likes' is 'to swim ... and to explore', so the middle item must also be an infinitive: 'to read'.",
+    "distractor_rationales": {
+      "to swim": "Correct: 'like' can be followed by an infinitive, and it sets the pattern for the list.",
+      "to explore": "Correct: it matches 'to swim', the first item in the list.",
+      "going": "Correct: after the preposition 'before', a verb takes the -ing form."
+    },
+    "student_error": {
+      "to swim": "Learners have learned 'like + -ing' and think the infinitive after 'likes' is wrong.",
+      "to explore": "Learners notice the list mixes forms and wrongly fix the last item instead of the odd one in the middle.",
+      "going": "Learners think 'before' should be followed by 'to go' or 'go', like a verb after 'to'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG1-E04",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "main verb agreeing with a plural head noun separated by a relative clause containing a singular subject",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The trophies [A: that] our team [B: has won] [C: over the past ten years] [D: is displayed] in a glass case near the gym.",
+    "choices": ["that", "has won", "over the past ten years", "is displayed"],
+    "correct_answer": "is displayed",
+    "explanation": "The subject of the main verb is 'The trophies', which is plural, so the verb must be 'are displayed'. The singular 'our team' belongs to the relative clause and correctly takes 'has won'.",
+    "distractor_rationales": {
+      "that": "Correct: 'that' introduces a relative clause about things.",
+      "has won": "Correct: it agrees with the singular subject 'our team', and present perfect fits 'over the past ten years'.",
+      "over the past ten years": "Correct: this time phrase is normal with the present perfect."
+    },
+    "student_error": {
+      "that": "Learners think 'which' is required for things or that 'who' is needed because a team is people.",
+      "has won": "Learners see the plural 'trophies' earlier and think the verb should be 'have won'.",
+      "over the past ten years": "Learners think the present perfect needs 'for' or 'since' and doubt 'over'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  }
+]
