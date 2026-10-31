@@ -1,0 +1,199 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "E",
+ "initials": "JK",
+ "lane": "towns, transport, buildings and invented local history",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "restaurant",
+   "speakers": {
+    "W": "a diner",
+    "M": "a waiter"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "swimming pool",
+   "speakers": {
+    "W": "a swimmer",
+    "M": "a lifeguard"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "phone shop",
+   "speakers": {
+    "W": "a customer",
+    "M": "a sales assistant"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "science lab",
+   "speakers": {
+    "W": "a classmate",
+    "M": "a classmate"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at a school club meeting room before the meeting",
+   "speakers": {
+    "W": "the club's student leader",
+    "M": "a club member"
+   },
+   "kinds": [
+    "intent-next",
+    "detail",
+    "inference",
+    "main-idea"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "change over time",
+   "common_belief": "none",
+   "kinds": [
+    "detail",
+    "detail",
+    "main-idea",
+    "inference",
+    "purpose",
+    "purpose"
+   ],
+   "stance": "unsettled",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "inference",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 5,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 6,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

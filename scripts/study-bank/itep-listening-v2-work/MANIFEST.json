@@ -1,0 +1,25 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-LISTENING-V2.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + Amendment A1 (agent-review-core.mjs), graders a/b plain, c adversarial",
+ "method_id": "itep-listening-v1-agent9+cfg-v1",
+ "brief_decision": "no cut (BRIEF-VERSIONING rule 3: not earned, not blocking, not broken); v1 brief frozen, byte-identical",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-listening-v1.md",
+ "author_brief_sha256": "7d14a30fa6b8cc36c623a71ec64861261b860dde5602174d3be18dca0de9e279",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "preflight_sha256": "0668340633887b0741730ade0e6874c1740fd9f87c56b9d12596f595ddf3073c",
+ "dedupe_sha256": "7c3b83d2009c0dfae245cfa817627bee6d168a0b20f1648d01fb92f95ba05e1b",
+ "assign_sha256": "594df5ebe546d9c20064bb3b567719444ab26ffa53448654dc30c89c8b940cd4",
+ "assigned_sha256": "2f582ac8171267267e81f3b7d2be6d2039601690e2d7ad8425b10c0ae5b6b39a",
+ "plans_sha256": {
+  "A": "230c2ece3838551a509f17bdd3e8be6e924230ff7e723b58b7c4256a3de7f348",
+  "B": "46422d9741baee5be6016f2180ba0ba7f344487d6165ce0d027244af003be7e8",
+  "C": "4e59b840a9eee5b6dc0f4a10c41d5af4f2f2b5a9a019a261b434c53cd3275ac5",
+  "D": "b22b7eb4d6856bb250159456c39beb1ce3b28400e004e51e638c735bea7a1a66",
+  "E": "8e68016e5609ca4102018d2be1bee5389fcbbd9410beb12ea7530e994ea19343",
+  "F": "337b832dbaea587273db724e058901d5e26ebb4d5778c04560ac072cffb2a536",
+  "G": "5755e53da3d72b3f691ee79ebdbef3d2514d15b73b52c6a9128fa58b9abaa4c4",
+  "H": "eafe20d54335b3b576f19ed3785ff9be91af681f974140d673edd290785a9d18",
+  "I": "ccee6f9294066f5deaec0d839bb75a08adb645ade9c0e7c27643dfc073a3ceb7"
+ }
+}

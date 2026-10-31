@@ -1,0 +1,198 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "H",
+ "initials": "RS",
+ "lane": "technology, inventions and communication",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "school garden",
+   "speakers": {
+    "W": "a student volunteer",
+    "M": "a garden club leader"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "dentist's waiting room",
+   "speakers": {
+    "W": "a parent",
+    "M": "a teenager"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "art supply shop",
+   "speakers": {
+    "W": "a shop assistant",
+    "M": "a customer"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "hotel front desk",
+   "speakers": {
+    "W": "a receptionist",
+    "M": "a guest"
+   },
+   "kinds": [
+    "relationship"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "relationship",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at the side of a school sports field after practice",
+   "speakers": {
+    "W": "a student",
+    "M": "a sports coach"
+   },
+   "kinds": [
+    "detail",
+    "main-idea",
+    "attitude",
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "attitude",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a comparison of two cases",
+   "common_belief": "named, and the lecture shows it is right",
+   "kinds": [
+    "detail",
+    "purpose",
+    "inference",
+    "main-idea",
+    "inference",
+    "purpose"
+   ],
+   "stance": "rejects",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

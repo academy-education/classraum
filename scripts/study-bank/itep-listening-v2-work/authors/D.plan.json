@@ -1,0 +1,198 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "D",
+ "initials": "GH",
+ "lane": "weather, oceans, rocks, earth and space science",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "pharmacy counter",
+   "speakers": {
+    "W": "a customer",
+    "M": "a pharmacist"
+   },
+   "kinds": [
+    "relationship"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "relationship",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "school gym",
+   "speakers": {
+    "W": "a student",
+    "M": "a coach"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "clinic waiting room",
+   "speakers": {
+    "W": "a receptionist",
+    "M": "a patient"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "post office",
+   "speakers": {
+    "W": "a clerk",
+    "M": "a customer"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at school, in that staff member's office or room",
+   "speakers": {
+    "W": "a student",
+    "M": "a school staff member who is not a teacher (for example the librarian, the nurse, the office secretary, a lab technician)"
+   },
+   "kinds": [
+    "main-idea",
+    "detail",
+    "purpose",
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "how a process works, step by step",
+   "common_belief": "none",
+   "kinds": [
+    "purpose",
+    "detail",
+    "inference",
+    "attitude",
+    "inference",
+    "main-idea"
+   ],
+   "stance": "supports",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "attitude",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 6,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

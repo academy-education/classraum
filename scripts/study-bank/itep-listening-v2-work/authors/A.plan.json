@@ -1,0 +1,198 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "A",
+ "initials": "AB",
+ "lane": "school life, clubs, exams and study habits",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "bakery",
+   "speakers": {
+    "W": "a baker",
+    "M": "a customer"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "park",
+   "speakers": {
+    "W": "a neighbour",
+    "M": "a neighbour"
+   },
+   "kinds": [
+    "relationship"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "relationship",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "school office",
+   "speakers": {
+    "W": "an older student",
+    "M": "a new student"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "camping site",
+   "speakers": {
+    "W": "a camper",
+    "M": "a park ranger"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at school, between classes",
+   "speakers": {
+    "W": "a student",
+    "M": "a classmate"
+   },
+   "kinds": [
+    "main-idea",
+    "inference",
+    "detail",
+    "purpose"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "two competing explanations",
+   "common_belief": "named, and the lecture shows it is right",
+   "kinds": [
+    "detail",
+    "inference",
+    "purpose",
+    "main-idea",
+    "detail",
+    "inference"
+   ],
+   "stance": "supports",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 5,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

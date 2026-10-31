@@ -1,0 +1,199 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "B",
+ "initials": "CD",
+ "lane": "animals, insects, birds and ecosystems",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "cafeteria",
+   "speakers": {
+    "W": "a friend",
+    "M": "a friend"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "school hallway",
+   "speakers": {
+    "W": "a student",
+    "M": "a teacher"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "farmers' market stall",
+   "speakers": {
+    "W": "a farmer",
+    "M": "a shopper"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "corner shop",
+   "speakers": {
+    "W": "a shopkeeper",
+    "M": "a customer"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "in a classroom after class",
+   "speakers": {
+    "W": "a student",
+    "M": "a teacher"
+   },
+   "kinds": [
+    "inference",
+    "detail",
+    "main-idea",
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a method and its limits",
+   "common_belief": "named, and the lecture shows it is wrong",
+   "kinds": [
+    "detail",
+    "purpose",
+    "purpose",
+    "attitude",
+    "main-idea",
+    "inference"
+   ],
+   "stance": "unsettled",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "purpose",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 5,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 6,
+     "kind": "inference",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

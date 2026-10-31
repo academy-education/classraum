@@ -1,0 +1,198 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "I",
+ "initials": "TVW",
+ "lane": "the human body, sport, sleep and health",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "library desk",
+   "speakers": {
+    "W": "a student",
+    "M": "a librarian"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "school bus",
+   "speakers": {
+    "W": "a sister",
+    "M": "a brother"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "school theatre backstage",
+   "speakers": {
+    "W": "a stage manager",
+    "M": "an actor"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "music room",
+   "speakers": {
+    "W": "a club leader",
+    "M": "a club member"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at a public library study room",
+   "speakers": {
+    "W": "a high-school student",
+    "M": "a university student who tutors the high-school student"
+   },
+   "kinds": [
+    "attitude",
+    "detail",
+    "inference",
+    "main-idea"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "attitude",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a surprising result",
+   "common_belief": "none",
+   "kinds": [
+    "inference",
+    "purpose",
+    "detail",
+    "detail",
+    "inference",
+    "attitude"
+   ],
+   "stance": "supports",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "purpose",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

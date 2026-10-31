@@ -1,0 +1,197 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "C",
+ "initials": "EF",
+ "lane": "plants, food, cooking and farming",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "bookshop",
+   "speakers": {
+    "W": "a shop assistant",
+    "M": "a customer"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "train station",
+   "speakers": {
+    "W": "a passenger",
+    "M": "a ticket clerk"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "museum on a class trip",
+   "speakers": {
+    "W": "a museum guide",
+    "M": "a student"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "kitchen at home",
+   "speakers": {
+    "W": "a parent",
+    "M": "a teenager"
+   },
+   "kinds": [
+    "relationship"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "relationship",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at home or out in town",
+   "speakers": {
+    "W": "a teenager",
+    "M": "a parent or older relative"
+   },
+   "kinds": [
+    "inference",
+    "detail",
+    "main-idea",
+    "relationship"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "relationship",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a discovery and how it was made",
+   "common_belief": "named, and the lecture shows it is wrong",
+   "kinds": [
+    "purpose",
+    "detail",
+    "inference",
+    "detail",
+    "main-idea",
+    "attitude"
+   ],
+   "stance": "rejects",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 6,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

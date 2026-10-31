@@ -1,0 +1,199 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "F",
+ "initials": "LM",
+ "lane": "jobs, shops, money and markets",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "computer room",
+   "speakers": {
+    "W": "a teacher",
+    "M": "a student"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "school lost-and-found desk",
+   "speakers": {
+    "W": "a student",
+    "M": "an office worker"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "ferry dock",
+   "speakers": {
+    "W": "a passenger",
+    "M": "a ferry worker"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "bus stop",
+   "speakers": {
+    "W": "a team member",
+    "M": "a team captain"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at a small shop or cafe before opening",
+   "speakers": {
+    "W": "a teenager with a weekend job",
+    "M": "the teenager's manager at work"
+   },
+   "kinds": [
+    "purpose",
+    "main-idea",
+    "intent-next",
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "one cause and its several effects",
+   "common_belief": "none",
+   "kinds": [
+    "detail",
+    "detail",
+    "purpose",
+    "attitude",
+    "purpose",
+    "main-idea"
+   ],
+   "stance": "rejects",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 5,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,199 @@
+{
+ "batch": "itep-listening-v2",
+ "author": "G",
+ "initials": "NP",
+ "lane": "music, art, crafts and museums",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "bike repair shop",
+   "speakers": {
+    "W": "a customer",
+    "M": "a mechanic"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "airport check-in desk",
+   "speakers": {
+    "W": "a traveller",
+    "M": "an airline agent"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "cinema ticket counter",
+   "speakers": {
+    "W": "a customer",
+    "M": "a ticket seller"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "living room at home",
+   "speakers": {
+    "W": "a grandparent",
+    "M": "a grandchild"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at home on a weekend",
+   "speakers": {
+    "W": "a sister",
+    "M": "a brother"
+   },
+   "kinds": [
+    "detail",
+    "main-idea",
+    "detail",
+    "intent-next"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a problem and its solution",
+   "common_belief": "none",
+   "kinds": [
+    "inference",
+    "inference",
+    "detail",
+    "attitude",
+    "main-idea",
+    "detail"
+   ],
+   "stance": "unsettled",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "attitude",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "detail",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}
