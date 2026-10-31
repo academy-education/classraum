@@ -76,3 +76,23 @@ Do not re-author any mechanism the b11/b12 READMEs dropped, held or selected, or
 
 Reply when done with: mechanisms written, candidates written, math-check PART OK count / file count, rank histogram,
 ideas killed by the probe, and the folder path.
+
+## A7 top-up round (N and O only; prereg §A7) — 2026-11-01
+
+Stage-A selection (`scratchpad/map-v2-math-b13-work/SELECTION.md`) gave N 5 and O 4 (incl. carried-in); G 10 and D 11
+go to the gate. Top-up authors (fresh) follow everything above with these changes:
+
+- Folder `scratchpad/map-v2-math-b13-work/<author>/topup/`; ids `MB13C-<code>T-<mech>-a|b` (e.g. `MB13C-NaT-K4-a`).
+- Deal: `node scripts/study-bank/map-v2-work/math-b13/deal13.mjs <author> <n> --topup` (writes `<author>/deal-topup.json`;
+  seed + 100). Copy it into `topup/`.
+- math-check ALWAYS with `--rank-agnostic` (prereg Amendment 1).
+- BEFORE ideating, read the first-round author's `README.md`, `PROBE-READ.md` and `candidates.json` in
+  `<author>/` (and the other same-area author's): every idea they killed stays killed, and no mechanism they wrote may
+  be re-used.
+- What the stage-A screener killed in round 1 (read SELECTION.md's ineligible list): (O) the key BRACKETED by two
+  cheap bounds from printed numbers ("cost of 14 is between cost of 12 and 24", "trip is 2-3 hours"), so every
+  distractor falls outside the bracket; plug-back that reaches the key in <= 2 tries; option pairs joined by a printed
+  number. (N) "include/exclude one listed value" distractors that differ from the key by a printed number (option pair
+  tell); a monotone bound (x0.8 < x1) that makes the key the only option on one side. Build each mechanism so the
+  natural errors land INSIDE every cheap bracket a student can compute, or the idea is unwritable.
+- Aim 8+ new probe-clean mechanisms. Reply with the same summary.

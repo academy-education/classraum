@@ -205,6 +205,24 @@ export const BATCHES = {
       freeze: { O: 20261911, G: 20261913, D: 20261914 }, oo: { O: 20261921, G: 20261923, D: 20261924 }, grade: { O: 20261930, G: 20261945, D: 20261960 }, cPrime: { O: 20261971, G: 20261973, D: 20261974 },
     },
   },
+  b13: {
+    // MAP-MATH-V2-B13.prereg.md: stage-A selections (screen in the loop, ranks dealt at base rate) for the areas that
+    // reached n >= 10: O 12, G 10, D 11 (N 7 stays pooled). Inputs from map-v2-work/math-b13/build13.mjs; math-check
+    // runs --rank-agnostic (Amendment 1); R11 corpus and math-check prior = dump-b13-r11 (787 earlier MAP ids)
+    name: 'map-v2 Math batch 13 (Operations + Geometry + Statistics, screen in the loop)', prereg: 'scripts/study-bank/MAP-MATH-V2-B13.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b13-work', authored: ROOT + '/scratchpad/map-v2-math-b13-gate',
+    results: D + 'map-math-v2-b13/', slots: D + 'map-v2-work/math-b13/slots.json', idPrefix: 'MB13',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b13/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b13-r11/prior-math.json', '--families', 'isee,ssat,map', '--rank-agnostic'],
+    authorsPresentOnly: true, slotTotal: 33,
+    cohortStem: 'map-math-v2-b13',   // cohorts map-math-v2-b13-oa, -geo, -data
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b13/EXCLUSIONS-map-b13.txt', earlier: 'dump-b13', earlierDump: ROOT + '/scratchpad/map-v2-math-work/dump-b13-r11/prior-math.json', areas: ['O', 'G', 'D'], rankRecord: true,
+    b13Checks: true, patternDrops: D + 'map-v2-work/math-b13/pattern-drops.json',
+    expect: { authors: 8, earlierN: 787, packets: '33', ranks: { O: '2/1/6/3', G: '1/3/3/3', D: '3/1/3/4' } },
+    seed: {
+      screen1Order: 20262401, screen1Deal: 20262402, screen2Order: 20262403, screen2Deal: 20262404,
+      freeze: { O: 20262411, G: 20262413, D: 20262414 }, oo: { O: 20262421, G: 20262423, D: 20262424 }, grade: { O: 20262430, G: 20262450, D: 20262460 }, cPrime: { O: 20262471, G: 20262473, D: 20262474 },
+    },
+  },
 }
 export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
 export const B = BATCHES[BATCH]
@@ -242,7 +260,7 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
-  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789' || B.earlier === 'dump-b10' || B.earlier === 'dump-n11') {   // n11: dump-n11, EXCLUSIONS-map-n11.txt
+  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789' || B.earlier === 'dump-b10' || B.earlier === 'dump-n11' || B.earlier === 'dump-b13') {   // n11: dump-n11, EXCLUSIONS-map-n11.txt
       // b10: dump-b10, EXCLUSIONS-map-b10.txt
     // batch 6 prereg: R11 against every earlier MAP maths item in dump-b6 (live, staged, dropped, withdrawn,
     // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt.
@@ -486,6 +504,8 @@ export function itemVerdict(it, a, b, F, earlier = new Set(), Rl = RULES) {
   if (Rl.extRecommendDrops && any(g => g.drop_recommend === true)) drop.push('EXT-1 drop_recommend')
   for (const fit of ['too_easy', 'too_hard']) if (both(g => g.grade_fit === fit)) (Rl.gradeFitDrops ? drop : rec).push(`G1 ${fit} for its grade (both)${Rl.gradeFitDrops ? '' : ' - recorded, not a drop rule'}`)
   if (Rl.offBlueprintHolds && both(g => g.on_blueprint === false)) hold.push('OFF off-blueprint (both)')
+  // b13 prereg: A1 pattern threshold (10a), applied from pattern-drops.json {id: "pattern"} written before insert-prep
+  if (B.patternDrops && existsSync(B.patternDrops)) { const pd = JSON.parse(readFileSync(B.patternDrops, 'utf8')); if (pd[it.id]) drop.push(`A1-10a cross-item pattern named by both graders (>= 3 items): ${pd[it.id]}`) }
   return { drop: [...new Set(drop)], hold, need: [...new Set(need)], rec, named: [...named], keep: !drop.length && !hold.length && !need.length }
 }
 
@@ -724,6 +744,20 @@ async function selftest() {
         const cands = rd(ROOT + '/scratchpad/map-v2-math-b11-work/candidates.json')
         return Object.keys(pm).length === B.slotTotal && authored.every(i => pm[i.id] === cands.find(c => c.id === i.selected_from)?.frozen_from && i.frozen_from === pm[i.id]) && cp.length === want.length && cp.length < prior.length && JSON.stringify(cp) === JSON.stringify(want) })(),
         `${BATCH}: math-check prior = the R11 dump minus exactly each candidate's own frozen_from predecessor (all versions); nothing else removed`])
+  }
+  if (B.b13Checks) {
+    // b13: ids MB13 only; no MB13C row, and no row of the two carried-in b12 candidates or their siblings, in the R11
+    // set or the prior; the four re-probed b12 drops stay in; every item carries selected_from = a SELECTION pick;
+    // math-check runs --rank-agnostic
+    const prior = rd(B.earlierDump), pids = new Set(prior.map(x => String(x.id))), eids = new Set(er.ids)
+    const W13 = ROOT + '/scratchpad/map-v2-math-b13-work/', s1 = rd(W13 + 'selection.json'), s2 = rd(W13 + 'selection-topup.json')
+    const picked = new Set([...['O', 'G', 'D'].flatMap(L => [...s1[L].carried, ...s1[L].picks]), ...s2.O.picks])
+    const authored = AUTHORS.filter(a => existsSync(`${AUTHORED}/${a}/items.json`)).flatMap(a => rd(`${AUTHORED}/${a}/items.json`))
+    st.push([[...new Set(slotIds.map(id => id.split('-')[0]))].join() === 'MB13' && ['MB13-O7-01', 'MB13-D6-06'].every(x => ID_RE.test(x)) && !['MB13C-O7-01', 'MB130-O7-01', 'MB12-O7-01', 'XMB13-O7-01'].some(x => ID_RE.test(x)), `${BATCH}: ids take MB13 and nothing else`],
+      [![...pids].some(x => /^MB13C?-|^MB12C-(O2|D61)-/.test(x)) && slotIds.every(id => !eids.has(id)), `${BATCH}: no MB13/MB13C row and no MB12C-O2/-D61 row in the R11 set or the prior (${prior.length} rows)`],
+      [['MB12C-G1-b', 'MB12C-O18-a', 'MB12C-O29-c', 'MB12C-G7-b', 'MB11-N7-03', 'MB10-O7-01'].every(x => eids.has(x) && pids.has(x)), `${BATCH}: R11 set and prior keep the four dropped b12 picks, n11 and b10`],
+      [picked.size === B.slotTotal && authored.length === B.slotTotal && authored.every(i => picked.has(i.selected_from)) && rows.every(r => r.selected_from === authored.find(i => i.id === r.id)?.selected_from), `${BATCH}: every item and slot row carries selected_from, one per selection pick (${picked.size} picks, ${authored.length} items)`],
+      [B.checkArgs.includes('--rank-agnostic'), `${BATCH}: math-check runs --rank-agnostic (Amendment 1)`])
   }
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
   const n = base.length + st.length
