@@ -78,7 +78,7 @@ both values are clearly spoken.
 ## 3. Content rules
 
 - **Fresh topics.** Check every subject against `existing-transcripts.txt` (the opening of every listening script and
-  reading passage already in the bank). Same subject, same central object or same situation = choose another. Your
+  every iTEP reading passage already in the bank). Same subject, same central object or same situation = choose another. Your
   own scripts have different subjects from each other.
 - **Names.** Most short dialogues need no names. Any person or place you name is invented, is easy to say aloud, uses
   only the initial letters your assignment gives you, is listed in the set's `names` field, never repeats across your

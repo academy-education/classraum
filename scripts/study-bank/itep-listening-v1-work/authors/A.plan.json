@@ -1,0 +1,197 @@
+{
+ "batch": "itep-listening-v1",
+ "author": "A",
+ "initials": "ABCD",
+ "lane": "school life, clubs, sport, exercise and health",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "corner shop",
+   "speakers": {
+    "W": "a cousin",
+    "M": "a cousin"
+   },
+   "kinds": [
+    "relationship"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "relationship",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "bus stop",
+   "speakers": {
+    "W": "a team member",
+    "M": "a team captain"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "school office",
+   "speakers": {
+    "W": "a new student",
+    "M": "an older student"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "computer room",
+   "speakers": {
+    "W": "a teacher",
+    "M": "a student"
+   },
+   "kinds": [
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "at school, between classes",
+   "speakers": {
+    "W": "a student",
+    "M": "a classmate"
+   },
+   "kinds": [
+    "attitude",
+    "main-idea",
+    "detail",
+    "detail"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "attitude",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "a problem and its solution",
+   "kinds": [
+    "purpose",
+    "main-idea",
+    "purpose",
+    "detail",
+    "detail",
+    "attitude"
+   ],
+   "stance": "supports",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 5,
+     "kind": "detail",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 6,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  }
+ }
+}

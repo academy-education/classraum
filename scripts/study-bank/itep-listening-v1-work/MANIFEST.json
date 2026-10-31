@@ -1,0 +1,18 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-LISTENING-V1.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + Amendment A1 (agent-review-core.mjs), graders a/b plain, c adversarial",
+ "method_id": "itep-listening-v1-agent4+cfg-v1",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-listening-v1.md",
+ "author_brief_sha256": "7d14a30fa6b8cc36c623a71ec64861261b860dde5602174d3be18dca0de9e279",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "preflight_sha256": "3b77996de6371c844f1b3bda47b2d7c90bf6d468456b45b592e355980197b918",
+ "assign_sha256": "66f1a7a335b453522eb513d8874ad31099ea09119b1ae221ca382cfc0e06f601",
+ "assigned_sha256": "b8519e5aab7435045fd5e6185281fe246821fe8ee1432dcdf5b94430d1adae5d",
+ "plans_sha256": {
+  "A": "5349f13e2ac86188019cb2150006f9b24da56345459dd60febc1409108705836",
+  "B": "6cb1f7ff8b1aa4acc7cc4f32217577e4cab92c7f24fb76221ab2d23042bedf9b",
+  "C": "5f81ae51e0069142ec05054dd8e00ad0ed3f3afbf047f795010f5ec070f7e20a",
+  "D": "72e31aaa2783ff39696f9c6eb068a3dad27797c53aed2dff43e6254365cb7911"
+ }
+}

@@ -1,0 +1,197 @@
+{
+ "batch": "itep-listening-v1",
+ "author": "B",
+ "initials": "EFGH",
+ "lane": "nature, animals, plants, weather and earth science",
+ "sets": {
+  "D1": {
+   "part": 1,
+   "setting": "train station",
+   "speakers": {
+    "W": "a passenger",
+    "M": "a ticket clerk"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D2": {
+   "part": 1,
+   "setting": "school bus",
+   "speakers": {
+    "W": "a sister",
+    "M": "a brother"
+   },
+   "kinds": [
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D3": {
+   "part": 1,
+   "setting": "science lab",
+   "speakers": {
+    "W": "a classmate",
+    "M": "a classmate"
+   },
+   "kinds": [
+    "purpose"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "purpose",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  },
+  "D4": {
+   "part": 1,
+   "setting": "museum on a class trip",
+   "speakers": {
+    "W": "a student",
+    "M": "a museum guide"
+   },
+   "kinds": [
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "C": {
+   "part": 2,
+   "setting": "in a classroom after class",
+   "speakers": {
+    "W": "a student",
+    "M": "a teacher"
+   },
+   "kinds": [
+    "detail",
+    "relationship",
+    "purpose",
+    "main-idea"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "relationship",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "purpose",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "main-idea",
+     "whole_options": 1,
+     "key_length": "middle",
+     "script_words": "key-most"
+    }
+   ]
+  },
+  "L": {
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "idea_shape": "two competing explanations",
+   "kinds": [
+    "attitude",
+    "main-idea",
+    "inference",
+    "detail",
+    "detail",
+    "inference"
+   ],
+   "stance": "rejects",
+   "items": [
+    {
+     "n": 1,
+     "kind": "attitude",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "main-idea",
+     "whole_options": 2,
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 5,
+     "kind": "detail",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 6,
+     "kind": "inference",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}
