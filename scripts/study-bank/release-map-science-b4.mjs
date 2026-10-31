@@ -51,7 +51,8 @@ for (const r of rows) {
 }
 // Coordinator hold: none. b3 full's E5-02 practice (no_source on a DATA item holds) is applied at stage 2 by
 // stage2-decide-b4.mjs, so those items (P5-17, P7-21, E5-09) were never staged. Add a qid here to hold a staged row.
-const COORD_HOLD = new Set([])
+// Coordinator holds 2026-10-31: E8-05 says "tonight" for a new Moon (not visible at night); L7-09 "multiplied evenly" also reads as a constant growth rate (317, not 330); L5-09 keyed "stayed the same" over points that zigzag 35-38.
+const COORD_HOLD = new Set(['MSB4-E8-05', 'MSB4-L7-09', 'MSB4-L5-09'])
 const qidOf = new Map(pop.map((r) => [r.row_id, r.qid]))
 if ([...COORD_HOLD].some((q) => !pop.some((r) => r.qid === q))) refuse('a coordinator-hold id is not in the population')
 const todo = rows.filter((r) => !r.verified && !COORD_HOLD.has(qidOf.get(r.id)))
