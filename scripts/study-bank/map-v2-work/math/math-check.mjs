@@ -36,6 +36,14 @@ const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const ARGS = process.argv.slice(2)
 const opt = (n, d) => { const i = ARGS.indexOf(n); if (i < 0) return d; if (!ARGS[i + 1] || ARGS[i + 1].startsWith('--')) die(`${n} needs a value`); return ARGS[i + 1] }
 const OPTS = ['--slots', '--prior', '--families']
+// b13 Amendment 1 (MAP-MATH-V2-B13.prereg.md, 2026-11-01): --rank-agnostic turns the POSITION-CONDITIONAL rules into
+// (read) lines: the S/L-slot far_distractor/counter_error requirement, D3 (counter_error on an extreme key), FAR1 (all errors one sense on an extreme key),
+// FAR2 (far_distractor on an extreme key) and STRUCT (extreme-key stem words). Those rules fire only on a key at rank
+// 1 or 4, so they forbid extreme keys by construction and, with the generator's own rules, left b13's stage A 81%
+// interior. Every rank-agnostic rule (RANK, HUB, LONE, BOUND-SCREEN, FORM, SLIP, D1/D2, FAR0, PAIR/RUN, DPAIR, DSUM,
+// plug, keyprint, inter, sandbox, near-dup) still refuses. Without the flag nothing changes.
+const RANK_AGNOSTIC = ARGS.includes('--rank-agnostic')
+const POSITIONAL = /^(S\/L slot|FAR1|FAR2|STRUCT|D3 )/
 const file = ARGS.find((a, i) => !a.startsWith('--') && !OPTS.includes(ARGS[i - 1]))
 const SLOTS_PATH = opt('--slots', join(HERE, 'slots.json'))
 const PRIOR_PATH = opt('--prior', null)
@@ -208,6 +216,7 @@ for (const it of items) {
     const fl = (nd.stdout + nd.stderr).split('\n').filter(l => /FLAG|REFUS/.test(l))
     if (nd.status !== 0 || fl.length) bad.push(`near-dup ${fam}: ${fl.join(' | ').slice(0, 300) || 'exit ' + nd.status}`)
   }
+  if (RANK_AGNOSTIC) for (let i = bad.length - 1; i >= 0; i--) if (POSITIONAL.test(bad[i])) read.push(bad.splice(i, 1)[0] + ' (advisory: --rank-agnostic)')
   console.log(`${it.id}  PART ${bad.length ? 'FAIL' : 'OK'}`)
   for (const x of bad) console.log('    - ' + x)
   for (const x of read) console.log('    (read) ' + x)
@@ -216,5 +225,5 @@ for (const it of items) {
 const ids = items.map(i => i.id), keys = items.map(i => String(val(String(i.correct_answer))))
 if (new Set(ids).size !== ids.length) { console.log('duplicate ids in the file'); failed++ }
 const rep = keys.filter((k, i) => keys.indexOf(k) !== i); if (rep.length) console.log(`(read) key values repeated within your file: ${[...new Set(rep)].join(', ')}`)
-console.log(`\n${items.length} items read; ${items.length - failed} PART OK; ${failed} failing`)
+console.log(`\n${items.length} items read; ${items.length - failed} PART OK; ${failed} failing${RANK_AGNOSTIC ? ' (--rank-agnostic: S/L, D3, FAR1, FAR2, STRUCT advisory)' : ''}`)
 process.exit(failed ? 1 : 0)

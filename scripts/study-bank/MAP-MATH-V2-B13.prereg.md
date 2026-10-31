@@ -227,3 +227,32 @@ No threshold of A, B or C changes.
 At n = 10-12 per area each item is 8-10 points of margin; three samples of one model are not three solvers; the
 selection regresses toward the stage-A mean by construction. A pass says the option set alone does not decide these
 items on this instrument and that two graders found no free elimination; it does not say a student cannot find one.
+
+## Amendment 1 (2026-11-01, after stage-A authoring, BEFORE any screener, solver or grader exists)
+
+**Finding.** The eight authors wrote 76 candidates (N 12, O 24, G 21, D 19) on 51 mechanisms. Ranks 1/2/3/4 =
+6 / 30 / 32 / 8: **81.6% interior**, against the 50% the deal produced (the deal was balanced, about 25% per rank).
+Five of the eight authors traced the same cause independently: engine13 removed the generator's position rules, but
+`math-check.mjs` (which every candidate must pass) still carries four rules that fire ONLY on a rank-1 or rank-4 key:
+the S/L-slot requirement (far_distractor + counter_error), D3 (counter_error past the key), FAR1 (all three errors
+one sense) and FAR2 (a far_distractor whose natural side is the far side, landing on the near side). In mechanisms
+whose natural errors all fall on one side, no far_distractor exists, so every dealt rank-1/4 slot was unreachable for
+that reason alone (O-a, O-b, G-a, G-b, D-a, D-b, N-b all measured it; G-a also showed math-check does not verify the
+declared natural side, so the rule can be passed by an unmeasured declaration, which no author did). This file's A3/A4
+intended rank to be dealt, never forbidden; the prereg missed that math-check carries position rules too. This is the
+prereg's own error, found by the authors, not by any reviewer.
+
+**Change.** `math-check.mjs --rank-agnostic` (new CLI flag; without it math-check is byte-for-byte unchanged in
+behaviour) turns those four rule families (S/L slot, D3, FAR1, FAR2, plus STRUCT, whose word rule is extreme-only)
+into (read) lines. Every rank-agnostic rule still refuses. Break-test on MB13C-Ob-OR-b (rank 4) with far_distractor
+and counter_error deleted: without the flag PART FAIL (S/L, D3, FAR2); with it PART OK; the same item with key + 1:
+PART FAIL under both (RUN, sandbox). b13's stage A and gate use the flag (`checkArgs` in `map-math-v2.mjs --batch b13`).
+
+**What stays policing extreme keys** is measured, not proxied: the stage-A and gate screeners' `one_sided` (S-R8) and
+`single_bound_kills_all` (S-R10), the graders' R8/R10, and the batch-level options-only bar. With ranks dealt at 25%,
+"pick the smallest/largest" and "pick the middle" are each worth chance on the batch.
+
+**Return to the authors (one round).** Each author fills its `rank-unreachable` slots AT THE DEALT RANK where
+math-check's positional rules were the only block, re-runs math-check with `--rank-agnostic`, and reports the new
+histogram. No slot moves rank; no new mechanism is added in this return (new mechanisms go to the A7 top-up only).
+The candidate files after the return are the stage-A input; their sha256 is recorded before any packet is rendered.
