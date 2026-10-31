@@ -1,0 +1,427 @@
+{
+ "batch": "itep-listening-v3",
+ "authors": {
+  "A": {
+   "initials": "AB",
+   "lane": "family events, holidays and travel plans",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "at a relative's house during a family gathering",
+     "speakers": {
+      "W": "a girl",
+      "M": "her cousin, a boy of about the same age"
+     },
+     "kinds": [
+      "detail",
+      "intent-next",
+      "main-idea",
+      "inference"
+     ],
+     "opens": "M",
+     "prevails": "woman",
+     "first_plan": "holds",
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "about": "the woman",
+       "key_length": "shortest",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 2,
+       "kind": "intent-next",
+       "about": "the man",
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "whole_options": 4,
+       "key_length": "longest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 4,
+       "kind": "inference",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "B": {
+   "initials": "CD",
+   "lane": "volunteering, charity events and neighbourhood projects",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "at a community centre before a volunteer shift",
+     "speakers": {
+      "W": "the volunteer coordinator",
+      "M": "a teenage volunteer"
+     },
+     "kinds": [
+      "detail",
+      "relationship",
+      "inference",
+      "intent-next"
+     ],
+     "opens": "M",
+     "prevails": "woman",
+     "first_plan": "holds",
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 2,
+       "kind": "relationship",
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "inference",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 4,
+       "kind": "intent-next",
+       "about": "the man",
+       "key_length": "longest",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "C": {
+   "initials": "EF",
+   "lane": "the school newspaper, reporting and interviewing",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "in an empty classroom at lunchtime",
+     "speakers": {
+      "W": "a student reporter for the school newspaper",
+      "M": "the student being interviewed for an article"
+     },
+     "kinds": [
+      "inference",
+      "detail",
+      "main-idea",
+      "detail"
+     ],
+     "opens": "W",
+     "prevails": "woman",
+     "first_plan": "replaced",
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "about": "the man",
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "whole_options": 4,
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "longest",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "D": {
+   "initials": "GH",
+   "lane": "home life, small repairs, pets and apartment buildings",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "in the hallway or lobby of their apartment building",
+     "speakers": {
+      "W": "a teenager",
+      "M": "an adult neighbour who lives in the same apartment building"
+     },
+     "kinds": [
+      "intent-next",
+      "detail",
+      "main-idea",
+      "detail"
+     ],
+     "opens": "W",
+     "prevails": "man",
+     "first_plan": "holds",
+     "items": [
+      {
+       "n": 1,
+       "kind": "intent-next",
+       "about": "the woman",
+       "key_length": "longest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "whole_options": 4,
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "E": {
+   "initials": "JK",
+   "lane": "camping, hiking and outdoor activities",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "at a summer camp, outside the camp office",
+     "speakers": {
+      "W": "a camper at a summer camp",
+      "M": "a camp counsellor"
+     },
+     "kinds": [
+      "detail",
+      "inference",
+      "attitude",
+      "intent-next"
+     ],
+     "opens": "W",
+     "prevails": "man",
+     "first_plan": "replaced",
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "about": "the man",
+       "key_length": "longest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "attitude",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 4,
+       "kind": "intent-next",
+       "about": "the woman",
+       "key_length": "shortest",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "F": {
+   "initials": "LM",
+   "lane": "languages, food and everyday customs in different countries",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "at the family's home in the evening",
+     "speakers": {
+      "W": "an exchange student who is staying with the student's family",
+      "M": "a high-school student"
+     },
+     "kinds": [
+      "main-idea",
+      "inference",
+      "detail",
+      "purpose"
+     ],
+     "opens": "M",
+     "prevails": "neither",
+     "first_plan": "left open",
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "whole_options": 4,
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "about": "the man",
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "about": "the woman",
+       "key_length": "longest",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "G": {
+   "initials": "NP",
+   "lane": "science-fair projects, experiments and measuring things",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "in the school hall the day before the science fair",
+     "speakers": {
+      "W": "a student entering the school science fair",
+      "M": "a volunteer judge for the science fair"
+     },
+     "kinds": [
+      "intent-next",
+      "detail",
+      "main-idea",
+      "purpose"
+     ],
+     "opens": "M",
+     "prevails": "man",
+     "first_plan": "replaced",
+     "items": [
+      {
+       "n": 1,
+       "kind": "intent-next",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "longest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "whole_options": 4,
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  },
+  "H": {
+   "initials": "RS",
+   "lane": "university life, choosing courses and moving away from home",
+   "sets": {
+    "C": {
+     "part": 2,
+     "setting": "on a video call on a weekend evening",
+     "speakers": {
+      "W": "an older sister who has just started university",
+      "M": "her younger brother who is in high school"
+     },
+     "kinds": [
+      "detail",
+      "relationship",
+      "detail",
+      "inference"
+     ],
+     "opens": "W",
+     "prevails": "neither",
+     "first_plan": "left open",
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "about": "the woman",
+       "key_length": "longest",
+       "script_words": "key-not-most"
+      },
+      {
+       "n": 2,
+       "kind": "relationship",
+       "key_length": "middle",
+       "script_words": "key-most"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "about": "the man",
+       "key_length": "shortest",
+       "script_words": "key-most"
+      },
+      {
+       "n": 4,
+       "kind": "inference",
+       "about": "the woman",
+       "key_length": "middle",
+       "script_words": "key-not-most"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

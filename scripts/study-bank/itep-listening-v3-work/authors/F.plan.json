@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "F",
+ "initials": "LM",
+ "lane": "languages, food and everyday customs in different countries",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "at the family's home in the evening",
+   "speakers": {
+    "W": "an exchange student who is staying with the student's family",
+    "M": "a high-school student"
+   },
+   "kinds": [
+    "main-idea",
+    "inference",
+    "detail",
+    "purpose"
+   ],
+   "opens": "M",
+   "prevails": "neither",
+   "first_plan": "left open",
+   "items": [
+    {
+     "n": 1,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "purpose",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,54 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "B",
+ "initials": "CD",
+ "lane": "volunteering, charity events and neighbourhood projects",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "at a community centre before a volunteer shift",
+   "speakers": {
+    "W": "the volunteer coordinator",
+    "M": "a teenage volunteer"
+   },
+   "kinds": [
+    "detail",
+    "relationship",
+    "inference",
+    "intent-next"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "first_plan": "holds",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "relationship",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "D",
+ "initials": "GH",
+ "lane": "home life, small repairs, pets and apartment buildings",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "in the hallway or lobby of their apartment building",
+   "speakers": {
+    "W": "a teenager",
+    "M": "an adult neighbour who lives in the same apartment building"
+   },
+   "kinds": [
+    "intent-next",
+    "detail",
+    "main-idea",
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "first_plan": "holds",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

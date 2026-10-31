@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "G",
+ "initials": "NP",
+ "lane": "science-fair projects, experiments and measuring things",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "in the school hall the day before the science fair",
+   "speakers": {
+    "W": "a student entering the school science fair",
+    "M": "a volunteer judge for the science fair"
+   },
+   "kinds": [
+    "intent-next",
+    "detail",
+    "main-idea",
+    "purpose"
+   ],
+   "opens": "M",
+   "prevails": "man",
+   "first_plan": "replaced",
+   "items": [
+    {
+     "n": 1,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "purpose",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

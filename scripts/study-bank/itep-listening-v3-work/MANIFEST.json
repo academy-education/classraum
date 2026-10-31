@@ -1,0 +1,26 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-LISTENING-V3.prereg.md",
+ "prereg_commit": "a00020ee",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + Amendment A1 (agent-review-core.mjs), graders a/b plain, c adversarial",
+ "method_id": "itep-listening-v1-agent8+cfg-v1",
+ "brief_decision": "no cut (BRIEF-VERSIONING rule 3: not earned, not blocking, not broken by the rule as written; broken-for-conversations decided in prereg §1: 4 of 5 v2 Part 2 losses assignment/process-caused); v1 brief frozen, byte-identical",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-listening-v1.md",
+ "author_brief_sha256": "7d14a30fa6b8cc36c623a71ec64861261b860dde5602174d3be18dca0de9e279",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "preflight_sha256": "17e688829fba874ab0f79dd5f422f98a92267ff161da1fb2539ce3af8286affa",
+ "dedupe_sha256": "34a33893c6fc46e95ee3677a96001b6b6e7719f4b63912ac3413a867e0f0b322",
+ "revision_diff_sha256": "e188e53f68530d0a2f8db87b3ef813dcd4f6c80edcb24be95a5618f8a63c5061",
+ "assign_sha256": "17dd3cf10fdc342ce5a7d5dcd2876f2aefaca6762b7d30a673b60b3bfa2664b8",
+ "assigned_sha256": "2e3cf66f7ef3e4e9ce61ccebb5049dbfb01a60ed2d6f381481076e3a60f3eed5",
+ "plans_sha256": {
+  "A": "ee90f5ca262db8edc4f285f66e5fb2dafe5b26a24e742d2cf88e8031862d7239",
+  "B": "ec128a53fe616aa275518a044adbb19525c4b460d253a471f16777a49ce19998",
+  "C": "30bb345a9a714ecf06dcb8b77c0f81c2d11ee67cb1a85d4fef7179a5fc4c30de",
+  "D": "883884a6276dfe936a994f1a14412a8785567af7485caefd1c993f8d51afa64c",
+  "E": "5fad12abd61ebbd0d944018dff6432de958503373d74e4b9f71d3aa6e4ae8667",
+  "F": "efe8691810726a1523c6faf689a934eff6e336119c4536e6ba37109d085e6a63",
+  "G": "5cb04cde845e3f5104a28a49e13f8de74b27956c4c1d1e1265466c465b0e41cf",
+  "H": "9514c08d8e50972d65ba3b9eb90e423d6c9a59b11f9921b064ce6cfcfe08578d"
+ }
+}

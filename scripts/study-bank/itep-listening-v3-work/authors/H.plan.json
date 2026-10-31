@@ -1,0 +1,54 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "H",
+ "initials": "RS",
+ "lane": "university life, choosing courses and moving away from home",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "on a video call on a weekend evening",
+   "speakers": {
+    "W": "an older sister who has just started university",
+    "M": "her younger brother who is in high school"
+   },
+   "kinds": [
+    "detail",
+    "relationship",
+    "detail",
+    "inference"
+   ],
+   "opens": "W",
+   "prevails": "neither",
+   "first_plan": "left open",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "relationship",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

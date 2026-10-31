@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "E",
+ "initials": "JK",
+ "lane": "camping, hiking and outdoor activities",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "at a summer camp, outside the camp office",
+   "speakers": {
+    "W": "a camper at a summer camp",
+    "M": "a camp counsellor"
+   },
+   "kinds": [
+    "detail",
+    "inference",
+    "attitude",
+    "intent-next"
+   ],
+   "opens": "W",
+   "prevails": "man",
+   "first_plan": "replaced",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "attitude",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "intent-next",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

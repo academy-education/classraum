@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "C",
+ "initials": "EF",
+ "lane": "the school newspaper, reporting and interviewing",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "in an empty classroom at lunchtime",
+   "speakers": {
+    "W": "a student reporter for the school newspaper",
+    "M": "the student being interviewed for an article"
+   },
+   "kinds": [
+    "inference",
+    "detail",
+    "main-idea",
+    "detail"
+   ],
+   "opens": "W",
+   "prevails": "woman",
+   "first_plan": "replaced",
+   "items": [
+    {
+     "n": 1,
+     "kind": "inference",
+     "about": "the man",
+     "key_length": "shortest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 2,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 4,
+     "kind": "detail",
+     "about": "the man",
+     "key_length": "longest",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "batch": "itep-listening-v3",
+ "author": "A",
+ "initials": "AB",
+ "lane": "family events, holidays and travel plans",
+ "sets": {
+  "C": {
+   "part": 2,
+   "setting": "at a relative's house during a family gathering",
+   "speakers": {
+    "W": "a girl",
+    "M": "her cousin, a boy of about the same age"
+   },
+   "kinds": [
+    "detail",
+    "intent-next",
+    "main-idea",
+    "inference"
+   ],
+   "opens": "M",
+   "prevails": "woman",
+   "first_plan": "holds",
+   "items": [
+    {
+     "n": 1,
+     "kind": "detail",
+     "about": "the woman",
+     "key_length": "shortest",
+     "script_words": "key-not-most"
+    },
+    {
+     "n": 2,
+     "kind": "intent-next",
+     "about": "the man",
+     "key_length": "middle",
+     "script_words": "key-most"
+    },
+    {
+     "n": 3,
+     "kind": "main-idea",
+     "whole_options": 4,
+     "key_length": "longest",
+     "script_words": "key-most"
+    },
+    {
+     "n": 4,
+     "kind": "inference",
+     "about": "the woman",
+     "key_length": "middle",
+     "script_words": "key-not-most"
+    }
+   ]
+  }
+ }
+}
