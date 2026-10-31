@@ -115,3 +115,12 @@ Drawn totals over 216 items: key length shortest 50 / middle 125 / longest 41; m
 distractor-broader 12, all-level 7, two-part key 9 of 24; attitude key strong 9 of 18; vocabulary distractors
 context 52 / sense 92 (6 of 36 items all-sense); purpose key abstract 12 of 36. Existing-passage list regenerated
 (326 SSAT+ISEE openings, 141 live/staged SSAT attitude sets) by `ssat-reading-v2/existing.mjs`.
+
+## Addendum 2 (2026-10-31, frozen and staged, before any grader; no rule changed)
+
+Six author agents finished; pre-flight clean on all six (check.mjs 0, quotes 0, locrefs 0, screencheck 36/36).
+`check.mjs` break-tested on real d24: every plan mutation caught (key length 36/36, intensity 3/3, breadth 4/4,
+key_form 4/4, vocab types 5/5, key_abstract 4/4). Coordinator topic pre-flight sent two d25 passages back BEFORE
+freeze (hailstone rings = staged ssat d6; town street lamps = isee d11 / worlds-s5); replaced by "Snow Eater" and
+"The Sprinkling Wagon", same plan shapes. Frozen batch sha256: d23 9a26d245…91fe, d24 0c315235…8d75, d25 9913e99b…a0b9,
+d26 4f3076ed…de05, d27 ed7c9975…4629, d28 315fef4f…286f. Staged 216 verified=false, read back 216/216 false, 36 groups.
