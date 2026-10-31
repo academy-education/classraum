@@ -7054,3 +7054,21 @@ structural checks are pre-flight only. See CLAUDE.md.
     both Life auditors noted it); L5-09 (keyed "stayed the same" over points 35-38; both Life auditors noted it).
 
 - **2026-10-31** — **Verbal key-visible audit: 821 of 957 RELEASED on the owner's go** (`release-verbal-audit-2026-10-31.mjs --apply`, released 821 of 821). Two auditors per packet (a plain, b adversarial), 29 packets, scored by `verbal-audit-score.mjs`: 58 items flagged and 136 held in 53 units. One flagged reading item holds its whole passage set. No key was wrong. Releases: SSAT Verbal 447, MAP Language 259, MAP Vocab 35, SSAT Reading 60, MAP Reading 20. Held: SSAT Reading 84, MAP Reading 18, MAP Language 24, SSAT Verbal 10 (FLAGGED.json in scratchpad/verbal-audit/). SSAT depth after release (`admission-form-depth.ts --forms 20`): math 12, **reading 9 (binds)**, verbal 15. A new SSAT Reading batch is in progress. Graders also named recurring reading patterns: the main-idea key is the broadest option, the attitude key is the one moderate word, and vocab distractors are unrelated dictionary senses. These go to the next reading brief as base-rate randomization.
+
+- **2026-10-31 — SSAT Reading v2 (drafts 23-28): 114 of 216 survive both gates, 19 of 36 passages; staged
+  verified=false (216 read back false, 0 archived). SSAT Reading depth 9 clean live -> 11 with survivors (staged).**
+  `SSAT-READING-V2.prereg.md` (prereg `c9d16f50` before any plan; brief frozen + plans `9e34938a`; frozen/staged
+  `5bb46186` before any grader). **Brief v2 cut (BRIEF-VERSIONING rule 3, Blocking):** the verbal audit named
+  "vocab distractors = unrelated senses" (both graders, d10 and d11) and "attitude key = the one moderate word" (both,
+  d11 and d14); v1 rule 5 required the first. v2 draws per item at base rate: key length rank, main-idea breadth and
+  two-part, attitude intensity, vocab distractor type, purpose abstract; lessons in `briefs/ssat-reading.pending.md`.
+  Six Claude author agents (deviation from d19-22's in-session author). Gate: stage 1 agent review (A1) 156/216, 26
+  passages, 0 cohorts held; stage 2 key-visible audit 7 sets held (no_source 3, language 2, internal inconsistency 2).
+  Band 18-29 "v2 works, short of target". **Findings:** science no_source 0 (v1: the audit's main no_source source);
+  the moderate-attitude and abstract-purpose tells were not named by any grader; **the vocab `context` remedy
+  inverted the tell** (distractors that are not senses of the word, so the key is the only real sense: all 3
+  no_source holds) — v3 pending lesson 1, with 5 more (main-idea key_form cluster, "everywhere" broader distractor,
+  attitude rivals, internal counts, spliced quotes). New flags: `verbal-audit-build.mjs --ids-file/--prereg`,
+  `admission-form-depth.ts --include-ids` (refuses non-staged ids). With the 138 staged d19-22 cleared also counted,
+  reading reaches the 14-form replay cap. Release: none here; v2 is a new method, so a Daniel audit sample (bridge)
+  before any release. Top-up for the 11 missing passages = a new batch (v2 or a v3 cut), no repair.

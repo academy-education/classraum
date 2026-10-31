@@ -1,0 +1,142 @@
+{
+ "cohort": "ssat-reading-draft-28",
+ "total": 36,
+ "cleared": [
+  "02a1e737-91fa-45ab-b118-091bf14075fd",
+  "2d86ce2e-049a-45c8-8b41-2c49bc7e525e",
+  "31f56e97-a91d-4457-b693-62584e975dbc",
+  "3ffacec7-b089-4ff0-a625-bb548b2cd023",
+  "427f4108-ead1-423b-bf09-5028c1e15d90",
+  "46247fe7-e996-47c9-9f3b-674ed6c92d33",
+  "5eb525ed-4072-4c80-b4c0-c0af9771169b",
+  "634fc765-f6d7-49b6-b956-f67b507f5e3a",
+  "7118e55a-7333-4e86-b6d6-2620d084e8e7",
+  "75b5f63c-e78f-4eef-85ea-26dc3916e2b5",
+  "8a3486a3-a923-4316-8cd2-129dbc67b59b",
+  "8c30f671-86d6-48c9-afd7-f1fb1cee4ba7",
+  "93de048f-394b-4cc0-bf53-8035ed036d30",
+  "96ee8607-317c-45b1-8d7a-08c680774931",
+  "a401dfec-fb10-4495-a49a-924a1acb069d",
+  "a6cb3a8f-3e03-47ec-b5ad-18fab61c6019",
+  "c9faadd3-4516-4745-9f75-a45d4652d451",
+  "ca105c92-475d-42ae-906b-28fecd51b74a"
+ ],
+ "dropped": {
+  "2b9ace65-f57e-4cca-9a92-3cf1c29b9adb": "pattern: overgeneralized_distractor_family",
+  "4489fd10-e53e-4426-94bd-197416eef924": "passage: draft28-D28-P06 lost an item",
+  "8341c1f6-30a7-4859-8b96-16c665b3fc67": "passage: draft28-D28-P06 lost an item",
+  "94b37788-c3e3-428b-b9ac-7711adab5ccd": "passage: draft28-D28-P06 lost an item",
+  "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1": "pattern: reused_distractor_template, reused_distractor_template, reused_distractor_template, overgeneralized_distractor_family, how_and_then_distractor_shape",
+  "b7c02751-261f-40f5-b4d2-f7ccca0ea25c": "passage: draft28-D28-P06 lost an item",
+  "49c666ac-0575-475a-933d-46d86369085d": "pattern: reused_distractor_template, reused_distractor_template, reused_distractor_template, overgeneralized_distractor_family, how_and_then_distractor_shape",
+  "71c1338a-08c0-4cc7-9cf8-8aace733af01": "passage: draft28-D28-P03 lost an item",
+  "a770314e-6242-4cdc-9a48-3a40f971f9bf": "pattern: overgeneralized_distractor_family",
+  "ae4d4910-d81d-4a2a-ae6c-bdabb925ef9c": "passage: draft28-D28-P03 lost an item",
+  "dce13137-000f-40f7-b23f-aaf5494b0548": "passage: draft28-D28-P03 lost an item",
+  "f4836b20-3cbe-45b1-bc16-af5e5ab9a632": "passage: draft28-D28-P03 lost an item",
+  "0ab785a1-6094-4f68-b890-f739a99b940d": "passage: draft28-D28-P01 lost an item",
+  "1abbadd0-dcb3-4567-b1cf-619bd1ae84a6": "passage: draft28-D28-P01 lost an item",
+  "45e3cb13-f6c4-4192-bfc8-a3d79e973376": "passage: draft28-D28-P01 lost an item",
+  "5890a03b-620a-4be3-a2e5-7e1902fa2fe1": "passage: draft28-D28-P01 lost an item",
+  "6301b0ee-08da-4ad3-922d-8bc5a7a6c363": "pattern: reused_distractor_template, reused_distractor_template, reused_distractor_template, overgeneralized_distractor_family, how_and_then_distractor_shape",
+  "cdf5d745-4339-47a5-8820-a520f9204e2f": "passage: draft28-D28-P01 lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.1388888888888889,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "reused_distractor_template",
+   "other": "overgeneralized_distractor_family",
+   "items": [
+    17,
+    19,
+    29
+   ],
+   "ids": [
+    "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1",
+    "49c666ac-0575-475a-933d-46d86369085d",
+    "6301b0ee-08da-4ad3-922d-8bc5a7a6c363"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "reused_distractor_template",
+   "other": "how_and_then_distractor_shape",
+   "items": [
+    17,
+    19,
+    29
+   ],
+   "ids": [
+    "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1",
+    "49c666ac-0575-475a-933d-46d86369085d",
+    "6301b0ee-08da-4ad3-922d-8bc5a7a6c363"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "reused_distractor_template",
+   "other": "absolute_distractor",
+   "items": [
+    17,
+    19,
+    29
+   ],
+   "ids": [
+    "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1",
+    "49c666ac-0575-475a-933d-46d86369085d",
+    "6301b0ee-08da-4ad3-922d-8bc5a7a6c363"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "overgeneralized_distractor_family",
+   "other": "absolute_distractor",
+   "items": [
+    13,
+    17,
+    19,
+    21,
+    29
+   ],
+   "ids": [
+    "2b9ace65-f57e-4cca-9a92-3cf1c29b9adb",
+    "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1",
+    "49c666ac-0575-475a-933d-46d86369085d",
+    "a770314e-6242-4cdc-9a48-3a40f971f9bf",
+    "6301b0ee-08da-4ad3-922d-8bc5a7a6c363"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "how_and_then_distractor_shape",
+   "other": "absolute_distractor",
+   "items": [
+    17,
+    19,
+    29
+   ],
+   "ids": [
+    "b5ac2c40-0d3e-4a26-8996-89454cb6f8a1",
+    "49c666ac-0575-475a-933d-46d86369085d",
+    "6301b0ee-08da-4ad3-922d-8bc5a7a6c363"
+   ]
+  }
+ ]
+}

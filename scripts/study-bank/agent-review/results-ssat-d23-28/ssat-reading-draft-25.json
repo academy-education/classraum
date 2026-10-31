@@ -1,0 +1,102 @@
+{
+ "cohort": "ssat-reading-draft-25",
+ "total": 36,
+ "cleared": [
+  "0403cf0f-7b77-47ea-961b-462fdd419363",
+  "15cf9795-1f4e-46e8-9e49-7ba961a7c84e",
+  "37254a69-90de-4a27-b71f-48caf9afacbc",
+  "40cf8735-453f-47c3-9cbf-0c70ed6d353c",
+  "519e938d-c726-4aee-ad08-9e74c8d03f5e",
+  "7acb298a-0ccc-48c8-884f-cdcf065177b6",
+  "8f34d58f-0a64-44d8-9047-0bf8ea2f2fc1",
+  "9673cc79-781c-43a7-9640-bf1efbeee762",
+  "a6a3c77d-74c1-413a-858c-0e8b9fc598e7",
+  "aea1e9a2-6fc9-4d18-8aa7-fc2180387b54",
+  "e40203d7-179c-447b-a5e9-5215c54b058d",
+  "fe3b2aee-1dd7-4f8b-8132-10f8250fabb5"
+ ],
+ "dropped": {
+  "0da9f4f9-f9f0-4cfb-8927-6348999cd7fd": "passage: draft25-D25-P03 lost an item",
+  "33ec6d40-5a92-41cf-b09a-90a34e8a08fe": "passage: draft25-D25-P03 lost an item",
+  "464e5cda-6127-420f-97e8-61f824cb02aa": "passage: draft25-D25-P03 lost an item",
+  "6dcc2feb-096d-449f-823e-4005612b188c": "pattern: key_form, key_form, key_form",
+  "a71f53dd-3064-404b-ae61-bb7a237c127e": "passage: draft25-D25-P03 lost an item",
+  "bc536b62-bd22-414a-b6da-93b81c99c5f1": "passage: draft25-D25-P03 lost an item",
+  "04a74506-3c7c-4d81-a890-81851e1c4056": "passage: draft25-D25-P06 lost an item",
+  "2f8a6868-4d51-4aed-a21e-04570c6ad74c": "passage: draft25-D25-P06 lost an item",
+  "47ecf757-e1f0-4985-89eb-247de9edd637": "passage: draft25-D25-P06 lost an item",
+  "72c78571-01d3-4f18-8452-095392c5394e": "passage: draft25-D25-P06 lost an item",
+  "84ca0964-5484-4efa-94d0-681d1ad906ab": "passage: draft25-D25-P06 lost an item",
+  "ca818219-88d7-45bf-b36e-3d8653ccff5d": "pattern: key_form, key_form, key_form",
+  "1348a922-d795-4289-adac-a97d7a2f2033": "passage: draft25-D25-P02 lost an item",
+  "4b59cda4-6209-4396-b5a9-0f026c8a7560": "passage: draft25-D25-P02 lost an item",
+  "63529c9b-8468-48e9-9eff-1a926a348ba5": "passage: draft25-D25-P02 lost an item",
+  "837d311f-0589-4e49-ad7a-e4c709513a16": "passage: draft25-D25-P02 lost an item",
+  "a2a45ca3-9e00-4f39-88e7-993e21c9d508": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible",
+  "be308c83-4d5d-4ed3-8bf1-5d5d645b4868": "passage: draft25-D25-P02 lost an item",
+  "55e37622-f733-4413-8e37-587fca252191": "pattern: key_form, key_form, key_form",
+  "5e6bc71d-798b-4622-9b33-1202a9ead5c3": "passage: draft25-D25-P05 lost an item",
+  "87e86eab-b5fd-4baf-be4e-d4562b713923": "passage: draft25-D25-P05 lost an item",
+  "b18d81c5-34ec-42da-8c6e-918beeb95d6b": "passage: draft25-D25-P05 lost an item",
+  "b92013e8-08a3-4be6-a904-b32a0b2e66e5": "passage: draft25-D25-P05 lost an item",
+  "fcb33dff-bad6-4351-b34c-f9f4e1b07f91": "passage: draft25-D25-P05 lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.08333333333333333,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    4,
+    12,
+    31
+   ],
+   "ids": [
+    "6dcc2feb-096d-449f-823e-4005612b188c",
+    "ca818219-88d7-45bf-b36e-3d8653ccff5d",
+    "55e37622-f733-4413-8e37-587fca252191"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    4,
+    12,
+    31
+   ],
+   "ids": [
+    "6dcc2feb-096d-449f-823e-4005612b188c",
+    "ca818219-88d7-45bf-b36e-3d8653ccff5d",
+    "55e37622-f733-4413-8e37-587fca252191"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    4,
+    12,
+    31
+   ],
+   "ids": [
+    "6dcc2feb-096d-449f-823e-4005612b188c",
+    "ca818219-88d7-45bf-b36e-3d8653ccff5d",
+    "55e37622-f733-4413-8e37-587fca252191"
+   ]
+  }
+ ]
+}

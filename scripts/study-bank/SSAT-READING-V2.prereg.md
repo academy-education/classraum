@@ -124,3 +124,22 @@ key_form 4/4, vocab types 5/5, key_abstract 4/4). Coordinator topic pre-flight s
 freeze (hailstone rings = staged ssat d6; town street lamps = isee d11 / worlds-s5); replaced by "Snow Eater" and
 "The Sprinkling Wagon", same plan shapes. Frozen batch sha256: d23 9a26d245…91fe, d24 0c315235…8d75, d25 9913e99b…a0b9,
 d26 4f3076ed…de05, d27 ed7c9975…4629, d28 315fef4f…286f. Staged 216 verified=false, read back 216/216 false, 36 groups.
+
+## Result (2026-10-31; scored by the pre-registered scripts only)
+
+- **Stage 1 (agent review, A1): 156 of 216 cleared, 26 of 36 passages, 0 cohorts held** (d23 30, d24 36, d25 12, d26
+  24, d27 36, d28 18). Two confirmed patterns, both below 50% so subset drops: d25 main-idea key_form (items 4, 12, 31),
+  d28 sweeping-generalisation distractor (17, 19, 29). Results `agent-review/results-ssat-d23-28/`.
+- **Stage 2 (key-visible audit): scored 156 of 156, 6 of 6 packets; 7 items flagged, 7 sets held (42 items).**
+  no_source 3 (all vocabulary items whose `context` distractors were not senses of the word), language_error 2,
+  fact_error (internal inconsistency) 2. **Science no_source: 0** (v1 audit: 5 of the SSAT no_source items were on
+  science passages). `audit-FLAGGED.json` in the results dir.
+- **Survivors: 114 items, 19 of 36 passages** (poetry 5, essay 3, history 3, fiction 3, memoir 3, science 2).
+  **Band: 18-29, "brief v2 works; short of target".** Survivors and holds all stay staged verified=false (216 read
+  back false, 0 archived); ids in `survivors.ids.json`.
+- **Named lessons:** "attitude key is the one moderate word" and "purpose key is the only abstract option" were not
+  named by any grader. "Main-idea key is the broadest" recurred only as the d25 key_form cluster. "Vocabulary
+  distractors are unrelated senses" was named as style by several graders and the `context` remedy inverted it (3
+  no_source holds): **v2 failed the vocabulary lesson** — pending v3 lesson 1.
+- **Depth** (`admission-form-depth.ts --forms 14`): live 390 items / 73 groups = **9 clean**; with the 114 staged
+  survivors **11**; with survivors plus the 138 staged d19-22 cleared, 14+ (the replay cap). Staged, not live.

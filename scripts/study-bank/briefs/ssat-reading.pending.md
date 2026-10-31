@@ -43,3 +43,29 @@ What v2 does NOT change: passages one per genre, per-passage kind mixes (now dra
 passage rules, verbatim why/why2, the quote and location checks, the d19 passage bar.
 
 ## Pending for v3 (append below; do not edit v2)
+
+1. **2026-10-31, v2 drafts 23-28, key-visible audit (both graders on d24 Q27 and d28 Q02; a on d24 Q12): the vocab
+   `context` distractor inverted the tell.** v2 R5 defined `context` as a meaning that fits the sentence; authors wrote
+   words that are NOT senses of the tested word ("impatient" for "level", "guessed"/"conceded" for "answered",
+   "unwritten"/"private" for "firm"), so the key became the only real sense: no_source, 3 of 7 audit holds. The fix
+   moved the tell instead of removing it (memory: agent-rewrite-inverts-tell). v3: every option is a real sense or a
+   near-synonym of SOME sense of the word; draw instead whether wrong senses come from one area of life or several,
+   and whether the key is the most common sense.
+2. **Same batch, agent review a+b+c (d25 items 4, 12, 31): main-idea key uniquely longest AND the only two-part
+   option.** The d25 plan drew `longest` on 3 of its 4 main-idea items (a legitimate draw that clustered), and two of
+   those keys read as two-part though tagged one-part. Draw key length for main idea jointly with key_form, cap any
+   one value at 2 of 4 per draft, and re-check the two-part tag mechanically (a comma/and-clause count).
+3. **Same batch, agent review a+b (d28 items 17, 19, 29; c and b also on 13, 21, 36): `distractor-broader` built as
+   one "everywhere / nearly every" absolute.** The broader-wrong option became a sweeping generalisation a student
+   strikes by rule. v3: the wider distractor's wrongness must be content (wrong cause, wrong subject), never an
+   absolute quantifier; absolutes balanced across keys per R9 at draft level.
+4. **Same batch, stage 1: attitude items were 4 of the 6 item-level drops.** d26-P06 strong key "alarmed" (rival
+   objective, a+b+c); d25-P02 moderate "apprehensive" toward a wind the grandmother also welcomes (rival grateful,
+   a+b+c); moderate keys losing to a strong rival (d23-P03 and d26-P01 skeptical vs scornful, c). A strong key on a
+   measured passage is a second answer, and so is a moderate key next to its strong neighbour. v3: when key_intensity is strong, the passage itself must be written
+   to that pitch (author drafts the passage after reading the item plan); skeptical vs scornful never in one set.
+5. **Same batch, audit (d26 P04, P05; a and b): internal inconsistency** ("into the middle of the board" vs "under the
+   board"; "the only press able to print them" vs "one of his two presses"). Story-logic rule extends to essays and
+   history: every repeated location and count must match.
+6. **Same batch, audit b (d25 P04 "on the side of anything else"; d28 Q16 spliced quote):** R11 held in most items
+   but not all; add a mechanical check for a quote followed directly by a lowercase verbless continuation.

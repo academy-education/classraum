@@ -1,0 +1,404 @@
+{
+ "built_at": "2026-10-31T14:52:23.774Z",
+ "run": "ids-file:scripts/study-bank/agent-review/results-ssat-d23-28/stage1-cleared.ids.json",
+ "scored_items": 156,
+ "packets": 6,
+ "held_items": 42,
+ "perCohort": {
+  "ssat-reading-draft-23": {
+   "items": 30,
+   "units": 5,
+   "flaggedItems": 0,
+   "heldUnits": 0,
+   "heldItems": 0
+  },
+  "ssat-reading-draft-24": {
+   "items": 36,
+   "units": 6,
+   "flaggedItems": 2,
+   "heldUnits": 2,
+   "heldItems": 12
+  },
+  "ssat-reading-draft-25": {
+   "items": 12,
+   "units": 2,
+   "flaggedItems": 1,
+   "heldUnits": 1,
+   "heldItems": 6
+  },
+  "ssat-reading-draft-26": {
+   "items": 24,
+   "units": 4,
+   "flaggedItems": 2,
+   "heldUnits": 2,
+   "heldItems": 12
+  },
+  "ssat-reading-draft-27": {
+   "items": 36,
+   "units": 6,
+   "flaggedItems": 0,
+   "heldUnits": 0,
+   "heldItems": 0
+  },
+  "ssat-reading-draft-28": {
+   "items": 18,
+   "units": 3,
+   "flaggedItems": 2,
+   "heldUnits": 2,
+   "heldItems": 12
+  }
+ },
+ "heldPassages": [
+  {
+   "cohort": "ssat-reading-draft-24",
+   "passage": "draft24-D24-P01",
+   "items": [
+    "Q07",
+    "Q08",
+    "Q09",
+    "Q10",
+    "Q11",
+    "Q12"
+   ],
+   "row_ids": [
+    "013cdff5-9607-41f4-98a3-c24b168cc906",
+    "2685d7ea-0641-4101-ace8-a3d594a45547",
+    "48318bcf-5153-47d5-a4e7-28cdaf59deb2",
+    "5529c799-9ee0-4aaa-9969-a6f6f7526cd0",
+    "672c8f97-9b4b-4b7a-a8c0-9c39167744b4",
+    "f87f12aa-a6d9-4a02-8fe6-2a1018c42f56"
+   ],
+   "flagged": [
+    "Q12"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-24",
+   "passage": "draft24-D24-P06",
+   "items": [
+    "Q25",
+    "Q26",
+    "Q27",
+    "Q28",
+    "Q29",
+    "Q30"
+   ],
+   "row_ids": [
+    "0fa04408-d6d2-497b-b4e8-7c90891e8a2c",
+    "571a9ecb-ab14-4abf-a9a0-bd6e7839b4d2",
+    "bccf982c-8ae3-4425-a847-1022a3c464b8",
+    "defff689-d463-4639-8f26-7b60a1358918",
+    "f74ec2fe-b196-464a-b420-e5e491d4824c",
+    "f8a4bd28-f4a7-4018-ad02-e50b51203854"
+   ],
+   "flagged": [
+    "Q27"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-25",
+   "passage": "draft25-D25-P04",
+   "items": [
+    "Q01",
+    "Q02",
+    "Q03",
+    "Q04",
+    "Q05",
+    "Q06"
+   ],
+   "row_ids": [
+    "0403cf0f-7b77-47ea-961b-462fdd419363",
+    "40cf8735-453f-47c3-9cbf-0c70ed6d353c",
+    "8f34d58f-0a64-44d8-9047-0bf8ea2f2fc1",
+    "a6a3c77d-74c1-413a-858c-0e8b9fc598e7",
+    "aea1e9a2-6fc9-4d18-8aa7-fc2180387b54",
+    "e40203d7-179c-447b-a5e9-5215c54b058d"
+   ],
+   "flagged": [
+    "Q01"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-26",
+   "passage": "draft26-D26-P04",
+   "items": [
+    "Q13",
+    "Q14",
+    "Q15",
+    "Q16",
+    "Q17",
+    "Q18"
+   ],
+   "row_ids": [
+    "24caba37-71ce-4050-b849-87c796d7c77f",
+    "28e1ff12-dec6-4fec-8830-2a3fc36be7b1",
+    "57b28c8f-124c-4a06-846f-4b4635259f7d",
+    "697ed6a0-1e88-475c-b602-5b6c2fb8e7c3",
+    "948241ee-4cbc-4170-9234-6c71de82fb96",
+    "99bf7f5b-154f-483a-9f65-8256cb9615df"
+   ],
+   "flagged": [
+    "Q13"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-26",
+   "passage": "draft26-D26-P05",
+   "items": [
+    "Q19",
+    "Q20",
+    "Q21",
+    "Q22",
+    "Q23",
+    "Q24"
+   ],
+   "row_ids": [
+    "30431912-554b-4ac0-a129-7223901ca8b0",
+    "6264e2ba-91ca-471e-ae16-26f6e9e187ae",
+    "682ea6a6-17d5-4ec2-b5d7-ed8adb7dc585",
+    "72f04cb6-03c6-4b97-a7e0-91384e6386bf",
+    "b7db54d6-1c4f-4a47-a45a-d4ae4bcd2bba",
+    "eff1630f-bf98-4289-869c-0cf2523b85df"
+   ],
+   "flagged": [
+    "Q23"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-28",
+   "passage": "draft28-D28-P04",
+   "items": [
+    "Q01",
+    "Q02",
+    "Q03",
+    "Q04",
+    "Q05",
+    "Q06"
+   ],
+   "row_ids": [
+    "02a1e737-91fa-45ab-b118-091bf14075fd",
+    "46247fe7-e996-47c9-9f3b-674ed6c92d33",
+    "96ee8607-317c-45b1-8d7a-08c680774931",
+    "a401dfec-fb10-4495-a49a-924a1acb069d",
+    "a6cb3a8f-3e03-47ec-b5ad-18fab61c6019",
+    "c9faadd3-4516-4745-9f75-a45d4652d451"
+   ],
+   "flagged": [
+    "Q02"
+   ]
+  },
+  {
+   "cohort": "ssat-reading-draft-28",
+   "passage": "draft28-D28-P05",
+   "items": [
+    "Q13",
+    "Q14",
+    "Q15",
+    "Q16",
+    "Q17",
+    "Q18"
+   ],
+   "row_ids": [
+    "3ffacec7-b089-4ff0-a625-bb548b2cd023",
+    "427f4108-ead1-423b-bf09-5028c1e15d90",
+    "634fc765-f6d7-49b6-b956-f67b507f5e3a",
+    "75b5f63c-e78f-4eef-85ea-26dc3916e2b5",
+    "8c30f671-86d6-48c9-afd7-f1fb1cee4ba7",
+    "93de048f-394b-4cc0-bf53-8035ed036d30"
+   ],
+   "flagged": [
+    "Q16"
+   ]
+  }
+ ],
+ "flagged": [
+  {
+   "id": "Q12",
+   "row_id": "f87f12aa-a6d9-4a02-8fe6-2a1018c42f56",
+   "cohort": "ssat-reading-draft-24",
+   "passage": "draft24-D24-P01",
+   "reasons": [
+    "a: no_source: Of the five options only 'steady' is a sense of 'level' at all; 'impatient', 'confused', 'overjoyed' and 'startled' are not meanings of the word in any context, so a student who knows the idiom 'a level look' (or 'level' = even) gets D without the passage."
+   ]
+  },
+  {
+   "id": "Q27",
+   "row_id": "bccf982c-8ae3-4425-a847-1022a3c464b8",
+   "cohort": "ssat-reading-draft-24",
+   "passage": "draft24-D24-P06",
+   "reasons": [
+    "a: no_source: The key is the primary, everyday sense of 'answered', and 'guessed' and 'conceded' are not senses of the word; a student choosing the most common meaning reaches D without reading the passage. Only 'took blame' and 'matched' are genuine alternative senses, and neither is tempting.",
+    "b: no_source: The key is the headword's primary everyday sense ('answered' = responded), and the passage uses it in exactly that sense. Of the distractors, 'guessed' and 'conceded' are not senses of 'answer' at all, leaving only the secondary senses 'took blame' (answer for) and 'matched' (answer to). A student who never reads the fifth paragraph picks D from the word's default meaning; the item does not test reading in context."
+   ]
+  },
+  {
+   "id": "Q01",
+   "row_id": "0403cf0f-7b77-47ea-961b-462fdd419363",
+   "cohort": "ssat-reading-draft-25",
+   "passage": "draft25-D25-P04",
+   "reasons": [
+    "b: language_error: Passage para 3: 'it refuses to be eaten on the side of anything else' is a strained idiom. 'On the side of' normally means 'in support of'. The intended sense is 'alongside / as a side activity to anything else'. A student may read it as an error. Suggest 'alongside anything else' or 'while doing anything else'. This is low-stakes and attached here because it is passage-level."
+   ]
+  },
+  {
+   "id": "Q13",
+   "row_id": "24caba37-71ce-4050-b849-87c796d7c77f",
+   "cohort": "ssat-reading-draft-26",
+   "passage": "draft26-D26-P04",
+   "reasons": [
+    "b: fact_error: Passage is internally inconsistent about where the Free Parking pile is. P1: 'Taxes and fines go into the middle of the board instead of to the bank'; P6: 'keep the pile under the board, where it has been all along'. 'where it has been all along' asserts the pile was under the board throughout, which contradicts its stated location in the middle of the board. A student reading literally meets two different locations; recommend 'in the middle of the board' or recasting the closing image."
+   ]
+  },
+  {
+   "id": "Q23",
+   "row_id": "b7db54d6-1c4f-4a47-a45a-d4ae4bcd2bba",
+   "cohort": "ssat-reading-draft-26",
+   "passage": "draft26-D26-P05",
+   "reasons": [
+    "a: fact_error: Possible internal tension in the passage. Para 1: 'the only press in Pell's Crossing able to print them belonged to Owen Tisdale' (one press). Para 4: 'Tisdale sold one of his two presses.' It can be reconciled if only one of his two presses could print tickets, but the passage never says so, and a careful reader may notice the singular/plural clash. The owner should check."
+   ]
+  },
+  {
+   "id": "Q02",
+   "row_id": "46247fe7-e996-47c9-9f3b-674ed6c92d33",
+   "cohort": "ssat-reading-draft-28",
+   "passage": "draft28-D28-P04",
+   "reasons": [
+    "a: no_source: Three of the five options are not senses of 'firm' in any context: 'unwritten' and 'private' are unrelated to the word and 'flexible' is its antonym. That leaves 'muscular' and 'strict', and 'muscular' is a strained gloss (firm flesh is not muscular). A student who knows 'firm' can pick 'strict' without reading the passage. Compare Q13/Q14, where all distractors are real senses of the tested word.",
+    "b: no_source: Only two options are senses of 'firm' in any context: 'muscular' (a firm body) and 'strict' (a firm rule). 'unwritten' and 'private' are never meanings of 'firm', and 'flexible' is its antonym. A student who never reads the paragraph is down to muscular vs strict, and 'most nearly means' in a reading passage favours the abstract sense, so the key is close to free. Compare Q13/Q14, where every distractor is a genuine sense of the tested word."
+   ]
+  },
+  {
+   "id": "Q16",
+   "row_id": "75b5f63c-e78f-4eef-85ea-26dc3916e2b5",
+   "cohort": "ssat-reading-draft-28",
+   "passage": "draft28-D28-P05",
+   "reasons": [
+    "b: language_error: Explanation is ungrammatical where the quote is spliced in: 'the farmers had heard of distant companies whose \"claims that took a year to settle\"' - 'whose claims that took a year to settle' has no verb. Should read e.g. 'distant companies with \"claims that took a year to settle\"'."
+   ]
+  }
+ ],
+ "ignored_no_source": [],
+ "batch_patterns": [
+  {
+   "packet": "ssat-reading-draft-23--p1",
+   "grader": "a",
+   "pattern": "Key letter distribution balanced",
+   "detail": "A7 B6 C5 D5 E7 across 30 items, with no runs longer than two. No letter pattern."
+  },
+  {
+   "packet": "ssat-reading-draft-23--p1",
+   "grader": "a",
+   "pattern": "Purpose/main-idea keys tend to be the most specific option",
+   "detail": "Q13, Q21, Q27 and Q30 keys are the longest or most qualified option in their sets. Style only: in each case the distractors are wrong on content, not on form."
+  },
+  {
+   "packet": "ssat-reading-draft-23--p1",
+   "grader": "a",
+   "pattern": "Vocabulary-in-context distractor sets built from far dictionary senses",
+   "detail": "Q05, Q06, Q14, Q19 and Q25 each pair the key with two or three literal or other-domain senses (oil-drilling platform, robots, computers, scaled a cliff, religious rite). This makes the items easy but does not leak the key without the sentence."
+  },
+  {
+   "packet": "ssat-reading-draft-23--p1",
+   "grader": "b",
+   "pattern": "Word-in-context distractors are other dictionary senses of the headword, key is the generic/abstract sense",
+   "detail": "Q05 (sketched / pulled along / taken out vs attracted), Q06 (truck / ship's sails / oil platform vs testing equipment), Q14 (scaled a cliff / won promotion vs went higher), Q25 (religious rite / formal ceremony vs fixed routine). A student who picks the least literal option gets these without the passage; Q14 also adds two antonyms. Not provably free per item, so recorded here only."
+  },
+  {
+   "packet": "ssat-reading-draft-23--p1",
+   "grader": "b",
+   "pattern": "Key letter distribution",
+   "detail": "A 7, B 6, C 5, D 5, E 7 across 30; no runs or sequences. No pattern."
+  },
+  {
+   "packet": "ssat-reading-draft-24--p1",
+   "grader": "a",
+   "pattern": "Key letters balanced",
+   "detail": "A 8, B 7, C 7, D 7, E 7; no runs or sequences found. No letter pattern."
+  },
+  {
+   "packet": "ssat-reading-draft-24--p1",
+   "grader": "a",
+   "pattern": "Overgeneralising main-idea distractor reused",
+   "detail": "Main-idea sets repeatedly include a 'how X everywhere / in general' option (Q07 A 'How lost things in a city park find their way back', Q19 A 'how churches everywhere have traded'), plus a one-paragraph-only option (Q19 D, Q31 D). A test-wise student can eliminate these by shape; the key still needs the passage to choose among the rest."
+  },
+  {
+   "packet": "ssat-reading-draft-24--p1",
+   "grader": "a",
+   "pattern": "Vocabulary-in-context distractors are other dictionary senses",
+   "detail": "Q26, Q33, Q34 (and partly Q27) fill distractors with literal or other dictionary senses of the headword ('lost color', 'became dim', 'door opener', 'musical pitch', 'mail service'), leaving the context sense as the one non-default option. Q12 and Q27 are weaker still because several distractors are not senses of the word at all (flagged per item)."
+  },
+  {
+   "packet": "ssat-reading-draft-24--p1",
+   "grader": "b",
+   "pattern": "key often the longest option",
+   "detail": "On Q04, Q08, Q14, Q17, Q25 and Q29 the key is the longest (and often the only conditional or most specific) option. Letters are balanced (A 8, B 7, C 7, D 7, E 7), so no letter pattern."
+  },
+  {
+   "packet": "ssat-reading-draft-25--p1",
+   "grader": "a",
+   "pattern": "adjacent repeated key letters",
+   "detail": "Key sequence C D A A B B E E C D D C: three back-to-back repeated pairs (Q03-Q04 A, Q05-Q06 B, Q07-Q08 E) plus Q10-Q11 D. Overall distribution is balanced (A2 B2 C3 D3 E2), so not exploitable; recorded only."
+  },
+  {
+   "packet": "ssat-reading-draft-25--p1",
+   "grader": "b",
+   "pattern": "Cross-item giveaway within set P04",
+   "detail": "Q03's key ('The slowness of eating a whole artichoke is the source of its value') and Q05's own stem ('attitude toward the slowness') together give away Q05's key, enthusiastic. Q04's key ('slow work mattered more ... than the prize') echoes the same thesis."
+  },
+  {
+   "packet": "ssat-reading-draft-25--p1",
+   "grader": "b",
+   "pattern": "Cross-item giveaway within set P01",
+   "detail": "Q09's distractor D ('told the tubas to watch Lena's hand') names the Friday fix that is Q11's key ('told them to follow her hand'). Q10's key also states the cause ('delay caused by distance'), which frames Q11."
+  },
+  {
+   "packet": "ssat-reading-draft-25--p1",
+   "grader": "b",
+   "pattern": "Key letters",
+   "detail": "C D A A B B E E C D D C: the distribution is 2/2/3/3/2. There are adjacent repeats (AA, BB, EE, DD) but no exploitable order."
+  },
+  {
+   "packet": "ssat-reading-draft-26--p1",
+   "grader": "a",
+   "pattern": "Cross-item cue for Garland",
+   "detail": "Q24's key (a print shop in Garland) is named as Garland in distractors of Q19 ('the Union's tickets being printed in Garland') and Q23 ('He moved his shop to Garland'). A student scanning the set sees Garland recur as the out-of-town printing location. This is mild because Q19 and Q23 do not say who printed there."
+  },
+  {
+   "packet": "ssat-reading-draft-26--p1",
+   "grader": "a",
+   "pattern": "Key-letter distribution",
+   "detail": "A5 B5 C6 D4 E5 across 24 items, with no runs. No positional pattern."
+  },
+  {
+   "packet": "ssat-reading-draft-26--p1",
+   "grader": "b",
+   "pattern": "key letter distribution",
+   "detail": "A5 B5 C5 D4 E5 across 24 items; no run or skew found."
+  },
+  {
+   "packet": "ssat-reading-draft-26--p1",
+   "grader": "b",
+   "pattern": "key is the longest option in several main-idea/summary items",
+   "detail": "Q08 B, Q10 D, Q15 A and Q21 A are the longest options in their sets; in Q03, Q12, Q18 and Q20 a distractor is as long or longer, so the cue is not consistent across the packet. Not decisive."
+  },
+  {
+   "packet": "ssat-reading-draft-26--p1",
+   "grader": "b",
+   "pattern": "vocabulary-in-context distractor sets are all literal dictionary senses",
+   "detail": "Q05, Q14, Q16: distractors are other senses of the headword (subtracts/requires; smeared/unrolled/draped/opened wide; homely/unadorned/ordinary), and the key is the one non-literal or context sense. This is the conventional SSAT format, recorded only."
+  },
+  {
+   "packet": "ssat-reading-draft-28--p1",
+   "grader": "b",
+   "pattern": "Key letter distribution",
+   "detail": "Keys A,E,A,B,D,B / C,D,E,D,E,C / C,E,A,B,E,B: A3 B4 C3 D3 E5. No sequence or dominant letter."
+  },
+  {
+   "packet": "ssat-reading-draft-28--p1",
+   "grader": "b",
+   "pattern": "Vocabulary-in-context distractor sets built from other senses of the word",
+   "detail": "Q01, Q13, Q14 use genuine alternate senses (each with a 'the sense of X' distractor note); Q02 breaks this and uses non-senses ('unwritten', 'private', 'flexible'), leaving only 'muscular' as a competing sense, which is why Q02 is nearly answerable without the passage."
+  }
+ ]
+}
