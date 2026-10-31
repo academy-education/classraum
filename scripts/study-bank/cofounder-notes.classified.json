@@ -1,6 +1,6 @@
 {
  "classified_at": "2026-10-31",
- "count": 182,
+ "count": 183,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1679,6 +1679,15 @@
    "scope": "batch",
    "rationale": "Cross-passage name reuse: \"Pruitt\" and \"Hester\" recur across different stories (live SSAT 2 passages, staged ISEE 3, SSAT 3, ACT 1, live ISEE 1). The key is judged unique and the item is sound; this is a variety/authoring defect, not a block. Authoring rule for future reading briefs: no proper name reused across passages within or across cohorts; check names against the live and staged bank before staging.",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-31)"
+  },
+  {
+   "review_id": "acfba65c-60d2-4a81-8394-e2d23857c0a0",
+   "defect_type": "difficulty_off",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "\"Only defensible answer but really easy\": a difficulty note, key unique (blind pick matched the key).",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-11-01)"
   }
  ],
  "register": [

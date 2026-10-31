@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-30T15:22:39.739Z",
+ "built_at": "2026-10-31T16:35:17.273Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1256,
-  "human": 1216,
+  "rows": 1277,
+  "human": 1237,
   "model_assisted_excluded": 40,
-  "review_entries": 182,
+  "review_entries": 183,
   "register_entries": 9
  },
  "taxonomy": {
@@ -2788,6 +2788,29 @@
    "item_sha": "e1f51d91473689c5d8579f527ca074a3",
    "content_sha": "f7e8782b627ee0b8b01f90c6ee97403f",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "acfba65c-60d2-4a81-8394-e2d23857c0a0",
+   "item_id": "0f364a64-8a1d-490e-b199-75ada2063d32",
+   "run_id": "agentreview-audit2-cofounder-2026-10-30",
+   "cohort": "isee-reading-draft-13",
+   "family": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "It is the only defensible answer but it's really easy. ",
+   "reviewed_at": "2026-10-31T15:23:31.419+00:00",
+   "defect_type": "difficulty_off",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "\"Only defensible answer but really easy\": a difficulty note, key unique (blind pick matched the key).",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "2b8b6f02c90d0a14720b288bb7f891c0",
+   "content_sha": "2b8b6f02c90d0a14720b288bb7f891c0",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-11-01)"
   },
   {
    "review_id": "b30f004e-245c-4e29-909a-e1a66ef5a160",

@@ -7102,3 +7102,4 @@ structural checks are pre-flight only. See CLAUDE.md.
     BANK_FAMILY/BANK_COHORT); unchanged without them.
   - **Depth:** map-form-depth `--staged`: math 228 rows, still **5 forms** (f6 short OA 5/10, N 1/10; Geo and Stats
     now fill f6). Live unchanged at 5.
+- 2026-11-01 — Daniel closed `agentreview-audit2-cofounder-2026-10-30` (21/21, all `unique`; one note "only defensible answer but really easy", classified `difficulty_off`, non-blocking). `agent-review-release.mjs --wave2` dry run: RELEASE 535 across 21 cohorts (ACT Reading v8d/v9b/v10a/v10b/v11a/v12b, CR v19/v20, ISEE reading d9/d13/d14, TOEFL conv d1-2, passage d5-7, talk d3-7), hold 0. NOT applied: waiting on the owner's go. iTEP audit `itep-audit-cofounder-2026-10-31` drawn (33 items, 8 cohorts, control 27.3%); `nextManualDraw` removed from cofounder-queue.json.
