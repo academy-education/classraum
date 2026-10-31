@@ -1,0 +1,217 @@
+[
+ {
+  "id": "MB13-G6-06",
+  "domain": "Geometry",
+  "subskill": "Surface area of a cube from the perimeter of its net",
+  "difficulty": "hard",
+  "topic_tag": "6.G.A.4",
+  "prompt": "A net that folds into a cube is made of six squares joined edge to edge, with no gaps or overlaps. The perimeter of the whole net is 168 centimeters. What is the surface area of the cube, in square centimeters?",
+  "choices": [
+   "864",
+   "294",
+   "10584",
+   "1176"
+  ],
+  "correct_answer": "864",
+  "explanation": "Six squares have 24 sides in all. The net has 5 places where two squares share an edge, and each shared edge hides 2 sides, so the outline of the net is 24 - 10 = 14 sides. Each side is 168 / 14 = 12 cm, each face has area 144, and the surface area is 6 x 144 = 864 square centimeters.",
+  "solve": "const s=168/14;return 6*s*s;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.G.A.4",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "294",
+    "mis_step": "side 168 / 24."
+   },
+   {
+    "choice": "10584",
+    "mis_step": "side 168 / 4."
+   },
+   {
+    "choice": "1176",
+    "mis_step": "side 168 / 12."
+   }
+  ],
+  "distractor_solve": {
+   "294": "return 6*(168/24)*(168/24);",
+   "1176": "return 6*(168/12)*(168/12);",
+   "10584": "return 6*(168/4)*(168/4);"
+  }
+ },
+ {
+  "id": "MB13-G6-03",
+  "domain": "Geometry",
+  "subskill": "Surface area of a box from the areas of its three different faces",
+  "difficulty": "medium",
+  "topic_tag": "6.G.A.4",
+  "prompt": "A box is shaped like a rectangular prism. Its three different faces have areas of 10, 6, and 15 square centimeters. What is the total surface area of the box, in square centimeters?",
+  "choices": [
+   "36",
+   "40",
+   "62",
+   "90"
+  ],
+  "correct_answer": "62",
+  "explanation": "A box has two faces of each of the three sizes, so the surface area is 2 x (10 + 6 + 15) = 2 x 31 = 62 square centimeters.",
+  "solve": "return 2*(10+6+15);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.G.A.4",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "6 x 6."
+   },
+   {
+    "choice": "40",
+    "mis_step": "edges 5, 3, 2; 4 x 10."
+   },
+   {
+    "choice": "90",
+    "mis_step": "6 x 15."
+   }
+  ],
+  "distractor_solve": {
+   "36": "return 6*6;",
+   "40": "return 4*(5+3+2);",
+   "90": "return 6*15;"
+  }
+ },
+ {
+  "id": "MB13-G8-02",
+  "domain": "Geometry",
+  "subskill": "Area of a circular cross-section of a sphere cut at a given distance from its center",
+  "difficulty": "hard",
+  "topic_tag": "8.G.B.7",
+  "prompt": "A solid ball has a radius of 10 centimeters. It is cut by one flat cut that is 8 centimeters from the center of the ball. The cut surface is a circle. Using 3.14 for pi, what is the area of the cut surface, in square centimeters?",
+  "choices": [
+   "200.96",
+   "18.84",
+   "514.96",
+   "113.04"
+  ],
+  "correct_answer": "113.04",
+  "explanation": "The radius of the cut circle is a leg of a right triangle whose hypotenuse is the ball's radius 10 and whose other leg is 8: r^2 = 10^2 - 8^2 = 36, so r = 6. The area is 3.14 x 36 = 113.04 square centimeters.",
+  "solve": "const r2=10**2-8**2;return 3.14*r2;",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.G.B.7",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "200.96",
+    "mis_step": "3.14 x 8^2."
+   },
+   {
+    "choice": "18.84",
+    "mis_step": "3.14 x 6."
+   },
+   {
+    "choice": "514.96",
+    "mis_step": "3.14 x (100 + 64)."
+   }
+  ],
+  "distractor_solve": {
+   "200.96": "return 3.14*8*8;",
+   "514.96": "return 3.14*(10*10+8*8);",
+   "18.84": "return 3.14*6;"
+  }
+ },
+ {
+  "id": "MB13-G5-01",
+  "domain": "Geometry",
+  "subskill": "Volume of a box with a square base given the perimeter of the base",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.C.5b",
+  "prompt": "Mia has a box shaped like a rectangular prism with a square base. The perimeter of the base is 36 centimeters, and the box is 2 centimeters tall. What is the volume of the box, in cubic centimeters?",
+  "choices": [
+   "72",
+   "162",
+   "18",
+   "729"
+  ],
+  "correct_answer": "162",
+  "explanation": "A square has four equal sides, so each side of the base is 36 / 4 = 9 cm. The base has area 9 x 9 = 81 square centimeters, and the volume is 81 x 2 = 162 cubic centimeters.",
+  "solve": "const s=36/4;return s*s*2;",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.C.5b",
+  "area_25": "Measurement and Data",
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "72",
+    "mis_step": "36 x 2."
+   },
+   {
+    "choice": "18",
+    "mis_step": "9 x 2."
+   },
+   {
+    "choice": "729",
+    "mis_step": "9 x 9 x 9."
+   }
+  ],
+  "distractor_solve": {
+   "18": "return 36/4*2;",
+   "72": "return 36*2;",
+   "729": "return (36/4)*(36/4)*(36/4);"
+  }
+ },
+ {
+  "id": "MB13-G6-02",
+  "domain": "Geometry",
+  "subskill": "Volume of a box from the sums of its edges taken two at a time",
+  "difficulty": "hard",
+  "topic_tag": "6.G.A.2",
+  "prompt": "Theo measures a closed carton shaped like a rectangular prism. Adding its length and width gives 21 inches, adding its width and height gives 10 inches, and adding its length and height gives 19 inches. How many cubic inches of space does the carton take up?",
+  "choices": [
+   "360",
+   "348",
+   "198",
+   "210"
+  ],
+  "correct_answer": "360",
+  "explanation": "Adding the three sums counts each edge twice: 21 + 10 + 19 = 50, so length + width + height = 25. Then the height is 25 - 21 = 4, the length is 25 - 10 = 15, and the width is 25 - 19 = 6. The volume is 15 x 6 x 4 = 360 cubic inches.",
+  "solve": "const H=(21+10+19)/2;return (H-10)*(H-19)*(H-21);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.G.A.2",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "348",
+    "mis_step": "2(lw + wh + lh)."
+   },
+   {
+    "choice": "198",
+    "mis_step": "11 x 9 x 2."
+   },
+   {
+    "choice": "210",
+    "mis_step": "21 x 10."
+   }
+  ],
+  "distractor_solve": {
+   "198": "return (21-10)*(19-10)*(21-19);",
+   "210": "return 21*10;",
+   "348": "return 2*(15*6+6*4+15*4);"
+  }
+ }
+]

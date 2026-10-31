@@ -1,0 +1,177 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B13.prereg.md",
+ "area": "Operations and Algebraic Thinking",
+ "frozenSha": "ac4b9ec2ca430de617ebba5cc2e44c8f38255510425a5db11335bb4cc9446c20",
+ "n": 10,
+ "optionsOnly": {
+  "cand": {
+   "n": 10,
+   "picks": 30,
+   "hits": 11,
+   "unan": 1
+  },
+  "ctrl": {
+   "n": 10,
+   "picks": 30,
+   "hits": 7,
+   "unan": 0
+  },
+  "status": "hold",
+  "cr": 36.666666666666664,
+  "kr": 23.333333333333332,
+  "cu": 10,
+  "ku": 0,
+  "margin": 13.333333333333332,
+  "umar": 10,
+  "why": "candidate 36.7% vs control 23.3% (margin 13.3, bar +10); unanimous-correct rate 10.0% vs control 0.0% (10.0, bar +15)",
+  "letterControl": 30
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 10,
+   "unscored": 0,
+   "hist": {
+    "1": 2,
+    "2": 0,
+    "3": 6,
+    "4": 2
+   },
+   "share2": 0,
+   "meets": true,
+   "line": "key rank 1/2/3/4 = 2/0/6/2 of 10; rank-2 share 0.0% (prediction <= 25%: met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 1,
+    "2": 15,
+    "3": 12,
+    "4": 2
+   },
+   "picks": 30,
+   "pick2": 50,
+   "key2": 0,
+   "line": "candidate picks at rank 1/2/3/4 = 1/15/12/2 of 30 (rank-2 pick rate 50.0%) vs candidate keys at rank 2 0/10 = 0.0%"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 10,
+  "judgments": 20,
+  "tooEasy": 4,
+  "tooHard": 0,
+  "tooEasyPct": 20,
+  "tooHardPct": 0,
+  "offA": -0.9,
+  "offB": -0.9,
+  "spreadA": null,
+  "spreadB": null,
+  "D1": false,
+  "D2": false,
+  "D3": false,
+  "status": "fail"
+ },
+ "coldOnKey": 20,
+ "items": {
+  "MB13-O7-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB13-O7-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB13-O8-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB13-O6-01": {
+   "drop": [],
+   "hold": [],
+   "need": [
+    "R4 two or more free strikes"
+   ],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB13-O6-02": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB13-O7-03": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MB13-O6-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB13-O7-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB13-O7-07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB13-O6-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  }
+ },
+ "verdict": "INCOMPLETE"
+}

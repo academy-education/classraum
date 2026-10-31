@@ -1,0 +1,1852 @@
+[
+ {
+  "id": "MB13-D6-05",
+  "mech": "V32",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Number of consecutive whole numbers from the first number and the mean",
+  "grade_rationale": "High for grade 6 (6.SP.B.5c): the mean of evenly spaced data is the middle of the first and last values; the count needs the inclusive +1.",
+  "prompt": "A list is made of consecutive whole numbers, starting with 6. The mean of the numbers in the list is 22. How many numbers are in the list?",
+  "choices": [
+   "33",
+   "17",
+   "31",
+   "28"
+  ],
+  "correct_answer": "33",
+  "explanation": "In a list of consecutive numbers the mean is halfway between the first and last numbers, so the last number is 2 x 22 - 6 = 38. From 6 to 38 there are 38 - 6 + 1 = 33 numbers.",
+  "solve": "const last=2*22-6;return last-6+1;",
+  "distractor_solve": {
+   "17": "return 22-6+1;",
+   "28": "return 22+6;",
+   "31": "return 2*(22-6)-1;"
+  },
+  "mechanism": [
+   "last = 2 x 22 - 6 = 38",
+   "count = 38 - 6 + 1 = 33"
+  ],
+  "quantity_asked": "how many numbers are in the list",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option can be tested by finding the mean of that many numbers from the first, which is one computation per option"
+  },
+  "distractor_meta": {
+   "17": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts from the first number up to the mean only",
+    "why": "22 - 6 + 1."
+   },
+   "28": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the first number to the mean",
+    "why": "22 + 6."
+   },
+   "31": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts 1 instead of adding 1 when counting from the first to the last number",
+    "why": "2 x 16 - 1."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt by deal13 (seed 20262307), not chosen. 17 (halfPlus) lands below; 31 (minus1) lands below; 28 (mPlusF) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is a printed number; no two options are joined by a printed number or a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed. Differences from the key: 16, 2, 5.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor Extreme key: the counter error last (38) lands past the key and is not an option.",
+  "shape_check": "Options: 33, 17, 31, 28. FORM-U (no option alone in its surface form), CLASS, ADJ, CLOSEPAIR, SUMOPT, LONE, HUB, RUN refusals passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe": "probe13.mjs (live: dump-b13 unarchived maths, verified + staged, all families + SAT prior; map: mapgrep13)",
+   "live": [
+    {
+     "query": "consecutive",
+     "n": 33,
+     "hits": [
+      "02788ad4-25d5-47ee-b357-d17a790887af",
+      "0314f3eb-6e25-46a1-85c2-34e82547a26d",
+      "0f958232-5bc3-4552-a408-0e82ac9899ca",
+      "293dc1cf-8f59-4e7e-bcae-be2cea19736a",
+      "3744de68-9a75-4338-b03b-7d376dddca15"
+     ]
+    },
+    {
+     "query": "consecutive&(mean|average)",
+     "n": 2,
+     "hits": [
+      "PSDA-H4-06",
+      "PSDA-H4-11"
+     ]
+    },
+    {
+     "query": "consecutive&how many numbers",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(mean|average) of (the )?(numbers|integers)&consecutive",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "map": [
+    {
+     "query": "consecutive&mean",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "consecutive",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "| V32 consecutive whole numbers from 15 with mean 23.5: how many | last = 2m - f, count = last - f + 1 | 33 | consecutive-integer SUM items (SSAT 293dc1cf, ISEE c54c9b0f...): n, they give the sum and count and ask a member | CLEAN |"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-a candidate for the cold screener. Self-screen strikes: 0. nearMean false."
+  },
+  "params": {
+   "f": 6,
+   "n": 33
+  },
+  "grade": 6,
+  "stem": "A list is made of consecutive whole numbers, starting with 6. The mean of the numbers in the list is 22. How many numbers are in the list?",
+  "options": [
+   "33",
+   "17",
+   "31",
+   "28"
+  ],
+  "key": "33",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "nearMean": false,
+  "distractor_errors": {
+   "17": "halfPlus: counts from the first number up to the mean only",
+   "28": "mPlusF: adds the first number to the mean",
+   "31": "minus1: subtracts 1 instead of adding 1 when counting from the first to the last number"
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "return 2*22-6;",
+   "direction": "above",
+   "name": "last",
+   "value": "38",
+   "misconception": "finds the last number in the list and stops"
+  },
+  "far_distractor": {
+   "option": "28",
+   "natural_side": "above",
+   "why": "adds the first number to the mean: over this mechanism's whole parameter grid this error lands above the true value in at least 65% of cases (natMap), but with these numbers it lands below the key."
+  },
+  "alt_of": "MB13C-Da-V32-b0",
+  "selected_from": "MB13C-Da-V32-b"
+ },
+ {
+  "id": "MB13-D7-04",
+  "mech": "PCTERR",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.A.2",
+  "subskill": "Estimate a count from a random sample, then find the percent error against the actual count",
+  "grade_rationale": "High for grade 7 (7.SP.A.2 with 7.RP.A.3): a population estimate from a random sample, then its percent error, measured against the actual count.",
+  "prompt": "A school has 800 students, and 80 of them walk to school. Before knowing this, Ella asked a random sample of 80 of the students, and 12 of them walk to school. Ella used the sample to estimate how many of the 800 students walk to school. By what percent is the estimate greater than the actual number? Round to the nearest whole percent.",
+  "choices": [
+   "15",
+   "6",
+   "50",
+   "40"
+  ],
+  "correct_answer": "50",
+  "explanation": "The sample rate is 12/80, so the estimate is 12/80 x 800 = 120. That is 120 - 80 = 40 more than the actual number, and 40 / 80 = 50% exactly (no rounding is needed).",
+  "solve": "const e=800*12/80;return (e-80)/80*100;",
+  "distractor_solve": {
+   "6": "return Math.round((800*12/80-80)/(800-80)*100);",
+   "15": "return Math.round(12/80*100);",
+   "40": "return 800*12/80-80;"
+  },
+  "mechanism": [
+   "estimate: 12/80 x 800 = 120",
+   "difference: 40",
+   "40 / 80 = 50%"
+  ],
+  "quantity_asked": "the percent by which the sample estimate exceeds the actual number",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without the estimate and the difference, which is the method"
+  },
+  "distractor_meta": {
+   "6": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the difference by the 800 - 80 who do not",
+    "why": "40 / 720."
+   },
+   "15": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the percent of the sample instead of the percent error",
+    "why": "12/80 as a percent."
+   },
+   "40": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds how many more the estimate is and stops",
+    "why": "120 - 80."
+   }
+  },
+  "structure_check": "Key rank 4 of 4 (dealt by deal13.mjs, seed 20262308). 40 (diff) lands below; 15 (sampPct) lands below; 6 (byRest) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed. Differences from the key: 10, 35, 44.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 50, 40, 15, 6. engine13 FORM-U, CLASS, ADJ, CLOSEPAIR, SUMOPT passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe13": {
+    "file": "probes2.json",
+    "stem": "A school has 1,200 students, and 300 of them walk to school. Before she knew this, Mia asked a random sample of 50 students, and 15 of them walk to school. By what percent is the estimate from Mia's sample greater than the actual number of students who walk?",
+    "live": [
+     {
+      "query": "estimate",
+      "n": 57,
+      "hits": [
+       "01c24548-0548-4e13-bb00-9691b6217857",
+       "0c45f7f0-2b21-438b-9e7c-6150a7921fbc",
+       "0eeb7374-ca5d-43f7-bcb6-fb2471db9cd4",
+       "113d18db-403e-46a9-b2c7-ac487f306e5d",
+       "15521ff2-3a6b-4175-9b2f-9f4a50b2cb21",
+       "197c5e8e-51fa-471b-8eb9-1a201f4796c0",
+       "298cfe3d-ae95-438f-8eae-298134e9fe8e",
+       "31d892e0-d5ee-49b1-98bb-118f59b93e2a"
+      ]
+     },
+     {
+      "query": "sample&actual || estimate&actual number",
+      "n": 1,
+      "hits": [
+       "527f287c-95dd-4fd9-945a-4545a143742c"
+      ]
+     },
+     {
+      "query": "estimate&greater than the actual || by what percent&sample || percent error",
+      "n": 6,
+      "hits": [
+       "0c45f7f0-2b21-438b-9e7c-6150a7921fbc",
+       "5769ba53-f508-4e17-9db2-80d1c8128873",
+       "afb1c85c-4130-4c85-92e8-52d086a0e2e8",
+       "MMG-O09",
+       "MMG-O09",
+       "MV2-O78-05"
+      ]
+     },
+     {
+      "query": "walk to school&sample",
+      "n": 0,
+      "hits": []
+     }
+    ],
+    "map": [
+     {
+      "query": "actual number",
+      "n": 1,
+      "hits": [
+       "MB2-O7R-14"
+      ]
+     },
+     {
+      "query": "estimate&percent",
+      "n": 1,
+      "hits": [
+       "MV2-O78-05"
+      ]
+     },
+     {
+      "query": "sample&actual",
+      "n": 0,
+      "hits": []
+     }
+    ]
+   },
+   "disposition": "clean by the standard, named BORDERLINE for R11: it concatenates MV2-D7-09 (sample estimate) and MMG-O09 (percent error), so it is each of them plus two steps.",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "the estimate is greater, so the percent is positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-b candidate for the cold screener. Self-screen strikes: 0. nearMean: false."
+  },
+  "params": {
+   "N": 800,
+   "n": 80,
+   "k": 12,
+   "A": 80
+  },
+  "grade": 7,
+  "stem": "A school has 800 students, and 80 of them walk to school. Before knowing this, Ella asked a random sample of 80 of the students, and 12 of them walk to school. Ella used the sample to estimate how many of the 800 students walk to school. By what percent is the estimate greater than the actual number? Round to the nearest whole percent.",
+  "options": [
+   "15",
+   "6",
+   "50",
+   "40"
+  ],
+  "key": "50",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "nearMean": false,
+  "distractor_errors": {
+   "6": "byRest: divides the difference by the 800 - 80 who do not",
+   "15": "sampPct: gives the percent of the sample instead of the percent error",
+   "40": "diff: finds how many more the estimate is and stops"
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 800*12/80/80*100;",
+   "direction": "above",
+   "name": "ratio",
+   "value": "150",
+   "misconception": "writes the estimate as a percent of the actual number and does not subtract 100"
+  },
+  "far_distractor": {
+   "option": "40",
+   "natural_side": "above",
+   "why": "finds how many more the estimate is and stops: over this mechanism's whole parameter grid this error lands above the true value in at least 65% of sets, but with these numbers it lands below the key."
+  },
+  "alt_of": "MB13C-Db-PCTERR-b0",
+  "selected_from": "MB13C-Db-PCTERR-b"
+ },
+ {
+  "id": "MB13-D6-02",
+  "mech": "T09",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.SP.B.5a",
+  "subskill": "Percent of a survey sample after more responses in one category are added",
+  "grade_rationale": "Mid for grade 6 (6.SP.B.5a / 6.RP.A.3c): a relative frequency is turned into a count, both the count and the total change, and the new relative frequency is found.",
+  "prompt": "In a survey of 12 students, 50% chose purple as their favorite color. Then 28 more students were surveyed, and all of them chose purple. What percent of all the students surveyed chose purple?",
+  "choices": [
+   "70",
+   "85",
+   "75",
+   "78"
+  ],
+  "correct_answer": "85",
+  "explanation": "At first 50% of 12 is 6 students. After the new students, 6 + 28 = 34 of 40 students chose purple, which is 85%.",
+  "solve": "return 100*(50*12/100+28)/(12+28);",
+  "distractor_solve": {
+   "70": "return 100*28/(12+28);",
+   "75": "return (50+100)/2;",
+   "78": "return 50+28;"
+  },
+  "mechanism": [
+   "50% of 12 = 6",
+   "purple: 34",
+   "total: 40",
+   "85%"
+  ],
+  "quantity_asked": "the percent of all the students who chose purple",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without the new count and the new total, which is the method"
+  },
+  "distractor_meta": {
+   "70": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the percent of all students who are the new students",
+    "why": "28 / 40."
+   },
+   "75": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "averages 50% and 100% without weighting by the group sizes",
+    "why": "(50 + 100) / 2."
+   },
+   "78": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the 28 students to the 50%",
+    "why": "50 + 28."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt by deal13 (seed 20262307), not chosen. 70 (newOnly) lands below; 75 (avg) lands below; 78 (pk) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is a printed number; no two options are joined by a printed number or a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed. Differences from the key: 15, 10, 7.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor Extreme key: the counter error addPct (283 1/3) lands past the key and is not an option.",
+  "shape_check": "Options: 85, 70, 75, 78. FORM-U (no option alone in its surface form), CLASS, ADJ, CLOSEPAIR, SUMOPT, LONE, HUB, RUN refusals passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe": "probe13.mjs (live: dump-b13 unarchived maths, verified + staged, all families + SAT prior; map: mapgrep13)",
+   "live": [
+    {
+     "query": "survey",
+     "n": 70,
+     "hits": [
+      "00c46470-52ca-49d6-9abd-81e3c927bf5e",
+      "09ba6cb3-825f-4ba4-bbb1-859d7d118640",
+      "113d18db-403e-46a9-b2c7-ac487f306e5d",
+      "14e87731-9521-49a9-860d-8ae6479f18f0",
+      "161f2e87-efb4-44bc-b1ae-039594b2beb0"
+     ]
+    },
+    {
+     "query": "more students were surveyed",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(more|additional) (students|people)&(surveyed|asked)&percent",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "percent of all the students surveyed",
+     "n": 3,
+     "hits": [
+      "b76b4354-5d34-4352-823e-9ae42e50d6ea",
+      "MMG-D14",
+      "b76b4354-5d34-4352-823e-9ae42e50d6ea"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "surveyed&percent",
+     "n": 2,
+     "hits": [
+      "MMG-D14",
+      "MV2-D8-03"
+     ]
+    },
+    {
+     "query": "more students were",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "| T09 survey percent after k more all-blue answers | p x N, + k, / (N + k) | 68 | ISEE cfe25a3a (percents to counts), ISEE 0dd1fa6b (club 40% girls, boys join, 25%: solves the joiners from the new percent: the INVERSE with a different unknown); SSAT dc1f657b; n | CLEAN; 0dd1fa6b named for R11 (inverse of a 3-step chain) |"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "every new student chose purple, so the percent rises above 50% and stays below 100%"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-a candidate for the cold screener. Self-screen strikes: 0. nearMean false."
+  },
+  "params": {
+   "N": 12,
+   "p": 50,
+   "k": 28
+  },
+  "grade": 6,
+  "stem": "In a survey of 12 students, 50% chose purple as their favorite color. Then 28 more students were surveyed, and all of them chose purple. What percent of all the students surveyed chose purple?",
+  "options": [
+   "70",
+   "85",
+   "75",
+   "78"
+  ],
+  "key": "85",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "nearMean": false,
+  "distractor_errors": {
+   "70": "newOnly: finds the percent of all students who are the new students",
+   "75": "avg: averages 50% and 100% without weighting by the group sizes",
+   "78": "pk: adds the 28 students to the 50%"
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 50+100*28/12;",
+   "direction": "above",
+   "name": "addPct",
+   "value": "283 1/3",
+   "misconception": "adds 28 out of 12 as a percent to the 50%"
+  },
+  "far_distractor": {
+   "option": "75",
+   "natural_side": "above",
+   "why": "averages 50% and 100% without weighting by the group sizes: over this mechanism's whole parameter grid this error lands above the true value in at least 65% of cases (natMap), but with these numbers it lands below the key."
+  },
+  "alt_of": "MB13C-Da-T09-b0",
+  "selected_from": "MB13C-Da-T09-b"
+ },
+ {
+  "id": "MB13-D6-06",
+  "mech": "T05",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Two daily values recovered from a running mean, then compared",
+  "grade_rationale": "High for grade 6 (6.SP.B.5c): a mean is turned back into a total three times, and two day values are found as differences of totals.",
+  "prompt": "Mia did push-ups every day. After 5 days, Mia's mean was 31 push-ups per day. After 6 days, the mean was 36 push-ups per day. After 7 days, the mean was 34 push-ups per day. How many more push-ups did Mia do on day 6 than on day 7?",
+  "choices": [
+   "49",
+   "22",
+   "39",
+   "30"
+  ],
+  "correct_answer": "39",
+  "explanation": "The totals are 5 x 31 = 155, 6 x 36 = 216 and 7 x 34 = 238. Day 6 was 216 - 155 = 61 push-ups and day 7 was 238 - 216 = 22. Day 6 had 61 - 22 = 39 more.",
+  "solve": "const d6=6*36-5*31;const d7=7*34-6*36;return d6-d7;",
+  "distractor_solve": {
+   "22": "return 7*34-6*36;",
+   "30": "return 6*(36-31);",
+   "49": "return 7*((36-31)-(34-36));"
+  },
+  "mechanism": [
+   "totals 155, 216, 238",
+   "day 6 = 61",
+   "day 7 = 22",
+   "difference 39"
+  ],
+  "quantity_asked": "how many more push-ups on day 6 than on day 7",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without the three totals, which is the method"
+  },
+  "distractor_meta": {
+   "22": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the push-ups on day 7 and stops",
+    "why": "7 x 34 - 6 x 36 = 22."
+   },
+   "30": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the change in the mean from day 5 to day 6 by 6 and stops",
+    "why": "6 x 5."
+   },
+   "49": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "compares the two changes in the mean and multiplies by 7",
+    "why": "7 x (5 - (-2))."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 (seed 20262307), not chosen. 49 (meanGap) lands above; 22 (d7) lands below; 30 (gain6) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is a printed number; no two options are joined by a printed number or a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed. Differences from the key: -10, 17, 9.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 39, 49, 22, 30. FORM-U (no option alone in its surface form), CLASS, ADJ, CLOSEPAIR, SUMOPT, LONE, HUB, RUN refusals passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe": "probe13.mjs (live: dump-b13 unarchived maths, verified + staged, all families + SAT prior; map: mapgrep13)",
+   "live": [
+    {
+     "query": "push-ups",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "after \\d+ days the mean",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(after|through) \\d+ days&(after|through) \\d+ days&(mean|average)",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(mean|average) was&(mean|average) was&(mean|average) was",
+     "n": 2,
+     "hits": [
+      "8c98c3a5-60ed-4f02-b99f-243925799be3",
+      "PSDA5-10"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "after \\d+ days&mean",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "push-ups",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "| T05 running mean after days 5, 6, 7: day 6 minus day 7 | 3 totals, 2 differences, subtract | 2 | ACT 8c98c3a5 (3-day moving average, units on Thursday): n, windowed sums not cumulative, different asked; ACT a887c377 (one added value from two means) is a sub-chain used twice plus a comparison (3 steps added) | CLEAN, **borderline named for R11** |"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-a candidate for the cold screener. Self-screen strikes: 0. nearMean true."
+  },
+  "params": {
+   "m5": 31,
+   "m6": 36,
+   "m7": 34
+  },
+  "grade": 6,
+  "stem": "Mia did push-ups every day. After 5 days, Mia's mean was 31 push-ups per day. After 6 days, the mean was 36 push-ups per day. After 7 days, the mean was 34 push-ups per day. How many more push-ups did Mia do on day 6 than on day 7?",
+  "options": [
+   "49",
+   "22",
+   "39",
+   "30"
+  ],
+  "key": "39",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "nearMean": true,
+  "distractor_errors": {
+   "22": "d7: finds the push-ups on day 7 and stops",
+   "30": "gain6: multiplies the change in the mean from day 5 to day 6 by 6 and stops",
+   "49": "meanGap: compares the two changes in the mean and multiplies by 7"
+  },
+  "alt_of": "MB13C-Da-T05-b0",
+  "selected_from": "MB13C-Da-T05-b"
+ },
+ {
+  "id": "MB13-D7-03",
+  "mech": "INEQP",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.SP.C.7a",
+  "subskill": "Probability that a randomly chosen integer satisfies a linear inequality",
+  "grade_rationale": "Mid for grade 7 (7.SP.C.7a with 7.EE.B.4b): a uniform model on a range of integers that includes negatives, and an event given by a two-step linear inequality.",
+  "prompt": "Ella writes each integer from -8 to 15 on its own card and mixes the cards. Ella then draws one card without looking, and x is the number on it. What is the probability that 2x - 7 > 5?",
+  "choices": [
+   "13/24",
+   "2/3",
+   "3/8",
+   "7/12"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "2x - 7 > 5 means 2x > 12, so x > 6. From -8 through 15 there are 24 integers, and 7 through 15 is 9 of them. The probability is 9/24 = 3/8.",
+  "solve": "let n=0;for(let x=-8;x<=15;x++) if(2*x-7>5) n++;return n/24;",
+  "distractor_solve": {
+   "2/3": "return (15-Math.floor((5-7)/2))/24;",
+   "7/12": "return (6-(-8))/24;",
+   "13/24": "return (15-Math.floor(5/2))/24;"
+  },
+  "mechanism": [
+   "x > 6",
+   "integers in the range: 24",
+   "favourable: 9",
+   "3/8"
+  ],
+  "quantity_asked": "the probability that the inequality is true for the chosen integer",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a probability cannot be checked without solving the inequality and counting, which is the method"
+  },
+  "distractor_meta": {
+   "2/3": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts 7 instead of adding it when solving",
+    "why": "x > -1."
+   },
+   "7/12": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the integers less than 6 instead of greater",
+    "why": "14/24."
+   },
+   "13/24": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the - 7",
+    "why": "x > 2.5."
+   }
+  },
+  "structure_check": "Key rank 1 of 4 (dealt by deal13.mjs, seed 20262308). 2/3 (sign) lands above; 7/12 (other) lands above; 13/24 (noB) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed. Differences from the key: -7/24, -5/24, -1/6.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 3/8, 2/3, 7/12, 13/24. engine13 FORM-U, CLASS, ADJ, CLOSEPAIR, SUMOPT, SUM1 passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe13": {
+    "file": "probes3.json",
+    "stem": "An integer x is chosen at random from the integers -5 through 10. What is the probability that 2x - 3 is greater than 7?",
+    "live": [
+     {
+      "query": "chosen at random",
+      "n": 41,
+      "hits": [
+       "0314f3eb-6e25-46a1-85c2-34e82547a26d",
+       "03d986ae-405b-43bb-b21b-0838fd7f4d54",
+       "06ef0168-83e5-4079-b5d5-e7658ea5af31",
+       "14a5cafd-a7e1-4b7a-b54f-66562808f381",
+       "1a22c426-7f25-4e06-a190-f4c26e7626c9",
+       "1cfd5353-3593-4d42-871d-40aec13b3589",
+       "2be81593-3c69-4e83-8083-b24d1355b04b",
+       "2fb9b050-8330-4082-8528-33ceecb9a0e4"
+      ]
+     },
+     {
+      "query": "chosen at random&greater than || at random&inequality || probability&2x",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "integer x is chosen || probability that [0-9]x",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "integers -[0-9]+ through",
+      "n": 0,
+      "hits": []
+     }
+    ],
+    "map": [
+     {
+      "query": "chosen at random",
+      "n": 2,
+      "hits": [
+       "MV2-D7-12",
+       "MB6-D7-03"
+      ]
+     },
+     {
+      "query": "probability that [0-9]x|integer x",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "integers -[0-9]+ through",
+      "n": 0,
+      "hits": []
+     }
+    ]
+   },
+   "disposition": "clean: no live or MAP item draws a random integer and asks for a linear inequality; ISEE 2be81593 and SSAT eddf2e50 are continuous number-line distances, ACT 9bd1da0f a multiple count.",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "probabilities; see range"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "stem-readable legality rule checked; it strikes no option"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-b candidate for the cold screener. Self-screen strikes: 0. nearMean: false."
+  },
+  "params": {
+   "L": -8,
+   "U": 15,
+   "a": 2,
+   "b": 7,
+   "c": 5
+  },
+  "grade": 7,
+  "stem": "Ella writes each integer from -8 to 15 on its own card and mixes the cards. Ella then draws one card without looking, and x is the number on it. What is the probability that 2x - 7 > 5?",
+  "options": [
+   "13/24",
+   "2/3",
+   "3/8",
+   "7/12"
+  ],
+  "key": "3/8",
+  "key_rank": 1,
+  "deal_rank": 1,
+  "nearMean": false,
+  "distractor_errors": {
+   "2/3": "sign: subtracts 7 instead of adding it when solving",
+   "7/12": "other: counts the integers less than 6 instead of greater",
+   "13/24": "noB: ignores the - 7"
+  },
+  "alt_of": "MB13C-Db-INEQP-b0",
+  "amendment": "b13 Amendment 1: filled at its dealt rank under math-check --rank-agnostic",
+  "selected_from": "MB13C-Db-INEQP-b"
+ },
+ {
+  "id": "MB13-D6-01",
+  "mech": "D61",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Mean of a distribution given as percents of the group",
+  "grade_rationale": "High for grade 6 (6.SP.B.5c): the mean of a distribution given as percents, which needs the missing category and weighting by value, with the 0-pet families still in the count.",
+  "prompt": "In a survey of families in a town, 20% of the families have no pets, 35% have 1 pet, 35% have 2 pets, and the rest have 3 pets. What is the mean number of pets per family for the families in the survey?",
+  "choices": [
+   "1.35",
+   "0.8",
+   "1.5",
+   "1.05"
+  ],
+  "correct_answer": "1.35",
+  "explanation": "Think of 100 families: 20 have 0 pets, 35 have 1, 35 have 2, and 10 have 3. They have 35 + 70 + 30 = 135 pets in all, so the mean is 135 / 100 = 1.35 pets per family.",
+  "solve": "return (35+2*35+3*(100-20-35-35))/100;",
+  "distractor_solve": {
+   "1.5": "return (0+1+2+3)/4;",
+   "1.05": "return (35+2*35)/100;",
+   "0.8": "return (35+35+(100-20-35-35))/100;"
+  },
+  "mechanism": [
+   "3-pet families: 100 - 20 - 35 - 35 = 10%",
+   "pets per 100 families: 35 + 70 + 30 = 135",
+   "mean 1.35"
+  ],
+  "quantity_asked": "the mean number of pets per family",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a mean cannot be checked without the weighted total, which is the method"
+  },
+  "distractor_meta": {
+   "1.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "averages the four pet numbers without weighting them by the percents",
+    "why": "(0 + 1 + 2 + 3) / 4 = 1.5."
+   },
+   "1.05": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the families with 3 pets (the rest)",
+    "why": "(35 + 70) / 100."
+   },
+   "0.8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the fraction of families that have any pets",
+    "why": "80%."
+   }
+  },
+  "structure_check": "Key rank 3 of 4 (dealt by the b12 plan). 1.5 (vals) lands above; 1.05 (noRest) lands below; 0.8 (withPets) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "Intermediate values of the method are not offered as options, and no two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: -0.15, 0.3, 0.55.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 1.35, 0.8, 1.5, 1.05. No option is alone in its surface form (whole / decimal places / fraction), the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (generator)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "r11_mapgrep12": [
+    {
+     "query": "pets?&%",
+     "result": "\"pets?&%\": 0 distinct over 1253 MAP rows (+91 since dump-b10)",
+     "hits": []
+    },
+    {
+     "query": "% of the families",
+     "result": "\"% of the families\": 0 distinct over 1253 MAP rows (+91 since dump-b10)",
+     "hits": []
+    }
+   ],
+   "live_mf30_kw": [
+    {
+     "query": "%&families&pets?&mean|% of the families have",
+     "result": "query \"%&families&pets?&mean|% of the families have\": 0 hits over 4204 live + 2537 prior",
+     "hits": []
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule (none) strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the mean is between 0 and 3 pets"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b12 candidate for the cold screener. CENT clean. Self-screen strikes: 0."
+  },
+  "params": {
+   "a": 20,
+   "b": 35,
+   "c": 35
+  },
+  "grade": 6,
+  "stem": "In a survey of families in a town, 20% of the families have no pets, 35% have 1 pet, 35% have 2 pets, and the rest have 3 pets. What is the mean number of pets per family for the families in the survey?",
+  "options": [
+   "1.35",
+   "0.8",
+   "1.5",
+   "1.05"
+  ],
+  "key": "1.35",
+  "key_rank": 3,
+  "distractor_errors": {
+   "1.5": "vals: averages the four pet numbers without weighting them by the percents",
+   "1.05": "noRest: leaves out the families with 3 pets (the rest)",
+   "0.8": "withPets: finds the fraction of families that have any pets"
+  },
+  "alt_of": "MB12C-D61-a0",
+  "selected_from": "MB12C-D61-a"
+ },
+ {
+  "id": "MB13-D7-01",
+  "mech": "RATIOMODEL",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.C.7a",
+  "subskill": "Find a probability in a model where some probabilities are multiples of another",
+  "grade_rationale": "High for grade 7 (7.SP.C.7a): a probability model must sum to 1; relationships between outcomes are given as multiples, so the student shares what is left in parts.",
+  "prompt": "A spinner lands on red, blue, green, or yellow. The probability that it lands on yellow is 1/4. The probability that it lands on red is twice the probability that it lands on blue, and the probability that it lands on green is three times the probability that it lands on blue. What is the probability that the spinner lands on green?",
+  "choices": [
+   "1/2",
+   "3/8",
+   "9/28",
+   "9/20"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "The probabilities add to 1, so red, blue and green share 1 - 1/4 = 3/4. If blue is one part, red is 2 parts and green is 3 parts, 6 parts in all, so one part is 3/4 / 6 = 1/8. Green is 3 x 1/8 = 3/8.",
+  "solve": "const b=(1-1/4)/(1+2+3);return 3*b;",
+  "distractor_solve": {
+   "1/2": "return 3/(1+2+3);",
+   "9/20": "return (1-(1/4))*3/(2+3);",
+   "9/28": "return (1-(1/4))*3/(2+3+2);"
+  },
+  "mechanism": [
+   "1 - 1/4 = 3/4",
+   "parts: 1 + 2 + 3 = 6",
+   "one part = 1/8",
+   "3 parts = 3/8"
+  ],
+  "quantity_asked": "the probability of green",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by rebuilding the whole model from it, which is the method run backwards with three products"
+  },
+  "distractor_meta": {
+   "1/2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the probability of yellow and shares all of 1",
+    "why": "3/6."
+   },
+   "9/20": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves blue's own share out of the parts",
+    "why": "3/4 x 3/5."
+   },
+   "9/28": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts blue and yellow as one part each when sharing what is left",
+    "why": "3/7 of 3/4."
+   }
+  },
+  "structure_check": "Key rank 2 of 4 (dealt by deal13.mjs, seed 20262308). 1/2 (noD) lands above; 9/20 (noOne) lands above; 9/28 (twoParts) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed. Differences from the key: -0.125, -0.075, 3/56.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 3/8, 1/2, 9/20, 9/28. engine13 FORM-U, CLASS, ADJ, CLOSEPAIR, SUMOPT, SUM1 passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe13": {
+    "file": "probes2.json",
+    "stem": "A spinner lands on red, blue, green, or yellow. The probability of yellow is 0.1. The probability of red is twice the probability of blue, and the probability of green is three times the probability of blue. What is the probability that the spinner lands on green?",
+    "live": [
+     {
+      "query": "twice the probability",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "probability of&twice the probability || probability&three times the probability || probability&times as likely",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "probability of yellow&probability of (red|blue|green) || probability&is twice",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "spinner lands on",
+      "n": 2,
+      "hits": [
+       "a6942ea8-8779-4a60-b4b5-0adcbd10f529",
+       "MB6-D7-02"
+      ]
+     }
+    ],
+    "map": [
+     {
+      "query": "twice the probability|times the probability|times as likely",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "spinner lands on",
+      "n": 1,
+      "hits": [
+       "MB6-D7-02"
+      ]
+     },
+     {
+      "query": "probability of yellow",
+      "n": 0,
+      "hits": []
+     }
+    ]
+   },
+   "disposition": "clean, named BORDERLINE for R11: nearest family is ratio partition (ACT 33056309) with a complement step first; MB4-D-09 (missing probability, no ratio) and MB12C-D2 are other chains.",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "probabilities; see range"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "stem-readable legality rule checked; it strikes no option"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-b candidate for the cold screener. Self-screen strikes: 0. nearMean: true."
+  },
+  "params": {
+   "dn": 1,
+   "dd": 4,
+   "a": 2,
+   "c": 3,
+   "ask": "C"
+  },
+  "grade": 7,
+  "stem": "A spinner lands on red, blue, green, or yellow. The probability that it lands on yellow is 1/4. The probability that it lands on red is twice the probability that it lands on blue, and the probability that it lands on green is three times the probability that it lands on blue. What is the probability that the spinner lands on green?",
+  "options": [
+   "1/2",
+   "3/8",
+   "9/28",
+   "9/20"
+  ],
+  "key": "3/8",
+  "key_rank": 2,
+  "deal_rank": 2,
+  "nearMean": true,
+  "distractor_errors": {
+   "1/2": "noD: ignores the probability of yellow and shares all of 1",
+   "9/20": "noOne: leaves blue's own share out of the parts",
+   "9/28": "twoParts: counts blue and yellow as one part each when sharing what is left"
+  },
+  "alt_of": "MB13C-Db-RATIOMODEL-b0",
+  "selected_from": "MB13C-Db-RATIOMODEL-b"
+ },
+ {
+  "id": "MB13-D7-02",
+  "mech": "MISS2",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.C.8a",
+  "subskill": "Complete a probability model, then find the probability of a sum over two independent spins",
+  "grade_rationale": "High for grade 7 (7.SP.C.7, 7.SP.C.8a): complete a non-uniform probability model, list the ordered outcomes of a compound event (including a double), and multiply and add.",
+  "prompt": "A spinner lands on 1, 2, 3, or 4. The probability that it lands on 1 is 0.3, the probability that it lands on 2 is 0.1, and the probability that it lands on 3 is 0.3. Noor spins the spinner two times and adds the two numbers. What is the probability that the sum is 6?",
+  "choices": [
+   "0.36",
+   "0.24",
+   "0.23",
+   "0.15"
+  ],
+  "correct_answer": "0.15",
+  "explanation": "The probability of 4 is 1 - 0.3 - 0.1 - 0.3 = 0.3. A sum of 6 comes from 2 then 4, 4 then 2, or 3 then 3: 0.1 x 0.3 + 0.3 x 0.1 + 0.3 x 0.3 = 0.15.",
+  "solve": "const p4=1-0.3-0.1-0.3;return 2*0.1*p4+0.3*0.3;",
+  "distractor_solve": {
+   "0.24": "return 2*0.1*(1-0.3-0.1-0.3)+2*0.3*0.3;",
+   "0.23": "return 2*0.1*(0.3+0.1+0.3)+0.3*0.3;",
+   "0.36": "return 2*0.1*(1-0.3-0.1-0.3)+0.3;"
+  },
+  "mechanism": [
+   "P(4) = 0.3",
+   "2 and 4 in either order: 2 x 0.1 x 0.3 = 0.06",
+   "3 and 3: 0.09",
+   "total 0.15"
+  ],
+  "quantity_asked": "the probability that the sum of two spins is 6",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a probability cannot be checked without the missing probability and every ordered pair, which is the method"
+  },
+  "distractor_meta": {
+   "0.24": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts 3 and 3 twice, as if it had two orders",
+    "why": "2 x 0.1 x 0.3 + 2 x 0.3 x 0.3."
+   },
+   "0.23": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the sum of the three given probabilities as the probability of 4",
+    "why": "P(4) taken as 0.7."
+   },
+   "0.36": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the probability of one 3 for the outcome 3 and 3",
+    "why": "2 x 0.1 x 0.3 + 0.3."
+   }
+  },
+  "structure_check": "Key rank 1 of 4 (dealt by deal13.mjs, seed 20262308). 0.24 (dblTwice) lands above; 0.23 (sumAsP4) lands above; 0.36 (noSq) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed. Differences from the key: -0.09, -0.08, -0.21.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 0.15, 0.24, 0.23, 0.36. engine13 FORM-U, CLASS, ADJ, CLOSEPAIR, SUMOPT, SUM1 passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe13": {
+    "file": "probes2.json",
+    "stem": "A spinner lands on 1, 2, 3, or 4. The probability that it lands on 1 is 0.1, on 2 is 0.2, and on 3 is 0.3. Kai spins the spinner two times and adds the two numbers. What is the probability that the sum is 6?",
+    "live": [
+     {
+      "query": "spinner",
+      "n": 13,
+      "hits": [
+       "162c436e-c3c6-4003-b115-6599c02941bb",
+       "3a2a77fc-8ed6-4060-9bd9-c5dd4ef6cb0e",
+       "4231691e-4563-4bd7-ab4d-2df776b21ff6",
+       "a6942ea8-8779-4a60-b4b5-0adcbd10f529",
+       "d075f79b-ad58-4e74-a778-36e7e64879b5",
+       "d37f4d7b-9415-49c6-8157-c70cad602d1f",
+       "MMG-D10",
+       "MMG-D10"
+      ]
+     },
+     {
+      "query": "spin.*two times&sum || spins? twice&sum || probability&adds the two",
+      "n": 2,
+      "hits": [
+       "MMG-D10",
+       "MMG-D10"
+      ]
+     },
+     {
+      "query": "probability that it lands on&sum || (two times|twice)&probability&sum",
+      "n": 1,
+      "hits": [
+       "bd5027f9-1fce-4a7d-8687-71006302ae7f"
+      ]
+     },
+     {
+      "query": "lands on [0-9], [0-9], [0-9], or [0-9] || probability of 0\\.[0-9]&probability of 0\\.[0-9] || is 0\\.[0-9], on [0-9] is 0\\.[0-9]",
+      "n": 0,
+      "hits": []
+     }
+    ],
+    "map": [
+     {
+      "query": "spinner&sum",
+      "n": 1,
+      "hits": [
+       "MMG-D10"
+      ]
+     },
+     {
+      "query": "adds the two",
+      "n": 1,
+      "hits": [
+       "MMG-D10"
+      ]
+     },
+     {
+      "query": "spinner&0\\.[0-9]",
+      "n": 0,
+      "hits": []
+     }
+    ]
+   },
+   "disposition": "clean after a re-stem: the sum-7 stem (2 p3 p4) was SSAT a2555fc8 (2pq) plus the missing-probability step, so the asked sum was moved to 5 or 6 (three or four ordered outcomes, one a double for 6). ISEE 162c436e, SAT bd5027f9, MMG-D10, MB4-D-09 are other chains.",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "probabilities; see range"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "stem-readable legality rule checked; it strikes no option"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-b candidate for the cold screener. Self-screen strikes: 0. nearMean: false."
+  },
+  "params": {
+   "p1": 0.3,
+   "p2": 0.1,
+   "p3": 0.3,
+   "S": 6
+  },
+  "grade": 7,
+  "stem": "A spinner lands on 1, 2, 3, or 4. The probability that it lands on 1 is 0.3, the probability that it lands on 2 is 0.1, and the probability that it lands on 3 is 0.3. Noor spins the spinner two times and adds the two numbers. What is the probability that the sum is 6?",
+  "options": [
+   "0.36",
+   "0.24",
+   "0.23",
+   "0.15"
+  ],
+  "key": "0.15",
+  "key_rank": 1,
+  "deal_rank": 1,
+  "nearMean": false,
+  "distractor_errors": {
+   "0.24": "dblTwice: counts 3 and 3 twice, as if it had two orders",
+   "0.23": "sumAsP4: uses the sum of the three given probabilities as the probability of 4",
+   "0.36": "noSq: uses the probability of one 3 for the outcome 3 and 3"
+  },
+  "alt_of": "MB13C-Db-MISS2-b0",
+  "amendment": "b13 Amendment 1: filled at its dealt rank under math-check --rank-agnostic",
+  "selected_from": "MB13C-Db-MISS2-b"
+ },
+ {
+  "id": "MB13-D6-03",
+  "mech": "T07",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Mean of the values above the median (odd count)",
+  "grade_rationale": "Mid for grade 6 (6.SP.B.5c): order the data, find the median of an odd count, then take the mean of the upper half only.",
+  "prompt": "Nine players in a game scored 10, 25, 14, 35, 22, 18, 21, 23, and 19 points. What is the mean score of the players who scored more than the median score?",
+  "choices": [
+   "26.25",
+   "20.25",
+   "24",
+   "28"
+  ],
+  "correct_answer": "26.25",
+  "explanation": "In order the scores are 10, 14, 18, 19, 21, 22, 23, 25, 35. The median is the 5th score, 21. The four scores above it are 22, 23, 25, 35, which add to 105, so their mean is 105 / 4 = 26.25.",
+  "solve": "const v=[10,25,14,35,22,18,21,23,19].sort((a,b)=>a-b);return (v[5]+v[6]+v[7]+v[8])/4;",
+  "distractor_solve": {
+   "24": "return (23+25)/2;",
+   "28": "return (21+35)/2;",
+   "20.25": "return (18+21+23+19)/4;"
+  },
+  "mechanism": [
+   "order: 10, 14, 18, 19, 21, 22, 23, 25, 35",
+   "median 21",
+   "above: 22, 23, 25, 35",
+   "mean 26.25"
+  ],
+  "quantity_asked": "the mean score of the players above the median",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a mean cannot be checked without the sum of the chosen scores, which is the method"
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the median of the four scores above the median instead of their mean",
+    "why": "(23 + 25) / 2."
+   },
+   "28": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "averages the median and the top score",
+    "why": "(21 + 35) / 2."
+   },
+   "20.25": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the last four scores as they are listed, without putting the scores in order",
+    "why": "81 / 4."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 (seed 20262307), not chosen. 20.25 (listed) lands below; 24 (q3) lands below; 28 (mid) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is a printed number; no two options are joined by a printed number or a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed. Differences from the key: 6, 2.25, -1.75.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 26.25, 20.25, 24, 28. FORM-U (no option alone in its surface form), CLASS, ADJ, CLOSEPAIR, SUMOPT, LONE, HUB, RUN refusals passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe": "probe13.mjs (live: dump-b13 unarchived maths, verified + staged, all families + SAT prior; map: mapgrep13)",
+   "live": [
+    {
+     "query": "players",
+     "n": 8,
+     "hits": [
+      "01bdc8c8-4179-41e1-9abf-061ac205d23b",
+      "0ee63b7f-3d19-4511-b25a-aed7045f1c47",
+      "1174c651-0a6c-479e-a39f-c7fb490e32a9",
+      "76bfcd52-93a6-4a07-8f52-a18c2b93c64c",
+      "7854e431-eed7-4d2c-9a0a-9faf0fb221dc"
+     ]
+    },
+    {
+     "query": "more than the median&mean",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(above|more than|greater than) the median&(mean|average)",
+     "n": 1,
+     "hits": [
+      "cc281547-8ce3-4374-a2ac-3bcff3a0851a"
+     ]
+    },
+    {
+     "query": "mean (score )?of the (players|students|scores) (who|that)",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "map": [
+    {
+     "query": "more than the median",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "(mean|average)&more than the median",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "| T07 mean of the scores above the median | sort, median, take upper half, mean | 9 | none on chain (median-of-table, median-change items) | CLEAN |"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the mean lies between the low score 10 and the high score 35"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-a candidate for the cold screener. Self-screen strikes: 0. nearMean false."
+  },
+  "params": {
+   "s": 1298
+  },
+  "grade": 6,
+  "stem": "Nine players in a game scored 10, 25, 14, 35, 22, 18, 21, 23, and 19 points. What is the mean score of the players who scored more than the median score?",
+  "options": [
+   "26.25",
+   "20.25",
+   "24",
+   "28"
+  ],
+  "key": "26.25",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "nearMean": false,
+  "distractor_errors": {
+   "24": "q3: finds the median of the four scores above the median instead of their mean",
+   "28": "mid: averages the median and the top score",
+   "20.25": "listed: takes the last four scores as they are listed, without putting the scores in order"
+  },
+  "alt_of": "MB13C-Da-T07-b0",
+  "selected_from": "MB13C-Da-T07-b"
+ },
+ {
+  "id": "MB13-D7-05",
+  "mech": "THRESH",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.A.2",
+  "subskill": "Use a random sample to estimate a count, then compare it with a percent limit",
+  "grade_rationale": "High for grade 7 (7.SP.A.2): inference about a population from a random sample, scaled to the shipment, then compared with a percent of the same shipment.",
+  "prompt": "A store gets a shipment of 4,800 phone cases. Lena checks a random sample of 150 of the cases and finds 25 that are scratched. The store sends a shipment back if more than 4% of its cases are scratched. Based on the sample, how many more cases in the shipment are estimated to be scratched than the 4% limit allows?",
+  "choices": [
+   "775",
+   "768",
+   "608",
+   "794"
+  ],
+  "correct_answer": "608",
+  "explanation": "In the sample, 25 of 150 are scratched, so the estimate for the shipment is 25/150 x 4800 = 800. The 4% limit is 4% of 4800 = 192. The estimate is 800 - 192 = 608 more than the limit.",
+  "solve": "return 4800*25/150-4800*4/100;",
+  "distractor_solve": {
+   "768": "return 4800*25/150*(1-4/100);",
+   "775": "return 4800*25/150-25;",
+   "794": "return 4800*25/150-150*4/100;"
+  },
+  "mechanism": [
+   "estimate: 25/150 x 4800 = 800",
+   "limit: 4% of 4800 = 192",
+   "800 - 192 = 608"
+  ],
+  "quantity_asked": "how many more items are estimated to be in that condition than the limit allows",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without the estimate and the limit, which is the method"
+  },
+  "distractor_meta": {
+   "768": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes 4% off the estimate instead of subtracting 4% of the shipment",
+    "why": "800 - 4% of 800."
+   },
+   "775": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the 25 found in the sample from the estimate",
+    "why": "800 - 25."
+   },
+   "794": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies the 4% limit to the sample of 150 instead of to the shipment",
+    "why": "800 - 4% of 150."
+   }
+  },
+  "structure_check": "Key rank 1 of 4 (dealt by deal13.mjs, seed 20262308). 794 (limSamp) lands above; 768 (offEst) lands above; 775 (allBad) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed. Differences from the key: -186, -160, -167.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 608, 794, 768, 775. engine13 FORM-U, CLASS, ADJ, CLOSEPAIR, SUMOPT passed.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe13": {
+    "file": "probes.json",
+    "stem": "A store gets a shipment of 2,000 light bulbs. A worker tests a random sample of 80 of the bulbs and finds 12 that do not work. The store sends a shipment back if more than 10% of its bulbs do not work. Based on the sample, how many more bulbs in the shipment are estimated not to work than the 10% limit allows?",
+    "live": [
+     {
+      "query": "shipment",
+      "n": 9,
+      "hits": [
+       "0c74b360-af7b-4863-83ac-b3d0e0b99001",
+       "21b2f710-9928-4467-b3f4-cc5037a5fd51",
+       "a0dae3a7-4ae8-46b9-8de5-320c6705f2d7",
+       "a9d94824-8cd5-40b4-8a74-083fa838a120",
+       "c9f4b0d5-b3ac-4f92-8acc-e11b52cd9f04",
+       "f4679742-0f10-4799-89e6-0d150b529fac",
+       "ALG-H3-10",
+       "PSDA-H3-09"
+      ]
+     },
+     {
+      "query": "sample&shipment || defective&sample || sample&do not work",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "sample&limit || sample&more than [0-9]+%&how many more",
+      "n": 1,
+      "hits": [
+       "PSDA-H4-20"
+      ]
+     },
+     {
+      "query": "light bulbs",
+      "n": 1,
+      "hits": [
+       "f410f5c5-e590-45ea-a38d-e812636d4f74"
+      ]
+     }
+    ],
+    "map": [
+     {
+      "query": "shipment",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "do not work|defective",
+      "n": 0,
+      "hits": []
+     },
+     {
+      "query": "limit",
+      "n": 0,
+      "hits": []
+     }
+    ]
+   },
+   "disposition": "clean: nearest MV2-D7-09 (sample proportion x population) is the first step only; THRESH adds a second product and a difference. SAT PSDA-H4-20 (margin of error) is another chain.",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "the excess is less than the whole shipment of 4800"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "stem-readable legality rule checked; it strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 D-b candidate for the cold screener. Self-screen strikes: 0. nearMean: false."
+  },
+  "params": {
+   "N": 4800,
+   "n": 150,
+   "d": 25,
+   "p": 4
+  },
+  "grade": 7,
+  "stem": "A store gets a shipment of 4,800 phone cases. Lena checks a random sample of 150 of the cases and finds 25 that are scratched. The store sends a shipment back if more than 4% of its cases are scratched. Based on the sample, how many more cases in the shipment are estimated to be scratched than the 4% limit allows?",
+  "options": [
+   "775",
+   "768",
+   "608",
+   "794"
+  ],
+  "key": "608",
+  "key_rank": 1,
+  "deal_rank": 1,
+  "nearMean": false,
+  "distractor_errors": {
+   "768": "offEst: takes 4% off the estimate instead of subtracting 4% of the shipment",
+   "775": "allBad: subtracts the 25 found in the sample from the estimate",
+   "794": "limSamp: applies the 4% limit to the sample of 150 instead of to the shipment"
+  },
+  "alt_of": "MB13C-Db-THRESH-a0",
+  "amendment": "b13 Amendment 1: filled at its dealt rank under math-check --rank-agnostic",
+  "selected_from": "MB13C-Db-THRESH-a"
+ }
+]

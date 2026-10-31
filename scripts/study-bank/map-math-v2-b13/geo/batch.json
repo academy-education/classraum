@@ -1,0 +1,1644 @@
+[
+ {
+  "id": "MB13-G6-06",
+  "mech": "G89",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.G.A.4",
+  "subskill": "Surface area of a cube from the perimeter of its net",
+  "grade_rationale": "High for grade 6 (6.G.A.4): reasoning about a net (six squares joined along five edges) to recover the edge, then surface area.",
+  "prompt": "A net that folds into a cube is made of six squares joined edge to edge, with no gaps or overlaps. The perimeter of the whole net is 168 centimeters. What is the surface area of the cube, in square centimeters?",
+  "choices": [
+   "864",
+   "10584",
+   "294",
+   "1176"
+  ],
+  "correct_answer": "864",
+  "explanation": "Six squares have 24 sides in all. The net has 5 places where two squares share an edge, and each shared edge hides 2 sides, so the outline of the net is 24 - 10 = 14 sides. Each side is 168 / 14 = 12 cm, each face has area 144, and the surface area is 6 x 144 = 864 square centimeters.",
+  "solve": "const s=168/14;return 6*s*s;",
+  "distractor_solve": {
+   "294": "return 6*(168/24)*(168/24);",
+   "1176": "return 6*(168/12)*(168/12);",
+   "10584": "return 6*(168/4)*(168/4);"
+  },
+  "mechanism": [
+   "24 square sides - 2 x 5 shared edges = 14 outside sides",
+   "side 168 / 14 = 12",
+   "6 x 144 = 864"
+  ],
+  "quantity_asked": "the surface area of the cube",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked only by finding the edge, which needs the count of outside sides"
+  },
+  "distractor_meta": {
+   "294": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides by all 24 sides of the six squares, counting the shared edges as part of the perimeter",
+    "why": "side 168 / 24."
+   },
+   "1176": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides by the 12 edges of the cube",
+    "why": "side 168 / 12."
+   },
+   "10584": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the perimeter of the whole net as if it were the perimeter of one square",
+    "why": "side 168 / 4."
+   }
+  },
+  "structure_check": "Key rank 2 of 4, dealt at base rate by deal13 (G-a seed 20262305). 10584 (per4) lands above; 294 (per24) lands below; 1176 (per12) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: -9720, 570, -312.",
+  "cheap_bound_check": "no declared stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 864, 10584, 294, 1176. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes-2.json",
+   "draft_stem": "A net that folds into a cube is made of six squares joined edge to edge. The perimeter of the whole net is 56 centimeters. What is the surface area of the cube, in square centimeters?",
+   "live": [
+    {
+     "query": "net",
+     "n": 23,
+     "ids": [
+      "0d80b6bf-a95c-4f1e-a9f7-d86ea4623a0d",
+      "1ec2bf03-49d8-4346-9272-85eb3731adcb",
+      "275d68d9-1b8f-4c09-9c98-9f4d78287272",
+      "4bb6ce1e-2678-4e19-9ee5-9cd5e6accc26",
+      "51af14f3-31de-4109-a66e-38a80e855ce7",
+      "61023086-f4ab-4b42-9230-dba233238ace",
+      "7600cae0-5978-4b44-bd78-674c1e2e1a43",
+      "8715eb44-2428-444f-964a-40e89bfe83b7"
+     ]
+    },
+    {
+     "query": "net&perimeter || net&cube&surface || six squares",
+     "n": 2,
+     "ids": [
+      "1ec2bf03-49d8-4346-9272-85eb3731adcb",
+      "MB3-G6-01"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "net",
+     "n": 6,
+     "ids": [
+      "MMG-G06",
+      "MM2-G10",
+      "MM3-G14",
+      "MM3-G14",
+      "MB2-O7R-14",
+      "MB3-G6-01"
+     ]
+    },
+    {
+     "query": "net&perimeter",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "disposition": "clean: MB3-G6-01 (cube net from the square side -> SA) applies 6s^2; no item uses the net's 14-side outline",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule (the surface area of a cube is 6 times the area of one square face, so it is 6 times a perfect square) strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 0."
+  },
+  "params": {
+   "s": 12
+  },
+  "nearMean": false,
+  "grade": 6,
+  "stem": "A net that folds into a cube is made of six squares joined edge to edge, with no gaps or overlaps. The perimeter of the whole net is 168 centimeters. What is the surface area of the cube, in square centimeters?",
+  "options": [
+   "864",
+   "10584",
+   "294",
+   "1176"
+  ],
+  "key": "864",
+  "key_rank": 2,
+  "deal_rank": 2,
+  "distractor_errors": {
+   "294": "per24: divides by all 24 sides of the six squares, counting the shared edges as part of the perimeter",
+   "1176": "per12: divides by the 12 edges of the cube",
+   "10584": "per4: treats the perimeter of the whole net as if it were the perimeter of one square"
+  },
+  "alt_of": "MB13C-Ga-G89-a0",
+  "selected_from": "MB13C-Ga-G89-a"
+ },
+ {
+  "id": "MB13-G8-01",
+  "mech": "XCYL",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.G.B.7",
+  "subskill": "Area of a cross-section of a cylinder cut parallel to its axis (Pythagorean theorem for the chord)",
+  "grade_rationale": "High for grade 8 (8.G.B.7 with 7.G.A.3): the cross-section of a cylinder parallel to its axis is a rectangle whose width is a chord, found with the Pythagorean theorem from the radius and the distance to the center line.",
+  "prompt": "A roll of clay is shaped like a cylinder with a radius of 29 centimeters and a length of 20 centimeters. It is cut lengthwise by one flat cut that is parallel to the center line of the cylinder and 21 centimeters from it. The cut surface is a rectangle. What is the area of the cut surface, in square centimeters?",
+  "choices": [
+   "800",
+   "320",
+   "160",
+   "580"
+  ],
+  "correct_answer": "800",
+  "explanation": "Half the width of the cut is the leg of a right triangle whose hypotenuse is the radius 29 and whose other leg is 21: sqrt(29^2 - 21^2) = sqrt(400) = 20. The cut is 40 centimeters wide and 20 centimeters long, so its area is 40 x 20 = 800 square centimeters.",
+  "solve": "const h=Math.sqrt(29**2-21**2);return 2*h*20;",
+  "distractor_solve": {
+   "160": "return (29-21)*20;",
+   "320": "return 2*(29-21)*20;",
+   "580": "return 29*20;"
+  },
+  "mechanism": [
+   "half width = sqrt(29^2 - 21^2) = 20",
+   "width = 40",
+   "40 x 20 = 800"
+  ],
+  "quantity_asked": "the area of the rectangular cut surface",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an area option is checked by dividing by the length and testing the half-width with the Pythagorean theorem, which is the method"
+  },
+  "distractor_meta": {
+   "160": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the lengths and uses the result as the whole width",
+    "why": "(29 - 21) x 20."
+   },
+   "320": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the lengths instead of their squares to find half the width",
+    "why": "2 x (29 - 21) x 20."
+   },
+   "580": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the radius as the width of the cut",
+    "why": "29 x 20."
+   }
+  },
+  "structure_check": "Key rank 4 of 4 (dealt by deal13, seed 20262306). 320 (noSq) lands below; 160 (noSq1) lands below; 580 (radW) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No intermediate value of the method is offered unless it is itself a natural stopping error, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: 480, 640, 220.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 800, 320, 160, 580. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart (engine13).",
+  "dup_search": {
+   "probe13_runs": [
+    {
+     "file": "probes2.json",
+     "side": "live",
+     "query": "log",
+     "n": 148,
+     "first_hits": [
+      "01d448d0-9510-4766-8f8c-bdf4174649c6",
+      "050da312-ff6c-4a96-ba04-7350ec74e7c5",
+      "09ba6cb3-825f-4ba4-bbb1-859d7d118640",
+      "0bc6e3b0-40b8-472b-9248-666ba6d8cb06",
+      "110ae890-2bfc-4293-adb4-fc4e74e2d4b4",
+      "1803290e-f581-4cc7-8727-d34cf7d89bc7"
+     ]
+    },
+    {
+     "file": "probes2.json",
+     "side": "live",
+     "query": "cylind&cut&parallel || cylind&sawed || lengthwise",
+     "n": 0,
+     "first_hits": []
+    },
+    {
+     "file": "probes2.json",
+     "side": "map",
+     "query": "lengthwise|sawed",
+     "n": 0,
+     "first_hits": []
+    },
+    {
+     "file": "probes2.json",
+     "side": "map",
+     "query": "cut surface",
+     "n": 0,
+     "first_hits": []
+    },
+    {
+     "file": "probes4.json",
+     "side": "live",
+     "query": "cylind",
+     "n": 57,
+     "first_hits": [
+      "09cf7bc0-4d29-4c87-b3cb-0c0f1bbdc857",
+      "17f937c3-5b15-4b46-bead-a501a6fba3a8",
+      "1ada5e25-84d9-4bc4-8516-e59bdeda75e9",
+      "201e52e6-b9d5-47a9-a922-3c51c285ad28",
+      "205930ac-f85d-4409-96c1-f05dcf8e80c2",
+      "27b845d4-6655-4285-bab5-ae1ead7a29d6"
+     ]
+    },
+    {
+     "file": "probes4.json",
+     "side": "live",
+     "query": "parallel to&center line || parallel to&axis || cut&cylind",
+     "n": 4,
+     "first_hits": [
+      "0cc2f3d3-2684-44d0-b409-415e5e2dd09d",
+      "1b228f0c-9660-41a5-9bb8-ea0f70335c27",
+      "ALG-H4-17",
+      "SM15L-04"
+     ]
+    },
+    {
+     "file": "probes4.json",
+     "side": "map",
+     "query": "cut&parallel",
+     "n": 1,
+     "first_hits": [
+      "MM3-G12"
+     ]
+    }
+   ],
+   "disposition": "cylinder cut parallel to its axis at d: 2 sqrt(r^2 - d^2) x L || 0 chain hits. Context-free: 4 hits on \"parallel to\" (lines in the xy-plane: n). MM3-G12 (a prism cut parallel to a face): n. MB3-G7-02 (a prism slice, l x h): n (different solid; adds a leg from a hypotenuse, doubling and a product) || **clean**",
+   "standard": "MAP-MATH-V2-B13 duplicate standard; every hit read in PROBE-READ.md"
+  },
+  "deal_rank": 4,
+  "key_rank": 4,
+  "near_mean": false,
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the cut is narrower than the diameter, so the area is less than 2 x 29 x 20"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-b stage-A candidate for the cold screener. Self-screen strikes: 0."
+  },
+  "params": {
+   "r": 29,
+   "d": 21,
+   "L": 20
+  },
+  "grade": 8,
+  "stem": "A roll of clay is shaped like a cylinder with a radius of 29 centimeters and a length of 20 centimeters. It is cut lengthwise by one flat cut that is parallel to the center line of the cylinder and 21 centimeters from it. The cut surface is a rectangle. What is the area of the cut surface, in square centimeters?",
+  "options": [
+   "800",
+   "320",
+   "160",
+   "580"
+  ],
+  "key": "800",
+  "distractor_errors": {
+   "160": "noSq1: subtracts the lengths and uses the result as the whole width",
+   "320": "noSq: subtracts the lengths instead of their squares to find half the width",
+   "580": "radW: uses the radius as the width of the cut"
+  },
+  "alt_of": "MB13C-Gb-XCYL-b0",
+  "selected_from": "MB13C-Gb-XCYL-b"
+ },
+ {
+  "id": "MB13-G6-03",
+  "mech": "G86",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.4",
+  "subskill": "Surface area of a box from the areas of its three different faces",
+  "grade_rationale": "Mid for grade 6 (6.G.A.4): surface area as the sum of the faces (from the net), knowing a box has two congruent faces of each size.",
+  "prompt": "A box is shaped like a rectangular prism. Its three different faces have areas of 10, 6, and 15 square centimeters. What is the total surface area of the box, in square centimeters?",
+  "choices": [
+   "90",
+   "36",
+   "62",
+   "40"
+  ],
+  "correct_answer": "62",
+  "explanation": "A box has two faces of each of the three sizes, so the surface area is 2 x (10 + 6 + 15) = 2 x 31 = 62 square centimeters.",
+  "solve": "return 2*(10+6+15);",
+  "distractor_solve": {
+   "36": "return 6*6;",
+   "40": "return 4*(5+3+2);",
+   "90": "return 6*15;"
+  },
+  "mechanism": [
+   "10 + 6 + 15 = 31",
+   "two of each face: x 2 = 62"
+  ],
+  "quantity_asked": "the total surface area of the box",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without adding the faces"
+  },
+  "distractor_meta": {
+   "36": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats all six faces as the smallest face",
+    "why": "6 x 6."
+   },
+   "40": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the edges and adds all twelve of them",
+    "why": "edges 5, 3, 2; 4 x 10."
+   },
+   "90": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats all six faces as the largest face",
+    "why": "6 x 15."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt at base rate by deal13 (G-a seed 20262305). 90 (max6) lands above; 36 (min6) lands below; 40 (edges) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: -28, 26, 22.",
+  "cheap_bound_check": "no declared stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 62, 90, 36, 40. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes-2.json",
+   "draft_stem": "The three different faces of a box shaped like a rectangular prism have areas of 24, 18, and 12 square centimeters. What is the total surface area of the box, in square centimeters?",
+   "live": [
+    {
+     "query": "faces",
+     "n": 29,
+     "ids": [
+      "0d24463d-2e1d-4b5e-bfd3-64d2f8522584",
+      "201e52e6-b9d5-47a9-a922-3c51c285ad28",
+      "2f8d8c82-4a30-4f1e-8bd1-ceaec80313c8",
+      "45a4d18a-ebb3-418f-8008-fbe6686ddfbf",
+      "48263a01-8e77-4a50-9e0c-cc6d7d4b94f4",
+      "64a27a3e-f1b8-46dd-be6c-e8ac3ec08530",
+      "651ce6fe-8549-44a7-a8da-884cb93a7257",
+      "6b1ec62f-5729-4e99-8696-32ded59c61a2"
+     ]
+    },
+    {
+     "query": "faces&areas&surface area || three different faces || faces have areas",
+     "n": 1,
+     "ids": [
+      "45a4d18a-ebb3-418f-8008-fbe6686ddfbf"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "faces&surface area",
+     "n": 1,
+     "ids": [
+      "MM3-G12"
+     ]
+    },
+    {
+     "query": "different faces",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "disposition": "BORDERLINE for R11: ISEE 45a4d18a gives the same three face areas but asks the VOLUME (product, square root); mine asks the surface area",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule (a box has two of each face, so its surface area is even) strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean true. Self-screen strikes: 0."
+  },
+  "params": {
+   "a": 5,
+   "b": 3,
+   "c": 2
+  },
+  "nearMean": true,
+  "grade": 6,
+  "stem": "A box is shaped like a rectangular prism. Its three different faces have areas of 10, 6, and 15 square centimeters. What is the total surface area of the box, in square centimeters?",
+  "options": [
+   "90",
+   "36",
+   "62",
+   "40"
+  ],
+  "key": "62",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "distractor_errors": {
+   "36": "min6: treats all six faces as the smallest face",
+   "40": "edges: finds the edges and adds all twelve of them",
+   "90": "max6: treats all six faces as the largest face"
+  },
+  "alt_of": "MB13C-Ga-G86-a0",
+  "selected_from": "MB13C-Ga-G86-a"
+ },
+ {
+  "id": "MB13-G8-02",
+  "mech": "SPHCUT",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.G.B.7",
+  "subskill": "Area of a circular cross-section of a sphere cut at a given distance from its center",
+  "grade_rationale": "High for grade 8 (8.G.B.7, with 7.G.A.3 and 7.G.B.4): every plane section of a sphere is a circle, and its radius comes from the Pythagorean theorem with the sphere radius as hypotenuse.",
+  "prompt": "A solid ball has a radius of 10 centimeters. It is cut by one flat cut that is 8 centimeters from the center of the ball. The cut surface is a circle. Using 3.14 for pi, what is the area of the cut surface, in square centimeters?",
+  "choices": [
+   "200.96",
+   "514.96",
+   "18.84",
+   "113.04"
+  ],
+  "correct_answer": "113.04",
+  "explanation": "The radius of the cut circle is a leg of a right triangle whose hypotenuse is the ball's radius 10 and whose other leg is 8: r^2 = 10^2 - 8^2 = 36, so r = 6. The area is 3.14 x 36 = 113.04 square centimeters.",
+  "solve": "const r2=10**2-8**2;return 3.14*r2;",
+  "distractor_solve": {
+   "200.96": "return 3.14*8*8;",
+   "514.96": "return 3.14*(10*10+8*8);",
+   "18.84": "return 3.14*6;"
+  },
+  "mechanism": [
+   "r^2 = 10^2 - 8^2 = 36",
+   "area = 3.14 x 36 = 113.04"
+  ],
+  "quantity_asked": "the area of the circular cut surface",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an area option is checked by dividing by 3.14 and testing the Pythagorean relation, which is the method"
+  },
+  "distractor_meta": {
+   "200.96": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses 8 as the radius of the cut",
+    "why": "3.14 x 8^2."
+   },
+   "514.96": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the squares instead of subtracting them",
+    "why": "3.14 x (100 + 64)."
+   },
+   "18.84": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets to square the radius of the cut",
+    "why": "3.14 x 6."
+   }
+  },
+  "structure_check": "Key rank 2 of 4 (dealt by deal13, seed 20262306). 200.96 (dR) lands above; 514.96 (addSq) lands above; 18.84 (noR2) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No intermediate value of the method is offered unless it is itself a natural stopping error, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: -87.92, -401.92, 94.2.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 514.96 - magnitude: the cut circle is smaller than a cut through the center, 3.14 x 10^2",
+  "shape_check": "Options: 113.04, 200.96, 514.96, 18.84. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart (engine13).",
+  "dup_search": {
+   "probe13_runs": [
+    {
+     "file": "probes3.json",
+     "side": "live",
+     "query": "ball|sphere",
+     "n": 94,
+     "first_hits": [
+      "0260399e-d99b-44b3-84b6-4cf08ae51c70",
+      "0b906974-fa7e-4743-8bff-2b224a0b5d3e",
+      "102cb4c3-aef1-43e0-8272-a1bc52676e0c",
+      "111a85fd-a8f1-46ad-89ae-7757fa1d194a",
+      "201e52e6-b9d5-47a9-a922-3c51c285ad28",
+      "27b845d4-6655-4285-bab5-ae1ead7a29d6"
+     ]
+    },
+    {
+     "file": "probes3.json",
+     "side": "live",
+     "query": "sphere&cut || ball&cut || sphere&plane || sphere&slice",
+     "n": 0,
+     "first_hits": []
+    },
+    {
+     "file": "probes3.json",
+     "side": "map",
+     "query": "ball|sphere",
+     "n": 20,
+     "first_hits": [
+      "MM2-G19",
+      "MM3-O20",
+      "MM3-G23",
+      "MM3-G27",
+      "MM5-N05",
+      "MV2-O56-08"
+     ]
+    },
+    {
+     "file": "probes3.json",
+     "side": "map",
+     "query": "cut&center",
+     "n": 1,
+     "first_hits": [
+      "MM2-G12"
+     ]
+    },
+    {
+     "file": "probes4.json",
+     "side": "live",
+     "query": "cut",
+     "n": 164,
+     "first_hits": [
+      "02788ad4-25d5-47ee-b357-d17a790887af",
+      "0314f3eb-6e25-46a1-85c2-34e82547a26d",
+      "0a83056f-2dca-43be-8774-5735373c6918",
+      "0bf95836-141d-4fc8-a73b-19f42a6b74fa",
+      "0c05b715-c3fa-4920-a656-93d2bed46f2b",
+      "0d24463d-2e1d-4b5e-bfd3-64d2f8522584"
+     ]
+    },
+    {
+     "file": "probes4.json",
+     "side": "live",
+     "query": "from the center&cut || cut&center of the ball || circular cut",
+     "n": 1,
+     "first_hits": [
+      "8fd7b514-7899-4bfb-821e-f742a49f2747"
+     ]
+    },
+    {
+     "file": "probes4.json",
+     "side": "map",
+     "query": "from the center",
+     "n": 0,
+     "first_hits": []
+    }
+   ],
+   "disposition": "ball cut at d from the centre: 3.14 (R^2 - d^2) || 0 chain hits. MAP sphere items (volume): n || **clean**",
+   "standard": "MAP-MATH-V2-B13 duplicate standard; every hit read in PROBE-READ.md"
+  },
+  "deal_rank": 2,
+  "key_rank": 2,
+  "near_mean": false,
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "514.96"
+    ],
+    "why": "the cut circle is smaller than a cut through the center, 3.14 x 10^2"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-b stage-A candidate for the cold screener. Self-screen strikes: 1."
+  },
+  "params": {
+   "R": 10,
+   "d": 8
+  },
+  "grade": 8,
+  "stem": "A solid ball has a radius of 10 centimeters. It is cut by one flat cut that is 8 centimeters from the center of the ball. The cut surface is a circle. Using 3.14 for pi, what is the area of the cut surface, in square centimeters?",
+  "options": [
+   "200.96",
+   "514.96",
+   "18.84",
+   "113.04"
+  ],
+  "key": "113.04",
+  "distractor_errors": {
+   "200.96": "dR: uses 8 as the radius of the cut",
+   "514.96": "addSq: adds the squares instead of subtracting them",
+   "18.84": "noR2: forgets to square the radius of the cut"
+  },
+  "alt_of": "MB13C-Gb-SPHCUT-a0",
+  "selected_from": "MB13C-Gb-SPHCUT-a"
+ },
+ {
+  "id": "MB13-G6-04",
+  "mech": "G23",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.G.A.3",
+  "subskill": "Area of a rectangle on the coordinate plane from its center and one corner",
+  "grade_rationale": "High for grade 6 (6.G.A.3): distances between points with a shared coordinate across a negative coordinate, plus the reasoning that the center is halfway across the rectangle.",
+  "prompt": "A rectangle is drawn in the coordinate plane with its sides horizontal and vertical. The center of the rectangle is at (-7, 7), and one corner of the rectangle is at (1, 5). What is the area of the rectangle, in square units?",
+  "choices": [
+   "64",
+   "48",
+   "20",
+   "40"
+  ],
+  "correct_answer": "64",
+  "explanation": "From the center (-7, 7) to the corner (1, 5) is 8 units across and 2 units up or down. The center is halfway across the rectangle, so the sides are 2 x 8 = 16 and 2 x 2 = 4 units long, and the area is 16 x 4 = 64 square units.",
+  "solve": "return (2*Math.abs(1-(-7)))*(2*Math.abs(5-(7)));",
+  "distractor_solve": {
+   "20": "return 4*1*5;",
+   "40": "return 4*(8+2);",
+   "48": "return 4*6*2;"
+  },
+  "mechanism": [
+   "horizontal distance |1 - (-7)| = 8",
+   "vertical distance |5 - (7)| = 2",
+   "sides 16 and 4",
+   "area 64"
+  ],
+  "quantity_asked": "the area of the rectangle, in square units",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an area cannot be checked against the stem without finding both side lengths"
+  },
+  "distractor_meta": {
+   "20": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the corner's coordinates as the distances from the center (as if the center were the origin)",
+    "why": "4 x 1 x 5."
+   },
+   "40": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the perimeter of the rectangle instead of its area",
+    "why": "2 x (16 + 4)."
+   },
+   "48": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the horizontal distance by subtracting the x-coordinates as if both were positive",
+    "why": "|1 - 7| = 6; 4 x 6 x 2."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt at base rate by deal13 (G-a seed 20262305). 48 (signX) lands below; 20 (cornerDims) lands below; 40 (perim) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: 16, 44, 24.",
+  "cheap_bound_check": "no declared stem-readable bound or legality rule strikes a distractor Extreme key written under prereg Amendment 1 (--rank-agnostic): no measured far-side error exists for this mechanism, so no far_distractor is declared.",
+  "shape_check": "Options: 64, 48, 20, 40. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes.json",
+   "draft_stem": "A rectangle in the coordinate plane has its center at (-1, 2), and its sides are horizontal and vertical. One corner of the rectangle is at (5, 6). What is the area of the rectangle, in square units?",
+   "live": [
+    {
+     "query": "center",
+     "n": 105,
+     "ids": [
+      "000333a3-da3b-455e-a629-a99771d2b286",
+      "0cc6dcd8-ea68-40f6-a713-a0017de9cc6f",
+      "0ef9fcbe-02f7-4be5-8a51-12aaeaf7a1c4",
+      "0f76778f-ec87-4a76-9fb1-1f6b101dacd6",
+      "1032e3e7-c60c-4d8d-9505-d2b0173b76cb",
+      "123eacf2-dc8f-4ad8-b1c8-0d72038a459f",
+      "17ffcbf3-1f14-4683-b07a-3d99f7a4e814",
+      "1ad0bbc0-5efb-4294-8c48-02bfbef7cec7"
+     ]
+    },
+    {
+     "query": "center&rectangle || center&square&corner || center at \\(",
+     "n": 5,
+     "ids": [
+      "1ad0bbc0-5efb-4294-8c48-02bfbef7cec7",
+      "6fe55472-3f75-4280-a173-3898aa8240de",
+      "d03c531b-7be9-4a55-93a8-344f385186de",
+      "MM2-G16",
+      "MM2-G16"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "center",
+     "n": 14,
+     "ids": [
+      "MMG-G10",
+      "MMG-G13",
+      "MM2-G12",
+      "MM2-G16",
+      "MM3-G19",
+      "MM3-G20",
+      "MM3-G24",
+      "MM3-G24"
+     ]
+    },
+    {
+     "query": "center&corner",
+     "n": 1,
+     "ids": [
+      "MM2-G16"
+     ]
+    }
+   ],
+   "disposition": "BORDERLINE for R11: no center-and-corner item; nearest MAP bf76e543 (rectangle from four corners -> area x height), two steps apart",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "legality rule (each side is twice a whole-number distance from the center, so the area is a multiple of 4) strikes no option"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 0."
+  },
+  "params": {
+   "h": -7,
+   "k": 7,
+   "x": 1,
+   "y": 5
+  },
+  "nearMean": false,
+  "grade": 6,
+  "stem": "A rectangle is drawn in the coordinate plane with its sides horizontal and vertical. The center of the rectangle is at (-7, 7), and one corner of the rectangle is at (1, 5). What is the area of the rectangle, in square units?",
+  "options": [
+   "64",
+   "48",
+   "20",
+   "40"
+  ],
+  "key": "64",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "distractor_errors": {
+   "20": "cornerDims: treats the corner's coordinates as the distances from the center (as if the center were the origin)",
+   "40": "perim: finds the perimeter of the rectangle instead of its area",
+   "48": "signX: finds the horizontal distance by subtracting the x-coordinates as if both were positive"
+  },
+  "alt_of": "MB13C-Ga-G23-b0",
+  "amendment1": "written at its dealt rank under --rank-agnostic",
+  "selected_from": "MB13C-Ga-G23-b"
+ },
+ {
+  "id": "MB13-G5-01",
+  "mech": "G80",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.MD.C.5b",
+  "area_25": "Measurement and Data",
+  "subskill": "Volume of a box with a square base given the perimeter of the base",
+  "grade_rationale": "High for grade 5 (5.MD.C.5b, V = B x h): the base area must first be built from the perimeter of a square.",
+  "prompt": "Mia has a box shaped like a rectangular prism with a square base. The perimeter of the base is 36 centimeters, and the box is 2 centimeters tall. What is the volume of the box, in cubic centimeters?",
+  "choices": [
+   "72",
+   "162",
+   "18",
+   "729"
+  ],
+  "correct_answer": "162",
+  "explanation": "A square has four equal sides, so each side of the base is 36 / 4 = 9 cm. The base has area 9 x 9 = 81 square centimeters, and the volume is 81 x 2 = 162 cubic centimeters.",
+  "solve": "const s=36/4;return s*s*2;",
+  "distractor_solve": {
+   "18": "return 36/4*2;",
+   "72": "return 36*2;",
+   "729": "return (36/4)*(36/4)*(36/4);"
+  },
+  "mechanism": [
+   "side 36 / 4 = 9",
+   "base 81",
+   "volume 81 x 2 = 162"
+  ],
+  "quantity_asked": "the volume of the box, in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a volume cannot be checked without the base's side"
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the side of the base but forgets to square it",
+    "why": "9 x 2."
+   },
+   "72": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the perimeter of the base by the height",
+    "why": "36 x 2."
+   },
+   "729": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the side of the base as the height too",
+    "why": "9 x 9 x 9."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt at base rate by deal13 (G-a seed 20262305). 72 (Ph) lands below; 18 (sh) lands below; 729 (cube) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: 90, 144, -567.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 729 - the volume is the square base's area times 2, so it is 2 times a perfect square",
+  "shape_check": "Options: 162, 72, 18, 729. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes.json",
+   "draft_stem": "A box has a square base. The perimeter of the base is 28 centimeters, and the box is 10 centimeters tall. What is the volume of the box, in cubic centimeters?",
+   "live": [
+    {
+     "query": "square base",
+     "n": 11,
+     "ids": [
+      "259d4383-d9d0-4a3d-9457-3737e9d5c3e6",
+      "46c882a0-5753-46c3-a478-b3e1fda40665",
+      "7ea7ae73-be1d-46d6-934a-0615c36352df",
+      "801de346-7895-43f8-8e20-0ebe2ddcfd6c",
+      "8460db13-22c1-4779-be00-df758b415b28",
+      "aacc00dc-fd34-4c18-9f60-30b5cd3c207d",
+      "dc437765-a13e-4b14-9416-748099efd14a",
+      "e97a9db1-e367-499f-a6d7-0c3a48ce1004"
+     ]
+    },
+    {
+     "query": "perimeter&base&volume || square base&perimeter",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "map": [
+    {
+     "query": "square base",
+     "n": 0,
+     "ids": []
+    },
+    {
+     "query": "perimeter of the base",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "disposition": "clean: no perimeter-of-a-square-base item in the 11 square-base hits",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [
+     "729"
+    ],
+    "why": "legality: the volume is the square base's area times 2, so it is 2 times a perfect square"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean true. Self-screen strikes: 1."
+  },
+  "params": {
+   "s": 9,
+   "h": 2
+  },
+  "nearMean": true,
+  "grade": 5,
+  "stem": "Mia has a box shaped like a rectangular prism with a square base. The perimeter of the base is 36 centimeters, and the box is 2 centimeters tall. What is the volume of the box, in cubic centimeters?",
+  "options": [
+   "72",
+   "162",
+   "18",
+   "729"
+  ],
+  "key": "162",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "distractor_errors": {
+   "18": "sh: finds the side of the base but forgets to square it",
+   "72": "Ph: multiplies the perimeter of the base by the height",
+   "729": "cube: uses the side of the base as the height too"
+  },
+  "alt_of": "MB13C-Ga-G80-a0",
+  "selected_from": "MB13C-Ga-G80-a"
+ },
+ {
+  "id": "MB13-G6-05",
+  "mech": "G4",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.4",
+  "subskill": "Volume of a box from the six rectangles of its net",
+  "grade_rationale": "Mid for grade 6 (6.G.A.4): the student must read the three edge lengths off the face pairs of a net (not add the face areas) and use them for the volume.",
+  "prompt": "A net for a closed box is made of six rectangles. Two of the rectangles are 16 centimeters by 8 centimeters, two are 16 centimeters by 2 centimeters, and two are 8 centimeters by 2 centimeters. The net is folded into the box. What is the volume of the box, in cubic centimeters?",
+  "choices": [
+   "256",
+   "176",
+   "104",
+   "320"
+  ],
+  "correct_answer": "256",
+  "explanation": "Each edge of the box appears in the net as a side of four of the rectangles, so the three different edge lengths are 16, 8 and 2 centimeters. The volume is 16 x 8 x 2 = 256 cubic centimeters.",
+  "solve": "return 16*8*2;",
+  "distractor_solve": {
+   "104": "return 4*(16+8+2);",
+   "176": "return 16*8+16*2+8*2;",
+   "320": "return 2*16*8+2*16*2;"
+  },
+  "mechanism": [
+   "edges 16, 8, 2 (each pair of matching rectangles is one pair of opposite faces)",
+   "volume 16 x 8 x 2 = 256"
+  ],
+  "quantity_asked": "the volume of the folded box, in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked only by finding the three edges and multiplying them, which is the method itself"
+  },
+  "distractor_meta": {
+   "104": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the lengths of all twelve edges of the box",
+    "why": "4 x (16 + 8 + 2)."
+   },
+   "176": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the areas of the three different rectangles",
+    "why": "128 + 32 + 16."
+   },
+   "320": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the four largest rectangles only",
+    "why": "2 x 128 + 2 x 32."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt at base rate by deal13 (G-a seed 20262305). 176 (half) lands below; 104 (edge4) lands below; 320 (four) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: 80, 152, -64.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 104 - the volume is the product of the three different edge lengths 16, 8 and 2, so it is a multiple of each of them (of 16)",
+  "shape_check": "Options: 256, 176, 104, 320. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes.json",
+   "draft_stem": "A net for a closed box is made of six rectangles. Two of them are 8 centimeters by 5 centimeters, two are 8 centimeters by 3 centimeters, and two are 5 centimeters by 3 centimeters. The net is folded into the box. What is the volume of the box, in cubic centimeters?",
+   "live": [
+    {
+     "query": "net",
+     "n": 23,
+     "ids": [
+      "0d80b6bf-a95c-4f1e-a9f7-d86ea4623a0d",
+      "1ec2bf03-49d8-4346-9272-85eb3731adcb",
+      "275d68d9-1b8f-4c09-9c98-9f4d78287272",
+      "4bb6ce1e-2678-4e19-9ee5-9cd5e6accc26",
+      "51af14f3-31de-4109-a66e-38a80e855ce7",
+      "61023086-f4ab-4b42-9230-dba233238ace",
+      "7600cae0-5978-4b44-bd78-674c1e2e1a43",
+      "8715eb44-2428-444f-964a-40e89bfe83b7"
+     ]
+    },
+    {
+     "query": "net&volume || net&cubic || six rectangles",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "map": [
+    {
+     "query": "net",
+     "n": 6,
+     "ids": [
+      "MMG-G06",
+      "MM2-G10",
+      "MM3-G14",
+      "MM3-G14",
+      "MB2-O7R-14",
+      "MB3-G6-01"
+     ]
+    },
+    {
+     "query": "net&cubic",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "disposition": "clean: every net hit (MB3-G6-01, MM3-G14, MMG-G06, MM2-G10) sums face areas to a surface area; none reads edges off a net for a volume",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [
+     "104"
+    ],
+    "why": "legality: the volume is the product of the three different edge lengths 16, 8 and 2, so it is a multiple of each of them (of 16)"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 1."
+  },
+  "params": {
+   "a": 16,
+   "b": 8,
+   "c": 2
+  },
+  "nearMean": false,
+  "grade": 6,
+  "stem": "A net for a closed box is made of six rectangles. Two of the rectangles are 16 centimeters by 8 centimeters, two are 16 centimeters by 2 centimeters, and two are 8 centimeters by 2 centimeters. The net is folded into the box. What is the volume of the box, in cubic centimeters?",
+  "options": [
+   "256",
+   "176",
+   "104",
+   "320"
+  ],
+  "key": "256",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "distractor_errors": {
+   "104": "edge4: adds the lengths of all twelve edges of the box",
+   "176": "half: adds the areas of the three different rectangles",
+   "320": "four: adds the four largest rectangles only"
+  },
+  "alt_of": "MB13C-Ga-G4-a0",
+  "selected_from": "MB13C-Ga-G4-a"
+ },
+ {
+  "id": "MB13-G6-01",
+  "mech": "G87",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.1",
+  "subskill": "Total cost of fencing and covering a right-triangle yard",
+  "grade_rationale": "Mid for grade 6 (6.G.A.1): area of a right triangle (half the product of the legs) alongside its perimeter, each priced per unit.",
+  "prompt": "A yard is shaped like a right triangle. The two sides that meet at the right angle are 16 feet and 30 feet long, and the third side is 34 feet long. Fencing costs $5 per foot, and sod costs $3 per square foot. How many dollars does it cost in all to put a fence all the way around the yard and cover the whole yard with sod?",
+  "choices": [
+   "1440",
+   "1930",
+   "1120",
+   "1670"
+  ],
+  "correct_answer": "1120",
+  "explanation": "The fence goes around all three sides: 16 + 30 + 34 = 80 feet, costing 80 x 5 = 400 dollars. The yard's area is half of 16 x 30, which is 240 square feet, so the sod costs 240 x 3 = 720 dollars. In all: 400 + 720 = 1120.",
+  "solve": "return (16+30+34)*5+16*30/2*3;",
+  "distractor_solve": {
+   "1440": "return (16+30+34)*3+16*30/2*5;",
+   "1670": "return (16+30)*5+16*30*3;",
+   "1930": "return (16+30+34)*5+30*34/2*3;"
+  },
+  "mechanism": [
+   "perimeter 80",
+   "fence 400",
+   "area 16 x 30 / 2 = 240",
+   "sod 720",
+   "total 1120"
+  ],
+  "quantity_asked": "the total cost, in dollars, of the fence and the sod",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a total cost cannot be checked without both the perimeter and the area"
+  },
+  "distractor_meta": {
+   "1440": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the fencing price for the sod and the sod price for the fence",
+    "why": "80 x 3 + 240 x 5."
+   },
+   "1670": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "fences only the two sides at the right angle and uses leg times leg for the area",
+    "why": "fence 46, area 480."
+   },
+   "1930": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the 34-foot side as one of the two sides for the area",
+    "why": "area 30 x 34 / 2."
+   }
+  },
+  "structure_check": "Key rank 1 of 4, dealt at base rate by deal13 (G-a seed 20262305). 1440 (swap) lands above; 1930 (hyp) lands above; 1670 (legsNoHalf) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: -320, -810, -550.",
+  "cheap_bound_check": "no declared stem-readable bound or legality rule strikes a distractor Extreme key written under prereg Amendment 1 (--rank-agnostic): no measured far-side error exists for this mechanism, so no far_distractor is declared.",
+  "shape_check": "Options: 1120, 1440, 1930, 1670. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes-4.json",
+   "draft_stem": "A yard is shaped like a right triangle. The two sides that meet at the right angle are 30 feet and 40 feet long, and the third side is 50 feet long. Fencing costs $12 per foot, and sod costs $2 per square foot. What is the total cost to put a fence all the way around the yard and cover the whole yard with sod?",
+   "live": [
+    {
+     "query": "sod",
+     "n": 3,
+     "ids": [
+      "ff8f85cb-0096-4e01-bd0f-0eb96b8b72f6",
+      "SM18L-B1",
+      "MM4-N10"
+     ]
+    },
+    {
+     "query": "fenc&sod || per foot&per square foot || right triangle&fenc || triangle&perimeter&area&cost",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "map": [
+    {
+     "query": "sod|fenc",
+     "n": 12,
+     "ids": [
+      "MM2-O12",
+      "MM2-G05",
+      "MM4-N10",
+      "33520d51-aa97-4dfe-86df-c61aaf75b804",
+      "MV2-G56-03",
+      "MV2-G78-02",
+      "MB2-G6-08",
+      "MB2-G7B-04"
+     ]
+    },
+    {
+     "query": "triangle&fenc|perimeter",
+     "n": 3,
+     "ids": [
+      "MV2-O78-10",
+      "MV2-G56-12",
+      "MB2-G7A-11"
+     ]
+    }
+   ],
+   "disposition": "clean: SAT SM18L-B1 is a fee + sod-area item with no perimeter; no fence-plus-sod item",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 0."
+  },
+  "params": {
+   "a": 16,
+   "b": 30,
+   "c": 34,
+   "p1": 5,
+   "p2": 3
+  },
+  "nearMean": false,
+  "grade": 6,
+  "stem": "A yard is shaped like a right triangle. The two sides that meet at the right angle are 16 feet and 30 feet long, and the third side is 34 feet long. Fencing costs $5 per foot, and sod costs $3 per square foot. How many dollars does it cost in all to put a fence all the way around the yard and cover the whole yard with sod?",
+  "options": [
+   "1440",
+   "1930",
+   "1120",
+   "1670"
+  ],
+  "key": "1120",
+  "key_rank": 1,
+  "deal_rank": 1,
+  "distractor_errors": {
+   "1440": "swap: uses the fencing price for the sod and the sod price for the fence",
+   "1670": "legsNoHalf: fences only the two sides at the right angle and uses leg times leg for the area",
+   "1930": "hyp: uses the 34-foot side as one of the two sides for the area"
+  },
+  "alt_of": "MB13C-Ga-G87-b1",
+  "amendment1": "written at its dealt rank under --rank-agnostic",
+  "selected_from": "MB13C-Ga-G87-b"
+ },
+ {
+  "id": "MB13-G6-02",
+  "mech": "G101",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.G.A.2",
+  "subskill": "Volume of a box from the sums of its edges taken two at a time",
+  "grade_rationale": "High for grade 6 (6.G.A.2 volume, with 6.EE reasoning): recover three edges from their pairwise sums, then multiply.",
+  "prompt": "Theo measures a closed carton shaped like a rectangular prism. Adding its length and width gives 21 inches, adding its width and height gives 10 inches, and adding its length and height gives 19 inches. How many cubic inches of space does the carton take up?",
+  "choices": [
+   "348",
+   "360",
+   "198",
+   "210"
+  ],
+  "correct_answer": "360",
+  "explanation": "Adding the three sums counts each edge twice: 21 + 10 + 19 = 50, so length + width + height = 25. Then the height is 25 - 21 = 4, the length is 25 - 10 = 15, and the width is 25 - 19 = 6. The volume is 15 x 6 x 4 = 360 cubic inches.",
+  "solve": "const H=(21+10+19)/2;return (H-10)*(H-19)*(H-21);",
+  "distractor_solve": {
+   "198": "return (21-10)*(19-10)*(21-19);",
+   "210": "return 21*10;",
+   "348": "return 2*(15*6+6*4+15*4);"
+  },
+  "mechanism": [
+   "21 + 10 + 19 = 50",
+   "l + w + h = 25",
+   "edges 15, 6, 4",
+   "volume 360"
+  ],
+  "quantity_asked": "the volume of the box, in cubic inches",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "a volume cannot be checked without recovering the three edges"
+  },
+  "distractor_meta": {
+   "198": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the sums from each other to get the edges",
+    "why": "11 x 9 x 2."
+   },
+   "210": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies two of the sums as if they were the base and the height",
+    "why": "21 x 10."
+   },
+   "348": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the edges correctly but then the surface area",
+    "why": "2(lw + wh + lh)."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt at base rate by deal13 (G-a seed 20262305). 348 (SA) lands below; 198 (diffs) lands below; 210 (twoSums) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No distractor is an intermediate value of the method, and no two options are joined by a printed number or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM and KGAP passed). Differences from the key: 12, 162, 150.",
+  "cheap_bound_check": "no declared stem-readable bound or legality rule strikes a distractor Extreme key written under prereg Amendment 1 (--rank-agnostic): no measured far-side error exists for this mechanism, so no far_distractor is declared.",
+  "shape_check": "Options: 360, 348, 198, 210. No option is alone in its surface form; the key is not alone in parity, last digit or multiple-of-5 class; no two options are one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "probe_file": "probes-3.json",
+   "draft_stem": "For a box shaped like a rectangular prism, the length plus the width is 13 inches, the width plus the height is 11 inches, and the length plus the height is 12 inches. What is the volume of the box, in cubic inches?",
+   "live": [
+    {
+     "query": "plus",
+     "n": 95,
+     "ids": [
+      "000333a3-da3b-455e-a629-a99771d2b286",
+      "01fa8fbb-d58e-4165-bdc7-fb46a19dc5d6",
+      "0a6bd177-db9c-48fe-870e-b0b9d537ed54",
+      "0ee667b1-2b93-4278-b22d-ac327b704e57",
+      "0f25b6a0-147c-4436-adc1-b9002c1bfe7e",
+      "0f52ad1e-2040-4704-8c14-6c64201e0691",
+      "17cada45-d90f-4804-bd8e-a7457fd1702f",
+      "19069070-f746-4c73-ae95-ff66e701e9c4"
+     ]
+    },
+    {
+     "query": "length plus the width || width plus the height || length&width&plus&volume",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "map": [
+    {
+     "query": "length plus|width plus",
+     "n": 0,
+     "ids": []
+    },
+    {
+     "query": "plus&cubic",
+     "n": 0,
+     "ids": []
+    }
+   ],
+   "disposition": "clean: no pairwise-sum item (every \"plus\" hit is fee-plus-rate)",
+   "read_in": "PROBE-READ.md"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 G-a stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 0."
+  },
+  "params": {
+   "l": 15,
+   "w": 6,
+   "h": 4
+  },
+  "nearMean": false,
+  "grade": 6,
+  "stem": "Theo measures a closed carton shaped like a rectangular prism. Adding its length and width gives 21 inches, adding its width and height gives 10 inches, and adding its length and height gives 19 inches. How many cubic inches of space does the carton take up?",
+  "options": [
+   "348",
+   "360",
+   "198",
+   "210"
+  ],
+  "key": "360",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "distractor_errors": {
+   "198": "diffs: subtracts the sums from each other to get the edges",
+   "210": "twoSums: multiplies two of the sums as if they were the base and the height",
+   "348": "SA: finds the edges correctly but then the surface area"
+  },
+  "alt_of": "MB13C-Ga-G101-b0",
+  "amendment1": "written at its dealt rank under --rank-agnostic",
+  "selected_from": "MB13C-Ga-G101-b"
+ }
+]

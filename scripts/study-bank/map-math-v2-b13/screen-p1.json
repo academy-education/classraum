@@ -1,0 +1,20 @@
+{
+ "screened": 33,
+ "fails": {
+  "MB13-G6-07": [
+   "S-R4 2 struck without solving: [\"41472\",\"1728\"] (41472: dimensions summing to 36 are each around 8-16, product far smaller; 1728 = 12^3 needs a cube, but the 4:3:2 ratio is not a cube)"
+  ],
+  "MB13-O7-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB13-D6-04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB13-O7-01": [
+   "S-R4 2 struck without solving: [\"11\",\"9\"] (11 and 9 in 12 s are 55 and 45 bpm, below resting rate, impossible for exercise)"
+  ],
+  "MB13-O7-02": [
+   "S-R4 2 struck without solving: [\"540\",\"240\"] (the printer runs about 4/7 of the time, so about 4/7 of 720 (about 410); 540 (75%) is too big and 240 (33%) too small)"
+  ]
+ }
+}

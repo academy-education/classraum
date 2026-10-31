@@ -444,7 +444,12 @@ function blindKeys(batch) {
 }
 
 async function main() {
-  const [cmd, batchPath, qcPath] = process.argv.slice(2)
+  // CLI flags (2026-11-01, MAP Math b13): --staged writes verified=false (the assembler ignores the rows until a person
+  // releases them); --family <f> / --cohort <c> are the CLI forms of BANK_FAMILY / BANK_COHORT and win over them.
+  // Without any flag the behaviour is unchanged (verified=true, env vars).
+  const argv = process.argv.slice(2), flagVal = n => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : undefined }
+  const STAGED = argv.includes('--staged'), FAMILY_FLAG = flagVal('--family'), COHORT_FLAG = flagVal('--cohort')
+  const [cmd, batchPath, qcPath] = argv.filter((a, i) => !a.startsWith('--') && !['--family', '--cohort'].includes(argv[i - 1]))
   const batch = batchPath ? JSON.parse(readFileSync(batchPath, 'utf8')) : []
 
   if (cmd === 'blind') { process.stdout.write(renderBlind(batch)); return }
@@ -551,8 +556,8 @@ async function main() {
 
   const env = loadEnv()
   const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
-  const FAMILY = process.env.BANK_FAMILY || 'sat'
-  const COHORT = process.env.BANK_COHORT || 'v2'
+  const FAMILY = FAMILY_FLAG || process.env.BANK_FAMILY || 'sat'
+  const COHORT = COHORT_FLAG || process.env.BANK_COHORT || 'v2'
   if (!['sat', 'ssat', 'isee', 'act', 'map'].includes(FAMILY)) {
     console.error(`BANK_FAMILY must be sat, ssat, isee, act or map — got '${FAMILY}'`); process.exit(1)
   }
@@ -656,7 +661,7 @@ async function main() {
       // migration 068 made task NOT NULL; math rows all carry 'multiple_choice'.
       task: 'multiple_choice',
       difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
-      passage_group_id: null, item: it, content_hash, word_count: null, verified: true,
+      passage_group_id: null, item: it, content_hash, word_count: null, verified: !STAGED,
       verify_meta: {
         method: 'claude-authored+sandbox', computed: r.computed, grader_difficulty: q.difficulty || null,
         /*
@@ -682,7 +687,7 @@ async function main() {
     })
     if (error) { console.log(`ERR    ${label}: ${error.message}`); continue }
     seen.add(content_hash); inserted++
-    console.log(`INSERT ${label} — ${difficulty}${difficulty === raw.difficulty ? '' : ` (author said ${raw.difficulty})`}, computed ${r.computed}`)
+    console.log(`INSERT${STAGED ? ' (staged, verified=false)' : ''} ${label} — ${difficulty}${difficulty === raw.difficulty ? '' : ` (author said ${raw.difficulty})`}, computed ${r.computed}`)
   }
 
   // Paginated: the family's math rows passed 1000 on 2026-09-03 and the

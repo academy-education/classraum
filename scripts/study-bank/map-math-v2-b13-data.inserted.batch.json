@@ -1,0 +1,217 @@
+[
+ {
+  "id": "MB13-D7-04",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a count from a random sample, then find the percent error against the actual count",
+  "difficulty": "hard",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "A school has 800 students, and 80 of them walk to school. Before knowing this, Ella asked a random sample of 80 of the students, and 12 of them walk to school. Ella used the sample to estimate how many of the 800 students walk to school. By what percent is the estimate greater than the actual number? Round to the nearest whole percent.",
+  "choices": [
+   "40",
+   "50",
+   "6",
+   "15"
+  ],
+  "correct_answer": "50",
+  "explanation": "The sample rate is 12/80, so the estimate is 12/80 x 800 = 120. That is 120 - 80 = 40 more than the actual number, and 40 / 80 = 50% exactly (no rounding is needed).",
+  "solve": "const e=800*12/80;return (e-80)/80*100;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "40",
+    "mis_step": "120 - 80."
+   },
+   {
+    "choice": "6",
+    "mis_step": "40 / 720."
+   },
+   {
+    "choice": "15",
+    "mis_step": "12/80 as a percent."
+   }
+  ],
+  "distractor_solve": {
+   "6": "return Math.round((800*12/80-80)/(800-80)*100);",
+   "15": "return Math.round(12/80*100);",
+   "40": "return 800*12/80-80;"
+  }
+ },
+ {
+  "id": "MB13-D6-06",
+  "domain": "Statistics and Probability",
+  "subskill": "Two daily values recovered from a running mean, then compared",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5c",
+  "prompt": "Mia did push-ups every day. After 5 days, Mia's mean was 31 push-ups per day. After 6 days, the mean was 36 push-ups per day. After 7 days, the mean was 34 push-ups per day. How many more push-ups did Mia do on day 6 than on day 7?",
+  "choices": [
+   "22",
+   "49",
+   "30",
+   "39"
+  ],
+  "correct_answer": "39",
+  "explanation": "The totals are 5 x 31 = 155, 6 x 36 = 216 and 7 x 34 = 238. Day 6 was 216 - 155 = 61 push-ups and day 7 was 238 - 216 = 22. Day 6 had 61 - 22 = 39 more.",
+  "solve": "const d6=6*36-5*31;const d7=7*34-6*36;return d6-d7;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5c",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "22",
+    "mis_step": "7 x 34 - 6 x 36 = 22."
+   },
+   {
+    "choice": "49",
+    "mis_step": "7 x (5 - (-2))."
+   },
+   {
+    "choice": "30",
+    "mis_step": "6 x 5."
+   }
+  ],
+  "distractor_solve": {
+   "22": "return 7*34-6*36;",
+   "30": "return 6*(36-31);",
+   "49": "return 7*((36-31)-(34-36));"
+  }
+ },
+ {
+  "id": "MB13-D7-03",
+  "domain": "Statistics and Probability",
+  "subskill": "Probability that a randomly chosen integer satisfies a linear inequality",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.7a",
+  "prompt": "Ella writes each integer from -8 to 15 on its own card and mixes the cards. Ella then draws one card without looking, and x is the number on it. What is the probability that 2x - 7 > 5?",
+  "choices": [
+   "3/8",
+   "2/3",
+   "7/12",
+   "13/24"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "2x - 7 > 5 means 2x > 12, so x > 6. From -8 through 15 there are 24 integers, and 7 through 15 is 9 of them. The probability is 9/24 = 3/8.",
+  "solve": "let n=0;for(let x=-8;x<=15;x++) if(2*x-7>5) n++;return n/24;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.7a",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "2/3",
+    "mis_step": "x > -1."
+   },
+   {
+    "choice": "7/12",
+    "mis_step": "14/24."
+   },
+   {
+    "choice": "13/24",
+    "mis_step": "x > 2.5."
+   }
+  ],
+  "distractor_solve": {
+   "2/3": "return (15-Math.floor((5-7)/2))/24;",
+   "7/12": "return (6-(-8))/24;",
+   "13/24": "return (15-Math.floor(5/2))/24;"
+  }
+ },
+ {
+  "id": "MB13-D6-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Mean of a distribution given as percents of the group",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5c",
+  "prompt": "In a survey of families in a town, 20% of the families have no pets, 35% have 1 pet, 35% have 2 pets, and the rest have 3 pets. What is the mean number of pets per family for the families in the survey?",
+  "choices": [
+   "1.05",
+   "1.35",
+   "0.8",
+   "1.5"
+  ],
+  "correct_answer": "1.35",
+  "explanation": "Think of 100 families: 20 have 0 pets, 35 have 1, 35 have 2, and 10 have 3. They have 35 + 70 + 30 = 135 pets in all, so the mean is 135 / 100 = 1.35 pets per family.",
+  "solve": "return (35+2*35+3*(100-20-35-35))/100;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5c",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "1.05",
+    "mis_step": "(35 + 70) / 100."
+   },
+   {
+    "choice": "0.8",
+    "mis_step": "80%."
+   },
+   {
+    "choice": "1.5",
+    "mis_step": "(0 + 1 + 2 + 3) / 4 = 1.5."
+   }
+  ],
+  "distractor_solve": {
+   "1.5": "return (0+1+2+3)/4;",
+   "1.05": "return (35+2*35)/100;",
+   "0.8": "return (35+35+(100-20-35-35))/100;"
+  }
+ },
+ {
+  "id": "MB13-D6-03",
+  "domain": "Statistics and Probability",
+  "subskill": "Mean of the values above the median (odd count)",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5c",
+  "prompt": "Nine players in a game scored 10, 25, 14, 35, 22, 18, 21, 23, and 19 points. What is the mean score of the players who scored more than the median score?",
+  "choices": [
+   "26.25",
+   "28",
+   "24",
+   "20.25"
+  ],
+  "correct_answer": "26.25",
+  "explanation": "In order the scores are 10, 14, 18, 19, 21, 22, 23, 25, 35. The median is the 5th score, 21. The four scores above it are 22, 23, 25, 35, which add to 105, so their mean is 105 / 4 = 26.25.",
+  "solve": "const v=[10,25,14,35,22,18,21,23,19].sort((a,b)=>a-b);return (v[5]+v[6]+v[7]+v[8])/4;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5c",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "28",
+    "mis_step": "(21 + 35) / 2."
+   },
+   {
+    "choice": "24",
+    "mis_step": "(23 + 25) / 2."
+   },
+   {
+    "choice": "20.25",
+    "mis_step": "81 / 4."
+   }
+  ],
+  "distractor_solve": {
+   "24": "return (23+25)/2;",
+   "28": "return (21+35)/2;",
+   "20.25": "return (18+21+23+19)/4;"
+  }
+ }
+]

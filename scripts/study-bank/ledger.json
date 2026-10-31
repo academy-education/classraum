@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T14:43:46.191Z",
+  "generatedAt": "2026-10-31T16:32:12.871Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -13301,6 +13301,94 @@
           "passed": true,
           "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
           "verdict": "NC keyed 21/81 eligible (25.9%); key uniquely shortest 14/79, longest 4/79; key slots 25/25/25/25."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-b13-geo-2026-11-01",
+      "createdAt": "2026-11-01",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-b13-geo",
+      "contentSha": "436845bc0ce44914e8c327f9a5c477fed541a40906fe8a7a4d13db4fbcb7f1fd",
+      "status": "qc",
+      "note": "map-v2 Math batch 13 (Operations + Geometry + Statistics, screen in the loop), Geometry (scripts/study-bank/MAP-MATH-V2-B13.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 10 from G6 + G8 + G5; frozen 9 as this area's own batch (sha 5ae2a7f63674e657); 5 kept by the graders; 5 in this file. contentSha = sha256 of scripts/study-bank/map-math-v2-b13-geo.inserted.batch.json; qc scripts/study-bank/map-math-v2-b13-geo.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "436845bc0ce44914e8c327f9a5c477fed541a40906fe8a7a4d13db4fbcb7f1fd",
+          "n": 5,
+          "verdict": "Stage 0: 10/10 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item). Cold screen pass 1: 1 of 10 failed, returned once (revised 0, withdrawn 1, stood 0); pass 2: 0 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 9, no per-area minimum. Survivors: math-check 5/5 PART OK; math-bank-helper verify on this file Sandbox 5/5; Distractors: 15 of 15 recomputed across 5 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "436845bc0ce44914e8c327f9a5c477fed541a40906fe8a7a4d13db4fbcb7f1fd",
+          "n": 9,
+          "candidatePct": 37,
+          "control": 44.4,
+          "controlN": 9,
+          "margin": -7.4,
+          "verdict": "Options-only, three samples of one Claude solver, 9 frozen candidates vs 9 live ISEE geo controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 36fe8ca98b7e03ee: 10/27 = 37.0% vs 12/27 = 44.4%, margin -7.4 (bar +10; control under the 90% ceiling); unanimous-correct rate 33.3% vs 33.3% (0.0, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "436845bc0ce44914e8c327f9a5c477fed541a40906fe8a7a4d13db4fbcb7f1fd",
+          "n": 9,
+          "coldOnKey": 18,
+          "kept": 5,
+          "verdict": "Two Claude graders per part (1 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 18 cold rows, 0 changed. 18/18 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (0 item(s) to F, 2 of 3, tie -> drop). Dropped 4: MB13-G8-01 (EXT-1 drop_recommend); MB13-G6-04 (EXT-1 drop_recommend); MB13-G6-05 (EXT-1 drop_recommend); MB13-G6-01 (R8 one-sided extreme key (both); EXT-1 drop_recommend). Grade fit recorded, not a drop rule: too_easy 1/18, too_hard 0/18, offsets -0.67/-0.44, tier spreads undefined/undefined."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "436845bc0ce44914e8c327f9a5c477fed541a40906fe8a7a4d13db4fbcb7f1fd",
+          "cExtremity": "not-measured",
+          "verdict": "Key at an extreme on this file: no measurement: 5 scorable of 5 (need >= 10); 0 non-numeric, 0 other skip (C and C-prime NOT MEASURED below 10 scorable items: recorded, neither a pass nor a fail; C-prime did not fire). Key letters in this file (with-source deal) {\"A\":2,\"C\":1,\"D\":1,\"B\":1}. Banked difficulty (graders' tier_assigned) easy 0 / medium 1 / hard 4. Unanimity compared to the control at batch level only. Screen-flagged survivors: 0."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-b13-data-2026-11-01",
+      "createdAt": "2026-11-01",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-b13-data",
+      "contentSha": "2c7d35684bc75e9dc9f93a4c38e7cb1c83f5c422c4e2e2867ea15fc4b0e47510",
+      "status": "qc",
+      "note": "map-v2 Math batch 13 (Operations + Geometry + Statistics, screen in the loop), Statistics and Probability (scripts/study-bank/MAP-MATH-V2-B13.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 11 from D6 + D7; frozen 10 as this area's own batch (sha f864e5dc4d7cd2ca); 5 kept by the graders; 5 in this file. contentSha = sha256 of scripts/study-bank/map-math-v2-b13-data.inserted.batch.json; qc scripts/study-bank/map-math-v2-b13-data.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "2c7d35684bc75e9dc9f93a4c38e7cb1c83f5c422c4e2e2867ea15fc4b0e47510",
+          "n": 5,
+          "verdict": "Stage 0: 11/11 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item). Cold screen pass 1: 1 of 11 failed, returned once (revised 0, withdrawn 1, stood 0); pass 2: 0 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 10, no per-area minimum. Survivors: math-check 5/5 PART OK; math-bank-helper verify on this file Sandbox 5/5; Distractors: 15 of 15 recomputed across 5 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "2c7d35684bc75e9dc9f93a4c38e7cb1c83f5c422c4e2e2867ea15fc4b0e47510",
+          "n": 10,
+          "candidatePct": 13.3,
+          "control": 33.3,
+          "controlN": 10,
+          "margin": -20,
+          "verdict": "Options-only, three samples of one Claude solver, 10 frozen candidates vs 10 live ISEE data controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 90d472e3bf520902: 4/30 = 13.3% vs 10/30 = 33.3%, margin -20.0 (bar +10; control under the 90% ceiling); unanimous-correct rate 0.0% vs 30.0% (-30.0, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "2c7d35684bc75e9dc9f93a4c38e7cb1c83f5c422c4e2e2867ea15fc4b0e47510",
+          "n": 10,
+          "coldOnKey": 20,
+          "kept": 5,
+          "verdict": "Two Claude graders per part (1 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 20 cold rows, 0 changed. 20/20 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (1 item(s) to F, 2 of 3, tie -> drop). Dropped 5: MB13-D6-05 (EXT-1 drop_recommend); MB13-D6-02 (R4 two or more free strikes (both); R8 one-sided extreme key (both); EXT-1 drop_recommend); MB13-D7-01 (R6 plug-back routine <= 2 (one grader + F)); MB13-D7-02 (EXT-1 drop_recommend); MB13-D7-05 (R8 one-sided extreme key (both); EXT-1 drop_recommend). Grade fit recorded, not a drop rule: too_easy 0/20, too_hard 0/20, offsets -0.60/-0.70, tier spreads undefined/undefined."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "2c7d35684bc75e9dc9f93a4c38e7cb1c83f5c422c4e2e2867ea15fc4b0e47510",
+          "cExtremity": "not-measured",
+          "verdict": "Key at an extreme on this file: no measurement: 5 scorable of 5 (need >= 10); 0 non-numeric, 0 other skip (C and C-prime NOT MEASURED below 10 scorable items: recorded, neither a pass nor a fail; C-prime did not fire). Key letters in this file (with-source deal) {\"B\":2,\"D\":1,\"A\":2}. Banked difficulty (graders' tier_assigned) easy 0 / medium 2 / hard 3. Unanimity compared to the control at batch level only. Screen-flagged survivors: 0."
         }
       }
     }

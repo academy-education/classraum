@@ -7072,3 +7072,33 @@ structural checks are pre-flight only. See CLAUDE.md.
   `admission-form-depth.ts --include-ids` (refuses non-staged ids). With the 138 staged d19-22 cleared also counted,
   reading reaches the 14-form replay cap. Release: none here; v2 is a new method, so a Daniel audit sample (bridge)
   before any release. Top-up for the 11 missing passages = a new batch (v2 or a v3 cut), no repair.
+
+- **2026-11-01 — MAP Math b13 (screen in the loop, ranks dealt at base rate): Geometry 5 and Statistics 5 STAGED
+  (verified=false); Operations HELD on options-only; Number Systems pooled at 7 (not gated).** Prereg
+  `MAP-MATH-V2-B13.prereg.md` written before any item (+ Amendment 1 before any reviewer). Tools in
+  `map-v2-work/math-b13/` (dump13, mapgrep13, probe13, engine13, deal13, stagea13, build13); `map-math-v2.mjs --batch b13`.
+  - **b12's probe had a query bug** (`"a&b|a&c"` splits on `&`, so it required both alternatives' last term): re-probed,
+    4 of b12's 6 survivors were live repeats (G1-b = SSAT e4ff3033 sliding ladder; O18-a = SAT d5d11698 equal-total
+    plans; O29-c and G7-b = a live chain + one step). probe13 adds `||` conjunctions, a mandatory one-term context
+    probe and a self-match refusal. Carried in: O2-b, D61-a only.
+  - **math-check carries position rules too** (S/L slot, D3, FAR1, FAR2, STRUCT fire only on rank-1/4 keys): with
+    engine13 rank-agnostic and a balanced deal, stage A still came out 81.6% interior. `math-check --rank-agnostic`
+    (Amendment 1, break-tested) fixed it: 104 candidates at ranks 20/30/32/22 (top-up incl.: 137).
+  - Stage A: 8 authors + 4 top-up (N, O); probe killed ~60% of ideas. Screener + 3 options-only samples; stage-A
+    options-only 17.6-41.3%. Selected O 12, G 10, D 11 (gated), N 7 (pooled: MB13C-Na-M27-a, Nb-FLOOR-b, Na-M01-b,
+    Nb-CUBEDIFF-a, Na-M03-b, NaT-MISCONV-a, NaT-PERFULL-b; a third N round is needed to reach 10).
+  - Gate: screen p1 5/33 fail (prediction <= 30%: met); 1 revised, 4 withdrawn (2 S-R8 one-sided at a fixed extreme
+    rank; 2 with no set left at their rank once the screener's bound was a rule). Frozen O 10 / G 9 / D 10.
+    Options-only: **O 36.7% vs 23.3% (+13.3 > +10) HOLD**; G 37.0% vs 44.4% PASS; D 13.3% vs 33.3% PASS. Keys 58/58
+    cold on key. Graders dropped 4 G and 5 D, nearly all extreme keys whose errors all go one way (EXT-1 / R8);
+    grader e named that as a pattern, grader d did not, so A1 did not fire. Staged: cohorts `map-math-v2-b13-geo` (5)
+    and `map-math-v2-b13-data` (5); read back 10 rows, verified=false, archived=false.
+  - **Finding:** dealing extreme keys at base rate puts the "all errors one-sided" tell back on ~half the extreme
+    items, and the graders kill them, so the KEPT sets skew interior again (G kept ranks 0/2/2/1, D 1/0/3/1). Next
+    round: give extreme-rank slots a measured two-sided error set at generation (a natural error on the far side),
+    or the deal is undone downstream. O's options-only miss: solvers' "hub" heuristic (the value the others derive
+    from) found 11/30.
+  - `math-bank-helper.mjs insert` takes `--staged` (verified=false), `--family`, `--cohort` (CLI forms of
+    BANK_FAMILY/BANK_COHORT); unchanged without them.
+  - **Depth:** map-form-depth `--staged`: math 228 rows, still **5 forms** (f6 short OA 5/10, N 1/10; Geo and Stats
+    now fill f6). Live unchanged at 5.

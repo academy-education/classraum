@@ -1,0 +1,8 @@
+{
+ "screened": 1,
+ "fails": {
+  "MB13-O7-01": [
+   "S-R4 2 struck without solving: [\"28\",\"23\"] (28: magnitude - limit is over 180, 80% of 180 is 144, a quarter is 36, so the answer exceeds 36; 23: same lower bound of 36 strikes it)"
+  ]
+ }
+}

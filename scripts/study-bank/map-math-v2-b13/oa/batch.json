@@ -1,0 +1,2097 @@
+[
+ {
+  "id": "MB13-O7-04",
+  "mech": "SCORE",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.RP.A.3",
+  "subskill": "Percent of points earned when questions carry two different point values",
+  "grade_rationale": "Mid for grade 7 (7.RP.A.3): weighted totals and a percent of the right whole (points, not questions).",
+  "prompt": "A quiz has 16 questions worth 3 points each and 11 questions worth 5 points each. Ivy gets 3 of the 3-point questions wrong and 4 of the 5-point questions wrong, and all the others right. To the nearest tenth of a percent, what percent of the total points does Ivy earn?",
+  "choices": [
+   "74.1",
+   "71.8",
+   "73.8",
+   "72.4"
+  ],
+  "correct_answer": "71.8",
+  "explanation": "Total points: 16 x 3 + 11 x 5 = 103. Points lost: 3 x 3 + 4 x 5 = 29. Points earned: 74. 74 / 103 = 0.7184, about 71.8%.",
+  "solve": "const T=16*3+11*5;const lost=3*3+4*5;return Math.round((T-lost)/T*1000)/10;",
+  "distractor_solve": {
+   "74.1": "return (Math.round(((16+11-3-4)/(16+11)*100)*10)/10);",
+   "73.8": "return (Math.round(((103-(3*5+4*3))/103*100)*10)/10);",
+   "72.4": "return (Math.round((((16-3)/16+(11-4)/11)/2*100)*10)/10);"
+  },
+  "mechanism": [
+   "total = 103",
+   "lost = 29",
+   "74 / 103 = 71.8%"
+  ],
+  "quantity_asked": "the percent of the total points earned, to the nearest tenth",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked only by finding the total points and the points earned, which is the whole computation"
+  },
+  "distractor_meta": {
+   "74.1": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts questions instead of points",
+    "why": "20 / 27."
+   },
+   "73.8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the wrong answers the other point value (3 x 5 and 4 x 3)",
+    "why": "(103 - 27) / 103."
+   },
+   "72.4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "averages the two section percents as if the sections were worth the same",
+    "why": "(13/16 + 7/11) / 2."
+   }
+  },
+  "structure_check": "Key rank 1 of 4, dealt by deal13 --topup (seed 20262404). 74.1 (byCount) lands above; 73.8 (swapPts) lands above; 72.4 (avgSec) lands above. The stem states no extremum or universal quantifier that decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a sum of two printed numbers, or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: -2.3, -2, -0.6.",
+  "cheap_bound_check": "no declared stem-readable bound strikes a distractor Declared bounds: a percent of the points earned is between 0 and 100 | each wrong answer costs at least 3 points, and some cost more, so more than 21 of the 103 points are lost and the percent is less than 79.61 | each wrong answer costs at most 5 points, and some cost less, so fewer than 35 points are lost and the percent is more than 66.02. Written under prereg Amendment 1 (--rank-agnostic): math-check's S/L, D3, FAR1, FAR2 rules are advisory for this slot.",
+  "shape_check": "Options 71.8, 74.1, 73.8, 72.4: no option alone in its surface form, the key not alone in parity, last digit or multiple-of-5 class, no two options one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "tool": "probe13.mjs (live: dump-b13 live+staged maths + SAT prior files; map: mapgrep13 corpus), rounds SCORE",
+   "live": [
+    {
+     "query": "quiz",
+     "n": 30,
+     "hits": [
+      "0654b768-f470-4efa-b1bc-0d0bcc4a46b2",
+      "117d0620-1ce4-4831-b3ea-1df6e388868a",
+      "1bc5ba89-ee1e-47c9-8c69-dae059ae4ed1",
+      "41ebd65c-1ef2-4c87-a2c8-ffc9a6ca79bf",
+      "4d49a026-38f5-412a-a3ab-d59162251974",
+      "5160698a-b80b-41e9-ae13-e2e52e5eceee",
+      "60af7d66-7719-4131-aa64-cf2d0f57f88c",
+      "622ad1bd-c6b8-4814-a97a-352fa09dd889"
+     ]
+    },
+    {
+     "query": "points each&points each || worth \\d+ points",
+     "n": 2,
+     "hits": [
+      "MM5-N23",
+      "MV2-D7-14"
+     ]
+    },
+    {
+     "query": "percent of the total points || percent of the points || % of the points",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "wrong&percent || incorrect&percent",
+     "n": 2,
+     "hits": [
+      "MMG-O07",
+      "MMG-O07"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "points each|worth \\d+ points",
+     "n": 2,
+     "hits": [
+      "MM5-N23",
+      "MV2-D7-14"
+     ]
+    },
+    {
+     "query": "percent of the total|wrong",
+     "n": 3,
+     "hits": [
+      "MMG-O07",
+      "MM3-N15",
+      "MV2-D8-04"
+     ]
+    }
+   ],
+   "disposition": "**KEEP**",
+   "nearest": "MAP MMG-O07 (two tests, percent correct, a different chain), ISEE 60af7d66 / SAT SM29F-D02 / MAP MM3-N15 (right/wrong scoring with penalties: totals, not a percent of points), weighted-grade items (SAT 1bc5ba89, ACT d3b966c9: a different chain)",
+   "notes": "n"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "each wrong answer costs at least 3 points, and some cost more, so more than 21 of the 103 points are lost and the percent is less than 79.61"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "a percent of the points earned is between 0 and 100; each wrong answer costs at most 5 points, and some cost less, so fewer than 35 points are lost and the percent is more than 66.02"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 O-b TOP-UP stage-A candidate for the cold screener. nearMean false. Declared strikes: 0."
+  },
+  "params": {
+   "p1": 3,
+   "p2": 5,
+   "n1": 16,
+   "n2": 11,
+   "w1": 3,
+   "w2": 4
+  },
+  "deal_rank": 1,
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "return (Math.round((100-29/(103-29)*100)*10)/10);",
+   "direction": "below",
+   "name": "lostOverEarned",
+   "value": "60.8",
+   "misconception": "divides the points lost by the points earned instead of by the total"
+  },
+  "far_distractor": {
+   "option": "73.8",
+   "natural_side": "below",
+   "why": "gives the wrong answers the other point value (3 x 5 and 4 x 3): over this mechanism's whole parameter grid this error lands below the true value in at least 65% of sets (natMap), but with these numbers it lands above the key."
+  },
+  "grade": 7,
+  "stem": "A quiz has 16 questions worth 3 points each and 11 questions worth 5 points each. Ivy gets 3 of the 3-point questions wrong and 4 of the 5-point questions wrong, and all the others right. To the nearest tenth of a percent, what percent of the total points does Ivy earn?",
+  "options": [
+   "74.1",
+   "71.8",
+   "73.8",
+   "72.4"
+  ],
+  "key": "71.8",
+  "key_rank": 1,
+  "nearMean": false,
+  "distractor_errors": {
+   "74.1": "byCount: counts questions instead of points",
+   "73.8": "swapPts: gives the wrong answers the other point value (3 x 5 and 4 x 3)",
+   "72.4": "avgSec: averages the two section percents as if the sections were worth the same"
+  },
+  "alt_of": "MB13C-ObT-SCORE-a0",
+  "selected_from": "MB13C-ObT-SCORE-a"
+ },
+ {
+  "id": "MB13-O7-05",
+  "mech": "NUTR",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Percent of a weighted total (Calories from grams at 9 and 4 Calories per gram)",
+  "grade_rationale": "High for grade 7 (7.RP.A.3): convert three parts to a common unit at two rates, then a percent of the converted total.",
+  "prompt": "A sandwich has 8 grams of fat, 30 grams of carbohydrate, and 9 grams of protein. Each gram of fat has 9 Calories, and each gram of carbohydrate or protein has 4 Calories. To the nearest whole percent, what percent of its Calories come from fat?",
+  "choices": [
+   "46",
+   "32",
+   "26",
+   "21"
+  ],
+  "correct_answer": "32",
+  "explanation": "Fat: 8 x 9 = 72 Calories. Carbohydrate and protein: (30 + 9) x 4 = 156 Calories. Total: 228. 72 / 228 = 0.3158, about 32%.",
+  "solve": "const fat=9*8;const all=fat+4*30+4*9;return Math.round(fat/all*100);",
+  "distractor_solve": {
+   "21": "return Math.round(8/(8+30)*100);",
+   "26": "return Math.round(9*8/(9*8+4*30+9*9)*100);",
+   "46": "return Math.round(9*8/(4*30+4*9)*100);"
+  },
+  "mechanism": [
+   "fat Calories = 72",
+   "total = 228",
+   "72 / 228 = 32%"
+  ],
+  "quantity_asked": "the percent of the Calories that come from fat, to the nearest whole percent",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "forward computation; there is nothing to substitute an option into"
+  },
+  "distractor_meta": {
+   "21": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses grams and leaves out the protein",
+    "why": "8 / 38."
+   },
+   "26": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses 9 Calories per gram for the protein as well as the fat",
+    "why": "72 / 273."
+   },
+   "46": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the fat Calories by the other Calories instead of by all of them",
+    "why": "72 / 156."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 --topup (seed 20262404). 46 (ofNonFat) lands above; 26 (prot9) lands below; 21 (gramsNoP) lands below. The stem states no extremum or universal quantifier that decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a sum of two printed numbers, or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: -14, 6, 11.",
+  "cheap_bound_check": "no declared stem-readable bound strikes a distractor Declared bounds: a percent of the Calories is between 0 and 100 | a gram of fat has more Calories than a gram of anything else, so fat's share of the Calories is more than its share of the grams (8 of 47 grams, about 17%) | fat has 72 Calories and the rest have 156, so fat is less than half of the Calories.",
+  "shape_check": "Options 32, 46, 26, 21: no option alone in its surface form, the key not alone in parity, last digit or multiple-of-5 class, no two options one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "tool": "probe13.mjs (live: dump-b13 live+staged maths + SAT prior files; map: mapgrep13 corpus), rounds NUTR",
+   "live": [
+    {
+     "query": "calories",
+     "n": 1,
+     "hits": [
+      "c6b9ad48-6d78-4956-a3a3-52ffa7dbaff9"
+     ]
+    },
+    {
+     "query": "grams of fat || grams of protein || carbohydrate",
+     "n": 4,
+     "hits": [
+      "9250153d-2ec1-4373-b004-e596ec0c6468",
+      "968fbec0-528e-43f7-b1eb-52caa82ec6c9",
+      "SALG5A-06",
+      "SM26L-D5"
+     ]
+    },
+    {
+     "query": "calories&percent || calories&%",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "each gram&percent",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "map": [
+    {
+     "query": "calorie|fat|protein",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "each gram",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "**KEEP**",
+   "nearest": "ACT c6b9ad48 (Mifflin-St Jeor), SAT 9250153d / 968fbec0 (feed mixes, systems)",
+   "notes": "n"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "a gram of fat has more Calories than a gram of anything else, so fat's share of the Calories is more than its share of the grams (8 of 47 grams, about 17%)"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "a percent of the Calories is between 0 and 100; fat has 72 Calories and the rest have 156, so fat is less than half of the Calories"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 O-b TOP-UP stage-A candidate for the cold screener. nearMean true. Declared strikes: 0."
+  },
+  "params": {
+   "F": 8,
+   "C": 30,
+   "P": 9
+  },
+  "deal_rank": 3,
+  "grade": 7,
+  "stem": "A sandwich has 8 grams of fat, 30 grams of carbohydrate, and 9 grams of protein. Each gram of fat has 9 Calories, and each gram of carbohydrate or protein has 4 Calories. To the nearest whole percent, what percent of its Calories come from fat?",
+  "options": [
+   "46",
+   "32",
+   "26",
+   "21"
+  ],
+  "key": "32",
+  "key_rank": 3,
+  "nearMean": true,
+  "distractor_errors": {
+   "21": "gramsNoP: uses grams and leaves out the protein",
+   "26": "prot9: uses 9 Calories per gram for the protein as well as the fat",
+   "46": "ofNonFat: divides the fat Calories by the other Calories instead of by all of them"
+  },
+  "alt_of": "MB13C-ObT-NUTR-b0",
+  "selected_from": "MB13C-ObT-NUTR-b"
+ },
+ {
+  "id": "MB13-O8-01",
+  "mech": "O2",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.F.B.4",
+  "subskill": "Time for a linear quantity to reach zero from two readings",
+  "grade_rationale": "High for grade 8 (8.F.B.4): the student finds the rate of change from two (time, height) pairs that do not start at 0, then the time when the linear function reaches 0, measured from lighting rather than from a reading.",
+  "prompt": "A candle burns down at a steady rate. 1 hour after it was lit, the candle was 7.5 centimeters tall. 5 hours after it was lit, it was 5.5 centimeters tall. How many hours after it was lit will the candle have burned down completely?",
+  "choices": [
+   "7.75",
+   "16",
+   "12",
+   "18.75"
+  ],
+  "correct_answer": "16",
+  "explanation": "Between hour 1 and hour 5 the candle got 7.5 - 5.5 = 2 cm shorter in 4 hours, so it burns 0.5 cm per hour. At hour 5 it has 5.5 cm left, which takes 5.5 / 0.5 = 11 more hours. It burns out 5 + 11 = 16 hours after it was lit.",
+  "solve": "const r=(7.5-5.5)/(5-1);return 5+5.5/r;",
+  "distractor_solve": {
+   "12": "return 5.5/((7.5-5.5)/(5-1))+1;",
+   "18.75": "return 5.5/((7.5-5.5)/5)+5;",
+   "7.75": "return 5.5*((7.5-5.5)/(5-1))+5;"
+  },
+  "mechanism": [
+   "rate = (7.5 - 5.5) / (5 - 1) = 0.5 cm per hour",
+   "hours left after hour 5: 5.5 / 0.5 = 11",
+   "5 + 11 = 16"
+  ],
+  "quantity_asked": "the number of hours after lighting when the candle burns out",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by running the candle back from it with the rate, which needs the rate first, the core of the method"
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the time of the first reading to the hours left after the second reading",
+    "why": "11 + 1."
+   },
+   "18.75": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the drop in height by the second time instead of by the time between the readings",
+    "why": "rate 2 / 5, then 5.5 / rate + 5."
+   },
+   "7.75": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the height left by the rate instead of dividing by it",
+    "why": "5.5 x 0.5 + 5."
+   }
+  },
+  "structure_check": "Key rank 3 of 4 (dealt by the b12 plan). 12 (add1) lands below; 18.75 (rH2) lands above; 7.75 (inv) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "Intermediate values of the method are not offered as options, and no two options are joined by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: 4, -2.75, 8.25.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 7.75, 16, 12, 18.75. No option is alone in its surface form (whole / decimal places / fraction), the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (generator)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "r11_mapgrep12": [
+    {
+     "query": "candle",
+     "result": "\"candle\": 1 distinct over 1253 MAP rows (+91 since dump-b10)",
+     "hits": [
+      "MM2-G20 [map-math-g58-v2] A candle is shaped like a cylinder with a radius of 3 centimeters and a height of 12 centimeters. A hole shaped like a cone is carved into the candle from its flat upper face: the cone's circular open | key 235.5"
+     ]
+    },
+    {
+     "query": "burns?|burned",
+     "result": "\"burns?|burned\": 0 distinct over 1253 MAP rows (+91 since dump-b10)",
+     "hits": []
+    },
+    {
+     "query": "steady rate&hours after",
+     "result": "\"steady rate&hours after\": 0 distinct over 1253 MAP rows (+91 since dump-b10)",
+     "hits": []
+    }
+   ],
+   "live_mf30_kw": [
+    {
+     "query": "candle&burn",
+     "result": "query \"candle&burn\": 9 hits over 4204 live + 2537 prior",
+     "hits": [
+      "--- 1dad68ac-016 [live sat/v2 Algebra medium]",
+      "--- 3e475d02-827 [live ssat/ssat-math-s15 Math medium]",
+      "--- 436af724-764 [live act/act-math-v8-fn Functions easy]",
+      "--- 551df7e0-df2 [live sat/sat-math-v22-alg Algebra medium]",
+      "--- f003d1c2-3ec [live isee/isee-math-s16 Math hard]",
+      "--- f9569cf1-6b0 [live sat/v2 Algebra medium]"
+     ]
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the candle is still 5.5 cm tall at hour 5, so it burns out after hour 5"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b12 candidate for the cold screener. CENT clean. Self-screen strikes: 0."
+  },
+  "params": {
+   "r": 0.5,
+   "T": 16,
+   "h1": 1,
+   "h2": 5
+  },
+  "grade": 8,
+  "stem": "A candle burns down at a steady rate. 1 hour after it was lit, the candle was 7.5 centimeters tall. 5 hours after it was lit, it was 5.5 centimeters tall. How many hours after it was lit will the candle have burned down completely?",
+  "options": [
+   "7.75",
+   "16",
+   "12",
+   "18.75"
+  ],
+  "key": "16",
+  "key_rank": 3,
+  "distractor_errors": {
+   "12": "add1: adds the time of the first reading to the hours left after the second reading",
+   "18.75": "rH2: divides the drop in height by the second time instead of by the time between the readings",
+   "7.75": "inv: multiplies the height left by the rate instead of dividing by it"
+  },
+  "alt_of": "MB12C-O2-b0",
+  "selected_from": "MB12C-O2-b"
+ },
+ {
+  "id": "MB13-O6-01",
+  "mech": "FN",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3",
+  "subskill": "Time to finish a job from the fraction done in a given time",
+  "grade_rationale": "High for grade 6 (6.RP.A.3): a rate per fraction of a job, with an hours-and-minutes conversion.",
+  "prompt": "Mia painted 5/8 of a deck in 1 hour 50 minutes. Mia keeps painting at the same rate. How many more minutes will it take Mia to paint the rest of the deck?",
+  "choices": [
+   "66",
+   "36",
+   "90",
+   "54"
+  ],
+  "correct_answer": "66",
+  "explanation": "1 hour 50 minutes is 110 minutes for 5/8 of the deck. The rest is 3/8, which is 3/5 times as much work, so it takes 110 x 3/5 = 66 minutes.",
+  "solve": "return (60*1+50)*(8-5)/5;",
+  "distractor_solve": {
+   "36": "return 60*1*(8-5)/5;",
+   "54": "return (60*1+0.6*50)*(8-5)/5;",
+   "90": "return (100*1+50)*(8-5)/5;"
+  },
+  "mechanism": [
+   "1 h 50 min = 110 min",
+   "left: 3/8; ratio left/done = 3/5",
+   "110 x 3/5 = 66"
+  ],
+  "quantity_asked": "minutes to finish",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by adding it to the time spent and testing the fraction of the job, a two-step check"
+  },
+  "distractor_meta": {
+   "36": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the 50 minutes",
+    "why": "ignores the 50 minutes: 60 x 1 x (8-5)/5."
+   },
+   "54": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes 1 hours 50 minutes as 1.50 hours and multiplies by 60",
+    "why": "writes 1 hours 50 minutes as 1.50 hours and multiplies by 60: (60 x 1+0.6 x 50) x (8-5)/5."
+   },
+   "90": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads 1 hours 50 minutes as 150 minutes",
+    "why": "reads 1 hours 50 minutes as 150 minutes: (100 x 1+50) x (8-5)/5."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 (O-a seed 20262303). 90 (hm100) lands above; 36 (hOnly) lands below; 54 (decH) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is joined to another by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: -24, 30, 12.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 66, 90, 36, 54. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "disposition": "survives; SAT d3cd6866 (fractions of a fence to meters), MAP MM2-O12 (meters per hour) are different chains",
+   "probe_read": "PROBE-READ.md",
+   "live": [
+    {
+     "query": "fence",
+     "n": 29,
+     "file": "probes-3.json",
+     "hits": [
+      "0c85a38f-1885-4ada-a957-2f30d4d3a88d [live isee/isee-math-s16]",
+      "174b4f77-5082-4fdc-9de5-26abbaf47e8a [live isee/isee-math-s15]",
+      "33520d51-aa97-4dfe-86df-c61aaf75b804 [live map/map-math-g58-v5]",
+      "421af958-149a-41b0-8e31-f09fddbae192 [live map/map-math-v2-b3-geo]",
+      "4fad8e6d-e801-4bca-a60a-86487ea79b4d [live isee/isee-math-s15]"
+     ]
+    },
+    {
+     "query": "of a fence || of the job || of the wall",
+     "n": 14,
+     "file": "probes-3.json",
+     "hits": [
+      "659d8c09-5a31-4da2-a958-fad52c389edc [live ssat/ssat-math-s12]",
+      "7af5ae85-d123-487d-a7c3-d63c5b8d1466 [live sat/math-v4]",
+      "8c08f2e1-02ed-4083-a7b5-034bfd4d8f59 [live map/map-math-v2-b4-data]",
+      "abbaa53f-ebc0-4d5a-9132-c391a989ed5c [live act/act-math-v2c]",
+      "cb736338-352c-4323-b88f-d3923d02c423 [live map/map-math-v2-num]"
+     ]
+    },
+    {
+     "query": "\\d+/\\d+ of.*the rest || \\d+/\\d+ of.*remaining",
+     "n": 6,
+     "file": "probes-3.json",
+     "hits": [
+      "2529cf60-34d8-43a4-bb7e-59b0697dc62e [live sat/sat-math-v29-full]",
+      "aeaeba9d-28a3-4100-beca-0bfe8548a29c [live isee/isee-math-s4]",
+      "b2c5cafc-5531-49c5-a524-ee724b27db4c [live act/act-math-v4gi]",
+      "SM29F-A05 [prior sat-math-v29-full-a.batch.json]",
+      "MMG-N04 [prior map-math-g58-v1]"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "fence",
+     "n": 11,
+     "file": "probes-3.json",
+     "hits": [
+      "MM2-O12 [map-math-g58-v2]",
+      "MM2-G05 [map-math-g58-v2]",
+      "33520d51-aa97-4dfe-86df-c61aaf75b804 [DB map-math-g58-v5]",
+      "MV2-G56-03 [map-math-v2 b1 dropped by graders]",
+      "MV2-G78-02 [map-math-v2 b1 withdrawn]"
+     ]
+    },
+    {
+     "query": "the rest",
+     "n": 17,
+     "file": "probes-3.json",
+     "hits": [
+      "MMG-N04 [map-math-g58-v1]",
+      "MMG-N03 [map-math-g58-v1]",
+      "MM3-G04 [map-math-g58-v3]",
+      "MM5P-N06 [map-math-g58-v5p (pilot)]",
+      "58246764-48fa-4c5e-91c3-40d5b2bf3c56 [DB map-math-g58-v5]"
+     ]
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "less of the deck is left than is done, so the rest takes less than 110 minutes"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "all four options are even"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 stage-A candidate for the cold screener. Self-screen strikes: 0. nearMean true."
+  },
+  "params": {
+   "a": 5,
+   "b": 8,
+   "H": 1,
+   "M": 50
+  },
+  "grade": 6,
+  "stem": "Mia painted 5/8 of a deck in 1 hour 50 minutes. Mia keeps painting at the same rate. How many more minutes will it take Mia to paint the rest of the deck?",
+  "options": [
+   "66",
+   "36",
+   "90",
+   "54"
+  ],
+  "key": "66",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "nearMean": true,
+  "distractor_errors": {
+   "36": "hOnly: ignores the 50 minutes",
+   "54": "decH: writes 1 hours 50 minutes as 1.50 hours and multiplies by 60",
+   "90": "hm100: reads 1 hours 50 minutes as 150 minutes"
+  },
+  "alt_of": "MB13C-Oa-FN-a0",
+  "selected_from": "MB13C-Oa-FN-a"
+ },
+ {
+  "id": "MB13-O6-02",
+  "mech": "CN",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3d",
+  "subskill": "Value of equal numbers of two coins from their total mass (mass of one pair, number of pairs, value)",
+  "grade_rationale": "High for grade 6 (6.RP.A.3d): a kilogram-to-gram conversion and a composed unit (one pair of coins) used as a rate twice.",
+  "prompt": "A game box holds only gold tokens and silver tokens, and it has the same number of each. A gold token is worth 25 cents and weighs 7.5 grams. A silver token is worth 5 cents and weighs 5 grams. The tokens weigh 0.9 kilograms in all. How many dollars are the tokens worth?",
+  "choices": [
+   "9.00",
+   "19.50",
+   "21.60",
+   "18.00"
+  ],
+  "correct_answer": "21.60",
+  "explanation": "One gold token and one silver token weigh 7.5 + 5 = 12.5 grams and are worth 30 cents. 0.9 kilograms is 900 grams, which is 900 / 12.5 = 72 pairs. They are worth 72 x 30 = 2,160 cents = $21.60.",
+  "solve": "return 900/(7.5+5)*(25+5)/100;",
+  "distractor_solve": {
+   "19.50": "return (900/2/7.5*25+900/2/5*5)/100;",
+   "18.00": "return 72*25/100;",
+   "9.00": "return 900/5*5/100;"
+  },
+  "mechanism": [
+   "one pair: 12.5 g, 30 cents",
+   "900 / 12.5 = 72 pairs",
+   "72 x 30 = 2160 cents = 21.60 dollars"
+  ],
+  "quantity_asked": "the value of the tokens in dollars",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by turning dollars back into pairs and pairs into grams, the method run backwards"
+  },
+  "distractor_meta": {
+   "19.50": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "splits the 900 grams equally between the two kinds instead of using equal numbers of tokens",
+    "why": "splits the 900 grams equally between the two kinds instead of using equal numbers of tokens: (900/2/7.5 x 25+900/2/5 x 5)/100."
+   },
+   "18.00": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the 72 pairs but counts only the gold tokens' value",
+    "why": "finds the 72 pairs but counts only the gold tokens' value: 72 x 25/100."
+   },
+   "9.00": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats every token as a silver token",
+    "why": "treats every token as a silver token: 900/5 x 5/100."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt by deal13 --topup (O-a seed 20262403). 19.50 (eqMass) lands below; 18.00 (aOnly) lands below; 9.00 (allB) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is joined to another by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: 2.10, 3.60, 12.60.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 9.00 - range: the tokens are a mix, so they are worth more than if every token were a silver token ($9) and less than if every token were a gold token ($30) Extreme key: no far_distractor/counter_error pair exists for this set (math-check positional rules advisory under --rank-agnostic, prereg Amendment 1).",
+  "shape_check": "Options: 21.60, 19.50, 18.00, 9.00. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "disposition": "survives (CN2 chain, probes-3); coin-system items solve counts from a value with no mass; nearest structure ACT 10a7a9a0 (chained conversion factors) named",
+   "probe_read": "PROBE-READ.md",
+   "live": [
+    {
+     "query": "nickels?",
+     "n": 8,
+     "file": "probes.json",
+     "hits": [
+      "4a0bd6bd-b585-48f6-a5c2-db0b979a139d [live isee/isee-math-v1]",
+      "75d0beaa-89d0-49a7-ba4f-bc803ff75a97 [live sat/v2]",
+      "a4a5213a-ac56-4d1c-832c-c274b69809f2 [live isee/isee-math-s13]",
+      "b7b30964-00fc-43e3-9f9e-2b1cfaa1ceb3 [live sat/v2]",
+      "c20eeb8d-d4b6-453f-a563-a7dd44c9c0f4 [live isee/isee-math-s16]"
+     ]
+    },
+    {
+     "query": "nickels?&grams? || coins?&grams?",
+     "n": 0,
+     "file": "probes.json",
+     "hits": []
+    },
+    {
+     "query": "weighs?&kilograms?&worth",
+     "n": 0,
+     "file": "probes.json",
+     "hits": []
+    },
+    {
+     "query": "nickels? || coins?",
+     "n": 25,
+     "file": "probes-2.json",
+     "hits": [
+      "1e45c38a-3325-4fd0-a445-04626b37b364 [live sat/v2]",
+      "371baa72-146e-40e0-b407-31790e6f4bb3 [live sat/math-v9-alg-hard]",
+      "4a0bd6bd-b585-48f6-a5c2-db0b979a139d [live isee/isee-math-v1]",
+      "5f6df3d4-a757-4aa9-8fc2-2179ab112d9a [live ssat/ssat-math-s16]",
+      "6c69a3a7-14fa-4a56-a870-a46bff8a5947 [live sat/math-v6-adv-hard]"
+     ]
+    },
+    {
+     "query": "kilograms?&grams?&dollars || kilograms?&cents",
+     "n": 14,
+     "file": "probes-2.json",
+     "hits": [
+      "19069070-f746-4c73-ae95-ff66e701e9c4 [live ssat/ssat-math-s16]",
+      "2ff0481c-ca99-4900-912e-c1280e61e34b [live sat/sat-alg-hard-v1]",
+      "3abb52cf-1aca-4c00-b2aa-e287fe29dc52 [live ssat/ssat-math-s12]",
+      "4705b656-1bdd-4d6e-b221-1f674c0da2a2 [live isee/isee-math-s17]",
+      "4a616f60-b9e7-4d06-acfb-db954f4e2950 [live isee/isee-math-s2]"
+     ]
+    },
+    {
+     "query": "weighs \\d+ grams",
+     "n": 2,
+     "file": "probes-2.json",
+     "hits": [
+      "b205095c-2d8a-4bc3-ac26-365b70f629b7 [live ssat/ssat-math-s15]",
+      "SM28F-A07 [prior sat-math-v28-full-a.batch.json]"
+     ]
+    },
+    {
+     "query": "worth&weighs",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    },
+    {
+     "query": "pennies || penny",
+     "n": 1,
+     "file": "probes-3.json",
+     "hits": [
+      "6dd3d5df-2139-47b1-ba4d-8445e5155c5e [live act/act-math-v29]"
+     ]
+    },
+    {
+     "query": "nickels?&pennies",
+     "n": 0,
+     "file": "probes-3.json",
+     "hits": []
+    },
+    {
+     "query": "same number of each",
+     "n": 0,
+     "file": "probes-3.json",
+     "hits": []
+    },
+    {
+     "query": "weighs?&kilograms?&dollars || grams&kilograms&worth",
+     "n": 2,
+     "file": "probes-3.json",
+     "hits": [
+      "19069070-f746-4c73-ae95-ff66e701e9c4 [live ssat/ssat-math-s16]",
+      "d97ed9cb-eb88-4a63-b98a-47434a897fb4 [live sat/math-v3]"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "nickel || coins?&weigh",
+     "n": 0,
+     "file": "probes.json",
+     "hits": []
+    },
+    {
+     "query": "grams?&worth",
+     "n": 0,
+     "file": "probes.json",
+     "hits": []
+    },
+    {
+     "query": "nickels? || coins?",
+     "n": 2,
+     "file": "probes-2.json",
+     "hits": [
+      "MV2-D7-04 [map-math-v2 b1 withdrawn]",
+      "MB2-O6E-08 [map-math-v2 b2 dropped by graders]"
+     ]
+    },
+    {
+     "query": "grams?&cents || grams?&dollars",
+     "n": 1,
+     "file": "probes-2.json",
+     "hits": [
+      "MM5-N22 [map-math-g58-v5.batch.json]"
+     ]
+    },
+    {
+     "query": "pennies || penny || nickel",
+     "n": 0,
+     "file": "probes-3.json",
+     "hits": []
+    },
+    {
+     "query": "same number of each",
+     "n": 0,
+     "file": "probes-3.json",
+     "hits": []
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers; nothing in the stem fixes a parity"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "9.00"
+    ],
+    "why": "the tokens are a mix, so they are worth more than if every token were a silver token ($9) and less than if every token were a gold token ($30)"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 stage-A candidate for the cold screener. Self-screen strikes: 1. nearMean false."
+  },
+  "params": {
+   "pair": "gold token/silver token",
+   "M": 0.9
+  },
+  "grade": 6,
+  "stem": "A game box holds only gold tokens and silver tokens, and it has the same number of each. A gold token is worth 25 cents and weighs 7.5 grams. A silver token is worth 5 cents and weighs 5 grams. The tokens weigh 0.9 kilograms in all. How many dollars are the tokens worth?",
+  "options": [
+   "9.00",
+   "19.50",
+   "21.60",
+   "18.00"
+  ],
+  "key": "21.60",
+  "key_rank": 4,
+  "deal_rank": 4,
+  "nearMean": false,
+  "distractor_errors": {
+   "19.50": "eqMass: splits the 900 grams equally between the two kinds instead of using equal numbers of tokens",
+   "18.00": "aOnly: finds the 72 pairs but counts only the gold tokens' value",
+   "9.00": "allB: treats every token as a silver token"
+  },
+  "alt_of": "MB13C-OaT-CN-a0",
+  "selected_from": "MB13C-OaT-CN-a"
+ },
+ {
+  "id": "MB13-O7-03",
+  "mech": "NWPM",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.EE.B.3",
+  "subskill": "Evaluate a stated rate rule in the right order: characters to words, subtract errors, then divide by minutes",
+  "grade_rationale": "Mid for grade 7 (7.EE.B.3): follow a stated rule in the right order with a unit change (characters to words).",
+  "prompt": "A typing test counts every 5 characters as one word. Net speed is the number of words typed minus the number of errors, divided by the number of minutes. Hana typed 1,140 characters in 4 minutes and made 10 errors. What was Hana's net speed, in words per minute?",
+  "choices": [
+   "56.5",
+   "55.0",
+   "54.5",
+   "57.0"
+  ],
+  "correct_answer": "54.5",
+  "explanation": "1,140 characters is 1,140 / 5 = 228 words. Subtract the errors: 228 - 10 = 218. 4 minutes is 4 minutes, so the net speed is 218 / 4 = 54.5 words per minute.",
+  "solve": "const words=1140/5;const minutes=4;return (words-10)/minutes;",
+  "distractor_solve": {
+   "56.5": "return (1140-10)/5/4;",
+   "55.0": "return (1140/4-10)/5;",
+   "57.0": "return 1140/5/4;"
+  },
+  "mechanism": [
+   "1140 / 5 = 228 words",
+   "228 - 10 = 218",
+   "218 / 4 = 54.5"
+  ],
+  "quantity_asked": "the net speed in words per minute",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without computing the words and the minutes first; checking it means multiplying back by the minutes and adding the errors, the full computation reversed"
+  },
+  "distractor_meta": {
+   "56.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the errors from the characters before changing characters to words",
+    "why": "(1140 - 10) / 5 / 4."
+   },
+   "55.0": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds characters per minute, subtracts the errors, and only then divides by 5",
+    "why": "(1140 / 4 - 10) / 5."
+   },
+   "57.0": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves the errors out (gross speed)",
+    "why": "228 / 4."
+   }
+  },
+  "structure_check": "Key rank 1 of 4, dealt by deal13 --topup (seed 20262404). 56.5 (charsMinusE) lands above; 55.0 (errDiv5) lands above; 57.0 (gross) lands above. The stem states no extremum or universal quantifier that decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a sum of two printed numbers, or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: -2, -0.5, -2.5.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 57.0 - magnitude: errors only lower the speed, so the net speed is less than the gross speed 228 / 4 = 57 words per minute Declared bounds: errors only lower the speed, so the net speed is less than the gross speed 228 / 4 = 57 words per minute | the 10 errors are spread over more than one minute, so the net speed is more than the gross speed minus 10. Written under prereg Amendment 1 (--rank-agnostic): math-check's S/L, D3, FAR1, FAR2 rules are advisory for this slot.",
+  "shape_check": "Options 54.5, 56.5, 55.0, 57.0: no option alone in its surface form, the key not alone in parity, last digit or multiple-of-5 class, no two options one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "tool": "probe13.mjs (live: dump-b13 live+staged maths + SAT prior files; map: mapgrep13 corpus), rounds NWPM/NWPM2",
+   "live": [
+    {
+     "query": "typing",
+     "n": 5,
+     "hits": [
+      "39a101f7-c24d-493b-9e54-97e0ec419408",
+      "c85c108d-acc0-4aeb-ba10-acdae3ef450f",
+      "d08f081b-5855-4004-8ab9-60fd32c5ecc3",
+      "MMG-D13",
+      "d08f081b-5855-4004-8ab9-60fd32c5ecc3"
+     ]
+    },
+    {
+     "query": "characters",
+     "n": 1,
+     "hits": [
+      "e2decb38-4cec-436c-bca2-17e39d7711c1"
+     ]
+    },
+    {
+     "query": "words per minute",
+     "n": 5,
+     "hits": [
+      "39a101f7-c24d-493b-9e54-97e0ec419408",
+      "c85c108d-acc0-4aeb-ba10-acdae3ef450f",
+      "d08f081b-5855-4004-8ab9-60fd32c5ecc3",
+      "MMG-D13",
+      "d08f081b-5855-4004-8ab9-60fd32c5ecc3"
+     ]
+    },
+    {
+     "query": "errors&minutes || mistakes&minutes",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "counts every&as one",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "errors",
+     "n": 1,
+     "hits": [
+      "55007b7b-df6f-4d22-a5a8-1a588e92c36c"
+     ]
+    },
+    {
+     "query": "minus the number of&divided by || minus&divided by the number",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "per minute&errors || per minute&minus",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "counts every \\d+ || every \\d+ characters",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "map": [
+    {
+     "query": "typing|characters|words per minute",
+     "n": 1,
+     "hits": [
+      "MMG-D13"
+     ]
+    },
+    {
+     "query": "errors|mistakes",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "errors|minus the number",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "divided by the number",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "**KEEP**",
+   "nearest": "ACT 39a101f7 (typing speed model W(t)), ACT c85c108d (transcription pay), MAP MMG-D13 (scatter plot of typing speed)",
+   "notes": "n: no net-speed formula chain"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "57.0"
+    ],
+    "why": "errors only lower the speed, so the net speed is less than the gross speed 228 / 4 = 57 words per minute"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the 10 errors are spread over more than one minute, so the net speed is more than the gross speed minus 10"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 O-b TOP-UP stage-A candidate for the cold screener. nearMean false. Declared strikes: 1."
+  },
+  "params": {
+   "C": 1140,
+   "E": 10,
+   "mm": 4,
+   "ss": 0
+  },
+  "deal_rank": 1,
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 1140/5/4-10;",
+   "direction": "below",
+   "name": "divFirst",
+   "value": "47.0",
+   "misconception": "divides the words by the minutes and then subtracts all of the errors"
+  },
+  "grade": 7,
+  "stem": "A typing test counts every 5 characters as one word. Net speed is the number of words typed minus the number of errors, divided by the number of minutes. Hana typed 1,140 characters in 4 minutes and made 10 errors. What was Hana's net speed, in words per minute?",
+  "options": [
+   "56.5",
+   "55.0",
+   "54.5",
+   "57.0"
+  ],
+  "key": "54.5",
+  "key_rank": 1,
+  "nearMean": false,
+  "distractor_errors": {
+   "56.5": "charsMinusE: subtracts the errors from the characters before changing characters to words",
+   "55.0": "errDiv5: finds characters per minute, subtracts the errors, and only then divides by 5",
+   "57.0": "gross: leaves the errors out (gross speed)"
+  },
+  "alt_of": "MB13C-ObT-NWPM-b0",
+  "selected_from": "MB13C-ObT-NWPM-b"
+ },
+ {
+  "id": "MB13-O6-03",
+  "mech": "LP",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3",
+  "subskill": "Time per lap by inverse proportion from \"in the time A runs a laps, B runs c laps\"",
+  "grade_rationale": "High for grade 6 (6.RP.A.3): an equal-time comparison that makes time per lap inversely proportional to laps, with a minutes-and-seconds conversion.",
+  "prompt": "Omar and Sara each run laps of a track at a steady pace. In the time it takes Sara to run 4 laps, Omar runs 5 laps. Sara takes 1 minute 10 seconds to run one lap. How many seconds does Omar take to run one lap?",
+  "choices": [
+   "52.8",
+   "69",
+   "56",
+   "52.5"
+  ],
+  "correct_answer": "56",
+  "explanation": "Sara's lap is 1 x 60 + 10 = 70 seconds, so 4 laps take Sara 4 x 70 = 280 seconds. Omar runs 5 laps in those 280 seconds, so one lap takes Omar 280 / 5 = 56 seconds.",
+  "solve": "return (60*1+10)*4/5;",
+  "distractor_solve": {
+   "69": "return 70-(5-4);",
+   "52.5": "return 70-70*(5-4)/4;",
+   "52.8": "return (1+10/100)*60*4/5;"
+  },
+  "mechanism": [
+   "1 min 10 s = 70 s",
+   "4 x 70 = 280 s",
+   "280 / 5 = 56 s"
+  ],
+  "quantity_asked": "Omar's time for one lap in seconds",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by multiplying it by the laps and comparing with the other runner's time, a two-step check"
+  },
+  "distractor_meta": {
+   "69": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes 1 second off for the 1 extra lap",
+    "why": "takes 1 second off for the 1 extra lap: 70-(5-4)."
+   },
+   "52.5": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes away 1/4 of Sara's lap time for the extra lap",
+    "why": "takes away 1/4 of Sara's lap time for the extra lap: 70-70 x (5-4)/4."
+   },
+   "52.8": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes 1 min 10 s as 1.10 minutes and multiplies by 60",
+    "why": "writes 1 min 10 s as 1.10 minutes and multiplies by 60: (1+10/100) x 60 x 4/5."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 --topup (O-a seed 20262403). 52.5 (sub) lands below; 52.8 (dec) lands below; 69 (add) lands above. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is joined to another by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: 3.5, 3.2, -13.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor",
+  "shape_check": "Options: 56, 52.5, 52.8, 69. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "disposition": "survives; SSAT 8eac0acf / ISEE aad3e050 use \"in the time it takes\" for a race lead, not a time per lap; named for R11",
+   "probe_read": "PROBE-READ.md",
+   "live": [
+    {
+     "query": "\\blaps?\\b",
+     "n": 22,
+     "file": "probes-2.json",
+     "hits": [
+      "2aac9913-55b9-42eb-9eaf-aa1c9c6e3d08 [live act/act-ies-0918b]",
+      "2c65a851-83ac-4306-afdd-dfc69d6affdf [live isee/isee-math-s8]",
+      "8b6beefb-cee2-470e-9fa7-5a3650ca8f7c [live isee/isee-math-s15]",
+      "8def2c85-e9f2-40a3-92e8-d024f6dfcfe0 [live act/act-math-v3-sp]",
+      "9367225b-2408-487c-8c21-c118e1faecb3 [live isee/isee-math-s15]"
+     ]
+    },
+    {
+     "query": "in the time it takes",
+     "n": 2,
+     "file": "probes-2.json",
+     "hits": [
+      "8eac0acf-1061-4112-b520-bbfde0565ea9 [live ssat/ssat-math-s15]",
+      "aad3e050-e696-4b8b-b6b6-fc2092a563b4 [live isee/isee-math-s17]"
+     ]
+    },
+    {
+     "query": "laps?&seconds&in the time || laps?&seconds&one lap",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    }
+   ],
+   "map": [
+    {
+     "query": "\\blaps?\\b",
+     "n": 8,
+     "file": "probes-2.json",
+     "hits": [
+      "MMG-G09 [map-math-g58-v1]",
+      "MMG-D03 [map-math-g58-v1]",
+      "MM2-N04 [map-math-g58-v2]",
+      "MM3-O25 [map-math-g58-v3]",
+      "MM5P-N06 [map-math-g58-v5p (pilot)]"
+     ]
+    },
+    {
+     "query": "in the time",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "Omar runs more laps in the same time, so Omar's lap takes less than Sara's 70 seconds"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers; nothing in the stem fixes a parity"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 stage-A candidate for the cold screener. Self-screen strikes: 0. nearMean true."
+  },
+  "params": {
+   "a": 4,
+   "c": 5,
+   "mm": 1,
+   "s": 10
+  },
+  "grade": 6,
+  "stem": "Omar and Sara each run laps of a track at a steady pace. In the time it takes Sara to run 4 laps, Omar runs 5 laps. Sara takes 1 minute 10 seconds to run one lap. How many seconds does Omar take to run one lap?",
+  "options": [
+   "52.8",
+   "69",
+   "56",
+   "52.5"
+  ],
+  "key": "56",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "nearMean": true,
+  "distractor_errors": {
+   "69": "add: takes 1 second off for the 1 extra lap",
+   "52.5": "sub: takes away 1/4 of Sara's lap time for the extra lap",
+   "52.8": "dec: writes 1 min 10 s as 1.10 minutes and multiplies by 60"
+  },
+  "alt_of": "MB13C-OaT-LP-a0",
+  "selected_from": "MB13C-OaT-LP-a"
+ },
+ {
+  "id": "MB13-O7-01",
+  "mech": "HR",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.EE.B.3",
+  "subskill": "A rule (220 minus age), a percent of the result, then a rate scaled to a part of a minute",
+  "grade_rationale": "Mid for grade 7 (7.EE.B.3): evaluate a stated rule, take a percent of the result, then rescale a per-minute rate to a part of a minute.",
+  "prompt": "A trainer uses this rule: a person's heart-rate limit, in beats per minute, is 220 minus the person's age. Diego is 27 years old, and Diego's target heart rate during exercise is 80% of that limit. To the nearest whole beat, how many beats should Diego count in 15 seconds at the target heart rate?",
+  "choices": [
+   "39",
+   "37",
+   "23",
+   "28"
+  ],
+  "correct_answer": "39",
+  "explanation": "Diego's limit is 220 - 27 = 193 beats per minute. The target is 80% of that: 193 x 0.8 = 154.4 beats per minute. 15 seconds is 15/60 of a minute, so Diego should count 154.4 x 15/60 = 38.6, about 39 beats.",
+  "solve": "const lim=220-27;const bpm=lim*80/100;return Math.round(bpm*15/60);",
+  "distractor_solve": {
+   "23": "return Math.round((220-27)*80/100*15/100);",
+   "28": "return Math.round((220-27-80)*15/60);",
+   "37": "return Math.round((220*80/100-27)*15/60);"
+  },
+  "mechanism": [
+   "220 - 27 = 193",
+   "80% of 193 = 154.4",
+   "154.4 x 15/60 = 38.6, about 39"
+  ],
+  "quantity_asked": "the number of beats in 15 seconds, to the nearest whole beat",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by scaling it back to a minute and comparing with the percent of the limit, the steps in reverse"
+  },
+  "distractor_meta": {
+   "23": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats a minute as 100 seconds",
+    "why": "154.4 x 15/100."
+   },
+   "28": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts 80 instead of taking 80%",
+    "why": "(193 - 80) x 15/60."
+   },
+   "37": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes 80% of 220 before subtracting the age",
+    "why": "(176 - 27) x 15/60."
+   }
+  },
+  "structure_check": "Key rank 4 of 4, dealt by deal13 (seed 20262304). 37 (order) lands below; 23 (s100) lands below; 28 (subP) lands below. The stem states no extremum or universal quantifier that decides which side the errors fall on.",
+  "intermediate_check": "No option is an intermediate value one printed rate away from the key, and no two options are joined by a printed number, a sum of two printed numbers, or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: 2, 16, 11.",
+  "cheap_bound_check": "no stem-readable bound or legality rule strikes a distractor Extreme key: the counter error bpm (154) lands past the key and is not an option. Written under prereg Amendment 1 (--rank-agnostic): math-check's FAR2 no far_distractor rule is advisory for this slot.",
+  "shape_check": "Options 39, 37, 23, 28: no option alone in its surface form, the key not alone in parity, last digit or multiple-of-5 class, no two options one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "tool": "probe13.mjs (live: dump-b13 live+staged maths + SAT prior files; map: mapgrep13 corpus)",
+   "live": [
+    {
+     "query": "heart",
+     "n": 1,
+     "hits": [
+      "772accad-8b76-4460-9f48-bc35b4357873"
+     ]
+    },
+    {
+     "query": "beats per minute || beats in",
+     "n": 1,
+     "hits": [
+      "772accad-8b76-4460-9f48-bc35b4357873"
+     ]
+    },
+    {
+     "query": "minus&age&%",
+     "n": 1,
+     "hits": [
+      "c393e7af-19dd-4535-9f68-9d4698fced76"
+     ]
+    },
+    {
+     "query": "% of&in \\d+ seconds",
+     "n": 1,
+     "hits": [
+      "6b8e16f8-d372-437c-afa2-7f4fcf4ea816"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "heart|beats",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "in \\d+ seconds",
+     "n": 1,
+     "hits": [
+      "MM3-O23"
+     ]
+    }
+   ],
+   "disposition": "KEEP",
+   "notes": "- 772accad-8b76: same chain n. heart rate from body mass power law - context-only (read, different chain): c393e7af-19d, 6b8e16f8-d37, MM3-O23"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "the target is less than the limit, so fewer than 193 x 15/60 = about 48 beats"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "mixed parity; nothing in the stem fixes the parity of the answer"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "a target heart rate during exercise is well above a resting rate, so more than 90 beats per minute, which is more than 22.5 beats in 15 seconds"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 O-b stage-A candidate for the cold screener. nearMean false. Self-screen strikes: 0."
+  },
+  "params": {
+   "age": 27,
+   "p": 80,
+   "s": 15
+  },
+  "deal_rank": 4,
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "return Math.round((220-27)*80/100);",
+   "direction": "above",
+   "name": "bpm",
+   "value": "154",
+   "misconception": "finds the target in beats per minute and stops"
+  },
+  "grade": 7,
+  "stem": "A trainer uses this rule: a person's heart-rate limit, in beats per minute, is 220 minus the person's age. Diego is 27 years old, and Diego's target heart rate during exercise is 80% of that limit. To the nearest whole beat, how many beats should Diego count in 15 seconds at the target heart rate?",
+  "options": [
+   "39",
+   "37",
+   "23",
+   "28"
+  ],
+  "key": "39",
+  "key_rank": 4,
+  "nearMean": false,
+  "distractor_errors": {
+   "23": "s100: treats a minute as 100 seconds",
+   "28": "subP: subtracts 80 instead of taking 80%",
+   "37": "order: takes 80% of 220 before subtracting the age"
+  },
+  "selected_from": "MB13C-Ob-HR-a",
+  "revised_from": "MB13C-Ob-HR-a",
+  "return_note": "gate screen pass 1 return: S-R4 bound added to the generator; new option set at the same rank 4"
+ },
+ {
+  "id": "MB13-O7-07",
+  "mech": "SNOW",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.EE.B.3",
+  "subskill": "Two rates over two intervals read from clock times (accumulate, stop, then deplete)",
+  "grade_rationale": "High for grade 7 (7.EE.B.3): elapsed times across midnight and noon, two rates over two different intervals, decimals.",
+  "prompt": "At 7 p.m. there were 6.5 inches of snow on the ground at Nina's house. Snow fell at 0.8 inches per hour until 10 p.m., and then it stopped. Starting at 9 a.m. the next morning, the snow melted at 0.3 inch per hour. How many inches deep was the snow at 4 p.m.?",
+  "choices": [
+   "3.5",
+   "5.9",
+   "7.4",
+   "6.8"
+  ],
+  "correct_answer": "6.8",
+  "explanation": "From 7 p.m. to 10 p.m. is 3 hours, so 0.8 x 3 = 2.4 inches fell, and the depth reached 6.5 + 2.4 = 8.9 inches. From 9 a.m. to 4 p.m. is 7 hours, so 0.3 x 7 = 2.1 inches melted. 8.9 - 2.1 = 6.8 inches.",
+  "solve": "const fell=0.8*3;const melted=0.3*7;return Math.round((6.5+fell-melted)*10)/10;",
+  "distractor_solve": {
+   "3.5": "return 6.5+0.8*3-0.3*18;",
+   "5.9": "return 6.5+(0.8-0.3)*3-0.3*7;",
+   "7.4": "return 6.5+0.8*3-0.3*5;"
+  },
+  "mechanism": [
+   "hours of snowfall: 3",
+   "depth when it stopped: 8.9",
+   "hours of melting: 7",
+   "8.9 - 2.1 = 6.8"
+  ],
+  "quantity_asked": "the depth of the snow at the final time, in inches",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "forward computation; there is nothing to substitute an option into"
+  },
+  "distractor_meta": {
+   "3.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "starts the melting when the snow stopped (10 p.m.) instead of at 9 a.m.",
+    "why": "0.3 x 18 hours."
+   },
+   "5.9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the melting rate during the snowfall too",
+    "why": "6.5 + (0.8 - 0.3) x 3 - 0.3 x 7."
+   },
+   "7.4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the clock numbers 9 and 4 to get the hours of melting",
+    "why": "5 hours instead of 7."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 --topup (seed 20262404). 3.5 (meltFromStop) lands below; 5.9 (netBoth) lands below; 7.4 (clockMelt) lands above. The stem states no extremum or universal quantifier that decides which side the errors fall on.",
+  "intermediate_check": "No two options are joined by a printed number, a sum of two printed numbers, or a printed multiplier (engine13 PAIR-ALL, DPAIR, DSUM, KGAP passed). Differences from the key: 3.3, 0.9, -0.6.",
+  "cheap_bound_check": "no declared stem-readable bound strikes a distractor Declared bounds: the snow is melting at the end, so it is less deep than when the snow stopped | a depth is positive | less than 1 inch melts each hour for the 7 hours from 9 a.m. to 4 p.m., so the depth is more than 1.9.",
+  "shape_check": "Options 6.8, 3.5, 5.9, 7.4: no option alone in its surface form, the key not alone in parity, last digit or multiple-of-5 class, no two options one unit apart (engine13 FORM-U, CLASS, ADJ).",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "tool": "probe13.mjs (live: dump-b13 live+staged maths + SAT prior files; map: mapgrep13 corpus), rounds SNOW/SNOW2",
+   "live": [
+    {
+     "query": "snow",
+     "n": 4,
+     "hits": [
+      "8eadc464-2e84-4d34-93c3-57464ea1d302",
+      "ddadc01b-3a3d-4885-9e76-263e5d67601f",
+      "f9729aa0-e20f-4883-aa67-28f6d123e55d",
+      "MV2-D8-02"
+     ]
+    },
+    {
+     "query": "melt",
+     "n": 8,
+     "hits": [
+      "31e459b5-1b2e-4740-a43d-9ff2f25b0ce5",
+      "70d778dc-62ac-49cf-8934-6ffc01d028c7",
+      "7128af54-a57e-4205-9c65-cfebfbd428d5",
+      "898830bf-90e2-437c-be83-3ab8f2992204",
+      "8eadc464-2e84-4d34-93c3-57464ea1d302",
+      "GEOH2-17",
+      "GEO-H1-18",
+      "MV2-G78-20"
+     ]
+    },
+    {
+     "query": "inches per hour || inch per hour",
+     "n": 1,
+     "hits": [
+      "13c9683a-a3e6-43de-ae58-f153310d7405"
+     ]
+    },
+    {
+     "query": "per hour&per hour&p\\.m\\.",
+     "n": 6,
+     "hits": [
+      "4c19786a-e128-4e0e-8ae3-7a1908d88c79",
+      "6cf5c7c4-bc11-48fd-b647-4559a0c7f2ca",
+      "889e822c-fe22-4a56-b08f-e28353696240",
+      "a29967d2-ee18-4228-b832-9ee4c10d0517",
+      "fea98112-878a-477c-9386-e9af8362d872",
+      "SALG3-07"
+     ]
+    },
+    {
+     "query": "fell&melted || rose&fell",
+     "n": 8,
+     "hits": [
+      "0be522e3-cf3f-49d0-9671-341c78ea06c3",
+      "51af14f3-31de-4109-a66e-38a80e855ce7",
+      "61023086-f4ab-4b42-9230-dba233238ace",
+      "8eadc464-2e84-4d34-93c3-57464ea1d302",
+      "f9530f4b-37e5-4526-8d65-51f68beb9fa3",
+      "f98ba8dc-b1e0-4b15-8a54-a7783ccad4b2",
+      "PSDA5-20",
+      "MB2-O7R-14"
+     ]
+    },
+    {
+     "query": "midnight",
+     "n": 4,
+     "hits": [
+      "d5bc8ae0-29a2-4180-9825-fa8717c3d218",
+      "ee97d28a-d4c2-4c98-b91f-9dc23a6b4010",
+      "MM3-N18",
+      "MM3-N18"
+     ]
+    },
+    {
+     "query": "until midnight || until \\d+ (a|p)\\.m\\.&then",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "per hour&starting at || per hour&from \\d+ (a|p)\\.m\\.",
+     "n": 2,
+     "hits": [
+      "db88e25f-07ee-4ed3-885b-96f933a0cfdf",
+      "f7173475-95d6-4b8d-b369-b5cebe9622d4"
+     ]
+    },
+    {
+     "query": "deep&per hour || depth&per hour",
+     "n": 3,
+     "hits": [
+      "abdd089d-a2d2-4e68-95a5-9e140c5b6ac6",
+      "fff0a79a-c3b9-4f62-bda0-1256b4aada69",
+      "SM26L-A6"
+     ]
+    },
+    {
+     "query": "a\\.m\\.&p\\.m\\.&per hour",
+     "n": 6,
+     "hits": [
+      "4c19786a-e128-4e0e-8ae3-7a1908d88c79",
+      "6cf5c7c4-bc11-48fd-b647-4559a0c7f2ca",
+      "889e822c-fe22-4a56-b08f-e28353696240",
+      "a29967d2-ee18-4228-b832-9ee4c10d0517",
+      "fea98112-878a-477c-9386-e9af8362d872",
+      "SALG3-07"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "snow|melt",
+     "n": 2,
+     "hits": [
+      "MV2-G78-20",
+      "MV2-D8-02"
+     ]
+    },
+    {
+     "query": "inches per hour|inch per hour",
+     "n": 0,
+     "hits": []
+    },
+    {
+     "query": "p\\.m\\.",
+     "n": 3,
+     "hits": [
+      "MM3-N18",
+      "MM3-N18",
+      "MB2-N56-19"
+     ]
+    },
+    {
+     "query": "midnight|until",
+     "n": 10,
+     "hits": [
+      "MMG-G09",
+      "MM2-O10",
+      "MM3-N18",
+      "MM3-G07",
+      "MM3-N12",
+      "MM3-N18",
+      "MM3-G07",
+      "MV2-N7-16"
+     ]
+    },
+    {
+     "query": "a\\.m\\.&p\\.m\\.&per hour",
+     "n": 0,
+     "hits": []
+    }
+   ],
+   "disposition": "**KEEP**",
+   "nearest": "MAP MM3-N18, MB2-N56-19, MM3-N19 (one steady temperature rate); SAT 898830bf (furnace two states, system); SAT f7173475 (bike dock, absolute value)",
+   "notes": "n: no two-phase accumulate-then-melt chain read off clock times"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "a depth is positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "the snow is melting at the end, so it is less deep than when the snow stopped; less than 1 inch melts each hour for the 7 hours from 9 a.m. to 4 p.m., so the depth is more than 1.9"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 O-b TOP-UP stage-A candidate for the cold screener. nearMean false. Declared strikes: 0."
+  },
+  "params": {
+   "d0": 6.5,
+   "r": 0.8,
+   "t0": 19,
+   "t1": 22,
+   "m": 0.3,
+   "t2": 9,
+   "t3": 16
+  },
+  "deal_rank": 3,
+  "grade": 7,
+  "stem": "At 7 p.m. there were 6.5 inches of snow on the ground at Nina's house. Snow fell at 0.8 inches per hour until 10 p.m., and then it stopped. Starting at 9 a.m. the next morning, the snow melted at 0.3 inch per hour. How many inches deep was the snow at 4 p.m.?",
+  "options": [
+   "3.5",
+   "5.9",
+   "7.4",
+   "6.8"
+  ],
+  "key": "6.8",
+  "key_rank": 3,
+  "nearMean": false,
+  "distractor_errors": {
+   "3.5": "meltFromStop: starts the melting when the snow stopped (10 p.m.) instead of at 9 a.m.",
+   "5.9": "netBoth: subtracts the melting rate during the snowfall too",
+   "7.4": "clockMelt: subtracts the clock numbers 9 and 4 to get the hours of melting"
+  },
+  "alt_of": "MB13C-ObT-SNOW-a0",
+  "selected_from": "MB13C-ObT-SNOW-a"
+ },
+ {
+  "id": "MB13-O6-04",
+  "mech": "KN",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3",
+  "subskill": "Minutes to knit a length from a gauge (rows per inches) and a time per row",
+  "grade_rationale": "High for grade 6 (6.RP.A.3): a ratio (rows per inches) scaled to a length, then a time per row and a seconds-to-minutes conversion.",
+  "prompt": "A knitting pattern has 18 rows for every 4 inches of length. Ella's headband will be 10 inches long, and each row takes Ella 35 seconds to knit. How many minutes will it take Ella to knit the headband?",
+  "choices": [
+   "15.75",
+   "45",
+   "26.25",
+   "14"
+  ],
+  "correct_answer": "26.25",
+  "explanation": "10 inches at 18 rows for every 4 inches is 10 x 18 / 4 = 45 rows. At 35 seconds a row that is 45 x 35 = 1,575 seconds, and 1575 / 60 = 26.25 minutes.",
+  "solve": "return 10*18/4*35/60;",
+  "distractor_solve": {
+   "14": "return (10+18-4)*35/60;",
+   "45": "return 10*18/4;",
+   "15.75": "return 10*18/4*35/100;"
+  },
+  "mechanism": [
+   "10 x 18 / 4 = 45 rows",
+   "45 x 35 = 1575 s",
+   "1575 / 60 = 26.25 min"
+  ],
+  "quantity_asked": "the knitting time in minutes",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is checked by turning minutes into rows and rows into inches, the method run backwards"
+  },
+  "distractor_meta": {
+   "14": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds 14 rows to the length instead of scaling it",
+    "why": "adds 14 rows to the length instead of scaling it: (10+18-4) x 35/60."
+   },
+   "45": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the number of rows instead of the minutes",
+    "why": "gives the number of rows instead of the minutes: 10 x 18/4."
+   },
+   "15.75": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats 35 seconds as 0.35 of a minute",
+    "why": "treats 35 seconds as 0.35 of a minute: 10 x 18/4 x 35/100."
+   }
+  },
+  "structure_check": "Key rank 3 of 4, dealt by deal13 --topup (O-a seed 20262403). 45 (rows) lands above; 15.75 (s100) lands below; 14 (addR) lands below. No extremum or universal quantifier in the stem decides which side the errors fall on.",
+  "intermediate_check": "No option is joined to another by a printed number, a printed multiplier (1 +/- a printed percent, a printed fraction, a ratio of two printed numbers, n +/- 1, a sum of two printed numbers): engine13 PAIR-ALL, DPAIR, DSUM and KGAP refusals passed. Differences from the key: -18.75, 10.5, 12.25.",
+  "cheap_bound_check": "stem-readable strikes (at most one allowed): 45 - magnitude: each row takes less than a minute, so the minutes are fewer than the 45 rows",
+  "shape_check": "Options: 26.25, 45, 15.75, 14. No option is alone in its surface form, the key is not alone in parity, last digit or multiple-of-5 class, and no two options are one unit apart.",
+  "interior_parity_check": "FORM-U and CLASS refusals (engine13)",
+  "arith_class_check": "the key is not alone in any parity / last-digit / multiple-of-5 class (CLASS refusal)",
+  "dup_search": {
+   "disposition": "survives; ACT 23fe218f (knitted squares remaining) is a different chain; no gauge-proportion item",
+   "probe_read": "PROBE-READ.md",
+   "live": [
+    {
+     "query": "knit",
+     "n": 1,
+     "file": "probes-2.json",
+     "hits": [
+      "23fe218f-5b33-4539-a6dd-e98973edf8a9 [live act/act-math-v29]"
+     ]
+    },
+    {
+     "query": "rows? for every",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    },
+    {
+     "query": "rows?&inches&seconds",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    },
+    {
+     "query": "each row",
+     "n": 39,
+     "file": "probes-2.json",
+     "hits": [
+      "0260399e-d99b-44b3-84b6-4cf08ae51c70 [live map/map-math-v2-b4-data]",
+      "08aeba4d-655e-4efe-9f7b-1c48a293e4f4 [live map/map-math-v2-data]",
+      "395f559d-1511-4fdb-a746-56324366f55a [live act/act-math-v18]",
+      "4328a740-ffa8-45f9-966b-cf91d263eb77 [live isee/isee-math-s15]",
+      "6400f8f2-ee68-4631-9b2a-779554979b73 [live map/map-math-g58-v1]"
+     ]
+    }
+   ],
+   "map": [
+    {
+     "query": "knit",
+     "n": 0,
+     "file": "probes-2.json",
+     "hits": []
+    },
+    {
+     "query": "rows?&inches",
+     "n": 8,
+     "file": "probes-2.json",
+     "hits": [
+      "MMG-D02 [map-math-g58-v1]",
+      "MV2-G56-14 [map-math-v2 b1 withdrawn]",
+      "MV2-D5-04 [map-math-v2 b1 withdrawn]",
+      "MV2-D5-07 [map-math-v2 b1 LIVE]",
+      "MV2-D5-11 [map-math-v2 b1 LIVE]"
+     ]
+    }
+   ]
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "all four options are positive"
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "45"
+    ],
+    "why": "each row takes less than a minute, so the minutes are fewer than the 45 rows"
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "not all whole numbers; nothing in the stem fixes a parity"
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "nothing in the stem fixes the last digit of the answer without doing the steps"
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "none readable from the stem without doing the steps"
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b13 stage-A candidate for the cold screener. Self-screen strikes: 1. nearMean true."
+  },
+  "params": {
+   "r": 18,
+   "w": 4,
+   "L": 10,
+   "s": 35,
+   "it": "headband"
+  },
+  "grade": 6,
+  "stem": "A knitting pattern has 18 rows for every 4 inches of length. Ella's headband will be 10 inches long, and each row takes Ella 35 seconds to knit. How many minutes will it take Ella to knit the headband?",
+  "options": [
+   "15.75",
+   "45",
+   "26.25",
+   "14"
+  ],
+  "key": "26.25",
+  "key_rank": 3,
+  "deal_rank": 3,
+  "nearMean": true,
+  "distractor_errors": {
+   "14": "addR: adds 14 rows to the length instead of scaling it",
+   "45": "rows: gives the number of rows instead of the minutes",
+   "15.75": "s100: treats 35 seconds as 0.35 of a minute"
+  },
+  "alt_of": "MB13C-OaT-KN-b0",
+  "selected_from": "MB13C-OaT-KN-b"
+ }
+]
