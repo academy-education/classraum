@@ -1,0 +1,555 @@
+{
+  "author": "H",
+  "sets": [
+    {
+      "set_id": "ITL2-H-D1",
+      "part": 1,
+      "setting": "school garden",
+      "speakers": {
+        "W": "a student volunteer",
+        "M": "a garden club leader"
+      },
+      "title": "The solar pump",
+      "transcript": "M: The solar pump for the pond has stopped again. I think we should order a new one.\nW: Wait, the new shed shades the panel after lunch. Why don't we just put the panel on the fence?\nM: Oh, good idea. That's much cheaper.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-H-D1-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the woman suggest doing?",
+          "choices": [
+            "Order a new pump for the pond",
+            "Put the panel somewhere else",
+            "Clean the dirt off the solar panel",
+            "Check the wires on the old pump"
+          ],
+          "correct_answer": "Put the panel somewhere else",
+          "why": "Why don't we just put the panel on the fence?",
+          "explanation": "\"Put the panel somewhere else\" is correct: the woman says the shed shades the panel and asks, \"Why don't we just put the panel on the fence?\"",
+          "distractor_rationales": [
+            {
+              "choice": "Order a new pump for the pond",
+              "lure": "wrong speaker",
+              "reason": "\"Order a new pump for the pond\" is the man's idea: \"I think we should order a new one.\" The woman answers \"Wait\" and suggests moving the panel instead."
+            },
+            {
+              "choice": "Clean the dirt off the solar panel",
+              "lure": "misreading",
+              "reason": "\"Clean the dirt off the solar panel\" is wrong: the woman's problem with the panel is shade, not dirt: \"the new shed shades the panel after lunch.\""
+            },
+            {
+              "choice": "Check the wires on the old pump",
+              "lure": "detail",
+              "reason": "\"Check the wires on the old pump\" is wrong: the woman blames the shade on the panel and suggests \"put the panel on the fence\"; she says nothing about wires."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-H-D2",
+      "part": 1,
+      "setting": "dentist's waiting room",
+      "speakers": {
+        "W": "a parent",
+        "M": "a teenager"
+      },
+      "title": "The clinic's text",
+      "transcript": "M: Mom, the clinic just texted me. The dentist's running twenty minutes late, and they'll text again five minutes before we're called. Can we get a drink next door?\nW: Hmm, I didn't get any message. Show me. Oh, OK. Fine, but only a quick one.",
+      "names": [],
+      "other_caps": [
+        "Mom",
+        "OK"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-H-D2-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the woman say about the clinic's message?",
+          "choices": [
+            "The woman didn't get any message",
+            "The woman deleted the text",
+            "The woman read the text before leaving",
+            "The woman thinks the text came late"
+          ],
+          "correct_answer": "The woman didn't get any message",
+          "why": "I didn't get any message.",
+          "explanation": "\"The woman didn't get any message\" is correct: the woman says, \"I didn't get any message,\" and asks her son to show her his.",
+          "distractor_rationales": [
+            {
+              "choice": "The woman deleted the text",
+              "lure": "misreading",
+              "reason": "\"The woman deleted the text\" is wrong: she never had the text. She says, \"I didn't get any message.\""
+            },
+            {
+              "choice": "The woman read the text before leaving",
+              "lure": "contradicted",
+              "reason": "\"The woman read the text before leaving\" is wrong: she has not seen it until the man shows her: \"I didn't get any message. Show me.\""
+            },
+            {
+              "choice": "The woman thinks the text came late",
+              "lure": "detail",
+              "reason": "\"The woman thinks the text came late\" is wrong: after reading it she agrees to go: \"Oh, OK. Fine, but only a quick one.\" The lateness in the text is the dentist's: \"The dentist's running twenty minutes late.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-H-D3",
+      "part": 1,
+      "setting": "art supply shop",
+      "speakers": {
+        "W": "a shop assistant",
+        "M": "a customer"
+      },
+      "title": "Tips for a drawing pen",
+      "transcript": "M: Excuse me, do you sell tips for digital drawing pens? Mine's worn down.\nW: Usually, yes, but we've sold out. I can order some for you. They'd come in about ten days.\nM: Hmm, that's long. I'll check if my old pen's tips fit first, then call you.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-H-D3-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the woman say about the pen tips?",
+          "choices": [
+            "The shop has sold out of them",
+            "They would arrive in two days",
+            "They are kept behind the counter",
+            "They have gone up in price"
+          ],
+          "correct_answer": "The shop has sold out of them",
+          "why": "Usually, yes, but we've sold out.",
+          "explanation": "\"The shop has sold out of them\" is correct: the woman says, \"Usually, yes, but we've sold out.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They would arrive in two days",
+              "lure": "wrong number",
+              "reason": "\"They would arrive in two days\" is wrong: she says an order would take longer: \"They'd come in about ten days.\""
+            },
+            {
+              "choice": "They are kept behind the counter",
+              "lure": "detail",
+              "reason": "\"They are kept behind the counter\" is wrong: the shop has none to keep anywhere: \"we've sold out.\""
+            },
+            {
+              "choice": "They have gone up in price",
+              "lure": "detail",
+              "reason": "\"They have gone up in price\" is wrong: what she tells him about the tips is that they are gone and could be ordered: \"we've sold out. I can order some for you.\" She says nothing about price."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-H-D4",
+      "part": 1,
+      "setting": "hotel front desk",
+      "speakers": {
+        "W": "a receptionist",
+        "M": "a guest"
+      },
+      "title": "A forgotten charger",
+      "transcript": "M: Hi, I checked out of room four-twelve this morning, but I left my laptop charger plugged in next to the bed. Could someone check?\nW: Of course. The cleaners are up on that floor now. I'll call them.\nM: Great, thanks. My train's at noon, so I'll wait over there.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-H-D4-1",
+          "kind": "relationship",
+          "difficulty": "easy",
+          "prompt": "Who are the speakers most likely to be?",
+          "choices": [
+            "A train passenger and a ticket seller",
+            "A hotel guest and a front desk employee",
+            "A customer and a computer shop clerk",
+            "A student and a school secretary"
+          ],
+          "correct_answer": "A hotel guest and a front desk employee",
+          "why": "I checked out of room four-twelve this morning, but I left my laptop charger plugged in next to the bed.",
+          "explanation": "\"A hotel guest and a front desk employee\" is correct: the man says, \"I checked out of room four-twelve this morning,\" and left his charger \"next to the bed\"; the woman sends \"The cleaners\" who are \"up on that floor now.\"",
+          "distractor_rationales": [
+            {
+              "choice": "A train passenger and a ticket seller",
+              "lure": "detail",
+              "reason": "\"A train passenger and a ticket seller\" is wrong: the train is only why he is waiting, \"My train's at noon\"; his problem is a room he \"checked out of\" this morning."
+            },
+            {
+              "choice": "A customer and a computer shop clerk",
+              "lure": "topic",
+              "reason": "\"A customer and a computer shop clerk\" is wrong: he is not buying a charger; he left his own \"plugged in next to the bed\" in \"room four-twelve.\""
+            },
+            {
+              "choice": "A student and a school secretary",
+              "lure": "topic",
+              "reason": "\"A student and a school secretary\" is wrong: a numbered room could be a classroom, but he \"checked out of\" it this morning and it has a bed: \"plugged in next to the bed.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-H-C",
+      "part": 2,
+      "setting": "at the side of a school sports field after practice",
+      "speakers": {
+        "W": "a student",
+        "M": "a sports coach"
+      },
+      "title": "Filming the starts",
+      "transcript": "W: Coach, have you got a minute? It's about our starts.\nM: Sure. You looked quick today. What's up?\nW: Well, everyone keeps telling me I stand up too early out of the blocks, but I honestly can't feel it. I was wondering if we could film the starts and watch them back in slow motion.\nM: Hmm. You know I don't allow phones at practice anymore.\nW: I know. Because of last spring?\nM: Right. I let everyone keep their phones on the bench, and by the end of the first week, half the team was filming silly dance videos during warm-up. Nobody stretched properly, and two runners pulled muscles.\nW: But this wouldn't be phones. The library lends tablets to clubs for free. I'd borrow one, put it on a stand behind the blocks, and nobody else would touch it.\nM: And then what? Everyone crowds round a screen for twenty minutes?\nW: No, the replay's ready in a few seconds. Each runner watches their own start once, then goes back to the line.\nM: Okay, a few seconds is fine. And I'll be honest, slow motion would help me too. At a start, feet move faster than my eyes can follow. I'm mostly guessing who pushes off badly.\nW: So you'd let us do it?\nM: There's one more problem. Some parents don't want their kids filmed at all. I can't just start recording.\nW: What if the videos stay on the tablet and get deleted after every practice? Nothing goes online.\nM: That helps. But the parents still have to agree first. I'll send a letter home with everyone this Friday, and if they all sign it, we can begin the week after.\nW: So not tomorrow, then.\nM: Not tomorrow. And you're in charge of the tablet. If I see it used for anything else, it goes straight back to the library.\nW: Deal. I'll pick it up from the library on Monday.\nM: Good. And practise keeping your head down for your first three steps. Video or no video.",
+      "names": [],
+      "other_caps": [
+        "Coach",
+        "Okay",
+        "Friday",
+        "Monday",
+        "Deal"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-H-C-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the man, what happened last spring?",
+          "choices": [
+            "Phones went missing from the bench",
+            "Two runners were injured",
+            "A tablet got broken in warm-up",
+            "The team lost its first big race"
+          ],
+          "correct_answer": "Two runners were injured",
+          "why": "Nobody stretched properly, and two runners pulled muscles.",
+          "explanation": "\"Two runners were injured\" is correct: describing last spring, the man says, \"Nobody stretched properly, and two runners pulled muscles.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Phones went missing from the bench",
+              "lure": "script words, wrong relation",
+              "reason": "\"Phones went missing from the bench\" is wrong: the phones stayed there and were used, not lost: \"I let everyone keep their phones on the bench, and by the end of the first week, half the team was filming silly dance videos during warm-up.\""
+            },
+            {
+              "choice": "A tablet got broken in warm-up",
+              "lure": "wrong time",
+              "reason": "\"A tablet got broken in warm-up\" is wrong: last spring the problem was phones, and the tablet is the woman's new idea: \"The library lends tablets to clubs for free.\""
+            },
+            {
+              "choice": "The team lost its first big race",
+              "lure": "detail",
+              "reason": "\"The team lost its first big race\" is wrong: the man describes what went wrong last spring as \"half the team was filming silly dance videos during warm-up\" and the injuries; he says nothing about a race."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-C-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "A student gets the coach to agree to filming starts on a borrowed tablet",
+            "A coach refuses a student's request to record practice on a phone",
+            "A coach asks a student to film races so parents can watch online",
+            "A student persuades the coach that the team should buy a video app"
+          ],
+          "correct_answer": "A student gets the coach to agree to filming starts on a borrowed tablet",
+          "why": "if they all sign it, we can begin the week after.",
+          "explanation": "\"A student gets the coach to agree to filming starts on a borrowed tablet\" is correct: the woman asks \"if we could film the starts,\" offers \"I'd borrow one,\" and the man ends by saying \"we can begin the week after\" once parents sign.",
+          "distractor_rationales": [
+            {
+              "choice": "A coach refuses a student's request to record practice on a phone",
+              "lure": "outcome wrong",
+              "reason": "\"A coach refuses a student's request to record practice on a phone\" is wrong: she proposes a library tablet, \"this wouldn't be phones,\" and he agrees: \"we can begin the week after.\""
+            },
+            {
+              "choice": "A coach asks a student to film races so parents can watch online",
+              "lure": "outcome wrong",
+              "reason": "\"A coach asks a student to film races so parents can watch online\" is wrong: the idea is hers, it is for practice starts, and \"Nothing goes online.\""
+            },
+            {
+              "choice": "A student persuades the coach that the team should buy a video app",
+              "lure": "outcome wrong",
+              "reason": "\"A student persuades the coach that the team should buy a video app\" is wrong: nothing is bought; the tablet is borrowed: \"The library lends tablets to clubs for free.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-C-3",
+          "kind": "attitude",
+          "difficulty": "medium",
+          "prompt": "What does the man think about watching the starts in slow motion?",
+          "choices": [
+            "It would show little that the coach doesn't see now",
+            "It would be more useful to the student than the coach",
+            "It would slow down practice too much",
+            "It would help the coach follow each runner's feet"
+          ],
+          "correct_answer": "It would help the coach follow each runner's feet",
+          "why": "At a start, feet move faster than my eyes can follow.",
+          "explanation": "\"It would help the coach follow each runner's feet\" is correct: the man says \"slow motion would help me too\" because \"At a start, feet move faster than my eyes can follow.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It would show little that the coach doesn't see now",
+              "lure": "contradicted",
+              "reason": "\"It would show little that the coach doesn't see now\" is contradicted: he says his eyes miss a lot: \"I'm mostly guessing who pushes off badly.\""
+            },
+            {
+              "choice": "It would be more useful to the student than the coach",
+              "lure": "contradicted",
+              "reason": "\"It would be more useful to the student than the coach\" is contradicted: he says \"slow motion would help me too.\""
+            },
+            {
+              "choice": "It would slow down practice too much",
+              "lure": "contradicted",
+              "reason": "\"It would slow down practice too much\" is contradicted: after she says \"the replay's ready in a few seconds,\" he answers \"Okay, a few seconds is fine.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-C-4",
+          "kind": "intent-next",
+          "difficulty": "medium",
+          "prompt": "What does the man plan to do before any filming begins?",
+          "choices": [
+            "Begin filming at tomorrow's practice",
+            "Get written approval from the families",
+            "Pick up a tablet from the library himself",
+            "Put the videos online for the parents to see"
+          ],
+          "correct_answer": "Get written approval from the families",
+          "why": "I'll send a letter home with everyone this Friday, and if they all sign it, we can begin the week after.",
+          "explanation": "\"Get written approval from the families\" is correct: the man says \"the parents still have to agree first\" and \"I'll send a letter home with everyone this Friday, and if they all sign it, we can begin the week after.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Begin filming at tomorrow's practice",
+              "lure": "contradicted",
+              "reason": "\"Begin filming at tomorrow's practice\" is ruled out: when she asks \"So not tomorrow, then,\" he answers \"Not tomorrow.\""
+            },
+            {
+              "choice": "Pick up a tablet from the library himself",
+              "lure": "wrong speaker",
+              "reason": "\"Pick up a tablet from the library himself\" is ruled out: he tells her \"you're in charge of the tablet,\" and she says \"I'll pick it up from the library on Monday.\""
+            },
+            {
+              "choice": "Put the videos online for the parents to see",
+              "lure": "contradicted",
+              "reason": "\"Put the videos online for the parents to see\" is ruled out: she promises \"Nothing goes online,\" and he answers \"That helps.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-H-L",
+      "part": 3,
+      "setting": "a class lecture",
+      "speakers": {
+        "S": "a teacher giving a short lecture to a high-school class"
+      },
+      "title": "What noise-cancelling headphones can and can't do",
+      "transcript": "Okay, let's get started. Today's topic is something a lot of you probably have in your bag right now: noise-cancelling headphones. If you believe the advertisements, you put them on, press a button, and the whole world goes silent. Planes, traffic, people talking, all of it, gone. I want to show you why that picture is wrong, and why these headphones work brilliantly on some sounds and much less well on others.\n\nFirst, a little science. Sound is a wave of pressure moving through the air. The air gets squeezed a little, then stretched a little, over and over. Now, imagine two waves on the surface of a pond. If the high point of one wave meets the low point of another, they flatten each other out. Scientists call this destructive interference, which just means two waves cancelling each other.\n\nNoise-cancelling headphones use exactly that trick. There are tiny microphones on the outside of each ear cup. They listen to the noise around you, and a small chip inside works out the opposite wave, a kind of mirror image, and plays it through the speaker along with your music. Where the noise pushes, the headphones pull. In the best case, the two cancel, and your ear hears much less.\n\nHere's the interesting part. Let's compare two cases. Case one, you're on a long flight, and the engines make a deep, steady hum. A low sound like that has long, slow waves, and it hardly changes from one second to the next. So the chip has an easy job. It can predict what's coming, and even if it's a tiny fraction of a second late, a long wave hasn't moved much in that time. The result is impressive. Most of that hum seems to just disappear.\n\nCase two, you're in the school cafeteria. Someone is talking at the next table, a tray crashes to the floor, a friend laughs. These sounds are higher, and they start and stop suddenly. Higher sounds have short, quick waves. Now that same tiny delay matters a lot, because by the time the opposite wave arrives, a short wave has already changed. The chip simply can't keep up. For sounds like these, most of the work is done by something much older, the soft cushions around your ears. They block sound the same way covering your ears with your hands does, and they're actually better at blocking high sounds than low ones.\n\nAsk anyone who flies a lot, and they'll tell you the same thing. These headphones are wonderful against engine noise, but you can still hear the person in the next seat talking. That's a common belief, and the science says it's correct. Even very good headphones still let a lot of a voice through.\n\nSo, no, noise-cancelling headphones don't erase the world. They're excellent at one kind of sound, the low and steady kind, and fairly ordinary at the rest. If you were planning to buy a pair to study in a noisy cafeteria, you might be disappointed. If you want a quieter bus ride, though, they're worth it. For Thursday, I'd like you to list five sounds you hear on your way to school and decide which of the two cases each one belongs to.",
+      "names": [],
+      "other_caps": [
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-H-L-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the speaker, what do the microphones on the outside of the headphones do?",
+          "choices": [
+            "They capture surrounding sound so an opposite version can be produced",
+            "They listen to your music and make the speaker play it louder",
+            "They pick up the noise and switch off the music when it gets loud",
+            "They check how tightly the cushions fit around each ear"
+          ],
+          "correct_answer": "They capture surrounding sound so an opposite version can be produced",
+          "why": "They listen to the noise around you, and a small chip inside works out the opposite wave, a kind of mirror image, and plays it through the speaker along with your music.",
+          "explanation": "\"They capture surrounding sound so an opposite version can be produced\" is correct: the speaker says the microphones \"listen to the noise around you, and a small chip inside works out the opposite wave, a kind of mirror image.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They listen to your music and make the speaker play it louder",
+              "lure": "script words, wrong relation",
+              "reason": "\"They listen to your music and make the speaker play it louder\" is wrong: the microphones \"listen to the noise around you\"; the speaker plays the opposite wave \"along with your music.\""
+            },
+            {
+              "choice": "They pick up the noise and switch off the music when it gets loud",
+              "lure": "misreading",
+              "reason": "\"They pick up the noise and switch off the music when it gets loud\" is wrong: the music keeps playing; the opposite wave is played \"along with your music.\""
+            },
+            {
+              "choice": "They check how tightly the cushions fit around each ear",
+              "lure": "detail",
+              "reason": "\"They check how tightly the cushions fit around each ear\" is wrong: the speaker says what the microphones do, \"They listen to the noise around you,\" and the cushions are a separate part that simply \"block sound.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-L-2",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker mention waves on a pond?",
+          "choices": [
+            "To help students picture how two waves can cancel out",
+            "To show why low sounds travel in long waves",
+            "To explain how the microphones listen to noise",
+            "To show that sound moves through water as well as air"
+          ],
+          "correct_answer": "To help students picture how two waves can cancel out",
+          "why": "If the high point of one wave meets the low point of another, they flatten each other out.",
+          "explanation": "\"To help students picture how two waves can cancel out\" is correct: the speaker asks students to \"imagine two waves on the surface of a pond,\" shows that \"they flatten each other out,\" and then names it: \"two waves cancelling each other.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To show why low sounds travel in long waves",
+              "lure": "later point",
+              "reason": "\"To show why low sounds travel in long waves\" is wrong: the pond comes before the two cases and leads straight to \"destructive interference, which just means two waves cancelling each other\"; wave length comes up later, with the engine hum."
+            },
+            {
+              "choice": "To explain how the microphones listen to noise",
+              "lure": "later point",
+              "reason": "\"To explain how the microphones listen to noise\" is wrong: the microphones are introduced after the pond, in \"There are tiny microphones on the outside of each ear cup\"; the pond shows waves that \"flatten each other out.\""
+            },
+            {
+              "choice": "To show that sound moves through water as well as air",
+              "lure": "misreading",
+              "reason": "\"To show that sound moves through water as well as air\" is wrong: the speaker says sound is \"a wave of pressure moving through the air\" and uses the pond only to show two waves that \"flatten each other out.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-L-3",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What would the speaker most likely say about a sudden, high whistle?",
+          "choices": [
+            "The ear cushions would do more to block it than the chip",
+            "The chip would cancel it about as well as it cancels an engine hum",
+            "The cushions would block it less well than a deep hum",
+            "Its short waves would make the chip's job far easier"
+          ],
+          "correct_answer": "The ear cushions would do more to block it than the chip",
+          "why": "For sounds like these, most of the work is done by something much older, the soft cushions around your ears.",
+          "why2": "they're actually better at blocking high sounds than low ones",
+          "explanation": "\"The ear cushions would do more to block it than the chip\" is correct: for high, sudden sounds \"The chip simply can't keep up,\" so \"most of the work is done by something much older, the soft cushions around your ears,\" which are \"better at blocking high sounds than low ones.\"",
+          "distractor_rationales": [
+            {
+              "choice": "The chip would cancel it about as well as it cancels an engine hum",
+              "lure": "contradicted",
+              "reason": "\"The chip would cancel it about as well as it cancels an engine hum\" is contradicted: for high sounds that \"start and stop suddenly,\" the speaker says \"The chip simply can't keep up.\""
+            },
+            {
+              "choice": "The cushions would block it less well than a deep hum",
+              "lure": "contradicted",
+              "reason": "\"The cushions would block it less well than a deep hum\" is contradicted: the cushions are \"better at blocking high sounds than low ones.\""
+            },
+            {
+              "choice": "Its short waves would make the chip's job far easier",
+              "lure": "contradicted",
+              "reason": "\"Its short waves would make the chip's job far easier\" is contradicted: short waves are the hard case, because \"by the time the opposite wave arrives, a short wave has already changed.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-L-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the lecture mainly about?",
+          "choices": [
+            "Why the headphones work best on low, steady sounds",
+            "Why newer headphones now block cafeteria noise about as well as hum",
+            "Why advertisements understate what the headphones can do",
+            "Why the cushions, not the chip, remove most engine hum"
+          ],
+          "correct_answer": "Why the headphones work best on low, steady sounds",
+          "why": "They're excellent at one kind of sound, the low and steady kind, and fairly ordinary at the rest.",
+          "explanation": "\"Why the headphones work best on low, steady sounds\" is correct: the speaker compares a \"deep, steady hum\" that \"seems to just disappear\" with cafeteria sounds the chip \"can't keep up\" with, and concludes \"They're excellent at one kind of sound, the low and steady kind.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Why newer headphones now block cafeteria noise about as well as hum",
+              "lure": "claim wrong",
+              "reason": "\"Why newer headphones now block cafeteria noise about as well as hum\" is wrong: the speaker warns that for a noisy cafeteria \"you might be disappointed,\" because with those sounds \"The chip simply can't keep up.\""
+            },
+            {
+              "choice": "Why advertisements understate what the headphones can do",
+              "lure": "claim wrong",
+              "reason": "\"Why advertisements understate what the headphones can do\" is wrong: the advertisements promise too much, \"the whole world goes silent,\" and the speaker says \"that picture is wrong.\""
+            },
+            {
+              "choice": "Why the cushions, not the chip, remove most engine hum",
+              "lure": "claim wrong",
+              "reason": "\"Why the cushions, not the chip, remove most engine hum\" is wrong: for the engine hum \"the chip has an easy job,\" and the cushions do most of the work only for higher, sudden sounds: \"For sounds like these, most of the work is done by something much older.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-L-5",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the short delay before the opposite wave is played?",
+          "choices": [
+            "It is longer for a long wave than for a short one",
+            "It causes more trouble with quick sounds than slow ones",
+            "It goes away once the noise around your ears stays steady",
+            "It matters most on long flights with engine noise"
+          ],
+          "correct_answer": "It causes more trouble with quick sounds than slow ones",
+          "why": "even if it's a tiny fraction of a second late, a long wave hasn't moved much in that time",
+          "why2": "Now that same tiny delay matters a lot, because by the time the opposite wave arrives, a short wave has already changed.",
+          "explanation": "\"It causes more trouble with quick sounds than slow ones\" is correct: with the engine hum \"a long wave hasn't moved much in that time,\" but with cafeteria sounds \"that same tiny delay matters a lot, because by the time the opposite wave arrives, a short wave has already changed.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It is longer for a long wave than for a short one",
+              "lure": "contradicted",
+              "reason": "\"It is longer for a long wave than for a short one\" is contradicted: the speaker calls it \"that same tiny delay\" in both cases."
+            },
+            {
+              "choice": "It goes away once the noise around your ears stays steady",
+              "lure": "contradicted",
+              "reason": "\"It goes away once the noise around your ears stays steady\" is contradicted: even with the steady engine hum the chip may be \"a tiny fraction of a second late\"; the delay just does less harm there."
+            },
+            {
+              "choice": "It matters most on long flights with engine noise",
+              "lure": "contradicted",
+              "reason": "\"It matters most on long flights with engine noise\" is contradicted: on the flight \"a long wave hasn't moved much in that time,\" so the delay matters little there."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-H-L-6",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker bring up people who fly a lot?",
+          "choices": [
+            "To suggest the headphones were designed mainly for flights",
+            "To show that a common belief about the headphones is correct",
+            "To explain why advertisements often picture air travel",
+            "To point out that frequent flyers prefer simple ear cushions"
+          ],
+          "correct_answer": "To show that a common belief about the headphones is correct",
+          "why": "That's a common belief, and the science says it's correct.",
+          "explanation": "\"To show that a common belief about the headphones is correct\" is correct: after giving what flyers say, the speaker adds, \"That's a common belief, and the science says it's correct.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To suggest the headphones were designed mainly for flights",
+              "lure": "misreading",
+              "reason": "\"To suggest the headphones were designed mainly for flights\" is wrong: the speaker uses the flyers' view to test the science, \"the science says it's correct,\" and later recommends the headphones for \"a quieter bus ride\" too."
+            },
+            {
+              "choice": "To explain why advertisements often picture air travel",
+              "lure": "unsupported link",
+              "reason": "\"To explain why advertisements often picture air travel\" is wrong: the flyers are quoted for what they notice, \"you can still hear the person in the next seat talking,\" which goes against the advertisements' \"the whole world goes silent.\""
+            },
+            {
+              "choice": "To point out that frequent flyers prefer simple ear cushions",
+              "lure": "contradicted",
+              "reason": "\"To point out that frequent flyers prefer simple ear cushions\" is wrong: the flyers say \"These headphones are wonderful against engine noise\"; nothing they say prefers cushions alone."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3211,6 +3211,30 @@ recorded only in a commit message is a finding nobody reads.
   play; prewarm covers verified rows only). **Found, release blocker:** `TestSession.tsx` routes listening to the
   audio player only when `family === 'toefl'` (isListeningSection, isListeningItem), so an iTEP listening item would
   show its transcript as text; iTEP also plays once (maxPlays=1), not TOEFL's 2. Fix before any iTEP listening flip.
+- **2026-10-31 — iTEP SLATE Listening v2 (round 2): 91 of 126 cleared (72.2%, "queue the lessons" band), 91 STAGED
+  verified=false (cohort itep-listening-v2, read back by id 91 false / 0 true); Listening now 8 disjoint full forms
+  (was 3), Part 2 binds.** Prereg `ITEP-SLATE-LISTENING-V2.prereg.md` (374be659, before any script). **Brief NOT cut**
+  (BRIEF-VERSIONING rule 3: not earned, not blocking, not broken); frozen v1 used byte-identical, method
+  `itep-listening-v1-agent9+cfg-v1`. Pending lessons 1-2 applied through the assignment only (key length / script words
+  drawn per part; per-lecture `common belief` shape none x5 / right x2 / wrong x2; 9 idea shapes), 3 and 8 through
+  process (one minimal revision round + set re-read; own scratch dirs; packet plan from planPackets on a mock, which
+  was right: 40/40/40/6). 9 Claude authors x 14; pre-flight PASS, break test 11/11, dedupe (new; break-tested on a
+  pasted v1 transcript and a copied v1 key) 2 key 4-gram flags; probe 1: 8 patterns, 7 sent with the dedupe flags in
+  ONE round (main-idea single-whole-option was assignment-fixed, recorded); the round's batch pre-flight then failed
+  (lone hedge never key 0/4, an over-correction) and one distractor word was changed; probe 2 recorded, not revised.
+  - **Parts:** Part 1 27/36 dialogues; Part 2 16/36 items = **4/9 conversations**; Part 3 48/54 = 8/9 lectures. Bank:
+    P1 42, P2 8 conversations, P3 11 lectures. **10 forms needs 2 more conversations** (top-up of ~3-4 Part 2 sets).
+  - **Drops:** p1 counted a+c `key_form` (key paraphrases, distractors echo the transcript) and b+c `one_template`
+    (blocked first plan never keyed; probe 1 0/16, probe 2 0/22) on 7 dialogues; p2 counted a+c
+    `key_in_near_duplicate_pair` (4 items: whole-script-options 2 makes the key one of a twin pair by construction) ->
+    C, B conversations + B lecture + E conversation; G-C-4 broken by all three graders: **the revision round's
+    "Ask" -> "Get their father's permission" changed the key's meaning** (second consecutive batch where the revision
+    round introduced the drop); B-D1 and I-C-3 broken by c alone.
+  - **Assignment-caused, found after:** `prevails` was cycled over all 45 dialogue sets, so Part 2 drew woman 5 /
+    neither 4 / man 0 (probe 2: woman wins all 9) - lesson 1's per-part fix applies to prevails too.
+  - No-transcript attack (recorded only): candidate 248/324 = 76.5% vs the same 40 TOEFL controls 116/120 = 96.7%,
+    margin -20.1, no headroom, uninformative. Pending lessons 9-13 in `briefs/itep-slate-listening-v1.pending.md`.
+    one_template is now named by two graders in one batch; if it recurs in the next batch the cut is "blocking".
 
 
 ## 6. The rule that keeps this honest

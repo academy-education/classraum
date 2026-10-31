@@ -1,0 +1,565 @@
+{
+ "author": "C",
+ "sets": [
+  {
+   "set_id": "ITL2-C-D1",
+   "part": 1,
+   "setting": "bookshop",
+   "speakers": {
+    "W": "a shop assistant",
+    "M": "a customer"
+   },
+   "title": "The mushroom book",
+   "transcript": "M: Hi. Last month there was a book about growing mushrooms in your window. Do you still have it?\nW: Sorry, we sold the last one, and ordering it takes two weeks. We do have one on sprouting seeds here, though. You can eat sprouts in five days.\nM: Hmm. I'll check the library first, then decide.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-C-D1-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why does the woman mention a book on sprouting seeds?",
+     "choices": [
+      "to name the book that would be ordered",
+      "to offer a book the shop has now",
+      "to warn that mushrooms take two weeks to grow",
+      "to say that the library has a copy too"
+     ],
+     "correct_answer": "to offer a book the shop has now",
+     "why": "We do have one on sprouting seeds here, though.",
+     "explanation": "\"to offer a book the shop has now\" is correct: the mushroom book is gone (\"we sold the last one\"), and she says \"We do have one on sprouting seeds here, though,\" offering a book the shop has now.",
+     "distractor_rationales": [
+      {
+       "choice": "to name the book that would be ordered",
+       "lure": "misreading",
+       "reason": "\"to name the book that would be ordered\" is wrong: the order she mentions is for the mushroom book, \"ordering it takes two weeks\", while the sprouting book is one they \"do have\" \"here\"."
+      },
+      {
+       "choice": "to warn that mushrooms take two weeks to grow",
+       "lure": "misreading",
+       "reason": "\"to warn that mushrooms take two weeks to grow\" is wrong: the two weeks is the time for an order, \"ordering it takes two weeks\", not growing time."
+      },
+      {
+       "choice": "to say that the library has a copy too",
+       "lure": "wrong speaker",
+       "reason": "\"to say that the library has a copy too\" is wrong: she says \"We do have one on sprouting seeds here\"; it is the man who brings up the library: \"I'll check the library first\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-C-D2",
+   "part": 1,
+   "setting": "train station",
+   "speakers": {
+    "W": "a passenger",
+    "M": "a ticket clerk"
+   },
+   "title": "Pepper plants on the train",
+   "transcript": "M: Elwood? The ten o'clock's air conditioning is broken today. I'd take the eleven. It's cool, though it gets in an hour later.\nW: Then the eleven, please. These pepper plants are for my grandmother, and my last ones died in a hot car.\nM: Sure. That's platform four.",
+   "names": [
+    "Elwood"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-C-D2-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "The woman has to reach Elwood before eleven o'clock.",
+      "The woman is taking the pepper plants to a friend.",
+      "The woman thinks the ten o'clock train will be the cooler one.",
+      "The woman cares more about the plants than an early arrival."
+     ],
+     "correct_answer": "The woman cares more about the plants than an early arrival.",
+     "why": "it gets in an hour later",
+     "why2": "Then the eleven, please. These pepper plants are for my grandmother, and my last ones died in a hot car.",
+     "explanation": "\"The woman cares more about the plants than an early arrival.\" is correct: the clerk warns that the eleven o'clock \"gets in an hour later\", yet she answers \"Then the eleven, please\" because \"my last ones died in a hot car\", so keeping the plants cool matters more to her than arriving early.",
+     "distractor_rationales": [
+      {
+       "choice": "The woman has to reach Elwood before eleven o'clock.",
+       "lure": "contradicted",
+       "reason": "\"The woman has to reach Elwood before eleven o'clock.\" is wrong: she chooses a train that leaves at eleven, \"Then the eleven, please\", so she cannot be there before eleven."
+      },
+      {
+       "choice": "The woman is taking the pepper plants to a friend.",
+       "lure": "contradicted",
+       "reason": "\"The woman is taking the pepper plants to a friend.\" is wrong: she says \"These pepper plants are for my grandmother\"."
+      },
+      {
+       "choice": "The woman thinks the ten o'clock train will be the cooler one.",
+       "lure": "contradicted",
+       "reason": "\"The woman thinks the ten o'clock train will be the cooler one.\" is wrong: the clerk says \"The ten o'clock's air conditioning is broken today\", and she picks the eleven instead."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-C-D3",
+   "part": 1,
+   "setting": "museum on a class trip",
+   "speakers": {
+    "W": "a museum guide",
+    "M": "a student"
+   },
+   "title": "The white rice",
+   "transcript": "M: Excuse me, is this rice really two thousand years old? It looks so white and fresh.\nW: Good eye. The real grains went to a lab for testing on Monday, so for now, that's rice from the supermarket.",
+   "names": [],
+   "other_caps": [
+    "Monday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-C-D3-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What does the woman imply about the rice in the case?",
+     "choices": [
+      "The student is right that it is not really two thousand years old.",
+      "It went to a lab for testing and proved to be fake.",
+      "It stays white because the case keeps out the air.",
+      "It is the ancient rice, cleaned for the class visit."
+     ],
+     "correct_answer": "The student is right that it is not really two thousand years old.",
+     "why": "Good eye.",
+     "why2": "for now, that's rice from the supermarket",
+     "explanation": "\"The student is right that it is not really two thousand years old.\" is correct: she answers his doubt with \"Good eye\", and then says \"that's rice from the supermarket\", so his guess that it is not \"really two thousand years old\" is correct.",
+     "distractor_rationales": [
+      {
+       "choice": "It went to a lab for testing and proved to be fake.",
+       "lure": "contradicted",
+       "reason": "\"It went to a lab for testing and proved to be fake.\" is wrong: what went to the lab is called \"The real grains\", and the testing has only just started: \"for now, that's rice from the supermarket\"."
+      },
+      {
+       "choice": "It stays white because the case keeps out the air.",
+       "lure": "contradicted",
+       "reason": "\"It stays white because the case keeps out the air.\" is wrong: it looks white because it is new, \"that's rice from the supermarket\"."
+      },
+      {
+       "choice": "It is the ancient rice, cleaned for the class visit.",
+       "lure": "contradicted",
+       "reason": "\"It is the ancient rice, cleaned for the class visit.\" is wrong: the ancient grains \"went to a lab\", and what is shown is \"rice from the supermarket\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-C-D4",
+   "part": 1,
+   "setting": "kitchen at home",
+   "speakers": {
+    "W": "a parent",
+    "M": "a teenager"
+   },
+   "title": "Banana bread for the sale",
+   "transcript": "M: Mum, can I bake banana bread tonight? It's for the class sale tomorrow.\nW: The oven's busy until eight, and you've got piano then. Why not make a fruit salad?\nM: It'd go brown by morning. I'll just buy cookies on the way to school.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-C-D4-1",
+     "kind": "relationship",
+     "difficulty": "easy",
+     "prompt": "Who are the speakers most likely?",
+     "choices": [
+      "two classmates",
+      "a brother and sister",
+      "a mother and son",
+      "a cook and a helper"
+     ],
+     "correct_answer": "a mother and son",
+     "why": "Mum, can I bake banana bread tonight?",
+     "explanation": "\"a mother and son\" is correct: the boy calls her \"Mum\" and asks to use the oven at home \"tonight\".",
+     "distractor_rationales": [
+      {
+       "choice": "two classmates",
+       "lure": "topic fit",
+       "reason": "\"two classmates\" is wrong: he calls the woman \"Mum\"."
+      },
+      {
+       "choice": "a brother and sister",
+       "lure": "topic fit",
+       "reason": "\"a brother and sister\" is wrong: he calls the woman \"Mum\", not a sister."
+      },
+      {
+       "choice": "a cook and a helper",
+       "lure": "topic fit",
+       "reason": "\"a cook and a helper\" is wrong: they talk about his evening at home, \"you've got piano then\", and he calls her \"Mum\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-C-C",
+   "part": 2,
+   "setting": "at home or out in town",
+   "speakers": {
+    "W": "a teenager",
+    "M": "a parent or older relative"
+   },
+   "title": "Two hens in the garden",
+   "transcript": "M: So, Effie, your mum says you've got a plan, and that I'm the one to ask.\nW: Yeah, Uncle Eamon, because you kept hens for years. I want to keep two of them in our back garden.\nM: Hens? Last summer it was a rabbit, and that lasted about a week.\nW: This is different. We throw away so much food, and hens eat things like vegetable peel and old rice. Plus, eggs. I've worked it all out. Two hens lay about ten eggs a week, and we only eat about six.\nM: And the other four?\nW: Elsie next door wants to buy them. She's already asked me twice when I'm getting the hens.\nM: Okay, you've thought about the eggs. Now the hard part. Hens have to be shut in their house before dark, every single night, or a fox gets them. I lost three that way.\nW: Wait, there are foxes around here? I didn't know they came into gardens.\nM: Oh, they do. I saw one by the bins last week. And you're away at camp for three weeks in July. Who's shutting the door then?\nW: Mum could do it.\nM: Your mum's on night shifts all summer, and you know what my sister's like when she's tired. Honestly, I'd wait until next spring, after camp, when you've read up on it properly.\nW: Next spring? That's ages away. And I have read up on it. I know how much space they need and everything.\nM: Fair enough. But space is one thing, and foxes are another. They're clever, and they're hungry.\nW: So what would make you say yes?\nM: Someone who's home every evening while you're at camp. Ask Elsie if she'd do it. If she says yes, I'll come round and check your fence, and we'll decide later. I'm not saying yes or no today.\nW: Okay. I'll ask her tonight. I'm already thinking of names, though.",
+   "names": [
+    "Effie",
+    "Eamon",
+    "Elsie"
+   ],
+   "other_caps": [
+    "Uncle",
+    "July"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-C-C-1",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "She already knew that foxes come into gardens nearby.",
+      "She would be happy to wait until next spring for the hens.",
+      "She had thought about the eggs more than about keeping the hens safe.",
+      "She has not looked into how much space hens need."
+     ],
+     "correct_answer": "She had thought about the eggs more than about keeping the hens safe.",
+     "why": "I've worked it all out. Two hens lay about ten eggs a week, and we only eat about six.",
+     "why2": "Wait, there are foxes around here? I didn't know they came into gardens.",
+     "explanation": "\"She had thought about the eggs more than about keeping the hens safe.\" is correct: she has the egg numbers ready, \"I've worked it all out\", but the danger at night is new to her: \"I didn't know they came into gardens.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She already knew that foxes come into gardens nearby.",
+       "lure": "contradicted",
+       "reason": "\"She already knew that foxes come into gardens nearby.\" is wrong: she says \"Wait, there are foxes around here? I didn't know they came into gardens.\""
+      },
+      {
+       "choice": "She would be happy to wait until next spring for the hens.",
+       "lure": "contradicted",
+       "reason": "\"She would be happy to wait until next spring for the hens.\" is wrong: when he suggests spring she says \"Next spring? That's ages away.\""
+      },
+      {
+       "choice": "She has not looked into how much space hens need.",
+       "lure": "contradicted",
+       "reason": "\"She has not looked into how much space hens need.\" is wrong: she says \"I know how much space they need and everything.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-C-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about Elsie?",
+     "choices": [
+      "She has offered to pay for the spare eggs.",
+      "She saw a fox by the bins last week.",
+      "She has agreed to shut the hens in at night.",
+      "She kept hens of her own for many years."
+     ],
+     "correct_answer": "She has offered to pay for the spare eggs.",
+     "why": "Elsie next door wants to buy them.",
+     "explanation": "\"She has offered to pay for the spare eggs.\" is correct: asked about the other four eggs, the woman says \"Elsie next door wants to buy them.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She saw a fox by the bins last week.",
+       "lure": "wrong speaker",
+       "reason": "\"She saw a fox by the bins last week.\" is wrong: it is the man who says \"I saw one by the bins last week.\""
+      },
+      {
+       "choice": "She has agreed to shut the hens in at night.",
+       "lure": "wrong time",
+       "reason": "\"She has agreed to shut the hens in at night.\" is wrong: Elsie has not been asked yet; the man says \"Ask Elsie if she'd do it\", and the woman says \"I'll ask her tonight.\""
+      },
+      {
+       "choice": "She kept hens of her own for many years.",
+       "lure": "wrong speaker",
+       "reason": "\"She kept hens of her own for many years.\" is wrong: it is the man who kept them; the woman tells him \"you kept hens for years\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-C-3",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "whether the woman should keep hens, which the man agrees to at last",
+      "how the man lost three hens to a fox in the past",
+      "how many eggs two hens can lay in an ordinary week",
+      "whether the woman should keep hens, which they will decide later"
+     ],
+     "correct_answer": "whether the woman should keep hens, which they will decide later",
+     "why": "we'll decide later. I'm not saying yes or no today.",
+     "explanation": "\"whether the woman should keep hens, which they will decide later\" is correct: the whole talk weighs her wish, \"I want to keep two of them in our back garden\", against the problems, and it ends open: \"we'll decide later. I'm not saying yes or no today.\"",
+     "distractor_rationales": [
+      {
+       "choice": "whether the woman should keep hens, which the man agrees to at last",
+       "lure": "outcome wrong",
+       "reason": "\"whether the woman should keep hens, which the man agrees to at last\" is wrong: the man does not agree; he says \"I'm not saying yes or no today.\""
+      },
+      {
+       "choice": "how the man lost three hens to a fox in the past",
+       "lure": "detail",
+       "reason": "\"how the man lost three hens to a fox in the past\" is wrong: this is one moment, \"I lost three that way\", said to explain the fox problem."
+      },
+      {
+       "choice": "how many eggs two hens can lay in an ordinary week",
+       "lure": "detail",
+       "reason": "\"how many eggs two hens can lay in an ordinary week\" is wrong: this is one point she makes, \"Two hens lay about ten eggs a week\", not what the whole talk is about."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-C-4",
+     "kind": "relationship",
+     "difficulty": "medium",
+     "prompt": "What is the relationship between the two speakers?",
+     "choices": [
+      "father and daughter",
+      "uncle and niece",
+      "teacher and pupil",
+      "brother and sister"
+     ],
+     "correct_answer": "uncle and niece",
+     "why": "Yeah, Uncle Eamon, because you kept hens for years.",
+     "explanation": "\"uncle and niece\" is correct: she calls him \"Uncle Eamon\", and he calls her mother \"my sister\".",
+     "distractor_rationales": [
+      {
+       "choice": "father and daughter",
+       "lure": "topic fit",
+       "reason": "\"father and daughter\" is wrong: she calls him \"Uncle Eamon\", and her mum is \"my sister\" to him."
+      },
+      {
+       "choice": "teacher and pupil",
+       "lure": "topic fit",
+       "reason": "\"teacher and pupil\" is wrong: she calls him \"Uncle Eamon\", and they talk about \"our back garden\" at home."
+      },
+      {
+       "choice": "brother and sister",
+       "lure": "topic fit",
+       "reason": "\"brother and sister\" is wrong: she calls him \"Uncle Eamon\", and he calls her mum \"my sister\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-C-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Bottled food before germs",
+   "transcript": "So today I want to talk about something that's sitting in almost every kitchen cupboard: food sealed in a can or a jar. Most people assume this was invented in a laboratory, that scientists first worked out what makes food go bad and then designed a way to stop it. It's a nice, tidy story. It's also backwards, and the way it really happened tells us something about how discoveries get made.\n\nLet's go back to France in the seventeen nineties. The country was at war, and its soldiers and sailors had a serious problem. Fresh food rotted long before it could be eaten. Salted meat and hard biscuits lasted, but people got sick living on them for months. So the government offered a large cash prize to anyone who could find a better way to keep food.\n\nThe person who solved it wasn't a scientist at all. His name was Nicolas Appert, and he was a sweet maker in Paris, someone who spent his days boiling sugar and fruit. Appert had no theory. What he had was patience. He packed food into thick glass bottles, the heavy kind used for wine, pushed the corks in tight, sealed them with wax, and then set the bottles in boiling water. Then he waited, opened them weeks or months later, and wrote down what he found.\n\nHere's the interesting part. He kept this up for roughly fifteen years. Peas needed one heating time, meat needed another, fruit another. If he heated a bottle too briefly, the food spoiled. If a cork let in even a little air, the food spoiled. Bit by bit, food by food, he built up a set of rules that worked, without ever knowing why they worked. Around eighteen ten he won the prize, and part of the deal was that he had to publish everything in a book, so anyone could copy his method.\n\nSo did the scientists step in at this point and explain it? Some tried. One of the leading chemists in France examined the bottles and announced that the answer was air. Keep the air out, he said, and food can't decay. It sounded convincing, and for a long time nobody could show otherwise.\n\nIt was wrong. About fifty years later, Louis Pasteur showed that food spoils because of microbes, living things far too small to see, which drift through the air and multiply in food. Appert's boiling killed the microbes already inside the bottle, and his tight seal stopped new ones from getting in. Air on its own, without the microbes, didn't make the food rot. So the explanation came half a century after the method, and the first scientific explanation pointed at the wrong thing.\n\nSo when someone tells you that understanding always comes first and useful inventions follow, I'd say be careful. Appert didn't need the theory. He needed careful notes and the stubbornness to open bottle after bottle of spoiled peas. Honestly, I find that more impressive than a lucky flash of insight, because there was no flash. There were just years of small tests.\n\nFor next class, think of one other everyday thing that people used successfully long before anyone could explain it.",
+   "names": [],
+   "other_caps": [
+    "France",
+    "Nicolas",
+    "Appert",
+    "Paris",
+    "Louis",
+    "Pasteur",
+    "Appert's"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-C-L-1",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention that Appert was a sweet maker in Paris?",
+     "choices": [
+      "to explain why Appert first tried keeping sugar and fruit in bottles",
+      "to show that the government wanted a cook to win the prize",
+      "to point out that the person who solved the problem had no training in science",
+      "to suggest that working with sugar gave Appert the idea for the method"
+     ],
+     "correct_answer": "to point out that the person who solved the problem had no training in science",
+     "why": "The person who solved it wasn't a scientist at all.",
+     "explanation": "\"to point out that the person who solved the problem had no training in science\" is correct: the speaker introduces the job right after saying \"The person who solved it wasn't a scientist at all\", to show who really found the method.",
+     "distractor_rationales": [
+      {
+       "choice": "to explain why Appert first tried keeping sugar and fruit in bottles",
+       "lure": "detail",
+       "reason": "\"to explain why Appert first tried keeping sugar and fruit in bottles\" is wrong: the speaker lists what went in the bottles as \"Peas needed one heating time, meat needed another, fruit another\", and never says he started with sugar."
+      },
+      {
+       "choice": "to show that the government wanted a cook to win the prize",
+       "lure": "contradicted",
+       "reason": "\"to show that the government wanted a cook to win the prize\" is wrong: the prize was offered \"to anyone who could find a better way to keep food\"."
+      },
+      {
+       "choice": "to suggest that working with sugar gave Appert the idea for the method",
+       "lure": "contradicted",
+       "reason": "\"to suggest that working with sugar gave Appert the idea for the method\" is wrong: the speaker says \"Appert had no theory. What he had was patience,\" and the rules came \"Bit by bit, food by food\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-L-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, what kind of bottles did Appert use?",
+     "choices": [
+      "heavy glass bottles made for wine",
+      "thin glass bottles made for medicine",
+      "small clay jars made for olive oil",
+      "metal tins made for storing tea"
+     ],
+     "correct_answer": "heavy glass bottles made for wine",
+     "why": "He packed food into thick glass bottles, the heavy kind used for wine",
+     "explanation": "\"heavy glass bottles made for wine\" is correct: the speaker says \"He packed food into thick glass bottles, the heavy kind used for wine\".",
+     "distractor_rationales": [
+      {
+       "choice": "thin glass bottles made for medicine",
+       "lure": "detail",
+       "reason": "\"thin glass bottles made for medicine\" is wrong: the bottles were \"thick glass bottles, the heavy kind used for wine\"."
+      },
+      {
+       "choice": "small clay jars made for olive oil",
+       "lure": "detail",
+       "reason": "\"small clay jars made for olive oil\" is wrong: he used \"thick glass bottles\", not clay jars."
+      },
+      {
+       "choice": "metal tins made for storing tea",
+       "lure": "detail",
+       "reason": "\"metal tins made for storing tea\" is wrong: he used \"thick glass bottles, the heavy kind used for wine\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-L-3",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What can be inferred about the government's prize?",
+     "choices": [
+      "It was meant for trained scientists.",
+      "It was paid to the leading chemist.",
+      "It was paid in food rather than money.",
+      "Nobody claimed it for many years."
+     ],
+     "correct_answer": "Nobody claimed it for many years.",
+     "why": "Let's go back to France in the seventeen nineties.",
+     "why2": "Around eighteen ten he won the prize",
+     "explanation": "\"Nobody claimed it for many years.\" is correct: the prize was offered in \"the seventeen nineties\", and Appert won it only \"Around eighteen ten\", so it went unclaimed for a long time.",
+     "distractor_rationales": [
+      {
+       "choice": "It was meant for trained scientists.",
+       "lure": "contradicted",
+       "reason": "\"It was meant for trained scientists.\" is wrong: it was offered \"to anyone who could find a better way to keep food\", and the winner \"wasn't a scientist at all\"."
+      },
+      {
+       "choice": "It was paid to the leading chemist.",
+       "lure": "contradicted",
+       "reason": "\"It was paid to the leading chemist.\" is wrong: Appert won it: \"Around eighteen ten he won the prize\"."
+      },
+      {
+       "choice": "It was paid in food rather than money.",
+       "lure": "contradicted",
+       "reason": "\"It was paid in food rather than money.\" is wrong: the speaker calls it \"a large cash prize\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-L-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What explanation did one leading chemist give, according to the lecture?",
+     "choices": [
+      "Food lasted because the glass blocked sunlight.",
+      "Food lasted because the air was kept out.",
+      "Food lasted because the heat dried it out.",
+      "Food lasted because it was salted first."
+     ],
+     "correct_answer": "Food lasted because the air was kept out.",
+     "why": "Keep the air out, he said, and food can't decay.",
+     "explanation": "\"Food lasted because the air was kept out.\" is correct: the chemist \"announced that the answer was air. Keep the air out, he said, and food can't decay.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Food lasted because the glass blocked sunlight.",
+       "lure": "detail",
+       "reason": "\"Food lasted because the glass blocked sunlight.\" is wrong: the chemist \"announced that the answer was air\", not light."
+      },
+      {
+       "choice": "Food lasted because the heat dried it out.",
+       "lure": "detail",
+       "reason": "\"Food lasted because the heat dried it out.\" is wrong: the chemist's answer was \"Keep the air out\"."
+      },
+      {
+       "choice": "Food lasted because it was salted first.",
+       "lure": "detail",
+       "reason": "\"Food lasted because it was salted first.\" is wrong: salting is mentioned only for the old foods, \"Salted meat and hard biscuits lasted\", while the chemist \"announced that the answer was air\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-L-5",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the main point of the lecture?",
+     "choices": [
+      "A way of keeping food came from scientists who had first worked out why food spoils.",
+      "A way of keeping food kept failing until a chemist found the answer was air.",
+      "A way of keeping food worked for years before anyone could explain why it worked.",
+      "A way of keeping food came from sailors and was improved by a sweet maker."
+     ],
+     "correct_answer": "A way of keeping food worked for years before anyone could explain why it worked.",
+     "why": "So the explanation came half a century after the method",
+     "explanation": "\"A way of keeping food worked for years before anyone could explain why it worked.\" is correct: the method came first, \"without ever knowing why they worked\", and \"the explanation came half a century after the method\", while the first explanation \"pointed at the wrong thing\".",
+     "distractor_rationales": [
+      {
+       "choice": "A way of keeping food came from scientists who had first worked out why food spoils.",
+       "lure": "claim wrong",
+       "reason": "\"A way of keeping food came from scientists who had first worked out why food spoils.\" is wrong: this is the belief the speaker rejects: \"It's also backwards,\" and the inventor \"wasn't a scientist at all\"."
+      },
+      {
+       "choice": "A way of keeping food kept failing until a chemist found the answer was air.",
+       "lure": "claim wrong",
+       "reason": "\"A way of keeping food kept failing until a chemist found the answer was air.\" is wrong: the method worked, \"he built up a set of rules that worked\", and the chemist's air answer was not right: \"It was wrong.\""
+      },
+      {
+       "choice": "A way of keeping food came from sailors and was improved by a sweet maker.",
+       "lure": "claim wrong",
+       "reason": "\"A way of keeping food came from sailors and was improved by a sweet maker.\" is wrong: sailors only had the problem, \"Fresh food rotted long before it could be eaten\", and the method came from Appert himself."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-C-L-6",
+     "kind": "attitude",
+     "difficulty": "hard",
+     "prompt": "What is the speaker's opinion of the way Appert worked?",
+     "choices": [
+      "It was admirable mainly for being so quick.",
+      "It deserves more praise than a sudden idea would.",
+      "It relied more on luck than on careful notes.",
+      "It would have failed without the chemist's theory."
+     ],
+     "correct_answer": "It deserves more praise than a sudden idea would.",
+     "why": "Honestly, I find that more impressive than a lucky flash of insight, because there was no flash.",
+     "explanation": "\"It deserves more praise than a sudden idea would.\" is correct: the speaker says \"Honestly, I find that more impressive than a lucky flash of insight\".",
+     "distractor_rationales": [
+      {
+       "choice": "It was admirable mainly for being so quick.",
+       "lure": "contradicted",
+       "reason": "\"It was admirable mainly for being so quick.\" is wrong: it was slow: \"He kept this up for roughly fifteen years.\""
+      },
+      {
+       "choice": "It relied more on luck than on careful notes.",
+       "lure": "contradicted",
+       "reason": "\"It relied more on luck than on careful notes.\" is wrong: \"there was no flash\", and \"He needed careful notes\"."
+      },
+      {
+       "choice": "It would have failed without the chemist's theory.",
+       "lure": "contradicted",
+       "reason": "\"It would have failed without the chemist's theory.\" is wrong: the speaker says \"Appert didn't need the theory.\""
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

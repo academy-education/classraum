@@ -1,0 +1,188 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique",
+  "note": "Note only: options call the woman 'the student'; inferable from 'class stick insects', 'I live next to school', 'my mom already said yes', not stated."
+ },
+ "12": {
+  "verdict": "unique",
+  "note": "Note only: key's 'two of the pictures' loosely paraphrases 'the pages with the hand and the foot'; every distractor is contradicted, so key decides."
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique",
+  "note": "Note only: 'Use an exercise machine' is a loose paraphrase of 'Ride the bikes by the wall'; 30-minute wait after thunder is the standard lightning rule (true)."
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique",
+  "note": "Note only: key calls the man 'the student' and a distractor mentions a 'class visit'; the transcript never establishes a student or class. Key is supported by 'Good eye' + supermarket rice."
+ },
+ "28": {
+  "verdict": "unique",
+  "note": "Note only: key is the only option with a contraction ('She's')."
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique",
+  "note": "Note only: key is an inference from 'By the bins? A wasp stung my sister there'; the other three are contradicted ('Let's stay in', it was her sister)."
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ],
+   "evidence": "key letters CDADADDCBDBDDBABADCBDBDABBDDAADAAADDDACB: D 16/40, A 11, B 9, C 4/40 (expected 10 each); D is the key in 40% of items and C in 10%, so 'never C, lean D' beats chance."
+  },
+  {
+   "pattern": "key_form",
+   "items": [
+    4,
+    10,
+    14,
+    16,
+    25,
+    30
+   ],
+   "evidence": "on detail/next-action items the key paraphrases the transcript while distractors echo its words: 'car park'->'Near the parking area' vs 'Up the hill near the tents'/'On the site by the river' (4); 'tag'->'Make a label' vs 'cabin'/'suitcases'/'crew' (10); 'Ride the bikes'->'Use an exercise machine' vs 'Run laps' (16); 'on the fence'->'Put the panel somewhere else' (25); 'slow lane'->'a different lane' (30); 'table by the big window'->'a table inside' vs 'balcony' (14). A student who heard nothing can pick the option with no transcript words. Mild; not every item."
+  }
+ ]
+}

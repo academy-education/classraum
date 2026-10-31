@@ -1,0 +1,137 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "other": "none (Write to Mr. Nadler is the man's task)",
+  "reason": "The key 'Get their father's permission after showing him the drums' asserts an outcome the transcript leaves open. The woman says 'I'll show him the kit and ask him', and the man immediately adds 'if Dad says no, well, at least we tried'. She will ASK for permission; whether she GETS it is explicitly uncertain. The key is the closest option but its distinctive claim (obtaining permission) is not in the transcript. Fix: 'Ask their father about the drums after showing them to him'."
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "verbatim_key_echo",
+   "items": [
+    2,
+    16,
+    17,
+    34
+   ],
+   "evidence": "In 4 items the key repeats a short evaluative line that appears to exist to carry the answer: 'only nine carts came in, far fewer than before' -> 'Far fewer carts came in...'; 'That's a common belief, and the science says it's correct' -> 'To show that a common belief ... is correct'; 'better than anything I made at your age' -> 'better than any the man made'; 'the copy is better than I expected' -> 'It is better than expected'. Items 17 and 34 also share one key claim type ('better than X'). Informational only: a listener still has to hear the line, so this does not make keys guessable without the audio. Key letters A11/B14/C9/D6 and key length ranks 11/11/10/8 show no position or length pattern."
+  }
+ ]
+}

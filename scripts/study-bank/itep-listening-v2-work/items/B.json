@@ -1,0 +1,557 @@
+{
+ "author": "B",
+ "sets": [
+  {
+   "set_id": "ITL2-B-D1",
+   "part": 1,
+   "setting": "cafeteria",
+   "speakers": {
+    "W": "a friend",
+    "M": "a friend"
+   },
+   "title": "Lunch away from the bins",
+   "transcript": "M: It's so sunny. Let's take our trays out to the picnic tables.\nW: By the bins? A wasp stung my sister there on Monday, and her whole hand swelled up. Let's stay in.\nM: OK, what about the steps by the library, then? There aren't any bins there, and it's still sunny.",
+   "names": [],
+   "other_caps": [
+    "Monday",
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-B-D1-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "She thinks wasps stay close to the bins by the picnic tables",
+      "She got stung by a wasp at school on Monday",
+      "She wants to eat outside while it's still sunny",
+      "She'd rather go out to the tables than stay in"
+     ],
+     "correct_answer": "She thinks wasps stay close to the bins by the picnic tables",
+     "why": "By the bins?",
+     "why2": "A wasp stung my sister there on Monday",
+     "explanation": "\"She thinks wasps stay close to the bins by the picnic tables\" is correct: she objects \"By the bins?\" and gives the reason \"A wasp stung my sister there\", and the man answers her worry with \"There aren't any bins there\".",
+     "distractor_rationales": [
+      {
+       "choice": "She got stung by a wasp at school on Monday",
+       "lure": "wrong person",
+       "reason": "\"She got stung by a wasp at school on Monday\" is wrong: she says \"A wasp stung my sister there on Monday\"."
+      },
+      {
+       "choice": "She wants to eat outside while it's still sunny",
+       "lure": "contradicted",
+       "reason": "\"She wants to eat outside while it's still sunny\" is wrong: when the man suggests going out, she says \"Let's stay in.\""
+      },
+      {
+       "choice": "She'd rather go out to the tables than stay in",
+       "lure": "contradicted",
+       "reason": "\"She'd rather go out to the tables than stay in\" is wrong: she rejects the tables with \"By the bins?\" and says \"Let's stay in.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-B-D2",
+   "part": 1,
+   "setting": "school hallway",
+   "speakers": {
+    "W": "a student",
+    "M": "a teacher"
+   },
+   "title": "Stick insects for the holiday",
+   "transcript": "M: I'm taking the class stick insects home for the holiday. They'll fit in my car.\nW: Aren't you driving to the mountains? I live next to school, and my mom already said yes.\nM: Good point. Then I'll bring them over to your house on Friday, with some notes on feeding.",
+   "names": [],
+   "other_caps": [
+    "Friday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-B-D2-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the man probably do with the stick insects?",
+     "choices": [
+      "Deliver the insects to the student's home",
+      "Leave the insects at school over the holiday",
+      "Drive the insects to the mountains",
+      "Get permission from the student's mother"
+     ],
+     "correct_answer": "Deliver the insects to the student's home",
+     "why": "Then I'll bring them over to your house on Friday",
+     "explanation": "\"Deliver the insects to the student's home\" is correct: after the student offers, the man says \"Then I'll bring them over to your house on Friday\".",
+     "distractor_rationales": [
+      {
+       "choice": "Leave the insects at school over the holiday",
+       "lure": "contradicted",
+       "reason": "\"Leave the insects at school over the holiday\" is wrong: the man says \"Then I'll bring them over to your house on Friday\"."
+      },
+      {
+       "choice": "Drive the insects to the mountains",
+       "lure": "abandoned plan",
+       "reason": "\"Drive the insects to the mountains\" is wrong: that was his first plan, but after \"Aren't you driving to the mountains?\" he says \"Good point\" and plans to bring them to her house instead."
+      },
+      {
+       "choice": "Get permission from the student's mother",
+       "lure": "already done",
+       "reason": "\"Get permission from the student's mother\" is wrong: the student says \"my mom already said yes\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-B-D3",
+   "part": 1,
+   "setting": "farmers' market stall",
+   "speakers": {
+    "W": "a farmer",
+    "M": "a shopper"
+   },
+   "title": "Duck eggs for a cake",
+   "transcript": "W: Sorry, the hen eggs sold out by nine. My hens lay less in this cold. I've got duck eggs, though.\nM: Duck eggs? I'm baking a birthday cake this afternoon. Will those work?\nW: Even better for cakes. They're bigger, so I'll pack you four instead of six. No hen eggs until next Saturday, I'm afraid.",
+   "names": [],
+   "other_caps": [
+    "Saturday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-B-D3-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the woman most likely do next?",
+     "choices": [
+      "Pack four duck eggs",
+      "Pack six of the duck eggs",
+      "Pack six of the hen eggs",
+      "Bring out more hen eggs"
+     ],
+     "correct_answer": "Pack four duck eggs",
+     "why": "so I'll pack you four instead of six",
+     "explanation": "\"Pack four duck eggs\" is correct: the farmer says the duck eggs are \"bigger, so I'll pack you four instead of six\".",
+     "distractor_rationales": [
+      {
+       "choice": "Pack six of the duck eggs",
+       "lure": "wrong number",
+       "reason": "\"Pack six of the duck eggs\" is wrong: she says \"I'll pack you four instead of six\" because \"They're bigger\"."
+      },
+      {
+       "choice": "Pack six of the hen eggs",
+       "lure": "contradicted",
+       "reason": "\"Pack six of the hen eggs\" is wrong: she says \"the hen eggs sold out by nine\"."
+      },
+      {
+       "choice": "Bring out more hen eggs",
+       "lure": "contradicted",
+       "reason": "\"Bring out more hen eggs\" is wrong: she has none left; she says \"No hen eggs until next Saturday\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-B-D4",
+   "part": 1,
+   "setting": "corner shop",
+   "speakers": {
+    "W": "a shopkeeper",
+    "M": "a customer"
+   },
+   "title": "Peanuts for the squirrels",
+   "transcript": "M: A big bag of peanuts, please. The squirrels in my garden finished the last one in a week.\nW: In a week? That bag lasts my squirrels a month. Maybe crows are eating yours. Try the small one.\nM: Hmm, my wife did say she saw a crow there. I'll take a medium bag and watch tomorrow.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-B-D4-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can be inferred about the woman from her reply?",
+     "choices": [
+      "She's surprised the man's peanuts ran out so fast",
+      "She thinks a week is normal for one bag of peanuts",
+      "She thinks the big bag is the better one to buy",
+      "She has no squirrels of her own to feed at home"
+     ],
+     "correct_answer": "She's surprised the man's peanuts ran out so fast",
+     "why": "In a week?",
+     "why2": "That bag lasts my squirrels a month.",
+     "explanation": "\"She's surprised the man's peanuts ran out so fast\" is correct: she repeats \"In a week?\" and compares it with her own feeder: \"That bag lasts my squirrels a month.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She thinks a week is normal for one bag of peanuts",
+       "lure": "contradicted",
+       "reason": "\"She thinks a week is normal for one bag of peanuts\" is wrong: she says \"That bag lasts my squirrels a month.\""
+      },
+      {
+       "choice": "She thinks the big bag is the better one to buy",
+       "lure": "contradicted",
+       "reason": "\"She thinks the big bag is the better one to buy\" is wrong: she tells him \"Try the small one.\""
+      },
+      {
+       "choice": "She has no squirrels of her own to feed at home",
+       "lure": "contradicted",
+       "reason": "\"She has no squirrels of her own to feed at home\" is wrong: she talks about \"my squirrels\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-B-C",
+   "part": 2,
+   "setting": "in a classroom after class",
+   "speakers": {
+    "W": "a student",
+    "M": "a teacher"
+   },
+   "title": "Switching to a woodlice experiment",
+   "transcript": "W: Do you have a minute? It's about my science project.\nM: Sure. You're doing the poster on bird migration, right? I found a couple of good library books for you.\nW: That's the thing. I'd like to change it. I want to do an experiment with woodlice instead.\nM: Woodlice? The little grey ones that roll up into a ball?\nW: Yes. There are loads of them under the log pile behind the gym. I want to find out whether they choose damp places or dry places.\nM: Hmm. I'll be honest, I'm not keen on live animals in projects. Last spring a group kept mealworms in the lab over the long weekend. On Monday they were still in their box, but not one was moving. It wasn't a nice way to start the week.\nW: I thought about that. Nothing will stay here overnight. I'll use a shoebox with wet paper towel on one side and dry paper towel on the other. Each test only takes ten minutes, and then I'll put them back under the logs the same afternoon.\nM: Well, that's more careful than I expected. How many were you planning to use?\nW: Five, I think. Then I'd count how many end up on the wet side.\nM: Five's too few. If four of them go to the wet side, that could just be luck. Use twenty, and do the whole test three times, on three different days.\nW: Twenty's fine. There are way more than that under the logs. So can I switch?\nM: You have my permission. But the head of science signs off on anything with live animals, so bring me a one-page plan by Thursday and I'll pass it on.\nW: I'll have it ready by Wednesday. Oh, and the poster was due in two weeks. Is that still the deadline?\nM: For an experiment, no. Writing it up takes longer, so I'll give you one extra week.",
+   "names": [],
+   "other_caps": [
+    "Monday",
+    "Thursday",
+    "Wednesday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-B-C-1",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What does the man imply about the mealworms from last spring?",
+     "choices": [
+      "They had died in the lab",
+      "They were still moving on Monday",
+      "They had escaped from their box",
+      "They were set free behind the gym"
+     ],
+     "correct_answer": "They had died in the lab",
+     "why": "a group kept mealworms in the lab over the long weekend",
+     "why2": "but not one was moving",
+     "explanation": "\"They had died in the lab\" is correct: the man says \"a group kept mealworms in the lab over the long weekend\" and that on Monday \"not one was moving\", which he calls not \"a nice way to start the week\".",
+     "distractor_rationales": [
+      {
+       "choice": "They were still moving on Monday",
+       "lure": "contradicted",
+       "reason": "\"They were still moving on Monday\" is wrong: he says \"not one was moving\"."
+      },
+      {
+       "choice": "They had escaped from their box",
+       "lure": "contradicted",
+       "reason": "\"They had escaped from their box\" is wrong: he says \"On Monday they were still in their box\"."
+      },
+      {
+       "choice": "They were set free behind the gym",
+       "lure": "contradicted",
+       "reason": "\"They were set free behind the gym\" is wrong: they were \"kept\" \"in the lab over the long weekend\"; the log pile \"behind the gym\" is where the woman finds woodlice."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-C-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say she will do with the woodlice after each test?",
+     "choices": [
+      "Release them where they were collected",
+      "Keep them in the shoebox until the next day",
+      "Hand them over to the science lab",
+      "Let them go in the school garden"
+     ],
+     "correct_answer": "Release them where they were collected",
+     "why": "then I'll put them back under the logs the same afternoon",
+     "explanation": "\"Release them where they were collected\" is correct: she found them \"under the log pile behind the gym\" and says \"then I'll put them back under the logs the same afternoon\".",
+     "distractor_rationales": [
+      {
+       "choice": "Keep them in the shoebox until the next day",
+       "lure": "contradicted",
+       "reason": "\"Keep them in the shoebox until the next day\" is wrong: she says \"Nothing will stay here overnight.\""
+      },
+      {
+       "choice": "Hand them over to the science lab",
+       "lure": "detail",
+       "reason": "\"Hand them over to the science lab\" is wrong: she says \"I'll put them back under the logs\"; the lab is where last spring's mealworms were kept."
+      },
+      {
+       "choice": "Let them go in the school garden",
+       "lure": "detail",
+       "reason": "\"Let them go in the school garden\" is wrong: she says \"I'll put them back under the logs the same afternoon\", not in a garden."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-C-3",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "Getting permission to switch to a woodlice experiment",
+      "Being persuaded to keep the bird migration poster",
+      "Choosing a safe place to keep mealworms over a weekend",
+      "Guessing the number of woodlice in the log pile"
+     ],
+     "correct_answer": "Getting permission to switch to a woodlice experiment",
+     "why": "You have my permission.",
+     "explanation": "\"Getting permission to switch to a woodlice experiment\" is correct: the woman says \"I want to do an experiment with woodlice instead\", answers the man's worries, asks \"So can I switch?\" and he says \"You have my permission.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Being persuaded to keep the bird migration poster",
+       "lure": "wrong outcome",
+       "reason": "\"Being persuaded to keep the bird migration poster\" is wrong: the poster is dropped; he says \"You have my permission\" to switch."
+      },
+      {
+       "choice": "Choosing a safe place to keep mealworms over a weekend",
+       "lure": "passing detail",
+       "reason": "\"Choosing a safe place to keep mealworms over a weekend\" is wrong: the mealworms are only a story from \"Last spring\", and she says \"Nothing will stay here overnight.\""
+      },
+      {
+       "choice": "Guessing the number of woodlice in the log pile",
+       "lure": "passing detail",
+       "reason": "\"Guessing the number of woodlice in the log pile\" is wrong: she only says \"There are way more than that under the logs\"; her question is \"whether they choose damp places or dry places\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-C-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the man say about the number of woodlice to use?",
+     "choices": [
+      "Twenty, with the whole test done on three different days",
+      "Five, as long as the test is repeated three times",
+      "Twenty, but only for a single short test",
+      "Four, since that is enough to rule out luck"
+     ],
+     "correct_answer": "Twenty, with the whole test done on three different days",
+     "why": "Use twenty, and do the whole test three times, on three different days.",
+     "explanation": "\"Twenty, with the whole test done on three different days\" is correct: he says \"Use twenty, and do the whole test three times, on three different days.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Five, as long as the test is repeated three times",
+       "lure": "contradicted",
+       "reason": "\"Five, as long as the test is repeated three times\" is wrong: he says \"Five's too few.\""
+      },
+      {
+       "choice": "Twenty, but only for a single short test",
+       "lure": "contradicted",
+       "reason": "\"Twenty, but only for a single short test\" is wrong: he says \"do the whole test three times\"."
+      },
+      {
+       "choice": "Four, since that is enough to rule out luck",
+       "lure": "misreading",
+       "reason": "\"Four, since that is enough to rule out luck\" is wrong: he says \"If four of them go to the wet side, that could just be luck.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-B-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Counting snails by mark and recapture",
+   "transcript": "OK, let's get going. Today's question sounds simple. How do ecologists know how many animals live in a place? A lot of people picture a scientist walking around with a clipboard, counting every single animal, one by one. That picture is almost always wrong. For most wild animals, nobody counts them all, because nobody could.\n\nTake the garden snails in the flower beds behind this building. They hide under leaves and stones during the day, they come out mostly at night, and one snail looks a lot like the next. If you tried to count them all, you'd count some twice and miss most of the rest. So instead of counting, ecologists estimate, and one of the oldest ways to do that is called mark and recapture.\n\nHere's how it works. On the first night, you collect, say, forty snails. You put a small dot of white paint on each shell, and you let them go exactly where you found them. Then you wait about a week, so the marked snails have time to mix back in with the others. On the second night you collect again. Let's say this time you find fifty snails, and ten of them have a dot. So one in five of your second catch is marked. If that's true of the whole garden, then your forty marked snails are about one fifth of all the snails, and the garden holds roughly two hundred. Notice how it goes. The fewer marked snails you find the second time, the bigger your estimate gets.\n\nNow, that math only works if a few things are true, and this is where the method runs into its limits. First, the marks have to stay on. If heavy rain wears some of the paint off, you'll find fewer marked snails in the second catch than you really should.\n\nSecond, nothing should arrive or leave between the two nights. Snails are slow, so you might think that's easy. But over a week, young snails can hatch, some snails wander off into the next garden, and others get eaten. Song thrushes, for example, are birds that crack snail shells open on stones. A thrush that finds your flower bed can take quite a few snails before your second count.\n\nThird, every snail should be equally easy to catch the second time. If the snails you handled learn to hide deeper, or if you always pick up the ones sitting in the open, your sample isn't fair.\n\nTextbooks usually show this method as one neat line of math, and I think that's a bit misleading. The math is the easy part. The hard part is knowing whether those three conditions held in your garden that week.\n\nSo, is mark and recapture reliable for snails? Honestly, that's still an open question. In some experiments, researchers put a known number of snails into a fenced plot and then estimated it. Sometimes the estimate came close. Other times it was off by a third or more, and nobody's fully sure which of the problems caused it. I'm not saying throw the method out. I'm saying treat the number as a careful guess. Next week we'll try it ourselves and see how close we get.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-B-L-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, how long should you wait before the second catch?",
+     "choices": [
+      "Around seven days",
+      "Just one night",
+      "About a month",
+      "Two or three days"
+     ],
+     "correct_answer": "Around seven days",
+     "why": "Then you wait about a week",
+     "explanation": "\"Around seven days\" is correct: the speaker says \"Then you wait about a week, so the marked snails have time to mix back in with the others.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Just one night",
+       "lure": "misreading",
+       "reason": "\"Just one night\" is wrong: the catches are on \"the first night\" and \"the second night\", but between them \"you wait about a week\"."
+      },
+      {
+       "choice": "About a month",
+       "lure": "detail",
+       "reason": "\"About a month\" is wrong: the speaker says \"Then you wait about a week\"."
+      },
+      {
+       "choice": "Two or three days",
+       "lure": "detail",
+       "reason": "\"Two or three days\" is wrong: the speaker says \"Then you wait about a week\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-L-2",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker describe how garden snails hide by day and come out at night?",
+     "choices": [
+      "To explain why nobody could count them all",
+      "To suggest the class look for snails during the day",
+      "To claim that snails ruin most flower gardens",
+      "To explain why snails could not be studied in a laboratory"
+     ],
+     "correct_answer": "To explain why nobody could count them all",
+     "why": "If you tried to count them all, you'd count some twice and miss most of the rest.",
+     "explanation": "\"To explain why nobody could count them all\" is correct: right after the description the speaker says \"If you tried to count them all, you'd count some twice and miss most of the rest.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To suggest the class look for snails during the day",
+       "lure": "contradicted",
+       "reason": "\"To suggest the class look for snails during the day\" is wrong: the speaker says \"They hide under leaves and stones during the day\", and the collecting is done \"On the first night\"."
+      },
+      {
+       "choice": "To claim that snails ruin most flower gardens",
+       "lure": "off point",
+       "reason": "\"To claim that snails ruin most flower gardens\" is wrong: the flower beds are only where the snails live; the point is \"So instead of counting, ecologists estimate\"."
+      },
+      {
+       "choice": "To explain why snails could not be studied in a laboratory",
+       "lure": "off point",
+       "reason": "\"To explain why snails could not be studied in a laboratory\" is wrong: the speaker never mentions a laboratory; the snails are in \"the flower beds behind this building\", and the speaker says \"Next week we'll try it ourselves\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-L-3",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention song thrushes?",
+     "choices": [
+      "To show one way snails can disappear between the counts",
+      "To name a bird that helps scientists find the hidden snails",
+      "To give an example of an animal that is easy to catch",
+      "To explain why the second catch is made at night"
+     ],
+     "correct_answer": "To show one way snails can disappear between the counts",
+     "why": "A thrush that finds your flower bed can take quite a few snails before your second count.",
+     "explanation": "\"To show one way snails can disappear between the counts\" is correct: under the rule \"nothing should arrive or leave between the two nights\", the speaker says \"others get eaten\" and \"A thrush that finds your flower bed can take quite a few snails before your second count.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To name a bird that helps scientists find the hidden snails",
+       "lure": "misreading",
+       "reason": "\"To name a bird that helps scientists find the hidden snails\" is wrong: the thrushes \"crack snail shells open on stones\" and \"take quite a few snails before your second count\"."
+      },
+      {
+       "choice": "To give an example of an animal that is easy to catch",
+       "lure": "misreading",
+       "reason": "\"To give an example of an animal that is easy to catch\" is wrong: \"equally easy to catch\" is said about the snails, under the third condition, not about thrushes."
+      },
+      {
+       "choice": "To explain why the second catch is made at night",
+       "lure": "off point",
+       "reason": "\"To explain why the second catch is made at night\" is wrong: the night collecting follows from snails that \"come out mostly at night\"; thrushes are mentioned because \"others get eaten\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-L-4",
+     "kind": "attitude",
+     "difficulty": "hard",
+     "prompt": "What does the speaker think of the way textbooks usually show the method?",
+     "choices": [
+      "It makes the work look easier than it is",
+      "It's fair, because the math is the hard part",
+      "It makes the math look harder than it is",
+      "It gives far too much detail for students"
+     ],
+     "correct_answer": "It makes the work look easier than it is",
+     "why": "I think that's a bit misleading. The math is the easy part. The hard part is knowing whether those three conditions held",
+     "explanation": "\"It makes the work look easier than it is\" is correct: the speaker says textbooks show \"one neat line of math, and I think that's a bit misleading. The math is the easy part. The hard part is knowing whether those three conditions held\".",
+     "distractor_rationales": [
+      {
+       "choice": "It's fair, because the math is the hard part",
+       "lure": "contradicted",
+       "reason": "\"It's fair, because the math is the hard part\" is wrong: the speaker calls it \"a bit misleading\" and says \"The math is the easy part.\""
+      },
+      {
+       "choice": "It makes the math look harder than it is",
+       "lure": "contradicted",
+       "reason": "\"It makes the math look harder than it is\" is wrong: the textbooks show \"one neat line of math\", and \"The math is the easy part.\""
+      },
+      {
+       "choice": "It gives far too much detail for students",
+       "lure": "contradicted",
+       "reason": "\"It gives far too much detail for students\" is wrong: the speaker says textbooks show it \"as one neat line of math\", which leaves out the three conditions."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-L-5",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "How a way of estimating animal numbers works, and its limits",
+      "How heavy rain can wear the paint dots off garden snail shells",
+      "Why garden snails hide under leaves and come out mostly at night",
+      "Why ecologists count every animal one by one"
+     ],
+     "correct_answer": "How a way of estimating animal numbers works, and its limits",
+     "why": "this is where the method runs into its limits",
+     "explanation": "\"How a way of estimating animal numbers works, and its limits\" is correct: the speaker explains mark and recapture (\"Here's how it works\"), then three conditions, saying \"this is where the method runs into its limits\".",
+     "distractor_rationales": [
+      {
+       "choice": "How heavy rain can wear the paint dots off garden snail shells",
+       "lure": "one detail",
+       "reason": "\"How heavy rain can wear the paint dots off garden snail shells\" is wrong: that is only the first condition, \"the marks have to stay on\"."
+      },
+      {
+       "choice": "Why garden snails hide under leaves and come out mostly at night",
+       "lure": "one detail",
+       "reason": "\"Why garden snails hide under leaves and come out mostly at night\" is wrong: that is only the example of why \"nobody could\" count them all."
+      },
+      {
+       "choice": "Why ecologists count every animal one by one",
+       "lure": "contradicted",
+       "reason": "\"Why ecologists count every animal one by one\" is wrong: the speaker says \"That picture is almost always wrong\" and \"nobody counts them all\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-B-L-6",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "If rain washed the paint off some shells, what would most likely happen to the class's estimate?",
+     "choices": [
+      "It would end up larger than the real number of snails in the garden",
+      "It would end up smaller than the real number of snails",
+      "It would stay the same, since every snail gets the same rain",
+      "It would be exact, since the dots are only needed once"
+     ],
+     "correct_answer": "It would end up larger than the real number of snails in the garden",
+     "why": "If heavy rain wears some of the paint off, you'll find fewer marked snails in the second catch than you really should.",
+     "why2": "The fewer marked snails you find the second time, the bigger your estimate gets.",
+     "explanation": "\"It would end up larger than the real number of snails in the garden\" is correct: lost paint means \"you'll find fewer marked snails in the second catch than you really should\", and \"The fewer marked snails you find the second time, the bigger your estimate gets.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It would end up smaller than the real number of snails",
+       "lure": "reversed",
+       "reason": "\"It would end up smaller than the real number of snails\" is wrong: \"The fewer marked snails you find the second time, the bigger your estimate gets.\""
+      },
+      {
+       "choice": "It would stay the same, since every snail gets the same rain",
+       "lure": "contradicted",
+       "reason": "\"It would stay the same, since every snail gets the same rain\" is wrong: the speaker says that with lost paint \"you'll find fewer marked snails in the second catch than you really should\", so the count changes."
+      },
+      {
+       "choice": "It would be exact, since the dots are only needed once",
+       "lure": "contradicted",
+       "reason": "\"It would be exact, since the dots are only needed once\" is wrong: the speaker says \"the marks have to stay on\" until the second catch."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

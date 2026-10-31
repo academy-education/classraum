@@ -135,4 +135,39 @@ player code is touched in this round (another session owns `TestSession.tsx` and
 
 ## Results
 
-(appended after scoring; no rule above changes)
+(2026-10-31, recorded after scoring; no rule above changed)
+
+- **Authoring:** 9 Claude authors, 126 items, per-author pre-flight PASS on hand-in. Batch pre-flight 3 problems (two
+  shared key 4-grams F/I, lone "Ask" keyed 3/4); dedupe 2 flags (the same two 4-grams). Break test 11/11 on a v2 file;
+  dedupe break test fired (a) Jaccard 1.000 on a pasted v1 transcript and (c)/(d) on a copied v1 key. Highest
+  non-flagged transcript Jaccard 0.193 (E-L ~ ITL1-C-L, different subjects). Not flagged, noted: A-C and I-C both
+  concern a biology test (study-method swap vs rowing schedule).
+- **Probe 1** (`probe/probe1.json`, input `probe/items-r1.json`, pre-revision files `probe/<X>.r1.json`): 8 patterns.
+  Sent with the dedupe/pre-flight flags in ONE round (`probe/revision-r1.json`): purpose distractor verbs never keyed
+  0/13; purpose key states the obstacle 6/7; lone hedge on key 9/11; blocked first plan never keyed 0/16; Part 2
+  objection-prevails never keyed 0/6; Part 3 overclaim never keyed 0/7; attitude dismissive never keyed 0/7. Not sent
+  (assignment-fixed, §3b): main-idea detail options never keyed, key the only whole-script option in 6 = exactly the
+  6 `whole-script options: 1` items. Authors changed 2-3 items each (21 changes). Batch pre-flight then failed once
+  (lone hedge never key 0/4, an over-correction); I changed one distractor word in I-L-2 (v1 precedent: a mechanical
+  pre-flight fix, not a second probe round). Pre-flight PASS per author and batch; dedupe 0 flags.
+- **Probe 2** (`probe/probe2.json`, recorded, NOT revised): abandoned first plan never keyed 0/22; intent-next key is
+  the workaround 13/13; key in the most-similar pair in Parts 2-3 17/20; Part 2 woman's side wins 9/9 (assignment:
+  prevails was cycled over all 45 sets, Part 2 drew woman 5 / neither 4 / man 0); deferred outcome keyed in twin
+  main-ideas 4/4; broadest main-idea option keyed 9/9; attitude favourable 7/8.
+- **Packets:** 40/40/40/6 as computed in §4. 12 graders, 378 verdicts.
+- **Gate** (`score.mjs`): **91 of 126 cleared, 72.2% = the 63-94 band ("queue the pending lessons as a cut").** No
+  hold. Counted patterns: p1 a+c `key_form` (key paraphrases, distractors echo) and b+c `one_template` (blocked plan ->
+  substitute keyed), union 7 dialogues; p2 a+c `key_in_near_duplicate_pair` on C-C-3, B-C-4, B-L-6, E-C-4 (the
+  `whole-script options: 2` shape) -> C, B, E conversations and the B lecture. Item drops: G-C-4 broken by a, b, c (the
+  revision round changed "Ask their father's permission" into "Get ...", an outcome the script leaves open); B-D1-1 and
+  I-C-3 by c alone. Letter patterns excluded (A1.1).
+  **Parts:** Part 1 27/36 dialogues; Part 2 16/36 items, **4/9 conversations (named: under half)**; Part 3 48/54,
+  8/9 lectures.
+- **10 forms: NOT reached.** Survivors 27 / 4 / 8 against the 25 / 6 / 7 needed; Part 2 is 2 conversations short.
+- **No-transcript attack (recorded only):** candidate 248/324 = 76.5% (108 items) vs the identical 40 v1 controls
+  116/120 = 96.7%; margin -20.1; control >= 75%, so "no headroom, uninformative".
+- **Staged:** `itep-listening-v2.batch.json` (91) -> `itep-bank-helper.ts stage --expect 91 --apply`, 0 hash clashes,
+  read back by id 91 false / 0 true. `verify-itep-draw.ts --section listening`: pools P1 42, P2 32 (8 conversations),
+  P3 66 (11 lectures); full 14/14 draw, sets whole and in order, live path refuses, every script voiceable.
+  **Disjoint full forms: 8** (Part 2 binds). No audio generated; nothing released.
+- Lessons 9-13 in `briefs/itep-slate-listening-v1.pending.md`.

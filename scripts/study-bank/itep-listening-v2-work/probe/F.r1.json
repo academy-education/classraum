@@ -1,0 +1,556 @@
+{
+ "author": "F",
+ "sets": [
+  {
+   "set_id": "ITL2-F-D1",
+   "part": 1,
+   "setting": "computer room",
+   "speakers": {
+    "W": "a teacher",
+    "M": "a student"
+   },
+   "title": "Sending the pet shop letter",
+   "transcript": "W: The printer in here isn't working today. Why don't you print your job letter in the library tomorrow?\nM: I don't need to print it. The man at the pet shop said I can just email it to him tonight.\nW: Oh, good. Then you can send it from this room.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-F-D1-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "What does the man say about his job letter?",
+     "choices": [
+      "He has to take it to the shop himself tonight.",
+      "He is allowed to send it in by email tonight.",
+      "He is allowed to print it at the pet shop.",
+      "He has to print it in the library tomorrow."
+     ],
+     "correct_answer": "He is allowed to send it in by email tonight.",
+     "why": "The man at the pet shop said I can just email it to him tonight",
+     "explanation": "\"He is allowed to send it in by email tonight.\" is correct: the man says \"The man at the pet shop said I can just email it to him tonight.\"",
+     "distractor_rationales": [
+      {
+       "choice": "He has to print it in the library tomorrow.",
+       "lure": "contradicted",
+       "reason": "\"He has to print it in the library tomorrow.\" is wrong: that is the woman's suggestion, and the man answers \"I don't need to print it.\""
+      },
+      {
+       "choice": "He has to take it to the shop himself tonight.",
+       "lure": "contradicted",
+       "reason": "\"He has to take it to the shop himself tonight.\" is wrong: the shop owner \"said I can just email it to him tonight,\" so he does not have to bring it."
+      },
+      {
+       "choice": "He is allowed to print it at the pet shop.",
+       "lure": "misreading",
+       "reason": "\"He is allowed to print it at the pet shop.\" is wrong: the pet shop is where the letter goes, and the man says \"I don't need to print it.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-F-D2",
+   "part": 1,
+   "setting": "school lost-and-found desk",
+   "speakers": {
+    "W": "a student",
+    "M": "an office worker"
+   },
+   "title": "The wallet in the gym",
+   "transcript": "W: I left my wallet in the gym yesterday. My pay from the flower shop was in it. Could you text me if it turns up?\nM: We aren't allowed to text students. But the cleaners bring their box at noon, so I'll check it then and call your classroom.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-F-D2-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the man probably do?",
+     "choices": [
+      "Send the woman a text once the wallet is found",
+      "Phone the woman at home once school is over",
+      "Look in the cleaners' box and call the woman's classroom",
+      "Check the cleaners' box tomorrow morning"
+     ],
+     "correct_answer": "Look in the cleaners' box and call the woman's classroom",
+     "why": "the cleaners bring their box at noon, so I'll check it then and call your classroom",
+     "explanation": "\"Look in the cleaners' box and call the woman's classroom\" is correct: the man says \"the cleaners bring their box at noon, so I'll check it then and call your classroom.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Send the woman a text once the wallet is found",
+       "lure": "contradicted",
+       "reason": "\"Send the woman a text once the wallet is found\" is ruled out: the man says \"We aren't allowed to text students.\""
+      },
+      {
+       "choice": "Check the cleaners' box tomorrow morning",
+       "lure": "wrong time",
+       "reason": "\"Check the cleaners' box tomorrow morning\" is ruled out: \"the cleaners bring their box at noon, so I'll check it then,\" not tomorrow."
+      },
+      {
+       "choice": "Phone the woman at home once school is over",
+       "lure": "contradicted",
+       "reason": "\"Phone the woman at home once school is over\" is ruled out: he says he will \"call your classroom,\" not her home."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-F-D3",
+   "part": 1,
+   "setting": "ferry dock",
+   "speakers": {
+    "W": "a passenger",
+    "M": "a ferry worker"
+   },
+   "title": "A late ticket",
+   "transcript": "W: Can I still buy a ticket for the ten o'clock ferry here?\nM: Sorry, this office closes at half past nine, and it's twenty to ten now. You can still pay on the boat. It's two dollars more there, though.\nW: Hmm. Then maybe I'll just take the bus.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-F-D3-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What does the man imply?",
+     "choices": [
+      "The woman can still get a ticket from this office",
+      "The woman will have to pay more for a ticket",
+      "The woman can pay less for it on the boat",
+      "The woman is too late for the ten o'clock ferry"
+     ],
+     "correct_answer": "The woman will have to pay more for a ticket",
+     "why": "this office closes at half past nine, and it's twenty to ten now",
+     "why2": "It's two dollars more there, though",
+     "explanation": "\"The woman will have to pay more for a ticket\" is correct: the office is already closed (\"this office closes at half past nine, and it's twenty to ten now\"), so she can only pay on the boat, where \"It's two dollars more there, though.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The woman is too late for the ten o'clock ferry",
+       "lure": "contradicted",
+       "reason": "\"The woman is too late for the ten o'clock ferry\" is wrong: the man says \"You can still pay on the boat,\" so she can still go."
+      },
+      {
+       "choice": "The woman can pay less for it on the boat",
+       "lure": "contradicted",
+       "reason": "\"The woman can pay less for it on the boat\" is wrong: on the boat \"It's two dollars more there, though.\""
+      },
+      {
+       "choice": "The woman can still get a ticket from this office",
+       "lure": "contradicted",
+       "reason": "\"The woman can still get a ticket from this office\" is wrong: \"this office closes at half past nine, and it's twenty to ten now.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-F-D4",
+   "part": 1,
+   "setting": "bus stop",
+   "speakers": {
+    "W": "a team member",
+    "M": "a team captain"
+   },
+   "title": "Paying for team shirts",
+   "transcript": "M: We need money for new team shirts. I think we should sell cakes at Saturday's match.\nW: I'd rather wash cars. Last year that made twice as much as the cakes did.\nM: Maybe, but it's going to rain all weekend. So let's do the cakes.",
+   "names": [],
+   "other_caps": [
+    "Saturday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-F-D4-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "What does the woman say about washing cars?",
+     "choices": [
+      "It made twice as much as the shirts cost.",
+      "It works well even when it rains.",
+      "It is easier than selling cakes at matches.",
+      "It raised more money last year."
+     ],
+     "correct_answer": "It raised more money last year.",
+     "why": "Last year that made twice as much as the cakes did",
+     "explanation": "\"It raised more money last year.\" is correct: the woman says \"Last year that made twice as much as the cakes did.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It made twice as much as the shirts cost.",
+       "lure": "misreading",
+       "reason": "\"It made twice as much as the shirts cost.\" is wrong: she compares it with the cakes, not the shirts: \"that made twice as much as the cakes did.\""
+      },
+      {
+       "choice": "It works well even when it rains.",
+       "lure": "wrong speaker",
+       "reason": "\"It works well even when it rains.\" is wrong: the woman says nothing about rain; it is the man who says \"it's going to rain all weekend\" as a reason against it."
+      },
+      {
+       "choice": "It is easier than selling cakes at matches.",
+       "lure": "detail",
+       "reason": "\"It is easier than selling cakes at matches.\" is wrong: she does not compare how easy they are; she says \"that made twice as much as the cakes did.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-F-C",
+   "part": 2,
+   "setting": "at a small shop or cafe before opening",
+   "speakers": {
+    "W": "a teenager with a weekend job",
+    "M": "the teenager's manager at work"
+   },
+   "title": "Too many croissants on Sundays",
+   "transcript": "M: Morning. Before we open, have a look at this. It's the list of what we threw away last Sunday.\nW: Wow. Eleven croissants and six muffins? That's a lot.\nM: It is. That's about thirty dollars in the bin, and it's like that most Sundays.\nW: I've been thinking about that, actually. What if we sold everything at half price after three o'clock?\nM: I thought about that too. But the bakery across the road tried it last spring. The owner told me people stopped coming in the morning. They just waited for the cheap prices.\nW: Oh. I didn't know that.\nM: So my idea is simpler. We bake less. Twenty croissants a day instead of thirty.\nW: The thing is, on Saturdays we already run out. I've been writing down when the last croissant goes, and for the past three Saturdays it's been before eleven.\nM: Really? Before eleven?\nW: Yeah. And people who come in for lunch get pretty annoyed when there's nothing left. Last week a man asked me twice if we had any hidden in the back.\nM: Hmm. So Sundays need fewer and Saturdays need more.\nW: Could the baker just make more when we're running low?\nM: Only if she knows in time. She can't keep coming out of the kitchen to check the shelf.\nW: I could tell her. I'm right here at the counter anyway.\nM: Okay. Then twenty to start with, and you tell her when we're down to the last five. She needs about half an hour to bake a new tray.\nW: That's fine. I'll keep writing down the times, too, so we can see if it's working.\nM: Great. Let's start today. I'll go and tell her now, so she can get some extra dough ready. Could you put the chairs out front? We open in fifteen minutes.\nW: Sure, I'll do it right away.",
+   "names": [],
+   "other_caps": [
+    "Sunday",
+    "Sundays",
+    "Saturdays"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-F-C-1",
+     "kind": "purpose",
+     "difficulty": "medium",
+     "prompt": "Why does the man mention the bakery across the road?",
+     "choices": [
+      "To show that cheap prices bring in more people",
+      "To suggest they buy croissants from that bakery",
+      "To give a reason against her idea",
+      "To explain why the bakery closed last spring"
+     ],
+     "correct_answer": "To give a reason against her idea",
+     "why": "But the bakery across the road tried it last spring",
+     "explanation": "\"To give a reason against her idea\" is correct: he answers her half-price idea with \"But the bakery across the road tried it last spring. The owner told me people stopped coming in the morning.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To suggest they buy croissants from that bakery",
+       "lure": "misreading",
+       "reason": "\"To suggest they buy croissants from that bakery\" is wrong: he says nothing about buying from it; he reports that \"people stopped coming in the morning\" after it cut prices."
+      },
+      {
+       "choice": "To show that cheap prices bring in more people",
+       "lure": "contradicted",
+       "reason": "\"To show that cheap prices bring in more people\" is wrong: the owner told him \"people stopped coming in the morning. They just waited for the cheap prices.\""
+      },
+      {
+       "choice": "To explain why the bakery closed last spring",
+       "lure": "misreading",
+       "reason": "\"To explain why the bakery closed last spring\" is wrong: the bakery did not close; it \"tried it last spring,\" and the man still talks to \"The owner.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-C-2",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "What the bakery across the road did last spring",
+      "Which jobs must be done before the cafe opens",
+      "How the cafe can waste less food without running out",
+      "How long the baker needs to bake a new tray"
+     ],
+     "correct_answer": "How the cafe can waste less food without running out",
+     "why": "It's the list of what we threw away last Sunday",
+     "explanation": "\"How the cafe can waste less food without running out\" is correct: the talk starts from \"the list of what we threw away last Sunday,\" deals with \"on Saturdays we already run out,\" and ends with a plan of \"twenty to start with\" and more baked when they are low.",
+     "distractor_rationales": [
+      {
+       "choice": "What the bakery across the road did last spring",
+       "lure": "detail",
+       "reason": "\"What the bakery across the road did last spring\" is only one moment: the man mentions that \"the bakery across the road tried it last spring\" to answer one idea."
+      },
+      {
+       "choice": "How long the baker needs to bake a new tray",
+       "lure": "detail",
+       "reason": "\"How long the baker needs to bake a new tray\" is a passing detail: \"She needs about half an hour to bake a new tray.\""
+      },
+      {
+       "choice": "Which jobs must be done before the cafe opens",
+       "lure": "detail",
+       "reason": "\"Which jobs must be done before the cafe opens\" is only the closing request, \"Could you put the chairs out front?\"; the talk is about what \"we threw away last Sunday\" and Saturdays when \"we already run out.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-C-3",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the man most likely do next?",
+     "choices": [
+      "Put up a sign for half price after three",
+      "Tell the baker to get extra dough ready",
+      "Set the chairs out at the front",
+      "Watch the shelf for the last five croissants"
+     ],
+     "correct_answer": "Tell the baker to get extra dough ready",
+     "why": "I'll go and tell her now, so she can get some extra dough ready",
+     "explanation": "\"Tell the baker to get extra dough ready\" is correct: the man says \"I'll go and tell her now, so she can get some extra dough ready,\" and \"her\" is the baker.",
+     "distractor_rationales": [
+      {
+       "choice": "Set the chairs out at the front",
+       "lure": "wrong speaker",
+       "reason": "\"Set the chairs out at the front\" is ruled out: he asks the woman to do it, \"Could you put the chairs out front?\""
+      },
+      {
+       "choice": "Watch the shelf for the last five croissants",
+       "lure": "wrong speaker",
+       "reason": "\"Watch the shelf for the last five croissants\" is ruled out: that is the woman's job, \"you tell her when we're down to the last five.\""
+      },
+      {
+       "choice": "Put up a sign for half price after three",
+       "lure": "contradicted",
+       "reason": "\"Put up a sign for half price after three\" is ruled out: he turned that idea down, saying people \"just waited for the cheap prices.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-C-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about Saturdays?",
+     "choices": [
+      "The cafe throws away more than on Sundays",
+      "The croissants have sold out before eleven",
+      "Fewer customers come in than on a Sunday",
+      "The lunch customers buy most of the muffins"
+     ],
+     "correct_answer": "The croissants have sold out before eleven",
+     "why": "for the past three Saturdays it's been before eleven",
+     "explanation": "\"The croissants have sold out before eleven\" is correct: she has been \"writing down when the last croissant goes, and for the past three Saturdays it's been before eleven.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The lunch customers buy most of the muffins",
+       "lure": "contradicted",
+       "reason": "\"The lunch customers buy most of the muffins\" is wrong: people who come for lunch \"get pretty annoyed when there's nothing left.\""
+      },
+      {
+       "choice": "The cafe throws away more than on Sundays",
+       "lure": "contradicted",
+       "reason": "\"The cafe throws away more than on Sundays\" is wrong: on Saturdays \"we already run out\"; the waste is a Sunday problem."
+      },
+      {
+       "choice": "Fewer customers come in than on a Sunday",
+       "lure": "contradicted",
+       "reason": "\"Fewer customers come in than on a Sunday\" is wrong: on Saturdays they \"already run out,\" and the man concludes \"Saturdays need more.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-F-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "The firewood price rule",
+   "transcript": "Today we're going to take one decision and follow everything that came after it. About two hundred years ago, the river town of Lindmere had a terrible winter. The river froze early, the boats that usually brought firewood down from the hills couldn't get through, and the price of a bundle of wood more than doubled in a month. Poor families were burning their own chairs to stay warm.\n\nSo the town council did something that sounded kind. It passed a rule that no one in Lindmere could sell a bundle of firewood for more than four pennies, which was roughly the price before the river froze. The thinking was simple. If wood stays cheap, everyone can afford to heat their homes. I'm going to argue that this rule did more harm than good, and I want to show you why by following its effects one at a time.\n\nThe first effect came within a week. The sellers who brought wood into town by cart, over the hill road, found that the trip wasn't worth it anymore. The road was icy, the horses had to be fed, and at four pennies a bundle they lost money on every load. So most of them simply turned around and sold their wood in Mardale, the next town along, where there was no limit. Lindmere didn't get cheap wood. It got less wood.\n\nThe second effect was about quality. The sellers who did stay found other ways to protect themselves. Bundles got smaller. Then they got wetter. Sellers mixed in green wood, which means wood that's freshly cut. It smokes badly and gives off much less heat. Officially, the price was still four pennies, but a family now needed two of those bundles to get the warmth that one used to give.\n\nThe third effect is the one I find most troubling. There wasn't enough wood for everyone, so sellers had to decide who got it, and they didn't decide by need. They sold to their regular customers, to friends, to anyone who could offer something extra on the side, a sack of flour, say, or a favour. The families with nothing extra to offer, the very families the rule was written for, ended up at the back of the line.\n\nHere's the interesting part. A town record from that February lists how many carts came in over the hill road each week. Before the rule, it was around thirty. Three weeks after it, only nine carts came in, far fewer than before. Then in March the council quietly dropped the limit, and within two weeks the number was back above twenty. Prices were high, yes, but there was wood to buy.\n\nSo was the council wrong to want to help? No. The goal was a good one. My point is that the tool didn't fit the goal. If the council had used the town's money to buy wood and hand it to the poorest families, the sellers would have kept coming, and the help would have gone where it was needed.\n\nFor Thursday, write one paragraph on this question. Who, if anyone, gained from the rule?",
+   "names": [
+    "Lindmere",
+    "Mardale"
+   ],
+   "other_caps": [
+    "February",
+    "March",
+    "Thursday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-F-L-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, what did most of the cart sellers do after the rule began?",
+     "choices": [
+      "Sold their wood to the council at four pennies",
+      "Took their wood to the next town instead",
+      "Brought their wood in by boat, not by cart",
+      "Kept their carts at home till spring"
+     ],
+     "correct_answer": "Took their wood to the next town instead",
+     "why": "most of them simply turned around and sold their wood in Mardale, the next town along",
+     "explanation": "\"Took their wood to the next town instead\" is correct: \"most of them simply turned around and sold their wood in Mardale, the next town along, where there was no limit.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Sold their wood to the council at four pennies",
+       "lure": "detail",
+       "reason": "\"Sold their wood to the council at four pennies\" is wrong: the council bought nothing; \"most of them simply turned around and sold their wood in Mardale.\""
+      },
+      {
+       "choice": "Kept their carts at home till spring",
+       "lure": "detail",
+       "reason": "\"Kept their carts at home till spring\" is wrong: they still made the trip and \"sold their wood in Mardale, the next town along.\""
+      },
+      {
+       "choice": "Brought their wood in by boat, not by cart",
+       "lure": "contradicted",
+       "reason": "\"Brought their wood in by boat, not by cart\" is wrong: \"the boats that usually brought firewood down from the hills couldn't get through.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-L-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the town record from that February show?",
+     "choices": [
+      "Prices dropped soon after the council ended the limit",
+      "More carts came in each week during the rule",
+      "The number of carts stayed the same all winter",
+      "Far fewer carts came in over the hill road after the rule"
+     ],
+     "correct_answer": "Far fewer carts came in over the hill road after the rule",
+     "why": "only nine carts came in, far fewer than before",
+     "explanation": "\"Far fewer carts came in over the hill road after the rule\" is correct: the record lists carts \"over the hill road each week\": \"Before the rule, it was around thirty,\" then \"only nine carts came in, far fewer than before.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The number of carts stayed the same all winter",
+       "lure": "contradicted",
+       "reason": "\"The number of carts stayed the same all winter\" is wrong: \"Before the rule, it was around thirty,\" and later \"only nine carts came in.\""
+      },
+      {
+       "choice": "Prices dropped soon after the council ended the limit",
+       "lure": "contradicted",
+       "reason": "\"Prices dropped soon after the council ended the limit\" is wrong: after the limit was dropped, \"Prices were high, yes, but there was wood to buy.\""
+      },
+      {
+       "choice": "More carts came in each week during the rule",
+       "lure": "contradicted",
+       "reason": "\"More carts came in each week during the rule\" is wrong: \"Before the rule, it was around thirty,\" but three weeks after it \"only nine carts came in.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-L-3",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention green wood?",
+     "choices": [
+      "To show how the bundles gave off less heat",
+      "To describe what poor families burned",
+      "To explain why the boats were stuck",
+      "To show which wood the council bought later"
+     ],
+     "correct_answer": "To show how the bundles gave off less heat",
+     "why": "It smokes badly and gives off much less heat",
+     "explanation": "\"To show how the bundles gave off less heat\" is correct: green wood is part of \"The second effect,\" about quality: \"It smokes badly and gives off much less heat,\" so \"a family now needed two of those bundles.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To explain why the boats were stuck",
+       "lure": "misreading",
+       "reason": "\"To explain why the boats were stuck\" is wrong: the boats were stopped because \"The river froze early,\" not because of green wood."
+      },
+      {
+       "choice": "To describe what poor families burned",
+       "lure": "detail",
+       "reason": "\"To describe what poor families burned\" is wrong: the families burned furniture, \"Poor families were burning their own chairs\"; green wood was what \"Sellers mixed in.\""
+      },
+      {
+       "choice": "To show which wood the council bought later",
+       "lure": "contradicted",
+       "reason": "\"To show which wood the council bought later\" is wrong: the council never bought wood; buying it is only what it could have done, \"If the council had used the town's money to buy wood.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-L-4",
+     "kind": "attitude",
+     "difficulty": "hard",
+     "prompt": "What does the speaker think of the council's goal?",
+     "choices": [
+      "It was a poor aim, since the town had no money",
+      "It was a worthy aim, served well by the rule",
+      "It was a poor aim, as families could cope alone",
+      "It was a worthy aim, served by the wrong method"
+     ],
+     "correct_answer": "It was a worthy aim, served by the wrong method",
+     "why": "The goal was a good one",
+     "explanation": "\"It was a worthy aim, served by the wrong method\" is correct: the speaker says \"The goal was a good one. My point is that the tool didn't fit the goal.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It was a worthy aim, served well by the rule",
+       "lure": "contradicted",
+       "reason": "\"It was a worthy aim, served well by the rule\" is wrong: the speaker says \"this rule did more harm than good.\""
+      },
+      {
+       "choice": "It was a poor aim, as families could cope alone",
+       "lure": "contradicted",
+       "reason": "\"It was a poor aim, as families could cope alone\" is wrong: the speaker says \"The goal was a good one,\" and families \"were burning their own chairs to stay warm.\""
+      },
+      {
+       "choice": "It was a poor aim, since the town had no money",
+       "lure": "contradicted",
+       "reason": "\"It was a poor aim, since the town had no money\" is wrong: the speaker says \"The goal was a good one\" and suggests the council could have \"used the town's money to buy wood.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-L-5",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker talk about using the town's money to buy wood?",
+     "choices": [
+      "To explain why the council dropped the limit",
+      "To show how the town spent its money that winter",
+      "To suggest a better way the town could help",
+      "To explain how sellers chose buyers"
+     ],
+     "correct_answer": "To suggest a better way the town could help",
+     "why": "the help would have gone where it was needed",
+     "explanation": "\"To suggest a better way the town could help\" is correct: right after \"the tool didn't fit the goal,\" the speaker says that with the money \"the sellers would have kept coming, and the help would have gone where it was needed.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To explain why the council dropped the limit",
+       "lure": "misreading",
+       "reason": "\"To explain why the council dropped the limit\" is wrong: the speaker gives no reason for the March change; the money idea is what would have happened \"If the council had used the town's money.\""
+      },
+      {
+       "choice": "To show how the town spent its money that winter",
+       "lure": "contradicted",
+       "reason": "\"To show how the town spent its money that winter\" is wrong: the town did not do it; the speaker says \"If the council had used the town's money to buy wood.\""
+      },
+      {
+       "choice": "To explain how sellers chose buyers",
+       "lure": "detail",
+       "reason": "\"To explain how sellers chose buyers\" is wrong: that was \"The third effect,\" described earlier; the money idea is about how \"the help would have gone where it was needed.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-F-L-6",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "Why the river at Lindmere froze early that winter",
+      "How a firewood price limit harmed the poor",
+      "How green wood differs from dry, seasoned wood",
+      "How a firewood price limit kept poor homes warm"
+     ],
+     "correct_answer": "How a firewood price limit harmed the poor",
+     "why": "I'm going to argue that this rule did more harm than good",
+     "explanation": "\"How a firewood price limit harmed the poor\" is correct: the speaker says \"I'm going to argue that this rule did more harm than good\" and follows \"its effects one at a time,\" ending with the poorest families \"at the back of the line.\"",
+     "distractor_rationales": [
+      {
+       "choice": "How a firewood price limit kept poor homes warm",
+       "lure": "contradicted",
+       "reason": "\"How a firewood price limit kept poor homes warm\" gets the central claim wrong: the speaker argues \"this rule did more harm than good,\" and the poorest \"ended up at the back of the line.\""
+      },
+      {
+       "choice": "Why the river at Lindmere froze early that winter",
+       "lure": "detail",
+       "reason": "\"Why the river at Lindmere froze early that winter\" is only the starting point, \"The river froze early\"; the lecture is about the rule's effects."
+      },
+      {
+       "choice": "How green wood differs from dry, seasoned wood",
+       "lure": "detail",
+       "reason": "\"How green wood differs from dry, seasoned wood\" is a passing point inside \"The second effect,\" not the subject of the lecture."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

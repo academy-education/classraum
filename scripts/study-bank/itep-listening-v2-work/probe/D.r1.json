@@ -1,0 +1,558 @@
+{
+ "author": "D",
+ "sets": [
+  {
+   "set_id": "ITL2-D-D1",
+   "part": 1,
+   "setting": "pharmacy counter",
+   "speakers": {
+    "W": "a customer",
+    "M": "a pharmacist"
+   },
+   "title": "Out of seasickness tablets",
+   "transcript": "M: Sorry, we've run out of the seasickness tablets you usually get. The next delivery comes on Thursday.\nW: Oh no. My boat trip's on Wednesday morning. Could you check your other branch?\nM: I'll phone them now, but I can't promise they've got any left.",
+   "names": [],
+   "other_caps": [
+    "Thursday",
+    "Wednesday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-D-D1-1",
+     "kind": "relationship",
+     "difficulty": "easy",
+     "prompt": "Who are the speakers most likely to be?",
+     "choices": [
+      "A doctor and a patient during a check-up visit",
+      "A tour guide and a traveller planning an outing",
+      "A pharmacist and a regular customer before a boat trip",
+      "A ferry worker and a passenger buying a ticket"
+     ],
+     "correct_answer": "A pharmacist and a regular customer before a boat trip",
+     "why": "we've run out of the seasickness tablets you usually get",
+     "explanation": "\"A pharmacist and a regular customer before a boat trip\" is correct: the man knows \"the seasickness tablets you usually get\", is waiting for \"The next delivery\", and will check another \"branch\", so he works in a pharmacy and she is a regular customer; she mentions \"My boat trip's on Wednesday morning\".",
+     "distractor_rationales": [
+      {
+       "choice": "A ferry worker and a passenger buying a ticket",
+       "lure": "topic fit",
+       "reason": "\"A ferry worker and a passenger buying a ticket\" is wrong: the man talks about \"the seasickness tablets you usually get\" and a \"delivery\", not tickets, and the woman says \"My boat trip's on Wednesday morning\" as news to him."
+      },
+      {
+       "choice": "A doctor and a patient during a check-up visit",
+       "lure": "topic fit",
+       "reason": "\"A doctor and a patient during a check-up visit\" is wrong: the man has \"run out of the seasickness tablets\" and offers to \"phone\" his \"other branch\", which is what a shop does, not a doctor."
+      },
+      {
+       "choice": "A tour guide and a traveller planning an outing",
+       "lure": "topic fit",
+       "reason": "\"A tour guide and a traveller planning an outing\" is wrong: the man is not planning the trip; he says \"we've run out of the seasickness tablets you usually get\" and will check \"your other branch\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-D-D2",
+   "part": 1,
+   "setting": "school gym",
+   "speakers": {
+    "W": "a student",
+    "M": "a coach"
+   },
+   "title": "Waiting out the thunder",
+   "transcript": "W: Coach, the rain's stopped. Can I go and run my laps outside now?\nM: Not yet. We heard thunder five minutes ago, so nobody goes out for half an hour. Ride the bikes by the wall until then.\nW: Okay. I'll grab one before they're all taken.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-D-D2-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the woman probably do next?",
+     "choices": [
+      "Run laps on the outdoor track",
+      "Wait outside until the sky clears",
+      "Go home early from practice today",
+      "Use an exercise machine"
+     ],
+     "correct_answer": "Use an exercise machine",
+     "why": "Ride the bikes by the wall until then.",
+     "explanation": "\"Use an exercise machine\" is correct: the coach says \"Ride the bikes by the wall until then\", and she replies \"Okay. I'll grab one before they're all taken.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Run laps on the outdoor track",
+       "lure": "ruled out",
+       "reason": "\"Run laps on the outdoor track\" is wrong: the coach says \"Not yet\" and \"nobody goes out for half an hour\"."
+      },
+      {
+       "choice": "Wait outside until the sky clears",
+       "lure": "ruled out",
+       "reason": "\"Wait outside until the sky clears\" is wrong: the coach says \"nobody goes out for half an hour\", and she answers \"I'll grab one before they're all taken.\""
+      },
+      {
+       "choice": "Go home early from practice today",
+       "lure": "ruled out",
+       "reason": "\"Go home early from practice today\" is wrong: the coach tells her to \"Ride the bikes by the wall until then\", and she agrees: \"Okay. I'll grab one\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-D-D3",
+   "part": 1,
+   "setting": "clinic waiting room",
+   "speakers": {
+    "W": "a receptionist",
+    "M": "a patient"
+   },
+   "title": "Late because of the snow",
+   "transcript": "M: Sorry I'm late. I had a ten o'clock with Doctor Gilby, but the snow closed my road until eleven.\nW: She's busy now. There's a gap at four, but I'd come back on Thursday, when the roads are clear.\nM: I'll wait for four. Going home and back through that snow would take me over an hour.",
+   "names": [
+    "Gilby"
+   ],
+   "other_caps": [
+    "Doctor",
+    "Thursday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-D-D3-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can we tell about the man?",
+     "choices": [
+      "The man got to the clinic in time for the appointment",
+      "The man would rather wait than go home and back",
+      "The man plans to return later in the week",
+      "The man lives a short walk from the clinic"
+     ],
+     "correct_answer": "The man would rather wait than go home and back",
+     "why": "I'll wait for four.",
+     "why2": "Going home and back through that snow would take me over an hour.",
+     "explanation": "\"The man would rather wait than go home and back\" is correct: he says \"I'll wait for four\" and explains that \"Going home and back through that snow would take me over an hour\", so he chooses to stay rather than travel twice.",
+     "distractor_rationales": [
+      {
+       "choice": "The man plans to return later in the week",
+       "lure": "wrong speaker",
+       "reason": "\"The man plans to return later in the week\" is wrong: returning \"on Thursday\" is the woman's idea, and the man answers \"I'll wait for four.\""
+      },
+      {
+       "choice": "The man lives a short walk from the clinic",
+       "lure": "contradicted",
+       "reason": "\"The man lives a short walk from the clinic\" is wrong: he says \"Going home and back through that snow would take me over an hour.\""
+      },
+      {
+       "choice": "The man got to the clinic in time for the appointment",
+       "lure": "contradicted",
+       "reason": "\"The man got to the clinic in time for the appointment\" is wrong: he begins \"Sorry I'm late\", and his appointment was \"a ten o'clock\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-D-D4",
+   "part": 1,
+   "setting": "post office",
+   "speakers": {
+    "W": "a clerk",
+    "M": "a customer"
+   },
+   "title": "Posting a box of rocks",
+   "transcript": "W: That box is heavy. Is it going by air?\nM: Yes, please. It's rocks from the beach for my nephew's birthday on Friday.\nW: By air, rocks will cost you a lot. By ground, it's a third of the price, and it'll still get there Thursday.",
+   "names": [],
+   "other_caps": [
+    "Friday",
+    "Thursday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-D-D4-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why does the woman mention Thursday?",
+     "choices": [
+      "To say when the air service would arrive",
+      "To warn that the beach rocks will arrive late",
+      "To show the cheaper service will be in time",
+      "To say the nephew's birthday is that day"
+     ],
+     "correct_answer": "To show the cheaper service will be in time",
+     "why": "By ground, it's a third of the price, and it'll still get there Thursday.",
+     "explanation": "\"To show the cheaper service will be in time\" is correct: she says \"By ground, it's a third of the price, and it'll still get there Thursday\", before the birthday \"on Friday\", so the cheaper service is still early enough.",
+     "distractor_rationales": [
+      {
+       "choice": "To say the nephew's birthday is that day",
+       "lure": "wrong speaker",
+       "reason": "\"To say the nephew's birthday is that day\" is wrong: the man says the box is \"for my nephew's birthday on Friday\"."
+      },
+      {
+       "choice": "To say when the air service would arrive",
+       "lure": "misreading",
+       "reason": "\"To say when the air service would arrive\" is wrong: Thursday is when the ground service arrives: \"By ground, it's a third of the price, and it'll still get there Thursday.\""
+      },
+      {
+       "choice": "To warn that the beach rocks will arrive late",
+       "lure": "contradicted",
+       "reason": "\"To warn that the beach rocks will arrive late\" is wrong: she says \"it'll still get there Thursday\", which is before \"my nephew's birthday on Friday\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-D-C",
+   "part": 2,
+   "setting": "at school, in that staff member's office or room",
+   "speakers": {
+    "W": "a student",
+    "M": "a school staff member who is not a teacher (for example the librarian, the nurse, the office secretary, a lab technician)"
+   },
+   "title": "Borrowing a rain gauge",
+   "transcript": "M: Hi, come on in. You're the one who emailed about borrowing a rain gauge?\nW: Yes, that's me. It's for my science fair project. I want to measure how much rain falls at school every day for five weeks.\nM: Five weeks, okay. We've got two gauges in the cupboard, and the plastic one's easier to read. Where were you planning to put it?\nW: I thought about the roof first, because nothing's in the way up there.\nM: Students can't go on the roof, I'm afraid. It's a safety rule. But here's an idea. Put it on the ledge outside this window. You could check it without even going outside.\nW: That would be easy. But I read that a gauge shouldn't sit right next to a wall. The building would block some of the rain, especially when it's windy.\nM: Hmm, that's true. And this window faces away from most of our storms. So where else?\nW: The vegetable garden behind the gym. It's open, there aren't any trees near it, and there's an old fence post in the corner I could tie it to.\nM: The garden? I'm worried about the sprinklers. If they spray the gauge even once, your number for that day is useless.\nW: I asked the garden club yesterday. They stopped using the sprinklers last month. Now they water by hand, and they said they'll stay away from that corner.\nM: Well, you've really done your homework. All right, the garden it is. How often will you read it?\nW: Every morning at about a quarter to eight, before the first bell. I'll write the number in my notebook and then empty it.\nM: Good. And if there's a freezing night, bring it inside, because ice can crack the plastic.\nW: Got it. Can I take it today?\nM: Sure. Just sign this form, and bring it back to me when your five weeks are over.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-D-C-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "How the man persuades the student to use the window ledge",
+      "Why students aren't allowed on the school roof",
+      "How the garden club has changed its watering",
+      "Where the student should put a rain gauge for a project"
+     ],
+     "correct_answer": "Where the student should put a rain gauge for a project",
+     "why": "Where were you planning to put it?",
+     "explanation": "\"Where the student should put a rain gauge for a project\" is correct: the man asks \"Where were you planning to put it?\", they discuss the roof, the window ledge and the garden, and he finally says \"All right, the garden it is.\"",
+     "distractor_rationales": [
+      {
+       "choice": "How the man persuades the student to use the window ledge",
+       "lure": "whole-script, outcome wrong",
+       "reason": "\"How the man persuades the student to use the window ledge\" is wrong: the man agrees to the student's idea instead: \"All right, the garden it is.\""
+      },
+      {
+       "choice": "Why students aren't allowed on the school roof",
+       "lure": "detail",
+       "reason": "\"Why students aren't allowed on the school roof\" is wrong: the roof is settled in one line, \"Students can't go on the roof, I'm afraid. It's a safety rule\", and the talk moves on to other places."
+      },
+      {
+       "choice": "How the garden club has changed its watering",
+       "lure": "detail",
+       "reason": "\"How the garden club has changed its watering\" is wrong: this comes up only once, when the student says \"Now they water by hand\", as one reason the garden would work."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-C-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about putting the gauge on the window ledge?",
+     "choices": [
+      "Going out on the ledge might break a safety rule",
+      "It would be hard to check from inside the room",
+      "The building would stop some rain from getting into it",
+      "The window there faces toward most of the storms"
+     ],
+     "correct_answer": "The building would stop some rain from getting into it",
+     "why": "The building would block some of the rain, especially when it's windy.",
+     "explanation": "\"The building would stop some rain from getting into it\" is correct: she says \"a gauge shouldn't sit right next to a wall\" because \"The building would block some of the rain, especially when it's windy.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The window there faces toward most of the storms",
+       "lure": "contradicted",
+       "reason": "\"The window there faces toward most of the storms\" is wrong: the man says the opposite: \"this window faces away from most of our storms.\""
+      },
+      {
+       "choice": "Going out on the ledge might break a safety rule",
+       "lure": "wrong place",
+       "reason": "\"Going out on the ledge might break a safety rule\" is wrong: the safety rule is about the roof: \"Students can't go on the roof, I'm afraid. It's a safety rule.\""
+      },
+      {
+       "choice": "It would be hard to check from inside the room",
+       "lure": "contradicted",
+       "reason": "\"It would be hard to check from inside the room\" is wrong: she says \"That would be easy\" when the man says \"You could check it without even going outside.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-C-3",
+     "kind": "purpose",
+     "difficulty": "medium",
+     "prompt": "Why does the man mention the sprinklers?",
+     "choices": [
+      "To explain why the roof is a better place",
+      "To warn that a spray could ruin that day's number",
+      "To suggest talking to the club members first",
+      "To describe how the vegetables there are looked after"
+     ],
+     "correct_answer": "To warn that a spray could ruin that day's number",
+     "why": "If they spray the gauge even once, your number for that day is useless.",
+     "explanation": "\"To warn that a spray could ruin that day's number\" is correct: he says \"I'm worried about the sprinklers. If they spray the gauge even once, your number for that day is useless.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To suggest talking to the club members first",
+       "lure": "wrong speaker",
+       "reason": "\"To suggest talking to the club members first\" is wrong: the student had already done this: \"I asked the garden club yesterday.\""
+      },
+      {
+       "choice": "To describe how the vegetables there are looked after",
+       "lure": "wrong speaker",
+       "reason": "\"To describe how the vegetables there are looked after\" is wrong: it is the student who explains this: \"Now they water by hand\"."
+      },
+      {
+       "choice": "To explain why the roof is a better place",
+       "lure": "contradicted",
+       "reason": "\"To explain why the roof is a better place\" is wrong: the roof is not allowed: \"Students can't go on the roof, I'm afraid.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-C-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "When does the woman say she will read the gauge?",
+     "choices": [
+      "After the first bell rings",
+      "When classes end each day",
+      "During the lunch break",
+      "Before school starts"
+     ],
+     "correct_answer": "Before school starts",
+     "why": "Every morning at about a quarter to eight, before the first bell.",
+     "explanation": "\"Before school starts\" is correct: she says \"Every morning at about a quarter to eight, before the first bell.\"",
+     "distractor_rationales": [
+      {
+       "choice": "After the first bell rings",
+       "lure": "contradicted",
+       "reason": "\"After the first bell rings\" is wrong: she says \"before the first bell\", not after it."
+      },
+      {
+       "choice": "When classes end each day",
+       "lure": "not said",
+       "reason": "\"When classes end each day\" is wrong: she says she will read it \"Every morning at about a quarter to eight, before the first bell.\""
+      },
+      {
+       "choice": "During the lunch break",
+       "lure": "not said",
+       "reason": "\"During the lunch break\" is wrong: she says she will read it \"Every morning at about a quarter to eight\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-D-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "How sea stacks form",
+   "transcript": "So today we're going to follow a piece of coastline through a very slow change. You've probably seen pictures of tall columns of rock standing in the sea, a little way out from a cliff. Geologists call these sea stacks, and I want to walk you through how one forms, step by step, because it doesn't happen all at once.\n\nIt starts with a headland. That's a piece of land that sticks out into the sea, with water on three sides. Because it sticks out, waves hit it from more than one direction, so it takes more of a beating than the bays on either side. Now, no rock is perfectly solid. Even hard rock has cracks running through it, and the cracks are where the sea gets to work.\n\nHere's the first step. When a wave slams into a crack, it traps the air inside and squeezes it. Think of pushing down on a bicycle pump with your finger over the end. You can feel the air pushing back. In the rock, that squeezed air presses outward on the walls of the crack. Then the wave pulls back, the air suddenly expands, and the rock around it is shaken loose a little. Repeat that thousands of times a day, and a crack slowly becomes a gap. At the same time, waves throw sand and pebbles against the cliff, which grinds it away like sandpaper.\n\nStep two. Over many years, the gaps widen into caves. And because the headland is hit from both sides, you often get a cave on each side, growing toward each other. When they finally meet in the middle, you've got an arch, a bridge of rock with the sea running underneath.\n\nStep three. The arch doesn't last. Waves keep cutting at its base, while rain, wind and frost attack the top. Eventually the roof of the arch gets too thin to hold its own weight, and it falls. That's usually sudden, often during a storm. What's left standing on the seaward side, cut off from the land, is the stack.\n\nAnd the story keeps going. The waves now attack the stack from every side, mostly at the bottom, where they hit hardest. It gets thinner at the base until one day it topples too. What remains is a short stump, which may only show at low tide.\n\nHow do we know the stages really come in this order? I'm confident they do, and here's why. First, along one coast you can often see every stage side by side: a headland with caves, an arch further along, then stacks and stumps. Second, we have old photographs. At a place called Harrock, a photograph from about a hundred years ago shows an arch. Today, in that same spot, there's no arch, just a single stack standing alone in the water.\n\nSo next time you see a sea stack, remember that you're looking at what's left of a headland, and that the next stage has already begun.",
+   "names": [
+    "Harrock"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-D-L-1",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention a bicycle pump?",
+     "choices": [
+      "To compare the shape of a crack to a long thin tube",
+      "To explain how waves pull the air out of the caves",
+      "To help the class picture how trapped air pushes on rock",
+      "To show how waves throw sand and pebbles at the cliff"
+     ],
+     "correct_answer": "To help the class picture how trapped air pushes on rock",
+     "why": "Think of pushing down on a bicycle pump with your finger over the end. You can feel the air pushing back.",
+     "explanation": "\"To help the class picture how trapped air pushes on rock\" is correct: the speaker says \"Think of pushing down on a bicycle pump with your finger over the end. You can feel the air pushing back\", and then \"In the rock, that squeezed air presses outward on the walls of the crack.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To show how waves throw sand and pebbles at the cliff",
+       "lure": "wrong moment",
+       "reason": "\"To show how waves throw sand and pebbles at the cliff\" is wrong: sand and pebbles come later, as a separate process: \"At the same time, waves throw sand and pebbles against the cliff\"."
+      },
+      {
+       "choice": "To compare the shape of a crack to a long thin tube",
+       "lure": "misreading",
+       "reason": "\"To compare the shape of a crack to a long thin tube\" is wrong: the pump is about feeling pressure, not shape: \"You can feel the air pushing back.\""
+      },
+      {
+       "choice": "To explain how waves pull the air out of the caves",
+       "lure": "contradicted",
+       "reason": "\"To explain how waves pull the air out of the caves\" is wrong: the waves trap air rather than pull it out: \"it traps the air inside and squeezes it.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-L-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, what wears away the top of an arch?",
+     "choices": [
+      "Waves breaking over the roof",
+      "The weather, including frost",
+      "Sand and pebbles thrown by the waves",
+      "Air squeezed in its many cracks"
+     ],
+     "correct_answer": "The weather, including frost",
+     "why": "while rain, wind and frost attack the top",
+     "explanation": "\"The weather, including frost\" is correct: the speaker says \"Waves keep cutting at its base, while rain, wind and frost attack the top.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Sand and pebbles thrown by the waves",
+       "lure": "wrong moment",
+       "reason": "\"Sand and pebbles thrown by the waves\" is wrong: sand and pebbles grind \"the cliff\"; for the arch, \"rain, wind and frost attack the top.\""
+      },
+      {
+       "choice": "Air squeezed in its many cracks",
+       "lure": "wrong moment",
+       "reason": "\"Air squeezed in its many cracks\" is wrong: squeezed air is the first step at the cracks; the top of the arch is attacked by \"rain, wind and frost\"."
+      },
+      {
+       "choice": "Waves breaking over the roof",
+       "lure": "misreading",
+       "reason": "\"Waves breaking over the roof\" is wrong: the waves work lower down: \"Waves keep cutting at its base, while rain, wind and frost attack the top.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-L-3",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What can be inferred about the stack at Harrock?",
+     "choices": [
+      "It stood alone in the open sea a century ago",
+      "It has already worn down into a stump",
+      "It was cut off before any caves formed",
+      "It used to support part of a rock bridge"
+     ],
+     "correct_answer": "It used to support part of a rock bridge",
+     "why": "a photograph from about a hundred years ago shows an arch",
+     "why2": "What's left standing on the seaward side, cut off from the land, is the stack.",
+     "explanation": "\"It used to support part of a rock bridge\" is correct: \"a photograph from about a hundred years ago shows an arch\" and now there is \"just a single stack\"; the speaker explains that when the arch falls, \"What's left standing on the seaward side, cut off from the land, is the stack.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It stood alone in the open sea a century ago",
+       "lure": "contradicted",
+       "reason": "\"It stood alone in the open sea a century ago\" is wrong: \"a photograph from about a hundred years ago shows an arch\" in that spot."
+      },
+      {
+       "choice": "It has already worn down into a stump",
+       "lure": "contradicted",
+       "reason": "\"It has already worn down into a stump\" is wrong: today there is \"just a single stack standing alone in the water\", not a stump."
+      },
+      {
+       "choice": "It was cut off before any caves formed",
+       "lure": "contradicted",
+       "reason": "\"It was cut off before any caves formed\" is wrong: caves come first: \"Over many years, the gaps widen into caves\", and only after the arch falls is \"the stack\" left."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-L-4",
+     "kind": "attitude",
+     "difficulty": "hard",
+     "prompt": "What is the speaker's view of the order of the stages?",
+     "choices": [
+      "Doubtful because photographs can mislead people",
+      "Unsure that the stages are visible together",
+      "Confident that the order is right",
+      "Unsure whether the stack comes before the stump"
+     ],
+     "correct_answer": "Confident that the order is right",
+     "why": "I'm confident they do, and here's why.",
+     "explanation": "\"Confident that the order is right\" is correct: asked \"How do we know the stages really come in this order?\", the speaker says \"I'm confident they do, and here's why.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Unsure whether the stack comes before the stump",
+       "lure": "contradicted",
+       "reason": "\"Unsure whether the stack comes before the stump\" is wrong: the speaker says \"I'm confident they do\", and the stump comes after the stack: \"What remains is a short stump\"."
+      },
+      {
+       "choice": "Doubtful because photographs can mislead people",
+       "lure": "contradicted",
+       "reason": "\"Doubtful because photographs can mislead people\" is wrong: the speaker uses the photographs as support: \"Second, we have old photographs.\""
+      },
+      {
+       "choice": "Unsure that the stages are visible together",
+       "lure": "contradicted",
+       "reason": "\"Unsure that the stages are visible together\" is wrong: the speaker says \"along one coast you can often see every stage side by side\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-L-5",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the speaker suggest about a single wave hitting a crack?",
+     "choices": [
+      "It shakes loose only a little rock",
+      "It can split a cliff open at once",
+      "It reaches a crack only once a day",
+      "It makes the crack close up again"
+     ],
+     "correct_answer": "It shakes loose only a little rock",
+     "why": "the rock around it is shaken loose a little",
+     "why2": "Repeat that thousands of times a day, and a crack slowly becomes a gap.",
+     "explanation": "\"It shakes loose only a little rock\" is correct: one wave means \"the rock around it is shaken loose a little\", and the speaker adds \"Repeat that thousands of times a day, and a crack slowly becomes a gap.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It can split a cliff open at once",
+       "lure": "contradicted",
+       "reason": "\"It can split a cliff open at once\" is wrong: the speaker says \"the rock around it is shaken loose a little\" and the change is \"a very slow change\"."
+      },
+      {
+       "choice": "It reaches a crack only once a day",
+       "lure": "contradicted",
+       "reason": "\"It reaches a crack only once a day\" is wrong: the speaker says \"Repeat that thousands of times a day\"."
+      },
+      {
+       "choice": "It makes the crack close up again",
+       "lure": "contradicted",
+       "reason": "\"It makes the crack close up again\" is wrong: the speaker says \"a crack slowly becomes a gap\", so cracks grow rather than close."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-D-L-6",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "Why frost breaks apart the roofs of sea arches",
+      "How waves change a headland into sea stacks",
+      "How a bicycle pump works like a crack",
+      "What an old photograph of Harrock shows us"
+     ],
+     "correct_answer": "How waves change a headland into sea stacks",
+     "why": "I want to walk you through how one forms, step by step",
+     "explanation": "\"How waves change a headland into sea stacks\" is correct: the speaker says \"I want to walk you through how one forms, step by step\", goes from the \"headland\" through caves and an arch to \"the stack\", and ends \"you're looking at what's left of a headland\".",
+     "distractor_rationales": [
+      {
+       "choice": "How a bicycle pump works like a crack",
+       "lure": "detail",
+       "reason": "\"How a bicycle pump works like a crack\" is wrong: the pump is one comparison inside the first step: \"Think of pushing down on a bicycle pump\"."
+      },
+      {
+       "choice": "What an old photograph of Harrock shows us",
+       "lure": "detail",
+       "reason": "\"What an old photograph of Harrock shows us\" is wrong: the photograph is one piece of evidence near the end: \"At a place called Harrock, a photograph from about a hundred years ago shows an arch.\""
+      },
+      {
+       "choice": "Why frost breaks apart the roofs of sea arches",
+       "lure": "misreading",
+       "reason": "\"Why frost breaks apart the roofs of sea arches\" is wrong: frost is only one thing that attacks the arch: \"while rain, wind and frost attack the top\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

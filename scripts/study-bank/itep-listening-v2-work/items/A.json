@@ -1,0 +1,551 @@
+{
+ "author": "A",
+ "sets": [
+  {
+   "set_id": "ITL2-A-D1",
+   "part": 1,
+   "setting": "bakery",
+   "speakers": {
+    "W": "a baker",
+    "M": "a customer"
+   },
+   "title": "Snacks for chess club",
+   "transcript": "W: Sorry, the walnut bread's sold out today. But these honey rolls just came out of the oven.\nM: Great, I'll take twelve, then. It's my turn to bring snacks to chess club, and there are twelve of us.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-A-D1-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why does the man mention his chess club?",
+     "choices": [
+      "To ask for a cheaper price for ten",
+      "To explain why twelve rolls are needed",
+      "To say that the club meets in the bakery",
+      "To explain a plan to come back tomorrow"
+     ],
+     "correct_answer": "To explain why twelve rolls are needed",
+     "why": "It's my turn to bring snacks to chess club, and there are twelve of us",
+     "explanation": "\"To explain why twelve rolls are needed\" is correct: right after \"I'll take twelve, then\" he says \"It's my turn to bring snacks to chess club, and there are twelve of us.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To ask for a cheaper price for ten",
+       "lure": "detail",
+       "reason": "\"To ask for a cheaper price for ten\" is wrong: he asks nothing about price or about ten of anything; he just says \"Great, I'll take twelve, then\" and gives the number of club members."
+      },
+      {
+       "choice": "To say that the club meets in the bakery",
+       "lure": "misreading",
+       "reason": "\"To say that the club meets in the bakery\" is wrong: he has to \"bring snacks to chess club\", so the club meets somewhere else."
+      },
+      {
+       "choice": "To explain a plan to come back tomorrow",
+       "lure": "contradicted",
+       "reason": "\"To explain a plan to come back tomorrow\" is wrong: he buys the rolls now: \"Great, I'll take twelve, then.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-A-D2",
+   "part": 1,
+   "setting": "park",
+   "speakers": {
+    "W": "a neighbour",
+    "M": "a neighbour"
+   },
+   "title": "Getting to the school fair",
+   "transcript": "W: Hi! Shall we walk the kids to the school fair together later? It's only ten minutes from our street.\nM: Let's drive instead. Rain's expected at four, and my son's bringing his robot for the science table.\nW: OK, good idea. My daughter and I will come to your door at three.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-A-D2-1",
+     "kind": "relationship",
+     "difficulty": "easy",
+     "prompt": "Who are the speakers most likely to be?",
+     "choices": [
+      "They are a teacher and a student",
+      "They are neighbours on one street",
+      "They are classmates at the school",
+      "They are a parent and a driver"
+     ],
+     "correct_answer": "They are neighbours on one street",
+     "why": "It's only ten minutes from our street",
+     "explanation": "\"They are neighbours on one street\" is correct: the woman says the fair is \"only ten minutes from our street\" and that she will \"come to your door at three.\"",
+     "distractor_rationales": [
+      {
+       "choice": "They are a teacher and a student",
+       "lure": "wrong role",
+       "reason": "\"They are a teacher and a student\" is wrong: both are parents. He says \"my son's bringing his robot\" and she says \"My daughter and I will come to your door.\""
+      },
+      {
+       "choice": "They are classmates at the school",
+       "lure": "wrong role",
+       "reason": "\"They are classmates at the school\" is wrong: they are taking their children to the fair: \"Shall we walk the kids to the school fair together later?\""
+      },
+      {
+       "choice": "They are a parent and a driver",
+       "lure": "wrong role",
+       "reason": "\"They are a parent and a driver\" is wrong: both have children at the fair, \"my son's bringing his robot\" and \"My daughter and I\", and they live close: \"our street\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-A-D3",
+   "part": 1,
+   "setting": "school office",
+   "speakers": {
+    "W": "an older student",
+    "M": "a new student"
+   },
+   "title": "The class list",
+   "transcript": "W: Are you waiting for the office? They're at lunch until one.\nM: Yes. I've just moved here, and I need my class list. My first lesson's at quarter to one.\nW: Then don't wait. New students' class lists are pinned on the board by the door.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-A-D3-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can be inferred about the man?",
+     "choices": [
+      "Waiting until the office opens would make the man late for class",
+      "The man already found the class list on the board by the door",
+      "The man has been a student at this school since last year",
+      "The man came to the office to ask about joining a club"
+     ],
+     "correct_answer": "Waiting until the office opens would make the man late for class",
+     "why": "My first lesson's at quarter to one",
+     "why2": "They're at lunch until one",
+     "explanation": "\"Waiting until the office opens would make the man late for class\" is correct: his \"first lesson's at quarter to one\", but the office staff are \"at lunch until one.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The man already found the class list on the board by the door",
+       "lure": "contradicted",
+       "reason": "\"The man already found the class list on the board by the door\" is wrong: he says \"I need my class list\", and the woman has to tell him where the lists are."
+      },
+      {
+       "choice": "The man has been a student at this school since last year",
+       "lure": "contradicted",
+       "reason": "\"The man has been a student at this school since last year\" is wrong: he says \"I've just moved here.\""
+      },
+      {
+       "choice": "The man came to the office to ask about joining a club",
+       "lure": "contradicted",
+       "reason": "\"The man came to the office to ask about joining a club\" is wrong: he came for something else: \"I need my class list.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-A-D4",
+   "part": 1,
+   "setting": "camping site",
+   "speakers": {
+    "W": "a camper",
+    "M": "a park ranger"
+   },
+   "title": "Someone else's tents",
+   "transcript": "W: Excuse me, our school's nature club booked the site by the river, but another group's tents are already there.\nM: Let me look. Hmm, you're right, they should be up the hill. I'll ask them to move.\nW: Thanks. We'll wait by the car park with our bags until then.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-A-D4-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "Where does the woman say her group will wait?",
+     "choices": [
+      "On the site by the river",
+      "Near the parking area",
+      "Up the hill near the tents",
+      "Inside the ranger's office"
+     ],
+     "correct_answer": "Near the parking area",
+     "why": "We'll wait by the car park with our bags until then",
+     "explanation": "\"Near the parking area\" is correct: she says \"We'll wait by the car park with our bags until then.\"",
+     "distractor_rationales": [
+      {
+       "choice": "On the site by the river",
+       "lure": "detail",
+       "reason": "\"On the site by the river\" is wrong: that is the site they booked, but \"another group's tents are already there\", so they will \"wait by the car park\"."
+      },
+      {
+       "choice": "Up the hill near the tents",
+       "lure": "wrong speaker",
+       "reason": "\"Up the hill near the tents\" is wrong: the ranger says the other group \"should be up the hill\"; the woman's group will \"wait by the car park\"."
+      },
+      {
+       "choice": "Inside the ranger's office",
+       "lure": "detail",
+       "reason": "\"Inside the ranger's office\" is wrong: she says \"We'll wait by the car park with our bags until then.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-A-C",
+   "part": 2,
+   "setting": "at school, between classes",
+   "speakers": {
+    "W": "a student",
+    "M": "a classmate"
+   },
+   "title": "Twenty questions each",
+   "transcript": "W: Hey, have you got a minute before maths? It's about the biology test next Tuesday.\nM: Sure, I've got five minutes. Are you worried about it?\nW: A bit. For the last one, I read my notes three times the night before. I felt ready, and then I sat down in the test and couldn't remember half of it. It was awful.\nM: Really? But your notes are always so neat.\nW: Neat doesn't help, it turns out. So I want to try something different. What if we each write twenty questions on the chapter, swap them, and answer each other's without looking at the book?\nM: Hmm. Honestly, I'd rather we made one big poster together. The heart, the blood vessels, everything in different colours. Drawing things helps me see how they fit.\nW: Posters are fun, but think about the test. Nobody hands you a poster. They hand you questions.\nM: OK, that's true. But writing twenty questions sounds like a lot of work.\nW: It's less work than a poster. And to write a good question, you have to understand the answer first, so that's studying too.\nM: Fine, you've convinced me. When do we swap?\nW: How about Thursday after school, in the library?\nM: Thursday's bad. I've got football practice until five, and the library closes at half past.\nW: Then let's swap on Friday at lunch. We can answer them over the weekend and check them together on Monday.\nM: Friday at lunch works. Should we split the chapter, or should we both do all of it?\nW: Both do all of it. Otherwise you'll only really know your half.\nM: Makes sense. And should the questions be hard ones or easy ones?\nW: A mix, like the real test. Oh, and write the answers on a separate page, so the other person can't just see them.\nM: Got it. I'll start mine tonight, after I finish my history reading.",
+   "names": [],
+   "other_caps": [
+    "Tuesday",
+    "Thursday",
+    "Friday",
+    "Monday"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-A-C-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "The colours the man wants for the poster",
+      "How the pair will prepare for the coming exam",
+      "Why the woman's notes are so much neater",
+      "When the school library closes on Thursday evenings"
+     ],
+     "correct_answer": "How the pair will prepare for the coming exam",
+     "why": "What if we each write twenty questions on the chapter, swap them, and answer each other's without looking at the book?",
+     "explanation": "\"How the pair will prepare for the coming exam\" is correct: the woman proposes \"What if we each write twenty questions on the chapter, swap them, and answer each other's\", the man suggests a poster instead, and they agree on questions and on when to swap.",
+     "distractor_rationales": [
+      {
+       "choice": "The colours the man wants for the poster",
+       "lure": "detail",
+       "reason": "\"The colours the man wants for the poster\" is wrong: he mentions \"everything in different colours\" once, and the poster idea is dropped: \"Fine, you've convinced me.\""
+      },
+      {
+       "choice": "Why the woman's notes are so much neater",
+       "lure": "misreading",
+       "reason": "\"Why the woman's notes are so much neater\" is wrong: the man only says \"your notes are always so neat\", and she answers \"Neat doesn't help, it turns out.\""
+      },
+      {
+       "choice": "When the school library closes on Thursday evenings",
+       "lure": "passing point",
+       "reason": "\"When the school library closes on Thursday evenings\" is wrong: \"the library closes at half past\" is only the man's reason for \"Thursday's bad.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-C-2",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the woman's opinion?",
+     "choices": [
+      "A poster would do little to prepare them for the exam",
+      "A poster would take less time than writing questions",
+      "Each of them should write questions on half the chapter",
+      "Preparing alone would work better than working together"
+     ],
+     "correct_answer": "A poster would do little to prepare them for the exam",
+     "why": "Posters are fun, but think about the test",
+     "why2": "Nobody hands you a poster. They hand you questions",
+     "explanation": "\"A poster would do little to prepare them for the exam\" is correct: she says \"Posters are fun, but think about the test\" and \"Nobody hands you a poster. They hand you questions.\"",
+     "distractor_rationales": [
+      {
+       "choice": "A poster would take less time than writing questions",
+       "lure": "contradicted",
+       "reason": "\"A poster would take less time than writing questions\" is wrong: she says writing the questions is \"less work than a poster.\""
+      },
+      {
+       "choice": "Each of them should write questions on half the chapter",
+       "lure": "contradicted",
+       "reason": "\"Each of them should write questions on half the chapter\" is wrong: when he asks about splitting it, she says \"Both do all of it.\""
+      },
+      {
+       "choice": "Preparing alone would work better than working together",
+       "lure": "contradicted",
+       "reason": "\"Preparing alone would work better than working together\" is wrong: she suggests they \"each write twenty questions on the chapter, swap them, and answer each other's\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-C-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say she did before the last test?",
+     "choices": [
+      "Drew a poster of the whole chapter",
+      "Reread the notes the night before",
+      "Wrote practice questions for a friend",
+      "Studied with a classmate in the library"
+     ],
+     "correct_answer": "Reread the notes the night before",
+     "why": "For the last one, I read my notes three times the night before",
+     "explanation": "\"Reread the notes the night before\" is correct: she says \"For the last one, I read my notes three times the night before.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Drew a poster of the whole chapter",
+       "lure": "wrong speaker",
+       "reason": "\"Drew a poster of the whole chapter\" is wrong: the poster is the man's idea for this test: \"I'd rather we made one big poster together.\""
+      },
+      {
+       "choice": "Wrote practice questions for a friend",
+       "lure": "wrong time",
+       "reason": "\"Wrote practice questions for a friend\" is wrong: writing questions is what she wants to try now, \"something different\"; for the last test, \"I read my notes three times the night before.\""
+      },
+      {
+       "choice": "Studied with a classmate in the library",
+       "lure": "detail",
+       "reason": "\"Studied with a classmate in the library\" is wrong: she describes her last test as \"I read my notes three times the night before\"; the library comes up only as a place to swap questions."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-C-4",
+     "kind": "purpose",
+     "difficulty": "medium",
+     "prompt": "Why does the man mention his football practice?",
+     "choices": [
+      "To suggest moving the swap to the sports field",
+      "To complain that the plan takes too much effort",
+      "To say why the swap needs a day other than Thursday",
+      "To show that sport matters more than the test"
+     ],
+     "correct_answer": "To say why the swap needs a day other than Thursday",
+     "why": "Thursday's bad. I've got football practice until five, and the library closes at half past",
+     "explanation": "\"To say why the swap needs a day other than Thursday\" is correct: after \"How about Thursday after school, in the library?\" he answers \"Thursday's bad. I've got football practice until five, and the library closes at half past.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To suggest moving the swap to the sports field",
+       "lure": "misreading",
+       "reason": "\"To suggest moving the swap to the sports field\" is wrong: he gives practice as the reason \"Thursday's bad\" and then accepts the woman's new plan: \"Friday at lunch works.\""
+      },
+      {
+       "choice": "To complain that the plan takes too much effort",
+       "lure": "wrong time",
+       "reason": "\"To complain that the plan takes too much effort\" is wrong: he had already agreed, \"Fine, you've convinced me\", and he brings up practice only to answer \"How about Thursday after school, in the library?\""
+      },
+      {
+       "choice": "To show that sport matters more than the test",
+       "lure": "misreading",
+       "reason": "\"To show that sport matters more than the test\" is wrong: he agrees to swap on Friday instead and says \"I'll start mine tonight\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-A-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Why sleep helps memory",
+   "transcript": "So, with exams coming up, I want to talk about something your parents have probably told you a hundred times. Get a good night's sleep, because it helps you remember what you studied. Lots of people believe this, and as far as scientists can tell, it's actually true. The more interesting question is why it's true, and there are two competing explanations.\n\nThe first explanation is fairly simple. While you're awake, new things keep coming into your head. Conversations, messages, songs, whatever. Each new thing can push against the memories you made earlier and make them harder to find. Psychologists call this interference. When you're asleep, almost nothing new comes in. So, on this view, sleep doesn't do anything special. It just gives your memories a quiet place to sit, like a sign on a door that says do not disturb.\n\nThe second explanation says sleep is much more active than that. While you sleep, the brain goes back over what you learned during the day and makes those memories stronger. This is called consolidation. So sleep isn't just a quiet room. It's more like a night shift, when workers come in and fix up the day's work.\n\nNow, how could we tell these two apart? Here's the interesting part. Researchers have recorded brain cells in rats while the rats ran through a maze. Certain cells fired in a particular order as a rat moved along the path. Later, when the rat was asleep, those same cells fired again, in roughly the same order, and often faster. It looked as if the sleeping brain was running through the maze again. A quiet room doesn't do that.\n\nAn even clearer test was done with people. Volunteers learned where about fifty pictures appeared on a computer screen, and each picture came with its own sound. A cat picture came with a meow, for example. Then they took a nap. While they were in deep sleep, the researchers quietly played the sounds for half of the pictures, too softly to wake anyone up. After the nap, people remembered the locations of those pictures better than the locations of the others.\n\nThink about what each explanation predicts here. If sleep only keeps out new information, then every picture should be protected equally. The sounds shouldn't matter. But they did matter, and only for the pictures they belonged to. That's very hard to explain unless the sleeping brain is actively working on particular memories.\n\nSo I'd say the evidence supports the second explanation. That doesn't mean interference counts for nothing. Being awake and busy probably does weaken memories a little. It just can't be the whole story.\n\nFinally, think about the night before a big test, when some of you stay up late studying until two or three in the morning. The common advice your parents gave you about sleep is right. And now you know what your brain would have been doing with those hours.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-A-L-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What did the researchers do while the volunteers were in deep sleep?",
+     "choices": [
+      "They quietly played the sounds that went with half of the pictures",
+      "They showed the volunteers the pictures again on a screen",
+      "They woke the volunteers to ask where the pictures were",
+      "They played each sound from the task once again"
+     ],
+     "correct_answer": "They quietly played the sounds that went with half of the pictures",
+     "why": "While they were in deep sleep, the researchers quietly played the sounds for half of the pictures, too softly to wake anyone up",
+     "explanation": "\"They quietly played the sounds that went with half of the pictures\" is correct: \"While they were in deep sleep, the researchers quietly played the sounds for half of the pictures.\"",
+     "distractor_rationales": [
+      {
+       "choice": "They showed the volunteers the pictures again on a screen",
+       "lure": "detail",
+       "reason": "\"They showed the volunteers the pictures again on a screen\" is wrong: the screen was used when they learned; during sleep \"the researchers quietly played the sounds\"."
+      },
+      {
+       "choice": "They woke the volunteers to ask where the pictures were",
+       "lure": "contradicted",
+       "reason": "\"They woke the volunteers to ask where the pictures were\" is wrong: the sounds were played \"too softly to wake anyone up\", and memory was tested \"After the nap\"."
+      },
+      {
+       "choice": "They played each sound from the task once again",
+       "lure": "misreading",
+       "reason": "\"They played each sound from the task once again\" is wrong: they played \"the sounds for half of the pictures\", not all of them."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-L-2",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the picture study suggest about the first explanation?",
+     "choices": [
+      "It made a prediction that the nap results did not support",
+      "It correctly predicted which pictures people would remember",
+      "It explains the result better than the second one does",
+      "It was tested by keeping the volunteers awake all night"
+     ],
+     "correct_answer": "It made a prediction that the nap results did not support",
+     "why": "If sleep only keeps out new information, then every picture should be protected equally",
+     "why2": "But they did matter, and only for the pictures they belonged to",
+     "explanation": "\"It made a prediction that the nap results did not support\" is correct: the first explanation means \"every picture should be protected equally\", but the sounds \"did matter, and only for the pictures they belonged to.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It correctly predicted which pictures people would remember",
+       "lure": "contradicted",
+       "reason": "\"It correctly predicted which pictures people would remember\" is wrong: it predicts \"every picture should be protected equally\", yet people remembered some \"better than the locations of the others.\""
+      },
+      {
+       "choice": "It explains the result better than the second one does",
+       "lure": "contradicted",
+       "reason": "\"It explains the result better than the second one does\" is wrong: the result is \"very hard to explain unless the sleeping brain is actively working on particular memories\", and \"the evidence supports the second explanation.\""
+      },
+      {
+       "choice": "It was tested by keeping the volunteers awake all night",
+       "lure": "contradicted",
+       "reason": "\"It was tested by keeping the volunteers awake all night\" is wrong: the volunteers slept: \"Then they took a nap.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-L-3",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention rats running through a maze?",
+     "choices": [
+      "To show the sleeping brain runs the maze again",
+      "To describe where the idea of interference began",
+      "To give an example of animals that need little sleep",
+      "To compare how quickly rats and humans learn paths"
+     ],
+     "correct_answer": "To show the sleeping brain runs the maze again",
+     "why": "It looked as if the sleeping brain was running through the maze again",
+     "explanation": "\"To show the sleeping brain runs the maze again\" is correct: the cells \"fired again, in roughly the same order\", and \"It looked as if the sleeping brain was running through the maze again.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To describe where the idea of interference began",
+       "lure": "wrong idea",
+       "reason": "\"To describe where the idea of interference began\" is wrong: the rats show something a quiet room cannot: \"A quiet room doesn't do that.\" Interference was explained earlier with \"Conversations, messages, songs\"."
+      },
+      {
+       "choice": "To give an example of animals that need little sleep",
+       "lure": "misreading",
+       "reason": "\"To give an example of animals that need little sleep\" is wrong: the point is what happens \"when the rat was asleep\": \"those same cells fired again\"."
+      },
+      {
+       "choice": "To compare how quickly rats and humans learn paths",
+       "lure": "misreading",
+       "reason": "\"To compare how quickly rats and humans learn paths\" is wrong: \"faster\" describes the cells firing during sleep, \"in roughly the same order, and often faster\", not a comparison with people."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-L-4",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the main point of the lecture?",
+     "choices": [
+      "Sleep aids memory mainly because no new information comes in during sleep",
+      "Sleep aids memory mainly because the brain works on memories during sleep",
+      "Sleep does little for memory, even though most people believe it helps",
+      "Sleep aids memory, but research cannot yet tell the two explanations apart"
+     ],
+     "correct_answer": "Sleep aids memory mainly because the brain works on memories during sleep",
+     "why": "So I'd say the evidence supports the second explanation",
+     "explanation": "\"Sleep aids memory mainly because the brain works on memories during sleep\" is correct: the speaker says the common belief is \"actually true\" and that \"the evidence supports the second explanation\", in which \"the brain goes back over what you learned during the day and makes those memories stronger.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Sleep aids memory mainly because no new information comes in during sleep",
+       "lure": "wrong explanation",
+       "reason": "\"Sleep aids memory mainly because no new information comes in during sleep\" is wrong: that is the first explanation, and the speaker says \"It just can't be the whole story.\""
+      },
+      {
+       "choice": "Sleep does little for memory, even though most people believe it helps",
+       "lure": "contradicted",
+       "reason": "\"Sleep does little for memory, even though most people believe it helps\" is wrong: the speaker says the belief is right: \"as far as scientists can tell, it's actually true.\""
+      },
+      {
+       "choice": "Sleep aids memory, but research cannot yet tell the two explanations apart",
+       "lure": "contradicted",
+       "reason": "\"Sleep aids memory, but research cannot yet tell the two explanations apart\" is wrong: the speaker concludes \"So I'd say the evidence supports the second explanation.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-L-5",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, what do new things we notice while awake do to earlier memories?",
+     "choices": [
+      "They make earlier memories stronger and clearer",
+      "They make older memories more difficult to reach",
+      "They get stored away in a quiet place in the brain",
+      "They are easier to recall than the older ones"
+     ],
+     "correct_answer": "They make older memories more difficult to reach",
+     "why": "Each new thing can push against the memories you made earlier and make them harder to find",
+     "explanation": "\"They make older memories more difficult to reach\" is correct: \"Each new thing can push against the memories you made earlier and make them harder to find.\"",
+     "distractor_rationales": [
+      {
+       "choice": "They make earlier memories stronger and clearer",
+       "lure": "contradicted",
+       "reason": "\"They make earlier memories stronger and clearer\" is wrong: new things \"make them harder to find\"; it is sleep that \"makes those memories stronger\"."
+      },
+      {
+       "choice": "They get stored away in a quiet place in the brain",
+       "lure": "misreading",
+       "reason": "\"They get stored away in a quiet place in the brain\" is wrong: the \"quiet place\" is what sleep gives memories in the first explanation: \"It just gives your memories a quiet place to sit\"."
+      },
+      {
+       "choice": "They are easier to recall than the older ones",
+       "lure": "detail",
+       "reason": "\"They are easier to recall than the older ones\" is wrong: the speaker talks only about their effect on earlier memories, which become \"harder to find\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-A-L-6",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the speaker imply about staying up late to study before a test?",
+     "choices": [
+      "Studying late matters little, since sleep is simply a time of quiet rest",
+      "Studying late steals hours the brain uses to make memories stronger",
+      "Studying late keeps the newest memories fresh and strong",
+      "Studying late is fine as long as the room stays quiet"
+     ],
+     "correct_answer": "Studying late steals hours the brain uses to make memories stronger",
+     "why": "the brain goes back over what you learned during the day and makes those memories stronger",
+     "why2": "And now you know what your brain would have been doing with those hours",
+     "explanation": "\"Studying late steals hours the brain uses to make memories stronger\" is correct: during sleep \"the brain goes back over what you learned during the day and makes those memories stronger\", and of students who \"stay up late studying\" the speaker says \"now you know what your brain would have been doing with those hours.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Studying late matters little, since sleep is simply a time of quiet rest",
+       "lure": "contradicted",
+       "reason": "\"Studying late matters little, since sleep is simply a time of quiet rest\" is wrong: the speaker rejects sleep as only rest: \"So sleep isn't just a quiet room\", and \"the evidence supports the second explanation.\""
+      },
+      {
+       "choice": "Studying late keeps the newest memories fresh and strong",
+       "lure": "contradicted",
+       "reason": "\"Studying late keeps the newest memories fresh and strong\" is wrong: \"Being awake and busy probably does weaken memories a little.\""
+      },
+      {
+       "choice": "Studying late is fine as long as the room stays quiet",
+       "lure": "contradicted",
+       "reason": "\"Studying late is fine as long as the room stays quiet\" is wrong: the speaker's point is that \"sleep isn't just a quiet room\"; the work happens because \"While you sleep, the brain goes back over what you learned\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

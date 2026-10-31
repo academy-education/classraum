@@ -1,0 +1,168 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique",
+  "note": "Gap, not a contradiction: 'A town record from that February' is cited, then March figures ('within two weeks the number was back above twenty') follow, which a February record cannot hold. Key is unaffected."
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "other": "none of the other three works (Write to Mr. Nadler is the man's task; the dad is at the hardware store, not to be met there; nothing is taken to school today)",
+  "reason": "The key says she will 'Get their father's permission', an outcome. The transcript only says she will show him the kit and ASK him, and explicitly raises the opposite outcome: 'And if Dad says no, well, at least we tried.' The key's distinctive claim (permission obtained) is never made; it is only the closest option. Correct key would be 'Ask their father about lending the drums after showing him the kit'."
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique",
+  "note": "'That's a common belief, and the science says it's correct.' reads as a line written to cue the purpose question; one stiff line in otherwise natural speech, so a note only."
+ },
+ "17": {
+  "verdict": "unique",
+  "note": "Key drops 'at your age' ('better than anything I made at your age' -> 'better than any the man made'); loose wording of a stated point, accepted."
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "other": "none of the distractors is supported (they ride in a van, not a bus; the other three cannot row without her)",
+  "reason": "Key 'They won't make any noise' asserts more than the transcript: the woman says 'everyone else sleeps in the van, both ways. We're all too tired to chat.' Her point is that they won't want to talk to her, not that they will make no noise at all; 'any' is an absolute the source does not support (borderline - may be accepted as loose wording, flagged on the asymmetric-cost rule). Also a tension, not a contradiction: 'We're all too tired to chat' includes her, yet her plan is 40 minutes of flashcards in the same van."
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique",
+  "note": "Minor tension: by 1900 the old market square was 'mostly warehouses', yet the market licence stayed by the river until 1910; not a contradiction."
+ },
+ "28": {
+  "verdict": "unique",
+  "note": "Distractors (church, farms, lost in a flood) are far from the talk; easy, not wrong."
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique",
+  "note": "Fact check on the unnamed cave (Lascaux): 1940 discovery by teenagers, ~17,000 years, >1,000 visitors/day in the 1950s, closed 1963, replica ~1983, white fungus ~2001 after a new air system, black spots afterwards, biocides blamed - all consistent with the record."
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "repeated_script_phrase",
+   "items": [
+    1,
+    2,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+   ],
+   "evidence": "Lectures 1, 3 and 5 each pivot with 'Here's the interesting part.' and end with a 'For Thursday' assignment; lectures 3 and 5 both open 'Okay/OK, let's get started.' Template wording across talks; it does not reveal any key, reported as a naturalness/sameness note."
+  },
+  {
+   "pattern": "key_position_skew_mild",
+   "items": [
+    13,
+    18,
+    21,
+    26,
+    34,
+    36
+   ],
+   "evidence": "Key letters over 40 items: A 11, B 14, C 9, D 6. D is under-used (6/40) and B over-used (14/40); not significant on 40 items, no A-B-C-D run. Key length is balanced (uniquely longest 8/40, shortest 8/40)."
+  }
+ ]
+}

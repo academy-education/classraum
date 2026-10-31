@@ -1,0 +1,572 @@
+{
+ "author": "G",
+ "sets": [
+  {
+   "set_id": "ITL2-G-D1",
+   "part": 1,
+   "setting": "bike repair shop",
+   "speakers": {
+    "W": "a customer",
+    "M": "a mechanic"
+   },
+   "title": "A rack for a guitar",
+   "transcript": "W: Could you put a rack on my bike today? I want to carry my guitar to lessons.\nM: Sure, it's quick and cheap. But a guitar's too wide for a rack. It'd hit your legs. Most people just wear the case on their back.\nW: Oh, OK. I'll try that first.",
+   "names": [],
+   "other_caps": [
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-G-D1-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What does the man suggest about carrying the guitar?",
+     "choices": [
+      "Wearing the case would work better than a rack",
+      "A case worn on the back would hit the legs",
+      "Fitting a rack would cost too much money",
+      "Fitting a rack would take too long today"
+     ],
+     "correct_answer": "Wearing the case would work better than a rack",
+     "why": "But a guitar's too wide for a rack.",
+     "why2": "Most people just wear the case on their back.",
+     "explanation": "\"Wearing the case would work better than a rack\" is correct: the man says \"a guitar's too wide for a rack\" and then \"Most people just wear the case on their back\", so wearing the case is his better way.",
+     "distractor_rationales": [
+      {
+       "choice": "A case worn on the back would hit the legs",
+       "lure": "misreading",
+       "reason": "\"A case worn on the back would hit the legs\" mixes up the problem: the man says the guitar on a rack is the trouble, \"It'd hit your legs\", while \"Most people just wear the case on their back.\""
+      },
+      {
+       "choice": "Fitting a rack would cost too much money",
+       "lure": "contradicted",
+       "reason": "\"Fitting a rack would cost too much money\" is contradicted: the man says the job is \"quick and cheap\"."
+      },
+      {
+       "choice": "Fitting a rack would take too long today",
+       "lure": "contradicted",
+       "reason": "\"Fitting a rack would take too long today\" is contradicted: the man says \"Sure, it's quick and cheap.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-G-D2",
+   "part": 1,
+   "setting": "airport check-in desk",
+   "speakers": {
+    "W": "a traveller",
+    "M": "an airline agent"
+   },
+   "title": "A violin on a small plane",
+   "transcript": "W: Can I keep this violin with me on the plane? I don't want it with the suitcases.\nM: The cabin on this plane is too small for it. But I'll print a special tag, so you can hand it to the crew at the plane door.\nW: Oh, good. Thank you.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-G-D2-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the man probably do next?",
+     "choices": [
+      "Make a label for the instrument",
+      "Put the violin with the suitcases",
+      "Find room for the violin in the cabin",
+      "Take the violin to the crew"
+     ],
+     "correct_answer": "Make a label for the instrument",
+     "why": "But I'll print a special tag, so you can hand it to the crew at the plane door.",
+     "explanation": "\"Make a label for the instrument\" is correct: the man says \"I'll print a special tag\" for the violin.",
+     "distractor_rationales": [
+      {
+       "choice": "Put the violin with the suitcases",
+       "lure": "contradicted",
+       "reason": "\"Put the violin with the suitcases\" is ruled out: the tag is \"so you can hand it to the crew at the plane door\", not with the bags."
+      },
+      {
+       "choice": "Find room for the violin in the cabin",
+       "lure": "contradicted",
+       "reason": "\"Find room for the violin in the cabin\" is ruled out: the man says \"The cabin on this plane is too small for it.\""
+      },
+      {
+       "choice": "Take the violin to the crew",
+       "lure": "wrong speaker",
+       "reason": "\"Take the violin to the crew\" is ruled out: the man tells the woman \"you can hand it to the crew at the plane door\", so she takes it, not him."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-G-D3",
+   "part": 1,
+   "setting": "cinema ticket counter",
+   "speakers": {
+    "W": "a customer",
+    "M": "a ticket seller"
+   },
+   "title": "A concert film at seven",
+   "transcript": "W: Two tickets for the piano concert film at seven, please.\nM: The seven o'clock is nearly sold out. There are only front-row seats left. The nine o'clock has lots of seats in the middle.\nW: Front row? No, thanks. We'll come back for the nine, then.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL2-G-D3-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "What does the man say about the seven o'clock showing?",
+     "choices": [
+      "Only seats in the front row are left",
+      "Every seat has already been sold",
+      "It has lots of seats in the middle",
+      "Seats near the back are still free tonight"
+     ],
+     "correct_answer": "Only seats in the front row are left",
+     "why": "There are only front-row seats left.",
+     "explanation": "\"Only seats in the front row are left\" is correct: the man says \"The seven o'clock is nearly sold out. There are only front-row seats left.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Every seat has already been sold",
+       "lure": "misreading",
+       "reason": "\"Every seat has already been sold\" is wrong: it is \"nearly sold out\", and \"There are only front-row seats left.\""
+      },
+      {
+       "choice": "It has lots of seats in the middle",
+       "lure": "wrong time",
+       "reason": "\"It has lots of seats in the middle\" is said about the other showing: \"The nine o'clock has lots of seats in the middle.\""
+      },
+      {
+       "choice": "Seats near the back are still free tonight",
+       "lure": "contradicted",
+       "reason": "\"Seats near the back are still free tonight\" is wrong: for seven o'clock \"There are only front-row seats left.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-G-D4",
+   "part": 1,
+   "setting": "living room at home",
+   "speakers": {
+    "W": "a grandparent",
+    "M": "a grandchild"
+   },
+   "title": "Where to hang a painting",
+   "transcript": "M: Grandma, can I hang my painting above the sofa? Everyone would see it there.\nW: It's lovely, but the afternoon sun would fade it. I don't want it hidden in a bedroom, though. Let's ask your grandpa when he's back from the shop.",
+   "names": [],
+   "other_caps": [
+    "Grandma"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-G-D4-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the woman probably do about the painting?",
+     "choices": [
+      "Ask his grandpa about it",
+      "Hang it above the sofa today",
+      "Put it in a bedroom upstairs",
+      "Take it to his grandpa at the shop"
+     ],
+     "correct_answer": "Ask his grandpa about it",
+     "why": "Let's ask your grandpa when he's back from the shop.",
+     "explanation": "\"Ask his grandpa about it\" is correct: the woman says \"Let's ask your grandpa when he's back from the shop.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Hang it above the sofa today",
+       "lure": "contradicted",
+       "reason": "\"Hang it above the sofa today\" is ruled out: the woman says \"the afternoon sun would fade it.\""
+      },
+      {
+       "choice": "Put it in a bedroom upstairs",
+       "lure": "contradicted",
+       "reason": "\"Put it in a bedroom upstairs\" is ruled out: the woman says \"I don't want it hidden in a bedroom, though.\""
+      },
+      {
+       "choice": "Take it to his grandpa at the shop",
+       "lure": "misreading",
+       "reason": "\"Take it to his grandpa at the shop\" is ruled out: they will ask him \"when he's back from the shop\", so they wait for him at home."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-G-C",
+   "part": 2,
+   "setting": "at home on a weekend",
+   "speakers": {
+    "W": "a sister",
+    "M": "a brother"
+   },
+   "title": "Dad's old drum kit",
+   "transcript": "M: Hey, come and look what I found behind the boxes in the garage. Dad's old drum kit.\nW: Wow, I forgot we still had that. He hasn't played it since before I was born.\nM: Exactly. It's just taking up space. I looked online, and a kit like this sells for about three hundred dollars. That's a hundred and fifty each.\nW: We can't sell it. It's Dad's, not ours. And I think he'd be sad. Mom says he played in a band in college.\nM: But he never even talks about it. I bet he wouldn't notice it was gone.\nW: Maybe not. But I'd like to keep it. I could learn to play.\nM: You? You gave up the piano after three months.\nW: That was different. I hated the teacher. Anyway, we could set it up in the corner of the garage.\nM: There's no room. Dad needs that space for the car in winter. And drums are really loud. The neighbors would complain.\nW: Hmm, you're right about the noise. Mrs. Penrow next door already complains about our dog. She'd hate drums.\nM: So what do we do with it? It can't stay behind those boxes forever. Look, the drum skins are starting to crack.\nW: Wait, what about your school? Didn't your music teacher say they need more instruments for the after-school band?\nM: Mr. Nadler? Yeah, he did. They've only got one old drum, and the kids take turns on it.\nW: So we could lend it to the school. It stays Dad's, it gets played, and it's out of the garage.\nM: Lend it, not give it away. I like that. But we still have to ask Dad first.\nW: Of course. He's at the hardware store until four. When he gets back, I'll show him the kit and ask him. You write to Mr. Nadler tonight and see if the school even wants it.\nM: Deal. And if Dad says no, well, at least we tried.",
+   "names": [
+    "Penrow",
+    "Nadler"
+   ],
+   "other_caps": [
+    "Dad's",
+    "Dad",
+    "Mom",
+    "Mrs",
+    "Mr",
+    "Hey",
+    "Wow",
+    "Exactly",
+    "Maybe",
+    "Anyway",
+    "Hmm",
+    "Wait",
+    "Yeah",
+    "Lend",
+    "Of",
+    "Deal"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-G-C-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "How much does the man say a kit like this sells for?",
+     "choices": [
+      "About three hundred dollars",
+      "About a hundred and fifty dollars",
+      "About two hundred dollars",
+      "About four hundred dollars"
+     ],
+     "correct_answer": "About three hundred dollars",
+     "why": "a kit like this sells for about three hundred dollars",
+     "explanation": "\"About three hundred dollars\" is correct: the man says \"a kit like this sells for about three hundred dollars.\"",
+     "distractor_rationales": [
+      {
+       "choice": "About a hundred and fifty dollars",
+       "lure": "misreading",
+       "reason": "\"About a hundred and fifty dollars\" is each person's share, not the price: \"That's a hundred and fifty each.\""
+      },
+      {
+       "choice": "About two hundred dollars",
+       "lure": "detail",
+       "reason": "\"About two hundred dollars\" is not the price he gives: \"a kit like this sells for about three hundred dollars.\""
+      },
+      {
+       "choice": "About four hundred dollars",
+       "lure": "detail",
+       "reason": "\"About four hundred dollars\" is not the price he gives; \"four\" is only the time their dad comes back, and the kit \"sells for about three hundred dollars.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-C-2",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "Agreeing on a plan to lend their dad's drums to a school",
+      "Agreeing to sell their dad's old drum kit for cash",
+      "Agreeing to set up their dad's drums in the garage",
+      "Agreeing to give their dad's drums away to a school for good"
+     ],
+     "correct_answer": "Agreeing on a plan to lend their dad's drums to a school",
+     "why": "So we could lend it to the school.",
+     "explanation": "\"Agreeing on a plan to lend their dad's drums to a school\" is correct: the whole talk is about what to do with the kit, and they settle on \"So we could lend it to the school\", which the man accepts: \"Lend it, not give it away. I like that.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Agreeing to sell their dad's old drum kit for cash",
+       "lure": "outcome wrong",
+       "reason": "\"Agreeing to sell their dad's old drum kit for cash\" gets the outcome wrong: the woman says \"We can't sell it. It's Dad's, not ours.\""
+      },
+      {
+       "choice": "Agreeing to set up their dad's drums in the garage",
+       "lure": "outcome wrong",
+       "reason": "\"Agreeing to set up their dad's drums in the garage\" gets the outcome wrong: the man says \"There's no room\" and the woman agrees, \"you're right about the noise.\""
+      },
+      {
+       "choice": "Agreeing to give their dad's drums away to a school for good",
+       "lure": "outcome wrong",
+       "reason": "\"Agreeing to give their dad's drums away to a school for good\" gets the outcome wrong: the man says \"Lend it, not give it away.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-C-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "Why does the woman say she stopped her piano lessons?",
+     "choices": [
+      "She hated the teacher",
+      "She found the music too hard",
+      "She was too busy to practice",
+      "Her family sold the old piano"
+     ],
+     "correct_answer": "She hated the teacher",
+     "why": "I hated the teacher.",
+     "explanation": "\"She hated the teacher\" is correct: when the man says she gave up the piano, the woman answers \"That was different. I hated the teacher.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She found the music too hard",
+       "lure": "detail",
+       "reason": "\"She found the music too hard\" is not the reason she gives: \"I hated the teacher.\""
+      },
+      {
+       "choice": "She was too busy to practice",
+       "lure": "detail",
+       "reason": "\"She was too busy to practice\" is not the reason she gives: \"That was different. I hated the teacher.\""
+      },
+      {
+       "choice": "Her family sold the old piano",
+       "lure": "detail",
+       "reason": "\"Her family sold the old piano\" is not what she says; her reason is \"I hated the teacher.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-C-4",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the woman probably do later today?",
+     "choices": [
+      "Ask their father's permission after showing him the drums",
+      "Write to Mr. Nadler about the school band",
+      "Meet their father at the hardware store",
+      "Take the drum kit over to the school band room"
+     ],
+     "correct_answer": "Ask their father's permission after showing him the drums",
+     "why": "When he gets back, I'll show him the kit and ask him.",
+     "explanation": "\"Ask their father's permission after showing him the drums\" is correct: the woman says \"When he gets back, I'll show him the kit and ask him.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Write to Mr. Nadler about the school band",
+       "lure": "wrong speaker",
+       "reason": "\"Write to Mr. Nadler about the school band\" is the man's job: the woman tells him \"You write to Mr. Nadler tonight\"."
+      },
+      {
+       "choice": "Meet their father at the hardware store",
+       "lure": "contradicted",
+       "reason": "\"Meet their father at the hardware store\" is ruled out: she will talk to him \"When he gets back\" from the store."
+      },
+      {
+       "choice": "Take the drum kit over to the school band room",
+       "lure": "contradicted",
+       "reason": "\"Take the drum kit over to the school band room\" is ruled out: the man says \"we still have to ask Dad first\", and she agrees, \"Of course.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL2-G-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Saving a painted cave",
+   "transcript": "OK, so last week we looked at how people painted animals on cave walls thousands of years ago. Today I want to talk about a problem those paintings face in our own time, and about one solution that was tried.\n\nPicture this. In nineteen forty, a few teenagers exploring the hills in France found a narrow opening in the ground. They climbed down, and the walls inside were covered with paintings of horses, deer and huge wild cattle, in reds, yellows and blacks. The paintings were roughly seventeen thousand years old, and they were in amazing condition. Why? Because for all that time, the cave had been sealed. The air inside barely moved. The temperature stayed almost the same, all year round.\n\nA few years later, the cave was opened to visitors, and it became hugely popular. By the nineteen fifties, more than a thousand people a day were walking through it. Now, here's the problem. Every visitor breathes out warm, wet air. Bring in a thousand people a day, and the air in a small cave changes completely. It gets warmer, and the walls get damp. Visitors also carried in tiny living things on their shoes and clothes. Before long, green patches of algae, which are simple plant-like growths, started spreading across the rock. The very people who'd come to admire the paintings were slowly harming them.\n\nSo what was the solution? In nineteen sixty-three, the cave was closed to the public. Completely. About twenty years later, a copy was opened nearby. Artists spent years recreating the most famous walls with the same kinds of colors, so visitors could see something close to the real thing without breathing on it.\n\nDid it work? This is where it gets complicated. Closing the cave stopped the crowds, and the algae was brought under control. But around the year two thousand, a white fungus suddenly spread across the floor and walls, decades after the visitors had gone. Then black spots appeared. Scientists still argue about why. Some point to a new air-control system that had just been put in. Others blame the chemicals used to kill the fungus, which may have fed the next outbreak. Honestly, nobody's sure, and every treatment seems to change the cave in a new way.\n\nThe copy raises its own question, too. And I have to say, the copy is better than I expected. I've seen photos of a real wall and the copied wall side by side, and I couldn't tell them apart, not even the colors. Still, there's an argument that the point of a place like that is standing where the painters actually stood, and no copy can give you that. The other argument is that if the choice is between a copy and losing the paintings forever, the copy wins easily.\n\nSo I can't give you a neat ending today. Closing the cave clearly helped with the first problem. Whether it's enough to save the paintings in the long run, we just don't know yet. For next class, write half a page on this question. If a painted cave were found near here tomorrow, would you open it to visitors or not, and why?",
+   "names": [],
+   "other_caps": [
+    "France",
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL2-G-L-1",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the speaker suggest about the green patches on the rock?",
+     "choices": [
+      "The crowds played a part in making them grow",
+      "They were already there when it was found",
+      "They spread only after the cave was closed",
+      "They could never be fully brought under control"
+     ],
+     "correct_answer": "The crowds played a part in making them grow",
+     "why": "Visitors also carried in tiny living things on their shoes and clothes.",
+     "why2": "Before long, green patches of algae, which are simple plant-like growths, started spreading across the rock.",
+     "explanation": "\"The crowds played a part in making them grow\" is correct: the speaker says \"Visitors also carried in tiny living things on their shoes and clothes\" and that the walls got damp, and then \"Before long, green patches of algae\" started spreading, so the visitors helped cause them.",
+     "distractor_rationales": [
+      {
+       "choice": "They were already there when it was found",
+       "lure": "contradicted",
+       "reason": "\"They were already there when it was found\" is contradicted: when found the paintings \"were in amazing condition\", and the patches came after the cave \"was opened to visitors\"."
+      },
+      {
+       "choice": "They spread only after the cave was closed",
+       "lure": "wrong time",
+       "reason": "\"They spread only after the cave was closed\" is contradicted: the patches spread while visitors came, before \"In nineteen sixty-three, the cave was closed to the public.\""
+      },
+      {
+       "choice": "They could never be fully brought under control",
+       "lure": "contradicted",
+       "reason": "\"They could never be fully brought under control\" is contradicted: \"the algae was brought under control.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-L-2",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the speaker imply about the chemicals used against the fungus?",
+     "choices": [
+      "They may explain why the black spots appeared",
+      "They were known to be harmless to the cave",
+      "They were probably tried in the nineteen fifties",
+      "Scientists see them as the only possible cause"
+     ],
+     "correct_answer": "They may explain why the black spots appeared",
+     "why": "Others blame the chemicals used to kill the fungus, which may have fed the next outbreak.",
+     "why2": "Then black spots appeared.",
+     "explanation": "\"They may explain why the black spots appeared\" is correct: the speaker says \"Then black spots appeared\", and that some blame \"the chemicals used to kill the fungus, which may have fed the next outbreak\", so the chemicals may be behind the spots.",
+     "distractor_rationales": [
+      {
+       "choice": "They were known to be harmless to the cave",
+       "lure": "contradicted",
+       "reason": "\"They were known to be harmless to the cave\" is contradicted: \"Others blame the chemicals used to kill the fungus\"."
+      },
+      {
+       "choice": "They were probably tried in the nineteen fifties",
+       "lure": "wrong time",
+       "reason": "\"They were probably tried in the nineteen fifties\" is contradicted: the fungus came \"around the year two thousand\", \"decades after the visitors had gone.\""
+      },
+      {
+       "choice": "Scientists see them as the only possible cause",
+       "lure": "contradicted",
+       "reason": "\"Scientists see them as the only possible cause\" is contradicted: \"Some point to a new air-control system that had just been put in.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-L-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, what was true of the temperature in the cave before it was found?",
+     "choices": [
+      "It stayed almost the same all year",
+      "It rose a little every summer",
+      "It changed sharply with the seasons",
+      "It slowly warmed over thousands of years"
+     ],
+     "correct_answer": "It stayed almost the same all year",
+     "why": "The temperature stayed almost the same, all year round.",
+     "explanation": "\"It stayed almost the same all year\" is correct: the speaker says \"The temperature stayed almost the same, all year round.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It rose a little every summer",
+       "lure": "contradicted",
+       "reason": "\"It rose a little every summer\" is wrong: \"The temperature stayed almost the same, all year round.\""
+      },
+      {
+       "choice": "It changed sharply with the seasons",
+       "lure": "contradicted",
+       "reason": "\"It changed sharply with the seasons\" is wrong: it \"stayed almost the same, all year round.\""
+      },
+      {
+       "choice": "It slowly warmed over thousands of years",
+       "lure": "contradicted",
+       "reason": "\"It slowly warmed over thousands of years\" is wrong: \"for all that time, the cave had been sealed\" and the temperature \"stayed almost the same\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-L-4",
+     "kind": "attitude",
+     "difficulty": "hard",
+     "prompt": "What is the speaker's opinion of the copy?",
+     "choices": [
+      "It is better than expected",
+      "Its colors look slightly wrong",
+      "It is easy to tell from the real one",
+      "It is disappointing up close"
+     ],
+     "correct_answer": "It is better than expected",
+     "why": "And I have to say, the copy is better than I expected.",
+     "explanation": "\"It is better than expected\" is correct: the speaker says \"the copy is better than I expected\" and \"I couldn't tell them apart\".",
+     "distractor_rationales": [
+      {
+       "choice": "Its colors look slightly wrong",
+       "lure": "contradicted",
+       "reason": "\"Its colors look slightly wrong\" is contradicted: \"I couldn't tell them apart, not even the colors.\""
+      },
+      {
+       "choice": "It is easy to tell from the real one",
+       "lure": "contradicted",
+       "reason": "\"It is easy to tell from the real one\" is contradicted: \"I couldn't tell them apart\"."
+      },
+      {
+       "choice": "It is disappointing up close",
+       "lure": "contradicted",
+       "reason": "\"It is disappointing up close\" is contradicted: \"the copy is better than I expected.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-L-5",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "Protecting cave paintings from harm that visitors caused",
+      "How some teenagers found a hidden painted cave in nineteen forty",
+      "How artists copied the famous walls of a cave",
+      "Why fungus grows on the floors of damp caves"
+     ],
+     "correct_answer": "Protecting cave paintings from harm that visitors caused",
+     "why": "Today I want to talk about a problem those paintings face in our own time, and about one solution that was tried.",
+     "explanation": "\"Protecting cave paintings from harm that visitors caused\" is correct: the speaker says \"Today I want to talk about a problem those paintings face in our own time, and about one solution that was tried\", and the talk covers the damage, the closing and the copy, and whether it worked.",
+     "distractor_rationales": [
+      {
+       "choice": "How some teenagers found a hidden painted cave in nineteen forty",
+       "lure": "detail",
+       "reason": "\"How some teenagers found a hidden painted cave in nineteen forty\" is only the opening story: \"In nineteen forty, a few teenagers exploring the hills in France found a narrow opening\"."
+      },
+      {
+       "choice": "How artists copied the famous walls of a cave",
+       "lure": "detail",
+       "reason": "\"How artists copied the famous walls of a cave\" is one part of the solution: \"Artists spent years recreating the most famous walls\"."
+      },
+      {
+       "choice": "Why fungus grows on the floors of damp caves",
+       "lure": "misreading",
+       "reason": "\"Why fungus grows on the floors of damp caves\" is mentioned in passing, and the speaker says the cause is unknown: \"Scientists still argue about why.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL2-G-L-6",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the speaker ask the students to do for the next class?",
+     "choices": [
+      "Write briefly on whether they would let the public into a newly found cave",
+      "Compare photos of a real painted wall and the copy of it",
+      "Draw an animal in reds, yellows and blacks like the cave painters",
+      "Find out which chemicals are now used to protect cave walls"
+     ],
+     "correct_answer": "Write briefly on whether they would let the public into a newly found cave",
+     "why": "If a painted cave were found near here tomorrow, would you open it to visitors or not, and why?",
+     "explanation": "\"Write briefly on whether they would let the public into a newly found cave\" is correct: the speaker says \"write half a page on this question. If a painted cave were found near here tomorrow, would you open it to visitors or not, and why?\"",
+     "distractor_rationales": [
+      {
+       "choice": "Compare photos of a real painted wall and the copy of it",
+       "lure": "detail",
+       "reason": "\"Compare photos of a real painted wall and the copy of it\" is something the speaker did, not homework: \"I've seen photos of a real wall and the copied wall side by side\"; the task is to \"write half a page on this question.\""
+      },
+      {
+       "choice": "Draw an animal in reds, yellows and blacks like the cave painters",
+       "lure": "detail",
+       "reason": "\"Draw an animal in reds, yellows and blacks like the cave painters\" is not the task; the colors describe the old paintings, and students should \"write half a page on this question.\""
+      },
+      {
+       "choice": "Find out which chemicals are now used to protect cave walls",
+       "lure": "detail",
+       "reason": "\"Find out which chemicals are now used to protect cave walls\" is not the task; the speaker says \"write half a page on this question.\""
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

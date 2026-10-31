@@ -1,0 +1,554 @@
+{
+  "author": "I",
+  "sets": [
+    {
+      "set_id": "ITL2-I-D1",
+      "part": 1,
+      "setting": "library desk",
+      "speakers": {
+        "W": "a student",
+        "M": "a librarian"
+      },
+      "title": "The skeleton book",
+      "transcript": "W: Hi. I'd like to borrow this book on the human skeleton for my biology poster.\nM: Sorry, that one has to stay in the library. But you can scan the pages you need on the machine by the stairs. It's free.\nW: Oh, OK. I only need the pages with the hand and the foot anyway.",
+      "names": [],
+      "other_caps": [
+        "OK"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-I-D1-1",
+          "kind": "intent-next",
+          "difficulty": "easy",
+          "prompt": "What will the woman probably do next?",
+          "choices": [
+            "Copy two of the pictures with a library machine",
+            "Take the skeleton book home for the poster",
+            "Pay to print the pages at the front desk",
+            "Copy drawings of every bone in the skeleton"
+          ],
+          "correct_answer": "Copy two of the pictures with a library machine",
+          "why": "you can scan the pages you need on the machine by the stairs",
+          "explanation": "\"Copy two of the pictures with a library machine\" is correct: the librarian says \"you can scan the pages you need on the machine by the stairs\", and the woman agrees: \"I only need the pages with the hand and the foot anyway.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Take the skeleton book home for the poster",
+              "lure": "contradicted",
+              "reason": "\"Take the skeleton book home for the poster\" is ruled out: the librarian says \"that one has to stay in the library.\""
+            },
+            {
+              "choice": "Pay to print the pages at the front desk",
+              "lure": "contradicted",
+              "reason": "\"Pay to print the pages at the front desk\" is ruled out: the machine is \"by the stairs\", and the librarian says \"It's free.\""
+            },
+            {
+              "choice": "Copy drawings of every bone in the skeleton",
+              "lure": "misreading",
+              "reason": "\"Copy drawings of every bone in the skeleton\" is ruled out: the woman says \"I only need the pages with the hand and the foot anyway.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-I-D2",
+      "part": 1,
+      "setting": "school bus",
+      "speakers": {
+        "W": "a sister",
+        "M": "a brother"
+      },
+      "title": "Getting off early",
+      "transcript": "W: Let's get off at the park and walk home. It's such a nice day.\nM: Not today. The nurse said to keep weight off my ankle until Friday.\nW: Oh, right, your fall in gym class. OK, we'll stay on the bus until our stop.",
+      "names": [],
+      "other_caps": [
+        "Friday",
+        "OK"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-I-D2-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "Why does the man mention what the nurse said?",
+          "choices": [
+            "To explain the choice to stay on the bus",
+            "To ask the woman to carry a heavy bag",
+            "To promise that the ankle will be fine again by Friday",
+            "To ask that their mother hear about the fall"
+          ],
+          "correct_answer": "To explain the choice to stay on the bus",
+          "why": "The nurse said to keep weight off my ankle until Friday.",
+          "explanation": "\"To explain the choice to stay on the bus\" is correct: the woman says \"Let's get off at the park and walk home\", the man answers \"Not today\", and gives the nurse's advice as the reason. She agrees: \"we'll stay on the bus until our stop.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To ask the woman to carry a heavy bag",
+              "lure": "not said",
+              "reason": "\"To ask the woman to carry a heavy bag\" is wrong: the man mentions the nurse right after \"Not today\", to answer the idea to \"walk home\", and asks for nothing."
+            },
+            {
+              "choice": "To promise that the ankle will be fine again by Friday",
+              "lure": "misreading",
+              "reason": "\"To promise that the ankle will be fine again by Friday\" is wrong: the nurse said \"to keep weight off my ankle until Friday\", which is a reason not to walk today, not a promise about Friday."
+            },
+            {
+              "choice": "To ask that their mother hear about the fall",
+              "lure": "detail",
+              "reason": "\"To ask that their mother hear about the fall\" is wrong: it is the woman who brings up \"your fall in gym class\", and nobody mentions their mother."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-I-D3",
+      "part": 1,
+      "setting": "school theatre backstage",
+      "speakers": {
+        "W": "a stage manager",
+        "M": "an actor"
+      },
+      "title": "Before the show",
+      "transcript": "M: Can I skip the singing part of the warm-up tonight? I did my voice exercises at home, and my throat's a bit sore.\nW: Hmm. Everyone usually does it all together. But fine, just do the stretches with the group and save your voice.\nM: Thanks. I'll be there in a minute.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-I-D3-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "Why does the man mention what he did at home?",
+          "choices": [
+            "To argue the voice is warmed up",
+            "To explain coming late to the theatre",
+            "To ask the stage manager for extra practice",
+            "To prove the lines are learned by heart"
+          ],
+          "correct_answer": "To argue the voice is warmed up",
+          "why": "I did my voice exercises at home, and my throat's a bit sore.",
+          "explanation": "\"To argue the voice is warmed up\" is correct: the man asks \"Can I skip the singing part of the warm-up tonight?\" and gives as his reason \"I did my voice exercises at home\".",
+          "distractor_rationales": [
+            {
+              "choice": "To explain coming late to the theatre",
+              "lure": "not said",
+              "reason": "\"To explain coming late to the theatre\" is wrong: the man mentions it while asking \"Can I skip the singing part of the warm-up tonight?\", not to explain being late."
+            },
+            {
+              "choice": "To ask the stage manager for extra practice",
+              "lure": "misreading",
+              "reason": "\"To ask the stage manager for extra practice\" is wrong: the man wants to do less, not more: \"Can I skip the singing part of the warm-up tonight?\""
+            },
+            {
+              "choice": "To prove the lines are learned by heart",
+              "lure": "wrong thing",
+              "reason": "\"To prove the lines are learned by heart\" is wrong: what the man did at home was \"my voice exercises\", which is about his voice, not his lines."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-I-D4",
+      "part": 1,
+      "setting": "music room",
+      "speakers": {
+        "W": "a club leader",
+        "M": "a club member"
+      },
+      "title": "Sore fingers",
+      "transcript": "W: Let's run the new song two more times before we go home.\nM: My fingers really hurt from the guitar strings. Can we stop for today?\nW: Then you rest your hands and listen, and I'll play your part on the piano for the others.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-I-D4-1",
+          "kind": "intent-next",
+          "difficulty": "easy",
+          "prompt": "What is the woman going to do?",
+          "choices": [
+            "Fill in the guitar part on a piano",
+            "End the practice and go home early",
+            "Have the man keep on playing the guitar",
+            "Play the new song just one more time today"
+          ],
+          "correct_answer": "Fill in the guitar part on a piano",
+          "why": "I'll play your part on the piano for the others",
+          "explanation": "\"Fill in the guitar part on a piano\" is correct: the man's fingers \"really hurt from the guitar strings\", and the woman says \"I'll play your part on the piano for the others.\"",
+          "distractor_rationales": [
+            {
+              "choice": "End the practice and go home early",
+              "lure": "wrong speaker",
+              "reason": "\"End the practice and go home early\" is what the man wants (\"Can we stop for today?\"), but the woman keeps the practice going: \"I'll play your part on the piano for the others.\""
+            },
+            {
+              "choice": "Have the man keep on playing the guitar",
+              "lure": "contradicted",
+              "reason": "\"Have the man keep on playing the guitar\" is ruled out: she tells him \"you rest your hands and listen\"."
+            },
+            {
+              "choice": "Play the new song just one more time today",
+              "lure": "wrong number",
+              "reason": "\"Play the new song just one more time today\" is ruled out: she wants to \"run the new song two more times before we go home.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-I-C",
+      "part": 2,
+      "setting": "at a public library study room",
+      "speakers": {
+        "W": "a high-school student",
+        "M": "a university student who tutors the high-school student"
+      },
+      "title": "Rowing before the biology test",
+      "transcript": "M: OK, so your biology test is on the twelfth, which gives us about two weeks. It's heart, blood and lungs, right?\nW: Right. And I still don't really get how the lungs pass air into the blood.\nM: Then I think we need more time together. How about Thursday after school and Saturday morning, as well as today?\nW: Thursday's fine. But Saturday morning I've got rowing. We're out on the river at six.\nM: Every Saturday? Couldn't you miss a couple of weeks? It's just a club, isn't it?\nW: It's not just a club for me. There are four of us in the boat, and if one person's missing, the other three can't go out at all.\nM: Oh. I didn't know that. I guess it's a bit like a team, then. You know, I quit football for my whole last year of school so I could study.\nW: Really? Did it help?\nM: My marks went up, but I was miserable, and I really missed my friends. So I'm not sure I'd do it again.\nW: Well, that doesn't make me want to quit.\nM: Fair enough. Let's look at your flashcards, then. Oh, these are good. Only a few words on each one, and a clear drawing. And every arrow's right, from the heart out to the body and back again. That's better than anything I made at your age.\nW: Thanks. So here's my idea. The coach drives us to the river in a van, and it takes about twenty minutes each way. I could go through these cards on the way there and on the way back.\nM: Forty minutes of flashcards on a Saturday morning? You wouldn't rather chat with your teammates?\nW: Honestly, everyone else sleeps in the van, both ways. We're all too tired to chat.\nM: Ha, OK. So we meet here on Thursday at four, you do the cards in the van, and we drop Saturday.\nW: Perfect. And tonight I'll make some new cards for the lungs.",
+      "names": [],
+      "other_caps": [
+        "OK",
+        "Thursday",
+        "Saturday"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-I-C-1",
+          "kind": "attitude",
+          "difficulty": "medium",
+          "prompt": "What does the man think of the woman's flashcards?",
+          "choices": [
+            "They're better than any the man made.",
+            "They have too much writing on them.",
+            "They're too simple to be much use.",
+            "The arrows on them point the wrong way."
+          ],
+          "correct_answer": "They're better than any the man made.",
+          "why": "That's better than anything I made at your age.",
+          "explanation": "\"They're better than any the man made.\" is correct: looking at her cards, the man says \"these are good\" and \"That's better than anything I made at your age.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They have too much writing on them.",
+              "lure": "contradicted",
+              "reason": "\"They have too much writing on them.\" is contradicted: he says there are \"Only a few words on each one, and a clear drawing.\""
+            },
+            {
+              "choice": "They're too simple to be much use.",
+              "lure": "contradicted",
+              "reason": "\"They're too simple to be much use.\" is contradicted: his first reaction is \"Oh, these are good.\""
+            },
+            {
+              "choice": "The arrows on them point the wrong way.",
+              "lure": "contradicted",
+              "reason": "\"The arrows on them point the wrong way.\" is contradicted: he says \"every arrow's right, from the heart out to the body and back again.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-C-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the man say about the year he gave up football?",
+          "choices": [
+            "It brought better grades but less happiness.",
+            "The marks went up, and the year was fun.",
+            "There was a return to football after a month.",
+            "The marks didn't change, but there was more time."
+          ],
+          "correct_answer": "It brought better grades but less happiness.",
+          "why": "My marks went up, but I was miserable, and I really missed my friends.",
+          "explanation": "\"It brought better grades but less happiness.\" is correct: the man says \"My marks went up, but I was miserable, and I really missed my friends.\"",
+          "distractor_rationales": [
+            {
+              "choice": "The marks went up, and the year was fun.",
+              "lure": "half right",
+              "reason": "\"The marks went up, and the year was fun.\" is wrong: his marks did go up, but he says \"I was miserable\"."
+            },
+            {
+              "choice": "There was a return to football after a month.",
+              "lure": "contradicted",
+              "reason": "\"There was a return to football after a month.\" is wrong: he says \"I quit football for my whole last year of school\"."
+            },
+            {
+              "choice": "The marks didn't change, but there was more time.",
+              "lure": "contradicted",
+              "reason": "\"The marks didn't change, but there was more time.\" is wrong: he says \"My marks went up\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-C-3",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What does the woman suggest about the other rowers?",
+          "choices": [
+            "They won't make any noise.",
+            "They can row without the woman.",
+            "They'll quiz the woman on the cards.",
+            "They get to the river by bus."
+          ],
+          "correct_answer": "They won't make any noise.",
+          "why": "Honestly, everyone else sleeps in the van, both ways.",
+          "why2": "I could go through these cards on the way there and on the way back.",
+          "explanation": "\"They won't make any noise.\" is correct: she plans to study in the van (\"I could go through these cards on the way there and on the way back\"), and when the man asks about chatting she answers \"everyone else sleeps in the van, both ways. We're all too tired to chat.\" So the ride will be quiet.",
+          "distractor_rationales": [
+            {
+              "choice": "They can row without the woman.",
+              "lure": "contradicted",
+              "reason": "\"They can row without the woman.\" is contradicted: she says \"if one person's missing, the other three can't go out at all.\""
+            },
+            {
+              "choice": "They'll quiz the woman on the cards.",
+              "lure": "contradicted",
+              "reason": "\"They'll quiz the woman on the cards.\" is contradicted: she says \"everyone else sleeps in the van, both ways.\""
+            },
+            {
+              "choice": "They get to the river by bus.",
+              "lure": "contradicted",
+              "reason": "\"They get to the river by bus.\" is contradicted: she says \"The coach drives us to the river in a van\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-C-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "How the woman can study for the test and keep rowing",
+            "Why the woman should give up rowing until the test",
+            "How blood moves from the heart around the body",
+            "Why the man stopped playing football at school"
+          ],
+          "correct_answer": "How the woman can study for the test and keep rowing",
+          "why": "So we meet here on Thursday at four, you do the cards in the van, and we drop Saturday.",
+          "explanation": "\"How the woman can study for the test and keep rowing\" is correct: the man first asks \"Couldn't you miss a couple of weeks?\", and by the end they agree \"you do the cards in the van, and we drop Saturday.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Why the woman should give up rowing until the test",
+              "lure": "wrong outcome",
+              "reason": "\"Why the woman should give up rowing until the test\" gets the outcome wrong: she says \"that doesn't make me want to quit\", and they decide \"we drop Saturday\" instead of her rowing."
+            },
+            {
+              "choice": "How blood moves from the heart around the body",
+              "lure": "detail",
+              "reason": "\"How blood moves from the heart around the body\" is only one moment: the man mentions the arrows \"from the heart out to the body and back again\" while looking at her cards."
+            },
+            {
+              "choice": "Why the man stopped playing football at school",
+              "lure": "detail",
+              "reason": "\"Why the man stopped playing football at school\" is only a story he tells in passing: \"I quit football for my whole last year of school so I could study.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-I-L",
+      "part": 3,
+      "setting": "a class lecture",
+      "speakers": {
+        "S": "a teacher giving a short lecture to a high-school class"
+      },
+      "title": "Training one arm",
+      "transcript": "OK, let's get started. Today I want to show you an experiment that's simple enough to do in a school gym, and the result still surprises me every time I teach it.\n\nIn a typical study, a group of volunteers trains only one arm, the right one. Three times a week, for about six weeks, they squeeze a hand grip or lift a small weight with the right hand. The left hand does nothing special. It just rests on the table. At the end, the researchers test the strength of both hands.\n\nThe right hand is stronger, of course. That's not the interesting part. Here's the interesting part. The left hand, which never trained at all, is stronger too. Not by as much. In most studies the untrained side gains roughly half of what the trained side gains, and sometimes less. But it's a real gain, and it shows up again and again. Scientists call this cross education, because the training seems to cross over from one side of the body to the other. It was first described more than a hundred years ago, and it's been tested many times since.\n\nSo how can a muscle get stronger without being used? Here's the first clue. When researchers measure the muscles of the untrained arm, they haven't grown. They're the same size as before. So the change can't be in the muscle itself. It's in the nervous system, in the brain and the nerves that tell muscles what to do.\n\nThink of it this way. A muscle is made of many thin fibers, and your brain has to switch them on. When a movement is new, the brain switches on only some of them, and not quite at the same moment. With practice, it gets better at sending the signal, so more fibers join in, with better timing. The two halves of the brain are closely connected and share a lot of information, so some of that learning seems to reach the control of the other arm as well. You could say the left side picks up the lesson without doing the homework.\n\nNow, why does this matter outside a laboratory? Imagine you break your left wrist, and it spends a few weeks in a cast. Muscles that aren't used get weaker, and quickly. In several studies, volunteers had one arm held still in a cast for a few weeks, and some of them trained their free arm. When the cast came off, those who had trained had lost much less strength in the arm inside it than those who didn't train at all. Working the free arm helped protect the one in the cast. No machines, nothing expensive, and some physical therapists already build it into their plans.\n\nOne last thing to think about. When people first start lifting weights, they often get noticeably stronger within two or three weeks, long before their muscles look any different. Keep that in mind for next time, when we look at how muscles actually grow.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-I-L-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What does the speaker mean by saying the left side \"picks up the lesson without doing the homework\"?",
+          "choices": [
+            "It improves without training.",
+            "It gains more than the right side.",
+            "It gets weaker while the right trains.",
+            "It must also train before it improves."
+          ],
+          "correct_answer": "It improves without training.",
+          "why": "The left hand, which never trained at all, is stronger too.",
+          "why2": "You could say the left side picks up the lesson without doing the homework.",
+          "explanation": "\"It improves without training.\" is correct: the \"homework\" is the training, and the speaker says \"The left hand, which never trained at all, is stronger too.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It gains more than the right side.",
+              "lure": "contradicted",
+              "reason": "\"It gains more than the right side.\" is contradicted: the left hand is stronger, but \"Not by as much.\""
+            },
+            {
+              "choice": "It gets weaker while the right trains.",
+              "lure": "contradicted",
+              "reason": "\"It gets weaker while the right trains.\" is contradicted: \"The left hand, which never trained at all, is stronger too.\""
+            },
+            {
+              "choice": "It must also train before it improves.",
+              "lure": "contradicted",
+              "reason": "\"It must also train before it improves.\" is contradicted: the left hand \"does nothing special\" and \"never trained at all\", yet it gets stronger."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-L-2",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker mention breaking a wrist?",
+          "choices": [
+            "To point out a practical use of the finding after an arm injury",
+            "To warn that lifting weights leads to many wrist injuries",
+            "To explain why the volunteers used their right arms",
+            "To give an example of a muscle that grows without being used"
+          ],
+          "correct_answer": "To point out a practical use of the finding after an arm injury",
+          "why": "Imagine you break your left wrist, and it spends a few weeks in a cast.",
+          "explanation": "\"To point out a practical use of the finding after an arm injury\" is correct: the speaker asks \"why does this matter outside a laboratory?\", imagines a wrist in a cast, and says \"Working the free arm helped protect the one in the cast.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To warn that lifting weights leads to many wrist injuries",
+              "lure": "misreading",
+              "reason": "\"To warn that lifting weights leads to many wrist injuries\" is wrong: the broken wrist is an imagined case introduced to answer \"why does this matter outside a laboratory?\", not a warning about lifting."
+            },
+            {
+              "choice": "To explain why the volunteers used their right arms",
+              "lure": "wrong part",
+              "reason": "\"To explain why the volunteers used their right arms\" is wrong: the wrist comes up in the later part about \"why does this matter outside a laboratory?\", long after the right-arm study is described."
+            },
+            {
+              "choice": "To give an example of a muscle that grows without being used",
+              "lure": "contradicted",
+              "reason": "\"To give an example of a muscle that grows without being used\" is wrong: the speaker says \"Muscles that aren't used get weaker, and quickly.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-L-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What did researchers find when they measured the untrained arm's muscles?",
+          "choices": [
+            "Their size had stayed just the same.",
+            "They had grown slightly larger.",
+            "They had become a bit weaker.",
+            "They had grown faster than the right ones."
+          ],
+          "correct_answer": "Their size had stayed just the same.",
+          "why": "They're the same size as before.",
+          "explanation": "\"Their size had stayed just the same.\" is correct: the speaker says \"When researchers measure the muscles of the untrained arm, they haven't grown. They're the same size as before.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They had grown slightly larger.",
+              "lure": "contradicted",
+              "reason": "\"They had grown slightly larger.\" is wrong: the speaker says \"they haven't grown.\""
+            },
+            {
+              "choice": "They had become a bit weaker.",
+              "lure": "contradicted",
+              "reason": "\"They had become a bit weaker.\" is wrong: the untrained side gets stronger, and \"it's a real gain\"."
+            },
+            {
+              "choice": "They had grown faster than the right ones.",
+              "lure": "contradicted",
+              "reason": "\"They had grown faster than the right ones.\" is wrong: the speaker says \"they haven't grown.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-L-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "When was cross education first described?",
+          "choices": [
+            "Over one hundred years ago",
+            "Around three hundred years ago",
+            "About fifty years ago",
+            "Less than twenty years ago"
+          ],
+          "correct_answer": "Over one hundred years ago",
+          "why": "It was first described more than a hundred years ago",
+          "explanation": "\"Over one hundred years ago\" is correct: the speaker says \"It was first described more than a hundred years ago, and it's been tested many times since.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Around three hundred years ago",
+              "lure": "wrong number",
+              "reason": "\"Around three hundred years ago\" is wrong: the speaker says \"more than a hundred years ago\"."
+            },
+            {
+              "choice": "About fifty years ago",
+              "lure": "wrong number",
+              "reason": "\"About fifty years ago\" is wrong: the speaker says \"more than a hundred years ago\"."
+            },
+            {
+              "choice": "Less than twenty years ago",
+              "lure": "wrong number",
+              "reason": "\"Less than twenty years ago\" is wrong: the speaker says \"more than a hundred years ago\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-L-5",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What does the speaker imply about people who get stronger in their first weeks of lifting weights?",
+          "choices": [
+            "Their nerve signals have become better.",
+            "Their muscles have grown a lot already.",
+            "Their brains switch on fewer fibers now.",
+            "They are not really any stronger yet."
+          ],
+          "correct_answer": "Their nerve signals have become better.",
+          "why": "long before their muscles look any different",
+          "why2": "It's in the nervous system, in the brain and the nerves that tell muscles what to do.",
+          "explanation": "\"Their nerve signals have become better.\" is correct: the gain comes \"long before their muscles look any different\", and earlier the speaker explains that strength without bigger muscles comes from the nervous system: \"It's in the nervous system, in the brain and the nerves that tell muscles what to do.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Their muscles have grown a lot already.",
+              "lure": "contradicted",
+              "reason": "\"Their muscles have grown a lot already.\" is contradicted: the gain comes \"long before their muscles look any different\"."
+            },
+            {
+              "choice": "Their brains switch on fewer fibers now.",
+              "lure": "contradicted",
+              "reason": "\"Their brains switch on fewer fibers now.\" is contradicted: with practice the brain \"gets better at sending the signal, so more fibers join in\"."
+            },
+            {
+              "choice": "They are not really any stronger yet.",
+              "lure": "contradicted",
+              "reason": "\"They are not really any stronger yet.\" is contradicted: the speaker says \"they often get noticeably stronger within two or three weeks\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-I-L-6",
+          "kind": "attitude",
+          "difficulty": "hard",
+          "prompt": "Which statement best describes the speaker's view of the cross education result?",
+          "choices": [
+            "It still surprises the speaker.",
+            "It's too small to be useful.",
+            "It isn't a real, lasting effect.",
+            "It will be disproved before long."
+          ],
+          "correct_answer": "It still surprises the speaker.",
+          "why": "the result still surprises me every time I teach it",
+          "explanation": "\"It still surprises the speaker.\" is correct: at the start the speaker says \"the result still surprises me every time I teach it.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It's too small to be useful.",
+              "lure": "contradicted",
+              "reason": "\"It's too small to be useful.\" is contradicted: the speaker says \"it's a real gain\" and that \"Working the free arm helped protect the one in the cast.\""
+            },
+            {
+              "choice": "It isn't a real, lasting effect.",
+              "lure": "contradicted",
+              "reason": "\"It isn't a real, lasting effect.\" is contradicted: the speaker says \"it's a real gain, and it shows up again and again.\""
+            },
+            {
+              "choice": "It will be disproved before long.",
+              "lure": "contradicted",
+              "reason": "\"It will be disproved before long.\" is contradicted: the speaker says \"it's been tested many times since.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

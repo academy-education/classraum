@@ -1,0 +1,150 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "reason": "The key asserts a belief the woman never states: \"She thinks wasps stay close to the bins by the picnic tables.\" She says only \"By the bins? A wasp stung my sister there on Monday... Let's stay in.\" Her proposal is to stay INDOORS, not to move away from the bins, which reads as general wasp caution. The idea that the bins are the problem is the MAN's next-turn inference (\"There aren't any bins there\"), and the transcript ends before she accepts it. The key is the closest option, but its distinctive claim (wasps stay near the bins) is not in her words. Fix: let her accept the steps (\"Fine, as long as there are no bins\") or reword the key to \"She links the picnic tables with a wasp sting.\""
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    1,
+    8,
+    19,
+    39
+   ],
+   "evidence": "Keys A 11, B 9, C 4, D 16 of 40. C is the key on only 4 items (10%) and D on 16 (40%); chi-square 7.4 on 3 df (p~0.06). Not decisive alone, but a student who never picks C and leans D gains on this packet."
+  },
+  {
+   "pattern": "key_paraphrases_distractors_echo",
+   "items": [
+    4,
+    10,
+    12,
+    14,
+    16,
+    25,
+    30,
+    17
+   ],
+   "evidence": "In at least 8 items the key is the only option that re-words the transcript while distractors reuse its exact words: car park -> \"Near the parking area\" (4; distractors \"up the hill\", \"site by the river\" verbatim); print a tag -> \"Make a label for the instrument\" (10; distractors reuse cabin/crew/suitcases); scan -> \"Copy two of the pictures with a library machine\" (12); table by the big window -> \"Take a table inside that still looks over the river\" (14; distractor reuses \"balcony\", \"boats\"); ride the bikes -> \"Use an exercise machine\" (16; distractor reuses \"run laps\", \"outside\"); put the panel on the fence -> \"Put the panel somewhere else\" (25); slow lane -> \"a different lane\" (30). Heuristic \"pick the option that does not echo the audio\" picks the key on these."
+  }
+ ]
+}

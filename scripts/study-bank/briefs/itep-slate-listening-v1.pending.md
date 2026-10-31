@@ -26,3 +26,22 @@
 8. **Process.** Authors shared one scratchpad and one overwrote another's working file (D saw another lecture's
    opening). Give each author its own scratch directory. The prereg's packet plan was simulated by hand and wrong
    (26/30 vs the real 26/24/6): run `planPackets` on a mock population when writing the prereg.
+9. **2026-10-31, itep-listening-v2, p3 a, b, c (G conversation dropped): the revision round changed a key's meaning.**
+   Told "a lone 'Ask' option is the key 3/4", G rewrote the key "Ask their father..." as "Get their father's
+   permission...", an outcome the script leaves open. Second consecutive batch where the single revision round
+   introduced a gate drop (v1: sibling cueing). Before re-running the pre-flight, a coordinator diffs every revised key
+   against its `why` line; a surface-feature finding is fixed on a distractor, never on the key.
+10. **Same batch, p1 counted b+c `one_template` + probe 1 (0/16) and probe 2 (0/22): Part 1 dialogues are "X asks, Y
+   blocks, a substitute is adopted", and the blocked first plan is never keyed.** Authors could not fix it in revision
+   because `prevails` fixed the outcome. Draw per dialogue whether the first plan holds, is replaced, or is left open.
+   **Named by two graders in one batch: if it recurs in the next, the cut is blocking.**
+11. **Same batch, p1 counted a+c `key_form`: the key paraphrases the transcript while distractors echo its words**
+   (6 Part 1 items), despite script words drawn half/half per part. The key-not-most items still had a paraphrased key
+   with distractors quoting other script nouns. Watch; consider drawing `key quotes the script` as its own axis.
+12. **Same batch, p2 counted a+c `key_in_near_duplicate_pair` (4 items): `whole-script options: 2` makes the key one of
+   two near-identical summaries every time.** Cause is the shape, not the authors. Add a twin distractor pair that
+   excludes the key, or drop the `2` value.
+13. **Same batch, probe 2 (recorded): Part 2 woman's side wins 9/9.** Cause is the assignment: `prevails` cycled over
+   all 45 dialogue sets, so Part 2 drew woman 5 / neither 4 / man 0. Draw opens/prevails per part (lesson 1 again).
+   Also recorded: deferred/compromise outcome keyed in both twin main-idea items (lesson 6 family).
+

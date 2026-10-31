@@ -1,0 +1,556 @@
+{
+  "author": "E",
+  "sets": [
+    {
+      "set_id": "ITL2-E-D1",
+      "part": 1,
+      "setting": "restaurant",
+      "speakers": {
+        "W": "a diner",
+        "M": "a waiter"
+      },
+      "title": "The balcony table",
+      "transcript": "W: Hi, could we have the table out on the balcony? We'd like to watch the boats on the river.\nM: I'm sorry, it gets really cold out there after six. The table by the big window has the same view, and it's warm.\nW: Oh, okay. We'll take that one, then.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-E-D1-1",
+          "kind": "intent-next",
+          "difficulty": "easy",
+          "prompt": "What will the woman probably do next?",
+          "choices": [
+            "Sit outside on the balcony to watch the boats",
+            "Order dinner first and choose a table later",
+            "Take a table inside that still looks over the river",
+            "Wait at the bar until the balcony table is free"
+          ],
+          "correct_answer": "Take a table inside that still looks over the river",
+          "why": "We'll take that one, then",
+          "explanation": "\"Take a table inside that still looks over the river\" is correct: the waiter offers \"The table by the big window has the same view, and it's warm\", and the woman replies \"We'll take that one, then\", so she will sit inside with the same river view.",
+          "distractor_rationales": [
+            {
+              "choice": "Sit outside on the balcony to watch the boats",
+              "lure": "contradicted",
+              "reason": "\"Sit outside on the balcony to watch the boats\" is what the woman first asked for, but after the waiter says \"it gets really cold out there after six\" she answers \"We'll take that one, then\", meaning the window table."
+            },
+            {
+              "choice": "Order dinner first and choose a table later",
+              "lure": "contradicted",
+              "reason": "\"Order dinner first and choose a table later\" is ruled out because she chooses a table at once: \"We'll take that one, then.\""
+            },
+            {
+              "choice": "Wait at the bar until the balcony table is free",
+              "lure": "contradicted",
+              "reason": "\"Wait at the bar until the balcony table is free\" is ruled out: the balcony is not taken, it is cold, and she accepts the indoor table with \"We'll take that one, then.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-E-D2",
+      "part": 1,
+      "setting": "swimming pool",
+      "speakers": {
+        "W": "a swimmer",
+        "M": "a lifeguard"
+      },
+      "title": "The closed lane",
+      "transcript": "M: Sorry, the fast lane's closed until ten. They're fixing a light under the water.\nW: Oh. Could I swim in the slow lane instead? My bus leaves at half past nine.\nM: It's full of kids having a lesson right now. You could wait, or come back tomorrow.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-E-D2-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the woman ask to do?",
+          "choices": [
+            "To use the fast lane right away",
+            "To swim in a different lane",
+            "To join the kids' lesson today",
+            "To wait here until ten"
+          ],
+          "correct_answer": "To swim in a different lane",
+          "why": "Could I swim in the slow lane instead?",
+          "explanation": "\"To swim in a different lane\" is correct: the fast lane is closed, so she asks \"Could I swim in the slow lane instead?\", a different lane from the closed one.",
+          "distractor_rationales": [
+            {
+              "choice": "To wait here until ten",
+              "lure": "wrong speaker",
+              "reason": "\"To wait here until ten\" is the lifeguard's suggestion (\"You could wait\"), not her request, and she says \"My bus leaves at half past nine\", before the lane opens."
+            },
+            {
+              "choice": "To use the fast lane right away",
+              "lure": "misreading",
+              "reason": "\"To use the fast lane right away\" is not what she asks: after hearing \"the fast lane's closed until ten\" she asks \"Could I swim in the slow lane instead?\""
+            },
+            {
+              "choice": "To join the kids' lesson today",
+              "lure": "misreading",
+              "reason": "\"To join the kids' lesson today\" confuses the lesson with her request: the lifeguard says the slow lane is \"full of kids having a lesson\", and she only asks \"Could I swim in the slow lane instead?\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-E-D3",
+      "part": 1,
+      "setting": "phone shop",
+      "speakers": {
+        "W": "a customer",
+        "M": "a sales assistant"
+      },
+      "title": "A screen that goes dark",
+      "transcript": "W: Hi, the screen on this phone keeps going dark by itself. Can you send it away for repair?\nM: Sure, we can send it today, and it's free. But it takes about two weeks. A new phone might be easier.\nW: No, I'll wait. All my photos are on this one.",
+      "names": [],
+      "other_caps": [
+        "Friday"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-E-D3-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the man say about the repair?",
+          "choices": [
+            "It can't be sent until Friday",
+            "It's done in about two days",
+            "It takes about two weeks",
+            "It costs more than a new phone"
+          ],
+          "correct_answer": "It takes about two weeks",
+          "why": "it takes about two weeks",
+          "explanation": "\"It takes about two weeks\" is correct: the man says \"But it takes about two weeks.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It's done in about two days",
+              "lure": "contradicted",
+              "reason": "\"It's done in about two days\" gets the time wrong: the man says \"it takes about two weeks\"."
+            },
+            {
+              "choice": "It costs more than a new phone",
+              "lure": "contradicted",
+              "reason": "\"It costs more than a new phone\" is wrong because the man says the repair is free: \"we can send it today, and it's free\"."
+            },
+            {
+              "choice": "It can't be sent until Friday",
+              "lure": "contradicted",
+              "reason": "\"It can't be sent until Friday\" is wrong because the man says \"we can send it today\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-E-D4",
+      "part": 1,
+      "setting": "science lab",
+      "speakers": {
+        "W": "a classmate",
+        "M": "a classmate"
+      },
+      "title": "Testing the model bridge",
+      "transcript": "W: Let's hang the weights from the middle of the bridge first. That's where it'll bend.\nM: I was going to start at the ends, but okay. Oh, and I left my notebook at home.\nW: No problem. I'll write the numbers down, and you add the weights.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL2-E-D4-1",
+          "kind": "inference",
+          "difficulty": "easy",
+          "prompt": "What can be inferred about the man?",
+          "choices": [
+            "The man will test the ends of the bridge first",
+            "The man will go home for the notebook",
+            "The man will add weights to the middle first",
+            "The man will record the numbers in a notebook"
+          ],
+          "correct_answer": "The man will add weights to the middle first",
+          "why": "I was going to start at the ends, but okay",
+          "why2": "you add the weights",
+          "explanation": "\"The man will add weights to the middle first\" is correct: he agrees to the woman's plan (\"I was going to start at the ends, but okay\"), her plan is to \"hang the weights from the middle of the bridge first\", and she gives him the job: \"you add the weights\".",
+          "distractor_rationales": [
+            {
+              "choice": "The man will test the ends of the bridge first",
+              "lure": "contradicted",
+              "reason": "\"The man will test the ends of the bridge first\" was his first plan, but he drops it: \"I was going to start at the ends, but okay.\""
+            },
+            {
+              "choice": "The man will record the numbers in a notebook",
+              "lure": "contradicted",
+              "reason": "\"The man will record the numbers in a notebook\" is ruled out twice: he says \"I left my notebook at home\", and the woman says \"I'll write the numbers down\"."
+            },
+            {
+              "choice": "The man will go home for the notebook",
+              "lure": "contradicted",
+              "reason": "\"The man will go home for the notebook\" is ruled out because the woman says \"No problem\" and gives him the job now: \"you add the weights\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-E-C",
+      "part": 2,
+      "setting": "at a school club meeting room before the meeting",
+      "speakers": {
+        "W": "the club's student leader",
+        "M": "a club member"
+      },
+      "title": "The old bus depot",
+      "transcript": "W: Oh, good, you're early. Can you help me put these chairs in a circle before the others get here?\nM: Sure. Did you see the sign outside the old Kandel bus depot? They're knocking it down in March.\nW: I did. That's what I want to bring up today. I think the club should write to the town council and ask them to keep the front of the building, at least the big arch over the gate.\nM: I don't know. The council already voted on it, back in January. And my mom says the land's been sold to a builder.\nW: Still, councils change their minds sometimes. If a whole school club writes, it's harder to ignore.\nM: Maybe. But I'd rather do something we know will happen. My grandpa worked at that depot for almost thirty years. He fixed the buses. What if we filmed him walking around outside and talking about it?\nW: Huh. Would he do that?\nM: I think so. He tells those stories at every family dinner. Like, did you know the depot started out as a tram shed? He says the old rails are still under the concrete floor.\nW: Seriously? So the building's older than the buses. That actually helps my letter. An old tram shed sounds a lot more worth saving than a bus garage.\nM: Ha, maybe. But a letter takes weeks to get an answer, and by then it might be gone. A video we could finish in a weekend.\nW: True, but a video doesn't save anything. It just remembers it.\nM: Isn't that better than nothing?\nW: Look, I don't want to decide this for everyone. Let's put both ideas to the club and let them vote.\nM: Fair enough. Can I tell them about my grandpa first, before you talk about the letter?\nW: Sure, go ahead. Oh, and you should check with him soon that he's really okay with being filmed.\nM: I'll ask him when he picks me up after the meeting.",
+      "names": [
+        "Kandel"
+      ],
+      "other_caps": [
+        "March",
+        "January"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-E-C-1",
+          "kind": "intent-next",
+          "difficulty": "medium",
+          "prompt": "What will the man probably do after the meeting?",
+          "choices": [
+            "Write to the town council himself",
+            "Speak with his grandfather",
+            "Start filming at the old depot",
+            "Walk home from school alone"
+          ],
+          "correct_answer": "Speak with his grandfather",
+          "why": "I'll ask him when he picks me up after the meeting",
+          "explanation": "\"Speak with his grandfather\" is correct: the woman asks him to \"check with him soon that he's really okay with being filmed\", and he answers \"I'll ask him when he picks me up after the meeting.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Walk home from school alone",
+              "lure": "contradicted",
+              "reason": "\"Walk home from school alone\" is ruled out because his grandpa is collecting him: \"I'll ask him when he picks me up after the meeting.\""
+            },
+            {
+              "choice": "Write to the town council himself",
+              "lure": "wrong speaker",
+              "reason": "\"Write to the town council himself\" is the woman's idea, which the man argues against (\"a letter takes weeks to get an answer\"), and the woman says \"Let's put both ideas to the club and let them vote.\""
+            },
+            {
+              "choice": "Start filming at the old depot",
+              "lure": "wrong time",
+              "reason": "\"Start filming at the old depot\" cannot come next: the woman says \"you should check with him soon that he's really okay with being filmed\", and the man's next step is \"I'll ask him when he picks me up after the meeting.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-C-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the man, what was the depot before it was used for buses?",
+          "choices": [
+            "A workshop where buses were fixed",
+            "A train station for the town",
+            "A place where trams were kept",
+            "A building owned by the council"
+          ],
+          "correct_answer": "A place where trams were kept",
+          "why": "did you know the depot started out as a tram shed?",
+          "explanation": "\"A place where trams were kept\" is correct: the man says \"the depot started out as a tram shed\", that is, a building where trams were kept.",
+          "distractor_rationales": [
+            {
+              "choice": "A workshop where buses were fixed",
+              "lure": "wrong time",
+              "reason": "\"A workshop where buses were fixed\" is what the depot became later, when his grandpa \"fixed the buses\"; before that, \"the depot started out as a tram shed\"."
+            },
+            {
+              "choice": "A building owned by the council",
+              "lure": "misreading",
+              "reason": "\"A building owned by the council\" mixes up the council's vote with the building's past; the man says \"the depot started out as a tram shed\"."
+            },
+            {
+              "choice": "A train station for the town",
+              "lure": "contradicted",
+              "reason": "\"A train station for the town\" is not what the man says; he says \"the depot started out as a tram shed\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-C-3",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What does the man most likely think about the woman's letter?",
+          "choices": [
+            "It matters more than his grandpa's video",
+            "It should be sent before the vote in January",
+            "It's unlikely to change the council's vote",
+            "It would get an answer within a few days"
+          ],
+          "correct_answer": "It's unlikely to change the council's vote",
+          "why": "The council already voted on it, back in January",
+          "why2": "by then it might be gone",
+          "explanation": "\"It's unlikely to change the council's vote\" is correct: he points out that \"The council already voted on it, back in January\" and that the land has been sold to a builder, and later warns that \"by then it might be gone\", so he doubts a letter can save the depot.",
+          "distractor_rationales": [
+            {
+              "choice": "It should be sent before the vote in January",
+              "lure": "wrong time",
+              "reason": "\"It should be sent before the vote in January\" is impossible: the man says \"The council already voted on it, back in January.\""
+            },
+            {
+              "choice": "It would get an answer within a few days",
+              "lure": "contradicted",
+              "reason": "\"It would get an answer within a few days\" is the opposite of what he says: \"a letter takes weeks to get an answer\"."
+            },
+            {
+              "choice": "It matters more than his grandpa's video",
+              "lure": "contradicted",
+              "reason": "\"It matters more than his grandpa's video\" is the reverse of his view: \"I'd rather do something we know will happen\", and he defends the video with \"Isn't that better than nothing?\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-C-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "The tram rails hidden under the depot floor",
+            "Two ideas for the old depot, and choosing the letter",
+            "The man's grandpa and his years at the depot",
+            "Two ideas for the old depot that the club will vote on"
+          ],
+          "correct_answer": "Two ideas for the old depot that the club will vote on",
+          "why": "Let's put both ideas to the club and let them vote.",
+          "explanation": "\"Two ideas for the old depot that the club will vote on\" is correct: the woman wants a letter to the council, the man wants a video of his grandpa, and in the end she says \"Let's put both ideas to the club and let them vote.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Two ideas for the old depot, and choosing the letter",
+              "lure": "whole-script, wrong outcome",
+              "reason": "\"Two ideas for the old depot, and choosing the letter\" covers the whole talk but gets the outcome wrong: nothing is chosen, because the woman says \"Let's put both ideas to the club and let them vote.\""
+            },
+            {
+              "choice": "The tram rails hidden under the depot floor",
+              "lure": "detail",
+              "reason": "\"The tram rails hidden under the depot floor\" is one moment only, when the man says \"the old rails are still under the concrete floor\"."
+            },
+            {
+              "choice": "The man's grandpa and his years at the depot",
+              "lure": "detail",
+              "reason": "\"The man's grandpa and his years at the depot\" is one point the man raises (\"My grandpa worked at that depot for almost thirty years\"), not what the whole conversation is about."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL2-E-L",
+      "part": 3,
+      "setting": "a class lecture",
+      "speakers": {
+        "S": "a teacher giving a short lecture to a high-school class"
+      },
+      "title": "Why Jastow moved uphill",
+      "transcript": "OK, let's get started. Today I want to look at how the centre of a town can move over time, and I'm going to use one small example, the town of Jastow. You'll see this pattern in lots of places, but a small town makes it easier to follow.\n\nJastow began as a settlement beside a ford. A ford is a shallow place in a river where people and carts can cross. For roughly two hundred years, everything important in Jastow stood within a few minutes' walk of that crossing. The market square, the inn, the blacksmith and most of the houses were all right there.\n\nThen things started to change. In eighteen sixty-four a stone bridge was built a little way upstream, and in eighteen eighty-five a railway station opened on the hill north of the town. By nineteen hundred, the busiest street in Jastow was the new high street running up to the station, and the old market square by the river was mostly warehouses.\n\nSo the obvious question is why. Why did a whole town centre climb a hill?\n\nOne explanation points to the railway. Goods and visitors now arrived at the top of the hill, so shops followed them. Think about it from a shopkeeper's point of view. You want to be where the people are. And there's good evidence for this. Business records show that three of the town's biggest stores moved up to the high street within ten years of the station opening.\n\nBut here's the interesting part. A second explanation points to the river itself. A set of old letters describes floods in the low streets in eighteen fifty-two and again in eighteen fifty-nine, years before the station existed. And a map drawn in eighteen seventy already shows new houses going up on higher ground. So some families may have been leaving the riverside before the trains came at all.\n\nNow, which explanation is right? Honestly, we don't know yet, and both have weak spots. Let's start with the floods. All of those letters were written by members of one family, so we can't tell whether the water reached the whole lower town or just their street. And the new houses on the map might simply show Jastow growing, not people escaping the river.\n\nThe railway story has a problem too. Jastow's market licence, that's the document that gave the town the right to hold a weekly market, wasn't moved to the high street until nineteen ten. That's twenty-five years after the station opened. If the railway pulled everything uphill, why did the market stay down by the river for so long?\n\nSo historians are still arguing about it. Right now a local group is going through old tax records, which list who lived at each address every ten years. Those might finally settle it, or they might just raise new questions.\n\nFor Thursday, please look at the two maps in your packet, one from eighteen fifty and one from nineteen hundred, and write down three changes you notice between them.",
+      "names": [
+        "Jastow"
+      ],
+      "other_caps": [
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITL2-E-L-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the speaker say happened to three of the town's biggest stores?",
+          "choices": [
+            "They closed after two floods in the low streets",
+            "They moved to the high street within ten years",
+            "They became warehouses near the ford",
+            "They stayed in the old square by the river"
+          ],
+          "correct_answer": "They moved to the high street within ten years",
+          "why": "three of the town's biggest stores moved up to the high street within ten years of the station opening",
+          "explanation": "\"They moved to the high street within ten years\" is correct: the speaker says business records show that \"three of the town's biggest stores moved up to the high street within ten years of the station opening\".",
+          "distractor_rationales": [
+            {
+              "choice": "They closed after two floods in the low streets",
+              "lure": "misreading",
+              "reason": "\"They closed after two floods in the low streets\" joins the floods to the stores, but the speaker says the stores \"moved up to the high street within ten years of the station opening\"."
+            },
+            {
+              "choice": "They stayed in the old square by the river",
+              "lure": "contradicted",
+              "reason": "\"They stayed in the old square by the river\" is wrong: the stores \"moved up to the high street\"; it is the market that stayed \"down by the river\"."
+            },
+            {
+              "choice": "They became warehouses near the ford",
+              "lure": "misreading",
+              "reason": "\"They became warehouses near the ford\" mixes up the stores with the old square, which by nineteen hundred \"was mostly warehouses\"; the stores \"moved up to the high street\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-L-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the speaker, what does the map from eighteen seventy show?",
+          "choices": [
+            "Warehouses filling the old market square",
+            "Floods reaching the low streets",
+            "Homes being built on higher ground",
+            "The station on the hill north of town"
+          ],
+          "correct_answer": "Homes being built on higher ground",
+          "why": "a map drawn in eighteen seventy already shows new houses going up on higher ground",
+          "explanation": "\"Homes being built on higher ground\" is correct: the speaker says \"a map drawn in eighteen seventy already shows new houses going up on higher ground\".",
+          "distractor_rationales": [
+            {
+              "choice": "The station on the hill north of town",
+              "lure": "wrong time",
+              "reason": "\"The station on the hill north of town\" cannot be on it: the map was \"drawn in eighteen seventy\", and the station only \"opened\" in \"eighteen eighty-five\"; the map \"shows new houses going up on higher ground\"."
+            },
+            {
+              "choice": "Warehouses filling the old market square",
+              "lure": "wrong time",
+              "reason": "\"Warehouses filling the old market square\" describes nineteen hundred, when the square \"was mostly warehouses\"; the eighteen seventy map \"shows new houses going up on higher ground\"."
+            },
+            {
+              "choice": "Floods reaching the low streets",
+              "lure": "misreading",
+              "reason": "\"Floods reaching the low streets\" comes from the letters, not the map: the letters describe \"floods in the low streets\", while the map \"shows new houses going up on higher ground\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-L-3",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the lecture mainly about?",
+          "choices": [
+            "Which families are listed in the tax records",
+            "How a stone bridge was built upstream",
+            "Why one town's centre moved uphill",
+            "What the floods did to the riverside streets"
+          ],
+          "correct_answer": "Why one town's centre moved uphill",
+          "why": "Why did a whole town centre climb a hill?",
+          "explanation": "\"Why one town's centre moved uphill\" is correct: the speaker asks \"Why did a whole town centre climb a hill?\" and spends the lecture on two explanations, the railway and the river.",
+          "distractor_rationales": [
+            {
+              "choice": "How a stone bridge was built upstream",
+              "lure": "detail",
+              "reason": "\"How a stone bridge was built upstream\" is one fact mentioned in passing: \"a stone bridge was built a little way upstream\"; the lecture never explains how."
+            },
+            {
+              "choice": "What the floods did to the riverside streets",
+              "lure": "detail",
+              "reason": "\"What the floods did to the riverside streets\" is only part of one explanation, the \"floods in the low streets\"; the lecture is about why the whole centre moved."
+            },
+            {
+              "choice": "Which families are listed in the tax records",
+              "lure": "detail",
+              "reason": "\"Which families are listed in the tax records\" is a point near the end: a group \"is going through old tax records\"; the speaker never says which families they list."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-L-4",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Based on the lecture, why might the tax records be useful?",
+          "choices": [
+            "They already prove that the railway explanation is the correct one",
+            "They could reveal whether people moved away from the river before the railway",
+            "They list just the families who lived near the church in the old town",
+            "They might have been lost when the low streets by the river flooded"
+          ],
+          "correct_answer": "They could reveal whether people moved away from the river before the railway",
+          "why": "which list who lived at each address every ten years",
+          "why2": "some families may have been leaving the riverside before the trains came at all",
+          "explanation": "\"They could reveal whether people moved away from the river before the railway\" is correct: the records \"list who lived at each address every ten years\", and one explanation says \"some families may have been leaving the riverside before the trains came at all\", so the records could test that.",
+          "distractor_rationales": [
+            {
+              "choice": "They might have been lost when the low streets by the river flooded",
+              "lure": "contradicted",
+              "reason": "\"They might have been lost when the low streets by the river flooded\" cannot be true: the speaker says \"Right now a local group is going through old tax records\"."
+            },
+            {
+              "choice": "They already prove that the railway explanation is the correct one",
+              "lure": "contradicted",
+              "reason": "\"They already prove that the railway explanation is the correct one\" goes against the speaker, who says \"we don't know yet\" and that the records \"might finally settle it, or they might just raise new questions\"."
+            },
+            {
+              "choice": "They list just the families who lived near the church in the old town",
+              "lure": "contradicted",
+              "reason": "\"They list just the families who lived near the church in the old town\" is wrong: the records \"list who lived at each address every ten years\", not only near the church."
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-L-5",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker mention the town's market licence?",
+          "choices": [
+            "To show when the weekly market first began",
+            "To explain why the bridge was built upstream",
+            "To raise a problem with the railway story",
+            "To show how the town's markets were run"
+          ],
+          "correct_answer": "To raise a problem with the railway story",
+          "why": "The railway story has a problem too.",
+          "explanation": "\"To raise a problem with the railway story\" is correct: the speaker opens with \"The railway story has a problem too\" and asks \"If the railway pulled everything uphill, why did the market stay down by the river for so long?\"",
+          "distractor_rationales": [
+            {
+              "choice": "To show when the weekly market first began",
+              "lure": "misreading",
+              "reason": "\"To show when the weekly market first began\" is not the point: the speaker gives the date the licence \"wasn't moved to the high street until\", then asks \"why did the market stay down by the river for so long?\""
+            },
+            {
+              "choice": "To explain why the bridge was built upstream",
+              "lure": "misreading",
+              "reason": "\"To explain why the bridge was built upstream\" is unrelated: the licence comes right after \"The railway story has a problem too\", and the bridge is never explained."
+            },
+            {
+              "choice": "To show how the town's markets were run",
+              "lure": "misreading",
+              "reason": "\"To show how the town's markets were run\" misses the point: the speaker introduces the licence with \"The railway story has a problem too\" and uses it to ask \"If the railway pulled everything uphill, why did the market stay down by the river for so long?\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL2-E-L-6",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker point out that the letters were written by one family?",
+          "choices": [
+            "To suggest the letters are the best source",
+            "To question how widely the floods spread",
+            "To date the floods more exactly",
+            "To show the family lived in the low streets"
+          ],
+          "correct_answer": "To question how widely the floods spread",
+          "why": "we can't tell whether the water reached the whole lower town or just their street",
+          "explanation": "\"To question how widely the floods spread\" is correct: the speaker says that because the letters come from one family, \"we can't tell whether the water reached the whole lower town or just their street\".",
+          "distractor_rationales": [
+            {
+              "choice": "To show the family lived in the low streets",
+              "lure": "misreading",
+              "reason": "\"To show the family lived in the low streets\" is not the point: the speaker says \"we can't tell whether the water reached the whole lower town or just their street\"."
+            },
+            {
+              "choice": "To date the floods more exactly",
+              "lure": "misreading",
+              "reason": "\"To date the floods more exactly\" is not the point: the dates were already given, and the one-family point is a weak spot, \"both have weak spots. Let's start with the floods.\""
+            },
+            {
+              "choice": "To suggest the letters are the best source",
+              "lure": "contradicted",
+              "reason": "\"To suggest the letters are the best source\" is the opposite of the speaker's point: because of the one family, \"we can't tell whether the water reached the whole lower town\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
