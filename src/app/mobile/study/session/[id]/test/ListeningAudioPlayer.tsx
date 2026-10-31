@@ -533,10 +533,6 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
   }, [onSpeakingChange])
 
   const replaysLeft = Math.max(0, maxPlays - playCount)
-  // Audio always "supported" for the UI — we drive playback via
-  // HTML5 <audio>, which is universal. Preserved as a flag in case
-  // /api/study/listening/tts is unreachable (see error state below).
-  const ttsSupported = true
 
   return (
     <div className="mb-4 rounded-xl border border-primary/20 bg-gradient-to-br from-primary/[0.04] to-white px-4 py-4">
@@ -616,7 +612,11 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
           </button>
         )}
       </div>
-      {(showTranscript || !ttsSupported) && (
+      {/* The transcript IS the answer key for a listening item, so it is
+          shown only when the caller opts in. No failure path (TTS down,
+          unsupported browser) may fall back to printing it mid-test —
+          the error state offers a retry instead. */}
+      {allowTranscriptReveal && showTranscript && (
         <div className="mt-3 rounded-lg border border-gray-200 bg-white/70 px-3 py-2 text-[13px] text-gray-800 leading-relaxed">
           <PassageParagraphs text={cleaned} />
         </div>

@@ -37,6 +37,7 @@ import {
 } from './test/helpers'
 import { QuestionGraphicView } from './test/QuestionGraphicView'
 import { ListeningAudioPlayer, LISTENING_PLAY_COUNTS } from './test/ListeningAudioPlayer'
+import { isListeningItem as isListeningItemFn } from '@/lib/study/listening-item'
 import {
   VoiceRecorderButton, SpeakingTimer, primeMicStream, releaseMicStream, getPrimedMicStream,
 } from './test/VoiceRecorder'
@@ -803,6 +804,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // continuously, because reading time IS the timed task.
   const isSpeakingSection = test?.family === 'toefl'
     && test?.section != null && /speaking/i.test(test.section)
+  // Deliberately TOEFL-only (unlike the player, which is per item): the
+  // clock freeze is ETS's rule. iTEP SLATE's 20 minutes INCLUDE the audio
+  // (blueprint §2B: fixed per-part answer windows), so its clock runs.
   const isListeningSection = test?.family === 'toefl'
     && test?.section != null && /listening/i.test(test.section)
   const currentSpeakingAudioPending = (() => {
@@ -2110,15 +2114,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // same passage set (Module 2 is appended mid-session and can
           // reuse Module 1's passageGroupIds).
           const groupInfo = passageGroupInfo(test.questions, currentIdx, test.moduleBreakIdx)
-          // TOEFL Listening items ship the spoken script inside the
-          // passage field prefixed with "Transcript:". Detect and route
-          // to the audio player so students actually LISTEN instead of
-          // reading. Falls back to the transcript view on browsers
-          // without SpeechSynthesis.
-          const isListeningItem = test.family === 'toefl'
-            && test.section != null
-            && /listening/i.test(test.section)
-            && /^\s*transcript:/i.test(q.passage ?? '')
+          // Listening items (any family — TOEFL, iTEP, ...) ship the
+          // spoken script inside the passage field prefixed with
+          // "Transcript:". Detected per ITEM (isListeningItem), not by
+          // family/section: keying on family === 'toefl' printed iTEP's
+          // transcripts — the answers — as text. The transcript is never
+          // rendered before submit; the result screen shows it after.
+          const isListeningItem = isListeningItemFn(q)
           return (
             <>
               {groupInfo && (
@@ -2154,7 +2156,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   transcript={q.passage!}
                   language={language}
                   // ETS Jan-2026: Listening plays ONCE per item on the
-                  // real test. No replays allowed.
+                  // real test. No replays allowed. iTEP SLATE is the same
+                  // ("audio plays once and there is no replay", blueprint §2B).
                   maxPlays={1}
                   onSpeakingChange={setAudioPlaying}
                   paused={paused}
