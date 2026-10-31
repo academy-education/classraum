@@ -16,6 +16,7 @@
  * Usage:
  *   node scripts/study-bank/prewarm-toefl-audio.mjs plan   # count + cost, no spend
  *   node scripts/study-bank/prewarm-toefl-audio.mjs run     # generate missing clips
+ *   ... plan|run --family itep                              # released (verified) iTEP listening rows
  *
  * Dedups (text, voice) across all items (many questions share one
  * recording) and skips clips already in storage, so re-runs are cheap.
@@ -28,6 +29,8 @@ const BUCKET = 'study-listening-audio'
 const MODEL = 'tts-1'
 const DIALOGUE_VOICE_ROTATION = ['nova', 'onyx', 'shimmer', 'echo']
 const MONOLOGUE_VOICE = 'nova'
+// W/M pinned (src/lib/study/listening-voice.ts FIXED_SPEAKER_VOICE; listening-voice.test.ts pins this replica).
+const FIXED_SPEAKER_VOICE = { W: 'nova', M: 'onyx' }
 const CONCURRENCY = 6
 
 function loadEnv() {
@@ -48,13 +51,13 @@ function parseTurns(cleaned) {
   const uniqueSpeakers = new Set(turns.map(t => t.speaker)).size
   return turns.length >= 2 && uniqueSpeakers >= 2 ? turns : []
 }
-function listeningSegments(passage) {
+export function listeningSegments(passage) {
   const cleaned = (passage || '').replace(/^\s*transcript:\s*/i, '').trim()
   const turns = parseTurns(cleaned)
   if (turns.length === 0) return [{ text: cleaned.replace(/^"|"$/g, ''), voice: MONOLOGUE_VOICE }]
   const speakerVoice = new Map()
   return turns.map(({ speaker, text }) => {
-    if (!speakerVoice.has(speaker)) speakerVoice.set(speaker, DIALOGUE_VOICE_ROTATION[speakerVoice.size % DIALOGUE_VOICE_ROTATION.length])
+    if (!speakerVoice.has(speaker)) speakerVoice.set(speaker, FIXED_SPEAKER_VOICE[speaker] ?? DIALOGUE_VOICE_ROTATION[speakerVoice.size % DIALOGUE_VOICE_ROTATION.length])
     return { text, voice: speakerVoice.get(speaker) }
   })
 }
@@ -76,6 +79,9 @@ const objectPath = (voice, text) =>
 
 async function main() {
   const mode = process.argv[2] || 'plan'
+  const fi = process.argv.indexOf('--family')
+  const FAMILY = fi >= 0 ? process.argv[fi + 1] : 'toefl'   // --family itep for released iTEP listening rows
+  if (!['toefl', 'itep'].includes(FAMILY)) throw new Error(`--family ${FAMILY}: toefl or itep`)
   const env = loadEnv()
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const openaiKey = env.OPENAI_API_KEY
@@ -87,7 +93,7 @@ async function main() {
     for (;;) {
       const { data, error } = await db.from('study_item_bank')
         .select('id, item_type, item')
-        .eq('family', 'toefl').eq('section', section).eq('verified', true).eq('archived', false)
+        .eq('family', FAMILY).eq('section', section).eq('verified', true).eq('archived', false)
         .range(from, from + 499)
       if (error) throw new Error(error.message)
       rows.push(...(data || []))
@@ -157,4 +163,5 @@ async function mapLimit(arr, limit, fn) {
   await Promise.all(workers)
 }
 
-main().catch(e => { console.error(e); process.exit(1) })
+// CLI only, so listening-voice.test.ts can import the replica.
+if (process.argv[1] && process.argv[1].endsWith('prewarm-toefl-audio.mjs')) main().catch(e => { console.error(e); process.exit(1) })

@@ -1,0 +1,552 @@
+{
+  "author": "A",
+  "sets": [
+    {
+      "set_id": "ITL1-A-D1",
+      "part": 1,
+      "setting": "corner shop",
+      "speakers": {
+        "W": "a cousin",
+        "M": "a cousin"
+      },
+      "title": "Drinks for the hike",
+      "transcript": "M: Let's get water instead of soda for the hike. It's going to be hot.\nW: OK. Is my aunt still picking us up at the park afterward?\nM: Yes, Mom said she'll be there at four.",
+      "names": [],
+      "other_caps": [
+        "Mom"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-A-D1-1",
+          "kind": "relationship",
+          "difficulty": "easy",
+          "prompt": "What is the relationship between the speakers?",
+          "choices": [
+            "They're twins.",
+            "They're cousins.",
+            "They're neighbors.",
+            "They're classmates."
+          ],
+          "correct_answer": "They're cousins.",
+          "why": "Is my aunt still picking us up at the park afterward?",
+          "explanation": "\"They're cousins.\" is correct: the woman asks \"Is my aunt still picking us up\", and the man answers \"Mom said she'll be there at four\", so his mother is her aunt.",
+          "distractor_rationales": [
+            {
+              "choice": "They're twins.",
+              "lure": "misreading",
+              "reason": "\"They're twins.\" is wrong: twins share a mother, but the woman calls the man's mother \"my aunt\"."
+            },
+            {
+              "choice": "They're neighbors.",
+              "lure": "misreading",
+              "reason": "\"They're neighbors.\" is wrong: the woman calls the man's mother \"my aunt\" (\"Is my aunt still picking us up\" / \"Mom said she'll be there\"), which makes them family, not just people who live nearby."
+            },
+            {
+              "choice": "They're classmates.",
+              "lure": "misreading",
+              "reason": "\"They're classmates.\" is wrong: nothing about school is said; what the script shows is that the man's \"Mom\" is the woman's \"aunt\" (\"Is my aunt still picking us up\"), so they are cousins."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-A-D2",
+      "part": 1,
+      "setting": "bus stop",
+      "speakers": {
+        "W": "a team member",
+        "M": "a team captain"
+      },
+      "title": "Forgotten shin guards",
+      "transcript": "M: You forgot your shin guards? Run home and get them. I'll ask the driver to wait.\nW: He won't wait that long. I'll just play without them.\nM: The referee won't allow that. Text your mom. She's coming to watch, isn't she? She can bring them.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-A-D2-1",
+          "kind": "intent-next",
+          "difficulty": "easy",
+          "prompt": "What will the woman probably do next?",
+          "choices": [
+            "Text her mom so she can bring them",
+            "Run home quickly to get her shin guards",
+            "Play without her shin guards",
+            "Ask the driver to wait for her"
+          ],
+          "correct_answer": "Text her mom so she can bring them",
+          "why": "Text your mom. She's coming to watch, isn't she? She can bring them.",
+          "explanation": "\"Text her mom so she can bring them\" is correct: the woman's own two ideas are both ruled out, and the man tells her \"Text your mom\" because \"She can bring them.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Run home quickly to get her shin guards",
+              "lure": "contradicted",
+              "reason": "\"Run home quickly to get her shin guards\" is the man's first idea, but the woman says the driver \"won't wait that long\", so she will not go home."
+            },
+            {
+              "choice": "Play without her shin guards",
+              "lure": "contradicted",
+              "reason": "\"Play without her shin guards\" is what the woman first wants (\"I'll just play without them\"), but the man answers \"The referee won't allow that.\""
+            },
+            {
+              "choice": "Ask the driver to wait for her",
+              "lure": "contradicted",
+              "reason": "\"Ask the driver to wait for her\" is ruled out: the man offered \"I'll ask the driver to wait\", and the woman replies \"He won't wait that long.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-A-D3",
+      "part": 1,
+      "setting": "school office",
+      "speakers": {
+        "W": "a new student",
+        "M": "an older student"
+      },
+      "title": "Joining the volleyball team",
+      "transcript": "M: Are you waiting for the secretary? She's out until two.\nW: Oh. I'm new, and I want to join the volleyball team. I came to get the form.\nM: You don't need a form. Just come to the gym on Thursday after school. That's what I did.",
+      "names": [],
+      "other_caps": [
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-A-D3-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "Why did the woman come to the office?",
+          "choices": [
+            "To get the form for joining the volleyball team",
+            "To ask when volleyball practice starts",
+            "To find out where the gym is located",
+            "To see the secretary about her timetable"
+          ],
+          "correct_answer": "To get the form for joining the volleyball team",
+          "why": "I want to join the volleyball team. I came to get the form.",
+          "explanation": "\"To get the form for joining the volleyball team\" is correct: the woman says \"I want to join the volleyball team. I came to get the form.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To ask when volleyball practice starts",
+              "lure": "detail",
+              "reason": "\"To ask when volleyball practice starts\" is wrong: she gives her reason as \"I came to get the form\"; the day (\"on Thursday after school\") is told to her by the man without her asking."
+            },
+            {
+              "choice": "To find out where the gym is located",
+              "lure": "detail",
+              "reason": "\"To find out where the gym is located\" is wrong: the gym comes up only in the man's advice (\"Just come to the gym\"); her reason is \"I came to get the form.\""
+            },
+            {
+              "choice": "To see the secretary about her timetable",
+              "lure": "misreading",
+              "reason": "\"To see the secretary about her timetable\" is wrong: the man only guesses \"Are you waiting for the secretary?\", and she answers that she came \"to get the form\" for the team; no timetable is mentioned."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-A-D4",
+      "part": 1,
+      "setting": "computer room",
+      "speakers": {
+        "W": "a teacher",
+        "M": "a student"
+      },
+      "title": "Finishing the club video",
+      "transcript": "W: This room closes for lunch in five minutes, so save your work now.\nM: But I'm almost done with the club video. Can I stay ten more minutes?\nW: Sorry, I've got a meeting. I'll come back at a quarter to one and open the room early for you.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-A-D4-1",
+          "kind": "intent-next",
+          "difficulty": "easy",
+          "prompt": "What does the woman say she will do?",
+          "choices": [
+            "Open the room again at a quarter to one",
+            "Stay in the room for ten more minutes",
+            "Skip a meeting to stay with the student",
+            "Lock the room until the end of the day"
+          ],
+          "correct_answer": "Open the room again at a quarter to one",
+          "why": "I'll come back at a quarter to one and open the room early for you.",
+          "explanation": "\"Open the room again at a quarter to one\" is correct: the woman says \"I'll come back at a quarter to one and open the room early for you.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Stay in the room for ten more minutes",
+              "lure": "contradicted",
+              "reason": "\"Stay in the room for ten more minutes\" is what the student asks for (\"Can I stay ten more minutes?\"), and the woman answers \"Sorry, I've got a meeting.\""
+            },
+            {
+              "choice": "Skip a meeting to stay with the student",
+              "lure": "contradicted",
+              "reason": "\"Skip a meeting to stay with the student\" is ruled out: she says \"Sorry, I've got a meeting\" as her reason for leaving, so she is going to it."
+            },
+            {
+              "choice": "Lock the room until the end of the day",
+              "lure": "contradicted",
+              "reason": "\"Lock the room until the end of the day\" is contradicted: the room \"closes for lunch\", and she will \"open the room early for you\" before one."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-A-C",
+      "part": 2,
+      "setting": "at school, between classes",
+      "speakers": {
+        "W": "a student",
+        "M": "a classmate"
+      },
+      "title": "One event for sports day",
+      "transcript": "M: Hey, did you see the email about sports day? Each class can only enter one team event this year, and we have to pick ours.\nW: Yeah, I saw it. I think we should do the relay. We've got some really fast runners.\nM: Fast runners, sure, but only four people run in the relay. Everyone else just stands there and watches.\nW: Hmm, that's true. So what were you thinking?\nM: Tug of war. Ten people pull at the same time, so almost half the class gets to be in it.\nW: I don't know. Last year Calla hurt her wrist in the tug of war, and she couldn't write for a week. I'd rather not pick anything where people fall over.\nM: That happened because they used that old rope, and it was really slippery. The gym teacher told me the school bought a new one, and everybody has to wear gloves now.\nW: Gloves? OK, that's better. But it's still kind of boring to watch, isn't it? People just lean back for two minutes.\nM: Not if the whole class is cheering. Anyway, what else is there?\nW: There's the obstacle course. Six people go one after another, and they have to climb, crawl and jump. Honestly, I'd rather do that.\nM: Six is better than four, I guess. But I'm terrible at climbing.\nW: You wouldn't have to be one of the six! Some people would run it, and the rest of us would cheer.\nM: OK, but I still think tug of war is the better choice. More people get to take part.\nW: And I still think it's boring. We're not going to agree, are we? Look, why don't we put all three to the class tomorrow and let everyone vote?\nM: Fine, but the form's due Friday, so we'd better vote in homeroom first thing.\nW: OK. I'll write a short note about each event tonight so people know what they're voting for. You can tell them about the new gloves.",
+      "names": [
+        "Calla"
+      ],
+      "other_caps": [
+        "Friday"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-A-C-1",
+          "kind": "attitude",
+          "difficulty": "medium",
+          "prompt": "What does the woman say about tug of war after she hears about the gloves?",
+          "choices": [
+            "It's rather dull to watch.",
+            "It's still unsafe for the class.",
+            "It's fun when the class cheers.",
+            "It's better than the obstacle course."
+          ],
+          "correct_answer": "It's rather dull to watch.",
+          "why": "But it's still kind of boring to watch, isn't it? People just lean back for two minutes.",
+          "explanation": "\"It's rather dull to watch.\" is correct: right after the gloves are mentioned she says \"it's still kind of boring to watch\" because \"People just lean back for two minutes.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It's still unsafe for the class.",
+              "lure": "wrong time",
+              "reason": "\"It's still unsafe for the class.\" was her worry before the gloves (\"Calla hurt her wrist\"); once she hears about them she says \"OK, that's better.\""
+            },
+            {
+              "choice": "It's fun when the class cheers.",
+              "lure": "wrong speaker",
+              "reason": "\"It's fun when the class cheers.\" is the man's reply (\"Not if the whole class is cheering\"); the woman herself calls it \"kind of boring to watch\"."
+            },
+            {
+              "choice": "It's better than the obstacle course.",
+              "lure": "contradicted",
+              "reason": "\"It's better than the obstacle course.\" is contradicted: after describing the obstacle course she says \"Honestly, I'd rather do that.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-C-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "Choosing an event for their class to enter",
+            "Agreeing that their class will do tug of war",
+            "How a classmate hurt her wrist in tug of war",
+            "What the obstacle course involves"
+          ],
+          "correct_answer": "Choosing an event for their class to enter",
+          "why": "Each class can only enter one team event this year, and we have to pick ours.",
+          "explanation": "\"Choosing an event for their class to enter\" is correct: the man opens with \"Each class can only enter one team event this year, and we have to pick ours\", and the whole talk compares the relay, tug of war and the obstacle course before they decide to \"let everyone vote\".",
+          "distractor_rationales": [
+            {
+              "choice": "Agreeing that their class will do tug of war",
+              "lure": "wrong outcome",
+              "reason": "\"Agreeing that their class will do tug of war\" gets the outcome wrong: they agree on nothing and decide to \"put all three to the class tomorrow and let everyone vote\"."
+            },
+            {
+              "choice": "How a classmate hurt her wrist in tug of war",
+              "lure": "detail",
+              "reason": "\"How a classmate hurt her wrist in tug of war\" is one moment (\"Last year Calla hurt her wrist\"), given as a reason against one event."
+            },
+            {
+              "choice": "What the obstacle course involves",
+              "lure": "detail",
+              "reason": "\"What the obstacle course involves\" is one turn (\"they have to climb, crawl and jump\"), one of three events they compare."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-C-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What problem does the man see with the relay?",
+          "choices": [
+            "Only four people run, and everyone else just watches.",
+            "Their class does not have enough fast runners.",
+            "The relay always ends too quickly to enjoy.",
+            "Last year their relay team lost the race."
+          ],
+          "correct_answer": "Only four people run, and everyone else just watches.",
+          "why": "only four people run in the relay. Everyone else just stands there and watches.",
+          "explanation": "\"Only four people run, and everyone else just watches.\" is correct: the man says \"only four people run in the relay. Everyone else just stands there and watches.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Their class does not have enough fast runners.",
+              "lure": "contradicted",
+              "reason": "\"Their class does not have enough fast runners.\" is contradicted: the woman says \"We've got some really fast runners\", and the man agrees (\"Fast runners, sure\")."
+            },
+            {
+              "choice": "The relay always ends too quickly to enjoy.",
+              "lure": "detail",
+              "reason": "\"The relay always ends too quickly to enjoy.\" is not his complaint: his problem is that \"only four people run in the relay\"; the complaint about watching is the woman's, about tug of war (\"kind of boring to watch\")."
+            },
+            {
+              "choice": "Last year their relay team lost the race.",
+              "lure": "misreading",
+              "reason": "\"Last year their relay team lost the race.\" is wrong: what happened \"Last year\" is that \"Calla hurt her wrist in the tug of war\"; the man's objection to the relay is \"only four people run in the relay\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-C-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the man, when is the sports day form due?",
+          "choices": [
+            "By Friday",
+            "By tomorrow",
+            "By Thursday",
+            "By Wednesday"
+          ],
+          "correct_answer": "By Friday",
+          "why": "the form's due Friday, so we'd better vote in homeroom first thing.",
+          "explanation": "\"By Friday\" is correct: the man says \"the form's due Friday\".",
+          "distractor_rationales": [
+            {
+              "choice": "By tomorrow",
+              "lure": "misreading",
+              "reason": "\"By tomorrow\" is when they will ask the class (\"put all three to the class tomorrow\"), not when the form is due; the man says \"the form's due Friday\"."
+            },
+            {
+              "choice": "By Thursday",
+              "lure": "detail",
+              "reason": "\"By Thursday\" is wrong: the man says \"the form's due Friday\"."
+            },
+            {
+              "choice": "By Wednesday",
+              "lure": "detail",
+              "reason": "\"By Wednesday\" is wrong: the man says \"the form's due Friday\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-A-L",
+      "part": 3,
+      "setting": "a class lecture",
+      "speakers": {
+        "S": "a teacher giving a short lecture to a high-school class"
+      },
+      "title": "Getting used to the heat",
+      "transcript": "Many of you play on school teams that start training in the August heat. So today I want to talk about a problem that coaches and athletes have struggled with for a long time, and about a fairly simple solution.\n\nHere's the problem. When you exercise, your muscles produce a lot of heat. Your body gets rid of most of it by sweating. The sweat evaporates from your skin, and that cools you down. But if you've spent the summer indoors, your body isn't ready to do that well. On a hot day, your temperature can climb faster than your body can bring it down. That's when people start to feel dizzy, sick or confused, and in the worst cases, heat illness can be life-threatening. And here's the part that surprises people. Many of the serious cases happen in the first few days of practice, not in the middle of the season.\n\nNow, you might think the answer is just to drink more water. Water matters, and you should bring a full bottle to every practice. But water alone doesn't fix this. You can drink plenty and still have a body that hasn't learned to handle the heat.\n\nSo what's the solution? It's called acclimatization. That's a long word, but it just means getting used to the heat slowly. If you exercise in warm weather a little at a time, over about ten days to two weeks, your body changes in some useful ways. First, you start sweating sooner, before you get really hot. Second, you sweat more, so you cool down better. Third, your sweat gets less salty, so you keep more of the salt your body needs. And your body holds more fluid in your blood, which means your heart doesn't have to beat as fast to do the same work.\n\nThink of it like learning a new song on the piano. Nobody plays the whole thing perfectly on day one. You practice a bit each day, and your hands slowly figure it out. Your body learns to deal with heat in a similar way, step by step.\n\nThis year, our school's outdoor teams are going to follow this idea. For the first few days, practices will be shorter, about an hour, and only once a day. Players will wear light clothes, not full kit. Then each day the coaches will add a little more time and a little more effort. Only in the second week will there be longer sessions.\n\nSome of you have told me this sounds too easy, and that real athletes should just push through. I understand that feeling, but I honestly think it's the wrong way to look at it. Going slowly at the start isn't being soft. It's what lets you train hard for the rest of the season without getting sick.\n\nOne last thing. These changes don't last forever. If you stop training in the heat for a few weeks, your body slowly loses them. So if you go away on a trip in the middle of the season, tell your coach, and you'll be eased back in.",
+      "names": [],
+      "other_caps": [
+        "August"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-A-L-1",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker talk about learning a new song on the piano?",
+          "choices": [
+            "To show the body learns to handle heat slowly",
+            "To suggest that students take up music to relax",
+            "To explain why each practice begins with a warm-up",
+            "To show that skills fade without daily practice"
+          ],
+          "correct_answer": "To show the body learns to handle heat slowly",
+          "why": "Your body learns to deal with heat in a similar way, step by step.",
+          "explanation": "\"To show the body learns to handle heat slowly\" is correct: after the piano example the speaker says \"Your body learns to deal with heat in a similar way, step by step.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To suggest that students take up music to relax",
+              "lure": "misreading",
+              "reason": "\"To suggest that students take up music to relax\" is wrong: the piano is only a comparison, and the speaker draws the point \"Your body learns to deal with heat in a similar way\"."
+            },
+            {
+              "choice": "To explain why each practice begins with a warm-up",
+              "lure": "misreading",
+              "reason": "\"To explain why each practice begins with a warm-up\" is wrong: no warm-up is described; the comparison ends with \"Your body learns to deal with heat in a similar way, step by step.\""
+            },
+            {
+              "choice": "To show that skills fade without daily practice",
+              "lure": "wrong part",
+              "reason": "\"To show that skills fade without daily practice\" confuses the example with the last point (\"your body slowly loses them\"); the piano example is about learning \"step by step\", as in \"You practice a bit each day, and your hands slowly figure it out.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-L-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the lecture mainly about?",
+          "choices": [
+            "Athletes should get used to the heat little by little to stay safe.",
+            "Athletes should train hard in the heat from day one to adapt faster.",
+            "Athletes should do their early training indoors to avoid the heat.",
+            "Athletes should wait for cooler weather before they train outdoors."
+          ],
+          "correct_answer": "Athletes should get used to the heat little by little to stay safe.",
+          "why": "it just means getting used to the heat slowly.",
+          "explanation": "\"Athletes should get used to the heat little by little to stay safe.\" is correct: the speaker presents heat illness as the problem and acclimatization, \"getting used to the heat slowly\", as the solution, which \"lets you train hard for the rest of the season without getting sick.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Athletes should train hard in the heat from day one to adapt faster.",
+              "lure": "wrong claim",
+              "reason": "\"Athletes should train hard in the heat from day one to adapt faster.\" reverses the claim: the speaker calls pushing through \"the wrong way to look at it\" and says \"Going slowly at the start isn't being soft.\""
+            },
+            {
+              "choice": "Athletes should do their early training indoors to avoid the heat.",
+              "lure": "wrong claim",
+              "reason": "\"Athletes should do their early training indoors to avoid the heat.\" is the cause of the problem in the lecture: \"if you've spent the summer indoors, your body isn't ready to do that well.\""
+            },
+            {
+              "choice": "Athletes should wait for cooler weather before they train outdoors.",
+              "lure": "wrong claim",
+              "reason": "\"Athletes should wait for cooler weather before they train outdoors.\" is wrong: the speaker's plan is to \"exercise in warm weather a little at a time\", and the school's \"outdoor teams are going to follow this idea\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-L-3",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the speaker mention the idea of drinking more water?",
+          "choices": [
+            "To correct a common idea about what solves the problem",
+            "To explain that water is the main way to prevent heat illness",
+            "To show how sweating makes the body lose water",
+            "To introduce the topic of eating well before games"
+          ],
+          "correct_answer": "To correct a common idea about what solves the problem",
+          "why": "But water alone doesn't fix this.",
+          "explanation": "\"To correct a common idea about what solves the problem\" is correct: the speaker says \"you might think the answer is just to drink more water\" and then \"But water alone doesn't fix this.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To explain that water is the main way to prevent heat illness",
+              "lure": "contradicted",
+              "reason": "\"To explain that water is the main way to prevent heat illness\" is the opposite of the point: \"water alone doesn't fix this\", and the solution named is acclimatization."
+            },
+            {
+              "choice": "To show how sweating makes the body lose water",
+              "lure": "wrong part",
+              "reason": "\"To show how sweating makes the body lose water\" is wrong: sweating is explained earlier as cooling (\"that cools you down\"); water is raised as a possible answer, \"you might think the answer is just to drink more water\"."
+            },
+            {
+              "choice": "To introduce the topic of eating well before games",
+              "lure": "misreading",
+              "reason": "\"To introduce the topic of eating well before games\" is wrong: food is never discussed; the water point ends with \"You can drink plenty and still have a body that hasn't learned to handle the heat.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-L-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the speaker, what will team practices be like in the first few days?",
+          "choices": [
+            "Sessions will be short and take place once a day.",
+            "Practices will be held twice a day in full kit.",
+            "Players will skip practice on the hottest afternoons.",
+            "Sessions will be longer than in the second week."
+          ],
+          "correct_answer": "Sessions will be short and take place once a day.",
+          "why": "For the first few days, practices will be shorter, about an hour, and only once a day.",
+          "explanation": "\"Sessions will be short and take place once a day.\" is correct: the speaker says \"practices will be shorter, about an hour, and only once a day.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Practices will be held twice a day in full kit.",
+              "lure": "contradicted",
+              "reason": "\"Practices will be held twice a day in full kit.\" is contradicted twice: \"only once a day\" and \"Players will wear light clothes, not full kit.\""
+            },
+            {
+              "choice": "Players will skip practice on the hottest afternoons.",
+              "lure": "detail",
+              "reason": "\"Players will skip practice on the hottest afternoons.\" is wrong: the plan described is shorter practices \"about an hour, and only once a day\", with nothing about skipping."
+            },
+            {
+              "choice": "Sessions will be longer than in the second week.",
+              "lure": "reversed",
+              "reason": "\"Sessions will be longer than in the second week.\" reverses the plan: \"Only in the second week will there be longer sessions.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-L-5",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What change in the body does the speaker describe?",
+          "choices": [
+            "A person's sweat ends up containing less salt than before",
+            "Sweating starts later, once the body is very hot",
+            "The heart beats faster to do the same work",
+            "The body makes less sweat to save water"
+          ],
+          "correct_answer": "A person's sweat ends up containing less salt than before",
+          "why": "Third, your sweat gets less salty, so you keep more of the salt your body needs.",
+          "explanation": "\"A person's sweat ends up containing less salt than before\" is correct: the speaker says \"your sweat gets less salty, so you keep more of the salt your body needs.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Sweating starts later, once the body is very hot",
+              "lure": "reversed",
+              "reason": "\"Sweating starts later, once the body is very hot\" reverses the change: \"you start sweating sooner, before you get really hot.\""
+            },
+            {
+              "choice": "The heart beats faster to do the same work",
+              "lure": "reversed",
+              "reason": "\"The heart beats faster to do the same work\" reverses the change: \"your heart doesn't have to beat as fast to do the same work.\""
+            },
+            {
+              "choice": "The body makes less sweat to save water",
+              "lure": "reversed",
+              "reason": "\"The body makes less sweat to save water\" reverses the change: \"Second, you sweat more, so you cool down better.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-A-L-6",
+          "kind": "attitude",
+          "difficulty": "hard",
+          "prompt": "What is the speaker's opinion of the view that real athletes should just push through?",
+          "choices": [
+            "It's understandable, but it's the wrong way to look at it.",
+            "It's correct, but only for the strongest athletes.",
+            "It's harmless as long as players drink enough water.",
+            "It's a useful attitude to have during the first few days of practice."
+          ],
+          "correct_answer": "It's understandable, but it's the wrong way to look at it.",
+          "why": "I understand that feeling, but I honestly think it's the wrong way to look at it.",
+          "explanation": "\"It's understandable, but it's the wrong way to look at it.\" is correct: the speaker says \"I understand that feeling, but I honestly think it's the wrong way to look at it.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It's correct, but only for the strongest athletes.",
+              "lure": "contradicted",
+              "reason": "\"It's correct, but only for the strongest athletes.\" is contradicted: the speaker calls it \"the wrong way to look at it\" and makes no exception; the plan is for all \"our school's outdoor teams\"."
+            },
+            {
+              "choice": "It's harmless as long as players drink enough water.",
+              "lure": "contradicted",
+              "reason": "\"It's harmless as long as players drink enough water.\" is contradicted: \"water alone doesn't fix this\", and the speaker calls pushing through \"the wrong way to look at it\"."
+            },
+            {
+              "choice": "It's a useful attitude to have during the first few days of practice.",
+              "lure": "contradicted",
+              "reason": "\"It's a useful attitude to have during the first few days of practice.\" is contradicted: the first days are when \"Many of the serious cases happen\", and \"Going slowly at the start isn't being soft.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "items_read": 56,
+  "patterns": [
+    {
+      "property": "lecture: an option asserting the position the speaker rejects (the popular belief) or declines to take (a resolved verdict in C's open debate) is never the key",
+      "scope": "part 3",
+      "items": ["ITL1-A-L-2", "ITL1-A-L-3", "ITL1-A-L-6", "ITL1-B-L-1", "ITL1-B-L-2", "ITL1-B-L-3", "ITL1-B-L-4", "ITL1-B-L-6", "ITL1-C-L-1", "ITL1-C-L-6", "ITL1-D-L-1", "ITL1-D-L-2", "ITL1-D-L-4", "ITL1-D-L-5", "ITL1-D-L-6"],
+      "varies_in": 15,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "0/15. Three of the four lectures (A heat, B worms, D violins) have the same shape: common belief, then refuted. Each set carries one or two options restating that belief, and none is ever the key. Several prompts name the belief outright ('the view that real athletes should just push through', 'the idea that worms come up to escape drowning', 'the old guesses that the secret was the wood or the varnish'), so a student who has seen one set can drop belief-endorsing options across that whole set without listening. Distractors: 'It's correct, and the class's count proved it.' (B-L-1), 'Why worms come up in heavy rain to escape drowning' (B-L-2), 'Most of them picked one of the famous old Italian violins' (D-L-4), 'To admit that the old violins won most of the blind tests' (D-L-6). In C's lecture the speaker says she can't decide, and the options that settle it ('How fairness made one town give up bargaining', 'To prove that fairness was the true cause') are never keys. Partly construct (you must know the speaker's view), but it repeats with every author."
+    },
+    {
+      "property": "key idea reused across lectures: 'the common view is understandable but wrong'",
+      "scope": "part 3 (authors A, B, D)",
+      "items": ["ITL1-A-L-6", "ITL1-B-L-1", "ITL1-A-L-3", "ITL1-D-L-2"],
+      "varies_in": 4,
+      "key_has": 4,
+      "use": "pick",
+      "evidence": "The two lecture attitude items have near-identical keys from different authors: A-L-6 'It's understandable, but it's the wrong way to look at it.' and B-L-1 'It's reasonable, but the evidence doesn't support it.' (concede, then reject; the distractors are 'It's correct, but ...' or harmless or useful). The same idea is the key in A-L-3 'To correct a common idea about what solves the problem' and D-L-2 'They tried to explain a difference that mostly isn't really there'. A student who learns this from one set can pick the debunking option in the next."
+    },
+    {
+      "property": "purpose: an option beginning 'To suggest ...' is never the key",
+      "scope": "kind purpose",
+      "items": ["ITL1-A-L-1", "ITL1-B-D3-1", "ITL1-B-C-3", "ITL1-C-D3-1", "ITL1-C-L-6", "ITL1-D-L-1", "ITL1-D-L-6"],
+      "varies_in": 7,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "0/7, across all four authors. 'To suggest that students take up music to relax' (A-L-1), 'To suggest counting butterflies instead of bees' (B-C-3), 'To suggest a visit to the aunt soon' (C-D3), 'To suggest the experiments were not fair to the old violins' (D-L-6). Purpose keys name a discourse job instead ('To show', 'To warn', 'To correct', 'To recall', 'To keep ...'). 'To ask' is also never the key (B-D3, C-D3), but that is only 2 items. 'To explain' is the key in 1 of 6."
+    },
+    {
+      "property": "an option comparing two named things ('X is more/better/longer than Y') is never the key",
+      "scope": "batch",
+      "items": ["ITL1-A-C-1", "ITL1-A-L-4", "ITL1-C-D2-1", "ITL1-C-C-3", "ITL1-C-C-4", "ITL1-C-L-2", "ITL1-C-L-4", "ITL1-D-C-3", "ITL1-A-L-5", "ITL1-B-L-5"],
+      "varies_in": 10,
+      "key_has": 2,
+      "use": "eliminate",
+      "evidence": "Of all comparative options: key 2/16 where comparatives vary, and 0/6 in part 3. Restricted to options comparing two different named things, the key has it 0/8: 'It's better than the obstacle course.', 'Sessions will be longer than in the second week.', 'It's bigger than the store downtown', 'He offers better wages than the big store', 'They earned more than the older clerks', 'The mayor paid less for thread than farmers did'. The only two keys with 'than' compare a thing with itself ('less salt than before', 'much faster than pushing through the soil'). This is a recurring distractor recipe: an invented comparison."
+    },
+    {
+      "property": "main-idea: the key is the widest/most general option and never the longest",
+      "scope": "kind main-idea",
+      "items": ["ITL1-A-C-2", "ITL1-B-C-4", "ITL1-B-L-2", "ITL1-C-C-2", "ITL1-C-L-1", "ITL1-D-C-2", "ITL1-A-L-2", "ITL1-D-L-5"],
+      "varies_in": 6,
+      "key_has": 6,
+      "use": "pick",
+      "evidence": "Widest in 6/6 where generality varies (A-L-2 and D-L-5 use four parallel frames, so they are excluded). In every set the recipe is the same: one wrong-resolution option plus narrow single-moment options. 'Choosing an event for their class to enter' vs 'Agreeing that their class will do tug of war' / 'What the obstacle course involves'; 'Which of two summer jobs the man should take' vs 'The bus route from town out to the highway'; 'The debate over why shops stopped haggling' vs 'How one draper hired young clerks from farms'. By character length the key is never the longest (0/8)."
+    },
+    {
+      "property": "intent-next: the speaker's own first plan (the obvious action that gets talked down) is never the key",
+      "scope": "kind intent-next",
+      "items": ["ITL1-A-D2-1", "ITL1-A-D4-1", "ITL1-C-D1-1", "ITL1-C-C-1", "ITL1-D-D2-1"],
+      "varies_in": 5,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "0/5. Distractors that are never the key: 'Run home quickly to get her shin guards' / 'Play without her shin guards', 'Stay in the room for ten more minutes', 'Wait for his father at the front gate', 'Take the bus out to the supermarket', 'Climb up to the branch using the woman's ladder'. The key is always the last plan stated, and in 4/5 it brings in a third party (mom, teammate, Kurt, park staff). In every conversation (all four part-2 conversations, and most part-1 dialogues) one side gives way, or both settle on a compromise; nobody holds out. Mostly construct (you must hear which plan came first), but a test-wise student can drop the 'obvious default action' option."
+    },
+    {
+      "property": "part 1: the key is never the shortest option",
+      "scope": "part 1",
+      "items": ["ITL1-A-D1-1", "ITL1-A-D2-1", "ITL1-A-D3-1", "ITL1-A-D4-1", "ITL1-B-D1-1", "ITL1-B-D2-1", "ITL1-B-D3-1", "ITL1-B-D4-1", "ITL1-C-D1-1", "ITL1-C-D2-1", "ITL1-C-D3-1", "ITL1-C-D4-1", "ITL1-D-D1-1", "ITL1-D-D2-1", "ITL1-D-D3-1", "ITL1-D-D4-1"],
+      "varies_in": 16,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "Shortest by characters in 0/16 (4.5 expected by chance). Part-1 key length ranks are 3,2,1,1,2,2,1,2,3,2,2,3,2,1,3,2. Examples: 'Text her mom so she can bring them' (2nd of 4), 'Get help from the staff who look after the park grounds' (longest), 'The woman would be gone before the fireflies light up.' (2nd). Batch-wide the key is rank 2 in 22/56, which is high but mixed."
+    },
+    {
+      "property": "the key repeats prompt words least",
+      "scope": "batch",
+      "items": ["ITL1-A-C-3", "ITL1-A-L-4", "ITL1-A-L-5", "ITL1-A-L-6", "ITL1-B-D3-1", "ITL1-B-C-1", "ITL1-B-L-3", "ITL1-B-L-4", "ITL1-B-L-6", "ITL1-C-L-2", "ITL1-C-L-3", "ITL1-D-C-3", "ITL1-D-C-4", "ITL1-D-L-2", "ITL1-D-L-3", "ITL1-D-L-6"],
+      "varies_in": 19,
+      "key_has": 16,
+      "use": "eliminate",
+      "evidence": "The key ties for the lowest prompt-word overlap in 16 of the 19 items where overlap varies. Chance is 11.3 of 19 (59%), so this is above chance but weak. An option that echoes the prompt is rarely the key: B-L-6 prompt 'worms left in the middle of a wide path' with distractor 'They often stay there safely until it rains again'; D-C-3 prompt 'cut the head open' with distractor 'too heavy to carry'; D-L-2 prompt 'old guesses ... wood' with distractor 'old wood gives a violin its special sound'."
+    },
+    {
+      "property": "the key's first word is unique among the four options",
+      "scope": "batch",
+      "items": ["ITL1-A-D2-1", "ITL1-A-C-3", "ITL1-B-L-2", "ITL1-B-L-4", "ITL1-C-D2-1", "ITL1-C-D4-1", "ITL1-D-C-3", "ITL1-D-L-4"],
+      "varies_in": 27,
+      "key_has": 21,
+      "use": "pick",
+      "evidence": "21/27 (78%), but chance is 19.0 of 27 (70%), so this is NOT a usable tell. It is listed only because it passes the 75% threshold. Examples: 'Student groups pay...' vs 'It's/It's/Its', 'Coworkers...' vs 'A/A/Guests', 'Many of them survived...' vs 'Most/The/The'."
+    }
+  ],
+  "checked_clean": [
+    "key is the longest option by characters: 13/56 (chance 14); by words 22/50. Mixed; no part or author above 4/14",
+    "key's length rank over the batch: 1:13, 2:22, 3:10, 4:11; by author A 4/5/2/3, B 3/7/2/2, C 3/6/2/3, D 3/4/4/3. Rank 2 is elevated but no rank is near 75% or 0%",
+    "key is the shortest option: 12/56 batch-wide (chance 14). The only clean slice is part 1 at 0/16 (listed above); part 2 4/16, part 3 8/24",
+    "key has the most transcript-word overlap: 26/55 (chance 15.8); lowest overlap 17/55 (chance 16.3). Elevated toward verbatim keys (author B 7/14, chance 3.5) but under 75%. Verbatim examples are A-C-3 and C-C-3; paraphrased keys include B-D2 and C-D1",
+    "hedges (may/some/probably/often/many/most/about/can): key has one in 9/18. Part 3 5/10, part 1 2/6",
+    "absolutes (all/only/never/always/every/nobody/at once/too): key has one in 5/13. Keys 'Only four people run...' and 'So that nobody could recognise...'; distractors 'always ends too quickly' and 'known to be special at once'",
+    "negatives: key has one in 4/11. Contrast words: 4/10. Numbers: 7/11 (part 2 3/4, too few items)",
+    "comparatives overall: key has one in 2/16. Only the explicit X-than-Y subset is clean (listed above)",
+    "purpose items whose key starts 'To show': key in 3 of the 5 where 'To show' varies. Mixed",
+    "intent-next and conversation outcomes: does the older or in-charge speaker prevail? 5/7 yes (A-D2, A-D4, C-D1, C-C, D-C); no in C-D2 (club leader takes the member's advice) and B-C (teacher yields to the student). Mixed",
+    "attitude tone (key most positive or cooperative): A-C-1 negative ('rather dull'), C-C-4 positive, D-C-3 afraid, A-L-6 and B-L-1 concede-then-reject. Mixed apart from the reused lecture idea listed above",
+    "relationship (3 items): keys 'They're cousins.', 'A student and the teacher who read the project proposal', 'Coworkers at the same store'. Too few items, and no recipe in common",
+    "inference items in the 'The woman ...' frame (B-D1, D-D1, D-D4): all four options share that frame, so there is no frame tell",
+    "detail items: the opposite-of-a-stated-fact distractor ('Sweating starts later', 'It's bigger than', 'Most of them died within a few hours') is never the key, but by construction it needs the transcript to identify, so it was not counted as a cross-item tell",
+    "author-level: no author reaches the 75%/0% band on length rank, transcript overlap or hedges. Every listed pattern spans two or more authors"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "1": {"verdict": "unique", "note": "Monday + three days = Thursday; 'That's fine' rules out preferring another book."},
+  "2": {"verdict": "unique", "note": "'Good evening. Where to?' reads like a taxi driver while 'A return to Gillam' is a rail-ticket request; minor register mismatch, not a hold. Firefly timing unverified but plausible."},
+  "3": {"verdict": "unique", "note": "Running home rejected (driver won't wait), playing without rejected by referee rule; mom suggestion is the remaining option."},
+  "4": {"verdict": "unique"},
+  "5": {"verdict": "unique", "note": "'our manager' rules out manager/assistant and customer readings."},
+  "6": {"verdict": "unique"},
+  "7": {"verdict": "unique", "note": "'I'll wait by the front gate, or should I help Jenna...' mixes a statement and a question; slightly awkward, one phrase only."},
+  "8": {"verdict": "unique"},
+  "9": {"verdict": "unique"},
+  "10": {"verdict": "unique", "note": "'It's fun when the class cheers' is the man's rebuttal; 'OK, that's better' rules out 'still unsafe'."},
+  "11": {"verdict": "unique", "note": "Safety is a sub-thread, not the gist; they explicitly do not agree on tug of war."},
+  "12": {"verdict": "unique"},
+  "13": {"verdict": "unique", "note": "'tomorrow' is when they vote, not the form deadline; clean detail item."},
+  "14": {"verdict": "unique", "note": "Fade-without-practice is a later point in the talk, not the purpose of the piano analogy."},
+  "15": {"verdict": "unique", "note": "Fact check: 10-14 day acclimatization, earlier/greater/less salty sweat, increased plasma volume and lower heart rate, early-practice risk, and decay after weeks off are all consistent with standard heat-acclimatization guidance. Lecture uses contractions throughout."},
+  "16": {"verdict": "unique"},
+  "17": {"verdict": "unique"},
+  "18": {"verdict": "unique", "note": "Each distractor reverses a stated change (sweat later, faster heart, less sweat)."},
+  "19": {"verdict": "unique", "note": "'I wish we'd started doing this years ago' directly supports the key."},
+  "20": {"verdict": "broken", "defect_type": "source_underspecified", "other": "They're twins.", "reason": "The key assumes 'she' in 'Mom said she'll be there at four' refers to Mom and that Mom is the woman's aunt. The line reads at least as naturally with 'she' = the aunt and Mom merely passing the message on. On that reading the speakers could be siblings (making 'They're twins' the only sibling option), or classmates or neighbors whose parents arranged the lift. Three or more options fit some plausible reading of one ambiguous pronoun, and a listener hears it once. 'my aunt' versus 'Mom' is the only intended clue, and it is too thin to settle the answer."},
+  "21": {"verdict": "unique", "note": "Fact check: plants bending toward light (phototropism) is correct."},
+  "22": {"verdict": "unique", "note": "Option A says 'computer room', which the transcript never states ('save your work' implies it). Harmless."},
+  "23": {"verdict": "unique", "note": "'The farmer who found it thought the same as you' endorses the woman's 'looks like the stones in our garden'; the 30 years rule out 'known at once' and 'museum soon after'."},
+  "24": {"verdict": "unique"},
+  "25": {"verdict": "unique", "note": "'a bit farther' rules out 'closer'; 'smaller' rules out 'bigger'."},
+  "26": {"verdict": "unique"},
+  "batch_patterns": [
+    {"pattern": "key_position", "items": [3, 14, 19], "evidence": "Key letter counts over 26 items: A 9, B 8, C 6, D 3 (chance is 6.5 each). D is the key only 3 times (11.5%) and A/B together 17 of 26 (65%), so a student who never picks D loses little. The skew is mild but should be rebalanced."}
+  ]
+}

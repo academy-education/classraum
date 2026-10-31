@@ -1,0 +1,982 @@
+[
+ {
+  "author": "A",
+  "set_id": "ITL1-A-D1",
+  "part": 1,
+  "setting": "corner shop",
+  "speakers": {
+   "W": "a cousin",
+   "M": "a cousin"
+  },
+  "transcript": "M: Let's get water instead of soda for the hike. It's going to be hot.\nW: OK. Is my aunt still picking us up at the park afterward?\nM: Yes, Mom said she'll be there at four.",
+  "items": [
+   {
+    "qid": "ITL1-A-D1-1",
+    "kind": "relationship",
+    "prompt": "What is the relationship between the speakers?",
+    "choices": [
+     "They're twins.",
+     "They're cousins.",
+     "They're neighbors.",
+     "They're classmates."
+    ],
+    "key": "They're cousins."
+   }
+  ]
+ },
+ {
+  "author": "A",
+  "set_id": "ITL1-A-D2",
+  "part": 1,
+  "setting": "bus stop",
+  "speakers": {
+   "W": "a team member",
+   "M": "a team captain"
+  },
+  "transcript": "M: You forgot your shin guards? Run home and get them. I'll ask the driver to wait.\nW: He won't wait that long. I'll just play without them.\nM: The referee won't allow that. Text your mom. She's coming to watch, isn't she? She can bring them.",
+  "items": [
+   {
+    "qid": "ITL1-A-D2-1",
+    "kind": "intent-next",
+    "prompt": "What will the woman probably do next?",
+    "choices": [
+     "Text her mom so she can bring them",
+     "Run home quickly to get her shin guards",
+     "Play without her shin guards",
+     "Ask the driver to wait for her"
+    ],
+    "key": "Text her mom so she can bring them"
+   }
+  ]
+ },
+ {
+  "author": "A",
+  "set_id": "ITL1-A-D3",
+  "part": 1,
+  "setting": "school office",
+  "speakers": {
+   "W": "a new student",
+   "M": "an older student"
+  },
+  "transcript": "M: Are you waiting for the secretary? She's out until two.\nW: Oh. I'm new, and I want to join the volleyball team. I came to get the form.\nM: You don't need a form. Just come to the gym on Thursday after school. That's what I did.",
+  "items": [
+   {
+    "qid": "ITL1-A-D3-1",
+    "kind": "detail",
+    "prompt": "Why did the woman come to the office?",
+    "choices": [
+     "To get the form for joining the volleyball team",
+     "To ask when volleyball practice starts",
+     "To find out where the gym is located",
+     "To see the secretary about her timetable"
+    ],
+    "key": "To get the form for joining the volleyball team"
+   }
+  ]
+ },
+ {
+  "author": "A",
+  "set_id": "ITL1-A-D4",
+  "part": 1,
+  "setting": "computer room",
+  "speakers": {
+   "W": "a teacher",
+   "M": "a student"
+  },
+  "transcript": "W: This room closes for lunch in five minutes, so save your work now.\nM: But I'm almost done with the club video. Can I stay ten more minutes?\nW: Sorry, I've got a meeting. I'll come back at a quarter to one and open the room early for you.",
+  "items": [
+   {
+    "qid": "ITL1-A-D4-1",
+    "kind": "intent-next",
+    "prompt": "What does the woman say she will do?",
+    "choices": [
+     "Open the room again at a quarter to one",
+     "Stay in the room for ten more minutes",
+     "Skip a meeting to stay with the student",
+     "Lock the room until the end of the day"
+    ],
+    "key": "Open the room again at a quarter to one"
+   }
+  ]
+ },
+ {
+  "author": "A",
+  "set_id": "ITL1-A-C",
+  "part": 2,
+  "setting": "at school, between classes",
+  "speakers": {
+   "W": "a student",
+   "M": "a classmate"
+  },
+  "transcript": "M: Hey, did you see the email about sports day? Each class can only enter one team event this year, and we have to pick ours.\nW: Yeah, I saw it. I think we should do the relay. We've got some really fast runners.\nM: Fast runners, sure, but only four people run in the relay. Everyone else just stands there and watches.\nW: Hmm, that's true. So what were you thinking?\nM: Tug of war. Ten people pull at the same time, so almost half the class gets to be in it.\nW: I don't know. Last year Calla hurt her wrist in the tug of war, and she couldn't write for a week. I'd rather not pick anything where people fall over.\nM: That happened because they used that old rope, and it was really slippery. The gym teacher told me the school bought a new one, and everybody has to wear gloves now.\nW: Gloves? OK, that's better. But it's still kind of boring to watch, isn't it? People just lean back for two minutes.\nM: Not if the whole class is cheering. Anyway, what else is there?\nW: There's the obstacle course. Six people go one after another, and they have to climb, crawl and jump. Honestly, I'd rather do that.\nM: Six is better than four, I guess. But I'm terrible at climbing.\nW: You wouldn't have to be one of the six! Some people would run it, and the rest of us would cheer.\nM: OK, but I still think tug of war is the better choice. More people get to take part.\nW: And I still think it's boring. We're not going to agree, are we? Look, why don't we put all three to the class tomorrow and let everyone vote?\nM: Fine, but the form's due Friday, so we'd better vote in homeroom first thing.\nW: OK. I'll write a short note about each event tonight so people know what they're voting for. You can tell them about the new gloves.",
+  "items": [
+   {
+    "qid": "ITL1-A-C-1",
+    "kind": "attitude",
+    "prompt": "What does the woman say about tug of war after she hears about the gloves?",
+    "choices": [
+     "It's rather dull to watch.",
+     "It's still unsafe for the class.",
+     "It's fun when the class cheers.",
+     "It's better than the obstacle course."
+    ],
+    "key": "It's rather dull to watch."
+   },
+   {
+    "qid": "ITL1-A-C-2",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "Choosing an event for their class to enter",
+     "Agreeing that their class will do tug of war",
+     "How a classmate hurt her wrist in tug of war",
+     "What the obstacle course involves"
+    ],
+    "key": "Choosing an event for their class to enter"
+   },
+   {
+    "qid": "ITL1-A-C-3",
+    "kind": "detail",
+    "prompt": "What problem does the man see with the relay?",
+    "choices": [
+     "Only four people run, and everyone else just watches.",
+     "Their class does not have enough fast runners.",
+     "The relay always ends too quickly to enjoy.",
+     "Last year their relay team lost the race."
+    ],
+    "key": "Only four people run, and everyone else just watches."
+   },
+   {
+    "qid": "ITL1-A-C-4",
+    "kind": "detail",
+    "prompt": "According to the man, when is the sports day form due?",
+    "choices": [
+     "By Friday",
+     "By tomorrow",
+     "By Thursday",
+     "By Wednesday"
+    ],
+    "key": "By Friday"
+   }
+  ]
+ },
+ {
+  "author": "A",
+  "set_id": "ITL1-A-L",
+  "part": 3,
+  "setting": "a class lecture",
+  "speakers": {
+   "S": "a teacher giving a short lecture to a high-school class"
+  },
+  "transcript": "Many of you play on school teams that start training in the August heat. So today I want to talk about a problem that coaches and athletes have struggled with for a long time, and about a fairly simple solution.\n\nHere's the problem. When you exercise, your muscles produce a lot of heat. Your body gets rid of most of it by sweating. The sweat evaporates from your skin, and that cools you down. But if you've spent the summer indoors, your body isn't ready to do that well. On a hot day, your temperature can climb faster than your body can bring it down. That's when people start to feel dizzy, sick or confused, and in the worst cases, heat illness can be life-threatening. And here's the part that surprises people. Many of the serious cases happen in the first few days of practice, not in the middle of the season.\n\nNow, you might think the answer is just to drink more water. Water matters, and you should bring a full bottle to every practice. But water alone doesn't fix this. You can drink plenty and still have a body that hasn't learned to handle the heat.\n\nSo what's the solution? It's called acclimatization. That's a long word, but it just means getting used to the heat slowly. If you exercise in warm weather a little at a time, over about ten days to two weeks, your body changes in some useful ways. First, you start sweating sooner, before you get really hot. Second, you sweat more, so you cool down better. Third, your sweat gets less salty, so you keep more of the salt your body needs. And your body holds more fluid in your blood, which means your heart doesn't have to beat as fast to do the same work.\n\nThink of it like learning a new song on the piano. Nobody plays the whole thing perfectly on day one. You practice a bit each day, and your hands slowly figure it out. Your body learns to deal with heat in a similar way, step by step.\n\nThis year, our school's outdoor teams are going to follow this idea. For the first few days, practices will be shorter, about an hour, and only once a day. Players will wear light clothes, not full kit. Then each day the coaches will add a little more time and a little more effort. Only in the second week will there be longer sessions.\n\nSome of you have told me this sounds too easy, and that real athletes should just push through. I understand that feeling, but I honestly think it's the wrong way to look at it. Going slowly at the start isn't being soft. It's what lets you train hard for the rest of the season without getting sick.\n\nOne last thing. These changes don't last forever. If you stop training in the heat for a few weeks, your body slowly loses them. So if you go away on a trip in the middle of the season, tell your coach, and you'll be eased back in.",
+  "items": [
+   {
+    "qid": "ITL1-A-L-1",
+    "kind": "purpose",
+    "prompt": "Why does the speaker talk about learning a new song on the piano?",
+    "choices": [
+     "To show the body learns to handle heat slowly",
+     "To suggest that students take up music to relax",
+     "To explain why each practice begins with a warm-up",
+     "To show that skills fade without daily practice"
+    ],
+    "key": "To show the body learns to handle heat slowly"
+   },
+   {
+    "qid": "ITL1-A-L-2",
+    "kind": "main-idea",
+    "prompt": "What is the lecture mainly about?",
+    "choices": [
+     "Athletes should get used to the heat little by little to stay safe.",
+     "Athletes should train hard in the heat from day one to adapt faster.",
+     "Athletes should do their early training indoors to avoid the heat.",
+     "Athletes should wait for cooler weather before they train outdoors."
+    ],
+    "key": "Athletes should get used to the heat little by little to stay safe."
+   },
+   {
+    "qid": "ITL1-A-L-3",
+    "kind": "purpose",
+    "prompt": "Why does the speaker mention the idea of drinking more water?",
+    "choices": [
+     "To correct a common idea about what solves the problem",
+     "To explain that water is the main way to prevent heat illness",
+     "To show how sweating makes the body lose water",
+     "To introduce the topic of eating well before games"
+    ],
+    "key": "To correct a common idea about what solves the problem"
+   },
+   {
+    "qid": "ITL1-A-L-4",
+    "kind": "detail",
+    "prompt": "According to the speaker, what will team practices be like in the first few days?",
+    "choices": [
+     "Sessions will be short and take place once a day.",
+     "Practices will be held twice a day in full kit.",
+     "Players will skip practice on the hottest afternoons.",
+     "Sessions will be longer than in the second week."
+    ],
+    "key": "Sessions will be short and take place once a day."
+   },
+   {
+    "qid": "ITL1-A-L-5",
+    "kind": "detail",
+    "prompt": "What change in the body does the speaker describe?",
+    "choices": [
+     "A person's sweat ends up containing less salt than before",
+     "Sweating starts later, once the body is very hot",
+     "The heart beats faster to do the same work",
+     "The body makes less sweat to save water"
+    ],
+    "key": "A person's sweat ends up containing less salt than before"
+   },
+   {
+    "qid": "ITL1-A-L-6",
+    "kind": "attitude",
+    "prompt": "What is the speaker's opinion of the view that real athletes should just push through?",
+    "choices": [
+     "It's understandable, but it's the wrong way to look at it.",
+     "It's correct, but only for the strongest athletes.",
+     "It's harmless as long as players drink enough water.",
+     "It's a useful attitude to have during the first few days of practice."
+    ],
+    "key": "It's understandable, but it's the wrong way to look at it."
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-D1",
+  "part": 1,
+  "setting": "train station",
+  "speakers": {
+   "W": "a passenger",
+   "M": "a ticket clerk"
+  },
+  "transcript": "M: Good evening. Where to?\nW: A return to Gillam, please. I'm going to see the fireflies tonight, then I'll get the last train back.\nM: The last train back leaves at half past eight. This time of year, the fireflies up there don't start glowing till after ten.",
+  "items": [
+   {
+    "qid": "ITL1-B-D1-1",
+    "kind": "inference",
+    "prompt": "What does the man imply?",
+    "choices": [
+     "The woman would be gone before the fireflies light up.",
+     "The woman can see the fireflies and still catch the last train.",
+     "The woman can take a later train back tonight.",
+     "The fireflies have finished glowing for this year."
+    ],
+    "key": "The woman would be gone before the fireflies light up."
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-D2",
+  "part": 1,
+  "setting": "school bus",
+  "speakers": {
+   "W": "a sister",
+   "M": "a brother"
+  },
+  "transcript": "W: Mum texted. There'll be frost tonight, so we need to cover the lemon trees with old sheets after school.\nM: Can't we just carry the pots into the garage?\nW: The big pots are way too heavy. And Mum says to take the sheets off before breakfast.",
+  "items": [
+   {
+    "qid": "ITL1-B-D2-1",
+    "kind": "detail",
+    "prompt": "What does the woman say about the sheets?",
+    "choices": [
+     "They must be removed early the next morning.",
+     "They should go on after breakfast tomorrow.",
+     "They should stay on until school ends tomorrow.",
+     "They are already covering the lemon trees."
+    ],
+    "key": "They must be removed early the next morning."
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-D3",
+  "part": 1,
+  "setting": "science lab",
+  "speakers": {
+   "W": "a classmate",
+   "M": "a classmate"
+  },
+  "transcript": "M: My bean plant's leaning toward the window. I'll turn the pot so it grows straight.\nW: Wait, our report's on how plants bend toward light. Turn it, and there's nothing left to measure.\nM: True, but it'll fall over soon. Let's plant new seeds in a shoebox with a hole in one end.",
+  "items": [
+   {
+    "qid": "ITL1-B-D3-1",
+    "kind": "purpose",
+    "prompt": "Why does the woman mention what their report is about?",
+    "choices": [
+     "To explain that turning the pot would spoil what they're measuring",
+     "To agree that the plant must grow straight for their report",
+     "To suggest they move the bean plant closer to the window",
+     "To ask whether their report should be about bean plants"
+    ],
+    "key": "To explain that turning the pot would spoil what they're measuring"
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-D4",
+  "part": 1,
+  "setting": "museum on a class trip",
+  "speakers": {
+   "W": "a student",
+   "M": "a museum guide"
+  },
+  "transcript": "W: Excuse me, is this really a rock from space? It looks like the stones in our garden.\nM: It is. The farmer who found it thought the same as you. He used it to hold his barn door open for about thirty years.\nW: Thirty years? So how did anyone find out?",
+  "items": [
+   {
+    "qid": "ITL1-B-D4-1",
+    "kind": "inference",
+    "prompt": "What does the man suggest about the rock?",
+    "choices": [
+     "It looks like the stones in a normal garden.",
+     "It was discovered by a scientist in a field.",
+     "It was put in the museum soon after it was found.",
+     "It was known to be special at once."
+    ],
+    "key": "It looks like the stones in a normal garden."
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-C",
+  "part": 2,
+  "setting": "in a classroom after class",
+  "speakers": {
+   "W": "a student",
+   "M": "a teacher"
+  },
+  "transcript": "M: Come in. You wanted to talk about your project proposal? I read it last night.\nW: Yes. Is it all right? I want to count the bees that visit the clover behind the gym.\nM: It's a nice idea, and the clover's full of flowers right now, but I'm worried about the timing. Projects are due in the second week of October, and by then it'll be getting cold.\nW: Bees still come out on warm afternoons in October, though, don't they?\nM: Some do. But a few years ago a student of mine tried something similar with butterflies. We had two weeks of rain, and he ended up with almost nothing to write about. He had to start again with a library project.\nW: I thought about that, actually. That's why I've started already, instead of waiting until October. I've done three counts this week.\nM: Three already? When did you find the time for that?\nW: At lunch on Monday, Wednesday and today. Ten minutes each time, in the same spot. I counted fourteen bees on Monday and almost thirty today.\nM: Thirty. Was it warmer today?\nW: Much warmer. On Monday it was cloudy and a bit windy, and today it was really sunny. So I'd like to write down the temperature each time too, from the thermometer outside the science room.\nM: Hmm. That actually makes it a stronger project. You wouldn't just be counting bees. You'd be asking whether warmer weather brings more of them out.\nW: Exactly. And I checked with the caretaker yesterday. He isn't going to mow that patch until November.\nM: You've already asked him? All right, you've convinced me. Keep your counts in a notebook and show it to me every Friday, so I can see how it's going.\nW: Great, thanks so much. I'll bring the first page tomorrow, with the temperatures written in.",
+  "items": [
+   {
+    "qid": "ITL1-B-C-1",
+    "kind": "detail",
+    "prompt": "What does the man ask the woman to do?",
+    "choices": [
+     "Bring him a notebook of bee counts every Friday",
+     "Ask the caretaker to leave the clover alone",
+     "Start a library project in case it rains",
+     "Do the counts at the same time each day"
+    ],
+    "key": "Bring him a notebook of bee counts every Friday"
+   },
+   {
+    "qid": "ITL1-B-C-2",
+    "kind": "relationship",
+    "prompt": "Who most likely are the speakers?",
+    "choices": [
+     "A student and the teacher who read the project proposal",
+     "A student and the caretaker who cuts the school grass",
+     "Two students planning a science project together",
+     "A student and a parent helping with homework"
+    ],
+    "key": "A student and the teacher who read the project proposal"
+   },
+   {
+    "qid": "ITL1-B-C-3",
+    "kind": "purpose",
+    "prompt": "Why does the man mention a student from a few years ago?",
+    "choices": [
+     "To warn that rain could spoil the project",
+     "To suggest counting butterflies instead of bees",
+     "To show that a similar project once went well",
+     "To explain why the deadline is in October"
+    ],
+    "key": "To warn that rain could spoil the project"
+   },
+   {
+    "qid": "ITL1-B-C-4",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A student's idea to count bees for a project",
+     "A student deciding to change to another topic",
+     "How warm the weather has been this week",
+     "When the grass near the gym will next be cut"
+    ],
+    "key": "A student's idea to count bees for a project"
+   }
+  ]
+ },
+ {
+  "author": "B",
+  "set_id": "ITL1-B-L",
+  "part": 3,
+  "setting": "a class lecture",
+  "speakers": {
+   "S": "a teacher giving a short lecture to a high-school class"
+  },
+  "transcript": "So, here's something you've all seen. After a heavy spring rain, you walk to school and the paths are covered in earthworms. Dozens of them, sometimes hundreds. Maybe you've stepped around them on the way here. Why are they there? If you ask most people, they'll tell you the worms came up so they wouldn't drown. The rain fills their tunnels with water, so they have to escape. It's a reasonable idea. I believed it myself for years. But today I want to show you why it doesn't fit the evidence, and what the other explanation is.\n\nLet's start with how a worm breathes. A worm has no lungs. It takes in oxygen through its skin, and it can only do that while the skin is wet. In other words, water isn't the worm's enemy. It needs water to breathe. And rainwater soaking into the ground carries oxygen down with it. In fact, researchers have kept earthworms completely under water for several days, and many of them survived just fine.\n\nNow, here's something our own class noticed. Last spring, after a storm, a group of students counted the worms on the path beside the car park. They found more than two hundred on a stretch about twenty metres long, and they counted them while it was still raining. But the lawn right next to the path wasn't flooded. The ground was soft, but there wasn't a single puddle on it. And most of the worms they counted weren't lying still. They were crawling along, some of them a long way from the grass.\n\nSo what's the other explanation? Think about how hard it is for a worm to get anywhere underground. It has to push or eat its way through the soil, a few centimetres at a time. That's slow, tiring work. On the surface, it can move much faster. The problem is that on a normal day, the surface is dangerous. The air dries out its skin, and sunlight harms it. A rainy day removes both problems. The ground is wet, and the sky is cloudy. So some scientists now think rain is simply a chance to travel, to reach a new patch of soil, and for some kinds of worms, to find a partner.\n\nAnd that brings us back to the paths. Hard paths and roads dry out very quickly once the rain stops and the sun comes out. Grass and soil stay damp much longer, so a worm crossing a lawn is fairly safe. But a worm that has crawled out into the middle of a wide path usually can't get back to the soil in time.\n\nSo, next time someone tells you that worms come up to escape drowning, you can tell them that idea doesn't hold up. The worms aren't running from the rain. They're using it. And if you find one stranded on a path after the rain, you know what to do. Pick it up gently and put it back on the grass.",
+  "items": [
+   {
+    "qid": "ITL1-B-L-1",
+    "kind": "attitude",
+    "prompt": "What does the speaker think of the idea that worms come up to escape drowning?",
+    "choices": [
+     "It's reasonable, but the evidence doesn't support it.",
+     "It's correct, but it explains just part of what happens.",
+     "It's popular, but nobody has ever tested it.",
+     "It's correct, and the class's count proved it."
+    ],
+    "key": "It's reasonable, but the evidence doesn't support it."
+   },
+   {
+    "qid": "ITL1-B-L-2",
+    "kind": "main-idea",
+    "prompt": "What is the lecture mainly about?",
+    "choices": [
+     "Two explanations for worms surfacing in rain",
+     "Why worms come up in heavy rain to escape drowning",
+     "How earthworms take in oxygen through their wet skin",
+     "What a group counted near the school car park"
+    ],
+    "key": "Two explanations for worms surfacing in rain"
+   },
+   {
+    "qid": "ITL1-B-L-3",
+    "kind": "inference",
+    "prompt": "What can be inferred about the worms the class counted?",
+    "choices": [
+     "They were moving to new ground.",
+     "They came up after the rain had stopped.",
+     "They had left a flooded lawn nearby.",
+     "Most were lying still when counted."
+    ],
+    "key": "They were moving to new ground."
+   },
+   {
+    "qid": "ITL1-B-L-4",
+    "kind": "detail",
+    "prompt": "What does the speaker say happened in the experiments where worms were kept under water?",
+    "choices": [
+     "Many of them survived for several days.",
+     "Most of them died within a few hours.",
+     "The worms swam up to the top to get air.",
+     "The worms survived because soil was added."
+    ],
+    "key": "Many of them survived for several days."
+   },
+   {
+    "qid": "ITL1-B-L-5",
+    "kind": "detail",
+    "prompt": "According to the speaker, how does moving on the surface compare with moving underground?",
+    "choices": [
+     "It's much faster than pushing through the soil.",
+     "It's slower, because the wet ground is slippery.",
+     "It's about the same speed, but less tiring.",
+     "It's slower, since worms can't grip hard paths."
+    ],
+    "key": "It's much faster than pushing through the soil."
+   },
+   {
+    "qid": "ITL1-B-L-6",
+    "kind": "inference",
+    "prompt": "What can be inferred about worms left in the middle of a wide path after the rain?",
+    "choices": [
+     "They often die because their skin dries out.",
+     "They often drown in the puddles left behind.",
+     "They often stay there safely until it rains again.",
+     "They often get back to the soil in time."
+    ],
+    "key": "They often die because their skin dries out."
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-D1",
+  "part": 1,
+  "setting": "sports field",
+  "speakers": {
+   "W": "a coach",
+   "M": "a player"
+  },
+  "transcript": "M: Coach, my dad's picking me up early so we can drive to my grandparents' farm. Should I go and wait by the front gate now?\nW: Not yet. He just called, and he's running twenty minutes late. Help Jenna collect the cones first.\nM: Oh, okay. Sure.",
+  "items": [
+   {
+    "qid": "ITL1-C-D1-1",
+    "kind": "intent-next",
+    "prompt": "What will the man probably do next?",
+    "choices": [
+     "Gather equipment with a teammate",
+     "Wait for his father at the front gate",
+     "Leave with his father for the farm",
+     "Go back to practising his kicks"
+    ],
+    "key": "Gather equipment with a teammate"
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-D2",
+  "part": 1,
+  "setting": "music room",
+  "speakers": {
+   "W": "a club leader",
+   "M": "a club member"
+  },
+  "transcript": "W: We need new strings for the club guitars. I'll buy them at the big music store downtown on Saturday.\nM: Try Maddox Music by the station instead. It's smaller and a bit farther, but the owner gives school clubs a discount.\nW: Oh, I didn't know that. I'll go there, then.",
+  "items": [
+   {
+    "qid": "ITL1-C-D2-1",
+    "kind": "detail",
+    "prompt": "What does the man say about Maddox Music?",
+    "choices": [
+     "Student groups pay a lower price there",
+     "It's bigger than the store downtown",
+     "It's closer than the store downtown",
+     "Its owner repairs club guitars for free"
+    ],
+    "key": "Student groups pay a lower price there"
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-D3",
+  "part": 1,
+  "setting": "kitchen at home",
+  "speakers": {
+   "W": "a parent",
+   "M": "a teenager"
+  },
+  "transcript": "W: Your train's at seven tomorrow, so pack tonight. Remember the trip to your aunt's in March?\nM: Ugh, yes. I forgot my ticket, and we nearly missed the train. Fine, I'll pack after dinner.\nW: Good. And put your charger in first.",
+  "items": [
+   {
+    "qid": "ITL1-C-D3-1",
+    "kind": "purpose",
+    "prompt": "Why does the woman mention the trip in March?",
+    "choices": [
+     "To recall a problem from an earlier trip",
+     "To suggest a visit to the aunt soon",
+     "To ask about the ticket from that trip",
+     "To explain why the train leaves early tomorrow"
+    ],
+    "key": "To recall a problem from an earlier trip"
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-D4",
+  "part": 1,
+  "setting": "cafeteria",
+  "speakers": {
+   "W": "a friend",
+   "M": "a friend"
+  },
+  "transcript": "M: Could you take my Sunday shift at the shoe shop? It's my cousin's wedding, and our manager says swapping is fine.\nW: Sorry, I'm already working Saturday, and I've got a history test Monday. Maybe ask Kira? She wanted more hours.\nM: Good idea. I'll text her after lunch.",
+  "items": [
+   {
+    "qid": "ITL1-C-D4-1",
+    "kind": "relationship",
+    "prompt": "Who are the speakers most likely?",
+    "choices": [
+     "Coworkers at the same store",
+     "A shop manager and an assistant",
+     "A shoe seller and a customer",
+     "Guests at a family wedding"
+    ],
+    "key": "Coworkers at the same store"
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-C",
+  "part": 2,
+  "setting": "at home or out in town",
+  "speakers": {
+   "W": "a parent or older relative",
+   "M": "a teenager"
+  },
+  "transcript": "W: Oh, look. Linton's has a sign in the window. They want a summer helper. Have you talked to Kurt yet?\nM: Not yet. I'm still thinking about the supermarket out by the highway. Milo works there, and he says they need people too. He says it's pretty easy.\nW: Right. What do they pay?\nM: Eleven dollars an hour. Kurt only pays nine. That's a big difference, Mom.\nW: Is it, though? How would you get out there?\nM: The bus, I guess. There's a stop right by the school.\nW: It's two buses, actually. You have to change at the hospital. I made that trip every day when I worked out there, and it took me forty-five minutes each way.\nM: Okay, but the money's still better.\nW: Let's check. Four hours at eleven dollars is forty-four. Take away six for the bus there and back, and you've got thirty-eight. At Linton's you'd get thirty-six, and you can walk there in ten minutes.\nM: So I'd make two dollars more.\nW: And spend an hour and a half on buses to get it. That's a lot of your summer at bus stops.\nM: Hmm, okay, when you put it like that. But a hardware store is so boring. It's all screws and paint. Milo says the supermarket's way more fun.\nW: That's not what Kurt says. He wants to teach his summer helper to cut keys and fix lawnmowers. And he's the most patient person on this street. He told me last week he'd love to have you.\nM: Really? He said that?\nW: He did. He still remembers you coming in with your grandpa to buy nails, back when you were tiny. Why don't you go in and ask him now? I'll wait in the café next door.\nM: Fine, you win. I'll go talk to him.\nW: Good. And ask about Saturdays. I think he closes early, and you'll want to know your hours.\nM: Okay. Wish me luck.",
+  "items": [
+   {
+    "qid": "ITL1-C-C-1",
+    "kind": "intent-next",
+    "prompt": "What will the man probably do next?",
+    "choices": [
+     "Go into Linton's and talk to Kurt",
+     "Take the bus out to the supermarket",
+     "Wait for his mother in the café",
+     "Head home to think it over first"
+    ],
+    "key": "Go into Linton's and talk to Kurt"
+   },
+   {
+    "qid": "ITL1-C-C-2",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "Which of two summer jobs the man should take",
+     "The bus route from town out to the highway",
+     "What a hardware store helper learns to do",
+     "Why the hardware store closes early on Saturdays"
+    ],
+    "key": "Which of two summer jobs the man should take"
+   },
+   {
+    "qid": "ITL1-C-C-3",
+    "kind": "detail",
+    "prompt": "What does the woman say about getting to the supermarket?",
+    "choices": [
+     "It takes two buses and about forty-five minutes each way",
+     "One bus goes there straight from the hospital",
+     "You switch to a second bus near the highway",
+     "The bus fare costs more than he would earn"
+    ],
+    "key": "It takes two buses and about forty-five minutes each way"
+   },
+   {
+    "qid": "ITL1-C-C-4",
+    "kind": "attitude",
+    "prompt": "What does the woman think of Kurt?",
+    "choices": [
+     "He'd be a patient teacher for his summer helper",
+     "He's too strict with young workers",
+     "He offers better wages than the big store",
+     "He'd put the man to work stacking boxes"
+    ],
+    "key": "He'd be a patient teacher for his summer helper"
+   }
+  ]
+ },
+ {
+  "author": "C",
+  "set_id": "ITL1-C-L",
+  "part": 3,
+  "setting": "a class lecture",
+  "speakers": {
+   "S": "a teacher giving a short lecture to a high-school class"
+  },
+  "transcript": "So today I want to look at something you probably never think about: the little price on almost everything you buy. For most of history, there wasn't one. You and the seller argued until you agreed. That's called bargaining. To see how that changed, I'm going to use a small market town I'll call Kelbury, and the records of one shop there.\n\nAround eighteen fifty, buying a few metres of cloth in Kelbury could take a quarter of an hour. The seller named a high price, you named a low one, and you met somewhere in the middle. If you were good at it, or well known, you paid less than your neighbour did.\n\nThen, in eighteen seventy-two, a draper named Lorne did something unusual. A draper, by the way, is someone who sells cloth. Lorne wrote a price on a small card and pinned it to every roll of cloth in his shop, and he wrote every card himself. No more arguing. Within about thirty years, nearly every shop on Kelbury's main street had done the same.\n\nSo here's the question. Why did he do it? There are two main explanations, and I'll be honest with you, I can't tell you which one is right.\n\nThe first is fairness. With a price card, a poor customer paid exactly what a rich one paid. And Kelbury's newspaper printed a letter from a farmer's wife who loved this. She wrote that she could send her ten-year-old daughter to buy thread, and the girl would pay what the mayor paid. But notice the date. The letter is from eighteen eighty, eight years after the cards went up. So it tells us people liked fixed prices once they had them. It doesn't tell us why Lorne started.\n\nThe second explanation is about staff. Bargaining was a skill, and it took years to learn. Older shopkeepers in the town said a clerk needed about five years behind the counter before he could be trusted to bargain. The idea is that fixed prices let a shop hire people who hadn't learned that skill. Now look at Lorne's account book. In eighteen seventy-four his shop got much bigger, and he hired eight new clerks, all about fifteen years old, straight from the farms around town, for lower pay than the older clerks earned. But again, the date is a problem. Those clerks arrived two years after the cards. Maybe Lorne was planning ahead. Maybe the cards simply made the hiring possible later. The account book doesn't say.\n\nHere's why this still matters. Today many online shops change their prices several times a day, and two people can pay different amounts for the same thing. In a way, bargaining is back, except that now only the seller does it. If fairness was the real reason prices became fixed, shoppers may push back against this. If it was mostly about running a bigger shop with cheaper staff, maybe they won't care much. Records like Kelbury's can be read either way, and historians still argue about them. Honestly, so do I.",
+  "items": [
+   {
+    "qid": "ITL1-C-L-1",
+    "kind": "main-idea",
+    "prompt": "What is the lecture mainly about?",
+    "choices": [
+     "The debate over why shops stopped haggling",
+     "How fairness made one town give up bargaining",
+     "How one draper hired young clerks from farms",
+     "Why online prices change several times a day"
+    ],
+    "key": "The debate over why shops stopped haggling"
+   },
+   {
+    "qid": "ITL1-C-L-2",
+    "kind": "inference",
+    "prompt": "What can be inferred about the clerks Lorne hired in 1874?",
+    "choices": [
+     "They were too new to be trusted to bargain",
+     "They had worked in other Kelbury shops",
+     "They earned more than the older clerks",
+     "They wrote the price cards themselves"
+    ],
+    "key": "They were too new to be trusted to bargain"
+   },
+   {
+    "qid": "ITL1-C-L-3",
+    "kind": "detail",
+    "prompt": "According to the speaker, how long could buying cloth in Kelbury take around 1850?",
+    "choices": [
+     "About fifteen minutes",
+     "Around two or three minutes",
+     "Nearly a whole hour or more",
+     "Most of a long afternoon"
+    ],
+    "key": "About fifteen minutes"
+   },
+   {
+    "qid": "ITL1-C-L-4",
+    "kind": "detail",
+    "prompt": "What did the farmer's wife write in her letter to the newspaper?",
+    "choices": [
+     "A ten-year-old girl would pay what the mayor paid",
+     "The girl had learned to bargain like the mayor",
+     "Thread cost less at Lorne's than at other shops in town",
+     "The mayor paid less for thread than farmers did"
+    ],
+    "key": "A ten-year-old girl would pay what the mayor paid"
+   },
+   {
+    "qid": "ITL1-C-L-5",
+    "kind": "purpose",
+    "prompt": "Why does the speaker point out the date of the farmer's wife's letter?",
+    "choices": [
+     "To show it came after the price cards went up",
+     "To show when Kelbury's newspaper first began",
+     "To show how fast the new system spread",
+     "To show which families read the newspaper back then"
+    ],
+    "key": "To show it came after the price cards went up"
+   },
+   {
+    "qid": "ITL1-C-L-6",
+    "kind": "purpose",
+    "prompt": "Why does the speaker talk about online shops?",
+    "choices": [
+     "To show why the question still matters",
+     "To prove that fairness was the true cause",
+     "To show that bargaining has come to an end",
+     "To suggest shoppers no longer care about fairness"
+    ],
+    "key": "To show why the question still matters"
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-D1",
+  "part": 1,
+  "setting": "library desk",
+  "speakers": {
+   "W": "a student",
+   "M": "a librarian"
+  },
+  "transcript": "W: Hi, I'd like to borrow this book on drawing faces. How long can I keep it?\nM: Books with a red sticker go out for three days only, I'm afraid.\nW: That's fine. My portrait's due on Thursday, and it's Monday today.",
+  "items": [
+   {
+    "qid": "ITL1-D-D1-1",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman?",
+    "choices": [
+     "The woman will need to borrow the book again next week.",
+     "The woman can keep the book until the portrait is due.",
+     "The woman will draw the portrait in the library.",
+     "The woman would prefer a book without a red sticker."
+    ],
+    "key": "The woman can keep the book until the portrait is due."
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-D2",
+  "part": 1,
+  "setting": "park",
+  "speakers": {
+   "W": "a neighbour",
+   "M": "a neighbour"
+  },
+  "transcript": "W: Is that your drone up in the big oak? I could bring my ladder.\nM: Thanks, but no ladder reaches that high, and rain's coming tonight. I'll ask the park workers. Their truck has a lift.\nW: Good idea. They saved my cat last spring.",
+  "items": [
+   {
+    "qid": "ITL1-D-D2-1",
+    "kind": "intent-next",
+    "prompt": "What will the man probably do next?",
+    "choices": [
+     "Climb up to the branch using the woman's ladder",
+     "Leave the drone in the oak until the rain stops",
+     "Ask the woman to go and speak to the park workers",
+     "Get help from the staff who look after the park grounds"
+    ],
+    "key": "Get help from the staff who look after the park grounds"
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-D3",
+  "part": 1,
+  "setting": "clinic waiting room",
+  "speakers": {
+   "W": "a patient",
+   "M": "a receptionist"
+  },
+  "transcript": "M: Good morning. You can check in on the tablet by the door now.\nW: Oh, I'd rather do it here at the desk. I left my reading glasses in the car.\nM: That's OK. Tap the button at the top, and the letters get much bigger.",
+  "items": [
+   {
+    "qid": "ITL1-D-D3-1",
+    "kind": "detail",
+    "prompt": "According to the woman, what is true of her reading glasses?",
+    "choices": [
+     "They are in the car.",
+     "They are at home.",
+     "They broke this morning.",
+     "They need new lenses."
+    ],
+    "key": "They are in the car."
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-D4",
+  "part": 1,
+  "setting": "bookshop",
+  "speakers": {
+   "W": "a shop assistant",
+   "M": "a customer"
+  },
+  "transcript": "W: That's our last copy of the inventions book, and the cover's a bit bent. I could order a new one, but it'd take a week.\nM: Oh, I'll take this one. It's for my son's birthday tomorrow, and he won't mind.\nW: All right. I'll take a few dollars off, then.",
+  "items": [
+   {
+    "qid": "ITL1-D-D4-1",
+    "kind": "inference",
+    "prompt": "What does the woman imply in her last turn?",
+    "choices": [
+     "The woman thinks a new copy will arrive by tomorrow.",
+     "The woman has more copies of the book in the back.",
+     "The woman is lowering the price because of the damage.",
+     "The woman will charge the full price for the bent book."
+    ],
+    "key": "The woman is lowering the price because of the damage."
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-C",
+  "part": 2,
+  "setting": "at school, in that staff member's office or room",
+  "speakers": {
+   "W": "a school staff member who is not a teacher (for example the librarian, the nurse, the office secretary, a lab technician)",
+   "M": "a student"
+  },
+  "transcript": "W: Hi there. Oh, is that the clay head for the art show? Put it down on the table, it looks heavy.\nM: It is. It's my grandfather. I finished it last night. Could you put it in the kiln on Thursday?\nW: Let me have a look. The face is lovely. But is it solid clay all the way through?\nM: Yeah. I thought solid would make it stronger.\nW: It's actually the opposite. Clay holds water deep inside, even when the outside feels dry. In the kiln, that water turns to steam, and if the steam can't get out, the piece can crack or even burst.\nM: Burst? You mean, like, explode?\nW: It happens. Last spring a solid clay apple blew apart in there. The girl who made it was really upset, and she wasn't the only one. It broke four bowls sitting next to it. Those bowls were other students' work, and they had to make them all again.\nM: Oh no. So what do I do? The show's next Friday.\nW: You cut the head open with a wire, scoop out the middle until the walls are about as thick as your thumb, and join it back together with soft clay. Then you poke a small hole somewhere nobody will see, under the chin maybe, so the air can escape.\nM: Cut it open? It's not the work I mind. It's just, I spent three weeks on that face. The nose alone took two days. I'm scared I'll squash it.\nW: You won't touch the face. We cut across the top of the head, above the ears, like a lid. I'll show you how at lunch today.\nM: Couldn't I just leave it to dry for longer instead? Like, a month?\nW: A month would help, but a head this thick could still be damp in the middle, and you haven't got a month. Thursday's load is all the year seven pots, so I have to be careful what goes in with them.\nM: OK. Lunch today, then.\nW: Good. Once it's hollow, it should dry in about five days, so we'll fire it on Tuesday. It'll be cool by Thursday, and much lighter to carry, too.\nM: Lighter would be great. My grandfather's coming to see it at the show. He's never been to my school before, so I really want it there in one piece.",
+  "items": [
+   {
+    "qid": "ITL1-D-C-1",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman?",
+    "choices": [
+     "She believes thick pieces come out stronger when fired.",
+     "She wants to protect other students' work.",
+     "She is too busy this week to help the man herself.",
+     "She'd rather the man let the piece dry for a month."
+    ],
+    "key": "She wants to protect other students' work."
+   },
+   {
+    "qid": "ITL1-D-C-2",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "Loading the year seven pots into the kiln on Thursday",
+     "Teaching the man how to carve a face from clay",
+     "Getting a clay sculpture ready to be fired safely",
+     "Choosing a date for the school art show"
+    ],
+    "key": "Getting a clay sculpture ready to be fired safely"
+   },
+   {
+    "qid": "ITL1-D-C-3",
+    "kind": "attitude",
+    "prompt": "How does the man feel when the woman first tells him to cut the head open?",
+    "choices": [
+     "He's afraid of spoiling the face he spent weeks on",
+     "He worries it will make the head too heavy to carry",
+     "He minds the extra work more than the risk to the face",
+     "He is excited to try a new way of working"
+    ],
+    "key": "He's afraid of spoiling the face he spent weeks on"
+   },
+   {
+    "qid": "ITL1-D-C-4",
+    "kind": "detail",
+    "prompt": "What does the man say about his grandfather?",
+    "choices": [
+     "He has already seen the finished head.",
+     "He showed the man how to shape the face.",
+     "He will be away on the day of the art show.",
+     "He is coming to see the head at the show."
+    ],
+    "key": "He is coming to see the head at the show."
+   }
+  ]
+ },
+ {
+  "author": "D",
+  "set_id": "ITL1-D-L",
+  "part": 3,
+  "setting": "a class lecture",
+  "speakers": {
+   "S": "a teacher giving a short lecture to a high-school class"
+  },
+  "transcript": "OK, everyone, let's get started. Last week we looked at how a violin makes its sound, how the strings shake the thin wooden top and the whole body of the instrument. Today I want to tell you about an experiment that surprised a lot of musicians.\n\nSo, some of the most famous violins in the world were made in northern Italy about three hundred years ago. Today a single one of them can sell for several million dollars. That's more than most houses. And for a long time, almost everyone in classical music believed these old violins had a special sound that no modern maker could copy. People wrote whole books about the secret. Was it the wood? The varnish? Some treatment nobody remembers?\n\nAbout fifteen years ago, a group of researchers decided to test that belief directly. They brought together around twenty experienced violinists and gave them six instruments to play. Three were famous old Italian violins. Three were new ones from good modern makers, some only a few years old. Here's the clever part. The players wore dark glasses, a bit like the goggles welders use, so they couldn't see which violin was which. The room was kept dim, too. The researchers even put a little perfume on each violin, so nobody could recognise the smell of old wood. In other words, it was a blind test.\n\nThe players tried the violins, compared them in pairs, and picked the one they'd most like to take home. And the result? Most of them couldn't tell old from new any better than if they'd simply guessed. The violin they liked most was a new one. And the one they liked least was one of the famous old ones.\n\nNow, you might think those players just weren't good enough. So a few years later the team ran a second test with top concert soloists, the kind of people who've played these old instruments on stage for years. This time they played in a real concert hall, again with their eyes covered. Six of the ten chose a new violin as their favourite. Later tests with audiences found much the same thing. Listeners in the hall often preferred the new violins.\n\nSo what's going on? I think these experiments show something important about how we listen. When players know they're holding a violin worth millions, they expect it to sound wonderful, and that expectation becomes part of what they hear. Take away the name and the price, and the difference mostly disappears.\n\nI'm not saying the old violins are bad. They're beautiful instruments, and some players will always love them. But the idea of a magic sound that modern makers can't reach just doesn't hold up once players can't see what they're holding. And honestly, I find that good news. It means a talented young violinist doesn't need a fortune to own an instrument that sounds excellent.\n\nFor Thursday, think about one more question. Could the same thing happen with other things we judge by their price, like food or paintings? Bring one example to class.",
+  "items": [
+   {
+    "qid": "ITL1-D-L-1",
+    "kind": "purpose",
+    "prompt": "Why does the speaker mention what a single old violin can sell for?",
+    "choices": [
+     "To suggest that the old violins are worth their high price",
+     "To explain why few players had ever touched the old violins",
+     "To show how strongly people believed in the old violins",
+     "To argue that new violins today are sold for too much"
+    ],
+    "key": "To show how strongly people believed in the old violins"
+   },
+   {
+    "qid": "ITL1-D-L-2",
+    "kind": "inference",
+    "prompt": "What does the speaker imply about the old guesses that the secret was the wood or the varnish?",
+    "choices": [
+     "They tried to explain a difference that mostly isn't really there",
+     "They showed that old wood gives a violin its special sound",
+     "They explain why players chose the new violins in the tests",
+     "They were checked in the experiment and found to be right"
+    ],
+    "key": "They tried to explain a difference that mostly isn't really there"
+   },
+   {
+    "qid": "ITL1-D-L-3",
+    "kind": "detail",
+    "prompt": "According to the speaker, why did the researchers put perfume on each violin?",
+    "choices": [
+     "So that the players would feel calm in the dim room",
+     "So that the violins would not dry out under hot lights",
+     "So that players could remember which violin was which",
+     "So that nobody could recognise the old wood by its smell"
+    ],
+    "key": "So that nobody could recognise the old wood by its smell"
+   },
+   {
+    "qid": "ITL1-D-L-4",
+    "kind": "inference",
+    "prompt": "What can be inferred about the soloists in the second test?",
+    "choices": [
+     "Most of them picked one of the famous old Italian violins",
+     "Long experience didn't make them favour the old violins",
+     "They could see the violins while playing in the concert hall",
+     "They had rarely played the old Italian violins on stage before"
+    ],
+    "key": "Long experience didn't make them favour the old violins"
+   },
+   {
+    "qid": "ITL1-D-L-5",
+    "kind": "main-idea",
+    "prompt": "What is the lecture mainly about?",
+    "choices": [
+     "Blind tests showing that new violins can match famous old ones",
+     "Blind tests showing that old violins owe their sound to their wood",
+     "Blind tests showing that skilled soloists can still pick out the old violins",
+     "Blind tests showing that audiences hear a difference players miss"
+    ],
+    "key": "Blind tests showing that new violins can match famous old ones"
+   },
+   {
+    "qid": "ITL1-D-L-6",
+    "kind": "purpose",
+    "prompt": "Why does the speaker say, \"I'm not saying the old violins are bad\"?",
+    "choices": [
+     "To admit that the old violins won most of the blind tests",
+     "To suggest the experiments were not fair to the old violins",
+     "To keep students from reading the results too broadly",
+     "To introduce a new test of the old violins next week"
+    ],
+    "key": "To keep students from reading the results too broadly"
+   }
+  ]
+ }
+]

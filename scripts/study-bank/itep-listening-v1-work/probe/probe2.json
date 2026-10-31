@@ -1,0 +1,75 @@
+{
+  "items_read": 56,
+  "patterns": [
+    {
+      "property": "lecture key never states the popular belief the lecturer names (or, for C, never picks a side)",
+      "scope": "part 3",
+      "items": ["ITL1-A-L-2", "ITL1-A-L-3", "ITL1-B-L-1", "ITL1-B-L-4", "ITL1-D-L-4", "ITL1-D-L-5", "ITL1-C-L-6"],
+      "varies_in": 7,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "Three of four lectures are myth-busting (A: danger is in the first days; B: worms are not escaping drowning; D: old violins are not better) and C is explicitly undecided. In every item where an option restates the conventional view, that option is a distractor: A-L-3 'To explain why the middle of the season is the riskiest time'; B-L-1 'It's less convincing than the drowning idea.'; B-L-4 'The worms swam up to the top to get air.'; D-L-4 'Most of them picked one of the famous old Italian violins'; D-L-5 'soloists hear differences other players miss'; C-L-6 'To prove that fairness was the true cause of price cards'. A student who has learned 'the lecture overturns the common view' can eliminate 1-2 options per item. Largely construct-typical of the genre, but it is a cross-item regularity: 7/7, never the key."
+    },
+    {
+      "property": "intent-next key is the sensible / rule-following plan sanctioned by the person in charge; the careless or overruled option is never the key",
+      "scope": "kind intent-next",
+      "items": ["ITL1-A-D2-1", "ITL1-A-D4-1", "ITL1-C-D1-1", "ITL1-C-C-1", "ITL1-D-D2-1"],
+      "varies_in": 5,
+      "key_has": 5,
+      "use": "pick",
+      "evidence": "Every intent-next item offers at least one lax/risky/avoidant option and it is never the key: A-D2 'Play without her shin guards' (key 'Ask her mom to bring the shin guards'); A-D4 'Keep the computer room open through lunch' (key 'Shut the room and leave for a meeting'); C-D1 'Stay for the rest of practice' (key 'Meet his father at the front gate'); C-C-1 'Head home and think it over' (key 'Go into Linton's and talk to Kurt'); D-D2 'Climb up to the branch using the woman's ladder' (key 'Get help from the staff who look after the park grounds'). In the 4 of 5 with an authority gradient (captain, teacher, coach, parent) the key is the authority figure's instruction 4/4. Small n (5), but no counter-example."
+    },
+    {
+      "property": "main-idea: an option naming one narrow episode/detail from the talk is never the key (key is the topic-level option)",
+      "scope": "kind main-idea",
+      "items": ["ITL1-A-C-2", "ITL1-B-C-4", "ITL1-B-L-2", "ITL1-C-C-2", "ITL1-C-L-1", "ITL1-D-C-2"],
+      "varies_in": 6,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "In the 6 main-idea items whose options differ in scope (A-L-2 and D-L-5 are parallel-frame and excluded), every narrow-detail option is a distractor: A-C-2 'How a classmate hurt her wrist in tug of war'; B-L-2 'What a group counted near the school car park'; C-C-2 'Why the hardware store closes early on Saturdays'; D-C-2 'Loading the year seven pots into the kiln on Thursday'. The over-general/off-talk option is also never the key (A-C-2 'Keeping students safe at school sports events', B-C-4 'How students should choose a project topic', D-C-2 'How the school prepares for its yearly art show': 0/3). Net: the key is always the mid-to-broad option tied to the specific talk. Construct-typical, but fully regular."
+    },
+    {
+      "property": "key never the shortest option (characters)",
+      "scope": "part 1",
+      "items": ["ITL1-A-D1-1", "ITL1-A-D2-1", "ITL1-A-D3-1", "ITL1-A-D4-1", "ITL1-B-D1-1", "ITL1-B-D2-1", "ITL1-B-D3-1", "ITL1-B-D4-1", "ITL1-C-D1-1", "ITL1-C-D2-1", "ITL1-C-D3-1", "ITL1-C-D4-1", "ITL1-D-D1-1", "ITL1-D-D2-1", "ITL1-D-D3-1", "ITL1-D-D4-1"],
+      "varies_in": 16,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "Part 1 key is shortest in 0/16 (chance ~4; p~0.01); key is 2nd-longest in 10/16, longest 3/16. All four authors contribute (each 0/4). Margins are often 1-3 characters (A-D1 key 16 vs 14 'They're twins.'; C-D4 29 vs 28; D-D3 'They are in the car.' 20 vs 'They are at home.' 17), and by word count the key ties shortest in several, so it is only usable as a weak 'drop the clearly shortest option' rule. Batch-wide the key is shortest 12/56 (21%, clean); the effect is part-1 only."
+    },
+    {
+      "property": "sibling items in the same set leak the key (another item's prompt or option text states the thesis or a fact)",
+      "scope": "batch (within-set)",
+      "items": ["ITL1-B-L-2", "ITL1-B-L-3", "ITL1-D-L-4", "ITL1-D-L-2", "ITL1-A-C-1"],
+      "varies_in": 5,
+      "key_has": 5,
+      "use": "pick | eliminate",
+      "evidence": "B-L-1's prompt names the thesis ('the idea that rain gives worms a chance to travel'), which picks B-L-3 key 'The worms were heading for new soil.' and kills B-L-2 'Why worms come up to find food when it rains'. All four D-L-5 options begin 'Blind tests showing that...', which kills D-L-4 'They could see the violins while playing in the concert hall'. D-L-1's prompt 'what a single old violin can sell for' is echoed in D-L-2 key 'a tiny fraction of what an old Italian violin sells for'. A-C-1's prompt 'after she hears about the gloves' signals the safety objection was answered, weakening 'It's still unsafe for the class.' Also, within every lecture the keys paraphrase one another (A-L-1/L-2/L-3 all 'gradual adjustment'), so keys cohere across items while distractors contradict sibling keys."
+    }
+  ],
+  "checked_clean": [
+    "key is longest option: 14/56 batch (A 3/14, B 4/14, C 3/14, D 4/14); by kind main-idea 1/8, purpose 1/9 - mixed; length-rank distribution 1st/2nd/3rd/4th = 14/20/11/11",
+    "key is shortest option: 12/56 batch (part 2 4/16, part 3 8/24); only part 1 is a tell (listed)",
+    "key repeats the most transcript content words: 26/56 by proportion, 29/56 counting ties; detail kind strictly highest 8/15, highest-or-tied 11/15 (73%, just under the bar - watch it); part 1 6/16; inference 3/10",
+    "key repeats the most prompt words: 7/15 where prompt overlap varies; author D key has prompt overlap 1/5 (20%) - mixed but low",
+    "absolutes (all/always/only/never/every/disappeared/true cause): key 2/7 (A-C-3 'Only four people', B-C-1 'every Friday')",
+    "hedges (may/some/probably/often/about/around/rather/suggest/mostly): key 6/14",
+    "'too' (too strict / too busy / asks too much / too heavy / too quickly): key 1/7 (C-L-2 'too new to be trusted') - near-elimination tell at 14%, one counter-example",
+    "negatives (not/n't/without/less): key 4/11",
+    "comparatives (more/less/better/faster/slower/earlier...): key 5/17",
+    "numbers / quantities: key 8/17",
+    "contrast words (but/though/despite/still/rather than): key 3/8",
+    "reason/purpose clauses (because/since/so that/as/to stay): key 3/6",
+    "two-part 'X and Y' compound option: key 6/10 (author A 3 of its 4 such items) - mixed",
+    "purpose first verb: 'To show' key 3/7 where it varies; 'To explain' key 1/7; 'To suggest' key 2/3; strong verbs prove/claim/argue never key but only 2 items (C-L-6, D-L-1)",
+    "safety words (safe/safely/unsafe): key 2/5 (A-L-2, D-C-2 key; A-C-1, A-C-2, B-L-6 distractors)",
+    "attitude polarity: key positive/approving 3/5 (A-L-6, B-L-1, C-C-4), negative 2/5 (A-C-1 'dull', D-C-3 'afraid')",
+    "who prevails in part 2: student over teacher (B), parent over teen (C), staff over student (D), compromise/vote (A) - mixed; detail/intent items follow whoever actually prevails",
+    "part 1 first speaker's plan prevails: mixed (A-D4, B-D2, C-D3 yes; A-D2 first suggestion, B-D1, C-D2, D-D4 offer overturned)",
+    "sequence trap (the later step offered as distractor): 2 items only (C-C-1 'Meet his mother at the café', D-D2 'Buy a long pole') - below n=3",
+    "key uses a full noun subject where all three distractors use a pronoun: 2 items only (B-L-3 'The worms were...' vs 'They...'; C-L-2 'These clerks were...' vs 'They...') - below n=3 but a visible frame tell; B-D4 key is the only present-tense option ('It looks like' vs 'It was...' x3)",
+    "key paraphrases vs echoes the transcript: mixed (paraphrase B-D2 'removed early the next morning', C-D2 'charges student groups less', C-L-3 'fifteen minutes'; verbatim A-C-3, C-L-4, D-L-3)",
+    "identical key wording/idea reused across sets: none found beyond the generic 'To show...' frame; no main-idea or attitude key idea repeats across scripts",
+    "relationship kind (3 items): key frames vary ('They're cousins.', 'A student and the teacher who read...', 'Two workers at the same store'); no tell"
+  ]
+}

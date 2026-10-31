@@ -108,7 +108,7 @@ export function audioSegments(row) {
     if (!turns.length) return [{ text: cleaned.replace(/^"|"$/g, ''), voice: 'nova' }]
     const sv = new Map()
     return turns.map(({ speaker, text }) => {
-      if (!sv.has(speaker)) sv.set(speaker, DIALOGUE_VOICE_ROTATION[sv.size % 4])
+      if (!sv.has(speaker)) sv.set(speaker, ({ W: 'nova', M: 'onyx' })[speaker] ?? DIALOGUE_VOICE_ROTATION[sv.size % 4])
       return { text, voice: sv.get(speaker) }
     })
   }

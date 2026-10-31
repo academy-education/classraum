@@ -70,3 +70,29 @@ describe('checkItepStageRows', () => {
     expect(checkItepStageRows([g]).problems).toEqual([])
   })
 })
+
+describe('checkItepStageRows: listening (iTEP Listening v1)', () => {
+  const DLG = "Transcript: M: Is the bus late again?\nW: Yes, so I'm walking."
+  const LEC = 'Transcript: Today we look at why some birds sing at night. The answer is a quiet city.'
+  const lrow = (qid: string, domain: string, passage: string, g: string | null = null, k = 0) =>
+    row({ qid, section: 'listening', domain, passage, passage_group_id: g, created_at: g ? new Date(Date.UTC(2026, 9, 31, 0, 0, 0, k)).toISOString() : undefined })
+  const lecture = (passage: string) => Array.from({ length: 6 }, (_, k) => lrow(`l-${k}`, 'Part 3: Lecture', passage, 'lg', k))
+
+  it('accepts a W/M short conversation, a whole conversation set and a monologue lecture', () => {
+    const conv = Array.from({ length: 4 }, (_, k) => lrow(`c-${k}`, 'Part 2: Conversation', DLG, 'cg', k))
+    expect(checkItepStageRows([lrow('d1', 'Part 1: Short Conversations', DLG), ...conv, ...lecture(LEC)]).problems).toEqual([])
+  })
+  it('refuses a passage without the Transcript: prefix (the runner would show it as text)', () => {
+    expect(checkItepStageRows([lrow('d1', 'Part 1: Short Conversations', DLG.replace('Transcript: ', ''))]).problems.join('\n')).toMatch(/must start "Transcript:"/)
+  })
+  it('refuses a conversation that is not exactly W and M, or not a dialogue at all', () => {
+    expect(checkItepStageRows([lrow('d1', 'Part 1: Short Conversations', 'Transcript: A: Hi there.\nB: Hello.')]).problems.join('\n')).toMatch(/want exactly W and M/)
+    expect(checkItepStageRows([lrow('d2', 'Part 1: Short Conversations', 'Transcript: Just one person talking.')]).problems.join('\n')).toMatch(/2\+ speaker turns/)
+  })
+  it('refuses a lecture with a stray "<capital>: " the player would split on', () => {
+    expect(checkItepStageRows(lecture(`${LEC} Plan B: wait.`)).problems.join('\n')).toMatch(/lecture contains "B: "/)
+  })
+  it('refuses a TTS segment over the route cap', () => {
+    expect(checkItepStageRows(lecture(`${LEC} ${'word '.repeat(820)}`)).problems.join('\n')).toMatch(/over the route's 4000/)
+  })
+})

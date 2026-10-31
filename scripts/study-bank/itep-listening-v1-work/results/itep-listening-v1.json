@@ -1,0 +1,86 @@
+{
+ "cohort": "itep-listening-v1",
+ "total": 56,
+ "cleared": [
+  "ITL1-A-C-1",
+  "ITL1-A-C-2",
+  "ITL1-A-C-3",
+  "ITL1-A-C-4",
+  "ITL1-A-D2-1",
+  "ITL1-A-D3-1",
+  "ITL1-A-D4-1",
+  "ITL1-A-L-1",
+  "ITL1-A-L-2",
+  "ITL1-A-L-3",
+  "ITL1-A-L-4",
+  "ITL1-A-L-5",
+  "ITL1-A-L-6",
+  "ITL1-B-C-1",
+  "ITL1-B-C-2",
+  "ITL1-B-C-3",
+  "ITL1-B-C-4",
+  "ITL1-B-D1-1",
+  "ITL1-B-D2-1",
+  "ITL1-B-D3-1",
+  "ITL1-B-D4-1",
+  "ITL1-B-L-1",
+  "ITL1-B-L-2",
+  "ITL1-B-L-3",
+  "ITL1-B-L-4",
+  "ITL1-B-L-5",
+  "ITL1-B-L-6",
+  "ITL1-C-C-1",
+  "ITL1-C-C-2",
+  "ITL1-C-C-3",
+  "ITL1-C-C-4",
+  "ITL1-C-D1-1",
+  "ITL1-C-D2-1",
+  "ITL1-C-D3-1",
+  "ITL1-C-D4-1",
+  "ITL1-C-L-1",
+  "ITL1-C-L-2",
+  "ITL1-C-L-3",
+  "ITL1-C-L-4",
+  "ITL1-C-L-5",
+  "ITL1-C-L-6",
+  "ITL1-D-C-1",
+  "ITL1-D-C-2",
+  "ITL1-D-C-3",
+  "ITL1-D-C-4",
+  "ITL1-D-D1-1",
+  "ITL1-D-D2-1",
+  "ITL1-D-D3-1",
+  "ITL1-D-D4-1"
+ ],
+ "dropped": {
+  "ITL1-A-D1-1": "item: a:broken/source_underspecified, b:broken/source_underspecified, c:broken/source_underspecified",
+  "ITL1-D-L-1": "passage: itep-listening-v1-ITL1-D-L lost an item",
+  "ITL1-D-L-2": "pattern: cross_item_cueing",
+  "ITL1-D-L-3": "passage: itep-listening-v1-ITL1-D-L lost an item",
+  "ITL1-D-L-4": "pattern: cross_item_cueing",
+  "ITL1-D-L-5": "pattern: cross_item_cueing",
+  "ITL1-D-L-6": "passage: itep-listening-v1-ITL1-D-L lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.05357142857142857,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "cross_item_cueing",
+   "other": "cross_item_cue",
+   "items": [
+    2,
+    4,
+    5
+   ],
+   "ids": [
+    "ITL1-D-L-2",
+    "ITL1-D-L-4",
+    "ITL1-D-L-5"
+   ]
+  }
+ ]
+}

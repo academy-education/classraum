@@ -1,0 +1,571 @@
+{
+ "author": "C",
+ "sets": [
+  {
+   "set_id": "ITL1-C-D1",
+   "part": 1,
+   "setting": "sports field",
+   "speakers": {
+    "W": "a coach",
+    "M": "a player"
+   },
+   "title": "Waiting for a late ride",
+   "transcript": "M: Coach, my dad's picking me up early so we can drive to my grandparents' farm. Should I go and wait by the front gate now?\nW: Not yet. He just called, and he's running twenty minutes late. Help Jenna collect the cones first.\nM: Oh, okay. Sure.",
+   "names": [
+    "Jenna"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL1-C-D1-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the man probably do next?",
+     "choices": [
+      "Gather equipment with a teammate",
+      "Wait for his father at the front gate",
+      "Leave with his father for the farm",
+      "Go back to practising his kicks"
+     ],
+     "correct_answer": "Gather equipment with a teammate",
+     "why": "Help Jenna collect the cones first.",
+     "explanation": "\"Gather equipment with a teammate\" is correct: the coach tells him \"Help Jenna collect the cones first.\" and he answers \"Oh, okay. Sure.\" Collecting cones with Jenna is gathering equipment with a teammate.",
+     "distractor_rationales": [
+      {
+       "choice": "Wait for his father at the front gate",
+       "lure": "contradicted",
+       "reason": "\"Wait for his father at the front gate\" is what the man asks to do, but the coach answers \"Not yet.\" and he agrees: \"Oh, okay. Sure.\""
+      },
+      {
+       "choice": "Leave with his father for the farm",
+       "lure": "wrong time",
+       "reason": "\"Leave with his father for the farm\" cannot happen next: the father \"just called, and he's running twenty minutes late.\""
+      },
+      {
+       "choice": "Go back to practising his kicks",
+       "lure": "contradicted",
+       "reason": "\"Go back to practising his kicks\" is not what the coach tells him to do; she says \"Help Jenna collect the cones first.\" and he agrees."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-C-D2",
+   "part": 1,
+   "setting": "music room",
+   "speakers": {
+    "W": "a club leader",
+    "M": "a club member"
+   },
+   "title": "Where to buy guitar strings",
+   "transcript": "W: We need new strings for the club guitars. I'll buy them at the big music store downtown on Saturday.\nM: Try Maddox Music by the station instead. It's smaller and a bit farther, but the owner gives school clubs a discount.\nW: Oh, I didn't know that. I'll go there, then.",
+   "names": [
+    "Maddox",
+    "Music"
+   ],
+   "other_caps": [
+    "Saturday"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-C-D2-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "What does the man say about Maddox Music?",
+     "choices": [
+      "Student groups pay a lower price there",
+      "It's bigger than the store downtown",
+      "It's closer than the store downtown",
+      "Its owner repairs club guitars for free"
+     ],
+     "correct_answer": "Student groups pay a lower price there",
+     "why": "the owner gives school clubs a discount",
+     "explanation": "\"Student groups pay a lower price there\" is correct: the man says \"the owner gives school clubs a discount.\" A discount for school clubs means student groups pay less.",
+     "distractor_rationales": [
+      {
+       "choice": "It's bigger than the store downtown",
+       "lure": "misreading",
+       "reason": "\"It's bigger than the store downtown\" is the opposite of what he says: \"It's smaller and a bit farther\"."
+      },
+      {
+       "choice": "It's closer than the store downtown",
+       "lure": "misreading",
+       "reason": "\"It's closer than the store downtown\" is the opposite of what he says: \"It's smaller and a bit farther\"."
+      },
+      {
+       "choice": "Its owner repairs club guitars for free",
+       "lure": "detail",
+       "reason": "\"Its owner repairs club guitars for free\" is not what he says the owner offers; he says \"the owner gives school clubs a discount.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-C-D3",
+   "part": 1,
+   "setting": "kitchen at home",
+   "speakers": {
+    "W": "a parent",
+    "M": "a teenager"
+   },
+   "title": "Packing the night before",
+   "transcript": "W: Your train's at seven tomorrow, so pack tonight. Remember the trip to your aunt's in March?\nM: Ugh, yes. I forgot my ticket, and we nearly missed the train. Fine, I'll pack after dinner.\nW: Good. And put your charger in first.",
+   "names": [],
+   "other_caps": [
+    "March"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-C-D3-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why does the woman mention the trip in March?",
+     "choices": [
+      "To recall a problem from an earlier trip",
+      "To suggest a visit to the aunt soon",
+      "To ask about the ticket from that trip",
+      "To explain why the train leaves early tomorrow"
+     ],
+     "correct_answer": "To recall a problem from an earlier trip",
+     "why": "Remember the trip to your aunt's in March?",
+     "explanation": "\"To recall a problem from an earlier trip\" is correct: she says \"so pack tonight\" and then \"Remember the trip to your aunt's in March?\" He answers \"I forgot my ticket, and we nearly missed the train.\" She brings up that trip so he recalls the problem and packs early.",
+     "distractor_rationales": [
+      {
+       "choice": "To suggest a visit to the aunt soon",
+       "lure": "misreading",
+       "reason": "\"To suggest a visit to the aunt soon\" does not fit: she mentions the trip right after \"so pack tonight\", and the man remembers \"I forgot my ticket, and we nearly missed the train.\" She is not planning a visit."
+      },
+      {
+       "choice": "To ask about the ticket from that trip",
+       "lure": "misreading",
+       "reason": "\"To ask about the ticket from that trip\" does not fit: that ticket was lost in March, when \"I forgot my ticket\". She is telling him to \"pack tonight\", not asking about an old ticket."
+      },
+      {
+       "choice": "To explain why the train leaves early tomorrow",
+       "lure": "contradicted",
+       "reason": "\"To explain why the train leaves early tomorrow\" does not fit: she only says \"Your train's at seven tomorrow\" and gives no reason for the time; the March trip is about what he forgot."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-C-D4",
+   "part": 1,
+   "setting": "cafeteria",
+   "speakers": {
+    "W": "a friend",
+    "M": "a friend"
+   },
+   "title": "Swapping a Sunday shift",
+   "transcript": "M: Could you take my Sunday shift at the shoe shop? It's my cousin's wedding, and our manager says swapping is fine.\nW: Sorry, I'm already working Saturday, and I've got a history test Monday. Maybe ask Kira? She wanted more hours.\nM: Good idea. I'll text her after lunch.",
+   "names": [
+    "Kira"
+   ],
+   "other_caps": [
+    "Sunday",
+    "Saturday",
+    "Monday"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-C-D4-1",
+     "kind": "relationship",
+     "difficulty": "easy",
+     "prompt": "Who are the speakers most likely?",
+     "choices": [
+      "Coworkers at the same store",
+      "A shop manager and an assistant",
+      "A shoe seller and a customer",
+      "Guests at a family wedding"
+     ],
+     "correct_answer": "Coworkers at the same store",
+     "why": "Could you take my Sunday shift at the shoe shop?",
+     "explanation": "\"Coworkers at the same store\" is correct: he asks \"Could you take my Sunday shift at the shoe shop?\" and she answers \"I'm already working Saturday\". Both work shifts at the same shop, and \"our manager\" is someone else.",
+     "distractor_rationales": [
+      {
+       "choice": "A shop manager and an assistant",
+       "lure": "wrong role",
+       "reason": "\"A shop manager and an assistant\" cannot be right: neither speaker is the manager, because the man says \"our manager says swapping is fine.\""
+      },
+      {
+       "choice": "A shoe seller and a customer",
+       "lure": "wrong role",
+       "reason": "\"A shoe seller and a customer\" cannot be right: both of them work there; he asks \"Could you take my Sunday shift at the shoe shop?\" and she says \"I'm already working Saturday\"."
+      },
+      {
+       "choice": "Guests at a family wedding",
+       "lure": "detail",
+       "reason": "\"Guests at a family wedding\" cannot be right: the wedding is his cousin's and still to come (\"It's my cousin's wedding\"), and she will be \"working Saturday\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-C-C",
+   "part": 2,
+   "setting": "at home or out in town",
+   "speakers": {
+    "W": "a parent or older relative",
+    "M": "a teenager"
+   },
+   "title": "Two summer jobs",
+   "transcript": "W: Oh, look. Linton's has a sign in the window. They want a summer helper. Have you talked to Kurt yet?\nM: Not yet. I'm still thinking about the supermarket out by the highway. Milo works there, and he says they need people too. He says it's pretty easy.\nW: Right. What do they pay?\nM: Eleven dollars an hour. Kurt only pays nine. That's a big difference, Mom.\nW: Is it, though? How would you get out there?\nM: The bus, I guess. There's a stop right by the school.\nW: It's two buses, actually. You have to change at the hospital. I made that trip every day when I worked out there, and it took me forty-five minutes each way.\nM: Okay, but the money's still better.\nW: Let's check. Four hours at eleven dollars is forty-four. Take away six for the bus there and back, and you've got thirty-eight. At Linton's you'd get thirty-six, and you can walk there in ten minutes.\nM: So I'd make two dollars more.\nW: And spend an hour and a half on buses to get it. That's a lot of your summer at bus stops.\nM: Hmm, okay, when you put it like that. But a hardware store is so boring. It's all screws and paint. Milo says the supermarket's way more fun.\nW: That's not what Kurt says. He wants to teach his summer helper to cut keys and fix lawnmowers. And he's the most patient person on this street. He told me last week he'd love to have you.\nM: Really? He said that?\nW: He did. He still remembers you coming in with your grandpa to buy nails, back when you were tiny. Why don't you go in and ask him now? I'll wait in the café next door.\nM: Fine, you win. I'll go talk to him.\nW: Good. And ask about Saturdays. I think he closes early, and you'll want to know your hours.\nM: Okay. Wish me luck.",
+   "names": [
+    "Linton",
+    "Linton's",
+    "Kurt",
+    "Milo"
+   ],
+   "other_caps": [
+    "Mom",
+    "Saturdays"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-C-C-1",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the man probably do next?",
+     "choices": [
+      "Go into Linton's and talk to Kurt",
+      "Take the bus out to the supermarket",
+      "Wait for his mother in the café",
+      "Head home to think it over first"
+     ],
+     "correct_answer": "Go into Linton's and talk to Kurt",
+     "why": "I'll go talk to him.",
+     "explanation": "\"Go into Linton's and talk to Kurt\" is correct: she asks \"Why don't you go in and ask him now?\" and he says \"Fine, you win. I'll go talk to him.\" The man he will talk to is Kurt, and the shop is Linton's.",
+     "distractor_rationales": [
+      {
+       "choice": "Take the bus out to the supermarket",
+       "lure": "contradicted",
+       "reason": "\"Take the bus out to the supermarket\" is ruled out: after the bus sums he says \"Fine, you win. I'll go talk to him.\""
+      },
+      {
+       "choice": "Wait for his mother in the café",
+       "lure": "wrong speaker",
+       "reason": "\"Wait for his mother in the café\" mixes up who waits: the woman says \"I'll wait in the café next door.\""
+      },
+      {
+       "choice": "Head home to think it over first",
+       "lure": "contradicted",
+       "reason": "\"Head home to think it over first\" is ruled out: she asks \"Why don't you go in and ask him now?\" and he answers \"I'll go talk to him.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-C-2",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "Which of two summer jobs the man should take",
+      "The bus route from town out to the highway",
+      "What a hardware store helper learns to do",
+      "Why the hardware store closes early on Saturdays"
+     ],
+     "correct_answer": "Which of two summer jobs the man should take",
+     "why": "I'm still thinking about the supermarket out by the highway.",
+     "explanation": "\"Which of two summer jobs the man should take\" is correct: the whole conversation compares the job at Linton's with \"the supermarket out by the highway\": the pay, the buses, the work, and ends with \"Fine, you win. I'll go talk to him.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The bus route from town out to the highway",
+       "lure": "detail",
+       "reason": "\"The bus route from town out to the highway\" is one moment only: the woman says \"It's two buses, actually. You have to change at the hospital.\" as one reason in a larger choice between Linton's and the supermarket."
+      },
+      {
+       "choice": "What a hardware store helper learns to do",
+       "lure": "detail",
+       "reason": "\"What a hardware store helper learns to do\" is one moment only: \"He wants to teach his summer helper to cut keys and fix lawnmowers.\" is one point in the choice between the two jobs."
+      },
+      {
+       "choice": "Why the hardware store closes early on Saturdays",
+       "lure": "detail",
+       "reason": "\"Why the hardware store closes early on Saturdays\" is mentioned only in the last line, with no reason given: \"I think he closes early.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-C-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about getting to the supermarket?",
+     "choices": [
+      "It takes two buses and about forty-five minutes each way",
+      "One bus goes there straight from the hospital",
+      "You switch to a second bus near the highway",
+      "The bus fare costs more than he would earn"
+     ],
+     "correct_answer": "It takes two buses and about forty-five minutes each way",
+     "why": "It's two buses, actually.",
+     "explanation": "\"It takes two buses and about forty-five minutes each way\" is correct: she says \"It's two buses, actually.\" and \"it took me forty-five minutes each way.\"",
+     "distractor_rationales": [
+      {
+       "choice": "One bus goes there straight from the hospital",
+       "lure": "misreading",
+       "reason": "\"One bus goes there straight from the hospital\" is wrong: she says \"It's two buses, actually. You have to change at the hospital.\""
+      },
+      {
+       "choice": "You switch to a second bus near the highway",
+       "lure": "misreading",
+       "reason": "\"You switch to a second bus near the highway\" is wrong about the place: she says \"You have to change at the hospital.\" The highway is where the supermarket is: \"the supermarket out by the highway\"."
+      },
+      {
+       "choice": "The bus fare costs more than he would earn",
+       "lure": "contradicted",
+       "reason": "\"The bus fare costs more than he would earn\" is wrong: she says \"Take away six for the bus there and back, and you've got thirty-eight.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-C-4",
+     "kind": "attitude",
+     "difficulty": "medium",
+     "prompt": "What does the woman think of Kurt?",
+     "choices": [
+      "He'd be a patient teacher for his summer helper",
+      "He's too strict with young workers",
+      "He offers better wages than the big store",
+      "He'd put the man to work stacking boxes"
+     ],
+     "correct_answer": "He'd be a patient teacher for his summer helper",
+     "why": "he's the most patient person on this street",
+     "explanation": "\"He'd be a patient teacher for his summer helper\" is correct: she says \"He wants to teach his summer helper to cut keys and fix lawnmowers.\" and \"he's the most patient person on this street.\"",
+     "distractor_rationales": [
+      {
+       "choice": "He's too strict with young workers",
+       "lure": "contradicted",
+       "reason": "\"He's too strict with young workers\" is contradicted by \"he's the most patient person on this street.\""
+      },
+      {
+       "choice": "He offers better wages than the big store",
+       "lure": "contradicted",
+       "reason": "\"He offers better wages than the big store\" is contradicted: the man says \"Kurt only pays nine\", and her own sums give \"thirty-eight\" at the supermarket against \"thirty-six\" at Linton's."
+      },
+      {
+       "choice": "He'd put the man to work stacking boxes",
+       "lure": "contradicted",
+       "reason": "\"He'd put the man to work stacking boxes\" is contradicted by \"He wants to teach his summer helper to cut keys and fix lawnmowers.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-C-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Why price tags replaced bargaining",
+   "transcript": "So today I want to look at something you probably never think about: the little price on almost everything you buy. For most of history, there wasn't one. You and the seller argued until you agreed. That's called bargaining. To see how that changed, I'm going to use a small market town I'll call Kelbury, and the records of one shop there.\n\nAround eighteen fifty, buying a few metres of cloth in Kelbury could take a quarter of an hour. The seller named a high price, you named a low one, and you met somewhere in the middle. If you were good at it, or well known, you paid less than your neighbour did.\n\nThen, in eighteen seventy-two, a draper named Lorne did something unusual. A draper, by the way, is someone who sells cloth. Lorne wrote a price on a small card and pinned it to every roll of cloth in his shop, and he wrote every card himself. No more arguing. Within about thirty years, nearly every shop on Kelbury's main street had done the same.\n\nSo here's the question. Why did he do it? There are two main explanations, and I'll be honest with you, I can't tell you which one is right.\n\nThe first is fairness. With a price card, a poor customer paid exactly what a rich one paid. And Kelbury's newspaper printed a letter from a farmer's wife who loved this. She wrote that she could send her ten-year-old daughter to buy thread, and the girl would pay what the mayor paid. But notice the date. The letter is from eighteen eighty, eight years after the cards went up. So it tells us people liked fixed prices once they had them. It doesn't tell us why Lorne started.\n\nThe second explanation is about staff. Bargaining was a skill, and it took years to learn. Older shopkeepers in the town said a clerk needed about five years behind the counter before he could be trusted to bargain. The idea is that fixed prices let a shop hire people who hadn't learned that skill. Now look at Lorne's account book. In eighteen seventy-four his shop got much bigger, and he hired eight new clerks, all about fifteen years old, straight from the farms around town, for lower pay than the older clerks earned. But again, the date is a problem. Those clerks arrived two years after the cards. Maybe Lorne was planning ahead. Maybe the cards simply made the hiring possible later. The account book doesn't say.\n\nHere's why this still matters. Today many online shops change their prices several times a day, and two people can pay different amounts for the same thing. In a way, bargaining is back, except that now only the seller does it. If fairness was the real reason prices became fixed, shoppers may push back against this. If it was mostly about running a bigger shop with cheaper staff, maybe they won't care much. Records like Kelbury's can be read either way, and historians still argue about them. Honestly, so do I.",
+   "names": [
+    "Kelbury",
+    "Kelbury's",
+    "Lorne",
+    "Lorne's"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL1-C-L-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "The debate over why shops stopped haggling",
+      "How fairness made one town give up bargaining",
+      "How one draper hired young clerks from farms",
+      "Why online prices change several times a day"
+     ],
+     "correct_answer": "The debate over why shops stopped haggling",
+     "why": "So here's the question. Why did he do it?",
+     "explanation": "\"The debate over why shops stopped haggling\" is correct: the speaker describes how the price cards replaced bargaining, asks \"Why did he do it?\", weighs two explanations, and says \"I can't tell you which one is right.\"",
+     "distractor_rationales": [
+      {
+       "choice": "How fairness made one town give up bargaining",
+       "lure": "wrong claim",
+       "reason": "\"How fairness made one town give up bargaining\" states the cause as settled, but the speaker says \"I can't tell you which one is right\" and \"Records like Kelbury's can be read either way\"."
+      },
+      {
+       "choice": "How one draper hired young clerks from farms",
+       "lure": "detail",
+       "reason": "\"How one draper hired young clerks from farms\" is one piece of evidence: \"he hired eight new clerks, all about fifteen years old, straight from the farms around town\"."
+      },
+      {
+       "choice": "Why online prices change several times a day",
+       "lure": "detail",
+       "reason": "\"Why online prices change several times a day\" is a point at the end, and the speaker gives no reason for it: \"Today many online shops change their prices several times a day\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-L-2",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What can be inferred about the clerks Lorne hired in 1874?",
+     "choices": [
+      "They were too new to be trusted to bargain",
+      "They had worked in other Kelbury shops",
+      "They earned more than the older clerks",
+      "They wrote the price cards themselves"
+     ],
+     "correct_answer": "They were too new to be trusted to bargain",
+     "why": "a clerk needed about five years behind the counter before he could be trusted to bargain",
+     "why2": "all about fifteen years old, straight from the farms around town",
+     "explanation": "\"They were too new to be trusted to bargain\" is correct: the town's shopkeepers said \"a clerk needed about five years behind the counter before he could be trusted to bargain\", and these clerks were \"all about fifteen years old, straight from the farms around town\", so none had those years behind a counter.",
+     "distractor_rationales": [
+      {
+       "choice": "They had worked in other Kelbury shops",
+       "lure": "contradicted",
+       "reason": "\"They had worked in other Kelbury shops\" is contradicted: they came \"straight from the farms around town\"."
+      },
+      {
+       "choice": "They earned more than the older clerks",
+       "lure": "contradicted",
+       "reason": "\"They earned more than the older clerks\" is contradicted: they were hired \"for lower pay than the older clerks earned\"."
+      },
+      {
+       "choice": "They wrote the price cards themselves",
+       "lure": "contradicted",
+       "reason": "\"They wrote the price cards themselves\" is contradicted: Lorne \"wrote every card himself.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-L-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, how long could buying cloth in Kelbury take around 1850?",
+     "choices": [
+      "About fifteen minutes",
+      "Around two or three minutes",
+      "Nearly a whole hour or more",
+      "Most of a long afternoon"
+     ],
+     "correct_answer": "About fifteen minutes",
+     "why": "buying a few metres of cloth in Kelbury could take a quarter of an hour",
+     "explanation": "\"About fifteen minutes\" is correct: the speaker says \"buying a few metres of cloth in Kelbury could take a quarter of an hour.\" A quarter of an hour is fifteen minutes.",
+     "distractor_rationales": [
+      {
+       "choice": "Around two or three minutes",
+       "lure": "detail",
+       "reason": "\"Around two or three minutes\" is wrong: the speaker says buying cloth \"could take a quarter of an hour.\""
+      },
+      {
+       "choice": "Nearly a whole hour or more",
+       "lure": "detail",
+       "reason": "\"Nearly a whole hour or more\" is wrong: the speaker says \"a quarter of an hour\", not a whole hour."
+      },
+      {
+       "choice": "Most of a long afternoon",
+       "lure": "detail",
+       "reason": "\"Most of a long afternoon\" is wrong: the speaker says buying cloth \"could take a quarter of an hour.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-L-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What did the farmer's wife write in her letter to the newspaper?",
+     "choices": [
+      "A ten-year-old girl would pay what the mayor paid",
+      "The girl had learned to bargain like the mayor",
+      "Thread cost less at Lorne's than at other shops in town",
+      "The mayor paid less for thread than farmers did"
+     ],
+     "correct_answer": "A ten-year-old girl would pay what the mayor paid",
+     "why": "the girl would pay what the mayor paid",
+     "explanation": "\"A ten-year-old girl would pay what the mayor paid\" is correct: she wrote that \"she could send her ten-year-old daughter to buy thread, and the girl would pay what the mayor paid.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The girl had learned to bargain like the mayor",
+       "lure": "misreading",
+       "reason": "\"The girl had learned to bargain like the mayor\" is wrong: the letter says the girl \"would pay what the mayor paid\", the same price, not that she bargained."
+      },
+      {
+       "choice": "Thread cost less at Lorne's than at other shops in town",
+       "lure": "detail",
+       "reason": "\"Thread cost less at Lorne's than at other shops in town\" is wrong: the letter compares the girl with the mayor, \"the girl would pay what the mayor paid\", not one shop with another."
+      },
+      {
+       "choice": "The mayor paid less for thread than farmers did",
+       "lure": "contradicted",
+       "reason": "\"The mayor paid less for thread than farmers did\" is the opposite of the letter: \"the girl would pay what the mayor paid.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-L-5",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker point out the date of the farmer's wife's letter?",
+     "choices": [
+      "To show it came after the price cards went up",
+      "To show when Kelbury's newspaper first began",
+      "To show how fast the new system spread",
+      "To show which families read the newspaper back then"
+     ],
+     "correct_answer": "To show it came after the price cards went up",
+     "why": "The letter is from eighteen eighty, eight years after the cards went up.",
+     "explanation": "\"To show it came after the price cards went up\" is correct: the speaker says \"But notice the date. The letter is from eighteen eighty, eight years after the cards went up. So it tells us people liked fixed prices once they had them.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To show when Kelbury's newspaper first began",
+       "lure": "misreading",
+       "reason": "\"To show when Kelbury's newspaper first began\" does not fit: the speaker says \"The letter is from eighteen eighty, eight years after the cards went up\" and says nothing about when the newspaper started."
+      },
+      {
+       "choice": "To show how fast the new system spread",
+       "lure": "wrong moment",
+       "reason": "\"To show how fast the new system spread\" does not fit: the spread is a separate point, \"Within about thirty years, nearly every shop on Kelbury's main street had done the same.\""
+      },
+      {
+       "choice": "To show which families read the newspaper back then",
+       "lure": "misreading",
+       "reason": "\"To show which families read the newspaper back then\" does not fit: the speaker draws a different lesson from the date, \"It doesn't tell us why Lorne started.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-C-L-6",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker talk about online shops?",
+     "choices": [
+      "To show why the question still matters",
+      "To prove that fairness was the true cause",
+      "To show that bargaining has come to an end",
+      "To suggest shoppers no longer care about fairness"
+     ],
+     "correct_answer": "To show why the question still matters",
+     "why": "Here's why this still matters.",
+     "explanation": "\"To show why the question still matters\" is correct: the speaker begins that part with \"Here's why this still matters.\" and ties online prices back to the two explanations.",
+     "distractor_rationales": [
+      {
+       "choice": "To prove that fairness was the true cause",
+       "lure": "contradicted",
+       "reason": "\"To prove that fairness was the true cause\" does not fit: the speaker says \"I can't tell you which one is right\" and only says \"If fairness was the real reason\"."
+      },
+      {
+       "choice": "To show that bargaining has come to an end",
+       "lure": "contradicted",
+       "reason": "\"To show that bargaining has come to an end\" is the opposite of what the speaker says: \"In a way, bargaining is back\"."
+      },
+      {
+       "choice": "To suggest shoppers no longer care about fairness",
+       "lure": "contradicted",
+       "reason": "\"To suggest shoppers no longer care about fairness\" does not fit: the speaker says \"shoppers may push back against this\" if fairness was the reason, and does not say which is true."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

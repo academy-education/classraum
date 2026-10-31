@@ -3190,6 +3190,28 @@ recorded only in a commit message is a finding nobody reads.
     tries, so it now re-orders within a packet and repairs partitions by same-slot swaps; constraints unchanged.
   - Release still needs Daniel's audit sample and the owner gate; nothing is verified.
 
+- **2026-10-31 — iTEP SLATE Listening v1 (pilot, 4 forms' worth): 49 of 56 cleared ("brief works" band), 49 STAGED
+  verified=false (cohort itep-listening-v1, read back 49 false / 0 true); Listening holds 3 disjoint full forms
+  (staged).** Brief `briefs/itep-slate-listening-v1.md` + prereg `ITEP-SLATE-LISTENING-V1.prereg.md` committed before
+  any script (30aaf7ba). Shapes drawn at random, nothing required or forbidden: key-length rank, script-word overlap,
+  main-idea whole-script options, and **who is right** (per script who opens / whose plan prevails, per item which
+  speaker is asked about, per lecture stance). 4 Claude authors (16 dialogues, 4 conversations, 4 lectures); probe 1
+  found 7 findings -> one revision round; probe 2 recorded. Gate (3 packets x a/b/c): 165/168 unique; drops were one
+  dialogue all three graders called underspecified (a kinship key resting on "she") and **D's lecture by a counted
+  p3 a+b sibling-cueing pattern the revision round introduced**. No-transcript attack recorded only: 77.8% vs a TOEFL
+  control at 100.0% (no headroom, uninformative). Pending lessons 1-8 in `briefs/itep-slate-listening-v1.pending.md`
+  (key length drawn per author left Part 1 with no `shortest` key, 0/16; three of four lectures refute a named
+  popular belief; revision rounds create sibling leaks; relationship items need an explicit role cue).
+  **App:** `src/lib/study/listening-voice.ts` pins `W:` -> nova and `M:` -> onyx in `ListeningAudioPlayer` and both
+  replicas (before, a dialogue the man opened was read in a woman's voice; 0 of 1,591 non-archived listening rows used
+  W/M, so no cached TOEFL clip changes); `itep-stage-check.ts` refuses listening rows the player cannot voice
+  (no "Transcript:" prefix, not exactly W/M, a lecture with a stray "X: ", a segment over the TTS route's 4,000 chars);
+  `verify-itep-draw.ts --section listening` prints each drawn script's segments, voices and characters;
+  `prewarm-toefl-audio.mjs --family itep` for released rows. **No audio generated** (the player synthesises on first
+  play; prewarm covers verified rows only). **Found, release blocker:** `TestSession.tsx` routes listening to the
+  audio player only when `family === 'toefl'` (isListeningSection, isListeningItem), so an iTEP listening item would
+  show its transcript as text; iTEP also plays once (maxPlays=1), not TOEFL's 2. Fix before any iTEP listening flip.
+
 
 ## 6. The rule that keeps this honest
 

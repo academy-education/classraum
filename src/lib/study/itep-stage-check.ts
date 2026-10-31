@@ -15,10 +15,21 @@
  *     which would leave the in-passage order to random uuids).
  * And for a standalone part of a passage section (Reading/Listening Part 1): a non-empty passage and NO group
  * (a group id would let the one-per-group draw treat two texts as one unit, or a text as part of a set).
+ *
+ * Listening (added 2026-10-31 for iTEP Listening v1, ITEP-SLATE-LISTENING-V1.prereg.md §6). The audio is
+ * synthesised from the passage by ListeningAudioPlayer, so every listening row must be audio the player can make:
+ *   - the passage starts "Transcript:" (TestSession routes only such passages to the player);
+ *   - Parts 1-2 (conversations): the player splits it into 2+ turns, and the speakers are exactly W and M (pinned
+ *     to a female and a male voice, listening-voice.ts), because the questions say "the woman" / "the man";
+ *   - Part 3 (lecture): a monologue, with NO "<capital>: " anywhere (the raw turn regex finds nothing), so the
+ *     player reads it as one voice;
+ *   - every TTS segment is non-empty and within the TTS route's 4,000-character cap (a lecture is one segment).
  */
 import { createHash } from 'node:crypto'
 import { ITEP_PART_QUOTAS } from './admission-tests'
 import { hasLabelledSegments } from './labelled-segments'
+import { parseTurns as rawTurns } from './conversation-gate'
+import { listeningSegments, playerTurns, TTS_MAX_CHARS } from './listening-voice'
 
 export type ItepStageRow = {
   family: string; section: string; domain: string; cohort: string | null; verified: unknown
@@ -68,6 +79,7 @@ export function checkItepStageRows(rows: ItepStageRow[]): { problems: string[]; 
       if (!it?.passage || !it.passage.trim()) problems.push(`${id}: ${r.domain} needs its own text in passage`)
       if (r.passage_group_id) problems.push(`${id}: ${r.domain} is standalone; passage_group_id must be null`)
     }
+    if (r.section === 'listening' && part && it) problems.push(...listeningProblems(id, r.domain, it.passage))
     perPart[`${r.section} / ${r.domain}`] = (perPart[`${r.section} / ${r.domain}`] ?? 0) + 1
   })
   for (const [g, { rows: rs, want, domain }] of groups) {
@@ -80,4 +92,27 @@ export function checkItepStageRows(rows: ItepStageRow[]): { problems: string[]; 
     }
   }
   return { problems, perPart }
+}
+
+const LECTURE = 'Part 3: Lecture'
+/** The listening rules above, for one row. Exported for the test. */
+export function listeningProblems(id: string, domain: string, passage: string | null): string[] {
+  const out: string[] = []
+  const p = passage ?? ''
+  if (!/^\s*transcript:/i.test(p)) out.push(`${id}: listening passage must start "Transcript:" (the runner plays only those)`)
+  const cleaned = p.replace(/^\s*transcript:\s*/i, '').trim()
+  if (domain === LECTURE) {
+    const raw = rawTurns(p)
+    if (raw.length) out.push(`${id}: lecture contains "${raw[0].speaker}: ", which the player would read as a speaker change`)
+  } else {
+    const turns = playerTurns(cleaned)
+    const who = [...new Set(turns.map(t => t.speaker))].sort().join('')
+    if (turns.length < 2) out.push(`${id}: ${domain} must split into 2+ speaker turns`)
+    else if (who !== 'MW') out.push(`${id}: speakers ${who}, want exactly W and M (the woman / the man voices)`)
+  }
+  for (const seg of listeningSegments(p)) {
+    if (!seg.text.trim()) out.push(`${id}: empty TTS segment`)
+    if (seg.text.length > TTS_MAX_CHARS) out.push(`${id}: a TTS segment is ${seg.text.length} chars, over the route's ${TTS_MAX_CHARS}`)
+  }
+  return out
 }

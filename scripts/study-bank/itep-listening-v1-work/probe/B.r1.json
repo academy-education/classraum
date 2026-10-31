@@ -1,0 +1,556 @@
+{
+  "author": "B",
+  "sets": [
+    {
+      "set_id": "ITL1-B-D1",
+      "part": 1,
+      "setting": "train station",
+      "speakers": {
+        "W": "a passenger",
+        "M": "a ticket clerk"
+      },
+      "title": "Fireflies and the last train",
+      "transcript": "M: Good evening. Where to?\nW: A return to Gillam, please. I'm going to see the fireflies tonight, then I'll get the last train back.\nM: The last train back leaves at half past eight. This time of year, the fireflies up there don't start glowing till after ten.",
+      "names": [
+        "Gillam"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-B-D1-1",
+          "kind": "inference",
+          "difficulty": "easy",
+          "prompt": "What does the man imply?",
+          "choices": [
+            "The woman would be gone before the fireflies light up.",
+            "The woman can see the fireflies and still catch the last train.",
+            "The woman can take a later train back tonight.",
+            "The fireflies have finished glowing for this year."
+          ],
+          "correct_answer": "The woman would be gone before the fireflies light up.",
+          "why": "The last train back leaves at half past eight.",
+          "why2": "the fireflies up there don't start glowing till after ten",
+          "explanation": "\"The woman would be gone before the fireflies light up.\" is correct: the woman wants to \"get the last train back\", but the man says \"The last train back leaves at half past eight\" and \"the fireflies up there don't start glowing till after ten\", so she would leave before they light up.",
+          "distractor_rationales": [
+            {
+              "choice": "The woman can see the fireflies and still catch the last train.",
+              "lure": "contradicted",
+              "reason": "\"The woman can see the fireflies and still catch the last train.\" is contradicted: the train \"leaves at half past eight\" and the fireflies \"don't start glowing till after ten\"."
+            },
+            {
+              "choice": "The woman can take a later train back tonight.",
+              "lure": "contradicted",
+              "reason": "\"The woman can take a later train back tonight.\" is contradicted: the man calls the half past eight train \"The last train back\", so there is no later one."
+            },
+            {
+              "choice": "The fireflies have finished glowing for this year.",
+              "lure": "contradicted",
+              "reason": "\"The fireflies have finished glowing for this year.\" is contradicted: the man says \"This time of year, the fireflies up there don't start glowing till after ten\", so they do glow, only late."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-B-D2",
+      "part": 1,
+      "setting": "school bus",
+      "speakers": {
+        "W": "a sister",
+        "M": "a brother"
+      },
+      "title": "Frost on the lemon trees",
+      "transcript": "W: Mum texted. There'll be frost tonight, so we need to cover the lemon trees with old sheets after school.\nM: Can't we just carry the pots into the garage?\nW: The big pots are way too heavy. And Mum says to take the sheets off before breakfast.",
+      "names": [],
+      "other_caps": [
+        "Mum"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-B-D2-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the woman say about the sheets?",
+          "choices": [
+            "They must be removed early the next morning.",
+            "They should go on after breakfast tomorrow.",
+            "They should stay on until school ends tomorrow.",
+            "They are already covering the lemon trees."
+          ],
+          "correct_answer": "They must be removed early the next morning.",
+          "why": "Mum says to take the sheets off before breakfast.",
+          "explanation": "\"They must be removed early the next morning.\" is correct: the woman says \"Mum says to take the sheets off before breakfast.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They should go on after breakfast tomorrow.",
+              "lure": "wrong time",
+              "reason": "\"They should go on after breakfast tomorrow.\" is wrong: the sheets go on \"after school\" today, and Mum says \"to take the sheets off before breakfast\", not to put them on then."
+            },
+            {
+              "choice": "They should stay on until school ends tomorrow.",
+              "lure": "wrong time",
+              "reason": "\"They should stay on until school ends tomorrow.\" is wrong: Mum says \"to take the sheets off before breakfast\"; \"after school\" is when they put them on."
+            },
+            {
+              "choice": "They are already covering the lemon trees.",
+              "lure": "wrong time",
+              "reason": "\"They are already covering the lemon trees.\" is wrong: the woman says \"we need to cover the lemon trees with old sheets after school\", so it has not been done yet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-B-D3",
+      "part": 1,
+      "setting": "science lab",
+      "speakers": {
+        "W": "a classmate",
+        "M": "a classmate"
+      },
+      "title": "The leaning bean plant",
+      "transcript": "M: My bean plant's leaning toward the window. I'll turn the pot so it grows straight.\nW: Wait, our report's on how plants bend toward light. Turn it, and there's nothing left to measure.\nM: True, but it'll fall over soon. Let's plant new seeds in a shoebox with a hole in one end.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-B-D3-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "Why does the woman mention what their report is about?",
+          "choices": [
+            "To explain that turning the pot would spoil what they're measuring",
+            "To agree that the plant must grow straight for their report",
+            "To suggest they move the bean plant closer to the window",
+            "To ask whether their report should be about bean plants"
+          ],
+          "correct_answer": "To explain that turning the pot would spoil what they're measuring",
+          "why": "Turn it, and there's nothing left to measure.",
+          "explanation": "\"To explain that turning the pot would spoil what they're measuring\" is correct: right after naming the report's topic she says \"Turn it, and there's nothing left to measure.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To agree that the plant must grow straight for their report",
+              "lure": "contradicted",
+              "reason": "\"To agree that the plant must grow straight for their report\" is wrong: she objects to the man's plan with \"Wait\" and says \"Turn it, and there's nothing left to measure.\""
+            },
+            {
+              "choice": "To suggest they move the bean plant closer to the window",
+              "lure": "misreading",
+              "reason": "\"To suggest they move the bean plant closer to the window\" is wrong: she suggests no move at all; she warns against changing the pot because \"there's nothing left to measure\"."
+            },
+            {
+              "choice": "To ask whether their report should be about bean plants",
+              "lure": "misreading",
+              "reason": "\"To ask whether their report should be about bean plants\" is wrong: she asks nothing; she states \"our report's on how plants bend toward light\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-B-D4",
+      "part": 1,
+      "setting": "museum on a class trip",
+      "speakers": {
+        "W": "a student",
+        "M": "a museum guide"
+      },
+      "title": "The barn door stone",
+      "transcript": "W: Excuse me, is this really a rock from space? It looks like the stones in our garden.\nM: It is. The farmer who found it thought the same as you. He used it to hold his barn door open for about thirty years.\nW: Thirty years? So how did anyone find out?",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-B-D4-1",
+          "kind": "inference",
+          "difficulty": "easy",
+          "prompt": "What does the man suggest about the rock?",
+          "choices": [
+            "It looks like the stones in a normal garden.",
+            "It was discovered by a scientist in a field.",
+            "It was put in the museum soon after it was found.",
+            "It was known to be special at once."
+          ],
+          "correct_answer": "It looks like the stones in a normal garden.",
+          "why": "The farmer who found it thought the same as you.",
+          "why2": "It looks like the stones in our garden.",
+          "explanation": "\"It looks like the stones in a normal garden.\" is correct: the woman says \"It looks like the stones in our garden\", and the man answers \"The farmer who found it thought the same as you\", so he agrees it looks ordinary.",
+          "distractor_rationales": [
+            {
+              "choice": "It was discovered by a scientist in a field.",
+              "lure": "contradicted",
+              "reason": "\"It was discovered by a scientist in a field.\" is contradicted: the man says \"The farmer who found it\"."
+            },
+            {
+              "choice": "It was put in the museum soon after it was found.",
+              "lure": "contradicted",
+              "reason": "\"It was put in the museum soon after it was found.\" is contradicted: \"He used it to hold his barn door open for about thirty years.\""
+            },
+            {
+              "choice": "It was known to be special at once.",
+              "lure": "contradicted",
+              "reason": "\"It was known to be special at once.\" is contradicted: the farmer \"thought the same as you\" and used it to \"hold his barn door open\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-B-C",
+      "part": 2,
+      "setting": "in a classroom after class",
+      "speakers": {
+        "W": "a student",
+        "M": "a teacher"
+      },
+      "title": "Counting bees in the clover",
+      "transcript": "M: Come in. You wanted to talk about your project proposal? I read it last night.\nW: Yes. Is it all right? I want to count the bees that visit the clover behind the gym.\nM: It's a nice idea, and the clover's full of flowers right now, but I'm worried about the timing. Projects are due in the second week of October, and by then it'll be getting cold.\nW: Bees still come out on warm afternoons in October, though, don't they?\nM: Some do. But a few years ago a student of mine tried something similar with butterflies. We had two weeks of rain, and he ended up with almost nothing to write about. He had to start again with a library project.\nW: I thought about that, actually. That's why I've started already, instead of waiting until October. I've done three counts this week.\nM: Three already? When did you find the time for that?\nW: At lunch on Monday, Wednesday and today. Ten minutes each time, in the same spot. I counted fourteen bees on Monday and almost thirty today.\nM: Thirty. Was it warmer today?\nW: Much warmer. On Monday it was cloudy and a bit windy, and today it was really sunny. So I'd like to write down the temperature each time too, from the thermometer outside the science room.\nM: Hmm. That actually makes it a stronger project. You wouldn't just be counting bees. You'd be asking whether warmer weather brings more of them out.\nW: Exactly. And I checked with the caretaker yesterday. He isn't going to mow that patch until November.\nM: You've already asked him? All right, you've convinced me. Keep your counts in a notebook and show it to me every Friday, so I can see how it's going.\nW: Great, thanks so much. I'll bring the first page tomorrow, with the temperatures written in.",
+      "names": [],
+      "other_caps": [
+        "October",
+        "Monday",
+        "Wednesday",
+        "November",
+        "Friday"
+      ],
+      "items": [
+        {
+          "qid": "ITL1-B-C-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the man ask the woman to do?",
+          "choices": [
+            "Bring him a notebook of bee counts every Friday",
+            "Ask the caretaker to leave the clover alone",
+            "Start a library project in case it rains",
+            "Do the counts at the same time each day"
+          ],
+          "correct_answer": "Bring him a notebook of bee counts every Friday",
+          "why": "Keep your counts in a notebook and show it to me every Friday, so I can see how it's going.",
+          "explanation": "\"Bring him a notebook of bee counts every Friday\" is correct: the man says \"Keep your counts in a notebook and show it to me every Friday\".",
+          "distractor_rationales": [
+            {
+              "choice": "Ask the caretaker to leave the clover alone",
+              "lure": "wrong speaker",
+              "reason": "\"Ask the caretaker to leave the clover alone\" is not his request: she has already done it (\"I checked with the caretaker yesterday\"), and he reacts with \"You've already asked him?\""
+            },
+            {
+              "choice": "Start a library project in case it rains",
+              "lure": "detail",
+              "reason": "\"Start a library project in case it rains\" is wrong: the library project was what a past student \"had to start again with\"; with her, the man ends \"All right, you've convinced me.\""
+            },
+            {
+              "choice": "Do the counts at the same time each day",
+              "lure": "misreading",
+              "reason": "\"Do the counts at the same time each day\" is wrong: his only request is \"Keep your counts in a notebook and show it to me every Friday\"; the timing is hers: \"At lunch on Monday, Wednesday and today\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-C-2",
+          "kind": "relationship",
+          "difficulty": "medium",
+          "prompt": "Who most likely are the speakers?",
+          "choices": [
+            "A student and the teacher who read the project proposal",
+            "A student and the caretaker who cuts the school grass",
+            "Two students planning a science project together",
+            "A student and a parent helping with homework"
+          ],
+          "correct_answer": "A student and the teacher who read the project proposal",
+          "why": "You wanted to talk about your project proposal? I read it last night.",
+          "explanation": "\"A student and the teacher who read the project proposal\" is correct: the man says \"I read it last night\" about her \"project proposal\", talks about \"a student of mine\", and asks her to \"show it to me every Friday\".",
+          "distractor_rationales": [
+            {
+              "choice": "A student and the caretaker who cuts the school grass",
+              "lure": "wrong person",
+              "reason": "\"A student and the caretaker who cuts the school grass\" is wrong: the caretaker is someone else she talked to: \"I checked with the caretaker yesterday. He isn't going to mow that patch\"."
+            },
+            {
+              "choice": "Two students planning a science project together",
+              "lure": "wrong person",
+              "reason": "\"Two students planning a science project together\" is wrong: the man speaks of \"a student of mine\" and checks her work: \"show it to me every Friday\"."
+            },
+            {
+              "choice": "A student and a parent helping with homework",
+              "lure": "wrong person",
+              "reason": "\"A student and a parent helping with homework\" is wrong: the man has had students before (\"a student of mine tried something similar\") and decides whether her proposal is accepted (\"you've convinced me\")."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-C-3",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the man mention a student from a few years ago?",
+          "choices": [
+            "To warn that rain could spoil the project",
+            "To suggest counting butterflies instead of bees",
+            "To show that a similar project once went well",
+            "To explain why the deadline is in October"
+          ],
+          "correct_answer": "To warn that rain could spoil the project",
+          "why": "We had two weeks of rain, and he ended up with almost nothing to write about.",
+          "explanation": "\"To warn that rain could spoil the project\" is correct: he is \"worried about the timing\", and the student \"tried something similar\" but \"We had two weeks of rain, and he ended up with almost nothing to write about.\"",
+          "distractor_rationales": [
+            {
+              "choice": "To suggest counting butterflies instead of bees",
+              "lure": "detail",
+              "reason": "\"To suggest counting butterflies instead of bees\" is wrong: the butterfly project failed (\"he ended up with almost nothing to write about\"), so he is not recommending it."
+            },
+            {
+              "choice": "To show that a similar project once went well",
+              "lure": "contradicted",
+              "reason": "\"To show that a similar project once went well\" is wrong: the similar project failed: \"We had two weeks of rain, and he ended up with almost nothing to write about.\""
+            },
+            {
+              "choice": "To explain why the deadline is in October",
+              "lure": "detail",
+              "reason": "\"To explain why the deadline is in October\" is wrong: he states the date before the story, \"Projects are due in the second week of October\", and gives no reason for it."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-C-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "A student's idea to count bees for a project",
+            "A student deciding to change to another topic",
+            "How warm the weather has been this week",
+            "When the grass near the gym will next be cut"
+          ],
+          "correct_answer": "A student's idea to count bees for a project",
+          "why": "I want to count the bees that visit the clover behind the gym.",
+          "explanation": "\"A student's idea to count bees for a project\" is correct: from \"I want to count the bees that visit the clover behind the gym\" to \"you've convinced me\", the whole conversation is about whether her bee-counting project will work.",
+          "distractor_rationales": [
+            {
+              "choice": "A student deciding to change to another topic",
+              "lure": "misreading",
+              "reason": "\"A student deciding to change to another topic\" is wrong: she never asks to change; she defends her bee counts (\"That's why I've started already\"), and the only change of topic in the talk is the past student's: \"He had to start again with a library project.\""
+            },
+            {
+              "choice": "How warm the weather has been this week",
+              "lure": "detail",
+              "reason": "\"How warm the weather has been this week\" is one moment only: \"Was it warmer today?\" \"Much warmer.\""
+            },
+            {
+              "choice": "When the grass near the gym will next be cut",
+              "lure": "mentioned in passing",
+              "reason": "\"When the grass near the gym will next be cut\" is mentioned once in passing: \"He isn't going to mow that patch until November.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITL1-B-L",
+      "part": 3,
+      "setting": "a class lecture",
+      "speakers": {
+        "S": "a teacher giving a short lecture to a high-school class"
+      },
+      "title": "Why worms come up in the rain",
+      "transcript": "So, here's something you've all seen. After a heavy spring rain, you walk to school and the paths are covered in earthworms. Dozens of them, sometimes hundreds. Maybe you've stepped around them on the way here. Why are they there? If you ask most people, they'll tell you the worms came up so they wouldn't drown. The rain fills their tunnels with water, so they have to escape. It's a reasonable idea. I believed it myself for years. But today I want to show you why it doesn't fit the evidence, and what the other explanation is.\n\nLet's start with how a worm breathes. A worm has no lungs. It takes in oxygen through its skin, and it can only do that while the skin is wet. In other words, water isn't the worm's enemy. It needs water to breathe. And rainwater soaking into the ground carries oxygen down with it. In fact, researchers have kept earthworms completely under water for several days, and many of them survived just fine.\n\nNow, here's something our own class noticed. Last spring, after a storm, a group of students counted the worms on the path beside the car park. They found more than two hundred on a stretch about twenty metres long, and they counted them while it was still raining. But the lawn right next to the path wasn't flooded. The ground was soft, but there wasn't a single puddle on it. And most of the worms they counted weren't lying still. They were crawling along, some of them a long way from the grass.\n\nSo what's the other explanation? Think about how hard it is for a worm to get anywhere underground. It has to push or eat its way through the soil, a few centimetres at a time. That's slow, tiring work. On the surface, it can move much faster. The problem is that on a normal day, the surface is dangerous. The air dries out its skin, and sunlight harms it. A rainy day removes both problems. The ground is wet, and the sky is cloudy. So some scientists now think rain is simply a chance to travel, to reach a new patch of soil, and for some kinds of worms, to find a partner.\n\nAnd that brings us back to the paths. Hard paths and roads dry out very quickly once the rain stops and the sun comes out. Grass and soil stay damp much longer, so a worm crossing a lawn is fairly safe. But a worm that has crawled out into the middle of a wide path usually can't get back to the soil in time.\n\nSo, next time someone tells you that worms come up to escape drowning, you can tell them that idea doesn't hold up. The worms aren't running from the rain. They're using it. And if you find one stranded on a path after the rain, you know what to do. Pick it up gently and put it back on the grass.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITL1-B-L-1",
+          "kind": "attitude",
+          "difficulty": "hard",
+          "prompt": "What does the speaker think of the idea that worms come up to escape drowning?",
+          "choices": [
+            "It's reasonable, but the evidence doesn't support it.",
+            "It's correct, but it explains just part of what happens.",
+            "It's popular, but nobody has ever tested it.",
+            "It's correct, and the class's count proved it."
+          ],
+          "correct_answer": "It's reasonable, but the evidence doesn't support it.",
+          "why": "It's a reasonable idea. I believed it myself for years. But today I want to show you why it doesn't fit the evidence",
+          "explanation": "\"It's reasonable, but the evidence doesn't support it.\" is correct: the speaker says \"It's a reasonable idea\" and then \"I want to show you why it doesn't fit the evidence\", ending with \"that idea doesn't hold up\".",
+          "distractor_rationales": [
+            {
+              "choice": "It's correct, but it explains just part of what happens.",
+              "lure": "contradicted",
+              "reason": "\"It's correct, but it explains just part of what happens.\" is contradicted: the speaker says \"that idea doesn't hold up\" and \"The worms aren't running from the rain.\""
+            },
+            {
+              "choice": "It's popular, but nobody has ever tested it.",
+              "lure": "contradicted",
+              "reason": "\"It's popular, but nobody has ever tested it.\" is contradicted: \"researchers have kept earthworms completely under water for several days, and many of them survived just fine.\""
+            },
+            {
+              "choice": "It's correct, and the class's count proved it.",
+              "lure": "contradicted",
+              "reason": "\"It's correct, and the class's count proved it.\" is contradicted: at the count \"the lawn right next to the path wasn't flooded\", and the speaker concludes \"that idea doesn't hold up\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-L-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the lecture mainly about?",
+          "choices": [
+            "Two explanations for worms surfacing in rain",
+            "Why worms come up in heavy rain to escape drowning",
+            "How earthworms take in oxygen through their wet skin",
+            "What a group counted near the school car park"
+          ],
+          "correct_answer": "Two explanations for worms surfacing in rain",
+          "why": "But today I want to show you why it doesn't fit the evidence, and what the other explanation is.",
+          "explanation": "\"Two explanations for worms surfacing in rain\" is correct: the speaker sets out the drowning idea, \"the worms came up so they wouldn't drown\", and then \"the other explanation\", that \"rain is simply a chance to travel\".",
+          "distractor_rationales": [
+            {
+              "choice": "Why worms come up in heavy rain to escape drowning",
+              "lure": "whole-script, wrong claim",
+              "reason": "\"Why worms come up in heavy rain to escape drowning\" covers the whole talk but gets the central claim wrong: the speaker says of the drowning idea \"that idea doesn't hold up\" and \"The worms aren't running from the rain.\""
+            },
+            {
+              "choice": "How earthworms take in oxygen through their wet skin",
+              "lure": "detail",
+              "reason": "\"How earthworms take in oxygen through their wet skin\" is one point used against the drowning idea: \"It takes in oxygen through its skin, and it can only do that while the skin is wet.\""
+            },
+            {
+              "choice": "What a group counted near the school car park",
+              "lure": "detail",
+              "reason": "\"What a group counted near the school car park\" is one example: \"a group of students counted the worms on the path beside the car park.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-L-3",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the worms the class counted?",
+          "choices": [
+            "They were moving to new ground.",
+            "They came up after the rain had stopped.",
+            "They had left a flooded lawn nearby.",
+            "Most were lying still when counted."
+          ],
+          "correct_answer": "They were moving to new ground.",
+          "why": "the lawn right next to the path wasn't flooded",
+          "why2": "They were crawling along, some of them a long way from the grass.",
+          "explanation": "\"They were moving to new ground.\" is correct: \"the lawn right next to the path wasn't flooded\", and \"They were crawling along, some of them a long way from the grass\", which fits the speaker's view that \"rain is simply a chance to travel\".",
+          "distractor_rationales": [
+            {
+              "choice": "They came up after the rain had stopped.",
+              "lure": "contradicted",
+              "reason": "\"They came up after the rain had stopped.\" is contradicted: \"they counted them while it was still raining.\""
+            },
+            {
+              "choice": "They had left a flooded lawn nearby.",
+              "lure": "contradicted",
+              "reason": "\"They had left a flooded lawn nearby.\" is contradicted: \"the lawn right next to the path wasn't flooded\" and \"there wasn't a single puddle on it.\""
+            },
+            {
+              "choice": "Most were lying still when counted.",
+              "lure": "contradicted",
+              "reason": "\"Most were lying still when counted.\" is contradicted: \"most of the worms they counted weren't lying still.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-L-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the speaker say happened in the experiments where worms were kept under water?",
+          "choices": [
+            "Many of them survived for several days.",
+            "Most of them died within a few hours.",
+            "The worms swam up to the top to get air.",
+            "The worms survived because soil was added."
+          ],
+          "correct_answer": "Many of them survived for several days.",
+          "why": "researchers have kept earthworms completely under water for several days, and many of them survived just fine",
+          "explanation": "\"Many of them survived for several days.\" is correct: \"researchers have kept earthworms completely under water for several days, and many of them survived just fine.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Most of them died within a few hours.",
+              "lure": "contradicted",
+              "reason": "\"Most of them died within a few hours.\" is contradicted: they were kept \"for several days, and many of them survived just fine.\""
+            },
+            {
+              "choice": "The worms swam up to the top to get air.",
+              "lure": "misreading",
+              "reason": "\"The worms swam up to the top to get air.\" is wrong: they were \"completely under water\", and a worm \"takes in oxygen through its skin\"."
+            },
+            {
+              "choice": "The worms survived because soil was added.",
+              "lure": "misreading",
+              "reason": "\"The worms survived because soil was added.\" is wrong: the worms were \"completely under water\", and the speaker's reason is that \"rainwater soaking into the ground carries oxygen down with it\" and a worm \"needs water to breathe\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-L-5",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the speaker, how does moving on the surface compare with moving underground?",
+          "choices": [
+            "It's much faster than pushing through the soil.",
+            "It's slower, because the wet ground is slippery.",
+            "It's about the same speed, but less tiring.",
+            "It's slower, since worms can't grip hard paths."
+          ],
+          "correct_answer": "It's much faster than pushing through the soil.",
+          "why": "On the surface, it can move much faster.",
+          "explanation": "\"It's much faster than pushing through the soil.\" is correct: underground \"It has to push or eat its way through the soil, a few centimetres at a time. That's slow, tiring work. On the surface, it can move much faster.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It's slower, because the wet ground is slippery.",
+              "lure": "contradicted",
+              "reason": "\"It's slower, because the wet ground is slippery.\" is contradicted: \"On the surface, it can move much faster.\""
+            },
+            {
+              "choice": "It's about the same speed, but less tiring.",
+              "lure": "contradicted",
+              "reason": "\"It's about the same speed, but less tiring.\" is contradicted: underground is \"a few centimetres at a time\" while on the surface \"it can move much faster.\""
+            },
+            {
+              "choice": "It's slower, since worms can't grip hard paths.",
+              "lure": "contradicted",
+              "reason": "\"It's slower, since worms can't grip hard paths.\" is contradicted: \"On the surface, it can move much faster\", and the worms on the path \"were crawling along, some of them a long way from the grass.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITL1-B-L-6",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about worms left in the middle of a wide path after the rain?",
+          "choices": [
+            "They often die because their skin dries out.",
+            "They often drown in the puddles left behind.",
+            "They often stay there safely until it rains again.",
+            "They often get back to the soil in time."
+          ],
+          "correct_answer": "They often die because their skin dries out.",
+          "why": "It takes in oxygen through its skin, and it can only do that while the skin is wet.",
+          "why2": "Hard paths and roads dry out very quickly once the rain stops and the sun comes out.",
+          "explanation": "\"They often die because their skin dries out.\" is correct: a worm breathes \"through its skin, and it can only do that while the skin is wet\"; \"Hard paths and roads dry out very quickly once the rain stops and the sun comes out\", and such a worm \"usually can't get back to the soil in time.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They often drown in the puddles left behind.",
+              "lure": "contradicted",
+              "reason": "\"They often drown in the puddles left behind.\" is contradicted: \"water isn't the worm's enemy. It needs water to breathe\", and worms kept \"completely under water for several days\" mostly \"survived just fine\"."
+            },
+            {
+              "choice": "They often stay there safely until it rains again.",
+              "lure": "contradicted",
+              "reason": "\"They often stay there safely until it rains again.\" is contradicted: on a normal day \"the surface is dangerous. The air dries out its skin, and sunlight harms it.\""
+            },
+            {
+              "choice": "They often get back to the soil in time.",
+              "lure": "contradicted",
+              "reason": "\"They often get back to the soil in time.\" is contradicted: such a worm \"usually can't get back to the soil in time.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

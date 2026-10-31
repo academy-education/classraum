@@ -1,0 +1,560 @@
+{
+ "author": "D",
+ "sets": [
+  {
+   "set_id": "ITL1-D-D1",
+   "part": 1,
+   "setting": "library desk",
+   "speakers": {
+    "W": "a student",
+    "M": "a librarian"
+   },
+   "title": "A three-day art book",
+   "transcript": "W: Hi, I'd like to borrow this book on drawing faces. How long can I keep it?\nM: Books with a red sticker go out for three days only, I'm afraid.\nW: That's fine. My portrait's due on Thursday, and it's Monday today.",
+   "names": [],
+   "other_caps": [
+    "Thursday",
+    "Monday"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-D-D1-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "The woman will need to borrow the book again next week.",
+      "The woman can keep the book until the portrait is due.",
+      "The woman will draw the portrait in the library.",
+      "The woman would prefer a book without a red sticker."
+     ],
+     "correct_answer": "The woman can keep the book until the portrait is due.",
+     "why": "Books with a red sticker go out for three days only",
+     "why2": "My portrait's due on Thursday, and it's Monday today.",
+     "explanation": "\"The woman can keep the book until the portrait is due.\" is correct: the book goes \"out for three days only\", and she says \"My portrait's due on Thursday, and it's Monday today\". Monday to Thursday is three days, so the loan lasts until her portrait is due.",
+     "distractor_rationales": [
+      {
+       "choice": "The woman will need to borrow the book again next week.",
+       "lure": "contradicted",
+       "reason": "\"The woman will need to borrow the book again next week.\" is ruled out: the book goes \"out for three days only\", and she needs it because \"My portrait's due on Thursday, and it's Monday today\", so three days is enough."
+      },
+      {
+       "choice": "The woman will draw the portrait in the library.",
+       "lure": "contradicted",
+       "reason": "\"The woman will draw the portrait in the library.\" is ruled out: she asks to \"borrow this book\" and answers the three-day limit with \"That's fine\", so she takes it home."
+      },
+      {
+       "choice": "The woman would prefer a book without a red sticker.",
+       "lure": "contradicted",
+       "reason": "\"The woman would prefer a book without a red sticker.\" is ruled out: when she hears \"Books with a red sticker go out for three days only\", she says \"That's fine\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-D-D2",
+   "part": 1,
+   "setting": "park",
+   "speakers": {
+    "W": "a neighbour",
+    "M": "a neighbour"
+   },
+   "title": "A drone in a tree",
+   "transcript": "W: Is that your drone up in the big oak? I could bring my ladder.\nM: Thanks, but no ladder reaches that high. I'll ask the park workers first. If they can't help, I'll buy a long pole tomorrow.\nW: Good idea. They saved my cat last spring.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL1-D-D2-1",
+     "kind": "intent-next",
+     "difficulty": "easy",
+     "prompt": "What will the man probably do next?",
+     "choices": [
+      "Climb up to the branch using the woman's ladder",
+      "Buy a long pole to knock the drone down",
+      "Ask the woman to go and speak to the park workers",
+      "Get help from the staff who look after the park grounds"
+     ],
+     "correct_answer": "Get help from the staff who look after the park grounds",
+     "why": "I'll ask the park workers first.",
+     "explanation": "\"Get help from the staff who look after the park grounds\" is correct: the man says \"I'll ask the park workers first.\" The park workers are the staff who look after the park.",
+     "distractor_rationales": [
+      {
+       "choice": "Climb up to the branch using the woman's ladder",
+       "lure": "contradicted",
+       "reason": "\"Climb up to the branch using the woman's ladder\" is ruled out: the man says \"no ladder reaches that high\"."
+      },
+      {
+       "choice": "Buy a long pole to knock the drone down",
+       "lure": "wrong time",
+       "reason": "\"Buy a long pole to knock the drone down\" is ruled out as his next step: he will ask the workers \"first\", and the pole is only for later, \"If they can't help, I'll buy a long pole tomorrow.\""
+      },
+      {
+       "choice": "Ask the woman to go and speak to the park workers",
+       "lure": "wrong speaker",
+       "reason": "\"Ask the woman to go and speak to the park workers\" is ruled out: the man says \"I'll ask the park workers first\" himself."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-D-D3",
+   "part": 1,
+   "setting": "clinic waiting room",
+   "speakers": {
+    "W": "a patient",
+    "M": "a receptionist"
+   },
+   "title": "Checking in on a tablet",
+   "transcript": "M: Good morning. You can check in on the tablet by the door now.\nW: Oh, I'd rather do it here at the desk. I left my reading glasses in the car.\nM: That's OK. Tap the button at the top, and the letters get much bigger.",
+   "names": [],
+   "other_caps": [
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-D-D3-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "According to the woman, what is true of her reading glasses?",
+     "choices": [
+      "They are in the car.",
+      "They are at home.",
+      "They broke this morning.",
+      "They need new lenses."
+     ],
+     "correct_answer": "They are in the car.",
+     "why": "I left my reading glasses in the car.",
+     "explanation": "\"They are in the car.\" is correct: the woman says \"I left my reading glasses in the car.\"",
+     "distractor_rationales": [
+      {
+       "choice": "They are at home.",
+       "lure": "detail",
+       "reason": "\"They are at home.\" is wrong: she says where they are, and it is not home: \"I left my reading glasses in the car.\""
+      },
+      {
+       "choice": "They broke this morning.",
+       "lure": "detail",
+       "reason": "\"They broke this morning.\" is wrong: she does not say they are broken; she says \"I left my reading glasses in the car.\""
+      },
+      {
+       "choice": "They need new lenses.",
+       "lure": "detail",
+       "reason": "\"They need new lenses.\" is wrong: the only thing she says about them is \"I left my reading glasses in the car.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-D-D4",
+   "part": 1,
+   "setting": "bookshop",
+   "speakers": {
+    "W": "a shop assistant",
+    "M": "a customer"
+   },
+   "title": "The last copy",
+   "transcript": "W: That's our last copy of the inventions book, and the cover's a bit bent. I could order a new one, but it'd take a week.\nM: Oh, I'll take this one. It's for my son's birthday tomorrow, and he won't mind.\nW: All right. I'll take a few dollars off, then.",
+   "names": [],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL1-D-D4-1",
+     "kind": "inference",
+     "difficulty": "easy",
+     "prompt": "What does the woman imply in her last turn?",
+     "choices": [
+      "The woman thinks a new copy will arrive by tomorrow.",
+      "The woman has more copies of the book in the back.",
+      "The woman is lowering the price because of the damage.",
+      "The woman will charge the full price for the bent book."
+     ],
+     "correct_answer": "The woman is lowering the price because of the damage.",
+     "why": "I'll take a few dollars off, then.",
+     "why2": "the cover's a bit bent",
+     "explanation": "\"The woman is lowering the price because of the damage.\" is correct: she first says \"the cover's a bit bent\", and when the man takes that copy anyway she says \"I'll take a few dollars off, then.\" Putting the two together, the lower price is because of the bent cover.",
+     "distractor_rationales": [
+      {
+       "choice": "The woman thinks a new copy will arrive by tomorrow.",
+       "lure": "contradicted",
+       "reason": "\"The woman thinks a new copy will arrive by tomorrow.\" is ruled out: she says ordering a new one means \"it'd take a week\"."
+      },
+      {
+       "choice": "The woman has more copies of the book in the back.",
+       "lure": "contradicted",
+       "reason": "\"The woman has more copies of the book in the back.\" is ruled out: she says \"That's our last copy of the inventions book\"."
+      },
+      {
+       "choice": "The woman will charge the full price for the bent book.",
+       "lure": "contradicted",
+       "reason": "\"The woman will charge the full price for the bent book.\" is ruled out: she says \"I'll take a few dollars off, then.\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-D-C",
+   "part": 2,
+   "setting": "at school, in that staff member's office or room",
+   "speakers": {
+    "W": "a school staff member who is not a teacher (for example the librarian, the nurse, the office secretary, a lab technician)",
+    "M": "a student"
+   },
+   "title": "A solid clay head",
+   "transcript": "W: Hi there. Oh, is that the clay head for the art show? Put it down on the table, it looks heavy.\nM: It is. It's my grandfather. I finished it last night. Could you put it in the kiln on Thursday?\nW: Let me have a look. The face is lovely. But is it solid clay all the way through?\nM: Yeah. I thought solid would make it stronger.\nW: It's actually the opposite. Clay holds water deep inside, even when the outside feels dry. In the kiln, that water turns to steam, and if the steam can't get out, the piece can crack or even burst.\nM: Burst? You mean, like, explode?\nW: It happens. Last spring a solid clay apple blew apart in there. The girl who made it was really upset, and she wasn't the only one. It broke four bowls sitting next to it. Those bowls were other students' work, and they had to make them all again.\nM: Oh no. So what do I do? The show's next Friday.\nW: You cut the head open with a wire, scoop out the middle until the walls are about as thick as your thumb, and join it back together with soft clay. Then you poke a small hole somewhere nobody will see, under the chin maybe, so the air can escape.\nM: Cut it open? It's not the work I mind. It's just, I spent three weeks on that face. The nose alone took two days. I'm scared I'll squash it.\nW: You won't touch the face. We cut across the top of the head, above the ears, like a lid. I'll show you how at lunch today.\nM: Couldn't I just leave it to dry for longer instead? Like, a month?\nW: A month would help, but a head this thick could still be damp in the middle, and you haven't got a month. Thursday's load is all the year seven pots, so I have to be careful what goes in with them.\nM: OK. Lunch today, then.\nW: Good. Once it's hollow, it should dry in about five days, so we'll fire it on Tuesday. It'll be cool by Thursday, and much lighter to carry, too.\nM: Lighter would be great. My grandfather's coming to see it at the show. He's never been to my school before, so I really want it there in one piece.",
+   "names": [],
+   "other_caps": [
+    "Thursday",
+    "Friday",
+    "Tuesday"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-D-C-1",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "She believes thick pieces come out stronger when fired.",
+      "She wants to protect other students' work.",
+      "She is too busy this week to help the man herself.",
+      "She'd rather the man let the piece dry for a month."
+     ],
+     "correct_answer": "She wants to protect other students' work.",
+     "why": "Those bowls were other students' work, and they had to make them all again.",
+     "why2": "Thursday's load is all the year seven pots, so I have to be careful what goes in with them.",
+     "explanation": "\"She wants to protect other students' work.\" is correct: she tells the story of a burst piece that broke bowls, adding \"Those bowls were other students' work, and they had to make them all again\", and later says \"Thursday's load is all the year seven pots, so I have to be careful what goes in with them.\" Together these show she is guarding other students' pieces from a solid head.",
+     "distractor_rationales": [
+      {
+       "choice": "She believes thick pieces come out stronger when fired.",
+       "lure": "contradicted",
+       "reason": "\"She believes thick pieces come out stronger when fired.\" is ruled out: when the man says \"I thought solid would make it stronger\", she answers \"It's actually the opposite.\""
+      },
+      {
+       "choice": "She is too busy this week to help the man herself.",
+       "lure": "contradicted",
+       "reason": "\"She is too busy this week to help the man herself.\" is ruled out: she offers \"I'll show you how at lunch today.\""
+      },
+      {
+       "choice": "She'd rather the man let the piece dry for a month.",
+       "lure": "contradicted",
+       "reason": "\"She'd rather the man let the piece dry for a month.\" is ruled out: to his idea of \"a month\" she replies \"you haven't got a month\" and tells him to cut the head open instead."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-C-2",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "Loading the year seven pots into the kiln on Thursday",
+      "Teaching the man how to carve a face from clay",
+      "Getting a clay sculpture ready to be fired safely",
+      "How the school prepares for its yearly art show"
+     ],
+     "correct_answer": "Getting a clay sculpture ready to be fired safely",
+     "why": "You cut the head open with a wire, scoop out the middle until the walls are about as thick as your thumb",
+     "explanation": "\"Getting a clay sculpture ready to be fired safely\" is correct: from start to finish the two discuss why a solid head \"can crack or even burst\" in the kiln and how to hollow it out, ending with the plan \"we'll fire it on Tuesday\".",
+     "distractor_rationales": [
+      {
+       "choice": "Loading the year seven pots into the kiln on Thursday",
+       "lure": "detail",
+       "reason": "\"Loading the year seven pots into the kiln on Thursday\" is a passing detail: the woman mentions \"Thursday's load is all the year seven pots\" only as one reason for caution; the talk is about the man's head."
+      },
+      {
+       "choice": "Teaching the man how to carve a face from clay",
+       "lure": "misreading",
+       "reason": "\"Teaching the man how to carve a face from clay\" is a misreading: the face is already done, \"I spent three weeks on that face\", and she promises \"You won't touch the face.\""
+      },
+      {
+       "choice": "How the school prepares for its yearly art show",
+       "lure": "misreading",
+       "reason": "\"How the school prepares for its yearly art show\" is a misreading: the show is mentioned only as the man's deadline, \"The show's next Friday\"; nothing is said about how the school prepares it."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-C-3",
+     "kind": "attitude",
+     "difficulty": "medium",
+     "prompt": "How does the man feel when the woman first tells him to cut the head open?",
+     "choices": [
+      "He is afraid that cutting the head will spoil the face",
+      "He worries it will make the head too heavy to carry",
+      "He minds the extra work more than the risk to the face",
+      "He is excited to try a new way of working"
+     ],
+     "correct_answer": "He is afraid that cutting the head will spoil the face",
+     "why": "I'm scared I'll squash it.",
+     "explanation": "\"He is afraid that cutting the head will spoil the face\" is correct: he says \"I spent three weeks on that face\" and \"I'm scared I'll squash it.\"",
+     "distractor_rationales": [
+      {
+       "choice": "He worries it will make the head too heavy to carry",
+       "lure": "contradicted",
+       "reason": "\"He worries it will make the head too heavy to carry\" is ruled out: his worry is the face, \"I'm scared I'll squash it\", and he later calls the result \"Lighter\", saying \"Lighter would be great.\""
+      },
+      {
+       "choice": "He minds the extra work more than the risk to the face",
+       "lure": "contradicted",
+       "reason": "\"He minds the extra work more than the risk to the face\" is ruled out: he says \"It's not the work I mind.\""
+      },
+      {
+       "choice": "He is excited to try a new way of working",
+       "lure": "contradicted",
+       "reason": "\"He is excited to try a new way of working\" is ruled out: his reaction is \"I'm scared I'll squash it.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-C-4",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the man say about his grandfather?",
+     "choices": [
+      "He has already seen the finished head.",
+      "He taught his grandson to shape clay faces.",
+      "He will be away on the day of the art show.",
+      "He is coming to see the head at the show."
+     ],
+     "correct_answer": "He is coming to see the head at the show.",
+     "why": "My grandfather's coming to see it at the show",
+     "explanation": "\"He is coming to see the head at the show.\" is correct: the man says \"My grandfather's coming to see it at the show\".",
+     "distractor_rationales": [
+      {
+       "choice": "He has already seen the finished head.",
+       "lure": "wrong time",
+       "reason": "\"He has already seen the finished head.\" is wrong: the visit is still to come, \"My grandfather's coming to see it at the show\"."
+      },
+      {
+       "choice": "He taught his grandson to shape clay faces.",
+       "lure": "detail",
+       "reason": "\"He taught his grandson to shape clay faces.\" is wrong: what the man says about his grandfather is that the head is of him, \"It's my grandfather\", and that he is \"coming to see it at the show\"; the face is the man's own work, \"I spent three weeks on that face\"."
+      },
+      {
+       "choice": "He will be away on the day of the art show.",
+       "lure": "contradicted",
+       "reason": "\"He will be away on the day of the art show.\" is wrong: the man says \"My grandfather's coming to see it at the show\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITL1-D-L",
+   "part": 3,
+   "setting": "a class lecture",
+   "speakers": {
+    "S": "a teacher giving a short lecture to a high-school class"
+   },
+   "title": "Old violins in a blind test",
+   "transcript": "OK, everyone, let's get started. Last week we looked at how a violin makes its sound, how the strings shake the thin wooden top and the whole body of the instrument. Today I want to tell you about an experiment that surprised a lot of musicians.\n\nSo, some of the most famous violins in the world were made in northern Italy about three hundred years ago. Today a single one of them can sell for several million dollars. That's more than most houses. And for a long time, almost everyone in classical music believed these old violins had a special sound that no modern maker could copy. People wrote whole books about the secret. Was it the wood? The varnish? Some treatment nobody remembers?\n\nAbout fifteen years ago, a group of researchers decided to test that belief directly. They brought together around twenty experienced violinists and gave them six instruments to play. Three were famous old Italian violins. Three were new ones from good modern makers, some only a few years old. Here's the clever part. The players wore dark glasses, a bit like the goggles welders use, so they couldn't see which violin was which. The room was kept dim, too. The researchers even put a little perfume on each violin, so nobody could recognise the smell of old wood. In other words, it was a blind test.\n\nThe players tried the violins, compared them in pairs, and picked the one they'd most like to take home. And the result? Most of them couldn't tell old from new any better than if they'd simply guessed. The violin they liked most was a new one. And the one they liked least was one of the famous old ones.\n\nNow, you might think those players just weren't good enough. So a few years later the team ran a second test with top concert soloists, the kind of people who've played these old instruments on stage for years. This time they played in a real concert hall, again with their eyes covered. Six of the ten chose a new violin as their favourite. Later tests with audiences found much the same thing. Listeners in the hall often preferred the new violins.\n\nSo what's going on? I think these experiments show something important about how we listen. When players know they're holding a violin worth millions, they expect it to sound wonderful, and that expectation becomes part of what they hear. Take away the name and the price, and the difference mostly disappears.\n\nI'm not saying the old violins are bad. They're beautiful instruments, and some players will always love them. But the idea of a magic sound that modern makers can't reach just doesn't hold up once players can't see what they're holding. And honestly, I find that good news. It means a talented young violinist doesn't need a fortune to own an instrument that sounds excellent.\n\nFor Thursday, think about one more question. Could the same thing happen with other things we judge by their price, like food or paintings? Bring one example to class.",
+   "names": [],
+   "other_caps": [
+    "Italy",
+    "Italian",
+    "Thursday"
+   ],
+   "items": [
+    {
+     "qid": "ITL1-D-L-1",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker mention what a single old violin can sell for?",
+     "choices": [
+      "To explain why the room in the first test was kept dim",
+      "To explain why few players had ever touched the old violins",
+      "To show how strongly people believed in the old violins",
+      "To argue that new violins today are sold for too much"
+     ],
+     "correct_answer": "To show how strongly people believed in the old violins",
+     "why": "Today a single one of them can sell for several million dollars.",
+     "explanation": "\"To show how strongly people believed in the old violins\" is correct: the price comes right before \"almost everyone in classical music believed these old violins had a special sound that no modern maker could copy\", so it shows how firm that belief was.",
+     "distractor_rationales": [
+      {
+       "choice": "To explain why the room in the first test was kept dim",
+       "lure": "contradicted",
+       "reason": "\"To explain why the room in the first test was kept dim\" is ruled out: the dim room belongs to a different point, hiding the instruments, \"so they couldn't see which violin was which. The room was kept dim, too.\""
+      },
+      {
+       "choice": "To explain why few players had ever touched the old violins",
+       "lure": "contradicted",
+       "reason": "\"To explain why few players had ever touched the old violins\" is ruled out: the soloists are \"the kind of people who've played these old instruments on stage for years\"."
+      },
+      {
+       "choice": "To argue that new violins today are sold for too much",
+       "lure": "contradicted",
+       "reason": "\"To argue that new violins today are sold for too much\" is ruled out: the speaker says \"a talented young violinist doesn't need a fortune to own an instrument that sounds excellent\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-L-2",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What does the speaker imply about good new violins?",
+     "choices": [
+      "They cost a tiny fraction of what an old Italian violin sells for",
+      "They were built by the makers of the famous old violins",
+      "They need years of playing before they sound their best",
+      "They cost nearly as much as the famous old violins"
+     ],
+     "correct_answer": "They cost a tiny fraction of what an old Italian violin sells for",
+     "why": "Today a single one of them can sell for several million dollars.",
+     "why2": "It means a talented young violinist doesn't need a fortune to own an instrument that sounds excellent.",
+     "explanation": "\"They cost a tiny fraction of what an old Italian violin sells for\" is correct: an old violin \"can sell for several million dollars\", while the speaker says \"a talented young violinist doesn't need a fortune to own an instrument that sounds excellent\". Put together, a good new violin costs far less than an old one.",
+     "distractor_rationales": [
+      {
+       "choice": "They were built by the makers of the famous old violins",
+       "lure": "contradicted",
+       "reason": "\"They were built by the makers of the famous old violins\" is ruled out: the old ones \"were made in northern Italy about three hundred years ago\", while the new ones came \"from good modern makers\"."
+      },
+      {
+       "choice": "They need years of playing before they sound their best",
+       "lure": "contradicted",
+       "reason": "\"They need years of playing before they sound their best\" is ruled out: some of the new ones were \"only a few years old\", and still \"The violin they liked most was a new one.\""
+      },
+      {
+       "choice": "They cost nearly as much as the famous old violins",
+       "lure": "contradicted",
+       "reason": "\"They cost nearly as much as the famous old violins\" is ruled out: an old one \"can sell for several million dollars\", but a young player \"doesn't need a fortune to own an instrument that sounds excellent\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-L-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the speaker, why did the researchers put perfume on each violin?",
+     "choices": [
+      "So that the players would feel calm in the dim room",
+      "So that the violins would not dry out under hot lights",
+      "So that players could remember each violin's name",
+      "So that no player could recognise the smell of old wood"
+     ],
+     "correct_answer": "So that no player could recognise the smell of old wood",
+     "why": "The researchers even put a little perfume on each violin, so nobody could recognise the smell of old wood.",
+     "explanation": "\"So that no player could recognise the smell of old wood\" is correct: the speaker says \"The researchers even put a little perfume on each violin, so nobody could recognise the smell of old wood.\"",
+     "distractor_rationales": [
+      {
+       "choice": "So that the players would feel calm in the dim room",
+       "lure": "detail",
+       "reason": "\"So that the players would feel calm in the dim room\" is wrong: the speaker gives the reason for the perfume, \"so nobody could recognise the smell of old wood\", and calm is not it."
+      },
+      {
+       "choice": "So that the violins would not dry out under hot lights",
+       "lure": "detail",
+       "reason": "\"So that the violins would not dry out under hot lights\" is wrong: the room was \"kept dim\", and the reason given is \"so nobody could recognise the smell of old wood\"."
+      },
+      {
+       "choice": "So that players could remember each violin's name",
+       "lure": "contradicted",
+       "reason": "\"So that players could remember each violin's name\" is wrong: the aim was the opposite, to keep the players from knowing the instruments, \"so they couldn't see which violin was which\" and \"so nobody could recognise the smell of old wood\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-L-4",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What can be inferred about the soloists in the second test?",
+     "choices": [
+      "Most of them picked one of the famous old Italian violins",
+      "They didn't favour old violins despite long experience",
+      "They could see the violins while playing in the concert hall",
+      "They had rarely played the old Italian violins on stage before"
+     ],
+     "correct_answer": "They didn't favour old violins despite long experience",
+     "why": "the kind of people who've played these old instruments on stage for years",
+     "why2": "Six of the ten chose a new violin as their favourite.",
+     "explanation": "\"They didn't favour old violins despite long experience\" is correct: these soloists had \"played these old instruments on stage for years\", yet \"Six of the ten chose a new violin as their favourite.\" Their long experience did not lead most of them to the old violins.",
+     "distractor_rationales": [
+      {
+       "choice": "Most of them picked one of the famous old Italian violins",
+       "lure": "contradicted",
+       "reason": "\"Most of them picked one of the famous old Italian violins\" is ruled out: \"Six of the ten chose a new violin as their favourite.\""
+      },
+      {
+       "choice": "They could see the violins while playing in the concert hall",
+       "lure": "contradicted",
+       "reason": "\"They could see the violins while playing in the concert hall\" is ruled out: they played \"again with their eyes covered\"."
+      },
+      {
+       "choice": "They had rarely played the old Italian violins on stage before",
+       "lure": "contradicted",
+       "reason": "\"They had rarely played the old Italian violins on stage before\" is ruled out: they were \"the kind of people who've played these old instruments on stage for years\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-L-5",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the lecture mainly about?",
+     "choices": [
+      "Blind tests showing that players preferred new violins to old ones",
+      "Blind tests showing that soloists hear differences other players miss",
+      "Blind tests showing that trained players judge violins better than audiences",
+      "Blind tests showing that a violin sounds richer when players cannot see it"
+     ],
+     "correct_answer": "Blind tests showing that players preferred new violins to old ones",
+     "why": "The violin they liked most was a new one.",
+     "explanation": "\"Blind tests showing that players preferred new violins to old ones\" is correct: the whole lecture describes blind tests in which \"The violin they liked most was a new one\", \"Six of the ten chose a new violin as their favourite\" and \"Listeners in the hall often preferred the new violins.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Blind tests showing that soloists hear differences other players miss",
+       "lure": "contradicted",
+       "reason": "\"Blind tests showing that soloists hear differences other players miss\" gets the result wrong: the soloists did the same as the first players, \"Six of the ten chose a new violin as their favourite.\""
+      },
+      {
+       "choice": "Blind tests showing that trained players judge violins better than audiences",
+       "lure": "contradicted",
+       "reason": "\"Blind tests showing that trained players judge violins better than audiences\" gets the result wrong: tests with audiences \"found much the same thing\", and \"Listeners in the hall often preferred the new violins.\""
+      },
+      {
+       "choice": "Blind tests showing that a violin sounds richer when players cannot see it",
+       "lure": "contradicted",
+       "reason": "\"Blind tests showing that a violin sounds richer when players cannot see it\" gets the claim wrong: the speaker says seeing a famous violin raises what players hear, \"that expectation becomes part of what they hear\", and that unseen \"the difference mostly disappears\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL1-D-L-6",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the speaker say, \"I'm not saying the old violins are bad\"?",
+     "choices": [
+      "To introduce a new experiment for next week's class",
+      "To show that the speaker has changed their mind about the tests",
+      "To suggest the old violins still deserve respect",
+      "To explain why the players' eyes were covered"
+     ],
+     "correct_answer": "To suggest the old violins still deserve respect",
+     "why": "They're beautiful instruments, and some players will always love them.",
+     "explanation": "\"To suggest the old violins still deserve respect\" is correct: the speaker follows it with \"They're beautiful instruments, and some players will always love them\", so the line keeps respect for the old violins while still rejecting the magic-sound idea.",
+     "distractor_rationales": [
+      {
+       "choice": "To introduce a new experiment for next week's class",
+       "lure": "contradicted",
+       "reason": "\"To introduce a new experiment for next week's class\" is ruled out: the only task ahead is \"For Thursday, think about one more question\", about other things \"we judge by their price\"."
+      },
+      {
+       "choice": "To show that the speaker has changed their mind about the tests",
+       "lure": "contradicted",
+       "reason": "\"To show that the speaker has changed their mind about the tests\" is ruled out: right after, the speaker still says the idea of a magic sound \"just doesn't hold up\"."
+      },
+      {
+       "choice": "To explain why the players' eyes were covered",
+       "lure": "contradicted",
+       "reason": "\"To explain why the players' eyes were covered\" is ruled out: the eyes were covered earlier, for another reason, \"so they couldn't see which violin was which\"; this line is about the old violins themselves."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

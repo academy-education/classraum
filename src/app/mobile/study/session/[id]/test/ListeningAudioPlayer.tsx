@@ -6,6 +6,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { PassageParagraphs } from './helpers'
 import { primeMicStream } from './VoiceRecorder'
+import { voiceForSpeaker } from '@/lib/study/listening-voice'
 import { measureEdgeSilence, advanceAtSeconds, TURN_GAP_MS, type EdgeSilence } from '@/lib/study/audio-trim'
 
 /** TOEFL Listening audio player. Plays the transcript via browser TTS
@@ -33,7 +34,6 @@ const AUDIO_URL_CACHE: Record<string, string> = {}
 //   - "shimmer" = brighter female — third-speaker rotate
 //   - "echo" = neutral male — fourth-speaker rotate
 type OpenAiVoice = 'alloy' | 'echo' | 'fable' | 'nova' | 'onyx' | 'shimmer'
-const DIALOGUE_VOICE_ROTATION: OpenAiVoice[] = ['nova', 'onyx', 'shimmer', 'echo']
 const MONOLOGUE_VOICE: OpenAiVoice = 'nova'
 
 /** Parse a TOEFL Listening transcript into speaker turns. Robust to
@@ -169,13 +169,9 @@ export function ListeningAudioPlayer({ groupKey, transcript, language, onSpeakin
     if (turns.length === 0) {
       return [{ text: cleaned.replace(/^"|"$/g, ''), voice: MONOLOGUE_VOICE }]
     }
+    // W/M (iTEP's woman/man) are pinned to nova/onyx; other labels rotate (listening-voice.ts).
     const speakerVoice = new Map<string, OpenAiVoice>()
-    return turns.map(({ speaker, text }) => {
-      if (!speakerVoice.has(speaker)) {
-        speakerVoice.set(speaker, DIALOGUE_VOICE_ROTATION[speakerVoice.size % DIALOGUE_VOICE_ROTATION.length])
-      }
-      return { text, voice: speakerVoice.get(speaker)! }
-    })
+    return turns.map(({ speaker, text }) => ({ text, voice: voiceForSpeaker(speaker, speakerVoice) }))
   }, [cleaned])
 
   const setSpeaking = useCallback((v: boolean) => {

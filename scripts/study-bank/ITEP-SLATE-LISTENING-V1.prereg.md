@@ -170,3 +170,49 @@ unreachable, and the run is then reported as "no headroom, uninformative" rather
 - **Part 3 is six items per set**: at a 95% per-item clear rate a lecture survives about 74% of the time, and with
   only 4 lectures, one drop leaves 3 forms.
 - **Small population**: 56 items in 2 packets; a two-grader pattern needs 3 shared items inside one packet.
+
+## Results (2026-10-31, recorded after scoring; no decision rule changed)
+
+- **Authoring:** 4 Claude authors, 56 items, per-author pre-flight PASS on hand-in. Batch run failed once (prompt
+  opening "what does the woman" x7, cap 6), resolved by D (later in the alphabet) rewording ITL1-D-D3-1's prompt only.
+  Break test 11/11 (`breaktest-check.mjs`; "inference without why2" is run by relabelling a detail item, since A has
+  no inference item). **Process finding:** the authors shared the session scratchpad; D's working file was
+  overwritten by another author's lecture file and D saw its opening (reported by D, nothing used; D rebuilt in its
+  own subfolder). Next round: give each author its own scratch directory in the prompt.
+- **Probe 1** (`probe/probe1.json`, input `probe/items-r1.json`, pre-revision files `probe/<X>.r1.json`): 9 patterns.
+  Findings sent for one round (`probe/revision-r1.json`, all four authors): lecture option voicing the rejected view /
+  settling an open question never keyed 0/15; "understandable but wrong" key idea reused across lectures 4/4;
+  "To suggest ..." purpose option never keyed 0/7; main-idea key always the widest 6/6; intent-next key never the
+  speaker's first plan 0/5; key repeats prompt words least 16/19; key's first word unique 21/27 (the last two near
+  their chance rates, sent anyway because §3b's rule is literal). Not sent, judgements recorded here: **Part 1 key
+  never the shortest 0/16** is fixed by the assignment (`assign.mjs` drew key length per author over all items and no
+  Part 1 item drew `shortest`), so no revision could change it without breaking the plan; the comparative-option
+  pattern was listed at 2/10, under the bar. Pre-flight re-run PROBLEMS 0 per author and batch.
+- **Probe 2** (`probe/probe2.json`, recorded, not revised): lecture key never states the named popular belief 0/7;
+  intent-next key is the sensible plan of the person in charge 5/5; main-idea narrow-episode option never keyed 0/6;
+  Part 1 key never shortest 0/16 (again); **sibling cueing inside sets 5/5** (B-L-1's prompt names the thesis; D-L-5's
+  four "Blind tests ..." options answer D-L-4; D-L-1's prompt echoed in D-L-2's key), most of it introduced by the
+  revision round.
+- **Packets:** §4's "2 packets, 26 / 30" was a hand simulation and **wrong**: `planPackets` (unchanged, default
+  limits) gives **3 packets, 26 / 24 / 6** (p3 = D's lecture alone). Corrected in `build-packet.mjs` before any
+  grader ran; patterns therefore count inside p3 over six items of one lecture.
+- **Gate** (`score.mjs`; 3 packets x a/b/c, files in `results/itep-listening-v1--p*/`): 168 verdicts, 165 unique.
+  **ITL1-A-D1-1 broken by all three** (`source_underspecified`: "Is my aunt still picking us up?" / "Mom said she'll
+  be there" leaves "cousins" resting on what "she" refers to). **One counted pattern, p3 a+b cross-item cueing on
+  D-L-2/4/5** (D-L-5's key restates D-L-4's and refutes its distractor) -> the whole D lecture drops (A1.2 union
+  6/56, no hold). Uncounted: p2 a+b `key_form` on 2 items (the inference key names its subject where distractors say
+  "They"; under 3 shared); p2 c cross-item stem leak B-L-1 -> B-L-2/3 (single grader); p1 a/b/c `key_position`
+  (excluded, A1.1).
+  **Cleared 49 of 56 = "brief works" band (42 is the bar).** Part 1 15/16 dialogues; Part 2 16/16 items, 4/4
+  conversations; Part 3 18/24 items, 3/4 lectures. No part under half.
+- **No-transcript attack (recorded only, §5):** candidate 112/144 = 77.8% (48 items) vs control 120/120 = 100.0%
+  (40 live TOEFL listening items, every solver right on every one): margin -22.2, and the control has no headroom,
+  so per §5 **"no headroom, uninformative"**. Solvers named general knowledge (heat acclimatisation, the violin blind
+  tests, worms surviving underwater) and option shape (the one hedged option among absolutes) as their cues: the
+  lecture facts are real science, which the instrument scores as a leak (CLAUDE.md, saturating families).
+- **Staged:** 49 rows, `itep-listening-v1.batch.json` -> `itep-bank-helper.ts stage --expect 49 --apply` (listening
+  rules on), read back 49 false / 0 true. `verify-itep-draw.ts --section listening`: pools Part 1 15, Part 2 16
+  (4 conversations), Part 3 18 (3 lectures); full 14/14 draw, sets whole and in order, live path refuses; every
+  drawn script voiceable (W nova, M onyx, lecture one nova segment, max 2,824 of 4,000 chars); one form's audio
+  about 5,400 chars (~$0.08 tts-1 if uncached). **Disjoint full forms: 3** (Parts 1 and 3 bind). No audio generated.
+- Nothing released. Lessons in `briefs/itep-slate-listening-v1.pending.md`.

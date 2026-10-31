@@ -1,0 +1,29 @@
+{
+  "1": {"verdict": "unique", "reason": "M: 'I'll go talk to him first, and then I'll meet you at the café' - 'first' orders the actions, so the café is after the key. Speech natural."},
+  "2": {"verdict": "unique", "reason": "Key covers the central pay-vs-bus argument. The conversation's wider gist is which summer job to take, but no distractor is a competing summary ('What a summer helper learns...' is one line). Arithmetic checks: 4x11=44, -6=38; 4x9=36; 2x45 min = 1.5 h."},
+  "3": {"verdict": "unique", "reason": "'two buses... change at the hospital... forty-five minutes each way'. Distractors misplace the change, deny it, or contradict the fare maths."},
+  "4": {"verdict": "unique"},
+  "5": {"verdict": "unique", "reason": "Supported by the apple breaking 'other students' work' and 'Thursday's load is all the year seven pots, so I have to be careful'. 'Too busy' contradicted by the lunch offer. Fact check: trapped moisture in thick/solid clay causing kiln blow-outs, hollowing to even walls, a vent hole - true. Gap, not contradiction: 'today' + 'about five days' to a Tuesday firing is loose about which weekday today is."},
+  "6": {"verdict": "unique"},
+  "7": {"verdict": "unique", "reason": "'It's not the work I mind... I'm scared I'll squash it' directly supports the key and rules out the extra-work distractor."},
+  "8": {"verdict": "unique"},
+  "9": {"verdict": "unique", "reason": "'To me, that explains far more of what we actually see' - key is near-verbatim (note only). Fact check: skin breathing, moist skin, survival submerged for days, UV harm, rain-migration hypothesis - all true."},
+  "10": {"verdict": "unique"},
+  "11": {"verdict": "unique", "reason": "All three distractors contradict the transcript (counted 'while it was still raining'; 'weren't lying still'; 'a long way from the grass'). Key follows from the lecturer's travel thesis applied to the class's crawling worms. Note: key is the only option with a noun subject ('The worms...' vs 'They...', 'Most of them...') - see batch_patterns."},
+  "12": {"verdict": "unique"},
+  "13": {"verdict": "unique"},
+  "14": {"verdict": "unique", "reason": "'usually can't get back to the soil in time' plus 'the air dries out its skin' supports the key."},
+  "15": {"verdict": "unique", "reason": "'Keep your counts in a notebook and show it to me every Friday'. Timeline consistent if today is Thursday ('first page tomorrow')."},
+  "16": {"verdict": "unique", "reason": "'a student of mine', 'I read it last night' - teacher; caretaker referred to in third person."},
+  "17": {"verdict": "unique"},
+  "18": {"verdict": "unique"},
+  "19": {"verdict": "unique", "reason": "'How Kelbury's shops slowly gave up price cards' reverses the history. Kelbury is declared fictional; dynamic online pricing claim is true. Dates internally consistent (1872 cards, 1874 clerks two years later, 1880 letter eight years later)."},
+  "20": {"verdict": "unique", "reason": "Five-year norm before bargaining + clerks aged ~15 'straight from the farms' supports the key; distractors contradict 'he wrote every card himself', 'lower pay', 'straight from the farms'. Note: key is the only option not opening with 'They' and is the longest - see batch_patterns."},
+  "21": {"verdict": "unique"},
+  "22": {"verdict": "unique"},
+  "23": {"verdict": "unique"},
+  "24": {"verdict": "unique", "reason": "'Here's why this still matters'. 'Bargaining has disappeared' contradicts 'bargaining is back'."},
+  "batch_patterns": [
+    {"pattern": "key_form", "items": [11, 20], "evidence": "In both lecture inference items the key is the only option with a noun-phrase subject ('The worms were heading...', 'These clerks were too new...') while all three distractors open with 'They' / 'Most of them'. Only 2 items, but it is the same tell in both; a test-wise student picks the odd-one-out. Key position is balanced (A7 B7 C6 D4) and the key is longest in only 8/24, so no position or length pattern."}
+  ]
+}

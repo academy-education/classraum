@@ -24,6 +24,11 @@
  *     itemsPerGroup rows sharing a passage_group_id and one passage, with created_at strictly increasing
  *     in batch order; a standalone Reading/Listening part has its own passage and NO group
  *     (src/lib/study/itep-stage-check.ts, added 2026-10-31 for Reading v1);
+ *   - for a listening row (added 2026-10-31, iTEP Listening v1): a passage starting "Transcript:"; a Part 1/2
+ *     conversation the player splits into turns by exactly W and M (pinned to a female and a male voice); a Part 3
+ *     lecture with no "<capital>: " the player would split on; every TTS segment within the route's 4,000 chars
+ *     (listeningProblems in itep-stage-check.ts). No audio is generated here: the player synthesises on first play
+ *     and prewarm-toefl-audio.mjs --family itep pre-generates released (verified) rows only;
  *   - has a cohort and a verify_meta.method_id.
  * Also refuses a hash already in the bank or repeated within the batch, and
  * exits 2 if the batch does not hold exactly --expect rows (never a verdict

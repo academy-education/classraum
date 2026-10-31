@@ -1,0 +1,29 @@
+{
+  "1": {"verdict": "unique", "note": "'Meet his mother at the cafe' is explicitly second ('I'll go talk to him first, and then I'll meet you at the cafe'). Arithmetic checks: 4x11=44-6=38 vs 4x9=36; 2x45 min = an hour and a half."},
+  "2": {"verdict": "unique", "note": "Key covers the central argument; second half (Kurt, 'boring') is not in the key but every distractor is a narrower detail, and 'What a summer helper learns' is one line, not a partly right summary."},
+  "3": {"verdict": "unique", "note": "'switch to a second bus near the highway' is ruled out by 'change at the hospital'."},
+  "4": {"verdict": "unique"},
+  "5": {"verdict": "unique", "note": "Supported by the burst apple breaking four other students' bowls and 'I have to be careful what goes in with them'. Fact check: trapped moisture turning to steam and bursting solid pieces, hollowing to thumb-thick walls, venting hole are standard ceramics practice."},
+  "6": {"verdict": "unique"},
+  "7": {"verdict": "unique", "note": "'He minds the extra work more than the risk to the face' is directly contradicted by 'It's not the work I mind'."},
+  "8": {"verdict": "unique", "note": "Timeline consistent: fire next Tuesday, cool by Thursday, show next Friday; 'Thursday's load' is this Thursday."},
+  "9": {"verdict": "unique", "note": "'To me, that explains far more of what we actually see'; comparison with drowning idea is the lecture's frame."},
+  "10": {"verdict": "unique"},
+  "11": {"verdict": "unique", "note": "Weakest key in the packet: the speaker never says THESE worms were heading for new soil; it is the travel hypothesis applied to them, and the lecture also offers 'to find a partner'. Accepted because the speaker says the travel idea 'explains far more of what we actually see' and all three distractors are contradicted (still raining; 'weren't lying still'; 'some of them a long way from the grass')."},
+  "12": {"verdict": "unique", "note": "Fact check: earthworms surviving days submerged in oxygenated water is documented."},
+  "13": {"verdict": "unique"},
+  "14": {"verdict": "unique", "note": "Death is inferred, not stated ('usually can't get back to the soil in time' + air dries skin); reasonable inference, no rival."},
+  "15": {"verdict": "unique"},
+  "16": {"verdict": "unique"},
+  "17": {"verdict": "unique"},
+  "18": {"verdict": "unique", "note": "Gap only: counts Monday, Wednesday and 'today', notebook shown 'every Friday', first page 'tomorrow' - if today were Friday, tomorrow is Saturday; today is never stated, so not a contradiction."},
+  "19": {"verdict": "unique"},
+  "20": {"verdict": "unique", "note": "Inference from 'five years behind the counter before he could be trusted to bargain' + fifteen-year-olds straight from farms. Key form stands out (only option opening 'These clerks' rather than 'They') - notice only."},
+  "21": {"verdict": "unique"},
+  "22": {"verdict": "unique"},
+  "23": {"verdict": "unique", "note": "Key states the surface point; the deeper purpose (letter cannot show why Lorne started) is not offered by any distractor. Dates consistent: 1872 cards, 1880 letter = eight years, 1874 clerks = two years."},
+  "24": {"verdict": "unique"},
+  "batch_patterns": [
+    {"pattern": "cross_item_stem_leak", "items": [9, 10, 11], "evidence": "Item 9's stem names the lecture's thesis ('the idea that rain gives worms a chance to travel'). A student who reads that stem can pick item 10's key ('Why worms move around above ground in rain', and reject 'to find food') and item 11's key ('heading for new soil') without having understood the talk."}
+  ]
+}

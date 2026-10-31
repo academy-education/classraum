@@ -15,6 +15,11 @@
  *     whether every Part 2 item kept its [A:]..[D:] order while Part 1 items
  *     were reordered.
  *
+ * 3. Listening only (added 2026-10-31, iTEP Listening v1): the audio the player WOULD synthesise for each drawn
+ *    script (listening-voice.ts listeningSegments, the player's own transform): segments, voices (W = nova,
+ *    M = onyx, lecture = one nova segment), characters and the tts-1 cost at $15 per 1M characters, plus the stage
+ *    check's listening rules (itep-stage-check.ts listeningProblems). Generates nothing.
+ *
  * Exits 1 when any section is short (which it is, honestly, until the bank
  * holds a full form), 2 on an unreadable bank. Read-only; records no
  * exposures.
@@ -30,6 +35,8 @@ async function main() {
   const { ADMISSION_BLUEPRINT, ITEP_PART_QUOTAS } = await import('@/lib/study/admission-tests')
   const { hasLabelledSegments } = await import('@/lib/study/labelled-segments')
   const { dbAdmin } = await import('@/lib/supabase-admin')
+  const { listeningSegments, TTS_MAX_CHARS } = await import('@/lib/study/listening-voice')
+  const { listeningProblems } = await import('@/lib/study/itep-stage-check')
 
   const args = process.argv.slice(2)
   const opt = (k: string) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : undefined }
@@ -107,6 +114,23 @@ async function main() {
       const slots: Record<string, number> = {}
       for (const r of labelled) { const s = 'ABCD'[r.item.choices.indexOf(r.item.correct_answer)] ?? '?'; slots[s] = (slots[s] ?? 0) + 1 }
       if (labelled.length) console.log(`  error-ID key slots as served: ${JSON.stringify(slots)}`)
+    }
+
+    // 3. Listening: the audio each drawn script would become (nothing is generated).
+    if (section === 'listening') {
+      const scripts = new Map<string, { domain: string; passage: string }>()
+      for (const r of parts.flat()) scripts.set(r.passageGroupId ?? `solo:${r.id}`, { domain: r.domain ?? '', passage: r.item.passage ?? '' })
+      let chars = 0, audioBad = 0
+      for (const [k, { domain, passage }] of scripts) {
+        const segs = listeningSegments(passage)
+        const n = segs.reduce((a, x) => a + x.text.length, 0); chars += n
+        const voices = [...new Set(segs.map(x => x.voice))].join('+')
+        const probs = listeningProblems(k, domain, passage)
+        if (probs.length) audioBad++
+        console.log(`  ${probs.length ? 'AUDIO' : 'ok   '} ${k.slice(0, 44).padEnd(44)} ${domain.padEnd(28)} ${String(segs.length).padStart(2)} segment(s), voices ${voices}, ${n} chars (max segment ${Math.max(...segs.map(x => x.text.length))}/${TTS_MAX_CHARS})${probs.length ? ` :: ${probs.join('; ')}` : ''}`)
+      }
+      console.log(`  audio for this draw: ${scripts.size} scripts, ${chars} chars, tts-1 ~$${(chars / 1e6 * 15).toFixed(3)} if none cached; ${audioBad} script(s) the player could not voice`)
+      if (audioBad) short++
     }
   }
   process.exit(short ? 1 : 0)
