@@ -164,3 +164,50 @@ player code is touched.
   template. The probe is the check.
 - Dropping a conversation for a needed key change shrinks the population before the gate; with 8 authored, losing
   more than 4 that way plus a normal gate rate could leave fewer than 2.
+
+## Results
+
+(2026-10-31, recorded after scoring; no rule above changed)
+
+- **Authoring:** 8 Claude authors, 32 items, per-author pre-flight PASS on hand-in. Batch pre-flight 4 problems (prompt
+  openings "what is the conversation" x5, "what can be inferred" x6, "what does the man" x5, cap 4; lone negative never
+  keyed 0/5). Dedupe 0 flags (highest Jaccard 0.195, ITL3-C-C ~ ITL1-B-C: time capsule vs bee count). Break tests:
+  pre-flight 9/9 (after fixing the script-words mutation to pick an item whose key share is under 1: a tie at 1.0
+  cannot be broken, so v2's mutation silently missed on this file); dedupe fired (a) Jaccard 1.000 on a pasted v2
+  transcript and (c) on a copied v2 key; revision-diff exit 1 on a changed key, exit 0 listing a changed distractor.
+- **Probe 1** (`probe/probe1.json`, input `probe/items-r1.json`, pre-revision files `probe/<X>.r1.json`): 4 patterns.
+  Sent with the pre-flight problems in ONE round (`probe/revision-r1.json`): intent-next key is the small errand before
+  the main activity 4/5 (A2, B4, D1, E4: one distractor made another small errand the script rules out); hedged key
+  3/3 (B3, C4: second hedged distractor; H4: first). **Not sent, assignment-caused (§3b):** the higher-status speaker's
+  side is keyed 6/6 (B, C, D, E, G): `prevails` was drawn by gender and the role flip put the senior role on the
+  prevailing side in every status-gap conversation; fixing it needs new outcomes, i.e. key changes. "To suggest"
+  purpose distractors never keyed: 2 v3 items, under the bar.
+- **Revision:** 20 non-key field changes in 8 files; `revision-diff.mjs` **0 key and 0 transcript changes** (exit 0).
+  No conversation dropped before the gate. Batch pre-flight PASS, dedupe 0 flags.
+- **Probe 2** (`probe/probe2.json`, recorded, NOT revised): sibling items eliminate main-idea/relationship options
+  6/6 (A, B, C, G, H); senior speaker's side keyed 5/6; Mr. Dunmow options never keyed 0/3 (B only); the one more
+  abstract option keyed 4/5; intent-next key carries a sequence link 3/4.
+- **Packet:** 1 x 32 / 8 groups as computed. 3 graders, 96 verdicts: a 32 unique; b 32 unique; c 31 unique.
+- **Gate** (`score.mjs`): **8 of 32 cleared, 2 of 8 conversations (B, H) = under 4 = "broken for conversations"
+  (§1, §4).** No hold (pattern share 15.6%). Drops: **counted b+c `one_template` on all 5 main-idea items** (A-C-3,
+  C-C-3, D-C-3, F-C-1, G-C-3: four whole-conversation options that open with the same clause and differ only in the
+  outcome) -> A, C, D, F, G conversations; **E-C-2 broken by c** (`key_wrong`: "had been looking for a team" claims a
+  search the script never states; the author named this item as least sure at hand-in). Both graders who named the
+  template said it does not by itself pick the key; A1 counts a two-grader pattern regardless. a+b+c `key_position`
+  excluded (A1.1).
+- **The cause is this prereg's own §1 item 1.** `whole-script options: 4` was chosen to remove v2's twin-pair tell
+  and produced a template tell on every main-idea item; all three values of the shape have now produced a tell
+  (1: broadest option keyed; 2: twin pair, counted; 4: one template, counted). The 3 conversations without a
+  main-idea item (B, E, H) were not touched by the pattern; 2 of them cleared.
+- **Brief consequences (BRIEF-VERSIONING rule 3):** `one_template` is now named by two graders in **two consecutive
+  batches** (v2 Part 1 b+c; v3 Part 2 b+c) = **blocking**, and the yield is in §1's stop band = **broken for
+  conversations**. **The next listening round cuts v2**, folding in every pending lesson (1-18). Not cut here: the
+  prereg fixed the frozen brief for this round.
+- **No-transcript attack (recorded only):** candidate 61/96 = 63.5% (32 items) vs the identical 40 v1/v2 controls
+  117/120 = 97.5%; margin -34.0; control >= 75%, so "no headroom, uninformative".
+- **Staged:** `itep-listening-v3.batch.json` (8 rows) -> `itep-bank-helper.ts stage --expect 8 --apply`, 0 hash
+  clashes, read back 8 of 8: verified=false 8, verified=true 0. `verify-itep-draw.ts --section listening`: pools P1 42,
+  P2 40 (10 conversations), P3 66 (11 lectures); full 14/14 draw, sets whole and in authored order, live path refuses,
+  every script voiceable. **Disjoint full forms: 10** (no margin: Part 2 binds at exactly 10). No audio generated;
+  nothing released.
+- Lessons 14-18 in `briefs/itep-slate-listening-v1.pending.md`.

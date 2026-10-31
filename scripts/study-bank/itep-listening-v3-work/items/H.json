@@ -1,0 +1,154 @@
+{
+ "author": "H",
+ "sets": [
+  {
+   "set_id": "ITL3-H-C",
+   "part": 2,
+   "setting": "on a video call on a weekend evening",
+   "speakers": {
+    "W": "an older sister who has just started university",
+    "M": "her younger brother who is in high school"
+   },
+   "title": "Who gets the bigger bedroom",
+   "transcript": "W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+   "names": [],
+   "other_caps": [
+    "Mum",
+    "Dad",
+    "December",
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL3-H-C-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about her own courses at university?",
+     "choices": [
+      "She dropped history of art after one week and moved to chemistry",
+      "She gave up a subject her father chose and prefers the one she took instead",
+      "She picked chemistry because her dad wanted it and still enjoys it",
+      "She chose history of art first because her dad wanted her to"
+     ],
+     "correct_answer": "She gave up a subject her father chose and prefers the one she took instead",
+     "why": "I picked chemistry because Dad wanted me to, and I dropped it after the first week",
+     "explanation": "\"She gave up a subject her father chose and prefers the one she took instead\" is correct: she says \"I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She dropped history of art after one week and moved to chemistry",
+       "lure": "reversed",
+       "reason": "\"She dropped history of art after one week and moved to chemistry\" reverses the order: she says \"I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art\"."
+      },
+      {
+       "choice": "She picked chemistry because her dad wanted it and still enjoys it",
+       "lure": "contradicted",
+       "reason": "\"She picked chemistry because her dad wanted it and still enjoys it\" is wrong because she says \"I dropped it after the first week\"; it is history of art that she says \"I love\"."
+      },
+      {
+       "choice": "She chose history of art first because her dad wanted her to",
+       "lure": "wrong subject",
+       "reason": "\"She chose history of art first because her dad wanted her to\" is wrong because the subject chosen for her father was chemistry: \"I picked chemistry because Dad wanted me to\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-H-C-2",
+     "kind": "relationship",
+     "difficulty": "medium",
+     "prompt": "Who are the speakers most likely to be?",
+     "choices": [
+      "A mother and her son who is in high school",
+      "An art teacher and a student in her class",
+      "Two students living in the same university hall",
+      "A university student and her brother at home"
+     ],
+     "correct_answer": "A university student and her brother at home",
+     "why": "Well, I nearly made the same mistake here at university.",
+     "explanation": "\"A university student and her brother at home\" is correct: the woman is \"here at university\" and is \"coming home for the winter break\", they share a mother (\"Mum said you wanted to ask me something\"), and the man wants her old bedroom at home, and the man says \"I'm a much better brother now\".",
+     "distractor_rationales": [
+      {
+       "choice": "A mother and her son who is in high school",
+       "lure": "wrong role",
+       "reason": "\"A mother and her son who is in high school\" is wrong because the woman says \"Mum said you wanted to ask me something\", so she is not the mother, and the man calls her room \"your bedroom\" at home."
+      },
+      {
+       "choice": "An art teacher and a student in her class",
+       "lure": "topic fit",
+       "reason": "\"An art teacher and a student in her class\" is wrong because the man mentions \"My art teacher\" as someone else, and the woman talks about \"here at university\" and \"coming home for the winter break\"."
+      },
+      {
+       "choice": "Two students living in the same university hall",
+       "lure": "wrong place",
+       "reason": "\"Two students living in the same university hall\" is wrong because only the woman is at university (\"here at university\"), while the man is at home choosing \"my courses for next year\" and wants to \"move into\" her bedroom."
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-H-C-3",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "Which course does the man say he wants to take next year?",
+     "choices": [
+      "The advanced art course",
+      "The extra physics course",
+      "The history of art course",
+      "The basic chemistry course"
+     ],
+     "correct_answer": "The advanced art course",
+     "why": "I want to take the advanced art course",
+     "explanation": "\"The advanced art course\" is correct: the man says \"I'm choosing my courses for next year, and I want to take the advanced art course.\"",
+     "distractor_rationales": [
+      {
+       "choice": "The extra physics course",
+       "lure": "earlier plan",
+       "reason": "\"The extra physics course\" was his earlier plan: \"Last month you told me you were taking extra physics\", but he says \"I changed my mind\"."
+      },
+      {
+       "choice": "The history of art course",
+       "lure": "wrong speaker",
+       "reason": "\"The history of art course\" is the woman's course at university: \"Now I'm doing history of art\"."
+      },
+      {
+       "choice": "The basic chemistry course",
+       "lure": "wrong speaker",
+       "reason": "\"The basic chemistry course\" is wrong because chemistry is the subject the woman dropped: \"I picked chemistry because Dad wanted me to, and I dropped it\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-H-C-4",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What does the conversation suggest about the woman?",
+     "choices": [
+      "She has already packed her books into boxes at home",
+      "She would stay at her university for the winter break",
+      "She doubts her brother would look after her things",
+      "She wants their mother to decide alone"
+     ],
+     "correct_answer": "She doubts her brother would look after her things",
+     "why": "You broke my lamp the last time you were really careful.",
+     "why2": "All my books are still on the shelves.",
+     "explanation": "\"She doubts her brother would look after her things\" is correct: when he offers \"I'd be really careful\" with her books, she answers \"You broke my lamp the last time you were really careful\", and she hesitates about the room because \"All my books are still on the shelves\".",
+     "distractor_rationales": [
+      {
+       "choice": "She has already packed her books into boxes at home",
+       "lure": "contradicted",
+       "reason": "\"She has already packed her books into boxes at home\" is contradicted by \"All my books are still on the shelves\"; putting them \"in boxes\" is only the man's offer."
+      },
+      {
+       "choice": "She would stay at her university for the winter break",
+       "lure": "contradicted",
+       "reason": "\"She would stay at her university for the winter break\" is contradicted by \"I'm coming home for the winter break in six weeks\"."
+      },
+      {
+       "choice": "She wants their mother to decide alone",
+       "lure": "contradicted",
+       "reason": "\"She wants their mother to decide alone\" is contradicted by \"I'll look at both rooms, and we'll talk to Mum together\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

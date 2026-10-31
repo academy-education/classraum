@@ -1,0 +1,130 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "reason": "The key says the man had been LOOKING for a team for a Kanby camper. The transcript only says the Kanby cabin has five campers, so one has no team, and later \"that solves two problems at once\". That line can just as easily mean the woman's two problems (no fourth runner, and Jolie losing her place), so the key rests on an inference the conversation never states. The other three options are contradicted, so the item survives only because the key is the closest option. Minor note on #7: the key there says Jolie is \"the teammate who trained hardest\", a comparison the transcript never makes (it only says she practised every evening). That is loose wording and was accepted."
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    3,
+    5,
+    12,
+    15,
+    17,
+    18,
+    19,
+    25,
+    26,
+    28,
+    32
+   ],
+   "evidence": "Keys are A 11, B 6, C 7, D 8 of 32. A is over-represented (34% against 25%), and runs of A appear inside sets: items 17-19 are A,A,A and items 25-28 are A,A,B,A. The skew is mild and no letter sequence predicts the key."
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    1,
+    11,
+    15,
+    19,
+    31
+   ],
+   "evidence": "Every gist item uses one shared option frame, with an identical prefix on all four options (for example \"Two cousins decide how to keep the younger children busy, and they ...\"). Only the outcome clause changes, and the key is always how the talk resolves. You still need the content to answer, so this does not pick the key. It is noted as a template."
+  }
+ ]
+}

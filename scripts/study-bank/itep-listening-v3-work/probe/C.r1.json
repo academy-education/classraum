@@ -1,0 +1,78 @@
+{
+  "author": "C",
+  "sets": [
+    {
+      "set_id": "ITL3-C-C",
+      "part": 2,
+      "setting": "in an empty classroom at lunchtime",
+      "speakers": {"W": "a student reporter for the school newspaper", "M": "the student being interviewed for an article"},
+      "title": "The time capsule under the bike shed",
+      "transcript": "W: Thanks for giving up your lunch, Emil. So, everyone's talking about the time capsule. How did you find it?\nM: Honestly, it was luck. I was looking through old yearbooks in the library for my history project, and in the one from nineteen ninety-nine there's a photo of some students burying a metal box.\nW: And the photo didn't say where?\nM: The caption just said behind the old gym. But the old gym was knocked down years ago, so that didn't help much.\nW: Then how did you work out the spot?\nM: There's a huge oak tree in the background of the photo, with one branch that bends right down. That tree's still standing next to the bike shed. So I lined up the photo with the tree, and I was pretty sure the box was under the shed.\nW: That's really clever. Who did the digging?\nM: The caretaker did most of it. We started straight after the last bell, at half past three. He had to move two bikes and a pile of bricks first. When the shovel finally hit metal, it was half past five, and he'd missed his bus home.\nW: Oh no. So what's the box like?\nM: Smaller than I expected, about the size of a shoebox. It's rusty along one side, though, so I'm worried rainwater got in and spoiled some of the papers.\nW: Okay. Now, about the article itself.\nM: Actually, I was going to ask. Could you hold it until after the box is opened? Then you could write about what's inside and have photos of everything.\nW: When's it being opened?\nM: At the spring concert, in three weeks. The head teacher wants to do it on stage.\nW: I see why you'd want to wait. But I've got another idea. What if we run a short story this Friday and ask anyone from the class of nineteen ninety-nine to come to the concert? The people who buried it could explain the things inside.\nM: Hmm. But some of them must live far away by now.\nW: Some, maybe. But lots of parents here went to this school. Somebody will know somebody. And after the concert, I'll write a second, longer piece with the photos.\nM: Okay, that's actually better than my plan. Two articles, then.\nW: Great. Thanks, Emil. I'll show you the first one before it goes in.",
+      "names": ["Emil"],
+      "other_caps": ["Friday"],
+      "items": [
+        {
+          "qid": "ITL3-C-C-1",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What can be inferred about the search the man describes?",
+          "choices": ["It took about two hours.", "It took about three hours.", "It took about four hours.", "It took about eight hours."],
+          "correct_answer": "It took about two hours.",
+          "why": "We started straight after the last bell, at half past three.",
+          "why2": "When the shovel finally hit metal, it was half past five",
+          "explanation": "\"It took about two hours.\" is correct: the man says \"We started straight after the last bell, at half past three\" and \"When the shovel finally hit metal, it was half past five\", so the search lasted about two hours.",
+          "distractor_rationales": [
+            {"choice": "It took about three hours.", "lure": "wrong number", "reason": "\"It took about three hours.\" is wrong: they began \"at half past three\" and found it when \"it was half past five\", which is two hours, not three."},
+            {"choice": "It took about four hours.", "lure": "wrong number", "reason": "\"It took about four hours.\" is wrong: the search ran from \"half past three\" until \"it was half past five\", only two hours."},
+            {"choice": "It took about eight hours.", "lure": "wrong number", "reason": "\"It took about eight hours.\" is wrong: starting \"at half past three\" and finishing when \"it was half past five\" is two hours, not eight."}
+          ]
+        },
+        {
+          "qid": "ITL3-C-C-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "How did the man work out where the box was buried?",
+          "choices": ["He matched the photo with an oak tree that is still standing.", "He followed the directions written in the photo caption.", "He asked a former student who appeared in the photo.", "He found an old map of the school grounds in the library archive."],
+          "correct_answer": "He matched the photo with an oak tree that is still standing.",
+          "why": "That tree's still standing next to the bike shed. So I lined up the photo with the tree, and I was pretty sure the box was under the shed.",
+          "explanation": "\"He matched the photo with an oak tree that is still standing.\" is correct: he says \"There's a huge oak tree in the background of the photo\" and \"I lined up the photo with the tree\".",
+          "distractor_rationales": [
+            {"choice": "He followed the directions written in the photo caption.", "lure": "contradicted", "reason": "\"He followed the directions written in the photo caption.\" is wrong: the caption \"just said behind the old gym\", and since the gym \"was knocked down years ago\", \"that didn't help much\"."},
+            {"choice": "He asked a former student who appeared in the photo.", "lure": "detail", "reason": "\"He asked a former student who appeared in the photo.\" is wrong: he explains that \"I lined up the photo with the tree\"; the students from nineteen ninety-nine come up only later, in the reporter's idea to \"ask anyone from the class of nineteen ninety-nine to come to the concert\"."},
+            {"choice": "He found an old map of the school grounds in the library archive.", "lure": "misreading", "reason": "\"He found an old map of the school grounds in the library archive.\" is wrong: what he found in the library was a yearbook photo, \"a photo of some students burying a metal box\", and he located the spot because \"I lined up the photo with the tree\"."}
+          ]
+        },
+        {
+          "qid": "ITL3-C-C-3",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": ["A student describes finding a buried box and agrees to the reporter's plan for two stories.", "A student describes finding a buried box and convinces the reporter to wait until it is opened.", "A student describes searching for a buried box that the school still has not found.", "A student describes opening a buried box and lists the things the reporter can photograph."],
+          "correct_answer": "A student describes finding a buried box and agrees to the reporter's plan for two stories.",
+          "why": "Okay, that's actually better than my plan. Two articles, then.",
+          "explanation": "\"A student describes finding a buried box and agrees to the reporter's plan for two stories.\" is correct: the man explains how the box was found, asks the reporter to \"hold it until after the box is opened\", and then accepts her idea: \"Okay, that's actually better than my plan. Two articles, then.\"",
+          "distractor_rationales": [
+            {"choice": "A student describes finding a buried box and convinces the reporter to wait until it is opened.", "lure": "wrong outcome", "reason": "\"A student describes finding a buried box and convinces the reporter to wait until it is opened.\" is wrong: he asks her to \"hold it until after the box is opened\", but she proposes to \"run a short story this Friday\" and he agrees: \"that's actually better than my plan\"."},
+            {"choice": "A student describes searching for a buried box that the school still has not found.", "lure": "contradicted", "reason": "\"A student describes searching for a buried box that the school still has not found.\" is wrong: the box was found: \"When the shovel finally hit metal, it was half past five\"."},
+            {"choice": "A student describes opening a buried box and lists the things the reporter can photograph.", "lure": "wrong time", "reason": "\"A student describes opening a buried box and lists the things the reporter can photograph.\" is wrong: the box has not been opened yet; it will be opened \"At the spring concert, in three weeks\"."}
+          ]
+        },
+        {
+          "qid": "ITL3-C-C-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the man say about the condition of the box?",
+          "choices": ["Rust along one edge may have let water damage the contents.", "It is much bigger than a shoebox, so it was hard to lift.", "The lid may be stuck, because the lock is badly bent.", "It is sealed so tightly that the papers stayed dry."],
+          "correct_answer": "Rust along one edge may have let water damage the contents.",
+          "why": "It's rusty along one side, though, so I'm worried rainwater got in and spoiled some of the papers.",
+          "explanation": "\"Rust along one edge may have let water damage the contents.\" is correct: the man says \"It's rusty along one side, though, so I'm worried rainwater got in and spoiled some of the papers.\"",
+          "distractor_rationales": [
+            {"choice": "It is much bigger than a shoebox, so it was hard to lift.", "lure": "contradicted", "reason": "\"It is much bigger than a shoebox, so it was hard to lift.\" is wrong: the box is \"Smaller than I expected, about the size of a shoebox\"."},
+            {"choice": "The lid may be stuck, because the lock is badly bent.", "lure": "detail", "reason": "\"The lid may be stuck, because the lock is badly bent.\" is wrong: describing its condition, he mentions only that \"It's rusty along one side\"; nothing is said about a lock or the lid."},
+            {"choice": "It is sealed so tightly that the papers stayed dry.", "lure": "contradicted", "reason": "\"It is sealed so tightly that the papers stayed dry.\" is wrong: he says \"I'm worried rainwater got in and spoiled some of the papers\"."}
+          ]
+        }
+      ]
+    }
+  ]
+}

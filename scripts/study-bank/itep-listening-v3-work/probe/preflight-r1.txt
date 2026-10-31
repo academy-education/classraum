@@ -1,0 +1,24 @@
+read 8 file(s): 8 sets, 32 items {"part 2":32}
+kinds {"detail":11,"intent-next":5,"main-idea":5,"inference":6,"relationship":2,"attitude":1,"purpose":2}
+  ITL3-A-C   part 2 332 words   17 turns  at a relative's house during a family gathering: The flashlight hunt before dinner
+  ITL3-B-C   part 2 353 words   19 turns  at a community centre before a volunteer shift: First shift at the repair cafe welcome table
+  ITL3-C-C   part 2 385 words   19 turns  in an empty classroom at lunchtime: The time capsule under the bike shed
+  ITL3-D-C   part 2 339 words   18 turns  in the hallway or lobby of their apartment building: Getting the word out about dog walking
+  ITL3-E-C   part 2 376 words   18 turns  at a summer camp, outside the camp office: A team member short for the orienteering race
+  ITL3-F-C   part 2 365 words   18 turns  at the family's home in the evening: Whose job is the birthday cake
+  ITL3-G-C   part 2 381 words   17 turns  in the school hall the day before the science fair: The shaky ramp
+  ITL3-H-C   part 2 320 words   20 turns  on a video call on a weekend evening: Who gets the bigger bedroom
+author A: key uniquely longest 1/4, uniquely shortest 1/4
+author B: key uniquely longest 1/4, uniquely shortest 1/4
+author C: key uniquely longest 1/4, uniquely shortest 1/4
+author D: key uniquely longest 0/4, uniquely shortest 1/4
+author E: key uniquely longest 1/4, uniquely shortest 1/4
+author F: key uniquely longest 1/4, uniquely shortest 1/4
+author G: key uniquely longest 1/4, uniquely shortest 1/4
+author H: key uniquely longest 1/4, uniquely shortest 1/4
+batch: key uniquely longest 7/32, uniquely shortest 8/32
+PROBLEMS 4
+  batch: prompt opening "what is the conversation" x5 (max 4)
+  batch: prompt opening "what can be inferred" x6 (max 4)
+  batch: prompt opening "what does the man" x5 (max 4)
+  batch: lone "negative" is never the key (0/5): a free elimination

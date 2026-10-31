@@ -1,0 +1,152 @@
+{
+ "author": "G",
+ "sets": [
+  {
+   "set_id": "ITL3-G-C",
+   "part": 2,
+   "setting": "in the school hall the day before the science fair",
+   "speakers": {
+    "W": "a student entering the school science fair",
+    "M": "a volunteer judge for the science fair"
+   },
+   "title": "The shaky ramp",
+   "transcript": "M: Hi there. I'm one of the judges for tomorrow, and I'm just walking around to see who's set up. What's your project about?\nW: Hi. I tested which shoes grip best on a wet floor. I put each shoe on a wooden ramp, sprayed the ramp with water, and lifted one end slowly until the shoe started to slide.\nM: So you measured the angle where it slips. Nice. That's close to my own job, actually. I check how well car tires hold the road when it's raining.\nW: Oh, really? Then you'll probably find all my mistakes.\nM: I doubt it. Your poster says five shoes, three tries each. Is that everything you did?\nW: Well, no. I did a whole first round last month, but the ramp kept sliding around on the table, so the numbers jumped all over the place. I'm going to leave that round out and only show the second one.\nM: Hmm. Can I suggest something? I'd keep the first round in. Finding a problem and fixing it is exactly what judges like to hear about.\nW: But it looks so bad. One shoe slipped at twenty degrees on Monday and at thirty-five on Tuesday.\nM: That's the point. Next to your new numbers, it shows why the change mattered. What did you change, by the way?\nW: I fixed the ramp to the table with that metal clamp. I was going to take it off tonight so the ramp looks neater.\nM: Leave it on. It's part of your story. So how could you show the first round?\nW: The poster's finished, and the print shop closed at five, so I can't get a new one before the fair. I've got my notebook at home with all the old numbers. Maybe I could leave it open on the table?\nM: People won't flip through a notebook. Copy the numbers into a neat table on a card and stand it beside the poster. Handwritten is fine.\nW: Okay. I'll do that tonight, then. And I'll leave the clamp where it is.\nM: Great. When you talk to the judges, start with the first round, then point to the clamp.\nW: Thanks. I honestly thought the judges would think I'd made a mess of it.\nM: Not at all. Most first tries are messy. Hiding one is what makes a judge suspicious.",
+   "names": [],
+   "other_caps": [
+    "Monday",
+    "Tuesday"
+   ],
+   "items": [
+    {
+     "qid": "ITL3-G-C-1",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the woman most likely do tonight?",
+     "choices": [
+      "Copy the first-round results onto a card by hand",
+      "Get a new poster printed showing both rounds",
+      "Bring in the notebook and leave it open on the table",
+      "Take the clamp off so the ramp looks neater"
+     ],
+     "correct_answer": "Copy the first-round results onto a card by hand",
+     "why": "Copy the numbers into a neat table on a card and stand it beside the poster",
+     "explanation": "\"Copy the first-round results onto a card by hand\" is correct: the man says \"Copy the numbers into a neat table on a card and stand it beside the poster\" and the woman answers \"I'll do that tonight, then.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Get a new poster printed showing both rounds",
+       "lure": "contradicted",
+       "reason": "\"Get a new poster printed showing both rounds\" is ruled out: she says \"the print shop closed at five, so I can't get a new one before the fair.\""
+      },
+      {
+       "choice": "Bring in the notebook and leave it open on the table",
+       "lure": "replaced plan",
+       "reason": "\"Bring in the notebook and leave it open on the table\" is what she first offers, but the man says \"People won't flip through a notebook\" and she agrees to the card instead."
+      },
+      {
+       "choice": "Take the clamp off so the ramp looks neater",
+       "lure": "contradicted",
+       "reason": "\"Take the clamp off so the ramp looks neater\" is ruled out: she says \"I'll leave the clamp where it is.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-G-C-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "Regarding his own work, what does the man say?",
+     "choices": [
+      "It involves checking how well car tires hold the road in rain",
+      "It involves building wooden ramps for testing shoes",
+      "It involves judging science fairs at many schools",
+      "It involves teaching students to measure slopes"
+     ],
+     "correct_answer": "It involves checking how well car tires hold the road in rain",
+     "why": "I check how well car tires hold the road when it's raining",
+     "explanation": "\"It involves checking how well car tires hold the road in rain\" is correct: the man says \"That's close to my own job, actually. I check how well car tires hold the road when it's raining.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It involves building wooden ramps for testing shoes",
+       "lure": "script words, wrong person",
+       "reason": "\"It involves building wooden ramps for testing shoes\" mixes up the woman's project with his job: it was she who said \"I put each shoe on a wooden ramp\", while his job is \"I check how well car tires hold the road\"."
+      },
+      {
+       "choice": "It involves judging science fairs at many schools",
+       "lure": "not stated",
+       "reason": "\"It involves judging science fairs at many schools\" is not what he says about his work; he says only \"I'm one of the judges for tomorrow\" and describes his job as \"I check how well car tires hold the road when it's raining.\""
+      },
+      {
+       "choice": "It involves teaching students to measure slopes",
+       "lure": "misreading",
+       "reason": "\"It involves teaching students to measure slopes\" is wrong: he only remarks \"So you measured the angle where it slips\" about her project; his job is \"I check how well car tires hold the road when it's raining.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-G-C-3",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "Overall, what is this conversation mainly about?",
+     "choices": [
+      "A judge convinces a student to show the first round",
+      "A student convinces a judge the first round should be dropped",
+      "A judge advises a student to repeat the first round tonight",
+      "A student and a judge decide against using the first round"
+     ],
+     "correct_answer": "A judge convinces a student to show the first round",
+     "why": "I'd keep the first round in. Finding a problem and fixing it is exactly what judges like to hear about.",
+     "explanation": "\"A judge convinces a student to show the first round\" is correct: she plans to \"leave that round out\", the man says \"I'd keep the first round in\", and she agrees to put its numbers on a card beside the poster.",
+     "distractor_rationales": [
+      {
+       "choice": "A student convinces a judge the first round should be dropped",
+       "lure": "wrong outcome",
+       "reason": "\"A student convinces a judge the first round should be dropped\" reverses the outcome: the man answers her worry with \"That's the point. Next to your new numbers, it shows why the change mattered.\""
+      },
+      {
+       "choice": "A judge advises a student to repeat the first round tonight",
+       "lure": "wrong outcome",
+       "reason": "\"A judge advises a student to repeat the first round tonight\" is wrong: he tells her to \"Copy the numbers into a neat table on a card\", using the old numbers, not new tests."
+      },
+      {
+       "choice": "A student and a judge decide against using the first round",
+       "lure": "wrong outcome",
+       "reason": "\"A student and a judge decide against using the first round\" is her first plan, \"I'm going to leave that round out\", which the man rejects: \"I'd keep the first round in.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-G-C-4",
+     "kind": "purpose",
+     "difficulty": "medium",
+     "prompt": "Why does the woman mention what happened to one shoe on Monday and Tuesday?",
+     "choices": [
+      "To show how unreliable the early test results were",
+      "To explain why one shoe was left out of the second round",
+      "To point out the shoe that gripped the wet ramp best",
+      "To prove the clamp made the shoes slip sooner"
+     ],
+     "correct_answer": "To show how unreliable the early test results were",
+     "why": "One shoe slipped at twenty degrees on Monday and at thirty-five on Tuesday.",
+     "why2": "the ramp kept sliding around on the table, so the numbers jumped all over the place",
+     "explanation": "\"To show how unreliable the early test results were\" is correct: she says \"But it looks so bad. One shoe slipped at twenty degrees on Monday and at thirty-five on Tuesday\", after explaining that in the first round \"the numbers jumped all over the place.\"",
+     "distractor_rationales": [
+      {
+       "choice": "To explain why one shoe was left out of the second round",
+       "lure": "contradicted",
+       "reason": "\"To explain why one shoe was left out of the second round\" is wrong: no shoe was left out, since the poster shows \"five shoes, three tries each\", and it is the whole round she wanted to leave out: \"I'm going to leave that round out\"."
+      },
+      {
+       "choice": "To point out the shoe that gripped the wet ramp best",
+       "lure": "misreading",
+       "reason": "\"To point out the shoe that gripped the wet ramp best\" is wrong: she compares one shoe with itself on two days and says \"But it looks so bad\", not which shoe was best."
+      },
+      {
+       "choice": "To prove the clamp made the shoes slip sooner",
+       "lure": "wrong time",
+       "reason": "\"To prove the clamp made the shoes slip sooner\" is wrong: the clamp came later, \"I fixed the ramp to the table with that metal clamp\", while in the first round \"the ramp kept sliding around on the table\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

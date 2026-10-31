@@ -1,0 +1,42 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-LISTENING-V3.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + A1",
+ "dropped_before_gate": [],
+ "brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "graders": [
+  "a",
+  "b",
+  "c"
+ ],
+ "item_files_sha256": {
+  "scripts/study-bank/itep-listening-v3-work/items/A.json": "aeed473ff2a16c933ce024da79867cbda5ecf1afe7e51e6c71cc297290a3bf48",
+  "scripts/study-bank/itep-listening-v3-work/items/B.json": "1d2bf10de9966eebc156672ca07e67e695ea5660d85138c98818b29e06705330",
+  "scripts/study-bank/itep-listening-v3-work/items/C.json": "58f1e3cb24ba4644dfcb9bf6a6575faa2f79ba0bacbd6ad1f6b937d0788720dc",
+  "scripts/study-bank/itep-listening-v3-work/items/D.json": "6010ab68f90c7c270b598f022a6963d9af1ac5892e5ee41fe418859171c2812f",
+  "scripts/study-bank/itep-listening-v3-work/items/E.json": "b214122438f3054169058c49786ca28edd427b3c8fa64ba32d1f400a0cf1f36c",
+  "scripts/study-bank/itep-listening-v3-work/items/F.json": "87b595a1af64158e51aa10b3cd9a580b59325245c170efc3fdabe290e9626260",
+  "scripts/study-bank/itep-listening-v3-work/items/G.json": "e7fd482f397524a969b349f8c206fa02a410da9398094a7260948a57309ded23",
+  "scripts/study-bank/itep-listening-v3-work/items/H.json": "f9c2749cc09ab578f4b5f93e466c6971eff898cb6abc367b7e9c06c1f0882c57"
+ },
+ "packets": [
+  {
+   "id": "itep-listening-v3--p1",
+   "stratum": "itep-listening",
+   "cohort": "itep-listening-v3",
+   "dir": "scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1",
+   "items": 32,
+   "groups": 8,
+   "outputs": [
+    "scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-a.json",
+    "scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-b.json",
+    "scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-c.json"
+   ],
+   "prompts": {
+    "a": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. These are LISTENING items: students hear the transcript once (synthetic voices; W = a woman, M = a man; a lecture is one speaker) and never see it; they see the question and options. Judge each key against the transcript, and also judge whether the transcript sounds like natural speech. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-a.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "b": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. These are LISTENING items: students hear the transcript once (synthetic voices; W = a woman, M = a man; a lecture is one speaker) and never see it; they see the question and options. Judge each key against the transcript, and also judge whether the transcript sounds like natural speech. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-b.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "c": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. These are LISTENING items: students hear the transcript once (synthetic voices; W = a woman, M = a man; a lecture is one speaker) and never see it; they see the question and options. Judge each key against the transcript, and also judge whether the transcript sounds like natural speech. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-listening-v3/itep-listening-v3--p1/grades-c.json in the brief's output format. Assume each item has a defect: look hardest for a second defensible option, a distractor that is true of the source for the asked purpose, a key you can choose without the source, a false real-world claim or self-contradiction, unnatural speech, and any pattern across items that picks the key. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns."
+   }
+  }
+ ]
+}

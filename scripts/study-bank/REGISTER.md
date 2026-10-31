@@ -3235,6 +3235,25 @@ recorded only in a commit message is a finding nobody reads.
   - No-transcript attack (recorded only): candidate 248/324 = 76.5% vs the same 40 TOEFL controls 116/120 = 96.7%,
     margin -20.1, no headroom, uninformative. Pending lessons 9-13 in `briefs/itep-slate-listening-v1.pending.md`.
     one_template is now named by two graders in one batch; if it recurs in the next batch the cut is "blocking".
+- **2026-10-31 — iTEP SLATE Listening v3 (Part 2 top-up, 8 conversations): 8 of 32 cleared, 2 of 8 conversations
+  (B, H), 8 STAGED verified=false (cohort itep-listening-v3, read back 8 false / 0 true); Listening now 10 disjoint
+  full forms (was 8; Part 2 binds at exactly 10, no margin).** Prereg `ITEP-SLATE-LISTENING-V3.prereg.md` (a00020ee,
+  before any script). **Brief not cut for this round**, with the owner's "broken for conversations?" question decided
+  in the prereg: 4 of v2's 5 lost conversations had assignment/process causes (whole-script options 2; the revision
+  round's key rewrite), so v3 used `whole-script options: 4` only, `prevails` x a new `first plan` field drawn within
+  the part, and a **no-key-change revision rule** enforced by `revision-diff.mjs` (20 non-key changes, 0 key changes;
+  no drop traced to a revised field, so lesson 9's fix held). Probe 1: 4 patterns, 2 sent (intent-next small-errand
+  key 4/5, hedged key 3/3), senior-speaker-wins 6/6 recorded as assignment-caused; probe 2 recorded.
+  - **Gate:** counted b+c `one_template` on all 5 main-idea items -> A, C, D, F, G; E-C-2 broken by c (inference key
+    overclaims "had been looking for"). **The template was caused by the prereg's own `whole-script options: 4`**: all
+    three values of that shape have now produced a tell (1 broadest keyed, 2 twin pair, 4 one template).
+  - **Consequence:** 2/8 is the prereg's "broken for conversations" band, and `one_template` is now named by two
+    graders in two consecutive batches (v2 Part 1, v3 Part 2) = **blocking**. **The next iTEP listening round must cut
+    v2 of the brief** (new rule-M text for main-idea options, or no main-idea in Part 2), folding in pending lessons
+    1-18 (14-18 added this round: template, senior side wins, errand key, overclaiming inference key, the revision
+    rule held).
+  - No-transcript attack (recorded only): 63.5% vs the same 40 TOEFL controls at 97.5%, margin -34.0, no headroom,
+    uninformative. Nothing released; the TestSession iTEP-listening audio blocker from the v1 entry still stands.
 
 
 ## 6. The rule that keeps this honest

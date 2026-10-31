@@ -1,0 +1,66 @@
+{
+ "cohort": "itep-listening-v3",
+ "total": 32,
+ "cleared": [
+  "ITL3-B-C-1",
+  "ITL3-B-C-2",
+  "ITL3-B-C-3",
+  "ITL3-B-C-4",
+  "ITL3-H-C-1",
+  "ITL3-H-C-2",
+  "ITL3-H-C-3",
+  "ITL3-H-C-4"
+ ],
+ "dropped": {
+  "ITL3-F-C-1": "pattern: one_template",
+  "ITL3-F-C-2": "passage: itep-listening-v3-ITL3-F-C lost an item",
+  "ITL3-F-C-3": "passage: itep-listening-v3-ITL3-F-C lost an item",
+  "ITL3-F-C-4": "passage: itep-listening-v3-ITL3-F-C lost an item",
+  "ITL3-E-C-1": "passage: itep-listening-v3-ITL3-E-C lost an item",
+  "ITL3-E-C-2": "item: c:broken/key_wrong",
+  "ITL3-E-C-3": "passage: itep-listening-v3-ITL3-E-C lost an item",
+  "ITL3-E-C-4": "passage: itep-listening-v3-ITL3-E-C lost an item",
+  "ITL3-C-C-1": "passage: itep-listening-v3-ITL3-C-C lost an item",
+  "ITL3-C-C-2": "passage: itep-listening-v3-ITL3-C-C lost an item",
+  "ITL3-C-C-3": "pattern: one_template",
+  "ITL3-C-C-4": "passage: itep-listening-v3-ITL3-C-C lost an item",
+  "ITL3-A-C-1": "passage: itep-listening-v3-ITL3-A-C lost an item",
+  "ITL3-A-C-2": "passage: itep-listening-v3-ITL3-A-C lost an item",
+  "ITL3-A-C-3": "pattern: one_template",
+  "ITL3-A-C-4": "passage: itep-listening-v3-ITL3-A-C lost an item",
+  "ITL3-G-C-1": "passage: itep-listening-v3-ITL3-G-C lost an item",
+  "ITL3-G-C-2": "passage: itep-listening-v3-ITL3-G-C lost an item",
+  "ITL3-G-C-3": "pattern: one_template",
+  "ITL3-G-C-4": "passage: itep-listening-v3-ITL3-G-C lost an item",
+  "ITL3-D-C-1": "passage: itep-listening-v3-ITL3-D-C lost an item",
+  "ITL3-D-C-2": "passage: itep-listening-v3-ITL3-D-C lost an item",
+  "ITL3-D-C-3": "pattern: one_template",
+  "ITL3-D-C-4": "passage: itep-listening-v3-ITL3-D-C lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.15625,
+ "patterns": [
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    1,
+    11,
+    15,
+    19,
+    31
+   ],
+   "ids": [
+    "ITL3-F-C-1",
+    "ITL3-C-C-3",
+    "ITL3-A-C-3",
+    "ITL3-G-C-3",
+    "ITL3-D-C-3"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+  "author": "F",
+  "sets": [
+    {
+      "set_id": "ITL3-F-C",
+      "part": 2,
+      "setting": "at the family's home in the evening",
+      "speakers": {"W": "an exchange student who is staying with the student's family", "M": "a high-school student"},
+      "title": "Whose job is the birthday cake",
+      "transcript": "M: Did you like the soup at dinner? It's seaweed soup. We always have it on birthdays, so Mom made it for my sister today.\nW: I liked it a lot. But why soup on a birthday?\nM: My grandma says it's to thank your mother. Women eat it after they have a baby, so you eat it on the day you were born.\nW: Oh, that's lovely. At home it's kind of the opposite. On your birthday, you bring a cake to school for everyone else.\nM: Wait, you bring the cake? So nobody gets you one?\nW: Oh, my family does, at dinner. It's just that at school it's my job. My mom always baked a honey cake, and I'd carry it in on the bus.\nM: And yours is on Friday, right? Then let's stop at the bakery by the station on Friday morning. They sell big boxes of rice cakes.\nW: Hmm, it doesn't feel the same if I buy it. I was thinking I could bake my mom's honey cake tomorrow night. I've got her recipe on my phone.\nM: Okay, but we're out of honey. Dad finished the jar last week, putting it in his tea every morning.\nW: Ah. The corner shop's open till ten, though. I could get some there.\nM: Sure, but there's another thing. Ms. Lindell, our homeroom teacher, has a rule about food. Anything homemade has to be checked with her a day before.\nW: A day before? So even if I bake it, I might not be allowed to share it?\nM: Right. Last spring someone brought cookies with peanuts in them, and a girl in our class had to go to the nurse.\nW: Oh no. My honey cake doesn't have nuts. But I guess she can't tell that just by looking at it.\nM: Exactly. And bakery boxes come with a label that lists everything inside. That's why I said the bakery.\nW: I see. But I still want it to be mine, you know? Something from home.\nM: I get it. Could you message Ms. Lindell tonight and ask her? Then we'd know which one to do.\nW: Maybe. But it's kind of late to bother a teacher. Let me think about it while I wash the dishes.",
+      "names": ["Lindell"],
+      "other_caps": ["Mom", "Dad", "Friday", "Ms"],
+      "items": [
+        {
+          "qid": "ITL3-F-C-1",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "A school birthday custom and why the woman is still thinking about her cake",
+            "A school birthday custom and why the woman agrees to buy rice cakes at the bakery",
+            "A school birthday custom and why the woman decides to bake a cake at home tonight",
+            "A school birthday custom and why the woman stops taking a cake to class"
+          ],
+          "correct_answer": "A school birthday custom and why the woman is still thinking about her cake",
+          "why": "Let me think about it while I wash the dishes.",
+          "explanation": "\"A school birthday custom and why the woman is still thinking about her cake\" is correct: she explains that \"you bring a cake to school for everyone else\", the man suggests \"the bakery\", she wants to \"bake my mom's honey cake\", and at the end she says \"Let me think about it while I wash the dishes.\"",
+          "distractor_rationales": [
+            {"choice": "A school birthday custom and why the woman agrees to buy rice cakes at the bakery", "lure": "wrong outcome", "reason": "\"A school birthday custom and why the woman agrees to buy rice cakes at the bakery\" is wrong: she says \"it doesn't feel the same if I buy it\" and never agrees; she ends with \"Let me think about it\"."},
+            {"choice": "A school birthday custom and why the woman decides to bake a cake at home tonight", "lure": "wrong outcome", "reason": "\"A school birthday custom and why the woman decides to bake a cake at home tonight\" is wrong: she planned to bake \"tomorrow night\", and nothing is decided, since she still says \"Let me think about it while I wash the dishes.\""},
+            {"choice": "A school birthday custom and why the woman stops taking a cake to class", "lure": "wrong outcome", "reason": "\"A school birthday custom and why the woman stops taking a cake to class\" is wrong: she says \"I still want it to be mine, you know? Something from home.\" and is still choosing between the two cakes."}
+          ]
+        },
+        {
+          "qid": "ITL3-F-C-2",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "Based on the conversation, what does the man most likely believe?",
+          "choices": [
+            "He thinks bakery cakes skip the teacher's check",
+            "He thinks bakery cakes need the teacher's check too",
+            "He thinks the woman's honey cake has nuts inside it",
+            "He thinks the teacher won't answer a message tonight"
+          ],
+          "correct_answer": "He thinks bakery cakes skip the teacher's check",
+          "why": "Anything homemade has to be checked with her a day before.",
+          "why2": "That's why I said the bakery.",
+          "explanation": "\"He thinks bakery cakes skip the teacher's check\" is correct: he says the rule is \"Anything homemade has to be checked with her a day before.\" and that bakery boxes \"come with a label that lists everything inside. That's why I said the bakery.\"",
+          "distractor_rationales": [
+            {"choice": "He thinks bakery cakes need the teacher's check too", "lure": "contradicted", "reason": "\"He thinks bakery cakes need the teacher's check too\" is contradicted: he limits the rule to \"Anything homemade\", and suggests the bakery because the boxes \"come with a label that lists everything inside\"."},
+            {"choice": "He thinks the woman's honey cake has nuts inside it", "lure": "contradicted", "reason": "\"He thinks the woman's honey cake has nuts inside it\" is contradicted: when the woman says \"My honey cake doesn't have nuts. But I guess she can't tell that just by looking at it.\", he answers \"Exactly.\""},
+            {"choice": "He thinks the teacher won't answer a message tonight", "lure": "contradicted", "reason": "\"He thinks the teacher won't answer a message tonight\" is contradicted: he suggests \"Could you message Ms. Lindell tonight and ask her? Then we'd know which one to do.\""}
+          ]
+        },
+        {
+          "qid": "ITL3-F-C-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the man say about the honey in his home?",
+          "choices": [
+            "His father used up the whole jar last week",
+            "His father puts it in his tea at night",
+            "His mother bought a new jar of it today",
+            "His sister had it at dinner on her birthday"
+          ],
+          "correct_answer": "His father used up the whole jar last week",
+          "why": "Dad finished the jar last week, putting it in his tea every morning.",
+          "explanation": "\"His father used up the whole jar last week\" is correct: the man says \"we're out of honey. Dad finished the jar last week\".",
+          "distractor_rationales": [
+            {"choice": "His father puts it in his tea at night", "lure": "misreading", "reason": "\"His father puts it in his tea at night\" is wrong: the man says Dad was \"putting it in his tea every morning\", and the jar is now finished."},
+            {"choice": "His mother bought a new jar of it today", "lure": "contradicted", "reason": "\"His mother bought a new jar of it today\" is wrong: the man says \"we're out of honey\", so the woman would have to get some at the corner shop."},
+            {"choice": "His sister had it at dinner on her birthday", "lure": "detail", "reason": "\"His sister had it at dinner on her birthday\" is wrong: at dinner they had soup, \"It's seaweed soup\", and the honey was finished by \"Dad\" \"last week\"."}
+          ]
+        },
+        {
+          "qid": "ITL3-F-C-4",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the woman say that her family gives her a cake at dinner?",
+          "choices": [
+            "To correct his idea that nobody ever gives her a birthday cake",
+            "To suggest that his family should make her one at dinner",
+            "To explain why her mom always baked the cake for school",
+            "To show that she likes her dinner cake more than a school one"
+          ],
+          "correct_answer": "To correct his idea that nobody ever gives her a birthday cake",
+          "why": "Oh, my family does, at dinner.",
+          "explanation": "\"To correct his idea that nobody ever gives her a birthday cake\" is correct: the man asks \"So nobody gets you one?\" and she answers \"Oh, my family does, at dinner. It's just that at school it's my job.\"",
+          "distractor_rationales": [
+            {"choice": "To suggest that his family should make her one at dinner", "lure": "misreading", "reason": "\"To suggest that his family should make her one at dinner\" is wrong: \"my family does\" describes her own family at home, and her own plan is that \"I could bake my mom's honey cake\"."},
+            {"choice": "To explain why her mom always baked the cake for school", "lure": "wrong moment", "reason": "\"To explain why her mom always baked the cake for school\" is wrong: the line answers \"So nobody gets you one?\"; she only mentions afterwards that \"My mom always baked a honey cake\", without giving a reason."},
+            {"choice": "To show that she likes her dinner cake more than a school one", "lure": "contradicted", "reason": "\"To show that she likes her dinner cake more than a school one\" is wrong: she says of the school cake \"I still want it to be mine, you know? Something from home.\""}
+          ]
+        }
+      ]
+    }
+  ]
+}

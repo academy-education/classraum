@@ -1,0 +1,602 @@
+[
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-B-C",
+  "created_at": "2026-10-31T22:00:00.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What does the man say about his sister's hair dryer?",
+   "passage": "Transcript: M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+   "choices": [
+    "He broke its plug while cleaning it.",
+    "He fixed a loose wire inside its plug.",
+    "He brought it in today to get its plug fixed.",
+    "He watched Mr. Dunmow repair it last month."
+   ],
+   "correct_answer": "He fixed a loose wire inside its plug.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"He fixed a loose wire inside its plug.\" is correct: the man says \"I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\"",
+   "distractor_rationales": [
+    {
+     "choice": "He broke its plug while cleaning it.",
+     "reason": "\"He broke its plug while cleaning it.\" is wrong: the man says he repaired it, \"I fixed my sister's hair dryer last week\", and the fault was that \"A wire inside the plug had come loose.\""
+    },
+    {
+     "choice": "He brought it in today to get its plug fixed.",
+     "reason": "\"He brought it in today to get its plug fixed.\" is wrong: it is already repaired; he says \"I fixed my sister's hair dryer last week.\""
+    },
+    {
+     "choice": "He watched Mr. Dunmow repair it last month.",
+     "reason": "\"He watched Mr. Dunmow repair it last month.\" is wrong: the man did the repair himself, \"I fixed my sister's hair dryer last week.\""
+    }
+   ]
+  },
+  "content_hash": "10c35c91293aeea736cc902eaf3dcf9f",
+  "word_count": 353,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-B-C",
+    "setting": "at a community centre before a volunteer shift",
+    "speakers": {
+     "W": "the volunteer coordinator",
+     "M": "a teenage volunteer"
+    },
+    "title": "First shift at the repair cafe welcome table",
+    "kind": "detail",
+    "why": "A wire inside the plug had come loose.",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-B-C-1",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "relationship",
+  "topic_tag": "relationship",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-B-C",
+  "created_at": "2026-10-31T22:00:01.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Who most likely are the speakers?",
+   "passage": "Transcript: M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+   "choices": [
+    "An organizer and a volunteer",
+    "A customer and a repair worker",
+    "A shop manager and a new worker",
+    "Two old friends at a repair fair"
+   ],
+   "correct_answer": "An organizer and a volunteer",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"An organizer and a volunteer\" is correct: the man looks for \"the person who organizes the volunteers\", the woman answers \"That's me\" and thanks him for \"signing up\", then gives him his job for the day.",
+   "distractor_rationales": [
+    {
+     "choice": "A customer and a repair worker",
+     "reason": "\"A customer and a repair worker\" is wrong: the man is not bringing anything to be fixed; he asks for \"the person who organizes the volunteers\" and is given a job, \"Today I'd like you on the welcome table\"."
+    },
+    {
+     "choice": "A shop manager and a new worker",
+     "reason": "\"A shop manager and a new worker\" is wrong: the woman is \"the person who organizes the volunteers\", and she thanks him for \"signing up\", not for taking a job."
+    },
+    {
+     "choice": "Two old friends at a repair fair",
+     "reason": "\"Two old friends at a repair fair\" is wrong: they have not met before; the man has to ask \"Is that you?\" and the woman guesses his name, \"You must be Colm.\""
+    }
+   ]
+  },
+  "content_hash": "5f99d5ff2efbb3e4dc113e31201934e6",
+  "word_count": 353,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-B-C",
+    "setting": "at a community centre before a volunteer shift",
+    "speakers": {
+     "W": "the volunteer coordinator",
+     "M": "a teenage volunteer"
+    },
+    "title": "First shift at the repair cafe welcome table",
+    "kind": "relationship",
+    "why": "the person who organizes the volunteers",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-B-C-2",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "inference",
+  "topic_tag": "inference",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-B-C",
+  "created_at": "2026-10-31T22:00:02.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What can be inferred about the woman?",
+   "passage": "Transcript: M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+   "choices": [
+    "She may ask Mr. Dunmow to train him during lunch.",
+    "She probably set the age limit after an accident at the centre.",
+    "She may let him work on repairs after his birthday.",
+    "She'd let him stand next to Mr. Dunmow and pass him tools."
+   ],
+   "correct_answer": "She may let him work on repairs after his birthday.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"She may let him work on repairs after his birthday.\" is correct: the only thing stopping him is the age rule, \"you have to be sixteen to use the soldering irons\", he says \"I'll be sixteen in March\", and she tells him \"If you're still keen, come and find me in March.\"",
+   "distractor_rationales": [
+    {
+     "choice": "She may ask Mr. Dunmow to train him during lunch.",
+     "reason": "\"She may ask Mr. Dunmow to train him during lunch.\" is wrong: when the man asks about watching Mr. Dunmow at lunch, she says \"Ask him yourself.\""
+    },
+    {
+     "choice": "She probably set the age limit after an accident at the centre.",
+     "reason": "\"She probably set the age limit after an accident at the centre.\" is wrong: she says the limit is not her own, \"That's our insurance rule, not mine.\""
+    },
+    {
+     "choice": "She'd let him stand next to Mr. Dunmow and pass him tools.",
+     "reason": "\"She'd let him stand next to Mr. Dunmow and pass him tools.\" is wrong: when he asks to just pass tools she answers \"Sorry, not even that. Under-sixteens can't be at the electronics table at all.\""
+    }
+   ]
+  },
+  "content_hash": "2bcdbe7134d4a20f6154d8eabfcb4796",
+  "word_count": 353,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-B-C",
+    "setting": "at a community centre before a volunteer shift",
+    "speakers": {
+     "W": "the volunteer coordinator",
+     "M": "a teenage volunteer"
+    },
+    "title": "First shift at the repair cafe welcome table",
+    "kind": "inference",
+    "why": "If you're still keen, come and find me in March.",
+    "why2": "you have to be sixteen to use the soldering irons"
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-B-C-3",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "intent-next",
+  "topic_tag": "intent-next",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-B-C",
+  "created_at": "2026-10-31T22:00:03.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What will the man most likely do next?",
+   "passage": "Transcript: M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+   "choices": [
+    "Fetch the tickets so that he can get his table ready",
+    "Help Mr. Dunmow set up the soldering irons",
+    "Start writing tickets for people already waiting",
+    "Go and ask Mr. Dunmow about watching him at lunch"
+   ],
+   "correct_answer": "Fetch the tickets so that he can get his table ready",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"Fetch the tickets so that he can get his table ready\" is correct: the tickets are \"In a blue box in the storeroom\", the woman asks \"Could you go and get them now and set up before the doors open?\" and the man answers \"Sure, I'll go now.\"",
+   "distractor_rationales": [
+    {
+     "choice": "Help Mr. Dunmow set up the soldering irons",
+     "reason": "\"Help Mr. Dunmow set up the soldering irons\" is wrong: \"Under-sixteens can't be at the electronics table at all\", and \"He doesn't get here till half past ten.\""
+    },
+    {
+     "choice": "Start writing tickets for people already waiting",
+     "reason": "\"Start writing tickets for people already waiting\" is wrong: nobody is in yet; \"Doors open at ten, so we've got about twenty minutes.\""
+    },
+    {
+     "choice": "Go and ask Mr. Dunmow about watching him at lunch",
+     "reason": "\"Go and ask Mr. Dunmow about watching him at lunch\" is wrong: Mr. Dunmow is not there yet; \"He doesn't get here till half past ten, though.\""
+    }
+   ]
+  },
+  "content_hash": "d6dc89f54c7e276523879dfc447e4820",
+  "word_count": 353,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-B-C",
+    "setting": "at a community centre before a volunteer shift",
+    "speakers": {
+     "W": "the volunteer coordinator",
+     "M": "a teenage volunteer"
+    },
+    "title": "First shift at the repair cafe welcome table",
+    "kind": "intent-next",
+    "why": "Could you go and get them now and set up before the doors open?",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-B-C-4",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-H-C",
+  "created_at": "2026-10-31T22:00:04.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What does the woman say about her own courses at university?",
+   "passage": "Transcript: W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+   "choices": [
+    "She dropped history of art after one week and moved to chemistry",
+    "She gave up a subject her father chose and prefers the one she took instead",
+    "She picked chemistry because her dad wanted it and still enjoys it",
+    "She chose history of art first because her dad wanted her to"
+   ],
+   "correct_answer": "She gave up a subject her father chose and prefers the one she took instead",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"She gave up a subject her father chose and prefers the one she took instead\" is correct: she says \"I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\"",
+   "distractor_rationales": [
+    {
+     "choice": "She dropped history of art after one week and moved to chemistry",
+     "reason": "\"She dropped history of art after one week and moved to chemistry\" reverses the order: she says \"I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art\"."
+    },
+    {
+     "choice": "She picked chemistry because her dad wanted it and still enjoys it",
+     "reason": "\"She picked chemistry because her dad wanted it and still enjoys it\" is wrong because she says \"I dropped it after the first week\"; it is history of art that she says \"I love\"."
+    },
+    {
+     "choice": "She chose history of art first because her dad wanted her to",
+     "reason": "\"She chose history of art first because her dad wanted her to\" is wrong because the subject chosen for her father was chemistry: \"I picked chemistry because Dad wanted me to\"."
+    }
+   ]
+  },
+  "content_hash": "6938e9c074b85e54c1e7f77a14191086",
+  "word_count": 320,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-H-C",
+    "setting": "on a video call on a weekend evening",
+    "speakers": {
+     "W": "an older sister who has just started university",
+     "M": "her younger brother who is in high school"
+    },
+    "title": "Who gets the bigger bedroom",
+    "kind": "detail",
+    "why": "I picked chemistry because Dad wanted me to, and I dropped it after the first week",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-H-C-1",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "relationship",
+  "topic_tag": "relationship",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-H-C",
+  "created_at": "2026-10-31T22:00:05.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Who are the speakers most likely to be?",
+   "passage": "Transcript: W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+   "choices": [
+    "A mother and her son who is in high school",
+    "An art teacher and a student in her class",
+    "Two students living in the same university hall",
+    "A university student and her brother at home"
+   ],
+   "correct_answer": "A university student and her brother at home",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"A university student and her brother at home\" is correct: the woman is \"here at university\" and is \"coming home for the winter break\", they share a mother (\"Mum said you wanted to ask me something\"), and the man wants her old bedroom at home, and the man says \"I'm a much better brother now\".",
+   "distractor_rationales": [
+    {
+     "choice": "A mother and her son who is in high school",
+     "reason": "\"A mother and her son who is in high school\" is wrong because the woman says \"Mum said you wanted to ask me something\", so she is not the mother, and the man calls her room \"your bedroom\" at home."
+    },
+    {
+     "choice": "An art teacher and a student in her class",
+     "reason": "\"An art teacher and a student in her class\" is wrong because the man mentions \"My art teacher\" as someone else, and the woman talks about \"here at university\" and \"coming home for the winter break\"."
+    },
+    {
+     "choice": "Two students living in the same university hall",
+     "reason": "\"Two students living in the same university hall\" is wrong because only the woman is at university (\"here at university\"), while the man is at home choosing \"my courses for next year\" and wants to \"move into\" her bedroom."
+    }
+   ]
+  },
+  "content_hash": "bd5aed8bd4e1edaacfdf115f9fd93343",
+  "word_count": 320,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-H-C",
+    "setting": "on a video call on a weekend evening",
+    "speakers": {
+     "W": "an older sister who has just started university",
+     "M": "her younger brother who is in high school"
+    },
+    "title": "Who gets the bigger bedroom",
+    "kind": "relationship",
+    "why": "Well, I nearly made the same mistake here at university.",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-H-C-2",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-H-C",
+  "created_at": "2026-10-31T22:00:06.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Which course does the man say he wants to take next year?",
+   "passage": "Transcript: W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+   "choices": [
+    "The advanced art course",
+    "The extra physics course",
+    "The history of art course",
+    "The basic chemistry course"
+   ],
+   "correct_answer": "The advanced art course",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"The advanced art course\" is correct: the man says \"I'm choosing my courses for next year, and I want to take the advanced art course.\"",
+   "distractor_rationales": [
+    {
+     "choice": "The extra physics course",
+     "reason": "\"The extra physics course\" was his earlier plan: \"Last month you told me you were taking extra physics\", but he says \"I changed my mind\"."
+    },
+    {
+     "choice": "The history of art course",
+     "reason": "\"The history of art course\" is the woman's course at university: \"Now I'm doing history of art\"."
+    },
+    {
+     "choice": "The basic chemistry course",
+     "reason": "\"The basic chemistry course\" is wrong because chemistry is the subject the woman dropped: \"I picked chemistry because Dad wanted me to, and I dropped it\"."
+    }
+   ]
+  },
+  "content_hash": "48f5be3cca5a66d886c37b61e7379fda",
+  "word_count": 320,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-H-C",
+    "setting": "on a video call on a weekend evening",
+    "speakers": {
+     "W": "an older sister who has just started university",
+     "M": "her younger brother who is in high school"
+    },
+    "title": "Who gets the bigger bedroom",
+    "kind": "detail",
+    "why": "I want to take the advanced art course",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-H-C-3",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "listening",
+  "domain": "Part 2: Conversation",
+  "subskill": "inference",
+  "topic_tag": "inference",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-listening-v3-ITL3-H-C",
+  "created_at": "2026-10-31T22:00:07.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What does the conversation suggest about the woman?",
+   "passage": "Transcript: W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+   "choices": [
+    "She has already packed her books into boxes at home",
+    "She would stay at her university for the winter break",
+    "She doubts her brother would look after her things",
+    "She wants their mother to decide alone"
+   ],
+   "correct_answer": "She doubts her brother would look after her things",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"She doubts her brother would look after her things\" is correct: when he offers \"I'd be really careful\" with her books, she answers \"You broke my lamp the last time you were really careful\", and she hesitates about the room because \"All my books are still on the shelves\".",
+   "distractor_rationales": [
+    {
+     "choice": "She has already packed her books into boxes at home",
+     "reason": "\"She has already packed her books into boxes at home\" is contradicted by \"All my books are still on the shelves\"; putting them \"in boxes\" is only the man's offer."
+    },
+    {
+     "choice": "She would stay at her university for the winter break",
+     "reason": "\"She would stay at her university for the winter break\" is contradicted by \"I'm coming home for the winter break in six weeks\"."
+    },
+    {
+     "choice": "She wants their mother to decide alone",
+     "reason": "\"She wants their mother to decide alone\" is contradicted by \"I'll look at both rooms, and we'll talk to Mum together\"."
+    }
+   ]
+  },
+  "content_hash": "150fb74819a2770718d8613ecc99c36a",
+  "word_count": 320,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-listening-v3",
+  "verify_meta": {
+   "method_id": "itep-listening-v1-agent8+cfg-v1",
+   "brief": "itep-slate-listening-v1 (frozen, no cut)",
+   "itep": {
+    "part": "Part 2: Conversation",
+    "set_id": "ITL3-H-C",
+    "setting": "on a video call on a weekend evening",
+    "speakers": {
+     "W": "an older sister who has just started university",
+     "M": "her younger brother who is in high school"
+    },
+    "title": "Who gets the bigger bedroom",
+    "kind": "inference",
+    "why": "You broke my lamp the last time you were really careful.",
+    "why2": "All my books are still on the shelves."
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITL3-H-C-4",
+    "qc": {
+     "gate": "ITEP-SLATE-LISTENING-V3.prereg.md: pre-flight + probe + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-listening-v3-work/results/itep-listening-v3.json"
+    }
+   }
+  }
+ }
+]

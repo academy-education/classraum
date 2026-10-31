@@ -1,0 +1,154 @@
+{
+ "author": "E",
+ "sets": [
+  {
+   "set_id": "ITL3-E-C",
+   "part": 2,
+   "setting": "at a summer camp, outside the camp office",
+   "speakers": {
+    "W": "a camper at a summer camp",
+    "M": "a camp counsellor"
+   },
+   "title": "A team member short for the orienteering race",
+   "transcript": "W: Excuse me, are you the counsellor running Saturday's orienteering race?\nM: That's me. Is your cabin team signed up?\nW: We are, but we've got a problem. Jolie twisted her ankle playing basketball yesterday, and the nurse says no running until next week.\nM: Oh no. How's she doing?\nW: She's okay, just bored. Anyway, I was thinking the three of us could race without her. We'd just carry her part of the map.\nM: Hmm, the trouble is the second half. After the bridge, every team splits into two pairs, and each pair looks for different flags along the stream.\nW: So with three, one of us would be out there alone.\nM: Right, and we never allow that. That stretch is easy to get lost in. I put the flags out this morning, and even I took a wrong turn.\nW: Couldn't the three of us just stay together the whole time?\nM: Then you'd have to find every flag on both routes. You'd still be in the woods when the dinner bell rings.\nW: Oh. I didn't think of that.\nM: Okay, here's one idea. Borrow someone. The Kanby cabin has five campers this year, so one of them hasn't got a team for Saturday.\nW: I'd rather not. I know it's allowed, and I don't mind someone new. But Jolie practised with her compass every single evening. If somebody else just takes her place, all that work was for nothing.\nM: Fair enough. Then what if she doesn't lose her place? Every team checks in by radio with the start tent. Usually a counsellor takes the calls, but Jolie could do it for you. She'd sit with me, keep the big map, and talk you through it if you get stuck by the stream. The Kanby camper would just run as your fourth, and the results would still list Jolie.\nW: Oh, she'd love that. She's always telling us which way to go anyway.\nM: Great, that solves two problems at once. Just check with the Kanby counsellor first. She's down at the lake until four. And remember, nobody sees the race map until the start on Saturday.\nW: It's only two now, so I'll go and tell Jolie first. She's resting in our cabin.\nM: Good. Tell her to bring a hat. It gets hot in that tent.",
+   "names": [
+    "Jolie",
+    "Kanby"
+   ],
+   "other_caps": [
+    "Saturday"
+   ],
+   "items": [
+    {
+     "qid": "ITL3-E-C-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the woman, how did Jolie hurt her ankle?",
+     "choices": [
+      "She slipped on a wet rock by the stream.",
+      "She twisted it playing basketball.",
+      "She fell down the cabin steps.",
+      "She tripped on the dock at the lake."
+     ],
+     "correct_answer": "She twisted it playing basketball.",
+     "why": "Jolie twisted her ankle playing basketball yesterday",
+     "explanation": "\"She twisted it playing basketball.\" is correct: the woman says \"Jolie twisted her ankle playing basketball yesterday\".",
+     "distractor_rationales": [
+      {
+       "choice": "She slipped on a wet rock by the stream.",
+       "lure": "misreading",
+       "reason": "\"She slipped on a wet rock by the stream.\" is wrong: the stream is where the second half of the race goes; the woman says \"Jolie twisted her ankle playing basketball yesterday\"."
+      },
+      {
+       "choice": "She fell down the cabin steps.",
+       "lure": "detail",
+       "reason": "\"She fell down the cabin steps.\" is wrong: the cabin is where Jolie is \"resting\" now, but the injury happened \"playing basketball yesterday\"."
+      },
+      {
+       "choice": "She tripped on the dock at the lake.",
+       "lure": "misreading",
+       "reason": "\"She tripped on the dock at the lake.\" is wrong: the lake is where the Kanby counsellor is \"until four\"; the woman says \"Jolie twisted her ankle playing basketball yesterday\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-E-C-2",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the man?",
+     "choices": [
+      "The man had been hoping her team would race as three.",
+      "The man had found the route along the stream easy to follow.",
+      "The man had been looking for a team for one of the Kanby campers.",
+      "The man had planned to run with the woman's team himself."
+     ],
+     "correct_answer": "The man had been looking for a team for one of the Kanby campers.",
+     "why": "so one of them hasn't got a team for Saturday",
+     "why2": "that solves two problems at once",
+     "explanation": "\"The man had been looking for a team for one of the Kanby campers.\" is correct: he says one Kanby camper \"hasn't got a team for Saturday\", and when the woman agrees to take that camper as a runner he says \"that solves two problems at once\", so finding that camper a team was one of his problems.",
+     "distractor_rationales": [
+      {
+       "choice": "The man had been hoping her team would race as three.",
+       "lure": "contradicted",
+       "reason": "\"The man had been hoping her team would race as three.\" is wrong: when the woman says one of three would be out alone, he answers \"Right, and we never allow that.\""
+      },
+      {
+       "choice": "The man had found the route along the stream easy to follow.",
+       "lure": "contradicted",
+       "reason": "\"The man had found the route along the stream easy to follow.\" is wrong: he says \"That stretch is easy to get lost in\" and \"even I took a wrong turn\"."
+      },
+      {
+       "choice": "The man had planned to run with the woman's team himself.",
+       "lure": "contradicted",
+       "reason": "\"The man had planned to run with the woman's team himself.\" is wrong: during the race Jolie will \"sit with me\" at the start tent, and he warns \"It gets hot in that tent\", so he is not running."
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-E-C-3",
+     "kind": "attitude",
+     "difficulty": "medium",
+     "prompt": "What does the woman think of the man's first suggestion?",
+     "choices": [
+      "It would break the race rules about borrowing campers.",
+      "It would be unfair to the teammate who trained hardest.",
+      "It would be awkward to race with someone she doesn't know.",
+      "It would be a good fix for her team's problem."
+     ],
+     "correct_answer": "It would be unfair to the teammate who trained hardest.",
+     "why": "If somebody else just takes her place, all that work was for nothing.",
+     "explanation": "\"It would be unfair to the teammate who trained hardest.\" is correct: the man's first suggestion is \"Borrow someone.\" The woman answers that \"Jolie practised with her compass every single evening\" and \"If somebody else just takes her place, all that work was for nothing.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It would break the race rules about borrowing campers.",
+       "lure": "contradicted",
+       "reason": "\"It would break the race rules about borrowing campers.\" is wrong: the woman says \"I know it's allowed\"."
+      },
+      {
+       "choice": "It would be awkward to race with someone she doesn't know.",
+       "lure": "contradicted",
+       "reason": "\"It would be awkward to race with someone she doesn't know.\" is wrong: the woman says \"I don't mind someone new.\""
+      },
+      {
+       "choice": "It would be a good fix for her team's problem.",
+       "lure": "contradicted",
+       "reason": "\"It would be a good fix for her team's problem.\" is wrong: her first words about it are \"I'd rather not.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-E-C-4",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the woman probably do next?",
+     "choices": [
+      "Find the Kanby counsellor",
+      "Sign her team up for the race",
+      "Tell her injured friend",
+      "Study the race map with her team"
+     ],
+     "correct_answer": "Tell her injured friend",
+     "why": "so I'll go and tell Jolie first",
+     "explanation": "\"Tell her injured friend\" is correct: the woman says \"It's only two now, so I'll go and tell Jolie first.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Find the Kanby counsellor",
+       "lure": "wrong time",
+       "reason": "\"Find the Kanby counsellor\" is wrong: that counsellor is \"down at the lake until four\", and the woman says \"It's only two now, so I'll go and tell Jolie first.\""
+      },
+      {
+       "choice": "Sign her team up for the race",
+       "lure": "contradicted",
+       "reason": "\"Sign her team up for the race\" is wrong: asked if the team is signed up, the woman says \"We are\"."
+      },
+      {
+       "choice": "Study the race map with her team",
+       "lure": "contradicted",
+       "reason": "\"Study the race map with her team\" is wrong: the man says \"nobody sees the race map until the start on Saturday.\""
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "author": "A",
+ "sets": [
+  {
+   "set_id": "ITL3-A-C",
+   "part": 2,
+   "setting": "at a relative's house during a family gathering",
+   "speakers": {
+    "W": "a girl",
+    "M": "her cousin, a boy of about the same age"
+   },
+   "title": "The flashlight hunt before dinner",
+   "transcript": "M: There you are. Grandma wants us to keep Alfie and Birdie busy until dinner. She says they've knocked over the umbrella stand twice already.\nW: Yeah, I heard the crash. Dinner's at eight, so that's about forty minutes. How about a treasure hunt in the back garden, with flashlights? It's nearly dark, and they'd love that.\nM: In the garden? It rained all afternoon. The grass is basically mud, and your mum's only just finished mopping the hall.\nW: We'd stick to the stone path and the patio. Nobody has to step on the grass. And the path's got those little solar lamps along the edge, so they'll see where they're going.\nM: The path will still be soaking, though.\nW: Not really. It's stone, so it dries fast. It was dry when I came round the back.\nM: Hmm. I was going to say we put a film on upstairs. Our grandpa's got that huge screen in the back bedroom, and they'd actually sit still for once.\nW: Sitting still isn't what they need, though. They had films on the whole drive here.\nM: Wait, I thought they came on the train with your dad.\nW: Dad's coming tomorrow. I only got here twenty minutes ago, and Birdie kicked the back of my seat the entire way, and her brother sang the whole time. Trust me, they need to run around.\nM: Fair enough. But what if they get bored after one clue?\nW: They won't. I'll write eight short clues, and each one leads to the next. The last one's under the big flower pot by the back door, with a bag of toffees.\nM: Should I ask if dinner can wait a bit, just in case?\nW: No need. Forty minutes is plenty for eight clues.\nM: OK, the hunt it is. What do you want me to do?\nW: I'll write the clues at the kitchen table. Can you go and round up Alfie and Birdie? I think they've climbed up to the attic again.\nM: On it. I'll go and grab them now.",
+   "names": [
+    "Alfie",
+    "Birdie"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITL3-A-C-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the woman say about the stone path?",
+     "choices": [
+      "It was mopped by her mum earlier.",
+      "It has lights along the edge.",
+      "It is still wet from the rain.",
+      "It is too dark for the little ones."
+     ],
+     "correct_answer": "It has lights along the edge.",
+     "why": "the path's got those little solar lamps along the edge",
+     "explanation": "\"It has lights along the edge.\" is correct: the woman says \"the path's got those little solar lamps along the edge\".",
+     "distractor_rationales": [
+      {
+       "choice": "It was mopped by her mum earlier.",
+       "lure": "misreading",
+       "reason": "\"It was mopped by her mum earlier.\" is wrong: the mopping was in the house, not on the path: \"your mum's only just finished mopping the hall.\""
+      },
+      {
+       "choice": "It is still wet from the rain.",
+       "lure": "contradicted",
+       "reason": "\"It is still wet from the rain.\" is wrong: the woman says \"It's stone, so it dries fast. It was dry when I came round the back.\""
+      },
+      {
+       "choice": "It is too dark for the little ones.",
+       "lure": "contradicted",
+       "reason": "\"It is too dark for the little ones.\" is wrong: the lamps mean the opposite: \"so they'll see where they're going.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-A-C-2",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the man most likely do next?",
+     "choices": [
+      "Ask their grandmother to make dinner later.",
+      "Go up to the attic and round up Alfie and Birdie.",
+      "Sit down at the kitchen table and write the clues.",
+      "Go and mop the hall floor before they head out."
+     ],
+     "correct_answer": "Go up to the attic and round up Alfie and Birdie.",
+     "why": "I'll go and grab them now",
+     "explanation": "\"Go up to the attic and round up Alfie and Birdie.\" is correct: the woman asks \"Can you go and round up Alfie and Birdie? I think they've climbed up to the attic again.\" and the man answers \"I'll go and grab them now.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Sit down at the kitchen table and write the clues.",
+       "lure": "wrong speaker",
+       "reason": "\"Sit down at the kitchen table and write the clues.\" is the woman's job, not his: she says \"I'll write the clues at the kitchen table.\""
+      },
+      {
+       "choice": "Ask their grandmother to make dinner later.",
+       "lure": "contradicted",
+       "reason": "\"Ask their grandmother to make dinner later.\" is ruled out: when he suggests it, the woman says \"No need. Forty minutes is plenty for eight clues.\""
+      },
+      {
+       "choice": "Go and mop the hall floor before they head out.",
+       "lure": "contradicted",
+       "reason": "\"Go and mop the hall floor before they head out.\" is ruled out: the hall has already been cleaned, \"your mum's only just finished mopping the hall\", and his next job is the children: \"I'll go and grab them now.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-A-C-3",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the conversation mainly about?",
+     "choices": [
+      "Two cousins decide how to keep the younger children busy, and they choose a treasure hunt in the back garden.",
+      "Two cousins decide how to keep the younger children busy, and they wait until the rain stops.",
+      "Two cousins decide how to keep the younger children busy, and they choose a film upstairs.",
+      "Two cousins decide how to keep the younger children busy, and they leave it to their grandmother."
+     ],
+     "correct_answer": "Two cousins decide how to keep the younger children busy, and they choose a treasure hunt in the back garden.",
+     "why": "OK, the hunt it is",
+     "explanation": "\"Two cousins decide how to keep the younger children busy, and they choose a treasure hunt in the back garden.\" is correct: the man says \"Grandma wants us to keep Alfie and Birdie busy until dinner\", the woman suggests \"a treasure hunt in the back garden\", and after discussing a film the man agrees: \"OK, the hunt it is.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Two cousins decide how to keep the younger children busy, and they choose a film upstairs.",
+       "lure": "wrong outcome",
+       "reason": "\"Two cousins decide how to keep the younger children busy, and they choose a film upstairs.\" gets the outcome wrong: the man drops the film and says \"OK, the hunt it is.\""
+      },
+      {
+       "choice": "Two cousins decide how to keep the younger children busy, and they leave it to their grandmother.",
+       "lure": "wrong outcome",
+       "reason": "\"Two cousins decide how to keep the younger children busy, and they leave it to their grandmother.\" gets the outcome wrong: the cousins settle it themselves, \"OK, the hunt it is.\", and the woman turns down asking about a later dinner: \"No need.\""
+      },
+      {
+       "choice": "Two cousins decide how to keep the younger children busy, and they wait until the rain stops.",
+       "lure": "wrong outcome",
+       "reason": "\"Two cousins decide how to keep the younger children busy, and they wait until the rain stops.\" gets the outcome wrong: the rain has already stopped and the path \"was dry when I came round the back.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-A-C-4",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "She travelled here alone, ahead of the others.",
+      "She came here on the train together with her dad.",
+      "She rode in the same car as the younger children.",
+      "She has been at the house since early this morning."
+     ],
+     "correct_answer": "She rode in the same car as the younger children.",
+     "why": "They had films on the whole drive here",
+     "why2": "Birdie kicked the back of my seat the entire way",
+     "explanation": "\"She rode in the same car as the younger children.\" is correct: the children came by car (\"They had films on the whole drive here\"), and Birdie was behind her all the way (\"Birdie kicked the back of my seat the entire way\"), so she was in the same car.",
+     "distractor_rationales": [
+      {
+       "choice": "She came here on the train together with her dad.",
+       "lure": "contradicted",
+       "reason": "\"She came here on the train together with her dad.\" is wrong: her father has not arrived, \"Dad's coming tomorrow\", and the children came by road: \"the whole drive here.\""
+      },
+      {
+       "choice": "She has been at the house since early this morning.",
+       "lure": "contradicted",
+       "reason": "\"She has been at the house since early this morning.\" is wrong: she says \"I only got here twenty minutes ago.\""
+      },
+      {
+       "choice": "She travelled here alone, ahead of the others.",
+       "lure": "contradicted",
+       "reason": "\"She travelled here alone, ahead of the others.\" is wrong: she was with Birdie the whole journey: \"Birdie kicked the back of my seat the entire way.\""
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

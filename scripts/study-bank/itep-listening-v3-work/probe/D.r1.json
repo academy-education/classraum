@@ -1,0 +1,97 @@
+{
+  "author": "D",
+  "sets": [
+    {
+      "set_id": "ITL3-D-C",
+      "part": 2,
+      "setting": "in the hallway or lobby of their apartment building",
+      "speakers": {"W": "a teenager", "M": "an adult neighbour who lives in the same apartment building"},
+      "title": "Getting the word out about dog walking",
+      "transcript": "W: Excuse me, Mr. Gaddis? Have you got a minute?\nM: Sure. What's up?\nW: I want to start walking people's dogs, here in the building. I'm saving for a drawing course this summer. But I don't know how to let people know.\nM: Put a few lines in the building newsletter. It goes into everyone's mailbox on Friday, and I'm the one who puts it together.\nW: The newsletter? Does anyone actually read that? I thought I'd just put a sign on the board by the mailboxes.\nM: Nobody looks at that board. It's covered in old takeaway menus. But the newsletter gets read, especially by the older residents. Mrs. Gantry on the third floor reads every word, and she's got two dogs and bad knees.\nW: Hmm. What about flyers? I could print some and slide them under everyone's door tonight.\nM: I wouldn't. A pizza place did that last spring, and so many people complained that the residents voted to ban it. You'd get a warning letter before your first walk.\nW: Oh, I didn't know that. Okay, the newsletter, then. What should I write?\nM: Just your name, your flat number and what you charge. Get it to me by Wednesday night.\nW: I was thinking five dollars for half an hour. Is that too much?\nM: No, that's fair. Actually, could you start with Huxley? My knee's been bad since I slipped on the ice in January, and he hasn't had a proper walk in weeks.\nW: Your beagle? Of course! When would you want me?\nM: Mornings, if you can. Around seven, before school. Could you start on Monday?\nW: Monday's fine. But I've got swim practice at half past six on Tuesdays and Thursdays, so on those days I'd have to come after dinner instead.\nM: That's no problem. He'll be happy to get out at any time. Want to come up and meet him now? He's a bit shy with new people.\nW: Sure. Let me just drop my school bag at home first. I'll knock on your door in five minutes.\nM: Great. I'll put the kettle on.",
+      "names": ["Gaddis", "Huxley", "Gantry"],
+      "other_caps": ["Mr", "Mrs", "Friday", "Wednesday", "January", "Monday", "Tuesdays", "Thursdays"],
+      "items": [
+        {
+          "qid": "ITL3-D-C-1",
+          "kind": "intent-next",
+          "difficulty": "medium",
+          "prompt": "What will the woman probably do right after the conversation?",
+          "choices": [
+            "Drop her school bag at home and then knock on the man's door",
+            "Take the man's beagle out for its first walk",
+            "Wait in the lobby while the man brings his beagle downstairs",
+            "Go upstairs with the man right away to meet his shy beagle"
+          ],
+          "correct_answer": "Drop her school bag at home and then knock on the man's door",
+          "why": "Let me just drop my school bag at home first. I'll knock on your door in five minutes.",
+          "explanation": "\"Drop her school bag at home and then knock on the man's door\" is correct: she says \"Let me just drop my school bag at home first. I'll knock on your door in five minutes.\"",
+          "distractor_rationales": [
+            {"choice": "Take the man's beagle out for its first walk", "lure": "wrong time", "reason": "\"Take the man's beagle out for its first walk\" is wrong: the walks begin later (\"Could you start on Monday?\" / \"Monday's fine.\"); now he only asks her to \"come up and meet him\"."},
+            {"choice": "Wait in the lobby while the man brings his beagle downstairs", "lure": "contradicted", "reason": "\"Wait in the lobby while the man brings his beagle downstairs\" is wrong: the man asks \"Want to come up and meet him now?\" and she says \"I'll knock on your door in five minutes.\""},
+            {"choice": "Go upstairs with the man right away to meet his shy beagle", "lure": "contradicted", "reason": "\"Go upstairs with the man right away to meet his shy beagle\" is wrong: she does not go at once; she says \"Let me just drop my school bag at home first.\""}
+          ]
+        },
+        {
+          "qid": "ITL3-D-C-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the man say about his knee?",
+          "choices": [
+            "It got hurt when he slipped on ice.",
+            "It got hurt when he fell down the stairs.",
+            "It got hurt when Huxley pulled on his lead.",
+            "It got hurt while he was playing tennis."
+          ],
+          "correct_answer": "It got hurt when he slipped on ice.",
+          "why": "My knee's been bad since I slipped on the ice in January",
+          "explanation": "\"It got hurt when he slipped on ice.\" is correct: the man says \"My knee's been bad since I slipped on the ice in January\".",
+          "distractor_rationales": [
+            {"choice": "It got hurt when he fell down the stairs.", "lure": "misreading", "reason": "\"It got hurt when he fell down the stairs.\" is wrong: the man gives the cause himself, \"since I slipped on the ice in January\", and no stairs are mentioned."},
+            {"choice": "It got hurt when Huxley pulled on his lead.", "lure": "wrong relation", "reason": "\"It got hurt when Huxley pulled on his lead.\" is wrong: Huxley is the dog who needs walking, and the knee was hurt when \"I slipped on the ice in January\"."},
+            {"choice": "It got hurt while he was playing tennis.", "lure": "misreading", "reason": "\"It got hurt while he was playing tennis.\" is wrong: the man says \"My knee's been bad since I slipped on the ice in January\"."}
+          ]
+        },
+        {
+          "qid": "ITL3-D-C-3",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the conversation mainly about?",
+          "choices": [
+            "A neighbour persuades a teenager to advertise her dog walking in the residents' newsletter",
+            "A neighbour persuades a teenager to advertise her dog walking on the board by the mailboxes",
+            "A neighbour persuades a teenager to advertise her dog walking with flyers under every door",
+            "A neighbour persuades a teenager to advertise her dog walking by knocking on doors upstairs"
+          ],
+          "correct_answer": "A neighbour persuades a teenager to advertise her dog walking in the residents' newsletter",
+          "why": "Okay, the newsletter, then. What should I write?",
+          "explanation": "\"A neighbour persuades a teenager to advertise her dog walking in the residents' newsletter\" is correct: the man's first suggestion is \"Put a few lines in the building newsletter\", he turns down her other ideas, and she agrees: \"Okay, the newsletter, then. What should I write?\"",
+          "distractor_rationales": [
+            {"choice": "A neighbour persuades a teenager to advertise her dog walking on the board by the mailboxes", "lure": "outcome wrong", "reason": "\"A neighbour persuades a teenager to advertise her dog walking on the board by the mailboxes\" is wrong: the board is her idea, and the man rejects it: \"Nobody looks at that board.\""},
+            {"choice": "A neighbour persuades a teenager to advertise her dog walking with flyers under every door", "lure": "outcome wrong", "reason": "\"A neighbour persuades a teenager to advertise her dog walking with flyers under every door\" is wrong: the man says \"I wouldn't\" because \"the residents voted to ban it\"."},
+            {"choice": "A neighbour persuades a teenager to advertise her dog walking by knocking on doors upstairs", "lure": "outcome wrong", "reason": "\"A neighbour persuades a teenager to advertise her dog walking by knocking on doors upstairs\" is wrong: they settle on the newsletter (\"Okay, the newsletter, then.\"), and the only door she will knock on is his: \"I'll knock on your door in five minutes.\""}
+          ]
+        },
+        {
+          "qid": "ITL3-D-C-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "Why is the woman saving money?",
+          "choices": [
+            "To pay for an art class this summer",
+            "To pay for a swim camp this summer",
+            "To pay for a new bike this summer",
+            "To pay for a trip with her school this summer"
+          ],
+          "correct_answer": "To pay for an art class this summer",
+          "why": "I'm saving for a drawing course this summer.",
+          "explanation": "\"To pay for an art class this summer\" is correct: she says \"I'm saving for a drawing course this summer.\"",
+          "distractor_rationales": [
+            {"choice": "To pay for a swim camp this summer", "lure": "wrong relation", "reason": "\"To pay for a swim camp this summer\" is wrong: swimming is something she already does (\"I've got swim practice at half past six on Tuesdays and Thursdays\"); she is saving \"for a drawing course this summer\"."},
+            {"choice": "To pay for a new bike this summer", "lure": "misreading", "reason": "\"To pay for a new bike this summer\" is wrong: she says \"I'm saving for a drawing course this summer.\""},
+            {"choice": "To pay for a trip with her school this summer", "lure": "wrong relation", "reason": "\"To pay for a trip with her school this summer\" is wrong: school comes up only as the time limit for walks (\"Around seven, before school.\"); the money is \"for a drawing course this summer\"."}
+          ]
+        }
+      ]
+    }
+  ]
+}

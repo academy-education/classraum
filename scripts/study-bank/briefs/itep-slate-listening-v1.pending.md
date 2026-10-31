@@ -45,3 +45,25 @@
    all 45 dialogue sets, so Part 2 drew woman 5 / neither 4 / man 0. Draw opens/prevails per part (lesson 1 again).
    Also recorded: deferred/compromise outcome keyed in both twin main-idea items (lesson 6 family).
 
+14. **2026-10-31, itep-listening-v3 (Part 2 top-up), p1 counted b+c `one_template` (5 items; A, C, D, F, G
+   conversations dropped): `whole-script options: 4` puts four same-width summaries that open with one clause and
+   differ only in the outcome.** Chosen in the v3 prereg to remove lesson 12's twin pair. Every value of the shape has
+   now produced a tell (1: broadest keyed, probes v1/v2; 2: twin pair, counted v2; 4: one template, counted v3).
+   **`one_template` is now named by two graders in two consecutive batches: the cut is BLOCKING.** The cut needs new
+   rule-M text: e.g. main-idea options that vary in width AND each name a different outcome, or no main-idea kind in
+   Part 2 (the three v3 conversations without one were untouched by the pattern; two cleared).
+15. **Same batch, probe 1 (6/6, not sent) and probe 2 (5/6): the higher-status speaker's side is keyed in every
+   status-gap conversation** (coordinator, adult neighbour, counsellor, judge). Cause is the assignment: `prevails` is
+   drawn by gender (woman / man / neither) and the role flip happened to put the senior role on the prevailing side
+   every time; shipped v2 conversations go the other way twice. Draw `prevails` as senior / junior / neither where
+   roles differ in status (lesson 5 family).
+16. **Same batch, probe 1 (4/5, sent; fixed on distractors) and probe 2 (3/4): intent-next key is the small errand done
+   right before the main activity, and carries a sequence link ("and then", "so that").** Draw per intent-next item
+   whether the key is the immediate step or a later one.
+17. **Same batch, p1 c (E-C-2 broken, `key_wrong`): an inference key that names an unstated mental state or past
+   activity ("had been looking for a team") from one line.** The author named it as least sure at hand-in. Also probe
+   2 (6/6, recorded): sibling items eliminate main-idea and relationship options (G-C-1's options presuppose the first
+   round is shown, which kills G-C-3's "dropped" options).
+18. **Process, held: the no-key-change revision rule.** 20 non-key changes, 0 key or transcript changes
+   (`revision-diff.mjs`), and no gate drop traced to a revised field (the counted template covers unrevised items;
+   E-C-2 was not revised). Keep the rule and the diff in the next round.

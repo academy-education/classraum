@@ -1,0 +1,750 @@
+[
+ {
+  "round": "v3",
+  "author": "A",
+  "set_id": "ITL3-A-C",
+  "part": 2,
+  "setting": "at a relative's house during a family gathering",
+  "speakers": {
+   "W": "a girl",
+   "M": "her cousin, a boy of about the same age"
+  },
+  "transcript": "M: There you are. Grandma wants us to keep Alfie and Birdie busy until dinner. She says they've knocked over the umbrella stand twice already.\nW: Yeah, I heard the crash. Dinner's at eight, so that's about forty minutes. How about a treasure hunt in the back garden, with flashlights? It's nearly dark, and they'd love that.\nM: In the garden? It rained all afternoon. The grass is basically mud, and your mum's only just finished mopping the hall.\nW: We'd stick to the stone path and the patio. Nobody has to step on the grass. And the path's got those little solar lamps along the edge, so they'll see where they're going.\nM: The path will still be soaking, though.\nW: Not really. It's stone, so it dries fast. It was dry when I came round the back.\nM: Hmm. I was going to say we put a film on upstairs. Our grandpa's got that huge screen in the back bedroom, and they'd actually sit still for once.\nW: Sitting still isn't what they need, though. They had films on the whole drive here.\nM: Wait, I thought they came on the train with your dad.\nW: Dad's coming tomorrow. I only got here twenty minutes ago, and Birdie kicked the back of my seat the entire way, and her brother sang the whole time. Trust me, they need to run around.\nM: Fair enough. But what if they get bored after one clue?\nW: They won't. I'll write eight short clues, and each one leads to the next. The last one's under the big flower pot by the back door, with a bag of toffees.\nM: Should I ask if dinner can wait a bit, just in case?\nW: No need. Forty minutes is plenty for eight clues.\nM: OK, the hunt it is. What do you want me to do?\nW: I'll write the clues at the kitchen table. Can you go and round up Alfie and Birdie? I think they've climbed up to the attic again.\nM: On it. I'll go and grab them now.",
+  "items": [
+   {
+    "qid": "ITL3-A-C-1",
+    "kind": "detail",
+    "prompt": "What does the woman say about the stone path?",
+    "choices": [
+     "It was mopped by her mum earlier.",
+     "It has lights along the edge.",
+     "It is still wet from the rain.",
+     "It is too dark for the little ones."
+    ],
+    "key": "It has lights along the edge."
+   },
+   {
+    "qid": "ITL3-A-C-2",
+    "kind": "intent-next",
+    "prompt": "What will the man most likely do next?",
+    "choices": [
+     "Ask their grandmother to make dinner later.",
+     "Go up to the attic and round up Alfie and Birdie.",
+     "Sit down at the kitchen table and write the clues.",
+     "Go upstairs and switch on the big screen for a film."
+    ],
+    "key": "Go up to the attic and round up Alfie and Birdie."
+   },
+   {
+    "qid": "ITL3-A-C-3",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "Two cousins decide how to keep the younger children busy, and they choose a treasure hunt in the back garden.",
+     "Two cousins decide how to keep the younger children busy, and they wait until the rain stops.",
+     "Two cousins decide how to keep the younger children busy, and they choose a film upstairs.",
+     "Two cousins decide how to keep the younger children busy, and they leave it to their grandmother."
+    ],
+    "key": "Two cousins decide how to keep the younger children busy, and they choose a treasure hunt in the back garden."
+   },
+   {
+    "qid": "ITL3-A-C-4",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman?",
+    "choices": [
+     "She travelled here alone, ahead of the others.",
+     "She came here on the train together with her dad.",
+     "She rode in the same car as the younger children.",
+     "She has been at the house since early this morning."
+    ],
+    "key": "She rode in the same car as the younger children."
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "B",
+  "set_id": "ITL3-B-C",
+  "part": 2,
+  "setting": "at a community centre before a volunteer shift",
+  "speakers": {
+   "W": "the volunteer coordinator",
+   "M": "a teenage volunteer"
+  },
+  "transcript": "M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+  "items": [
+   {
+    "qid": "ITL3-B-C-1",
+    "kind": "detail",
+    "prompt": "What does the man say about his sister's hair dryer?",
+    "choices": [
+     "He broke its plug while cleaning it.",
+     "He fixed a loose wire inside its plug.",
+     "He brought it in today to get its plug fixed.",
+     "He watched Mr. Dunmow repair it last month."
+    ],
+    "key": "He fixed a loose wire inside its plug."
+   },
+   {
+    "qid": "ITL3-B-C-2",
+    "kind": "relationship",
+    "prompt": "Who most likely are the speakers?",
+    "choices": [
+     "An organizer and a volunteer",
+     "A customer and a repair worker",
+     "A shop manager and a new worker",
+     "Two old friends at a repair fair"
+    ],
+    "key": "An organizer and a volunteer"
+   },
+   {
+    "qid": "ITL3-B-C-3",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman?",
+    "choices": [
+     "She may ask Mr. Dunmow to train him during lunch.",
+     "She set the age limit after an accident at the centre.",
+     "She may let him work on repairs after his birthday.",
+     "She'd let him stand next to Mr. Dunmow and pass him tools."
+    ],
+    "key": "She may let him work on repairs after his birthday."
+   },
+   {
+    "qid": "ITL3-B-C-4",
+    "kind": "intent-next",
+    "prompt": "What will the man most likely do next?",
+    "choices": [
+     "Fetch the tickets so that he can get his table ready",
+     "Help Mr. Dunmow set up the soldering irons",
+     "Start writing tickets for people already waiting",
+     "Help sort the clothes at the sewing table"
+    ],
+    "key": "Fetch the tickets so that he can get his table ready"
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "C",
+  "set_id": "ITL3-C-C",
+  "part": 2,
+  "setting": "in an empty classroom at lunchtime",
+  "speakers": {
+   "W": "a student reporter for the school newspaper",
+   "M": "the student being interviewed for an article"
+  },
+  "transcript": "W: Thanks for giving up your lunch, Emil. So, everyone's talking about the time capsule. How did you find it?\nM: Honestly, it was luck. I was looking through old yearbooks in the library for my history project, and in the one from nineteen ninety-nine there's a photo of some students burying a metal box.\nW: And the photo didn't say where?\nM: The caption just said behind the old gym. But the old gym was knocked down years ago, so that didn't help much.\nW: Then how did you work out the spot?\nM: There's a huge oak tree in the background of the photo, with one branch that bends right down. That tree's still standing next to the bike shed. So I lined up the photo with the tree, and I was pretty sure the box was under the shed.\nW: That's really clever. Who did the digging?\nM: The caretaker did most of it. We started straight after the last bell, at half past three. He had to move two bikes and a pile of bricks first. When the shovel finally hit metal, it was half past five, and he'd missed his bus home.\nW: Oh no. So what's the box like?\nM: Smaller than I expected, about the size of a shoebox. It's rusty along one side, though, so I'm worried rainwater got in and spoiled some of the papers.\nW: Okay. Now, about the article itself.\nM: Actually, I was going to ask. Could you hold it until after the box is opened? Then you could write about what's inside and have photos of everything.\nW: When's it being opened?\nM: At the spring concert, in three weeks. The head teacher wants to do it on stage.\nW: I see why you'd want to wait. But I've got another idea. What if we run a short story this Friday and ask anyone from the class of nineteen ninety-nine to come to the concert? The people who buried it could explain the things inside.\nM: Hmm. But some of them must live far away by now.\nW: Some, maybe. But lots of parents here went to this school. Somebody will know somebody. And after the concert, I'll write a second, longer piece with the photos.\nM: Okay, that's actually better than my plan. Two articles, then.\nW: Great. Thanks, Emil. I'll show you the first one before it goes in.",
+  "items": [
+   {
+    "qid": "ITL3-C-C-1",
+    "kind": "inference",
+    "prompt": "What can be inferred about the search the man describes?",
+    "choices": [
+     "It took about two hours.",
+     "It took about three hours.",
+     "It took about four hours.",
+     "It took about eight hours."
+    ],
+    "key": "It took about two hours."
+   },
+   {
+    "qid": "ITL3-C-C-2",
+    "kind": "detail",
+    "prompt": "How did the man work out where the box was buried?",
+    "choices": [
+     "He matched the photo with an oak tree that is still standing.",
+     "He followed the directions written in the photo caption.",
+     "He asked a former student who appeared in the photo.",
+     "He found an old map of the school grounds in the library archive."
+    ],
+    "key": "He matched the photo with an oak tree that is still standing."
+   },
+   {
+    "qid": "ITL3-C-C-3",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A student describes finding a buried box and agrees to the reporter's plan for two stories.",
+     "A student describes finding a buried box and convinces the reporter to wait until it is opened.",
+     "A student describes searching for a buried box that the school still has not found.",
+     "A student describes opening a buried box and lists the things the reporter can photograph."
+    ],
+    "key": "A student describes finding a buried box and agrees to the reporter's plan for two stories."
+   },
+   {
+    "qid": "ITL3-C-C-4",
+    "kind": "detail",
+    "prompt": "What does the man say about the condition of the box?",
+    "choices": [
+     "Rust along one edge may have let water damage the contents.",
+     "It is much bigger than a shoebox, so it was hard to lift.",
+     "The lid may be stuck, because the lock is badly bent.",
+     "It is sealed so tightly that the papers stayed dry."
+    ],
+    "key": "Rust along one edge may have let water damage the contents."
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "D",
+  "set_id": "ITL3-D-C",
+  "part": 2,
+  "setting": "in the hallway or lobby of their apartment building",
+  "speakers": {
+   "W": "a teenager",
+   "M": "an adult neighbour who lives in the same apartment building"
+  },
+  "transcript": "W: Excuse me, Mr. Gaddis? Have you got a minute?\nM: Sure. What's up?\nW: I want to start walking people's dogs, here in the building. I'm saving for a drawing course this summer. But I don't know how to let people know.\nM: Put a few lines in the building newsletter. It goes into everyone's mailbox on Friday, and I'm the one who puts it together.\nW: The newsletter? Does anyone actually read that? I thought I'd just put a sign on the board by the mailboxes.\nM: Nobody looks at that board. It's covered in old takeaway menus. But the newsletter gets read, especially by the older residents. Mrs. Gantry on the third floor reads every word, and she's got two dogs and bad knees.\nW: Hmm. What about flyers? I could print some and slide them under everyone's door tonight.\nM: I wouldn't. A pizza place did that last spring, and so many people complained that the residents voted to ban it. You'd get a warning letter before your first walk.\nW: Oh, I didn't know that. Okay, the newsletter, then. What should I write?\nM: Just your name, your flat number and what you charge. Get it to me by Wednesday night.\nW: I was thinking five dollars for half an hour. Is that too much?\nM: No, that's fair. Actually, could you start with Huxley? My knee's been bad since I slipped on the ice in January, and he hasn't had a proper walk in weeks.\nW: Your beagle? Of course! When would you want me?\nM: Mornings, if you can. Around seven, before school. Could you start on Monday?\nW: Monday's fine. But I've got swim practice at half past six on Tuesdays and Thursdays, so on those days I'd have to come after dinner instead.\nM: That's no problem. He'll be happy to get out at any time. Want to come up and meet him now? He's a bit shy with new people.\nW: Sure. Let me just drop my school bag at home first. I'll knock on your door in five minutes.\nM: Great. I'll put the kettle on.",
+  "items": [
+   {
+    "qid": "ITL3-D-C-1",
+    "kind": "intent-next",
+    "prompt": "What will the woman probably do right after the conversation?",
+    "choices": [
+     "Drop her school bag at home and then knock on the man's door",
+     "Take the man's beagle out for its first walk",
+     "Wait in the lobby while the man brings his beagle downstairs",
+     "Go upstairs with the man right away to meet his shy beagle"
+    ],
+    "key": "Drop her school bag at home and then knock on the man's door"
+   },
+   {
+    "qid": "ITL3-D-C-2",
+    "kind": "detail",
+    "prompt": "What does the man say about his knee?",
+    "choices": [
+     "It got hurt when he slipped on ice.",
+     "It got hurt when he fell down the stairs.",
+     "It got hurt when Huxley pulled on his lead.",
+     "It got hurt while he was playing tennis."
+    ],
+    "key": "It got hurt when he slipped on ice."
+   },
+   {
+    "qid": "ITL3-D-C-3",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A neighbour persuades a teenager to advertise her dog walking in the residents' newsletter",
+     "A neighbour persuades a teenager to advertise her dog walking on the board by the mailboxes",
+     "A neighbour persuades a teenager to advertise her dog walking with flyers under every door",
+     "A neighbour persuades a teenager to advertise her dog walking by knocking on doors upstairs"
+    ],
+    "key": "A neighbour persuades a teenager to advertise her dog walking in the residents' newsletter"
+   },
+   {
+    "qid": "ITL3-D-C-4",
+    "kind": "detail",
+    "prompt": "Why is the woman saving money?",
+    "choices": [
+     "To pay for an art class this summer",
+     "To pay for a swim camp this summer",
+     "To pay for a new bike this summer",
+     "To pay for a trip with her school this summer"
+    ],
+    "key": "To pay for an art class this summer"
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "E",
+  "set_id": "ITL3-E-C",
+  "part": 2,
+  "setting": "at a summer camp, outside the camp office",
+  "speakers": {
+   "W": "a camper at a summer camp",
+   "M": "a camp counsellor"
+  },
+  "transcript": "W: Excuse me, are you the counsellor running Saturday's orienteering race?\nM: That's me. Is your cabin team signed up?\nW: We are, but we've got a problem. Jolie twisted her ankle playing basketball yesterday, and the nurse says no running until next week.\nM: Oh no. How's she doing?\nW: She's okay, just bored. Anyway, I was thinking the three of us could race without her. We'd just carry her part of the map.\nM: Hmm, the trouble is the second half. After the bridge, every team splits into two pairs, and each pair looks for different flags along the stream.\nW: So with three, one of us would be out there alone.\nM: Right, and we never allow that. That stretch is easy to get lost in. I put the flags out this morning, and even I took a wrong turn.\nW: Couldn't the three of us just stay together the whole time?\nM: Then you'd have to find every flag on both routes. You'd still be in the woods when the dinner bell rings.\nW: Oh. I didn't think of that.\nM: Okay, here's one idea. Borrow someone. The Kanby cabin has five campers this year, so one of them hasn't got a team for Saturday.\nW: I'd rather not. I know it's allowed, and I don't mind someone new. But Jolie practised with her compass every single evening. If somebody else just takes her place, all that work was for nothing.\nM: Fair enough. Then what if she doesn't lose her place? Every team checks in by radio with the start tent. Usually a counsellor takes the calls, but Jolie could do it for you. She'd sit with me, keep the big map, and talk you through it if you get stuck by the stream. The Kanby camper would just run as your fourth, and the results would still list Jolie.\nW: Oh, she'd love that. She's always telling us which way to go anyway.\nM: Great, that solves two problems at once. Just check with the Kanby counsellor first. She's down at the lake until four. And remember, nobody sees the race map until the start on Saturday.\nW: It's only two now, so I'll go and tell Jolie first. She's resting in our cabin.\nM: Good. Tell her to bring a hat. It gets hot in that tent.",
+  "items": [
+   {
+    "qid": "ITL3-E-C-1",
+    "kind": "detail",
+    "prompt": "According to the woman, how did Jolie hurt her ankle?",
+    "choices": [
+     "She slipped on a wet rock by the stream.",
+     "She twisted it playing basketball.",
+     "She fell down the cabin steps.",
+     "She tripped on the dock at the lake."
+    ],
+    "key": "She twisted it playing basketball."
+   },
+   {
+    "qid": "ITL3-E-C-2",
+    "kind": "inference",
+    "prompt": "What can be inferred about the man?",
+    "choices": [
+     "The man had been hoping her team would race as three.",
+     "The man had found the route along the stream easy to follow.",
+     "The man had been looking for a team for one of the Kanby campers.",
+     "The man had planned to run with the woman's team himself."
+    ],
+    "key": "The man had been looking for a team for one of the Kanby campers."
+   },
+   {
+    "qid": "ITL3-E-C-3",
+    "kind": "attitude",
+    "prompt": "What does the woman think of the man's first suggestion?",
+    "choices": [
+     "It would break the race rules about borrowing campers.",
+     "It would be unfair to the teammate who trained hardest.",
+     "It would be awkward to race with someone she doesn't know.",
+     "It would be a good fix for her team's problem."
+    ],
+    "key": "It would be unfair to the teammate who trained hardest."
+   },
+   {
+    "qid": "ITL3-E-C-4",
+    "kind": "intent-next",
+    "prompt": "What will the woman probably do next?",
+    "choices": [
+     "Find the Kanby counsellor",
+     "Sign her team up for the race",
+     "Tell her injured friend",
+     "Study the race map with her team"
+    ],
+    "key": "Tell her injured friend"
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "F",
+  "set_id": "ITL3-F-C",
+  "part": 2,
+  "setting": "at the family's home in the evening",
+  "speakers": {
+   "W": "an exchange student who is staying with the student's family",
+   "M": "a high-school student"
+  },
+  "transcript": "M: Did you like the soup at dinner? It's seaweed soup. We always have it on birthdays, so Mom made it for my sister today.\nW: I liked it a lot. But why soup on a birthday?\nM: My grandma says it's to thank your mother. Women eat it after they have a baby, so you eat it on the day you were born.\nW: Oh, that's lovely. At home it's kind of the opposite. On your birthday, you bring a cake to school for everyone else.\nM: Wait, you bring the cake? So nobody gets you one?\nW: Oh, my family does, at dinner. It's just that at school it's my job. My mom always baked a honey cake, and I'd carry it in on the bus.\nM: And yours is on Friday, right? Then let's stop at the bakery by the station on Friday morning. They sell big boxes of rice cakes.\nW: Hmm, it doesn't feel the same if I buy it. I was thinking I could bake my mom's honey cake tomorrow night. I've got her recipe on my phone.\nM: Okay, but we're out of honey. Dad finished the jar last week, putting it in his tea every morning.\nW: Ah. The corner shop's open till ten, though. I could get some there.\nM: Sure, but there's another thing. Ms. Lindell, our homeroom teacher, has a rule about food. Anything homemade has to be checked with her a day before.\nW: A day before? So even if I bake it, I might not be allowed to share it?\nM: Right. Last spring someone brought cookies with peanuts in them, and a girl in our class had to go to the nurse.\nW: Oh no. My honey cake doesn't have nuts. But I guess she can't tell that just by looking at it.\nM: Exactly. And bakery boxes come with a label that lists everything inside. That's why I said the bakery.\nW: I see. But I still want it to be mine, you know? Something from home.\nM: I get it. Could you message Ms. Lindell tonight and ask her? Then we'd know which one to do.\nW: Maybe. But it's kind of late to bother a teacher. Let me think about it while I wash the dishes.",
+  "items": [
+   {
+    "qid": "ITL3-F-C-1",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A school birthday custom and why the woman is still thinking about her cake",
+     "A school birthday custom and why the woman agrees to buy rice cakes at the bakery",
+     "A school birthday custom and why the woman decides to bake a cake at home tonight",
+     "A school birthday custom and why the woman stops taking a cake to class"
+    ],
+    "key": "A school birthday custom and why the woman is still thinking about her cake"
+   },
+   {
+    "qid": "ITL3-F-C-2",
+    "kind": "inference",
+    "prompt": "What can be inferred about the man?",
+    "choices": [
+     "He thinks bakery cakes skip the teacher's check",
+     "He thinks bakery cakes need the teacher's check too",
+     "He thinks the woman's honey cake has nuts inside it",
+     "He thinks the teacher won't answer a message tonight"
+    ],
+    "key": "He thinks bakery cakes skip the teacher's check"
+   },
+   {
+    "qid": "ITL3-F-C-3",
+    "kind": "detail",
+    "prompt": "What does the man say about the honey in his home?",
+    "choices": [
+     "His father used up the whole jar last week",
+     "His father puts it in his tea at night",
+     "His mother bought a new jar of it today",
+     "His sister had it at dinner on her birthday"
+    ],
+    "key": "His father used up the whole jar last week"
+   },
+   {
+    "qid": "ITL3-F-C-4",
+    "kind": "purpose",
+    "prompt": "Why does the woman say that her family gives her a cake at dinner?",
+    "choices": [
+     "To correct his idea that nobody ever gives her a birthday cake",
+     "To suggest that his family should make her one at dinner",
+     "To explain why her mom always baked the cake for school",
+     "To show that she likes her dinner cake more than a school one"
+    ],
+    "key": "To correct his idea that nobody ever gives her a birthday cake"
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "G",
+  "set_id": "ITL3-G-C",
+  "part": 2,
+  "setting": "in the school hall the day before the science fair",
+  "speakers": {
+   "W": "a student entering the school science fair",
+   "M": "a volunteer judge for the science fair"
+  },
+  "transcript": "M: Hi there. I'm one of the judges for tomorrow, and I'm just walking around to see who's set up. What's your project about?\nW: Hi. I tested which shoes grip best on a wet floor. I put each shoe on a wooden ramp, sprayed the ramp with water, and lifted one end slowly until the shoe started to slide.\nM: So you measured the angle where it slips. Nice. That's close to my own job, actually. I check how well car tires hold the road when it's raining.\nW: Oh, really? Then you'll probably find all my mistakes.\nM: I doubt it. Your poster says five shoes, three tries each. Is that everything you did?\nW: Well, no. I did a whole first round last month, but the ramp kept sliding around on the table, so the numbers jumped all over the place. I'm going to leave that round out and only show the second one.\nM: Hmm. Can I suggest something? I'd keep the first round in. Finding a problem and fixing it is exactly what judges like to hear about.\nW: But it looks so bad. One shoe slipped at twenty degrees on Monday and at thirty-five on Tuesday.\nM: That's the point. Next to your new numbers, it shows why the change mattered. What did you change, by the way?\nW: I fixed the ramp to the table with that metal clamp. I was going to take it off tonight so the ramp looks neater.\nM: Leave it on. It's part of your story. So how could you show the first round?\nW: The poster's finished, and the print shop closed at five, so I can't get a new one before the fair. I've got my notebook at home with all the old numbers. Maybe I could leave it open on the table?\nM: People won't flip through a notebook. Copy the numbers into a neat table on a card and stand it beside the poster. Handwritten is fine.\nW: Okay. I'll do that tonight, then. And I'll leave the clamp where it is.\nM: Great. When you talk to the judges, start with the first round, then point to the clamp.\nW: Thanks. I honestly thought the judges would think I'd made a mess of it.\nM: Not at all. Most first tries are messy. Hiding one is what makes a judge suspicious.",
+  "items": [
+   {
+    "qid": "ITL3-G-C-1",
+    "kind": "intent-next",
+    "prompt": "What will the woman most likely do tonight?",
+    "choices": [
+     "Copy the first-round results onto a card by hand",
+     "Get a new poster printed showing both rounds",
+     "Bring in the notebook and leave it open on the table",
+     "Take the clamp off so the ramp looks neater"
+    ],
+    "key": "Copy the first-round results onto a card by hand"
+   },
+   {
+    "qid": "ITL3-G-C-2",
+    "kind": "detail",
+    "prompt": "What does the man say about his own work?",
+    "choices": [
+     "It involves checking how well car tires hold the road in rain",
+     "It involves building wooden ramps for testing shoes",
+     "It involves judging science fairs at many schools",
+     "It involves teaching students to measure slopes"
+    ],
+    "key": "It involves checking how well car tires hold the road in rain"
+   },
+   {
+    "qid": "ITL3-G-C-3",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A judge convinces a student to show the first round",
+     "A student convinces a judge the first round is not worth showing",
+     "A judge advises a student to repeat the first round tonight",
+     "A student and a judge decide against using the first round"
+    ],
+    "key": "A judge convinces a student to show the first round"
+   },
+   {
+    "qid": "ITL3-G-C-4",
+    "kind": "purpose",
+    "prompt": "Why does the woman mention what happened to one shoe on Monday and Tuesday?",
+    "choices": [
+     "To show how unreliable the early test results were",
+     "To explain why one shoe was left out of the second round",
+     "To point out the shoe that gripped the wet ramp best",
+     "To prove the clamp made the shoes slip sooner"
+    ],
+    "key": "To show how unreliable the early test results were"
+   }
+  ]
+ },
+ {
+  "round": "v3",
+  "author": "H",
+  "set_id": "ITL3-H-C",
+  "part": 2,
+  "setting": "on a video call on a weekend evening",
+  "speakers": {
+   "W": "an older sister who has just started university",
+   "M": "her younger brother who is in high school"
+  },
+  "transcript": "W: Hi! Can you see me now? I had to sit by the window to get a signal.\nM: Yeah, I can see you. Your room looks tiny.\nW: It is tiny, but I like it. So, Mum said you wanted to ask me something.\nM: Right. Well, you're not using your bedroom anymore, so I was thinking I could move into it. It's twice the size of mine.\nW: Hold on. I'm coming home for the winter break in six weeks. Where would I sleep?\nM: In my room. It's only for three weeks.\nW: Your room smells like football boots. Anyway, why do you suddenly need more space?\nM: I'm choosing my courses for next year, and I want to take the advanced art course. You have to do a big painting at home, and there's no space for an easel in my room.\nW: Advanced art? Last month you told me you were taking extra physics.\nM: I changed my mind. My art teacher thinks my drawings are good enough, and I'd rather paint than do physics problems.\nW: Well, I nearly made the same mistake here at university. I picked chemistry because Dad wanted me to, and I dropped it after the first week. Now I'm doing history of art, and I love it.\nM: So you agree with me?\nW: About the course, yes. About my room, I'm not sure. All my books are still on the shelves.\nM: I could put them in boxes. I'd be really careful.\nW: You broke my lamp the last time you were really careful.\nM: That was two years ago! I'm a much better brother now.\nW: OK, OK. What about the corner of the living room? Nobody uses it since Dad moved the piano.\nM: Mum would never let me put paint near the sofa.\nW: True. Look, let's not decide tonight. When I'm home in December, I'll look at both rooms, and we'll talk to Mum together.\nM: Fine. But don't tell her about the lamp.",
+  "items": [
+   {
+    "qid": "ITL3-H-C-1",
+    "kind": "detail",
+    "prompt": "What does the woman say about her own courses at university?",
+    "choices": [
+     "She dropped history of art after one week and moved to chemistry",
+     "She gave up a subject her father chose and prefers the one she took instead",
+     "She picked chemistry because her dad wanted it and still enjoys it",
+     "She chose history of art first because her dad wanted her to"
+    ],
+    "key": "She gave up a subject her father chose and prefers the one she took instead"
+   },
+   {
+    "qid": "ITL3-H-C-2",
+    "kind": "relationship",
+    "prompt": "Who are the speakers most likely to be?",
+    "choices": [
+     "A mother and her son who is in high school",
+     "An art teacher and a student in her class",
+     "Two students living in the same university hall",
+     "A university student and her brother at home"
+    ],
+    "key": "A university student and her brother at home"
+   },
+   {
+    "qid": "ITL3-H-C-3",
+    "kind": "detail",
+    "prompt": "Which course does the man say he wants to take next year?",
+    "choices": [
+     "The advanced art course",
+     "The extra physics course",
+     "The history of art course",
+     "The basic chemistry course"
+    ],
+    "key": "The advanced art course"
+   },
+   {
+    "qid": "ITL3-H-C-4",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman?",
+    "choices": [
+     "She has already packed her books into boxes at home",
+     "She will spend the winter break at her university",
+     "She doubts her brother would look after her things",
+     "She wants their mother to make the decision without her"
+    ],
+    "key": "She doubts her brother would look after her things"
+   }
+  ]
+ },
+ {
+  "round": "v2",
+  "shipped": true,
+  "author": "v2-A",
+  "set_id": "ITL2-A-C",
+  "part": 2,
+  "setting": "at school, between classes",
+  "speakers": {
+   "W": "a student",
+   "M": "a classmate"
+  },
+  "transcript": "W: Hey, have you got a minute before maths? It's about the biology test next Tuesday.\nM: Sure, I've got five minutes. Are you worried about it?\nW: A bit. For the last one, I read my notes three times the night before. I felt ready, and then I sat down in the test and couldn't remember half of it. It was awful.\nM: Really? But your notes are always so neat.\nW: Neat doesn't help, it turns out. So I want to try something different. What if we each write twenty questions on the chapter, swap them, and answer each other's without looking at the book?\nM: Hmm. Honestly, I'd rather we made one big poster together. The heart, the blood vessels, everything in different colours. Drawing things helps me see how they fit.\nW: Posters are fun, but think about the test. Nobody hands you a poster. They hand you questions.\nM: OK, that's true. But writing twenty questions sounds like a lot of work.\nW: It's less work than a poster. And to write a good question, you have to understand the answer first, so that's studying too.\nM: Fine, you've convinced me. When do we swap?\nW: How about Thursday after school, in the library?\nM: Thursday's bad. I've got football practice until five, and the library closes at half past.\nW: Then let's swap on Friday at lunch. We can answer them over the weekend and check them together on Monday.\nM: Friday at lunch works. Should we split the chapter, or should we both do all of it?\nW: Both do all of it. Otherwise you'll only really know your half.\nM: Makes sense. And should the questions be hard ones or easy ones?\nW: A mix, like the real test. Oh, and write the answers on a separate page, so the other person can't just see them.\nM: Got it. I'll start mine tonight, after I finish my history reading.",
+  "items": [
+   {
+    "qid": "ITL2-A-C-1",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "The colours the man wants for the poster",
+     "How the pair will prepare for the coming exam",
+     "Why the woman's notes are so much neater",
+     "When the school library closes on Thursday evenings"
+    ],
+    "key": "How the pair will prepare for the coming exam"
+   },
+   {
+    "qid": "ITL2-A-C-2",
+    "kind": "inference",
+    "prompt": "What can be inferred about the woman's opinion?",
+    "choices": [
+     "A poster would do little to prepare them for the exam",
+     "A poster would take less time than writing questions",
+     "Each of them should write questions on half the chapter",
+     "Preparing alone would work better than working together"
+    ],
+    "key": "A poster would do little to prepare them for the exam"
+   },
+   {
+    "qid": "ITL2-A-C-3",
+    "kind": "detail",
+    "prompt": "What does the woman say she did before the last test?",
+    "choices": [
+     "Drew a poster of the whole chapter",
+     "Reread the notes the night before",
+     "Wrote practice questions for a friend",
+     "Studied with a classmate in the library"
+    ],
+    "key": "Reread the notes the night before"
+   },
+   {
+    "qid": "ITL2-A-C-4",
+    "kind": "purpose",
+    "prompt": "Why does the man mention his football practice?",
+    "choices": [
+     "To suggest moving the swap to the sports field",
+     "To complain that the plan takes too much effort",
+     "To say why the swap needs a day other than Thursday",
+     "To show that sport matters more than the test"
+    ],
+    "key": "To say why the swap needs a day other than Thursday"
+   }
+  ]
+ },
+ {
+  "round": "v2",
+  "shipped": true,
+  "author": "v2-D",
+  "set_id": "ITL2-D-C",
+  "part": 2,
+  "setting": "at school, in that staff member's office or room",
+  "speakers": {
+   "W": "a student",
+   "M": "a school staff member who is not a teacher (for example the librarian, the nurse, the office secretary, a lab technician)"
+  },
+  "transcript": "M: Hi, come on in. You're the one who emailed about borrowing a rain gauge?\nW: Yes, that's me. It's for my science fair project. I want to measure how much rain falls at school every day for five weeks.\nM: Five weeks, okay. We've got two gauges in the cupboard, and the plastic one's easier to read. Where were you planning to put it?\nW: I thought about the roof first, because nothing's in the way up there.\nM: Students can't go on the roof, I'm afraid. It's a safety rule. But here's an idea. Put it on the ledge outside this window. You could check it without even going outside.\nW: That would be easy. But I read that a gauge shouldn't sit right next to a wall. The building would block some of the rain, especially when it's windy.\nM: Hmm, that's true. And this window faces away from most of our storms. So where else?\nW: The vegetable garden behind the gym. It's open, there aren't any trees near it, and there's an old fence post in the corner I could tie it to.\nM: The garden? I'm worried about the sprinklers. If they spray the gauge even once, your number for that day is useless.\nW: I asked the garden club yesterday. They stopped using the sprinklers last month. Now they water by hand, and they said they'll stay away from that corner.\nM: Well, you've really done your homework. All right, the garden it is. How often will you read it?\nW: Every morning at about a quarter to eight, before the first bell. I'll write the number in my notebook and then empty it.\nM: Good. And if there's a freezing night, bring it inside, because ice can crack the plastic.\nW: Got it. Can I take it today?\nM: Sure. Just sign this form, and bring it back to me when your five weeks are over.",
+  "items": [
+   {
+    "qid": "ITL2-D-C-1",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "How the man persuades the student to use the window ledge",
+     "Why students aren't allowed on the school roof",
+     "How the garden club has changed its watering",
+     "Where the student should put a rain gauge for a project"
+    ],
+    "key": "Where the student should put a rain gauge for a project"
+   },
+   {
+    "qid": "ITL2-D-C-2",
+    "kind": "detail",
+    "prompt": "What does the woman say about putting the gauge on the window ledge?",
+    "choices": [
+     "Going out on the ledge might break a safety rule",
+     "It would be hard to check from inside the room",
+     "The building would stop some rain from getting into it",
+     "The window there faces toward most of the storms"
+    ],
+    "key": "The building would stop some rain from getting into it"
+   },
+   {
+    "qid": "ITL2-D-C-3",
+    "kind": "purpose",
+    "prompt": "Why does the man mention the sprinklers?",
+    "choices": [
+     "To explain why the roof is a better place",
+     "To warn that a spray would ruin that day's number",
+     "To suggest talking to the club members first",
+     "To describe how the vegetables there are looked after"
+    ],
+    "key": "To warn that a spray would ruin that day's number"
+   },
+   {
+    "qid": "ITL2-D-C-4",
+    "kind": "detail",
+    "prompt": "When does the woman say she will read the gauge?",
+    "choices": [
+     "After the first bell rings",
+     "When classes end each day",
+     "During the lunch break",
+     "Before school starts"
+    ],
+    "key": "Before school starts"
+   }
+  ]
+ },
+ {
+  "round": "v2",
+  "shipped": true,
+  "author": "v2-F",
+  "set_id": "ITL2-F-C",
+  "part": 2,
+  "setting": "at a small shop or cafe before opening",
+  "speakers": {
+   "W": "a teenager with a weekend job",
+   "M": "the teenager's manager at work"
+  },
+  "transcript": "M: Morning. Before we open, have a look at this. It's the list of what we threw away last Sunday.\nW: Wow. Eleven croissants and six muffins? That's a lot.\nM: It is. That's about thirty dollars in the bin, and it's like that most Sundays.\nW: I've been thinking about that, actually. What if we sold everything at half price after three o'clock?\nM: I thought about that too. But the bakery across the road tried it last spring. The owner told me people stopped coming in the morning. They just waited for the cheap prices.\nW: Oh. I didn't know that.\nM: So my idea is simpler. We bake less. Twenty croissants a day instead of thirty.\nW: The thing is, on Saturdays we already run out. I've been writing down when the last croissant goes, and for the past three Saturdays it's been before eleven.\nM: Really? Before eleven?\nW: Yeah. And people who come in for lunch get pretty annoyed when there's nothing left. Last week a man asked me twice if we had any hidden in the back.\nM: Hmm. So Sundays need fewer and Saturdays need more.\nW: Could the baker just make more when we're running low?\nM: Only if she knows in time. She can't keep coming out of the kitchen to check the shelf.\nW: I could tell her. I'm right here at the counter anyway.\nM: Okay. Then twenty to start with, and you tell her when we're down to the last five. She needs about half an hour to bake a new tray.\nW: That's fine. I'll keep writing down the times, too, so we can see if it's working.\nM: Great. Let's start today. I'll go and tell her now, so she can get some extra dough ready. Could you put the chairs out front? We open in fifteen minutes.\nW: Sure, I'll do it right away.",
+  "items": [
+   {
+    "qid": "ITL2-F-C-1",
+    "kind": "purpose",
+    "prompt": "Why does the man mention the bakery across the road?",
+    "choices": [
+     "To show that cheap prices bring in more people",
+     "To suggest they buy croissants from that bakery",
+     "To report how her idea went elsewhere",
+     "To explain why the bakery closed last spring"
+    ],
+    "key": "To report how her idea went elsewhere"
+   },
+   {
+    "qid": "ITL2-F-C-2",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "What the bakery across the road did last spring",
+     "Which jobs must be done before the cafe opens",
+     "How the cafe can waste less food without running out",
+     "How long the baker needs to bake a new tray"
+    ],
+    "key": "How the cafe can waste less food without running out"
+   },
+   {
+    "qid": "ITL2-F-C-3",
+    "kind": "intent-next",
+    "prompt": "What will the man most likely do next?",
+    "choices": [
+     "Put up a sign for half price after three",
+     "Tell the baker to get extra dough ready",
+     "Set the chairs out at the front",
+     "Watch the shelf for the last five croissants"
+    ],
+    "key": "Tell the baker to get extra dough ready"
+   },
+   {
+    "qid": "ITL2-F-C-4",
+    "kind": "detail",
+    "prompt": "What does the woman say about Saturdays?",
+    "choices": [
+     "The cafe throws away more than on Sundays",
+     "The croissants have sold out before eleven",
+     "Fewer customers come in than on a Sunday",
+     "The lunch customers buy most of the muffins"
+    ],
+    "key": "The croissants have sold out before eleven"
+   }
+  ]
+ },
+ {
+  "round": "v2",
+  "shipped": true,
+  "author": "v2-H",
+  "set_id": "ITL2-H-C",
+  "part": 2,
+  "setting": "at the side of a school sports field after practice",
+  "speakers": {
+   "W": "a student",
+   "M": "a sports coach"
+  },
+  "transcript": "W: Coach, have you got a minute? It's about our starts.\nM: Sure. You looked quick today. What's up?\nW: Well, everyone keeps telling me I stand up too early out of the blocks, but I honestly can't feel it. I was wondering if we could film the starts and watch them back in slow motion.\nM: Hmm. You know I don't allow phones at practice anymore.\nW: I know. Because of last spring?\nM: Right. I let everyone keep their phones on the bench, and by the end of the first week, half the team was filming silly dance videos during warm-up. Nobody stretched properly, and two runners pulled muscles.\nW: But this wouldn't be phones. The library lends tablets to clubs for free. I'd borrow one, put it on a stand behind the blocks, and nobody else would touch it.\nM: And then what? Everyone crowds round a screen for twenty minutes?\nW: No, the replay's ready in a few seconds. Each runner watches their own start once, then goes back to the line.\nM: Okay, a few seconds is fine. And I'll be honest, slow motion would help me too. At a start, feet move faster than my eyes can follow. I'm mostly guessing who pushes off badly.\nW: So you'd let us do it?\nM: There's one more problem. Some parents don't want their kids filmed at all. I can't just start recording.\nW: What if the videos stay on the tablet and get deleted after every practice? Nothing goes online.\nM: That helps. But the parents still have to agree first. I'll send a letter home with everyone this Friday, and if they all sign it, we can begin the week after.\nW: So not tomorrow, then.\nM: Not tomorrow. And you're in charge of the tablet. If I see it used for anything else, it goes straight back to the library.\nW: Deal. I'll pick it up from the library on Monday.\nM: Good. And practise keeping your head down for your first three steps. Video or no video.",
+  "items": [
+   {
+    "qid": "ITL2-H-C-1",
+    "kind": "detail",
+    "prompt": "According to the man, what happened last spring?",
+    "choices": [
+     "Phones went missing from the bench",
+     "Two runners were injured",
+     "A tablet got broken in warm-up",
+     "The team lost its first big race"
+    ],
+    "key": "Two runners were injured"
+   },
+   {
+    "qid": "ITL2-H-C-2",
+    "kind": "main-idea",
+    "prompt": "What is the conversation mainly about?",
+    "choices": [
+     "A student gets the coach to agree to filming starts on a borrowed tablet",
+     "A coach refuses a student's request to record practice on a phone",
+     "A coach asks a student to film races so parents can watch online",
+     "A student persuades the coach that the team should buy a video app"
+    ],
+    "key": "A student gets the coach to agree to filming starts on a borrowed tablet"
+   },
+   {
+    "qid": "ITL2-H-C-3",
+    "kind": "attitude",
+    "prompt": "What does the man think about watching the starts in slow motion?",
+    "choices": [
+     "It would show little that the coach doesn't see now",
+     "It would be more useful to the student than the coach",
+     "It would slow down practice too much",
+     "It would help the coach follow each runner's feet"
+    ],
+    "key": "It would help the coach follow each runner's feet"
+   },
+   {
+    "qid": "ITL2-H-C-4",
+    "kind": "intent-next",
+    "prompt": "What does the man plan to do before any filming begins?",
+    "choices": [
+     "Begin filming at tomorrow's practice",
+     "Get written approval from the families",
+     "Pick up a tablet from the library himself",
+     "Put the videos online for the parents to see"
+    ],
+    "key": "Get written approval from the families"
+   }
+  ]
+ }
+]

@@ -1,0 +1,72 @@
+{
+  "items_read": 32,
+  "patterns": [
+    {
+      "property": "sibling items in the same set give away the whole-conversation key (prompts are true presuppositions; options shared by 3-4 siblings)",
+      "scope": "batch (authors A, B, C, G, H)",
+      "items": ["ITL3-G-C-3", "ITL3-H-C-2", "ITL3-H-C-3", "ITL3-C-C-3", "ITL3-A-C-3", "ITL3-B-C-2"],
+      "varies_in": 6,
+      "key_has": 6,
+      "use": "eliminate (and often pick)",
+      "evidence": "Of the 7 main-idea/relationship items plus H-C-3, siblings carry a signal on 6, and every one points at the key. None points at a distractor; D-C-3 and F-C-1 get no signal. G: three of four G-C-1 options ('Copy the first-round results onto a card', 'Get a new poster printed showing both rounds', 'Bring in the notebook and leave it open') assume the first round is shown, which kills 'A student convinces a judge the first round should be dropped' and 'decide against using the first round' in G-C-3. H: the H-C-1 prompt 'her own courses at university', with chemistry and history of art as hers in all four H-C-1 options, leaves only 'advanced art' vs 'extra physics' in H-C-3. Together with H-C-4 'stay at her university for the winter break' it picks 'A university student and her brother at home' in H-C-2. C: the C-C-2 prompt 'how did the man work out where the box was buried' and the C-C-4 prompt 'condition of the box' (with 3/4 options leaving the contents unknown) kill 'the school still has not found' and 'opening a buried box and lists the things', leaving 2 of 4. A: the A-C-1 prompt (the stone path) and the A-C-2 option 'write the clues' point to the treasure hunt over 'a film upstairs'. B: in B-C-3 the woman decides what he may do in every option, and B-C-4 has 'get his table ready'. That kills 'customer and repair worker' and 'two old friends'."
+    },
+    {
+      "property": "the adult / in-charge speaker's position is the keyed outcome",
+      "scope": "batch (v3 only; v2 runs the other way)",
+      "items": ["ITL3-B-C-3", "ITL3-B-C-4", "ITL3-D-C-3", "ITL3-G-C-1", "ITL3-G-C-3", "ITL3-E-C-4"],
+      "varies_in": 6,
+      "key_has": 5,
+      "use": "pick",
+      "evidence": "Every v3 conversation with a status gap ends the adult's way: coordinator B, neighbour D, counsellor E (his compromise), judge G, and in H the older sister's 'let's not decide'. On items whose options split between the adult's and the teen's position, the key is the adult's in 5 of 6. B-C-3: 'She may let him work on repairs after his birthday' beats 'She'd let him stand next to Mr. Dunmow'. G-C-3: 'A judge convinces a student' beats 'A student convinces a judge'. D-C-3: the newsletter beats the board and the flyers. The exception is E-C-4: 'Tell her injured friend' is keyed over the counsellor's instruction 'Find the Kanby counsellor'. In the shipped v2 sets the student's plan prevails (D gauge in the garden, H filming), so the trend belongs to v3 and works against a student trained on v2."
+    },
+    {
+      "property": "an option naming Mr. Dunmow is never the key",
+      "scope": "author B",
+      "items": ["ITL3-B-C-1", "ITL3-B-C-3", "ITL3-B-C-4"],
+      "varies_in": 3,
+      "key_has": 0,
+      "use": "eliminate",
+      "evidence": "Five distractors over three items name him: 'He watched Mr. Dunmow repair it last month', 'She may ask Mr. Dunmow to train him during lunch', 'She'd let him stand next to Mr. Dunmow and pass him tools', 'Help Mr. Dunmow set up the soldering irons', 'Go and ask Mr. Dunmow about watching him at lunch'. No key names him. Across the batch a named person in an option is keyed 2 of 7 times (A-C-2 Alfie and Birdie, E-C-2 Kanby), so this belongs to author B only."
+    },
+    {
+      "property": "when one option is clearly more abstract or general than the other three, it is the key (subjective)",
+      "scope": "batch (mostly authors F, G, H); across rounds",
+      "items": ["ITL3-H-C-1", "ITL3-H-C-4", "ITL3-G-C-4", "ITL3-F-C-1", "ITL3-E-C-3"],
+      "varies_in": 5,
+      "key_has": 4,
+      "use": "pick",
+      "evidence": "H-C-1 key 'She gave up a subject her father chose and prefers the one she took instead': it is the only option that names no subject, and the longest. G-C-4 key 'To show how unreliable the early test results were' stands against three specific shoe/clamp claims. H-C-4 key 'She doubts her brother would look after her things' stands against concrete actions ('already packed her books into boxes'). F-C-1 key 'still thinking about her cake' stands against three concrete decisions. The exception is E-C-3: the vaguest option, 'It would be a good fix', is a distractor. In v2 the broadest main-idea option is keyed 3 of 4 (A-C-1, D-C-1, F-C-2). The v3 main-idea frames mostly neutralise breadth (see checked_clean). This is a judgement call, and borderline."
+    },
+    {
+      "property": "intent-next key carries a sequence/purpose connector (and / and then / so that)",
+      "scope": "kind intent-next",
+      "items": ["ITL3-A-C-2", "ITL3-B-C-4", "ITL3-D-C-1", "ITL3-G-C-1"],
+      "varies_in": 4,
+      "key_has": 3,
+      "use": "eliminate single-clause options (weak)",
+      "evidence": "Keys: 'Go up to the attic and round up Alfie and Birdie', 'Fetch the tickets so that he can get his table ready', 'Drop her school bag at home and then knock on the man's door' (the only connector in D-C-1). The exception is G-C-1: the key 'Copy the first-round results onto a card by hand' has no connector, while 'Bring in the notebook and leave it open' and 'Take the clamp off so the ramp looks neater' do. In E-C-4 no option has one. Weak: in A and B a distractor carries the connector too, so it never isolates the key except in D. It sits exactly at 75% on 4 items."
+    }
+  ],
+  "checked_clean": [
+    "key length rank: longest 8/32, 2nd 9, 3rd 6, shortest 8 (ties in A-C-4, D-C-3); by kind, intent-next longest 2/5, main-idea 1/5, inference 1/6, detail 3/11, purpose 1/2",
+    "key shares the most content words with the transcript: highest-overlap option 15/32, lowest 6/32 (D-C-4, E-C-3, E-C-4, F-C-3, G-C-4, H-C-1); detail items 7/11 highest; leans literal, but under 75%",
+    "key repeats prompt words: varies in 4 (F-C-1, F-C-4, G-C-4, D-C-1), key highest or tied in 2",
+    "hedges (may/probably): varies in 2 (B-C-3, C-C-4), key hedged in 2; under 3 items; distractors are hedged too ('may be stuck', 'probably dry', 'probably set the age limit')",
+    "absolutes (whole/every/alone/still/ever/nobody): varies in 7 (A-C-4, C-C-3, D-C-3, F-C-3, F-C-4, H-C-1, H-C-4), key carries 2 (F-C-3 'whole jar', F-C-4 'nobody ever')",
+    "negatives (not/n't/won't/against/nobody): varies in 5 (C-C-3, E-C-3, F-C-2, F-C-4, G-C-3), key carries 1 (F-C-4)",
+    "numbers / number words outside all-number sets: varies in 4 (B-C-2, H-C-2, H-C-1, C-C-3), key 1 (C-C-3 'two stories'); relationship distractor 'Two ...' 0/2 (B-C-2, H-C-2), too few; C-C-1 all-numeric, key is the smallest value (1 item)",
+    "proper names in options: varies in 7, key 2/7 (A-C-2, E-C-2) batch-wide (author B's Dunmow is listed as a pattern)",
+    "causal connectors inside an option (so/because/as/so that): varies in 2, key 1 (B-C-4 yes; C-C-4 no, where 3 distractors have them)",
+    "first word / grammatical frame: options are parallel in most items; where the first word differs (A-C-2, B-C-3, C-C-4, E-C-4, H-C-1, H-C-4) the key's opener is shared with a distractor or not distinctive; no recurring key frame",
+    "first plan made prevails: keyed in A, B, D; replaced in C, E, G; F and H undecided: 3/6",
+    "winning speaker: W in A, B, C and M in D, E, G; first speaker's plan wins 2/6 (C, G), last speaker's 4/6 (C, D, E, G), the speaker who talks most 4/6 (A, B, D, E; C and G lose), so mixed; none of it is visible without listening",
+    "endings: agreement A, B, C, D, G; compromise E; undecided F, H. The undecided ending is keyed as undecided in F-C-1 (1/1, too few); H has no outcome item",
+    "main-idea summaries: 4/5 v3 main-idea items (A, C, D, F) share one stem prefix across all four options and vary only the outcome, so breadth does not vary; G varies the agent. Key = the actual outcome, never a compromise (no compromise main-idea in v3)",
+    "tone (most cooperative/positive option): varies in 5 (C-C-3, E-C-3, F-C-1, G-C-3, H-C-4), key most positive 2/5 (C-C-3, G-C-3); E-C-3's most positive option is a distractor and H-C-4's key is negative",
+    "purpose 'To suggest ...' distractor: never keyed, 0/1 in v3 (F-C-4) and 0/3 in v2 (A-C-4, D-C-3, F-C-1); 0/4 across rounds but only 1 v3 item, so not listed; watch it in the next batch",
+    "rejected or corrected plan as a distractor (A-C-2 dinner later, B-C-4 soldering, D-C-1 flyers, G-C-1 notebook/clamp, A-C-4 train, H-C-3 physics): never keyed by construction; recognisable without listening only through siblings (pattern 1)",
+    "intent-next key = action stated in the closing 1-4 turns: 5/5 (v2 2/2). This needs the audio, so it is not a form tell",
+    "key idea reuse: A-C-2 and B-C-4 both key 'go and fetch what the other asked for, now'; both scripts end with a request + 'I'll go now' (as does v2-F); 2 v3 items, under 3",
+    "detail recipe: one-slot-varying parallel frames (D-C-2 'It got hurt when...' x4, D-C-4 'To pay for ... this summer' x4, H-C-3 'The ... course' x4); no form signal inside the set"
+  ]
+}

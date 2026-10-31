@@ -1,0 +1,156 @@
+{
+ "author": "B",
+ "sets": [
+  {
+   "set_id": "ITL3-B-C",
+   "part": 2,
+   "setting": "at a community centre before a volunteer shift",
+   "speakers": {
+    "W": "the volunteer coordinator",
+    "M": "a teenage volunteer"
+   },
+   "title": "First shift at the repair cafe welcome table",
+   "transcript": "M: Hi. The man at the door said to find the person who organizes the volunteers. Is that you?\nW: That's me. You must be Colm. Thanks for signing up. Doors open at ten, so we've got about twenty minutes. Today I'd like you on the welcome table, right by the front door.\nM: Oh. I was kind of hoping to help with repairs. I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\nW: Nice work. But you have to be sixteen to use the soldering irons. That's our insurance rule, not mine.\nM: I'll be sixteen in March, though. Couldn't I just stand next to Mr. Dunmow and pass him tools?\nW: Sorry, not even that. Under-sixteens can't be at the electronics table at all. If you're still keen, come and find me in March.\nM: OK, fair enough. So what does the welcome table actually do? Just say hello?\nW: A lot more than that. Last month nobody was on it, and people stood in the hall for over an hour. Some of them gave up and took their things home again.\nM: Wow. That's a long time.\nW: So you'll ask each person what's broken, write it on a ticket and send them to the right table. Clothes go to the sewing table by the window. Lamps, radios and anything with a plug go to Mr. Dunmow.\nM: What about bikes? My neighbour said she might bring hers.\nW: No bikes today. The man who fixes them is away, so just tell people to come back on the fourteenth.\nM: Got it. And what if one table gets really busy?\nW: Then don't let people stand around. Give them a time to come back and write it on the back of their ticket.\nM: That makes sense. Should I ask Mr. Dunmow about watching him at lunch, then? Like, just watching?\nW: Ask him yourself. He doesn't get here till half past ten, though.\nM: OK. Where are the tickets?\nW: In a blue box in the storeroom, next to the extension cables. Could you go and get them now and set up before the doors open?\nM: Sure, I'll go now.",
+   "names": [
+    "Colm",
+    "Dunmow"
+   ],
+   "other_caps": [
+    "March",
+    "Mr",
+    "OK"
+   ],
+   "items": [
+    {
+     "qid": "ITL3-B-C-1",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "What does the man say about his sister's hair dryer?",
+     "choices": [
+      "He broke its plug while cleaning it.",
+      "He fixed a loose wire inside its plug.",
+      "He brought it in today to get its plug fixed.",
+      "He watched Mr. Dunmow repair it last month."
+     ],
+     "correct_answer": "He fixed a loose wire inside its plug.",
+     "why": "A wire inside the plug had come loose.",
+     "explanation": "\"He fixed a loose wire inside its plug.\" is correct: the man says \"I fixed my sister's hair dryer last week. A wire inside the plug had come loose.\"",
+     "distractor_rationales": [
+      {
+       "choice": "He broke its plug while cleaning it.",
+       "lure": "misreading",
+       "reason": "\"He broke its plug while cleaning it.\" is wrong: the man says he repaired it, \"I fixed my sister's hair dryer last week\", and the fault was that \"A wire inside the plug had come loose.\""
+      },
+      {
+       "choice": "He brought it in today to get its plug fixed.",
+       "lure": "wrong time",
+       "reason": "\"He brought it in today to get its plug fixed.\" is wrong: it is already repaired; he says \"I fixed my sister's hair dryer last week.\""
+      },
+      {
+       "choice": "He watched Mr. Dunmow repair it last month.",
+       "lure": "wrong speaker",
+       "reason": "\"He watched Mr. Dunmow repair it last month.\" is wrong: the man did the repair himself, \"I fixed my sister's hair dryer last week.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-B-C-2",
+     "kind": "relationship",
+     "difficulty": "medium",
+     "prompt": "Who most likely are the speakers?",
+     "choices": [
+      "An organizer and a volunteer",
+      "A customer and a repair worker",
+      "A shop manager and a new worker",
+      "Two old friends at a repair fair"
+     ],
+     "correct_answer": "An organizer and a volunteer",
+     "why": "the person who organizes the volunteers",
+     "explanation": "\"An organizer and a volunteer\" is correct: the man looks for \"the person who organizes the volunteers\", the woman answers \"That's me\" and thanks him for \"signing up\", then gives him his job for the day.",
+     "distractor_rationales": [
+      {
+       "choice": "A customer and a repair worker",
+       "lure": "misreading",
+       "reason": "\"A customer and a repair worker\" is wrong: the man is not bringing anything to be fixed; he asks for \"the person who organizes the volunteers\" and is given a job, \"Today I'd like you on the welcome table\"."
+      },
+      {
+       "choice": "A shop manager and a new worker",
+       "lure": "misreading",
+       "reason": "\"A shop manager and a new worker\" is wrong: the woman is \"the person who organizes the volunteers\", and she thanks him for \"signing up\", not for taking a job."
+      },
+      {
+       "choice": "Two old friends at a repair fair",
+       "lure": "contradicted",
+       "reason": "\"Two old friends at a repair fair\" is wrong: they have not met before; the man has to ask \"Is that you?\" and the woman guesses his name, \"You must be Colm.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-B-C-3",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about the woman?",
+     "choices": [
+      "She may ask Mr. Dunmow to train him during lunch.",
+      "She set the age limit after an accident at the centre.",
+      "She may let him work on repairs after his birthday.",
+      "She'd let him stand next to Mr. Dunmow and pass him tools."
+     ],
+     "correct_answer": "She may let him work on repairs after his birthday.",
+     "why": "If you're still keen, come and find me in March.",
+     "why2": "you have to be sixteen to use the soldering irons",
+     "explanation": "\"She may let him work on repairs after his birthday.\" is correct: the only thing stopping him is the age rule, \"you have to be sixteen to use the soldering irons\", he says \"I'll be sixteen in March\", and she tells him \"If you're still keen, come and find me in March.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She may ask Mr. Dunmow to train him during lunch.",
+       "lure": "contradicted",
+       "reason": "\"She may ask Mr. Dunmow to train him during lunch.\" is wrong: when the man asks about watching Mr. Dunmow at lunch, she says \"Ask him yourself.\""
+      },
+      {
+       "choice": "She set the age limit after an accident at the centre.",
+       "lure": "contradicted",
+       "reason": "\"She set the age limit after an accident at the centre.\" is wrong: she says the limit is not her own, \"That's our insurance rule, not mine.\""
+      },
+      {
+       "choice": "She'd let him stand next to Mr. Dunmow and pass him tools.",
+       "lure": "contradicted",
+       "reason": "\"She'd let him stand next to Mr. Dunmow and pass him tools.\" is wrong: when he asks to just pass tools she answers \"Sorry, not even that. Under-sixteens can't be at the electronics table at all.\""
+      }
+     ]
+    },
+    {
+     "qid": "ITL3-B-C-4",
+     "kind": "intent-next",
+     "difficulty": "medium",
+     "prompt": "What will the man most likely do next?",
+     "choices": [
+      "Fetch the tickets so that he can get his table ready",
+      "Help Mr. Dunmow set up the soldering irons",
+      "Start writing tickets for people already waiting",
+      "Help sort the clothes at the sewing table"
+     ],
+     "correct_answer": "Fetch the tickets so that he can get his table ready",
+     "why": "Could you go and get them now and set up before the doors open?",
+     "explanation": "\"Fetch the tickets so that he can get his table ready\" is correct: the tickets are \"In a blue box in the storeroom\", the woman asks \"Could you go and get them now and set up before the doors open?\" and the man answers \"Sure, I'll go now.\"",
+     "distractor_rationales": [
+      {
+       "choice": "Help Mr. Dunmow set up the soldering irons",
+       "lure": "contradicted",
+       "reason": "\"Help Mr. Dunmow set up the soldering irons\" is wrong: \"Under-sixteens can't be at the electronics table at all\", and \"He doesn't get here till half past ten.\""
+      },
+      {
+       "choice": "Start writing tickets for people already waiting",
+       "lure": "contradicted",
+       "reason": "\"Start writing tickets for people already waiting\" is wrong: nobody is in yet; \"Doors open at ten, so we've got about twenty minutes.\""
+      },
+      {
+       "choice": "Help sort the clothes at the sewing table",
+       "lure": "contradicted",
+       "reason": "\"Help sort the clothes at the sewing table\" is wrong: the woman puts him elsewhere, \"Today I'd like you on the welcome table, right by the front door.\""
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
