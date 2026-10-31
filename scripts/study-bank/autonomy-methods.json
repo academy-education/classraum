@@ -1005,6 +1005,24 @@
    "author": "agent",
    "grader": "2 with-source graders + key-visible audit",
    "source": "MAP-SCIENCE-B3-FULL.prereg.md: one in-session author on seeded slots (science-b3full/BRIEF.md), sci-check --rules b3f + probe-live; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns; key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors); Earth and Space Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
+  },
+  "map-science-v4-life": {
+   "method_id": "map-sci-b4-6authors+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B4.prereg.md: six parallel Claude authors on seeded slots (science-b4/BRIEF.md, brief version b4), sci-check --rules b4 + probe-live-b4 + XDUP-REVIEW; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns (score-b4.mjs); key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors; no_source clears model items only); Life Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
+  },
+  "map-science-v4-phys": {
+   "method_id": "map-sci-b4-6authors+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B4.prereg.md: six parallel Claude authors on seeded slots (science-b4/BRIEF.md, brief version b4), sci-check --rules b4 + probe-live-b4 + XDUP-REVIEW; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns (score-b4.mjs); key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors; no_source clears model items only); Physical Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
+  },
+  "map-science-v4-earth": {
+   "method_id": "map-sci-b4-6authors+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B4.prereg.md: six parallel Claude authors on seeded slots (science-b4/BRIEF.md, brief version b4), sci-check --rules b4 + probe-live-b4 + XDUP-REVIEW; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns (score-b4.mjs); key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors; no_source clears model items only); Earth and Space Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
   }
  }
 }

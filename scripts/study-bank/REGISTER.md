@@ -6907,3 +6907,69 @@ structural checks are pre-flight only. See CLAUDE.md.
   distractors always distant senses). Nothing released; a Daniel audit sample comes first. **Found:** two authors
   printed `ASSIGNED.json` (all authors' shapes) while checking the format; per-author assignment files should carry
   the plan the checker needs so authors never touch the shared file.
+
+- **2026-10-31 — MAP Science b4: stage 1 + returns + stage 2 done; 126 of 240 STAGED verified=false
+  (map-science-v4-life 36 / -phys 58 / -earth 32), read back by id 126 false / 0 true. NOT released**
+  (`node scripts/study-bank/release-map-science-b4.mjs`, dry run by default, refuses stale/changed/archived rows and
+  any STAGED/cleared/STAGE2 disagreement; break-tested on a changed hash and an edit-after-staging). Records in
+  `map-v2-work/science-b4/`: STAGE1-DECISION.json, STAGE2-DECISION.json, cleared.json, STAGED.json.
+  | area | authored | rule 10a | after rules 1-10 | after fresh re-checks | after stage 2 (staged) |
+  |---|---|---|---|---|---|
+  | Life | 75 | 16 | 46 | 36 | 36 |
+  | Physical | 95 | 11 | 66 | 60 | 58 |
+  | Earth | 70 | 18 | 40 | 33 | 32 |
+  - **Scorer** `score-b4.mjs` (from `score-b3full.mjs`, same binding interpretations): checks the six cold hashes,
+    keyed = hold packets, the items' Addendum S fingerprints and that no cold pick changed between passes; applies
+    rules 1-9 with the `b4_*` fields (rule 9 pair rule for `b2_duplicate` AND `b4_cross_naming`, per the prereg);
+    parses RULE10-MATCHES.md's tables without re-matching (exit 2 on a count/verdict mismatch); exits 2 on any
+    unrecorded confirmation, kill count, `b4_plausibility` judgement or stale table entry. Break-tested (each guard
+    removed or inverted -> exit 2). "prior_free holds narrowly" counts as "holds"; 7 overrides record values that state
+    a field's pass condition (e.g. E5-09 / P5-17 b3p2_general_knowledge "two plausible options remain").
+  - **Rule 1 recomputed:** 480/480 cold picks on key; every numeric key reproduced (47 explanation equations, 28 read
+    keys found in their figures, 13 interpolation midpoints by hand); 0 key errors. L8-05's key (selection for small
+    early breeders under a 40 cm take) is correct; its flag was g1 `b4_one_sensible` on C, not the key; it cleared on
+    re-check and both audits.
+  - **Confirmed (rules 3/5):** fact errors L6-04 (B10: passage 40 larvae, table "Larvae at start" 4, more alive than
+    started), P8-07 (two sensors on one light rope cannot read unequal pulls), L5-05 via `b4_plausibility` (distractor
+    "each thin-furred rabbit will grow a thicker coat" is true: winter coats); real data E6-06 (Pluto's 248-yr period,
+    Eris's 2,350 km / 560 yr relabelled) and E7-15 (dice half-life simulation at the exact 5/6 expectation, every row
+    within one cube). Not confirmed: E8-05 "tonight" wording, L6-15 / L8-09 / E8-07 (patterns, invented values), L6-04
+    readability (cells render; the defect is rule 3), and 21 `b4_plausibility` hits judged size or shape, not a broken law (left to rule 9).
+  - **Returns:** 51 single-grader questions (0 rule-2 survived to return) to three fresh Claude re-checkers given only
+    the briefs, the keyed items and the field: 25 second hits, 23 items dropped (Life 10, Physical 6, Earth 7). Literal
+    application again dropped a pair member whose partner fell to another rule (E8-04 for E6-03; L6-12 for L6-11).
+  - **Stage 2** (`audit-build-b4.mjs` -> `science-audit-score.mjs` unchanged -> `stage2-decide-b4.mjs`): 129 audited,
+    all 129 keys verified by all six auditors, 3 flagged, all `no_source` from the adversarial auditor on DATA /
+    INVESTIGATION items: P5-17, P7-21, E5-09 held. **b3's E5-02 practice is now code:** stage2-decide-b4 clears a
+    no_source-only flag on model items only and holds it on data/investigation items (b3 did this by hand in the release
+    script). No auditor raised no_source on a standalone item this time (b3: 12). P5-17 and E5-09 are the two items whose
+    stage-1 b3p2_general_knowledge flags I overrode as "two plausible options": the auditor showed the second option dies
+    to general knowledge too, so that override reading is weaker than it looks.
+  - **Predictions:** F1 held (0 EMPTY). F2 held (10a unions 16/11/18 against 38/48/35). **F3 FAILED** in every area
+    (16/11/18 > 6; 20 of them are the two templates both graders called neutral). **F4 FAILED** narrowly in every area
+    (rules 1-9 drops 28.0 / 27.4 / 25.7% before returns, bar 25%). **F5 FAILED**: B31 absurd distractors recur in Earth
+    (6 shared) and the variable-passage one-value plan in Life (3) and Physical (3), both despite B38 and VARPLAN.
+    F6 held (new: absolutes never on a claim key, Life; stem defines the key term, Physical; unprinted-midpoint
+    interpolation key, Physical). **F7 FAILED** overall (126 = 52.5% < 132) but held for Physical (58 >= 48). F8 held
+    (model claim 22/43 = 51%). **F9 FAILED** again: variable 0 of 10 (b3: 0 of 12).
+  - **10d lessons (before the next authoring step):**
+    1. **Bar-chart key on the top tick is a renderer tell.** The y-axis max is the tallest bar, so whenever the asked bar
+       is the tallest, the key is the only option sitting on a tick label (re-checker's diagnosis; L7-01, L8-15, P7-11
+       dropped on second hits). Fix in the deal/renderer (axis max above the tallest bar, or key on-tick at base rate)
+       with a checker, not in the brief.
+    2. **Variable items cannot be written under this format: 0 of 22 over two batches.** VARPLAN's ONEVAL cap
+       (> half the passages) never fired, yet both graders still named one-value held-quantity phrases (Life L5-04 L6-10
+       L8-03, Physical P5-12 P7-20 P8-04) and the card/sticker/label device (Life L5-04 L7-03 L8-03). Either a per-item
+       ONEVAL/label refusal with a fixture, or drop the variable format from the slot template; do not author a third
+       batch of them as is.
+    3. **Neutral templates still drop under 10a** (Life gene-change frame 8, Earth "<Noun> <surname>" labels 12): the
+       next prereg must decide in advance whether a template both graders call non-revealing drops, and NAMESHAPE (which
+       already reported Earth single-word names 65%) should gate rather than report.
+    4. **Interpolation casts:** Physical's unprinted-midpoint key with printed neighbours as distractors (4 items both
+       graders) is mechanical; extend the interp check so printed table values are keyed at base rate.
+    5. **B40 did not reach real-object tables or canonical simulations at their expected values** (E6-06, E7-15): the
+       probe should compare invented space tables against known solar-system / KBO values and refuse a stochastic
+       simulation whose rows all sit within 1 SD of expectation.
+  - **Look before release:** E8-05 ("Tonight the Moon lies directly between Earth and the Sun": a new Moon is not in the
+    night sky; key correct); L7-09 ("multiplied evenly" read as a constant rate gives ~317, key 330 is still nearest;
+    both Life auditors noted it); L5-09 (keyed "stayed the same" over points 35-38; both Life auditors noted it).

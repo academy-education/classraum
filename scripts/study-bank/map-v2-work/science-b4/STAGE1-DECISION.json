@@ -1,0 +1,2860 @@
+{
+ "generated": "2026-10-31",
+ "prereg": "scripts/study-bank/MAP-SCIENCE-B4.prereg.md",
+ "integrity": [
+  "life-g1 cold sha ok, keyed packet = hold",
+  "life-g2 cold sha ok, keyed packet = hold",
+  "phys-g1 cold sha ok, keyed packet = hold",
+  "phys-g2 cold sha ok, keyed packet = hold",
+  "earth-g1 cold sha ok, keyed packet = hold",
+  "earth-g2 cold sha ok, keyed packet = hold",
+  "items/L.json sha ok (13b2e9c6571ec121)",
+  "items/P.json sha ok (396e048136cff763)",
+  "items/E.json sha ok (cc72e7e3a0d5d975)"
+ ],
+ "kill_note": "\"reversed pair\" (L5-11 g2, L8-16, P5-13, P7-21) marks the key as one of two and kills the other two; L6-11 g2 \"A and B contradict each other; D contradicts rich soil\" kills D only (1); \"mirror-reverses ... marks the pair, kills nothing alone\" (P5-05, P6-21, P8-21 g1) is 0; E6-18 g1 \"A survives as the only option covering both outcomes\" kills 3.",
+ "rule1_recompute": {
+  "life": "12 explanation equations evaluated, 9 read keys found in their figures, 0 mismatches",
+  "phys": "20 explanation equations evaluated, 10 read keys found in their figures, 0 mismatches",
+  "earth": "15 explanation equations evaluated, 9 read keys found in their figures, 0 mismatches"
+ },
+ "areas": {
+  "life": {
+   "authored": 75,
+   "denominators": {
+    "items_json": 75,
+    "g1_keyed": 75,
+    "g2_keyed": 75,
+    "g1_cold_on_key": 75,
+    "g2_cold_on_key": 75
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 2,
+    "fact_error": 2,
+    "no_source_yes_data": 2,
+    "rrd": 3,
+    "free_elim": 8,
+    "readability": 2,
+    "b4_plausibility": 10
+   },
+   "rule10_drops": 16,
+   "rule1_9_drops": 21,
+   "rule1_9_only": 13,
+   "after_rules_1_10": 46,
+   "returns_open": 21,
+   "second_hit_drops": 10,
+   "dropped": 39,
+   "survivors": 36,
+   "survivor_ids": [
+    "MSB4-L5-01",
+    "MSB4-L5-02",
+    "MSB4-L5-03",
+    "MSB4-L5-06",
+    "MSB4-L5-07",
+    "MSB4-L5-08",
+    "MSB4-L5-09",
+    "MSB4-L5-11",
+    "MSB4-L5-12",
+    "MSB4-L5-14",
+    "MSB4-L5-15",
+    "MSB4-L5-19",
+    "MSB4-L6-01",
+    "MSB4-L6-03",
+    "MSB4-L6-05",
+    "MSB4-L6-07",
+    "MSB4-L6-14",
+    "MSB4-L6-16",
+    "MSB4-L6-18",
+    "MSB4-L7-02",
+    "MSB4-L7-06",
+    "MSB4-L7-07",
+    "MSB4-L7-09",
+    "MSB4-L7-10",
+    "MSB4-L7-12",
+    "MSB4-L7-16",
+    "MSB4-L7-17",
+    "MSB4-L7-18",
+    "MSB4-L7-19",
+    "MSB4-L8-05",
+    "MSB4-L8-08",
+    "MSB4-L8-09",
+    "MSB4-L8-10",
+    "MSB4-L8-12",
+    "MSB4-L8-13",
+    "MSB4-L8-17"
+   ],
+   "drops": {
+    "MSB4-L5-04": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: card/sticker/label names the varied quantity",
+     "rule 10a: variable passages: held quantities as one-value phrases"
+    ],
+    "MSB4-L5-05": [
+     "rule 3: b4_plausibility hit is a fact error, confirmed",
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-L5-10": [
+     "rule 9: b2_duplicate pair L5-01/L5-10 named by both; L5-10 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-L5-13": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absolutes never on a claim key / the hedge on the key"
+    ],
+    "MSB4-L5-16": [
+     "rule 9 (second hit): b4_plausibility: g1 + fresh re-check: Each sow raises exactly 20 young 'over one summer'; guinea pigs gestate about 68 days with litters of about 3-4, so one summer allows 1-2 litters (roughly 3-8 young), not 20, and every row summing to exactly 20 reads as "
+    ],
+    "MSB4-L5-17": [
+     "rule 9 (second hit): b4_one_sensible: g2 + fresh re-check: The stem names a cause for each distractor (tore on a fence, owner trims, collar rubbed), so B 'trimmed tail fur' and C 'a neck patch' are dead to everyday sense (no child expects puppies born with a haircut or collar ru"
+    ],
+    "MSB4-L5-18": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-L6-02": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L6-04": [
+     "rule 3: fact_error confirmed",
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-L6-06": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-L6-08": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L6-09": [
+     "rule 9: b3p2_direction from both"
+    ],
+    "MSB4-L6-10": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: variable passages: held quantities as one-value phrases"
+    ],
+    "MSB4-L6-11": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L6-12": [
+     "rule 9: b4_cross_naming pair L6-11/L6-12 named by both; L6-12 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-L6-13": [
+     "rule 10a: absolutes never on a claim key / the hedge on the key"
+    ],
+    "MSB4-L6-15": [
+     "rule 9 (second hit): b1_stated_law: g1 + fresh re-check: The prior-free claim does not hold: 'taller parents have taller offspring' (the item's own real-world check) gives 'Offspring height rose' without the plot, and the only rival, 'rose, then leveled off', has no basis a gr"
+    ],
+    "MSB4-L6-17": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-L6-19": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB4-L7-01": [
+     "rule 9 (second hit): b3_bar_extreme: g1 + fresh re-check: Ticks are 0, 11.5, 23, 34.5, 46; the key 46 is the only option on a tick label (8, 30 and 14 are not), so the key can be picked by its tick position without reading the Site 9 bar (structural: the tallest bar always sets"
+    ],
+    "MSB4-L7-03": [
+     "rule 9: b4_var_plan from both",
+     "rule 10a: card/sticker/label names the varied quantity"
+    ],
+    "MSB4-L7-04": [
+     "rule 9: b3_stem_echo from both",
+     "rule 9: b2_duplicate pair L5-17/L7-04 named by both; L7-04 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-L7-05": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L7-08": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L7-11": [
+     "rule 9 (second hit): b4_plausibility: g1 + fresh re-check: 3.3 chicks fledged per nest for a ground-nesting beach plover (clutch 3-4 eggs) means over 80% of all eggs fledging; real plovers fledge roughly 0.5-2 per pair, so 3.3 and 2.2 are too large for the system."
+    ],
+    "MSB4-L7-13": [
+     "rule 9: b1_absolute from both",
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: absolutes never on a claim key / the hedge on the key"
+    ],
+    "MSB4-L7-14": [
+     "rule 9 (second hit): b4_plausibility: g2 + fresh re-check: Forest Wimsett going from 3% to 70% early hatchers in five generations needs a sustained per-generation fitness ratio of about 2.4 on a partly heritable trait, while Forest Ulvin under the same warming moves only 5% to 1"
+    ],
+    "MSB4-L7-15": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Same system and concept: four containers of dead plant matter (apple slices in compost bins, leaves in buried bags) weighed for mass left after decomposers act; L7-15 only adds the start-minus-left step to the same setup"
+    ],
+    "MSB4-L8-01": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L8-02": [
+     "rule 9: b3p2_direction from both"
+    ],
+    "MSB4-L8-03": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: card/sticker/label names the varied quantity",
+     "rule 10a: variable passages: held quantities as one-value phrases"
+    ],
+    "MSB4-L8-04": [
+     "rule 9 (second hit): b3_stem_echo: g1 + fresh re-check: Only the key 'fossil dinosaur footprints' repeats 'fossil' from the stem; 'a trilobite shell', 'ancient petrified tree trunks' and 'frozen woolly mammoth carcasses' are not even labeled fossils, so the echo marks the key",
+     "rule 9 (second hit): b4_one_sensible: g1 + fresh re-check: The stem defines body fossils as 'part of an organism's body' and trace fossils as 'a sign of what an animal did', so B 'a trilobite shell' and D 'frozen woolly mammoth carcasses' are plainly body parts by the stem's own"
+    ],
+    "MSB4-L8-06": [
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-L8-07": [
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L8-11": [
+     "rule 9: b4_cross_naming pair L6-12/L8-11 named by both; L8-11 is the higher grade (or same grade, higher slot)",
+     "rule 10a: \"each line has a change in one gene for a protein/enzyme\" template"
+    ],
+    "MSB4-L8-14": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Same PE (MS-LS4-6), same system and concept: a moth population whose inherited feeding trait (early hatching for earlier oak leaves; long mouthparts for a long flower tube) rises in percent over generations after a plant"
+    ],
+    "MSB4-L8-15": [
+     "rule 9 (second hit): b3_bar_extreme: g1 + fresh re-check: Ticks are 0, 14, 28, 42, 56; the key 56 is the only option on a tick label (12 and 40 are bars off-tick, 22 matches no bar), so a student can pick the round top tick without matching 2019 to Stream 5."
+    ],
+    "MSB4-L8-16": [
+     "rule 6: free_elimination from both kills 2/2"
+    ],
+    "MSB4-L8-18": [
+     "rule 9: b1_absolute from both",
+     "rule 10a: absolutes never on a claim key / the hedge on the key"
+    ]
+   },
+   "pairs_both": [
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-L5-01",
+      "MSB4-L5-10"
+     ],
+     "drop": "MSB4-L5-10"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-L5-17",
+      "MSB4-L7-04"
+     ],
+     "drop": "MSB4-L7-04"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-L6-11",
+      "MSB4-L6-12"
+     ],
+     "drop": "MSB4-L6-12"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-L6-12",
+      "MSB4-L8-11"
+     ],
+     "drop": "MSB4-L8-11"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB4-L5-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "20 young per sow in one summer is too many for guinea pigs (litters of about 2-4, gestation about 68 days, so at most about 2 litters a summer)"
+    },
+    {
+     "id": "MSB4-L5-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "A, B, C are three copies of one misconception (acquired injuries/marks inherited); a student who rejects it once rejects all three, and the key is the only non-acquired feature, so it is the one sensible option"
+    },
+    {
+     "id": "MSB4-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D: 'the animals swam down to the deepest water, which is where the lowest layers lie today' is a convoluted invented belief, not one students hold; C (shells sank through rock) is weak but defensible as held. B (lowest layers youngest) is the one strong misconception."
+    },
+    {
+     "id": "MSB4-L6-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_stated_law",
+     "value": "partly fails: MS-LS3-2 heredity (taller parents, taller young) gives the direction, which kills B (decreased) and C (fell, then rose) without the plot; only A vs D (rose vs rose-then-leveled) needs the points. The prior_free claim holds only for that last split."
+    },
+    {
+     "id": "MSB4-L7-01",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key 46 is the only option sitting on a y tick label (ticks 0, 11.5, 23, 34.5, 46; options 46, 8, 30, 14), and it is the tallest bar at the top tick (B20)"
+    },
+    {
+     "id": "MSB4-L7-11",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "3.3 chicks fledged per nest is very high for a ground-nesting plover (clutches about 3-4 eggs, fledging success usually well under 2 per nest)"
+    },
+    {
+     "id": "MSB4-L7-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "3% to 70% early hatchers in five generations is very strong selection for a moth; plausible only at the edge"
+    },
+    {
+     "id": "MSB4-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats 'fossil' from the stem ('fossil dinosaur footprints'); the definition 'a sign of what an animal did' plus 'footprints' decides"
+    },
+    {
+     "id": "MSB4-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "B, C, D: the stem defines body fossils ('preserve part of an organism's body') and trace fossils ('a sign of what an animal did'); a shell, a petrified trunk and a whole frozen carcass are each plainly part of a body, so reading the stem's definition leaves footprints alone. C is also a plant, off the stem's 'what an animal did'. The declared misconceptions (any hard part / mineral-replaced / extinct remains count as traces) are not held once the definition is printed."
+    },
+    {
+     "id": "MSB4-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "C alone carries a reason clause ('as the largest fish do most of the breeding')"
+    },
+    {
+     "id": "MSB4-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "C: 'average adult size will rise as the largest fish do most of the breeding' denies the stem's premise that fishers keep every fish over 40 cm; the declared misconception (biggest always breed) cannot survive the stem."
+    },
+    {
+     "id": "MSB4-L8-12",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "D dead: 'cell differentiation' is of another category (specialisation, not reproduction); the declared category was widened to 'or form new cells' to admit it. Live: A, B, C"
+    },
+    {
+     "id": "MSB4-L8-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "'breathing gills' sits beside the textbook claim that human embryos have 'gill slits' (pharyngeal arches); false as worded but a careful student taught 'gill slits' may defend it"
+    },
+    {
+     "id": "MSB4-L8-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key 56 is the only option sitting on a y tick label (ticks 0, 14, 28, 42, 56; options 56, 12, 40, 22), and it is the tallest bar at the top tick; 22 is also the only option equal to no bar (B20)"
+    },
+    {
+     "id": "MSB4-L5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-11: MSB4-L5-19 (same PE 4-LS1-2, vision needing light) || g1@L5-19: MSB4-L5-11 (same PE, seeing needs light)",
+     "pair": [
+      "MSB4-L5-11",
+      "MSB4-L5-19"
+     ]
+    },
+    {
+     "id": "MSB4-L7-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-14: MSB4-L7-15 (same system: mass of organic matter left in compost bins/buried bags after decomposition) || g1@L7-15: MSB4-L5-14 (same system, mass left after decomposition); MSB4-L6-09 (same PE MS-LS2-3)",
+     "pair": [
+      "MSB4-L5-14",
+      "MSB4-L7-15"
+     ]
+    },
+    {
+     "id": "MSB4-L7-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-05: MSB4-L7-16 (weak; same PE MS-LS4-1 fossils in rock layers, different concept) || g1@L7-16: MSB4-L6-05 (weak; same PE MS-LS4-1)",
+     "pair": [
+      "MSB4-L6-05",
+      "MSB4-L7-16"
+     ]
+    },
+    {
+     "id": "MSB4-L7-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-09: MSB4-L7-15 (weak; same PE MS-LS2-3 decomposers) || g1@L7-15: MSB4-L5-14 (same system, mass left after decomposition); MSB4-L6-09 (same PE MS-LS2-3)",
+     "pair": [
+      "MSB4-L6-09",
+      "MSB4-L7-15"
+     ]
+    },
+    {
+     "id": "MSB4-L7-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-13: MSB4-L7-17 (same PE MS-LS4-4, colour morph survival) || g1@L7-17: MSB4-L6-13 (same PE MS-LS4-4, colour survival)",
+     "pair": [
+      "MSB4-L6-13",
+      "MSB4-L7-17"
+     ]
+    },
+    {
+     "id": "MSB4-L8-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L7-14: MSB4-L8-14 (same PE MS-LS4-6, moth inherited trait share rising over generations after an environmental change) || g1@L8-14: MSB4-L7-14 (same template)",
+     "pair": [
+      "MSB4-L7-14",
+      "MSB4-L8-14"
+     ]
+    },
+    {
+     "id": "MSB4-L5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_cross_naming",
+     "value": "g1@L5-11: MSB4-L5-19 (the dark-room result shows the fish cannot use sight without light, the fact L5-19 tests) || g1@L5-19: MSB4-L5-11's dark-room result hands over that vision fails without light",
+     "pair": [
+      "MSB4-L5-11",
+      "MSB4-L5-19"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB4-L5-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "20 young per sow in one summer is too many for guinea pigs (litters of about 2-4, gestation about 68 days, so at most about 2 litters a summer)",
+     "recheck": {
+      "id": "MSB4-L5-16",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-L5-16"
+      ],
+      "hit": "yes",
+      "reason": "Each sow raises exactly 20 young 'over one summer'; guinea pigs gestate about 68 days with litters of about 3-4, so one summer allows 1-2 litters (roughly 3-8 young), not 20, and every row summing to exactly 20 reads as constructed."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L5-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "A, B, C are three copies of one misconception (acquired injuries/marks inherited); a student who rejects it once rejects all three, and the key is the only non-acquired feature, so it is the one sensible option",
+     "recheck": {
+      "id": "MSB4-L5-17",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-L5-17"
+      ],
+      "hit": "yes",
+      "reason": "The stem names a cause for each distractor (tore on a fence, owner trims, collar rubbed), so B 'trimmed tail fur' and C 'a neck patch' are dead to everyday sense (no child expects puppies born with a haircut or collar rub); only A 'a torn ear' is even weakly live, leaving fewer than three live options."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D: 'the animals swam down to the deepest water, which is where the lowest layers lie today' is a convoluted invented belief, not one students hold; C (shells sank through rock) is weak but defensible as held. B (lowest layers youngest) is the one strong misconception.",
+     "recheck": {
+      "id": "MSB4-L6-05",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-L6-05"
+      ],
+      "hit": "no",
+      "reason": "B (lowest layers youngest) and D (animals swam to deep water now at the bottom) are naive beliefs a grade-6 student who has not learned superposition would pick; C (shells sank through rock) is the weakest but held by some, so at least three options are live."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L6-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_stated_law",
+     "value": "partly fails: MS-LS3-2 heredity (taller parents, taller young) gives the direction, which kills B (decreased) and C (fell, then rose) without the plot; only A vs D (rose vs rose-then-leveled) needs the points. The prior_free claim holds only for that last split.",
+     "recheck": {
+      "id": "MSB4-L6-15",
+      "field": "b1_stated_law",
+      "items": [
+       "MSB4-L6-15"
+      ],
+      "hit": "yes",
+      "reason": "The prior-free claim does not hold: 'taller parents have taller offspring' (the item's own real-world check) gives 'Offspring height rose' without the plot, and the only rival, 'rose, then leveled off', has no basis a grade-6 student would bring, so the scatter is decoration."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L7-01",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key 46 is the only option sitting on a y tick label (ticks 0, 11.5, 23, 34.5, 46; options 46, 8, 30, 14), and it is the tallest bar at the top tick (B20)",
+     "recheck": {
+      "id": "MSB4-L7-01",
+      "field": "b3_bar_extreme",
+      "items": [
+       "MSB4-L7-01"
+      ],
+      "hit": "yes",
+      "reason": "Ticks are 0, 11.5, 23, 34.5, 46; the key 46 is the only option on a tick label (8, 30 and 14 are not), so the key can be picked by its tick position without reading the Site 9 bar (structural: the tallest bar always sets the top tick)."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L7-11",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "3.3 chicks fledged per nest is very high for a ground-nesting plover (clutches about 3-4 eggs, fledging success usually well under 2 per nest)",
+     "recheck": {
+      "id": "MSB4-L7-11",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-L7-11"
+      ],
+      "hit": "yes",
+      "reason": "3.3 chicks fledged per nest for a ground-nesting beach plover (clutch 3-4 eggs) means over 80% of all eggs fledging; real plovers fledge roughly 0.5-2 per pair, so 3.3 and 2.2 are too large for the system."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L7-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "3% to 70% early hatchers in five generations is very strong selection for a moth; plausible only at the edge",
+     "recheck": {
+      "id": "MSB4-L7-14",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-L7-14"
+      ],
+      "hit": "yes",
+      "reason": "Forest Wimsett going from 3% to 70% early hatchers in five generations needs a sustained per-generation fitness ratio of about 2.4 on a partly heritable trait, while Forest Ulvin under the same warming moves only 5% to 11%; the 67-point rise is the wrong size for a phenology shift."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats 'fossil' from the stem ('fossil dinosaur footprints'); the definition 'a sign of what an animal did' plus 'footprints' decides",
+     "recheck": {
+      "id": "MSB4-L8-04",
+      "field": "b3_stem_echo",
+      "items": [
+       "MSB4-L8-04"
+      ],
+      "hit": "yes",
+      "reason": "Only the key 'fossil dinosaur footprints' repeats 'fossil' from the stem; 'a trilobite shell', 'ancient petrified tree trunks' and 'frozen woolly mammoth carcasses' are not even labeled fossils, so the echo marks the key as the one fossil among the options."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "B, C, D: the stem defines body fossils ('preserve part of an organism's body') and trace fossils ('a sign of what an animal did'); a shell, a petrified trunk and a whole frozen carcass are each plainly part of a body, so reading the stem's definition leaves footprints alone. C is also a plant, off the stem's 'what an animal did'. The declared misconceptions (any hard part / mineral-replaced / extinct remains count as traces) are not held once the definition is printed.",
+     "recheck": {
+      "id": "MSB4-L8-04",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-L8-04"
+      ],
+      "hit": "yes",
+      "reason": "The stem defines body fossils as 'part of an organism's body' and trace fossils as 'a sign of what an animal did', so B 'a trilobite shell' and D 'frozen woolly mammoth carcasses' are plainly body parts by the stem's own definition, and C 'petrified tree trunks' is a plant, not an animal; all three are dead and the declared 'remains count as traces' beliefs are not held once the definition is printed."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "C alone carries a reason clause ('as the largest fish do most of the breeding')",
+     "recheck": {
+      "id": "MSB4-L8-05",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB4-L8-05"
+      ],
+      "hit": "no",
+      "reason": "Clauses are spread over distractors (A 'as the fishing goes on', C 'as the largest fish do most of the breeding') and the key B carries no reason or degree word; no option is the lone Yes/No, and D 'stay the same' and A are sensible naive answers, so the key is not the one sensible option."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "C: 'average adult size will rise as the largest fish do most of the breeding' denies the stem's premise that fishers keep every fish over 40 cm; the declared misconception (biggest always breed) cannot survive the stem.",
+     "recheck": {
+      "id": "MSB4-L8-05",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-L8-05"
+      ],
+      "hit": "no",
+      "reason": "A (each fish shrinks: within-lifetime change), C (biggest always breed most) and D (fishing cannot change a wild population) are all genuinely held beliefs; C sits close to the stem's premise but a student can read 'largest' as the largest remaining, so three or four options are live."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L8-12",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "D dead: 'cell differentiation' is of another category (specialisation, not reproduction); the declared category was widened to 'or form new cells' to admit it. Live: A, B, C",
+     "recheck": {
+      "id": "MSB4-L8-12",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-L8-12"
+      ],
+      "hit": "no",
+      "reason": "'budding' is another one-parent division a student easily confuses with fission, 'regeneration' is commonly confused with split-and-regrow (planaria), and 'cell differentiation' is mixed up with making new cells; all are processes of the key's category, so at least three are live."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L8-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "'breathing gills' sits beside the textbook claim that human embryos have 'gill slits' (pharyngeal arches); false as worded but a careful student taught 'gill slits' may defend it",
+     "recheck": {
+      "id": "MSB4-L8-13",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-L8-13"
+      ],
+      "hit": "no",
+      "reason": "No invented numbers; 'breathing gills', 'scaly skin' and 'fins for swimming' are false for any human embryo ('breathing' excludes the pharyngeal-arch 'gill slit' framing), and the explanation's transient tail that regresses before birth is accurate."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L8-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key 56 is the only option sitting on a y tick label (ticks 0, 14, 28, 42, 56; options 56, 12, 40, 22), and it is the tallest bar at the top tick; 22 is also the only option equal to no bar (B20)",
+     "recheck": {
+      "id": "MSB4-L8-15",
+      "field": "b3_bar_extreme",
+      "items": [
+       "MSB4-L8-15"
+      ],
+      "hit": "yes",
+      "reason": "Ticks are 0, 14, 28, 42, 56; the key 56 is the only option on a tick label (12 and 40 are bars off-tick, 22 matches no bar), so a student can pick the round top tick without matching 2019 to Stream 5."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-11: MSB4-L5-19 (same PE 4-LS1-2, vision needing light) || g1@L5-19: MSB4-L5-11 (same PE, seeing needs light)",
+     "pair": [
+      "MSB4-L5-11",
+      "MSB4-L5-19"
+     ],
+     "recheck": {
+      "id": "MSB4-L5-19",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L5-11",
+       "MSB4-L5-19"
+      ],
+      "hit": "no",
+      "reason": "Both are 4-LS1-2, but L5-11 is a fish sight-versus-smell investigation keyed 'rely mainly on their eyes' and L5-19 is a cat in a sealed closet keyed 'no light to bounce off the toy into its eyes'; different systems and different concepts (which sense is used vs how seeing works)."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L7-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-14: MSB4-L7-15 (same system: mass of organic matter left in compost bins/buried bags after decomposition) || g1@L7-15: MSB4-L5-14 (same system, mass left after decomposition); MSB4-L6-09 (same PE MS-LS2-3)",
+     "pair": [
+      "MSB4-L5-14",
+      "MSB4-L7-15"
+     ],
+     "recheck": {
+      "id": "MSB4-L7-15",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L5-14",
+       "MSB4-L7-15"
+      ],
+      "hit": "yes",
+      "reason": "Same system and concept: four containers of dead plant matter (apple slices in compost bins, leaves in buried bags) weighed for mass left after decomposers act; L7-15 only adds the start-minus-left step to the same setup."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L7-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-05: MSB4-L7-16 (weak; same PE MS-LS4-1 fossils in rock layers, different concept) || g1@L7-16: MSB4-L6-05 (weak; same PE MS-LS4-1)",
+     "pair": [
+      "MSB4-L6-05",
+      "MSB4-L7-16"
+     ],
+     "recheck": {
+      "id": "MSB4-L7-16",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L6-05",
+       "MSB4-L7-16"
+      ],
+      "hit": "no",
+      "reason": "Both use fossil-bearing rock layers on MS-LS4-1, but L6-05 tests superposition and extinction with no data, while L7-16 gives explicit ash dates and asks a two-condition lookup (older than 350 Myr, more than 6 plant kinds); concepts and keys differ, and the overlap is only the PE's generic setting."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L7-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-09: MSB4-L7-15 (weak; same PE MS-LS2-3 decomposers) || g1@L7-15: MSB4-L5-14 (same system, mass left after decomposition); MSB4-L6-09 (same PE MS-LS2-3)",
+     "pair": [
+      "MSB4-L6-09",
+      "MSB4-L7-15"
+     ],
+     "recheck": {
+      "id": "MSB4-L7-15",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L6-09",
+       "MSB4-L7-15"
+      ],
+      "hit": "no",
+      "reason": "Same PE (decomposers) but different systems and concepts: L6-09 is bread mold's cumulative CO2 in a sealed jar leveling off (trend), L7-15 is leaf mass broken down in soil computed as start minus left."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L7-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-13: MSB4-L7-17 (same PE MS-LS4-4, colour morph survival) || g1@L7-17: MSB4-L6-13 (same PE MS-LS4-4, colour survival)",
+     "pair": [
+      "MSB4-L6-13",
+      "MSB4-L7-17"
+     ],
+     "recheck": {
+      "id": "MSB4-L7-17",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L6-13",
+       "MSB4-L7-17"
+      ],
+      "hit": "no",
+      "reason": "Both MS-LS4-4 colour polymorphisms, but L6-13 is camouflage against owl predation (mice on pale sand) and L7-17 is heat survival of beetles with an arithmetic key (19 of 60 is not over half); different systems, mechanisms and key types."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-L8-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L7-14: MSB4-L8-14 (same PE MS-LS4-6, moth inherited trait share rising over generations after an environmental change) || g1@L8-14: MSB4-L7-14 (same template)",
+     "pair": [
+      "MSB4-L7-14",
+      "MSB4-L8-14"
+     ],
+     "recheck": {
+      "id": "MSB4-L8-14",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-L7-14",
+       "MSB4-L8-14"
+      ],
+      "hit": "yes",
+      "reason": "Same PE (MS-LS4-6), same system and concept: a moth population whose inherited feeding trait (early hatching for earlier oak leaves; long mouthparts for a long flower tube) rises in percent over generations after a plant change; only the arithmetic asked differs."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-L5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_cross_naming",
+     "value": "g1@L5-11: MSB4-L5-19 (the dark-room result shows the fish cannot use sight without light, the fact L5-19 tests) || g1@L5-19: MSB4-L5-11's dark-room result hands over that vision fails without light",
+     "pair": [
+      "MSB4-L5-11",
+      "MSB4-L5-19"
+     ],
+     "recheck": {
+      "id": "MSB4-L5-19",
+      "field": "b4_cross_naming",
+      "items": [
+       "MSB4-L5-11",
+       "MSB4-L5-19"
+      ],
+      "hit": "no",
+      "reason": "L5-11's passage gives only trial counts (glass box 1 of 10 in the dark) and never states that seeing needs reflected light, and L5-19 says nothing about fish or smell; neither hands over the other's key."
+     },
+     "counted": false
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB4-L5-11",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-L6-09",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-L6-11",
+     "rule": 4,
+     "note": "no_source_needed yes from g2 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB4-L6-11",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-L7-03",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-L8-14",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-L8-16",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB4-L6-06",
+     "rule": 9,
+     "note": "single-grader b3_stem_echo (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L6-09",
+     "rule": 2,
+     "note": "single-grader second_defensible (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L6-11",
+     "rule": 9,
+     "note": "single-grader b1_stated_law (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L6-11",
+     "rule": 9,
+     "note": "single-grader b3p2_general_knowledge (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L7-03",
+     "rule": 9,
+     "note": "single-grader b3_role_statement (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L7-04",
+     "rule": 9,
+     "note": "single-grader b1_option_set (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L7-04",
+     "rule": 9,
+     "note": "single-grader b4_one_sensible (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L8-02",
+     "rule": 2,
+     "note": "single-grader second_defensible (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L8-18",
+     "rule": 9,
+     "note": "single-grader b4_one_sensible (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-L5-13",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L5-02/L5-13: target L5-13 already dropped, no return"
+    },
+    {
+     "id": "MSB4-L7-04",
+     "rule": 9,
+     "note": "single-grader b4_cross_naming L5-17/L7-04: target L7-04 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB4-L5-05",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "B41: distractor A \"Each thin-furred rabbit will grow a thicker coat\" is TRUE for real rabbits and hares, which grow a thicker winter coat each year; a model distractor must be false. Both graders. Same reading as b3 E6-05 / E7-06."
+    },
+    {
+     "id": "MSB4-L5-16",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "20 young per sow in one summer is high for guinea pigs (litters ~2-4, ~68-day gestation) but a size question, not a broken law; stays a rule-9 hit."
+    },
+    {
+     "id": "MSB4-L6-04",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "B10: the passage puts 40 larvae in each tub; Table 1 prints \"Larvae at start\" 4 in every row, beside 38/29/17/12 alive after five days. The passage contradicts its own figure, and the table as printed is impossible (more alive than started). Both graders."
+    },
+    {
+     "id": "MSB4-L6-04",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "Same defect as its fact_error (start 4 vs passage 40, more alive than started)."
+    },
+    {
+     "id": "MSB4-L6-04",
+     "rule": 7,
+     "field": "readability",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "The renderer prints the table cells as authored (4, 4, 4, 4), so the student CAN read what the key needs (38 and 29). The defect is the passage/table contradiction, confirmed under rule 3, not a rendering problem."
+    },
+    {
+     "id": "MSB4-L6-15",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Mid-parent vs offspring height is Galton's design, but the lupine values (24..52 over 20..60) are invented and both graders say \"shape, not his numbers\". Parent-offspring resemblance is a general heredity pattern; b3 confirmed rule 5 only at canonical VALUES (L8-11, P5-10, E8-07)."
+    },
+    {
+     "id": "MSB4-L7-11",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "3.3 fledged per plover nest is at the high end; size, not a law."
+    },
+    {
+     "id": "MSB4-L7-14",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "g2 itself: \"plausible only at the edge\"; strong selection, not a broken law."
+    },
+    {
+     "id": "MSB4-L8-06",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "CO2 from 50 seeds about 30-60x high (both graders): wrong size, not a broken law; drops under rule 9 from both."
+    },
+    {
+     "id": "MSB4-L8-09",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Oxygen-sag / recovery-zone shape below an outfall is a general pattern (g2: shape); the counts 14..4..15 are invented. Same reading as b3 L8-02."
+    },
+    {
+     "id": "MSB4-L8-13",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "\"breathing gills\" is false as worded (embryos have pharyngeal arches, not gills that breathe); g2 raises defensibility, not a true distractor."
+    }
+   ]
+  },
+  "phys": {
+   "authored": 95,
+   "denominators": {
+    "items_json": 95,
+    "g1_keyed": 95,
+    "g2_keyed": 95,
+    "g1_cold_on_key": 95,
+    "g2_cold_on_key": 95
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 0,
+    "fact_error": 1,
+    "no_source_yes_data": 5,
+    "rrd": 0,
+    "free_elim": 21,
+    "readability": 0,
+    "b4_plausibility": 14
+   },
+   "rule10_drops": 11,
+   "rule1_9_drops": 26,
+   "rule1_9_only": 18,
+   "after_rules_1_10": 66,
+   "returns_open": 16,
+   "second_hit_drops": 6,
+   "dropped": 35,
+   "survivors": 60,
+   "survivor_ids": [
+    "MSB4-P5-01",
+    "MSB4-P5-02",
+    "MSB4-P5-05",
+    "MSB4-P5-06",
+    "MSB4-P5-08",
+    "MSB4-P5-09",
+    "MSB4-P5-10",
+    "MSB4-P5-11",
+    "MSB4-P5-13",
+    "MSB4-P5-14",
+    "MSB4-P5-16",
+    "MSB4-P5-17",
+    "MSB4-P5-18",
+    "MSB4-P5-19",
+    "MSB4-P5-20",
+    "MSB4-P5-21",
+    "MSB4-P5-22",
+    "MSB4-P6-02",
+    "MSB4-P6-03",
+    "MSB4-P6-06",
+    "MSB4-P6-07",
+    "MSB4-P6-08",
+    "MSB4-P6-10",
+    "MSB4-P6-11",
+    "MSB4-P6-12",
+    "MSB4-P6-18",
+    "MSB4-P6-19",
+    "MSB4-P6-20",
+    "MSB4-P6-21",
+    "MSB4-P6-22",
+    "MSB4-P6-23",
+    "MSB4-P7-01",
+    "MSB4-P7-02",
+    "MSB4-P7-03",
+    "MSB4-P7-04",
+    "MSB4-P7-05",
+    "MSB4-P7-07",
+    "MSB4-P7-08",
+    "MSB4-P7-10",
+    "MSB4-P7-12",
+    "MSB4-P7-13",
+    "MSB4-P7-14",
+    "MSB4-P7-16",
+    "MSB4-P7-17",
+    "MSB4-P7-18",
+    "MSB4-P7-19",
+    "MSB4-P7-21",
+    "MSB4-P7-23",
+    "MSB4-P8-01",
+    "MSB4-P8-03",
+    "MSB4-P8-05",
+    "MSB4-P8-08",
+    "MSB4-P8-09",
+    "MSB4-P8-10",
+    "MSB4-P8-11",
+    "MSB4-P8-14",
+    "MSB4-P8-18",
+    "MSB4-P8-19",
+    "MSB4-P8-22",
+    "MSB4-P8-23"
+   ],
+   "drops": {
+    "MSB4-P5-03": [
+     "rule 4: no_source_needed yes from both (data item)",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB4-P5-04": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-P5-07": [
+     "rule 9: b4_plausibility from both",
+     "rule 9: b2_duplicate pair P5-05/P5-07 named by both; P5-07 is the higher grade (or same grade, higher slot)",
+     "rule 9: b4_cross_naming pair P5-05/P5-07 named by both; P5-07 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-P5-12": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: setting-ask variable items give the key away through one-value phrases"
+    ],
+    "MSB4-P5-15": [
+     "rule 9: b1_absolute from both"
+    ],
+    "MSB4-P5-23": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-P5-24": [
+     "rule 9: b1_absolute from both",
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-P6-01": [
+     "rule 10a: interpolation: the key is the unprinted midpoint, and printed values are never the key"
+    ],
+    "MSB4-P6-04": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: the stem defines the key term, so its definition rules out distractors"
+    ],
+    "MSB4-P6-05": [
+     "rule 6: free_elimination from both kills 3/2",
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: the stem defines the key term, so its definition rules out distractors"
+    ],
+    "MSB4-P6-09": [
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-P6-13": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both"
+    ],
+    "MSB4-P6-14": [
+     "rule 9: b1_absolute from both"
+    ],
+    "MSB4-P6-15": [
+     "rule 6: free_elimination from both kills 3/3",
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: the stem defines the key term, so its definition rules out distractors"
+    ],
+    "MSB4-P6-16": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-P6-17": [
+     "rule 10a: interpolation: the key is the unprinted midpoint, and printed values are never the key"
+    ],
+    "MSB4-P6-24": [
+     "rule 9 (second hit): b3p2_general_knowledge: g1 + fresh re-check: For a NOT-supported ask, A ('sound moved through the wood'), B ('solid materials carried the scratch better than air') and C ('the metal rail carried it even better than the wood') are all textbook-true facts about sound"
+    ],
+    "MSB4-P7-06": [
+     "rule 9 (second hit): b4_plausibility: g1 + fresh re-check: A 2 kg block weighs about 20 N, so starting forces of 38, 52 and 60 N mean static friction coefficients of about 1.9, 2.7 and 3.1, far above rubber on a gym floor (roughly 0.5-1.0); even the 30-45 N 'dance' window needs "
+    ],
+    "MSB4-P7-09": [
+     "rule 9: b2_duplicate pair P6-01/P7-09 named by both; P7-09 is the higher grade (or same grade, higher slot)",
+     "rule 10a: interpolation: the key is the unprinted midpoint, and printed values are never the key"
+    ],
+    "MSB4-P7-11": [
+     "rule 9 (second hit): b3_bar_extreme: g1 + fresh re-check: Ticks are 0, 4.5, 9, 13.5, 18; the key 18 J is the only option sitting on a tick label (4, 13 and 10 J all fall between ticks), and it is also the axis maximum, so the option positions pick it without reading Hammer Harl"
+    ],
+    "MSB4-P7-15": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: the stem defines the key term, so its definition rules out distractors"
+    ],
+    "MSB4-P7-20": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: setting-ask variable items give the key away through one-value phrases"
+    ],
+    "MSB4-P7-22": [
+     "rule 9 (second hit): b4_cross_naming: g2 + fresh re-check: P6-01's passage shows an oppositely charged Rod Quillan pulling a charged foil ball upward across a gap, i.e. that a charged object lifts a light object without contact by electric charge, which is exactly the fact P7-22"
+    ],
+    "MSB4-P7-24": [
+     "rule 10a: interpolation: the key is the unprinted midpoint, and printed values are never the key"
+    ],
+    "MSB4-P8-02": [
+     "rule 9 (second hit): b4_plausibility: g1 + fresh re-check: After the 71 °C peak the soup cools 71 -> 64 -> 52 °C, a drop that SPEEDS UP (7 then 12 °C per 2 min) as it gets cooler, the wrong shape for cooling (it should slow as the soup nears room temperature), and about 6 °C per"
+    ],
+    "MSB4-P8-04": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both",
+     "rule 10a: setting-ask variable items give the key away through one-value phrases"
+    ],
+    "MSB4-P8-06": [
+     "rule 9: b4_one_sensible from both"
+    ],
+    "MSB4-P8-07": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB4-P8-12": [
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-P8-13": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB4-P8-15": [
+     "rule 9: b3_stem_echo from both",
+     "rule 9: b2_duplicate pair P5-04/P8-15 named by both; P8-15 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-P8-16": [
+     "rule 9 (second hit): b4_keyword: g1 + fresh re-check: Only the key uses the science term 'thermal energy' ('slows the flow of thermal energy out of her body'); every distractor speaks in lay words ('their own warmth', 'blocks the cold', 'soaks up warmth'), so the B35 conten"
+    ],
+    "MSB4-P8-17": [
+     "rule 9: b2_duplicate pair P6-21/P8-17 named by both; P8-17 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-P8-20": [
+     "rule 9: b3_stem_echo from both",
+     "rule 9: b4_cross_naming pair P6-22/P8-20 named by both; P8-20 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-P8-21": [
+     "rule 9: b2_duplicate pair P8-06/P8-21 named by both; P8-21 is the higher grade (or same grade, higher slot)",
+     "rule 9: b4_cross_naming pair P6-13/P8-21 named by both; P8-21 is the higher grade (or same grade, higher slot)"
+    ]
+   },
+   "pairs_both": [
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-P5-04",
+      "MSB4-P8-15"
+     ],
+     "drop": "MSB4-P8-15"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-P5-05",
+      "MSB4-P5-07"
+     ],
+     "drop": "MSB4-P5-07"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-P6-01",
+      "MSB4-P7-09"
+     ],
+     "drop": "MSB4-P7-09"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-P6-21",
+      "MSB4-P8-17"
+     ],
+     "drop": "MSB4-P8-17"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-P8-06",
+      "MSB4-P8-21"
+     ],
+     "drop": "MSB4-P8-21"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-P5-05",
+      "MSB4-P5-07"
+     ],
+     "drop": "MSB4-P5-07"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-P6-13",
+      "MSB4-P8-21"
+     ],
+     "drop": "MSB4-P8-21"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-P6-22",
+      "MSB4-P8-20"
+     ],
+     "drop": "MSB4-P8-20"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB4-P5-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D: off-category; 'falls more slowly than a dropped marble' is a fall-rate claim, not a path, for a stem asking 'which describes the path'. A (cartoon level-then-drop) and C (straight down) are documented and live"
+    },
+    {
+     "id": "MSB4-P5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "brightness falls almost linearly with wire length; a real bulb in series with a wire dims convexly (levels off), which is distractor C's shape"
+    },
+    {
+     "id": "MSB4-P6-02",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "A 'The warming fell.' is an incomplete version of the key; data from 3 to 6 layers (5, 4.5, 4, 4.5) clearly level, so not defended, but it is the B21 risk"
+    },
+    {
+     "id": "MSB4-P6-22",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "C weak (lenses bend light away); A (extramission) and D (filter adds dark colour) are documented"
+    },
+    {
+     "id": "MSB4-P6-24",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_general_knowledge",
+     "value": "A, B, C are textbook truths (sound through wood; solids beat air; metal beats wood), so a NOT solver picks the episode-specific D without the passage"
+    },
+    {
+     "id": "MSB4-P7-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D weak (the Moon's spin holds it); B (magnetism) and C (no gravity in space) are documented"
+    },
+    {
+     "id": "MSB4-P7-06",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "a 2 kg block weighs ~20 N, so 38-60 N to start sliding means friction coefficients of 1.9-3.1 for rubber on a gym floor (and the key 38 N itself needs ~1.9): wrong size"
+    },
+    {
+     "id": "MSB4-P7-11",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key is the tallest bar and the only option exactly on a tick label (18); shortest (4) offered; base rate across the area's six drawn read items is 2/6 top-tick keys"
+    },
+    {
+     "id": "MSB4-P7-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "linear fall of data rate with distance; real links fall convexly or in steps (D's shape); minor"
+    },
+    {
+     "id": "MSB4-P7-22",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "A and B: same category (both magnetic), so a student who only separates magnetic from electric forces kills both at once; the declared 'magnets work by static' belief is real but weak. D live"
+    },
+    {
+     "id": "MSB4-P8-02",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "soup cools 71 -> 52 C in 4 min inside an insulated self-heating can; too fast for ~300 g of soup"
+    },
+    {
+     "id": "MSB4-P8-03",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "mild: one ice cube cooling 200 mL from 25 to 11 °C needs a ~35 g cube, and the cup rewarms 9 °C in 20 min in a 25 °C room, fast for 200 mL"
+    },
+    {
+     "id": "MSB4-P8-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_keyword",
+     "value": "'thermal energy' on the key only; distractors say 'warmth' (also P8-13)"
+    },
+    {
+     "id": "MSB4-P8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-02: P6-02 and P8-16: same PE MS-PS3-3, same concept (insulating layer slows thermal energy transfer) || g2@P8-16: P6-02 and P8-16 (insulation slows thermal energy transfer, MS-PS3-3)",
+     "pair": [
+      "MSB4-P6-02",
+      "MSB4-P8-16"
+     ]
+    },
+    {
+     "id": "MSB4-P7-08",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@P6-12: P7-08 (MS-PS3-2 stored elastic/magnetic energy -> launch; different system) || g1@P7-08: P7-09 (same system: two magnets on a track/dowel at set gaps) and P6-12",
+     "pair": [
+      "MSB4-P6-12",
+      "MSB4-P7-08"
+     ]
+    },
+    {
+     "id": "MSB4-P7-22",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_cross_naming",
+     "value": "g2@P6-01: P6-01's passage shows a charged rod pulling a foil ball across a gap, the fact P7-22 tests (a charged object pulls across a gap) || g2@P7-22: P6-01's passage hands over the key fact (a charged rod pulls a small object across a gap)",
+     "pair": [
+      "MSB4-P6-01",
+      "MSB4-P7-22"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB4-P5-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D: off-category; 'falls more slowly than a dropped marble' is a fall-rate claim, not a path, for a stem asking 'which describes the path'. A (cartoon level-then-drop) and C (straight down) are documented and live",
+     "recheck": {
+      "id": "MSB4-P5-14",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-P5-14"
+      ],
+      "hit": "no",
+      "reason": "All three distractors are documented, commonly held projectile beliefs: A 'straight out, then drop straight down' (cartoon path), C 'drop straight down from the edge', D 'fall more slowly than a marble dropped from rest'. No dead letters; four live options."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "brightness falls almost linearly with wire length; a real bulb in series with a wire dims convexly (levels off), which is distractor C's shape",
+     "recheck": {
+      "id": "MSB4-P5-19",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-P5-19"
+      ],
+      "hit": "no",
+      "reason": "A thin (resistance) wire of 10-80 cm in series can plausibly cut a bulb's brightness from 88 to 37 units, and the falling, slightly decelerating points (88, 80, 69, 64, 54, 50, 42, 37) are roughly the shape P = V^2*Rb/(Rb+kL)^2 predicts; no exact textbook law, no misdescribed figure."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P6-02",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "A 'The warming fell.' is an incomplete version of the key; data from 3 to 6 layers (5, 4.5, 4, 4.5) clearly level, so not defended, but it is the B21 risk",
+     "recheck": {
+      "id": "MSB4-P6-02",
+      "field": "b3p2_direction",
+      "items": [
+       "MSB4-P6-02"
+      ],
+      "hit": "no",
+      "reason": "The data's falling direction is also on 'The warming fell.' and 'The warming leveled off, then fell.', and the set has two compound and two simple options, so the key is neither the only one in the data's direction nor the only compound. 'The warming fell.' is not a defensible incomplete key: the last four points (5, 4.5, 4, 4.5) are flat and even tick up at 6 layers."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P6-22",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "C weak (lenses bend light away); A (extramission) and D (filter adds dark colour) are documented",
+     "recheck": {
+      "id": "MSB4-P6-22",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-P6-22"
+      ],
+      "hit": "no",
+      "reason": "A (eyes send out light; extramission), C (lenses bend light away) and D (a dark filter adds its color to light) are all documented student misconceptions about light, each phrased as an explanation of what the lenses do. No dead letters."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P6-24",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_general_knowledge",
+     "value": "A, B, C are textbook truths (sound through wood; solids beat air; metal beats wood), so a NOT solver picks the episode-specific D without the passage",
+     "recheck": {
+      "id": "MSB4-P6-24",
+      "field": "b3p2_general_knowledge",
+      "items": [
+       "MSB4-P6-24"
+      ],
+      "hit": "yes",
+      "reason": "For a NOT-supported ask, A ('sound moved through the wood'), B ('solid materials carried the scratch better than air') and C ('the metal rail carried it even better than the wood') are all textbook-true facts about sound, so a student who knows the topic picks D without reading the passage; D's 'could even hear ... through 2 m of air' also marks it as the surprising claim."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-P7-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "D weak (the Moon's spin holds it); B (magnetism) and C (no gravity in space) are documented",
+     "recheck": {
+      "id": "MSB4-P7-05",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-P7-05"
+      ],
+      "hit": "no",
+      "reason": "B (Earth's magnetism holds the Moon), C (space has no gravity) and D (the Moon's spin keeps it on a circle) are recognised misconceptions in the orbit literature; C is the weakest since it explains nothing about the curved path, but a student who believes there is no gravity in space would choose it. At least three options live."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P7-06",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "a 2 kg block weighs ~20 N, so 38-60 N to start sliding means friction coefficients of 1.9-3.1 for rubber on a gym floor (and the key 38 N itself needs ~1.9): wrong size",
+     "recheck": {
+      "id": "MSB4-P7-06",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-P7-06"
+      ],
+      "hit": "yes",
+      "reason": "A 2 kg block weighs about 20 N, so starting forces of 38, 52 and 60 N mean static friction coefficients of about 1.9, 2.7 and 3.1, far above rubber on a gym floor (roughly 0.5-1.0); even the 30-45 N 'dance' window needs a coefficient of 1.5-2.3."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-P7-11",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "key is the tallest bar and the only option exactly on a tick label (18); shortest (4) offered; base rate across the area's six drawn read items is 2/6 top-tick keys",
+     "recheck": {
+      "id": "MSB4-P7-11",
+      "field": "b3_bar_extreme",
+      "items": [
+       "MSB4-P7-11"
+      ],
+      "hit": "yes",
+      "reason": "Ticks are 0, 4.5, 9, 13.5, 18; the key 18 J is the only option sitting on a tick label (4, 13 and 10 J all fall between ticks), and it is also the axis maximum, so the option positions pick it without reading Hammer Harlan's bar."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-P7-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "linear fall of data rate with distance; real links fall convexly or in steps (D's shape); minor",
+     "recheck": {
+      "id": "MSB4-P7-19",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-P7-19"
+      ],
+      "hit": "no",
+      "reason": "48 Mb/s falling to 14 Mb/s over 200 m in an open field is the right size for a Wi-Fi-class link, and a roughly steady decline over that range is a realistic measured shape; the numbers are not an exact law and the explanation matches the plotted points (48, 39, 31, 22, 14)."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P7-22",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_one_sensible",
+     "value": "A and B: same category (both magnetic), so a student who only separates magnetic from electric forces kills both at once; the declared 'magnets work by static' belief is real but weak. D live",
+     "recheck": {
+      "id": "MSB4-P7-22",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-P7-22"
+      ],
+      "hit": "no",
+      "reason": "A 'a magnet lifting pins' and B 'a compass needle swinging' are live for a student who confuses magnetic and electric forces, a common conflation, so key plus two distractors stay live; D 'a pear falling to Earth' is the weak, nearly dead letter, since few grade-7 students would call a falling object electric, but one dead letter leaves three live options."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P8-02",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "soup cools 71 -> 52 C in 4 min inside an insulated self-heating can; too fast for ~300 g of soup",
+     "recheck": {
+      "id": "MSB4-P8-02",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-P8-02"
+      ],
+      "hit": "yes",
+      "reason": "After the 71 °C peak the soup cools 71 -> 64 -> 52 °C, a drop that SPEEDS UP (7 then 12 °C per 2 min) as it gets cooler, the wrong shape for cooling (it should slow as the soup nears room temperature), and about 6 °C per minute is several times faster than a can of soup cools in room air."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-P8-03",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "mild: one ice cube cooling 200 mL from 25 to 11 °C needs a ~35 g cube, and the cup rewarms 9 °C in 20 min in a 25 °C room, fast for 200 mL",
+     "recheck": {
+      "id": "MSB4-P8-03",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-P8-03"
+      ],
+      "hit": "no",
+      "reason": "A ~25-30 g ice cube in 200 mL of 25 °C lemonade gives an equilibrium near 11-13 °C, matching the 11 °C low, and the rewarming 11 -> 16 -> 20 °C decelerates toward the 25 °C room at a time constant (~20 min) that is fast but within range for a small cup; no wrong-size numbers or wrong curve shape."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P8-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_keyword",
+     "value": "'thermal energy' on the key only; distractors say 'warmth' (also P8-13)",
+     "recheck": {
+      "id": "MSB4-P8-16",
+      "field": "b4_keyword",
+      "items": [
+       "MSB4-P8-16"
+      ],
+      "hit": "yes",
+      "reason": "Only the key uses the science term 'thermal energy' ('slows the flow of thermal energy out of her body'); every distractor speaks in lay words ('their own warmth', 'blocks the cold', 'soaks up warmth'), so the B35 content word 'energy' sits on the key alone and cues it."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-P8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-02: P6-02 and P8-16: same PE MS-PS3-3, same concept (insulating layer slows thermal energy transfer) || g2@P8-16: P6-02 and P8-16 (insulation slows thermal energy transfer, MS-PS3-3)",
+     "pair": [
+      "MSB4-P6-02",
+      "MSB4-P8-16"
+     ],
+     "recheck": {
+      "id": "MSB4-P8-16",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-P6-02",
+       "MSB4-P8-16"
+      ],
+      "hit": "no",
+      "reason": "Both touch insulation (MS-PS3-3), but P6-02 is a foam-lined cooler data item whose key is a trend shape ('decreased, then leveled off') read from the plot, while P8-16 is a down-jacket model claim about trapped air slowing thermal energy flow; different system, skill and key, and neither answers the other."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P7-08",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@P6-12: P7-08 (MS-PS3-2 stored elastic/magnetic energy -> launch; different system) || g1@P7-08: P7-09 (same system: two magnets on a track/dowel at set gaps) and P6-12",
+     "pair": [
+      "MSB4-P6-12",
+      "MSB4-P7-08"
+     ],
+     "recheck": {
+      "id": "MSB4-P7-08",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-P6-12",
+       "MSB4-P7-08"
+      ],
+      "hit": "no",
+      "reason": "P6-12 is a rubber-band launcher (elastic energy) asking for the trend of distance with pull-back ('increased'); P7-08 is repelling ring magnets asking for a table difference (13.6 - 5.1 = 8.5 cm). Related stored-energy idea, but different systems, asks and keys, and neither hands the other its answer."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-P7-22",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_cross_naming",
+     "value": "g2@P6-01: P6-01's passage shows a charged rod pulling a foil ball across a gap, the fact P7-22 tests (a charged object pulls across a gap) || g2@P7-22: P6-01's passage hands over the key fact (a charged rod pulls a small object across a gap)",
+     "pair": [
+      "MSB4-P6-01",
+      "MSB4-P7-22"
+     ],
+     "recheck": {
+      "id": "MSB4-P7-22",
+      "field": "b4_cross_naming",
+      "items": [
+       "MSB4-P6-01",
+       "MSB4-P7-22"
+      ],
+      "hit": "yes",
+      "reason": "P6-01's passage shows an oppositely charged Rod Quillan pulling a charged foil ball upward across a gap, i.e. that a charged object lifts a light object without contact by electric charge, which is exactly the fact P7-22 tests with its key 'a charged comb lifting paper'."
+     },
+     "counted": true
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB4-P5-03",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P5-05",
+     "rule": 6,
+     "note": "free_elimination g1 kills 0: recorded"
+    },
+    {
+     "id": "MSB4-P5-13",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P5-17",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-P5-23",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-P6-01",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P6-04",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-P6-14",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB4-P6-17",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-P6-21",
+     "rule": 6,
+     "note": "free_elimination g1 kills 0: recorded"
+    },
+    {
+     "id": "MSB4-P7-09",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P7-15",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P7-21",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P7-24",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-P8-13",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-P8-20",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3: recorded"
+    },
+    {
+     "id": "MSB4-P8-21",
+     "rule": 6,
+     "note": "free_elimination g1 kills 0: recorded"
+    },
+    {
+     "id": "MSB4-P5-03",
+     "rule": 9,
+     "note": "single-grader b1_stated_law (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P5-12",
+     "rule": 9,
+     "note": "single-grader b1_option_set (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P5-15",
+     "rule": 9,
+     "note": "single-grader b3_stem_echo (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P5-15",
+     "rule": 9,
+     "note": "single-grader b4_one_sensible (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P5-24",
+     "rule": 9,
+     "note": "single-grader b3_claim_marker (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P6-01",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P6-14",
+     "rule": 9,
+     "note": "single-grader b3p2_general_knowledge (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P7-20",
+     "rule": 9,
+     "note": "single-grader b1_option_set (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P7-24",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-04",
+     "rule": 9,
+     "note": "single-grader b1_option_set (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-06",
+     "rule": 9,
+     "note": "single-grader b3_stem_echo (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-07",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-13",
+     "rule": 9,
+     "note": "single-grader b1_stated_law (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-13",
+     "rule": 9,
+     "note": "single-grader b4_keyword (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-20",
+     "rule": 9,
+     "note": "single-grader b4_one_sensible (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-21",
+     "rule": 9,
+     "note": "single-grader b4_one_sensible (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-P6-09",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P5-11/P6-09: target P6-09 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-13",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P5-17/P8-13: target P8-13 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-21",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P6-13/P8-21: target P8-21 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P7-09",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P7-08/P7-09: target P7-09 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-20",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P7-16/P8-20: target P8-20 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-15",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P7-23/P8-15: target P8-15 already dropped, no return"
+    },
+    {
+     "id": "MSB4-P8-15",
+     "rule": 9,
+     "note": "single-grader b4_cross_naming P7-23/P8-15: target P8-15 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB4-P5-07",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Exact v = f*lambda columns at ~6-10 cm/s (both graders): an exact law table and too slow for 2-5 cm water, i.e. B40 size/law-table, not a contradiction; drops under rule 9 from both."
+    },
+    {
+     "id": "MSB4-P5-19",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Brightness falling nearly linearly over the tested lengths: a real bulb dims convexly, but over 10-80 cm the points (88..37) are not impossible; curvature, not a broken law."
+    },
+    {
+     "id": "MSB4-P6-01",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "4.8 g pull on a small foil ball is large; size, not a law."
+    },
+    {
+     "id": "MSB4-P6-09",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Evaporation sublinear in area (both say minor, not decision-relevant): size/shape, not a contradiction."
+    },
+    {
+     "id": "MSB4-P7-06",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Start-sliding forces of 12-60 N on a 2 kg block imply static friction coefficients ~0.6-3.1; high for rubber on a gym floor but a size question; stays a rule-9 hit."
+    },
+    {
+     "id": "MSB4-P7-19",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "g1 itself: minor; linear fall of data rate over 0-200 m is not impossible."
+    },
+    {
+     "id": "MSB4-P7-24",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Exact Hooke ladder in a column the key does not use (g1); size/law-table, not a contradiction."
+    },
+    {
+     "id": "MSB4-P8-02",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Soup cooling 71 -> 52 C in 4 min is fast; size, not a law."
+    },
+    {
+     "id": "MSB4-P8-03",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "g2 itself: mild; size."
+    },
+    {
+     "id": "MSB4-P8-07",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": true,
+     "reasoning": "Force sensors clipped between each team and its end of ONE rope read the tension at the two ends of a light rope, which are equal; a 65 N average imbalance over 10 s would give a ~1 kg rope ~65 m/s^2. The table breaks Newton's second law for this device (B32), and the keyed quantity (the rope's unbalanced force) is one the rope cannot carry."
+    },
+    {
+     "id": "MSB4-P8-07",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": true,
+     "reasoning": "Same defect as its fact_error (unequal tensions at the two ends of one light rope)."
+    },
+    {
+     "id": "MSB4-P8-12",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Exact t ~ sqrt(mass per metre) table (both graders): B40 law table, not a contradiction; drops under rule 9 from both."
+    }
+   ]
+  },
+  "earth": {
+   "authored": 70,
+   "denominators": {
+    "items_json": 70,
+    "g1_keyed": 70,
+    "g2_keyed": 70,
+    "g1_cold_on_key": 70,
+    "g2_cold_on_key": 70
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 0,
+    "fact_error": 1,
+    "no_source_yes_data": 3,
+    "rrd": 3,
+    "free_elim": 8,
+    "readability": 0,
+    "b4_plausibility": 7
+   },
+   "rule10_drops": 18,
+   "rule1_9_drops": 18,
+   "rule1_9_only": 12,
+   "after_rules_1_10": 40,
+   "returns_open": 14,
+   "second_hit_drops": 7,
+   "dropped": 37,
+   "survivors": 33,
+   "survivor_ids": [
+    "MSB4-E5-01",
+    "MSB4-E5-02",
+    "MSB4-E5-03",
+    "MSB4-E5-06",
+    "MSB4-E5-08",
+    "MSB4-E5-09",
+    "MSB4-E5-11",
+    "MSB4-E5-12",
+    "MSB4-E5-14",
+    "MSB4-E5-17",
+    "MSB4-E6-01",
+    "MSB4-E6-05",
+    "MSB4-E6-08",
+    "MSB4-E6-09",
+    "MSB4-E6-11",
+    "MSB4-E6-12",
+    "MSB4-E6-14",
+    "MSB4-E6-15",
+    "MSB4-E6-16",
+    "MSB4-E7-03",
+    "MSB4-E7-04",
+    "MSB4-E7-08",
+    "MSB4-E7-09",
+    "MSB4-E7-11",
+    "MSB4-E7-13",
+    "MSB4-E7-14",
+    "MSB4-E7-16",
+    "MSB4-E8-03",
+    "MSB4-E8-05",
+    "MSB4-E8-07",
+    "MSB4-E8-11",
+    "MSB4-E8-12",
+    "MSB4-E8-14"
+   ],
+   "drops": {
+    "MSB4-E5-04": [
+     "rule 9 (second hit): b4_one_sensible: g2 + fresh re-check: B is dead: the misconception (any dug-up bone is a fossil) is real, but the option says 'a fresh deer bone', and 'fresh' tells even an untaught grade-5 student it is not from long ago. D ('a sparkling quartz crystal') is"
+    ],
+    "MSB4-E5-05": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ],
+    "MSB4-E5-07": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E5-10": [
+     "rule 9: b3_role_statement from both",
+     "rule 9: b4_var_plan from both"
+    ],
+    "MSB4-E5-13": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ],
+    "MSB4-E5-15": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E5-16": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E5-18": [
+     "rule 9: b3_claim_marker from both",
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ],
+    "MSB4-E6-02": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E6-03": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E6-04": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ],
+    "MSB4-E6-06": [
+     "rule 5: recognised_real_data confirmed"
+    ],
+    "MSB4-E6-07": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E6-10": [
+     "rule 9: b4_var_plan from both"
+    ],
+    "MSB4-E6-13": [
+     "rule 9 (second hit): b3_stem_echo: g2 + fresh re-check: The stem says 'more dark ocean water lies open to the Sun', and only the key carries 'dark' (plus 'sunlight'): 'Dark open water absorbs more sunlight'. That nearly restates the stem. The distractors echo only incidental "
+    ],
+    "MSB4-E6-17": [
+     "rule 9: b3_stem_echo from both"
+    ],
+    "MSB4-E6-18": [
+     "rule 9: b1_absolute from both"
+    ],
+    "MSB4-E7-01": [
+     "rule 9 (second hit): b4_plausibility: g2 + fresh re-check: Lint filters in ONE neighborhood cut threads by 58-75% at every creek point (for example 72 to 18, 60 to 25), which is too large an effect when the rest of the town still drains to the creek. Also, 36-72 fibers per liter"
+    ],
+    "MSB4-E7-02": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E7-05": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ],
+    "MSB4-E7-06": [
+     "rule 9: b4_plausibility from both"
+    ],
+    "MSB4-E7-07": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E7-10": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E7-12": [
+     "rule 9 (second hit): b1_absolute: g1 + fresh re-check: The key 'Dark or nearly so' is the only hedged option. The others are flat states: 'Fully lit' (an absolute), 'Partly hidden' and 'Half lit'."
+    ],
+    "MSB4-E7-15": [
+     "rule 5: recognised_real_data confirmed"
+    ],
+    "MSB4-E7-17": [
+     "rule 9 (second hit): b3_stem_echo: g1 + fresh re-check: The stem says 'one system' and 'What is this system called?', and only the key 'solar system' repeats 'system' ('solar' also matches 'the Sun'). 'Planetary nebula' echoes 'planets', but that does not offset a key that re",
+     "rule 9 (second hit): b4_one_sensible: g2 + fresh re-check: D 'star constellation' is dead: the declared belief (a constellation's stars are bound together) would not lead a student to call one star with its planets a constellation. A 'local universe' is not a real term and is ba"
+    ],
+    "MSB4-E8-01": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E8-02": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Same PE (MS-ESS1-3), same system type (a telescope or probe surveying named worlds of an invented star, 'Vessaline' vs 'Vespera', nearly the same name) and same concept (read one world's scale property off a data display"
+    ],
+    "MSB4-E8-04": [
+     "rule 9: b4_cross_naming pair E6-03/E8-04 named by both; E8-04 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-E8-06": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E8-08": [
+     "rule 9 (second hit): b3p2_general_knowledge: g2 + fresh re-check: With the graph covered, 'The phosphorus rose.' and 'remained the same' die after a ban. Of the two falling options, 'fell, then leveled off' is the natural expectation (other sources remain), while 'fell, then rose' has "
+    ],
+    "MSB4-E8-09": [
+     "rule 9: b2_duplicate pair E5-02/E8-09 named by both; E8-09 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-E8-10": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB4-E8-13": [
+     "rule 9: b2_duplicate pair E7-11/E8-13 named by both; E8-13 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-E8-15": [
+     "rule 10a: condition labels \"<Noun> <surname>\""
+    ],
+    "MSB4-E8-16": [
+     "rule 9: b2_duplicate pair E5-04/E8-16 named by both; E8-16 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB4-E8-17": [
+     "rule 9: b4_one_sensible from both",
+     "rule 10a: absurd or not-a-student-belief distractor, so only one option is sensible (B38/B31)"
+    ]
+   },
+   "pairs_both": [
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-E5-02",
+      "MSB4-E8-09"
+     ],
+     "drop": "MSB4-E8-09"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-E5-04",
+      "MSB4-E8-16"
+     ],
+     "drop": "MSB4-E8-16"
+    },
+    {
+     "field": "b2_duplicate",
+     "pair": [
+      "MSB4-E7-11",
+      "MSB4-E8-13"
+     ],
+     "drop": "MSB4-E8-13"
+    },
+    {
+     "field": "b4_cross_naming",
+     "pair": [
+      "MSB4-E6-03",
+      "MSB4-E8-04"
+     ],
+     "drop": "MSB4-E8-04"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB4-E5-04",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "B: \"fresh\" contradicts the long-ago idea a grade 5 student already attaches to fossils; the declared belief is about any bone dug up, not a fresh one. D (sparkling crystal) weak but held"
+    },
+    {
+     "id": "MSB4-E5-12",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats \"soil\" (stem: \"the soil below is now wet\"); the echo is also the clue"
+    },
+    {
+     "id": "MSB4-E6-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats \"dark\" (stem \"more dark ocean water\"); B shares \"open water\""
+    },
+    {
+     "id": "MSB4-E6-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_keyword",
+     "value": "inverse: heat/hot/warm wording sits only on distractors across Earth model items (P1)"
+    },
+    {
+     "id": "MSB4-E6-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "times track the shallow-water law sqrt(g*d) within about 6% (law: 2.26, 1.60, 1.13, 0.92 s); not exact, realistic scatter, not student-recallable"
+    },
+    {
+     "id": "MSB4-E7-01",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "filters on ONE neighborhood's machines cut threads 58-75% at every creek point; the effect size is large for a partial source"
+    },
+    {
+     "id": "MSB4-E7-12",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "the key-candidate D is the lone hedged option ('Dark or nearly so'); A Fully, B Partly, C Half are definite"
+    },
+    {
+     "id": "MSB4-E7-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_stem_echo",
+     "value": "stem 'makes up one system' -> key 'solar system' is the only option with 'system' (C 'planetary' echoes 'planets', partly offsetting)"
+    },
+    {
+     "id": "MSB4-E7-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "A: \"local universe\" is not a term or belief a grade 7 student holds for the Sun's system; D (constellation) weak. The item is recall far below grade 7 high"
+    },
+    {
+     "id": "MSB4-E8-08",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "partly fails: the claim lists \"keeps falling\" as a live outcome, but no plain \"fell\" option is offered; with the ban, rose and same are out and \"fell, then rose\" needs a new source the passage never gives, so the standard leaves only C"
+    },
+    {
+     "id": "MSB4-E8-08",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_general_knowledge",
+     "value": "with the phosphorus source cut, A (rose) and B (same) are implausible; between C and D, \"fell, then rose\" needs a new source the passage does not give, so C is the only option general knowledge expects. No simple \"fell\" option to share the direction"
+    },
+    {
+     "id": "MSB4-E6-11",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E5-03: E6-11 (same 2x2 NOT-supported claim template; different system) || g2@E6-11: E5-03 (same 2x2 NOT-supported claim template; different system)",
+     "pair": [
+      "MSB4-E5-03",
+      "MSB4-E6-11"
+     ]
+    },
+    {
+     "id": "MSB4-E8-02",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E6-06: E8-02 (invented worlds of an invented star; Vessaline/Vespera star names)",
+     "pair": [
+      "MSB4-E6-06",
+      "MSB4-E8-02"
+     ]
+    },
+    {
+     "id": "MSB4-E8-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E7-08: E8-14 (comet passing an invented star; different PE and ask) || g2@E8-14: E7-08 (comet passing an invented star)",
+     "pair": [
+      "MSB4-E7-08",
+      "MSB4-E8-14"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB4-E5-04",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "B: \"fresh\" contradicts the long-ago idea a grade 5 student already attaches to fossils; the declared belief is about any bone dug up, not a fresh one. D (sparkling crystal) weak but held",
+     "recheck": {
+      "id": "MSB4-E5-04",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-E5-04"
+      ],
+      "hit": "yes",
+      "reason": "B is dead: the misconception (any dug-up bone is a fossil) is real, but the option says 'a fresh deer bone', and 'fresh' tells even an untaught grade-5 student it is not from long ago. D ('a sparkling quartz crystal') is weak but held; C (old clay pot) is the one strong distractor."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E5-12",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats \"soil\" (stem: \"the soil below is now wet\"); the echo is also the clue",
+     "recheck": {
+      "id": "MSB4-E5-12",
+      "field": "b3_stem_echo",
+      "items": [
+       "MSB4-E5-12"
+      ],
+      "hit": "no",
+      "reason": "The key 'seeping down into the soil' repeats 'soil', but 'evaporating into the air' repeats 'air' and 'running off the lawn' repeats 'lawn'. The key is not the only option that echoes the stem."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-E6-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_stem_echo",
+     "value": "key alone repeats \"dark\" (stem \"more dark ocean water\"); B shares \"open water\"",
+     "recheck": {
+      "id": "MSB4-E6-13",
+      "field": "b3_stem_echo",
+      "items": [
+       "MSB4-E6-13"
+      ],
+      "hit": "yes",
+      "reason": "The stem says 'more dark ocean water lies open to the Sun', and only the key carries 'dark' (plus 'sunlight'): 'Dark open water absorbs more sunlight'. That nearly restates the stem. The distractors echo only incidental words ('open water', 'ice', 'Sun')."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E6-13",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_keyword",
+     "value": "inverse: heat/hot/warm wording sits only on distractors across Earth model items (P1)",
+     "recheck": {
+      "id": "MSB4-E6-13",
+      "field": "b4_keyword",
+      "items": [
+       "MSB4-E6-13"
+      ],
+      "hit": "no",
+      "reason": "The words only on the key ('dark', 'absorbs', 'sunlight') belong to this item, not to a content word that recurs on keys across the packet. The pattern here runs the other way: 'heat' is on all three distractors (A, B, D) and not on the key, which is worth noting but is not a key-carried keyword."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-E6-16",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b4_plausibility",
+     "value": "times track the shallow-water law sqrt(g*d) within about 6% (law: 2.26, 1.60, 1.13, 0.92 s); not exact, realistic scatter, not student-recallable",
+     "recheck": {
+      "id": "MSB4-E6-16",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-E6-16"
+      ],
+      "hit": "no",
+      "reason": "The real shallow-water speed sqrt(gd) gives about 2.26, 1.60, 1.13 and 0.92 s per metre at 2, 4, 8 and 12 cm. The table's 2.4, 1.6, 1.2 and 0.9 s are the right size and shape, with realistic scatter, so it is not an exact law table. The key, 1.4 s, is the best option for 6 cm (the real value is about 1.3 s)."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-E7-01",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_plausibility",
+     "value": "filters on ONE neighborhood's machines cut threads 58-75% at every creek point; the effect size is large for a partial source",
+     "recheck": {
+      "id": "MSB4-E7-01",
+      "field": "b4_plausibility",
+      "items": [
+       "MSB4-E7-01"
+      ],
+      "hit": "yes",
+      "reason": "Lint filters in ONE neighborhood cut threads by 58-75% at every creek point (for example 72 to 18, 60 to 25), which is too large an effect when the rest of the town still drains to the creek. Also, 36-72 fibers per liter is high for stream water, where counts usually run well under ten per liter."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E7-12",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "the key-candidate D is the lone hedged option ('Dark or nearly so'); A Fully, B Partly, C Half are definite",
+     "recheck": {
+      "id": "MSB4-E7-12",
+      "field": "b1_absolute",
+      "items": [
+       "MSB4-E7-12"
+      ],
+      "hit": "yes",
+      "reason": "The key 'Dark or nearly so' is the only hedged option. The others are flat states: 'Fully lit' (an absolute), 'Partly hidden' and 'Half lit'."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E7-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_stem_echo",
+     "value": "stem 'makes up one system' -> key 'solar system' is the only option with 'system' (C 'planetary' echoes 'planets', partly offsetting)",
+     "recheck": {
+      "id": "MSB4-E7-17",
+      "field": "b3_stem_echo",
+      "items": [
+       "MSB4-E7-17"
+      ],
+      "hit": "yes",
+      "reason": "The stem says 'one system' and 'What is this system called?', and only the key 'solar system' repeats 'system' ('solar' also matches 'the Sun'). 'Planetary nebula' echoes 'planets', but that does not offset a key that repeats the stem's own category word."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E7-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b4_one_sensible",
+     "value": "A: \"local universe\" is not a term or belief a grade 7 student holds for the Sun's system; D (constellation) weak. The item is recall far below grade 7 high",
+     "recheck": {
+      "id": "MSB4-E7-17",
+      "field": "b4_one_sensible",
+      "items": [
+       "MSB4-E7-17"
+      ],
+      "hit": "yes",
+      "reason": "D 'star constellation' is dead: the declared belief (a constellation's stars are bound together) would not lead a student to call one star with its planets a constellation. A 'local universe' is not a real term and is barely live. Everyday knowledge picks 'solar system', so fewer than three options are live (only B 'planetary nebula' attracts, by its name)."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E8-08",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "partly fails: the claim lists \"keeps falling\" as a live outcome, but no plain \"fell\" option is offered; with the ban, rose and same are out and \"fell, then rose\" needs a new source the passage never gives, so the standard leaves only C",
+     "recheck": {
+      "id": "MSB4-E8-08",
+      "field": "b1_stated_law",
+      "items": [
+       "MSB4-E8-08"
+      ],
+      "hit": "no",
+      "reason": "MS-ESS3-3 (design a method to monitor and minimize a human impact) does not state how a lake's phosphorus curve behaves, and the prior-free claim that the standard gives no shape holds as far as the standard goes. The weakness is general knowledge, not a stated law (see the next entry)."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-E8-08",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_general_knowledge",
+     "value": "with the phosphorus source cut, A (rose) and B (same) are implausible; between C and D, \"fell, then rose\" needs a new source the passage does not give, so C is the only option general knowledge expects. No simple \"fell\" option to share the direction",
+     "recheck": {
+      "id": "MSB4-E8-08",
+      "field": "b3p2_general_knowledge",
+      "items": [
+       "MSB4-E8-08"
+      ],
+      "hit": "yes",
+      "reason": "With the graph covered, 'The phosphorus rose.' and 'remained the same' die after a ban. Of the two falling options, 'fell, then leveled off' is the natural expectation (other sources remain), while 'fell, then rose' has no reason a student would believe. No simple 'fell' option is offered, so the key is the only plausible option."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E6-11",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E5-03: E6-11 (same 2x2 NOT-supported claim template; different system) || g2@E6-11: E5-03 (same 2x2 NOT-supported claim template; different system)",
+     "pair": [
+      "MSB4-E5-03",
+      "MSB4-E6-11"
+     ],
+     "recheck": {
+      "id": "MSB4-E6-11",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-E5-03",
+       "MSB4-E6-11"
+      ],
+      "hit": "no",
+      "reason": "Different system (a water stream bend knocking toothpicks vs wind-blown sand on chalk), different PE (4-ESS2-1 vs MS-ESS2-2) and different key (a cross-cell claim 3 vs 4 vs the interaction claim 0.3 g vs 0.6 g). They do share one 2x2 four-claim template (two main effects, interaction, cross-cell), which is a cross-item pattern rather than a B7 duplicate."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB4-E8-02",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E6-06: E8-02 (invented worlds of an invented star; Vessaline/Vespera star names)",
+     "pair": [
+      "MSB4-E6-06",
+      "MSB4-E8-02"
+     ],
+     "recheck": {
+      "id": "MSB4-E8-02",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-E6-06",
+       "MSB4-E8-02"
+      ],
+      "hit": "yes",
+      "reason": "Same PE (MS-ESS1-3), same system type (a telescope or probe surveying named worlds of an invented star, 'Vessaline' vs 'Vespera', nearly the same name) and same concept (read one world's scale property off a data display: width 2350 km vs volcano height 24 km). B42 requires the system AND the concept to differ."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB4-E8-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E7-08: E8-14 (comet passing an invented star; different PE and ask) || g2@E8-14: E7-08 (comet passing an invented star)",
+     "pair": [
+      "MSB4-E7-08",
+      "MSB4-E8-14"
+     ],
+     "recheck": {
+      "id": "MSB4-E8-14",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB4-E7-08",
+       "MSB4-E8-14"
+      ],
+      "hit": "no",
+      "reason": "Both are about comets near an invented star, but the PEs differ (MS-ESS1-2 orbital speed vs MS-ESS1-3 scale properties), the quantities differ (speed on day 20 vs tail length of the narrowest core) and the keys differ (36 km/s vs 30 million km)."
+     },
+     "counted": false
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB4-E5-05",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-E5-13",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-E5-18",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-E6-04",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-E6-18",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3: recorded"
+    },
+    {
+     "id": "MSB4-E7-17",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB4-E8-08",
+     "rule": 4,
+     "note": "no_source_needed yes from g2 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB4-E8-10",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-E8-17",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB4-E5-05",
+     "rule": 9,
+     "note": "single-grader b4_keyword (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E5-15",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E5-18",
+     "rule": 9,
+     "note": "single-grader b4_keyword (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E6-03",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E6-04",
+     "rule": 9,
+     "note": "single-grader b4_keyword (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E6-10",
+     "rule": 9,
+     "note": "single-grader b3_role_statement (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E7-15",
+     "rule": 9,
+     "note": "single-grader b4_plausibility (g1): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E8-10",
+     "rule": 9,
+     "note": "single-grader b1_stated_law (g2): item already dropped, no return"
+    },
+    {
+     "id": "MSB4-E6-03",
+     "rule": 9,
+     "note": "single-grader b2_duplicate E6-02/E6-03: target E6-03 already dropped, no return"
+    },
+    {
+     "id": "MSB4-E8-17",
+     "rule": 9,
+     "note": "single-grader b2_duplicate E7-05/E8-17: target E8-17 already dropped, no return"
+    },
+    {
+     "id": "MSB4-E8-13",
+     "rule": 9,
+     "note": "single-grader b4_cross_naming E7-11/E8-13: target E8-13 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB4-E5-15",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "g2 itself: mild; two of four generators peaking in August is unexplained, not impossible."
+    },
+    {
+     "id": "MSB4-E6-03",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "g2 itself: mild; room temperature is not stated, so the dew can be possible."
+    },
+    {
+     "id": "MSB4-E6-06",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "Real Kuiper-belt values relabelled: Arvo orbits in 248 years (Pluto's period) and Delmont is 2350 km wide with a 560-year orbit (Eris: ~2,330 km, ~557 yr). Two of four rows are real objects, as b3 E8-07 was the standard atmosphere rounded."
+    },
+    {
+     "id": "MSB4-E6-16",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "g1 itself: within ~6% of sqrt(g d) with realistic scatter, \"not exact\"; not a fact error."
+    },
+    {
+     "id": "MSB4-E7-01",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Large effect size from one neighborhood's filters; size, not a law."
+    },
+    {
+     "id": "MSB4-E7-06",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Both: 5.5 days/decade earlier ice-out is \"plausible but fast\"; size, not a law; drops under rule 9 from both."
+    },
+    {
+     "id": "MSB4-E7-15",
+     "rule": 3,
+     "field": "b4_plausibility",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Near-exact 5/6 table: decided as recognised canonical data under rule 5 (CONFIRM), not as a fact error."
+    },
+    {
+     "id": "MSB4-E7-15",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "The canonical classroom half-life simulation (dice with one marked face), and every row is the exact 5/6 expectation within one cube (199/167/138/116/96/81 vs 200/166.7/138.9/115.7/96.5/80.4); real dice scatter ~6 per shake (binomial SD at n=240), so the table is the law, not a run. Canonical experiment at its expected values, as b3 P5-10 (g1 b4_plausibility names the same)."
+    },
+    {
+     "id": "MSB4-E8-05",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "\"Tonight the Moon lies directly between Earth and the Sun\" is odd wording for a new Moon (it is up in daytime), but the alignment it states holds over that night and the spring-tide key is correct. Wording, not a fact error; g1 itself says it does not affect the key."
+    },
+    {
+     "id": "MSB4-E8-07",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "g2 itself: \"generic, not a dataset\"; the dissolved-oxygen sag shape is a pattern and the values are invented."
+    }
+   ]
+  }
+ }
+}
