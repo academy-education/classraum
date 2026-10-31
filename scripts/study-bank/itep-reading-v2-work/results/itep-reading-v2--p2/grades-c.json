@@ -1,0 +1,168 @@
+{
+ "1": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days."
+ },
+ "2": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days. This item is the most exposed: distractor 'It baked bread for the village on every day of the week.' is ruled out by paragraph 3 but is exactly what the 'each morning' sentence suggests."
+ },
+ "3": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days."
+ },
+ "4": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days."
+ },
+ "5": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days. This item asks about baking days, and the distractor 'on the same days that the shared oven was lit' leans on the inconsistent account of when the oven was lit."
+ },
+ "6": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Key is unique; source defect. Paragraph 2 says 'Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven', but paragraph 3 says 'Bread was baked on Tuesdays and Fridays', and paragraph 5 says that by 1895 'the oven was lit only on Fridays' (implying it had been lit on two days a week, not every morning). The oven cannot be lit every morning and also only on baking days."
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "43": {
+  "verdict": "unique"
+ },
+ "44": {
+  "verdict": "unique"
+ },
+ "45": {
+  "verdict": "unique"
+ },
+ "46": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    29,
+    30,
+    32,
+    33,
+    35,
+    36,
+    38,
+    39
+   ],
+   "evidence": "In the two science passages (items 29-40) the key is B in 8 of 12 items (frost 29-34: B,B,C,B,B,C; soreness 35-40: B,B,A,B,B,D). Batch-wide the keys are A13 B15 C12 D6, so D is underused (6/46 = 13%). The batch-wide skew is not significant on its own (chi-square about 3.9, df 3), but the local run of B keys is noticeable."
+  }
+ ]
+}

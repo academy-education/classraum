@@ -6886,3 +6886,24 @@ structural checks are pre-flight only. See CLAUDE.md.
   remained — next brief should hand authors the live systems per PE. Risk recorded: Physical "W W" names on 81% of
   name-bearing items. Packets: `scratchpad/map-science-b4/packets/` (+ `GRADER-PROMPT.md`); next step is six grader
   spawns.
+
+- **2026-10-31 — iTEP SLATE Reading v2: 114 of 152 cleared ("brief works" band), 114 STAGED verified=false (cohort
+  itep-reading-v2, read back 114 false / 0 true); Reading now holds 10 disjoint full forms (staged).** Brief
+  `briefs/itep-slate-reading-v2.md` cut as "broken" from v1's five pending lessons: no key property required or
+  forbidden; `assign.mjs` draws per item the main-idea breadth (key-broadest / distractor-broader / all-level),
+  key form (one-/two-part) and cast, the key-length rank (longest / shortest / middle, enforced by the pre-flight),
+  not-except key type, and per-passage kind order. Prereg `ITEP-SLATE-READING-V2.prereg.md` committed before any
+  passage. 8 Claude authors (16 Part 1, 10 Part 2, 16 Part 3). **New step: a cross-item probe before the gate** (one
+  fresh agent reads all 152 with keys and counts key-predicting properties): probe 1 found five (main-idea key always
+  in the twin-opening pair 10/10; failure endings, "X and why Y" and number details never keyed; vocabulary
+  odd-one-out), fixed in one revision round; probe 2 recorded. Gate (4 packets x a/b/c): 444/456 unique; drops were
+  one self-contradicting passage (D-P3B: "each morning" vs "Tuesdays and Fridays"), one Part 3 with two second
+  answers (B-P3A), and **one counted pattern, p2 a+b `one_template` on 6 main-idea items** (the key is still the only
+  whole-passage option: the breadth draw controls the widest option, not that). Part 1 16/16, Part 2 8/10 passages,
+  Part 3 11/16. Blind attack recorded only: 68.1% vs v1's exact control at 74.2% (-6.1; the control rose from 60.0%
+  with fresh solvers, i.e. no instrument). Pools after v2: Part 1 23 texts, Part 2 10 passages, Part 3 11.
+  Pending lessons 1-8 in `briefs/itep-slate-reading-v2.pending.md` (whole-passage-option count as its own drawn
+  axis; frequency-word story logic; "by time T" stems; one plot template across history passages; vocabulary
+  distractors always distant senses). Nothing released; a Daniel audit sample comes first. **Found:** two authors
+  printed `ASSIGNED.json` (all authors' shapes) while checking the format; per-author assignment files should carry
+  the plan the checker needs so authors never touch the shared file.

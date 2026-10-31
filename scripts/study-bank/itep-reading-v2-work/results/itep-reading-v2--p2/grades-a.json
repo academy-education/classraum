@@ -1,0 +1,186 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "hold",
+  "defect_type": "self_contradiction",
+  "reason": "Passage 1 (items 1-6) contradicts itself about how often the oven was lit: paragraph 2 says \"Each morning she lit a fire inside it before dawn ... and opened the door to customers at seven\", but paragraph 3 says \"Bread was baked on Tuesdays and Fridays\" and paragraph 5 says by 1895 \"the oven was lit only on Fridays\" (implying it had been lit on two days, not every morning). This bears directly on this item: the distractor \"It baked bread for the village on every day of the week\" gets textual support from \"each morning\". The text still favours the key (\"It was the village's main place for sharing news\") because of the explicit Tuesday/Friday line, so the key stays unique; the defect is in the source and affects all six items on this passage. Fix: \"Each baking morning\" or \"On baking days\"."
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "43": {
+  "verdict": "unique"
+ },
+ "44": {
+  "verdict": "unique"
+ },
+ "45": {
+  "verdict": "unique"
+ },
+ "46": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+   ],
+   "evidence": "Keys for items 25-36 run C,B,B,C,B,B,C,B,B,C,B,B: a period-3 CBB cycle repeated four times across three passages (soup, frost, muscle soreness). A student who notices it can answer the later items in the run without reading. Batch-wide letter counts B 15, A 13, C 12, D 6 of 46: D is under-used (expected ~11.5), a weaker avoid-D tell."
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    3,
+    11,
+    15,
+    20,
+    36,
+    45
+   ],
+   "evidence": "All six main-idea items share one option cast: the key is the only option spanning the whole passage, and the distractors are one narrow single-paragraph detail (3 D benches, 11 C platform, 20 B art room, 36 C downhill, 45 D photographing buttons), one wrong-cause or misattributed version (3 B travellers, 11 D baker first, 15 B learned the name, 45 A website won them back) and one over-broad or off-topic claim. Each item is still unique, but the shape lets a student pick the main idea without the passage by choosing the broadest option."
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    4,
+    9,
+    24,
+    31,
+    35,
+    42
+   ],
+   "evidence": "All six vocabulary items use the same distractor recipe: the three distractors are other dictionary senses of the headword (spare: show mercy to / save from trouble; dim: stupid; drifts: forms a snowbank / floats on water; draws: sketches / ends level; cleared: jumped over / found innocent; modest: timid). The key is the only sense that fits the context in every item. Each item is still unique; listed as a batch-level note because no distractor in any of them is a near-synonym that fits the context."
+  }
+ ]
+}

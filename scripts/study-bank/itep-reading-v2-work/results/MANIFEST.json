@@ -1,0 +1,95 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-READING-V2.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + A1",
+ "brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "graders": [
+  "a",
+  "b",
+  "c"
+ ],
+ "item_files_sha256": {
+  "scripts/study-bank/itep-reading-v2-work/items/A.json": "4bfe670b688525c1a1f730e5db7e2e25d921330776114a3da3a61440180a7841",
+  "scripts/study-bank/itep-reading-v2-work/items/B.json": "ff3f6bc513c3f6964e1236c69ef8a44a7d4239a0e52899fb4bfa0ee969275eec",
+  "scripts/study-bank/itep-reading-v2-work/items/C.json": "4bdd610d4c0692d04d67f772b26ad4c33d4d81c7c239c189ecc3fd04ad582fb0",
+  "scripts/study-bank/itep-reading-v2-work/items/D.json": "4c2a1f0002f83aad0bf9e034c00bbe19994ecbf1f68a32719ace54259b8258c6",
+  "scripts/study-bank/itep-reading-v2-work/items/E.json": "87a0b7391bd8ad8d5a4e59cd28e487b6c3b003250cc9df9c223c634750ef8720",
+  "scripts/study-bank/itep-reading-v2-work/items/F.json": "4dfd34b0a2be2e7a959e6b40a987eb08fe6349a44c058f0cdbae6d4111183398",
+  "scripts/study-bank/itep-reading-v2-work/items/G.json": "13e19615b95ece89ff40599d38a809774d22bea6622b94e3d533e0ce66d10f59",
+  "scripts/study-bank/itep-reading-v2-work/items/H.json": "66d9bdc309fc1d6b423ccb152105a80983bc0162af5a494e0b9197b896b65aa5"
+ },
+ "packets": [
+  {
+   "id": "itep-reading-v2--p1",
+   "stratum": "itep-reading",
+   "cohort": "itep-reading-v2",
+   "dir": "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1",
+   "items": 46,
+   "groups": 6,
+   "outputs": [
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-a.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-b.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-c.json"
+   ],
+   "prompts": {
+    "a": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-a.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "b": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-b.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "c": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p1/grades-c.json in the brief's output format. Assume each item has a defect: look hardest for a second defensible option, a distractor that is true of the source for the asked purpose, a key you can choose without reading the source, a false real-world claim or self-contradiction, and any pattern across items that picks the key. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns."
+   }
+  },
+  {
+   "id": "itep-reading-v2--p2",
+   "stratum": "itep-reading",
+   "cohort": "itep-reading-v2",
+   "dir": "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2",
+   "items": 46,
+   "groups": 9,
+   "outputs": [
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-a.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-b.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-c.json"
+   ],
+   "prompts": {
+    "a": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-a.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "b": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-b.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "c": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p2/grades-c.json in the brief's output format. Assume each item has a defect: look hardest for a second defensible option, a distractor that is true of the source for the asked purpose, a key you can choose without reading the source, a false real-world claim or self-contradiction, and any pattern across items that picks the key. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns."
+   }
+  },
+  {
+   "id": "itep-reading-v2--p3",
+   "stratum": "itep-reading",
+   "cohort": "itep-reading-v2",
+   "dir": "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3",
+   "items": 48,
+   "groups": 9,
+   "outputs": [
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-a.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-b.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-c.json"
+   ],
+   "prompts": {
+    "a": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-a.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "b": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-b.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "c": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p3/grades-c.json in the brief's output format. Assume each item has a defect: look hardest for a second defensible option, a distractor that is true of the source for the asked purpose, a key you can choose without reading the source, a false real-world claim or self-contradiction, and any pattern across items that picks the key. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns."
+   }
+  },
+  {
+   "id": "itep-reading-v2--p4",
+   "stratum": "itep-reading",
+   "cohort": "itep-reading-v2",
+   "dir": "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4",
+   "items": 12,
+   "groups": 2,
+   "outputs": [
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-a.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-b.json",
+    "scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-c.json"
+   ],
+   "prompts": {
+    "a": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-a.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "b": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-b.json in the brief's output format. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns.",
+    "c": "You are an independent grader for a staged test-prep item batch. Work in /Users/andylee/Downloads/saas/classraum. Read scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/COFOUNDER-BRIEF-v2.md and scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/packet.json. Read nothing else in the repo: no index.json, no batch files, no key files, no other grader output, no other packet. Claude only, no database. Write only your own output file. Grade every item exactly as the brief instructs (verdict per item, defect_type and reason for any non-unique verdict, batch_patterns over the whole packet) and write scratchpad/agent-review/itep-reading-v2/itep-reading-v2--p4/grades-c.json in the brief's output format. Assume each item has a defect: look hardest for a second defensible option, a distractor that is true of the source for the asked purpose, a key you can choose without reading the source, a false real-world claim or self-contradiction, and any pattern across items that picks the key. Reply with the number of items graded, every non-unique item with its reason, and your batch_patterns."
+   }
+  }
+ ]
+}

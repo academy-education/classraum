@@ -1,0 +1,175 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "To suggest that Derwin regretted leaving racing",
+  "reason": "The stem asks the purpose of the REPORTER'S QUESTION. Read literally, the reporter asked 'whether he missed competing', i.e. the question raises the possibility that he regretted leaving racing; the key ('To show what Derwin valued more than his victories') is the purpose of Derwin's ANSWER / the writer's purpose in including the exchange. A careful student taking the stem at its word has a reasonable complaint for the regret option."
+ },
+ "13": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "The local paper gave the group a nickname",
+  "reason": "Paragraph 4 says that in spring 1961, at the very start, 'the local paper gave the group a nickname: the Sunday Shufflers'. So by the end of the first year this had also happened; it is true for the asked time frame, not only the key ('Several members finished a race in the city'). The doctor option is correctly ruled out ('after that'), but the nickname option is a second correct answer."
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "43": {
+  "verdict": "unique"
+ },
+ "44": {
+  "verdict": "unique"
+ },
+ "45": {
+  "verdict": "unique"
+ },
+ "46": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    18,
+    19,
+    20,
+    21,
+    22
+   ],
+   "evidence": "All five consecutive items 18-22 (wasp-nest passage) are keyed A; overall distribution is balanced (A10 B9 C13 D14 of 46), so this is a within-set run, not a batch-wide skew. Smaller runs: C on 25-27."
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    5,
+    14,
+    21,
+    22,
+    24,
+    25,
+    29,
+    33,
+    34,
+    43
+   ],
+   "evidence": "All 10 vocabulary items use one shape: key = the in-context sense, three distractors = unrelated dictionary senses of the same word from far domains (money/fees in 22, 24, 25, 33, 34; guns, broth, stage, guard, computers). In several (22 'in charge' -> in control, 24 'diverted' -> sent another way, 21 'post', 33 'stock') the key is the dominant sense of the word and the distractors are rarer senses or near-absurd glosses, so the item is answerable without the passage. Not a per-item defect (far-off distractors are accepted), recorded as a cross-item tell."
+  }
+ ]
+}

@@ -155,3 +155,37 @@ is reported as "no headroom, uninformative".
   all 152.
 - **Inference and not-except** (36 items) are the kinds most often found with a second defensible answer.
 - **Part 1 shape is unconfirmed** (§0).
+
+## Results (2026-10-31, recorded after scoring; no rule changed)
+
+- **Authoring:** 8 authors, 152 items, per-author pre-flight PASS on hand-in. Two authors (B, D) printed the head of
+  `ASSIGNED.json` while checking its format and so saw author A's P1A shape (reported by them; A's item unaffected).
+  Batch run failed 8 (prompt openings "which of the following" x16, "according to the passage," x14, "why does the
+  writer" x13 against a cap of 10; two shared key 4-grams; "delicate" tested by A and D; one repeated option);
+  resolved per §3 by B, D, F, G, H. Break test 10/10 (`breaktest-check.mjs`).
+- **Probe 1** (`probe/probe1.json`): 6 patterns. Five were findings under §3b and went back for one round (A, B, C, D,
+  E, F, G): main-idea key always in the pair sharing a 3+-word opening (10/10); a failure-ending option never keyed
+  (0/7); "X and why Y" never keyed (0/5); a number/time detail never keyed (0/4); vocabulary odd-one-out (3/3). The
+  sixth, **key letter position in stored order** (B/F/G/H slot A, E slot D), was not sent for revision: stored order
+  never reaches a grader or a student (`dealPacket` and `shuffleDrawnChoices` both reshuffle; A1.1). That is a
+  judgement outside §3b's literal rule, recorded here. One revision introduced an R6 overlap (C-P3A-5 confirming a
+  P3A-2 option), swapped before freeze. **Probe 2** (`probe/probe2.json`, recorded, not revised): letter position
+  again; main-idea key names a change/outcome 12/14; inference key never the highest passage-overlap option 0/22;
+  hedge on inference keys 7/9; F's keys longest-by-words 12/16; over-general main-idea option never keyed 0/6.
+- **Gate** (`score.mjs`; 4 packets, 12 graders; files in `results/itep-reading-v2--p*/`): 456 verdicts, 444 unique.
+  Item drops: B-P3A-4 (c), B-P3A-5 (a, c: "by the end of the first year" admits the spring nickname), D-P3B-1..6
+  (c hold, a on item 2: "each morning" vs "Tuesdays and Fridays"). **One counted pattern:** p2 a+b `one_template` on 6
+  main-idea items (C-P2A-3, C-P3A-5, C-P3B-5, D-P3B-3, E-P2B-4, B-P3B-2); union 6/152 = 3.9%, no hold. Uncounted
+  single-grader patterns: p1 a `convergence_key`, p1 c vocabulary `one_template`, p2 a vocabulary `one_template`, p3 a
+  `identical_key_prose` ("the sceptic comes round") and plot `one_template`; letter runs excluded (A1.1).
+  **Cleared 114 of 152 = "brief works" band (114 is the bar).** Part 1 16/16 texts; Part 2 32/40 items, 8/10
+  passages (C-P2A, E-P2B dropped); Part 3 66/96 items, 11/16 passages (B-P3A, B-P3B, C-P3A, C-P3B, D-P3B dropped).
+  No part under half. Lessons 1-8 in `briefs/itep-slate-reading-v2.pending.md`.
+- **Blind attack (recorded only, §5):** candidate 245/360 = 68.1% (120 items) vs control 89/120 = 74.2% (v1's exact 10
+  groups, verified by id), margin -6.1; unanimity 95/120 vs 30/40. The control sits at 74.2%, a hair under the 75%
+  "no headroom" line, and higher than in v1 (60.0%) on the same items with fresh solvers: three samples of one model,
+  not an instrument. Nothing read from it.
+- **Staged:** 114 rows, `itep-reading-v2.batch.json` -> `itep-bank-helper.ts stage --expect 114 --apply`, read back
+  114 false / 0 true. `verify-itep-draw.ts --section reading`: Part 1 pool 23, Part 2 40 (10 passages), Part 3 66
+  (11 passages), full 12/12 draw, passages whole and in order, live path refuses; **disjoint full forms: 10.**
+- Nothing released; release goes through a Daniel audit sample.
