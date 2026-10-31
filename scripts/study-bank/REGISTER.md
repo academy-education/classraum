@@ -3256,6 +3256,20 @@ recorded only in a commit message is a finding nobody reads.
     uninformative. Nothing released; the TestSession iTEP-listening audio blocker from the v1 entry still stands.
 
 
+- **2026-10-31 — iTEP co-founder audit prepared (33 items, `itep-audit-cofounder-2026-10-31`, queued as
+  `nextManualDraw` behind audit2; `itep-audit/AUDIT-DRAW.md`). Two review-panel defects found and fixed first.**
+  (1) **`draw-review-run.mjs` and the panel's POST draw shuffled every item's options**, error identification
+  included, so Daniel would have seen "[A: has bought]" in the sentence and "has bought" listed under another letter.
+  Labelled-segment items (`hasLabelledSegments`; mjs mirror `isLabelledItem` in `review-deal.mjs`, parity-tested) now
+  keep their authored order and key slot and sit out the deal. The rest are still dealt flat. Break test: with the
+  fixed-order code off, the dry run showed all 5 sampled error-ID rows reordered. (2) **The reveal printed every
+  stimulus as raw text**: raw `[A: ...]` markers, and a listening item's whole transcript with no audio. The reveal now
+  draws the segments underlined and lettered, and plays listening items through the student `ListeningAudioPlayer`
+  with the transcript behind its toggle (`ReviewPanel-itep.test.tsx`, each branch revert-confirmed). The blind phase
+  was already options-only, so no transcript was ever shown before a pick. `draw-review-run.mjs` also takes
+  `--ids-file=`, `--cohort=` and `--dry` now, and with an ids file it serves each cohort in the file's order, so a
+  passage's items come in authored order.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

@@ -31,9 +31,16 @@
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
-import { dealSlots, dealSegments, parseDrawCohort, SLOTS } from './review-deal.mjs'
+import { dealSlots, dealSegments, parseDrawCohort, isLabelledItem, SLOTS } from './review-deal.mjs'
 
-const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
+/* CLI FLAGS, added 2026-10-31: --cohort=<spec>, --ids-file=<path> and --dry are the same as DRAW_COHORT,
+ * DRAW_IDS_FILE and DRAW_DRY=1 (a flag wins over the env var). Positional arguments are everything not starting
+ * with '--'. */
+const flag = name => { const a = process.argv.slice(2).find(x => x === `--${name}` || x.startsWith(`--${name}=`)); return a === undefined ? undefined : (a.includes('=') ? a.slice(a.indexOf('=') + 1) : true) }
+const COHORT_SPEC = flag('cohort') ?? process.env.DRAW_COHORT
+const IDS_FILE = flag('ids-file') ?? process.env.DRAW_IDS_FILE
+const DRY = flag('dry') === true || process.env.DRAW_DRY === '1'
+const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2).filter(a => !a.startsWith('--'))
 /* Cohorts are drawn in the order given, and that order IS the sitting's
  * order — front-load the cohort whose answer matters most, so a reviewer
  * who stops halfway has still answered the question worth asking. */
@@ -57,7 +64,7 @@ const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
  * DOMAIN '*': no domain filter. Allowed only with DRAW_COHORT, so the pool is always bounded by a cohort.
  * DRAW_GROUP may list several passage groups, comma-separated (a 12-item spot is two passages). */
 let cohortSpec
-try { cohortSpec = parseDrawCohort(process.env.DRAW_COHORT) } catch (e) { console.error(e.message); process.exit(1) }
+try { cohortSpec = parseDrawCohort(COHORT_SPEC) } catch (e) { console.error(e.message); process.exit(1) }
 const domainList = (domainArg || '').split((domainArg || '').includes('|') ? '|' : ',').map(d => d.trim()).filter(Boolean)
 const entries = cohortSpec.pooled
   ? (domainList.length === 1 && !/:\d+$/.test(domainList[0]) ? cohortSpec.quotas.map(q => ({ domain: domainList[0], size: q.size, cohort: q.cohort })) : (console.error('a pooled DRAW_COHORT takes exactly one <domain> (or *) with no :n'), process.exit(1)))
@@ -74,9 +81,11 @@ const FAMILY = process.env.DRAW_FAMILY || null
  * Amendment A1): only those items are drawable. A cohort's pool also holds the items the agent graders DROPPED, and an
  * audit of "the cleared items" must never serve one of those. The file is the pre-chosen sample, so with each cohort's
  * size equal to its count of listed ids the draw is fully determined. An empty or unreadable file refuses. */
-let ALLOW = null
-if (process.env.DRAW_IDS_FILE) {
-  try { ALLOW = new Set(JSON.parse(readFileSync(process.env.DRAW_IDS_FILE, 'utf8'))) } catch (e) { console.error(`DRAW_IDS_FILE unreadable: ${e.message}`); process.exit(1) }
+/* The file's ORDER is also the sitting's order within each cohort (2026-10-31, iTEP audit): a passage's items are
+ * listed in authored order, so a lecture's questions are served first to last instead of shuffled. */
+let ALLOW = null, ALLOW_ORDER = null
+if (IDS_FILE) {
+  try { const list = JSON.parse(readFileSync(IDS_FILE, 'utf8')); ALLOW = new Set(list); ALLOW_ORDER = new Map(list.map((id, i) => [id, i])) } catch (e) { console.error(`DRAW_IDS_FILE unreadable: ${e.message}`); process.exit(1) }
   if (!ALLOW.size) { console.error('DRAW_IDS_FILE is empty — refusing'); process.exit(1) }
 }
 const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0])
@@ -126,7 +135,7 @@ for (const [di, domain] of domains.entries()) {
   const size = sizes[di]
   const pool = []
   for (let f = 0; ; f += 1000) {
-    let q = db.from('study_item_bank').select('id, item, verified')
+    let q = db.from('study_item_bank').select('id, item, verified, cohort')
       .neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
     if (domain !== '*') q = q.eq('domain', domain)
     if (FAMILY) q = q.eq('family', FAMILY)
@@ -166,6 +175,7 @@ for (const [di, domain] of domains.entries()) {
   console.log(`${domain}${entries[di].cohort && cohortSpec.pooled ? ` [${entries[di].cohort}]` : ''}: ${pool.length} unarchived, ${usable.length} reviewable (unseen) — ${usable.length - nStaged} verified, ${nStaged} staged`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
   let picked = sh(usable).slice(0, size)
+  if (ALLOW_ORDER) picked.sort((a, b) => ALLOW_ORDER.get(a.id) - ALLOW_ORDER.get(b.id))
   /* DRAW_FIRST=<item id>, added 2026-10-07 (ssat-wv6 sitting): that item, if it is in this cohort's pool,
    * goes FIRST in the sitting, so a flagged item is certainly reached. The run row for it is also
    * inserted on its own before the rest, because the panel serves "the next unanswered row" with no
@@ -203,12 +213,19 @@ function die0() { console.error('DRAW_FIRST: sample shorter than size'); process
  * four-wide rows and 1/5 on five-wide ones, so they are different
  * instruments and must be dealt -- and later scored -- apart. */
 // (the deal now lives in review-deal.mjs so it is tested; a pooled run is dealt as one segment, see there)
-const slots = dealSlots(sample.map(r => r.item.choices.length), dealSegments(sizes, cohortSpec.pooled), sh)
+/* An error-identification item (letters printed in its sentence) keeps its authored order and its authored key
+ * slot; it is left out of the deal (isLabelledItem, review-deal.mjs). */
+const fixedSlots = sample.map(r => isLabelledItem(r.item) ? L[r.item.choices.indexOf(r.item.correct_answer)] : null)
+const slots = dealSlots(sample.map(r => r.item.choices.length), dealSegments(sizes, cohortSpec.pooled), sh, fixedSlots)
 
 const runId = runIdArg || `${domains[0].toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
 const rows = sample.map((r, i) => {
   const n = r.item.choices.length
   const ki = r.item.choices.indexOf(r.item.correct_answer)
+  if (fixedSlots[i]) {
+    if (slots[i] !== L[ki]) throw new Error(`item ${r.id}: labelled item's slot moved`)
+    return { item_id: r.id, run_id: runId, reviewer_id: reviewerId, shown_order: Array.from({ length: n }, (_, x) => x), key_slot: L[ki] }
+  }
   const others = sh(Array.from({ length: n }, (_, x) => x).filter(x => x !== ki))
   const keyAt = L.indexOf(slots[i])
   if (keyAt < 0 || keyAt >= n) throw new Error(`item ${r.id}: slot ${slots[i]} outside a ${n}-option item`)
@@ -221,11 +238,13 @@ const rows = sample.map((r, i) => {
 
 /* DRAW_DRY=1, added 2026-10-23: print the sample and the deal, insert nothing (the open-run guard has still run).
  * The only way to check a pooled or multi-group draw against the live bank without creating a run. */
-if (process.env.DRAW_DRY === '1') {
+if (DRY) {
   const byCohortWidth = {}
   for (const [i, r] of rows.entries()) { const k = `${entries.findIndex((_, ci) => i >= offsets[ci] && i < offsets[ci + 1])}`; byCohortWidth[k] = (byCohortWidth[k] ?? 0) + 1 }
   console.log(`DRY RUN (DRAW_DRY=1): would insert ${rows.length} rows into "${runId}"; per entry ${entries.map((e, ci) => `${e.cohort ?? e.domain}:${byCohortWidth[ci] ?? 0}`).join(' ')}`)
   console.log(`  key letters ${L.map(x => `${x}:${rows.filter(r => r.key_slot === x).length}`).join(' ')}`)
+  console.log(`  fixed order (labelled segments): ${fixedSlots.filter(Boolean).length} rows, keys ${fixedSlots.filter(Boolean).join('')}`)
+  for (const [i, r] of rows.entries()) console.log(`  ${String(i + 1).padStart(2)} ${r.item_id} key ${r.key_slot} shown [${r.shown_order.join(',')}]${fixedSlots[i] ? ' FIXED' : ''}  ${sample[i].cohort ?? ''}`)
   process.exit(0)
 }
 // insert the DRAW_FIRST row on its own first (see above), then the rest in order

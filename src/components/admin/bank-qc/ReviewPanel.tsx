@@ -21,6 +21,10 @@ import { CheckCircle2, HelpCircle, Loader2, ShieldQuestion, XCircle } from 'luci
 import { Button } from '@/components/ui/button'
 import { useQcT } from './i18n'
 import { SLOTS, isBlindOnlyRun, type Slot } from '@/lib/study/item-review'
+import { ListeningAudioPlayer } from '@/app/mobile/study/session/[id]/test/ListeningAudioPlayer'
+import { PassageParagraphs } from '@/app/mobile/study/session/[id]/test/helpers'
+import { isListeningItem } from '@/lib/study/listening-item'
+import { hasLabelledSegments } from '@/lib/study/labelled-segments'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -96,7 +100,7 @@ async function authed(url: string, init?: RequestInit) {
 }
 
 export function ReviewPanel({ domains }: { domains: string[] }) {
-  const { t } = useQcT()
+  const { t, language } = useQcT()
   const [domain, setDomain] = React.useState(domains[0] ?? '')
   // The domain list arrives with the live read, which can finish after
   // (or never, if it fails) — the panel itself mounts without it.
@@ -373,11 +377,35 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               : <><CheckCircle2 className="w-3.5 h-3.5" /> {t('admin.bankQc.review.notGuessable')}</>}
           </div>
 
-          {/* pre-wrap: passages carry "\n\n" paragraph breaks, and items ask about "the final paragraph";
-              without it the browser collapses the passage into one block (co-founder note, 2026-10-21). */}
-          <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100 whitespace-pre-wrap">
-            {reveal.stimulus || <em className="text-gray-400">{t('admin.bankQc.review.noStimulus')}</em>}
-          </p>
+          {/* Three stimulus shapes (2026-10-31, iTEP audit):
+              - LISTENING ("Transcript:" passage): the audio the student hears, through the student player (TTS on
+                first play, W/M voices pinned). The transcript is the answer key, so it stays behind the player's
+                own toggle; the reviewer hears the item before reading it, as a student would.
+              - LABELLED SEGMENTS (error identification): "[A: set]" drawn underlined with its letter, as the test
+                prints it. Only when the shown options are the segments in order — the draw keeps them so.
+              - Anything else: plain text. pre-wrap: passages carry "\n\n" paragraph breaks, and items ask about
+                "the final paragraph"; without it the browser collapses the passage into one block (co-founder
+                note, 2026-10-21). */}
+          {isListeningItem({ passage: reveal.stimulus }) ? (
+            <div data-testid="review-audio">
+              <ListeningAudioPlayer
+                key={`${runId}:${itemId}`}
+                groupKey={`review:${runId}:${itemId}`}
+                transcript={reveal.stimulus}
+                language={language === 'korean' ? 'ko' : 'en'}
+                allowTranscriptReveal
+                maxPlays={3}
+              />
+            </div>
+          ) : hasLabelledSegments({ passage: reveal.stimulus, choices: reveal.options }) ? (
+            <div data-testid="review-segments" className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100 leading-loose">
+              <PassageParagraphs text={reveal.stimulus} />
+            </div>
+          ) : (
+            <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100 whitespace-pre-wrap">
+              {reveal.stimulus || <em className="text-gray-400">{t('admin.bankQc.review.noStimulus')}</em>}
+            </p>
+          )}
           {reveal.graphic && (
             <div className="mt-3 overflow-x-auto" data-testid="review-graphic">
               <QuestionGraphicView graphic={reveal.graphic} />

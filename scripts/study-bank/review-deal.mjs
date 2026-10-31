@@ -12,12 +12,18 @@
  */
 export const SLOTS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
-/** widths: option count per sample row; segments: [[lo, hi), ...]; shuffle: array -> shuffled copy. */
-export function dealSlots(widths, segments, shuffle) {
+/** widths: option count per sample row; segments: [[lo, hi), ...]; shuffle: array -> shuffled copy.
+ * fixed (optional): per row, a slot the row MUST keep (an error-identification item whose letters are printed in
+ * its sentence, see isLabelledItem). A fixed row takes its own slot and is left out of the deal; the rest are dealt
+ * flat as before. */
+export function dealSlots(widths, segments, shuffle, fixed = []) {
   const slots = new Array(widths.length)
   for (const [lo, hi] of segments) {
     const byWidth = new Map()
-    for (let i = lo; i < hi; i++) { if (!byWidth.has(widths[i])) byWidth.set(widths[i], []); byWidth.get(widths[i]).push(i) }
+    for (let i = lo; i < hi; i++) {
+      if (fixed[i]) { slots[i] = fixed[i]; continue }
+      if (!byWidth.has(widths[i])) byWidth.set(widths[i], []); byWidth.get(widths[i]).push(i)
+    }
     for (const [w, idxs] of byWidth) {
       const dealt = shuffle(idxs.map((_, i) => SLOTS[i % w]))
       idxs.forEach((sampleIdx, k) => { slots[sampleIdx] = dealt[k] })
@@ -46,4 +52,19 @@ export function parseDrawCohort(v) {
   })
   if (new Set(quotas.map(q => q.cohort)).size !== quotas.length) throw new Error('DRAW_COHORT names a cohort twice')
   return { pooled: true, cohort: null, quotas }
+}
+
+/* LABELLED SEGMENTS (iTEP Grammar Part 2, error identification), added 2026-10-31. The passage prints
+ * "[A: set] up a tent [B: behind] ..." and the choices are those segments IN ORDER, so the letter in the sentence IS
+ * the option's position. Reordering the options for a review run would make the reveal's A..D disagree with the
+ * sentence's A..D. Mirrors hasLabelledSegments in src/lib/study/labelled-segments.ts exactly (structural: one marker
+ * per choice, lettered A, B, C... in order, each marker's text equal to its choice); a parity test pins the two. */
+const MARKER = /\[([A-F]):\s*([^\]\n]+?)\s*\]/g
+const choiceText = c => typeof c === 'string' ? c : (c && typeof c === 'object' && typeof c.text === 'string' ? c.text : '')
+export function isLabelledItem(item) {
+  const choices = item?.choices ?? []
+  if (!item?.passage || choices.length < 2) return false
+  const segs = [...String(item.passage).matchAll(MARKER)].map(m => ({ label: m[1], text: m[2] }))
+  if (segs.length !== choices.length) return false
+  return segs.every((s, i) => s.label === String.fromCharCode(65 + i) && s.text === choiceText(choices[i]).trim())
 }

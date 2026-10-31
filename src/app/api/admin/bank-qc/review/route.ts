@@ -5,6 +5,7 @@ import {
   dealSlots, dealItem, groupRuns, readRun, reviewerAgreement, isBlindOnlyRun,
   SLOTS, type Slot,
 } from '@/lib/study/item-review'
+import { hasLabelledSegments } from '@/lib/study/labelled-segments'
 
 /**
  * Human two-phase item review for /admin/bank-qc.
@@ -441,8 +442,12 @@ export async function POST(request: NextRequest) {
    * also mis-state the control -- the best fixed-slot strategy is 1/4 on
    * four-wide rows and 1/5 on five-wide ones. Each width gets its own
    * balanced deal and the rows keep their own. */
+  /* An error-identification item prints its letters IN the sentence ("[A: set] up a tent [B: behind] ..."), so its
+   * options keep their authored order and key slot; it sits out the deal (labelled-segments.ts, 2026-10-31). */
+  const fixed = sample.map(it => hasLabelledSegments(it.item))
   const byWidth = new Map<number, number[]>()
   sample.forEach((it, i) => {
+    if (fixed[i]) return
     const w = it.item.choices!.length
     if (!byWidth.has(w)) byWidth.set(w, [])
     byWidth.get(w)!.push(i)
@@ -457,7 +462,9 @@ export async function POST(request: NextRequest) {
 
   const rows = sample.map((it, i) => {
     const keyIndex = it.item.choices!.indexOf(it.item.correct_answer!)
-    const { shownOrder, keySlot } = dealItem(it.item.choices!.length, keyIndex, slots[i], rand)
+    const { shownOrder, keySlot } = fixed[i]
+      ? { shownOrder: it.item.choices!.map((_, x) => x), keySlot: SLOTS[keyIndex] }
+      : dealItem(it.item.choices!.length, keyIndex, slots[i], rand)
     return {
       item_id: it.id,
       run_id: runId,
