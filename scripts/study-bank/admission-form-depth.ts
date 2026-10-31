@@ -4,7 +4,11 @@
  *
  * READ ONLY. Never writes to the bank or to study_item_exposures.
  *
- *   npx tsx scripts/study-bank/admission-form-depth.ts [--selftest] [--forms N]
+ *   npx tsx scripts/study-bank/admission-form-depth.ts [--selftest] [--forms N] [--include-ids <json>]
+ *
+ *   --include-ids <json>  ALSO replay these STAGED rows as if released: a JSON array of ids, or
+ *     {"ids": [...]}. Added 2026-10-31 (SSAT-READING-V2.prereg.md) to report depth "with staged survivors".
+ *     Every id must exist, be unarchived and verified=false, or the script refuses; the header names the count.
  *
  * ── Why form-capacity.mjs is not the answer ──────────────────────────
  * That script reports SSAT as 4 / 3 / 3 forms and labels each line
@@ -214,7 +218,30 @@ const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.SUPABASE_SERVICE_ROLE
 const formsArg = process.argv.indexOf('--forms')
 const FORMS = formsArg >= 0 ? Number(process.argv[formsArg + 1]) : 6
 if (!Number.isInteger(FORMS) || FORMS < 1) { console.error('REFUSING: --forms needs a positive integer'); process.exit(2) }
+const incArg = process.argv.indexOf('--include-ids')
+async function loadIncluded(): Promise<Map<string, Row & { family: string; section: string }>> {
+  const out = new Map<string, Row & { family: string; section: string }>()
+  if (incArg < 0) return out
+  const f = process.argv[incArg + 1]
+  if (!f || f.startsWith('--')) { console.error('REFUSING: --include-ids needs a file'); process.exit(2) }
+  const j = JSON.parse(readFileSync(f, 'utf8'))
+  const ids: string[] = Array.isArray(j) ? j : j.ids
+  if (!Array.isArray(ids) || !ids.length) { console.error(`REFUSING: ${f} holds no ids`); process.exit(2) }
+  if (new Set(ids).size !== ids.length) { console.error(`REFUSING: ${f} repeats an id`); process.exit(2) }
+  for (let i = 0; i < ids.length; i += 200) {
+    const { data, error } = await db.from('study_item_bank').select('id,family,section,passage_group_id,item,task,verified,archived').in('id', ids.slice(i, i + 200))
+    if (error) throw new Error(error.message)
+    for (const r of data) {
+      if (r.verified || r.archived) { console.error(`REFUSING: ${r.id} is not staged (verified=${r.verified}, archived=${r.archived})`); process.exit(2) }
+      out.set(r.id as string, { id: r.id as string, passageGroupId: r.passage_group_id as string | null, item: r.item as { prompt?: string | null }, task: r.task as string | null, family: r.family as string, section: r.section as string })
+    }
+  }
+  if (out.size !== ids.length) { console.error(`REFUSING: found ${out.size} of ${ids.length} ids in ${f}`); process.exit(2) }
+  console.log(`\n+ ${out.size} STAGED rows from ${f} replayed as if released (NOT live)`)
+  return out
+}
 async function main() {
+const included = await loadIncluded()
 for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
   console.log(`\n${family.toUpperCase()} — a student's first ${FORMS} tests, section by section`)
   console.log('  section      items  groups   ' + Array.from({ length: FORMS }, (_, i) => `form${i + 1}`).join('  ') + '   CLEAN')
@@ -253,6 +280,7 @@ for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
       })))
       if (data.length < 1000) break
     }
+    for (const r of included.values()) if (r.family === family && r.section === block.bankSection) rows.push(r)
     rowsBySection.set(block.bankSection!, rows)
   }
   /* Replay test by test: form f of every block before form f+1 of any. */

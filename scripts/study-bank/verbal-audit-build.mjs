@@ -8,6 +8,10 @@
  *     --run     default agentreview-audit-cofounder-2026-10-29
  *     --expect  default 957; the population must equal it exactly or the build exits non-zero
  *     --force   allow wiping a root that already holds grader output (audit-*.json)
+ *     --ids-file <json>  population = {"cohorts": {"<cohort>": ["<id>", ...]}} instead of a run's release set
+ *               (added 2026-10-31 for SSAT-READING-V2.prereg.md: the stage-1 agent-review cleared ids of new cohorts);
+ *               --expect must still equal the id count, and every row must be staged in the cohort the file names
+ *     --prereg <path>  recorded in MANIFEST.json (default VERBAL-AUDIT-2026-10-31.prereg.md)
  *
  * Population: agent-review-select.mjs selectRelease(run).release - the SAME code agent-review-release.mjs runs, so
  * the audited ids are exactly the ids its dry run says it would write. Never re-derived by cohort name.
@@ -45,7 +49,15 @@ try {
   if (hasAuditFiles(root) && !argv.includes('--force')) throw new RefusalError(`${root} already holds grader output (audit-*.json); pass --force to wipe it`)
 
   const db = client()
-  const sel = await selectRelease(db, RUN)
+  const idsFile = flag('ids-file', null)
+  let sel
+  if (idsFile) {
+    const j = JSON.parse(readFileSync(resolve(idsFile), 'utf8'))
+    if (!j || typeof j.cohorts !== 'object') throw new RefusalError(`${idsFile}: expected {"cohorts": {...}}`)
+    const release = Object.entries(j.cohorts).map(([cohort, ids]) => ({ cohort, ids }))
+    if (release.some(c => !Array.isArray(c.ids))) throw new RefusalError(`${idsFile}: every cohort needs an id array`)
+    sel = { release, releaseCount: release.reduce((n, c) => n + c.ids.length, 0) }
+  } else sel = await selectRelease(db, RUN)
   const population = sel.release.flatMap(c => c.ids.map(id => ({ id, cohort: c.cohort })))
   if (new Set(population.map(p => p.id)).size !== population.length) throw new RefusalError('selection holds a duplicate id')
   if (population.length !== sel.releaseCount) throw new RefusalError(`selection flattened to ${population.length}, releaseCount ${sel.releaseCount}`)
@@ -70,7 +82,7 @@ try {
 
   if (existsSync(root)) rmSync(root, { recursive: true })
   mkdirSync(root, { recursive: true })
-  const manifest = { built_at: new Date().toISOString(), run: RUN, prereg: 'scripts/study-bank/VERBAL-AUDIT-2026-10-31.prereg.md', brief: join(root, 'AUDIT-BRIEF.md'), population: EXPECT, items: 0, units: 0, packets: [], packet_dirs: [] }
+  const manifest = { built_at: new Date().toISOString(), run: idsFile ? `ids-file:${idsFile}` : RUN, prereg: flag('prereg', 'scripts/study-bank/VERBAL-AUDIT-2026-10-31.prereg.md'), brief: join(root, 'AUDIT-BRIEF.md'), population: EXPECT, items: 0, units: 0, packets: [], packet_dirs: [] }
   const perCohort = {}
 
   for (const { cohort } of sel.release) {
@@ -143,7 +155,7 @@ try {
   put(join(root, 'PACKETS.txt'), manifest.packet_dirs.join('\n') + '\n')
   put(join(root, 'MANIFEST.json'), manifest)
 
-  console.log(`population ${EXPECT} (= ${RUN} release set); built ${manifest.packets.length} packets, ${manifest.items} items in ${manifest.units} units under ${root}`)
+  console.log(`population ${EXPECT} (= ${manifest.run}); built ${manifest.packets.length} packets, ${manifest.items} items in ${manifest.units} units under ${root}`)
   for (const [k, v] of Object.entries(perCohort)) console.log(`  ${k.padEnd(26)} items ${String(v.items).padStart(3)}  units ${String(v.units).padStart(3)} (passage sets ${v.sets})  packets ${v.packets}`)
   const src = manifest.packets.flatMap(p => JSON.parse(readFileSync(join(p.dir, 'index.json'), 'utf8')).items)
   console.log(`source_check required ${src.filter(i => i.source_check === 'required').length}, not_applicable ${src.filter(i => i.source_check === 'not_applicable').length}`)
