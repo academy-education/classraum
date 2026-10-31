@@ -105,3 +105,13 @@ No blind number is produced (the gate the owner named is the agent-review instru
 Graders are one model sampled several times; agreement is not independence. A key-visible grader is anchored by the
 key. Agent reading comprehension has under-flagged what the co-founder later found (memory). The Daniel audit sample
 is the human check, after this run.
+
+## Addendum 1 (2026-10-31, plans drawn, before any author starts; no rule changed)
+
+Brief v2 frozen: `briefs/ssat-reading-v2.md` sha256 c6559149af4d95b8ae5548a4091b950e4d0ec9149063d9c37c59b110e7a01024
+(method id `ssat-rd-v2-agent`). Plans (`scratchpad/ssat-v2-work/plans/`), sha256:
+d23 ed44fe6d…af5e, d24 9fee76cc…5d106, d25 4abe716b…bc552, d26 e54d8417…f53f4, d27 9fef1d14…07228, d28 bbefba35…04f68.
+Drawn totals over 216 items: key length shortest 50 / middle 125 / longest 41; main-idea breadth key-broadest 5,
+distractor-broader 12, all-level 7, two-part key 9 of 24; attitude key strong 9 of 18; vocabulary distractors
+context 52 / sense 92 (6 of 36 items all-sense); purpose key abstract 12 of 36. Existing-passage list regenerated
+(326 SSAT+ISEE openings, 141 live/staged SSAT attitude sets) by `ssat-reading-v2/existing.mjs`.
