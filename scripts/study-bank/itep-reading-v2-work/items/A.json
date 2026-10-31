@@ -1,0 +1,805 @@
+{
+  "author": "A",
+  "sets": [
+    {
+      "set_id": "ITR2-A-P1A",
+      "part": 1,
+      "genre": "shop notice",
+      "title": "Fish room moving upstairs",
+      "passage": "Dear customers, from Monday 3 June our fish room will move from the back of the shop to a new room upstairs. The new room is bigger, so we can keep twice as many tanks. While we move the fish, the fish room will be closed for four days. You can still buy fish food, plants and nets at the front counter during this time. The fish room will open again upstairs on Friday 7 June. Thank you for your patience.\n\nAnsel and Bree Ashwell",
+      "names": [
+        "Ansel",
+        "Bree",
+        "Ashwell"
+      ],
+      "other_caps": [
+        "Monday",
+        "June",
+        "Friday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-A-P1A-1",
+          "kind": "main-idea",
+          "difficulty": "easy",
+          "prompt": "What is the notice mainly about?",
+          "choices": [
+            "More tanks are coming, and customers can still use the fish room",
+            "The fish room is moving upstairs, and it will be closed for a few days",
+            "The shop is moving to a bigger building, and it will be shut for a short time",
+            "Fish will now be kept upstairs, and they will be sold at the front counter"
+          ],
+          "correct_answer": "The fish room is moving upstairs, and it will be closed for a few days",
+          "why": "our fish room will move from the back of the shop to a new room upstairs",
+          "explanation": "\"The fish room is moving upstairs, and it will be closed for a few days\" is correct: the notice says \"our fish room will move from the back of the shop to a new room upstairs\" and \"the fish room will be closed for four days\".",
+          "distractor_rationales": [
+            {
+              "choice": "Fish will now be kept upstairs, and they will be sold at the front counter",
+              "lure": "two-part",
+              "reason": "\"Fish will now be kept upstairs, and they will be sold at the front counter\" is wrong in its second part: the front counter sells \"fish food, plants and nets\", and the fish themselves will be in the fish room that will \"open again upstairs on Friday 7 June\"."
+            },
+            {
+              "choice": "More tanks are coming, and customers can still use the fish room",
+              "lure": "two-part",
+              "reason": "\"More tanks are coming, and customers can still use the fish room\" is wrong in its second part: customers cannot use it, because \"the fish room will be closed for four days\"."
+            },
+            {
+              "choice": "The shop is moving to a bigger building, and it will be shut for a short time",
+              "lure": "two-part",
+              "reason": "\"The shop is moving to a bigger building, and it will be shut for a short time\" is wrong in its first part: only the fish room moves, \"from the back of the shop to a new room upstairs\", not the whole shop."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-A-P1B",
+      "part": 1,
+      "genre": "library notice",
+      "title": "Swallows over the front door",
+      "passage": "To all library visitors: a pair of swallows has built a nest above our front door, and there are now four eggs in it. To keep the birds calm, the front door will stay closed until the end of July. Please use the side door next to the car park instead. It is open at the usual times. You can watch the nest from the window of the reading room, where we have left a book about swallows on the table.\n\nAbri Bolin, librarian",
+      "names": [
+        "Abri",
+        "Bolin"
+      ],
+      "other_caps": [
+        "July"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-A-P1B-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "What is the main purpose of this notice?",
+          "choices": [
+            "to explain that the library will close until the end of July",
+            "to ask visitors to help protect a nest in the car park",
+            "to tell visitors to use another door until the end of July",
+            "to invite visitors to a talk about swallows in the reading room"
+          ],
+          "correct_answer": "to tell visitors to use another door until the end of July",
+          "why": "Please use the side door next to the car park instead",
+          "explanation": "\"to tell visitors to use another door until the end of July\" is correct: \"the front door will stay closed until the end of July\" and visitors are asked: \"Please use the side door next to the car park instead\".",
+          "distractor_rationales": [
+            {
+              "choice": "to explain that the library will close until the end of July",
+              "lure": "misreading",
+              "reason": "\"to explain that the library will close until the end of July\" is wrong: only the front door closes; the side door \"is open at the usual times\"."
+            },
+            {
+              "choice": "to invite visitors to a talk about swallows in the reading room",
+              "lure": "word lure",
+              "reason": "\"to invite visitors to a talk about swallows in the reading room\" is wrong: the reading room has only \"a book about swallows on the table\", and no talk is offered."
+            },
+            {
+              "choice": "to ask visitors to help protect a nest in the car park",
+              "lure": "detail",
+              "reason": "\"to ask visitors to help protect a nest in the car park\" is wrong: the nest is \"above our front door\"; the car park is only where the side door is."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-A-P2A",
+      "part": 2,
+      "genre": "story",
+      "title": "Ducklings in the courtyard",
+      "passage": "On Tuesday morning, Bodie Aldwick arrived at school early and found the courtyard full of noise. A mother duck was walking in circles near the bench, and eleven small ducklings were following her. The courtyard had walls on all four sides, and the only way out was through the school building.\n\nMr. Beckford, the caretaker, came out with a cup of tea. \"She nests here every spring,\" he said. \"The pond is behind the gym, but the ducklings are too small to fly over the wall.\"\n\nBodie wanted to pick up the ducklings and carry them to the pond in a box. Mr. Beckford shook his head. \"If we take them, she may leave them,\" he said. \"We'll make a path for her instead.\"\n\nTogether they opened the doors of the long hallway that led to the gym. Mr. Beckford put chairs on both sides to make a narrow road. Then they stood far back and waited quietly.\n\nFor ten minutes the mother duck only watched. At last she stepped into the hallway, and the ducklings hurried after her in a tight line. She walked past the classrooms, through the gym and out the back door. Bodie counted the ducklings as they reached the grass by the pond. There were eleven.\n\nAt lunch, Bodie told the whole class what had happened. The next spring, Bodie was the first student to offer to help.",
+      "names": [
+        "Bodie",
+        "Aldwick",
+        "Beckford"
+      ],
+      "other_caps": [
+        "Tuesday",
+        "Mr"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-A-P2A-1",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 5, the word \"tight\" is closest in meaning to",
+          "choices": [
+            "firmly shut",
+            "close together",
+            "short of money",
+            "very strict"
+          ],
+          "correct_answer": "close together",
+          "why": "the ducklings hurried after her in a tight line",
+          "explanation": "\"close together\" is correct: the ducklings \"hurried after her in a tight line\", one right behind another.",
+          "distractor_rationales": [
+            {
+              "choice": "firmly shut",
+              "lure": "other meaning",
+              "reason": "\"firmly shut\" is the meaning used for a lid or a door; a line of ducklings in \"a tight line\" cannot be shut."
+            },
+            {
+              "choice": "short of money",
+              "lure": "other meaning",
+              "reason": "\"short of money\" is the meaning used for money; the ducklings that \"hurried after her\" have nothing to do with money."
+            },
+            {
+              "choice": "very strict",
+              "lure": "other meaning",
+              "reason": "\"very strict\" is the meaning used for rules or people; the phrase \"a tight line\" describes how the ducklings walked, not rules."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2A-2",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "All of the following happen in the story EXCEPT:",
+          "choices": [
+            "The caretaker says where the pond is",
+            "The mother duck waits before she walks in",
+            "Bodie carries the ducklings out in a box",
+            "The caretaker puts chairs in the hallway"
+          ],
+          "correct_answer": "Bodie carries the ducklings out in a box",
+          "why": "We'll make a path for her instead.",
+          "explanation": "\"Bodie carries the ducklings out in a box\" is correct: Bodie only \"wanted to\" do this, but \"Mr. Beckford shook his head\" and said \"We'll make a path for her instead.\" The ducklings then \"hurried after her\" on foot.",
+          "distractor_rationales": [
+            {
+              "choice": "The caretaker says where the pond is",
+              "lure": "stated",
+              "reason": "\"The caretaker says where the pond is\" happens: he says \"The pond is behind the gym\"."
+            },
+            {
+              "choice": "The caretaker puts chairs in the hallway",
+              "lure": "stated",
+              "reason": "\"The caretaker puts chairs in the hallway\" happens: \"Mr. Beckford put chairs on both sides to make a narrow road\"."
+            },
+            {
+              "choice": "The mother duck waits before she walks in",
+              "lure": "stated",
+              "reason": "\"The mother duck waits before she walks in\" happens: \"For ten minutes the mother duck only watched\" before \"she stepped into the hallway\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2A-3",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What can be inferred about the ducklings?",
+          "choices": [
+            "They had hatched somewhere outside the school grounds",
+            "One of them was left behind in the courtyard",
+            "They walked through the gym ahead of their mother",
+            "The same number arrived at the pond as had been in the courtyard"
+          ],
+          "correct_answer": "The same number arrived at the pond as had been in the courtyard",
+          "why": "eleven small ducklings were following her",
+          "why2": "There were eleven.",
+          "explanation": "\"The same number arrived at the pond as had been in the courtyard\" is correct: at the start \"eleven small ducklings were following her\" in the courtyard, and at the pond \"There were eleven.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They had hatched somewhere outside the school grounds",
+              "lure": "contradicted",
+              "reason": "\"They had hatched somewhere outside the school grounds\" is contradicted: the caretaker says of the mother duck, \"She nests here every spring\", and the courtyard has walls on all sides."
+            },
+            {
+              "choice": "One of them was left behind in the courtyard",
+              "lure": "contradicted",
+              "reason": "\"One of them was left behind in the courtyard\" is contradicted: \"eleven small ducklings were following her\" at the start, and at the pond \"There were eleven.\""
+            },
+            {
+              "choice": "They walked through the gym ahead of their mother",
+              "lure": "contradicted",
+              "reason": "\"They walked through the gym ahead of their mother\" is contradicted: the mother went first and \"the ducklings hurried after her\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the story, why does Mr. Beckford say no to Bodie's plan?",
+          "choices": [
+            "School rules forbid touching animals",
+            "The mother might leave them",
+            "The ducklings might get hurt in a box",
+            "The mother might peck at their hands"
+          ],
+          "correct_answer": "The mother might leave them",
+          "why": "If we take them, she may leave them",
+          "explanation": "\"The mother might leave them\" is correct: he explains, \"If we take them, she may leave them\".",
+          "distractor_rationales": [
+            {
+              "choice": "The ducklings might get hurt in a box",
+              "lure": "other",
+              "reason": "\"The ducklings might get hurt in a box\" is wrong: the reason he gives is about the mother, \"If we take them, she may leave them\", not about harm from the box."
+            },
+            {
+              "choice": "The mother might peck at their hands",
+              "lure": "other",
+              "reason": "\"The mother might peck at their hands\" is wrong: his only reason is \"If we take them, she may leave them\"; he says nothing about the duck pecking."
+            },
+            {
+              "choice": "School rules forbid touching animals",
+              "lure": "other",
+              "reason": "\"School rules forbid touching animals\" is wrong: he gives his own reason, \"If we take them, she may leave them\", and he does not mention any school rule."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-A-P2B",
+      "part": 2,
+      "genre": "informational science",
+      "title": "Seahorse fathers",
+      "passage": "Seahorses are small fish that live in warm, shallow seas in many parts of the world. They swim upright, and they use their curled tails to hold on to sea grass so that moving water does not carry them away. Because they are slow swimmers, they stay safe by hiding from danger rather than escaping it.\n\nThe most unusual thing about seahorses, however, is the way their young are born. In most animals, the mother carries the eggs or the babies. In seahorses, this job belongs to the father. The male has a pouch on the front of his body. During mating, the female places her eggs inside this pouch, and the male fertilizes them there.\n\nFor the next few weeks, the father carries the growing young. The pouch keeps them safe and helps control the water around them. When they are ready, he pushes them out into the sea. A single birth can produce dozens of babies, and in some kinds of seahorse it can be many hundreds.\n\nAfter birth, the young seahorses are on their own. Their father gives them no more care, and most of them are eaten by other animals before they grow up. Only a very small number live long enough to become adults.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-A-P2B-1",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 3, the word \"produce\" is closest in meaning to",
+          "choices": [
+            "make for sale",
+            "show to a guard",
+            "bring about",
+            "put on stage"
+          ],
+          "correct_answer": "bring about",
+          "why": "A single birth can produce dozens of babies",
+          "explanation": "\"bring about\" is correct: \"A single birth can produce dozens of babies\" means one birth brings about dozens of babies.",
+          "distractor_rationales": [
+            {
+              "choice": "make for sale",
+              "lure": "other meaning",
+              "reason": "\"make for sale\" is the meaning used for goods from a farm or factory; babies from \"A single birth\" are not made for sale."
+            },
+            {
+              "choice": "show to a guard",
+              "lure": "other meaning",
+              "reason": "\"show to a guard\" is the meaning used for a ticket or passport; \"A single birth can produce dozens of babies\" is not about showing anything."
+            },
+            {
+              "choice": "put on stage",
+              "lure": "other meaning",
+              "reason": "\"put on stage\" is the meaning used for plays and shows; \"A single birth\" does not put on a show."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2B-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "how seahorse eggs are hidden among sea grass",
+            "the way male seahorses carry their young before birth",
+            "the care that fathers give young seahorses after birth",
+            "why the males of most kinds of fish carry their young"
+          ],
+          "correct_answer": "the way male seahorses carry their young before birth",
+          "why": "In seahorses, this job belongs to the father.",
+          "explanation": "\"the way male seahorses carry their young before birth\" is correct: the passage builds up to \"In seahorses, this job belongs to the father\" and then describes how \"the father carries the growing young\" until \"he pushes them out into the sea\".",
+          "distractor_rationales": [
+            {
+              "choice": "why the males of most kinds of fish carry their young",
+              "lure": "broader (wrong)",
+              "reason": "\"why the males of most kinds of fish carry their young\" is wrong and about other animals: the passage says \"In most animals, the mother carries the eggs or the babies\", and it describes seahorses only."
+            },
+            {
+              "choice": "how seahorse eggs are hidden among sea grass",
+              "lure": "misreading",
+              "reason": "\"how seahorse eggs are hidden among sea grass\" misreads the passage: the sea grass is what the tails \"hold on to\", while the eggs go into the pouch: \"the female places her eggs inside this pouch\"."
+            },
+            {
+              "choice": "the care that fathers give young seahorses after birth",
+              "lure": "misreading",
+              "reason": "\"the care that fathers give young seahorses after birth\" misreads the passage: the father's care ends at birth, because \"After birth, the young seahorses are on their own\" and \"Their father gives them no more care\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, what does a seahorse use its tail for?",
+          "choices": [
+            "swimming fast to escape from danger",
+            "holding on to sea grass to stay in place",
+            "wrapping around its eggs to guard them",
+            "letting the moving water carry it to new places"
+          ],
+          "correct_answer": "holding on to sea grass to stay in place",
+          "why": "they use their curled tails to hold on to sea grass so that moving water does not carry them away",
+          "explanation": "\"holding on to sea grass to stay in place\" is correct: \"they use their curled tails to hold on to sea grass so that moving water does not carry them away\".",
+          "distractor_rationales": [
+            {
+              "choice": "swimming fast to escape from danger",
+              "lure": "contradicted",
+              "reason": "\"swimming fast to escape from danger\" is wrong: \"they are slow swimmers\", so \"they stay safe by hiding from danger rather than escaping it\"."
+            },
+            {
+              "choice": "letting the moving water carry it to new places",
+              "lure": "contradicted",
+              "reason": "\"letting the moving water carry it to new places\" is the opposite of the text: the tail is used \"so that moving water does not carry them away\"."
+            },
+            {
+              "choice": "wrapping around its eggs to guard them",
+              "lure": "detail",
+              "reason": "\"wrapping around its eggs to guard them\" is wrong: the eggs are kept in a pouch \"on the front of his body\", and the tails are used \"to hold on to sea grass\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P2B-4",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why is the last paragraph included in the passage?",
+          "choices": [
+            "to describe how the eggs get into the father's pouch",
+            "to explain why seahorses hold on to sea grass",
+            "to explain how the father keeps the growing young safe",
+            "to tell what happens to the young once they are born"
+          ],
+          "correct_answer": "to tell what happens to the young once they are born",
+          "why": "After birth, the young seahorses are on their own.",
+          "explanation": "\"to tell what happens to the young once they are born\" is correct: the last paragraph begins \"After birth, the young seahorses are on their own\" and says \"most of them are eaten by other animals before they grow up\".",
+          "distractor_rationales": [
+            {
+              "choice": "to explain how the father keeps the growing young safe",
+              "lure": "detail",
+              "reason": "\"to explain how the father keeps the growing young safe\" describes the third paragraph, where \"The pouch keeps them safe\"; in the last paragraph \"Their father gives them no more care\"."
+            },
+            {
+              "choice": "to describe how the eggs get into the father's pouch",
+              "lure": "detail",
+              "reason": "\"to describe how the eggs get into the father's pouch\" describes the second paragraph, where \"the female places her eggs inside this pouch\"."
+            },
+            {
+              "choice": "to explain why seahorses hold on to sea grass",
+              "lure": "detail",
+              "reason": "\"to explain why seahorses hold on to sea grass\" describes the first paragraph, where \"they use their curled tails to hold on to sea grass\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-A-P3A",
+      "part": 3,
+      "genre": "informational science",
+      "title": "Why woodpeckers do not get headaches",
+      "passage": "Few birds put their heads through as much as woodpeckers do. To reach insects hidden under bark, to carve out holes for their nests and to send signals to other woodpeckers, they hammer their beaks against wood, sometimes more than ten times a second. Each strike ends in an abrupt stop, and the forces involved are far greater than those that would leave a person dizzy or injured. For a long time, the obvious question was how the birds manage to keep their brains safe.\n\nThe usual answer was that the woodpecker's head works like a shock absorber, a device that soaks up the energy of a blow so that less of it reaches whatever lies behind. Writers pointed to the spongy bone in the bird's skull and to a long, thin bone attached to the tongue, which curves around the back of the head and was thought to act like a safety belt. The idea was so widely accepted that engineers studied woodpeckers when designing helmets and protective cases for delicate equipment.\n\nA few years ago, a team of biologists decided to test the idea directly. Instead of examining skulls in a laboratory, they filmed living woodpeckers of three different species with high-speed cameras while the birds pecked. By tracking points on the beak and near the eye, they could measure how quickly each part of the head slowed down at the moment of impact. If the skull were absorbing shock, the area around the brain should have slowed down more gently than the tip of the beak.\n\nIn the films, the beak and the braincase stopped almost together, which meant the head behaved less like a cushion and more like a stiff hammer. The researchers then used computer models to ask what a cushion would actually do. The answer was surprising: a head that absorbed shock would waste much of the energy of each strike, so the bird would have to hit far harder to break the same amount of wood. For an animal that can peck thousands of times a day, that would be a poor trade.\n\nIf the head is a hammer, why is the brain safe? The team's answer lies in size. A small brain is far less affected by a sudden stop than a large one, because the pressure that builds up inside a brain during an impact depends partly on its size. According to their calculations, the forces of ordinary pecking stay below the level likely to cause injury in a brain as small as a woodpecker's, although they would be dangerous for a brain the size of a human's. Their figures suggest that the birds would need to strike much harder before that safety margin began to disappear.\n\nThe study leaves room for the old features to matter, since the spongy bone may still help the skull resist damage over many years. But it changes the lesson engineers can take from the bird. A woodpecker shows how a small, stiff tool can strike safely, not how to cushion a large brain, and helmet designers may need to look elsewhere for ideas.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-A-P3A-1",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which of the following best states the main idea of the passage?",
+          "choices": [
+            "Birds that strike hard objects rely on shock-absorbing skulls to protect their brains",
+            "Filming showed that the woodpecker's skull absorbs shock well, and that its small brain adds to its safety",
+            "A study found that the woodpecker's head acts as a stiff hammer, and that its small brain keeps it safe",
+            "Engineers have long studied woodpeckers when designing helmets and cases for equipment"
+          ],
+          "correct_answer": "A study found that the woodpecker's head acts as a stiff hammer, and that its small brain keeps it safe",
+          "why": "the head behaved less like a cushion and more like a stiff hammer",
+          "explanation": "\"A study found that the woodpecker's head acts as a stiff hammer, and that its small brain keeps it safe\" is correct: the films showed \"the head behaved less like a cushion and more like a stiff hammer\", and on the brain \"The team's answer lies in size\".",
+          "distractor_rationales": [
+            {
+              "choice": "Birds that strike hard objects rely on shock-absorbing skulls to protect their brains",
+              "lure": "broader (wrong)",
+              "reason": "\"Birds that strike hard objects rely on shock-absorbing skulls to protect their brains\" is wrong as well as too wide: for woodpeckers the study found \"the head behaved less like a cushion and more like a stiff hammer\", so the shock-absorbing skull is the idea the passage questions."
+            },
+            {
+              "choice": "Engineers have long studied woodpeckers when designing helmets and cases for equipment",
+              "lure": "detail",
+              "reason": "\"Engineers have long studied woodpeckers when designing helmets and cases for equipment\" is one detail from the second paragraph (\"engineers studied woodpeckers when designing helmets\"), not what the whole passage is about."
+            },
+            {
+              "choice": "Filming showed that the woodpecker's skull absorbs shock well, and that its small brain adds to its safety",
+              "lure": "two-part",
+              "reason": "\"Filming showed that the woodpecker's skull absorbs shock well, and that its small brain adds to its safety\" is wrong in its first part: \"the beak and the braincase stopped almost together\", so the skull did not absorb shock."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3A-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, how did the biologists measure how quickly parts of the head slowed down?",
+          "choices": [
+            "by fixing small sensors to the beaks and heads of live birds",
+            "by examining the skulls of woodpeckers in a laboratory",
+            "by filming live birds and tracking points on their heads",
+            "by measuring how deep each strike went into the wood"
+          ],
+          "correct_answer": "by filming live birds and tracking points on their heads",
+          "why": "By tracking points on the beak and near the eye, they could measure how quickly each part of the head slowed down",
+          "explanation": "\"by filming live birds and tracking points on their heads\" is correct: \"they filmed living woodpeckers\" with \"high-speed cameras\", and \"By tracking points on the beak and near the eye, they could measure how quickly each part of the head slowed down\".",
+          "distractor_rationales": [
+            {
+              "choice": "by examining the skulls of woodpeckers in a laboratory",
+              "lure": "contradicted",
+              "reason": "\"by examining the skulls of woodpeckers in a laboratory\" is the opposite of the text: \"Instead of examining skulls in a laboratory, they filmed living woodpeckers\"."
+            },
+            {
+              "choice": "by fixing small sensors to the beaks and heads of live birds",
+              "lure": "detail",
+              "reason": "\"by fixing small sensors to the beaks and heads of live birds\" is wrong: the passage describes the method as filming \"with high-speed cameras\" and \"tracking points on the beak and near the eye\", not sensors."
+            },
+            {
+              "choice": "by measuring how deep each strike went into the wood",
+              "lure": "word lure",
+              "reason": "\"by measuring how deep each strike went into the wood\" is wrong: they measured \"how quickly each part of the head slowed down\" by \"tracking points on the beak and near the eye\", not the depth of a strike."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3A-3",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"delicate\" is closest in meaning to",
+          "choices": [
+            "mild in taste",
+            "needing great tact",
+            "easily damaged",
+            "slim and graceful"
+          ],
+          "correct_answer": "easily damaged",
+          "why": "protective cases for delicate equipment",
+          "explanation": "\"easily damaged\" is correct: equipment needs \"protective cases\" because it is easily damaged by a blow.",
+          "distractor_rationales": [
+            {
+              "choice": "mild in taste",
+              "lure": "other meaning",
+              "reason": "\"mild in taste\" is the meaning used for food; \"protective cases for delicate equipment\" are not about taste."
+            },
+            {
+              "choice": "needing great tact",
+              "lure": "other meaning",
+              "reason": "\"needing great tact\" is the meaning used for a difficult situation between people; \"delicate equipment\" is a thing, not a situation."
+            },
+            {
+              "choice": "slim and graceful",
+              "lure": "other meaning",
+              "reason": "\"slim and graceful\" is the meaning used for a person's looks; \"protective cases\" are needed for breakable things, not graceful ones."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3A-4",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Which of the following can be inferred from the passage?",
+          "choices": [
+            "The tongue bone was proven to protect the brain like a safety belt",
+            "Some helmet designs were based on an idea that the new study calls into question",
+            "Some woodpeckers hammer on wood only when they are looking for food",
+            "The biologists filmed a single kind of woodpecker for their study"
+          ],
+          "correct_answer": "Some helmet designs were based on an idea that the new study calls into question",
+          "why": "engineers studied woodpeckers when designing helmets",
+          "why2": "helmet designers may need to look elsewhere for ideas",
+          "explanation": "\"Some helmet designs were based on an idea that the new study calls into question\" is correct: the shock-absorber idea was so accepted that \"engineers studied woodpeckers when designing helmets\", and after the study \"helmet designers may need to look elsewhere for ideas\".",
+          "distractor_rationales": [
+            {
+              "choice": "The tongue bone was proven to protect the brain like a safety belt",
+              "lure": "contradicted",
+              "reason": "\"The tongue bone was proven to protect the brain like a safety belt\" is contradicted: the bone \"was thought to act like a safety belt\", but the films showed \"the beak and the braincase stopped almost together\"."
+            },
+            {
+              "choice": "The biologists filmed a single kind of woodpecker for their study",
+              "lure": "contradicted",
+              "reason": "\"The biologists filmed a single kind of woodpecker for their study\" is contradicted: they filmed \"living woodpeckers of three different species\"."
+            },
+            {
+              "choice": "Some woodpeckers hammer on wood only when they are looking for food",
+              "lure": "contradicted",
+              "reason": "\"Some woodpeckers hammer on wood only when they are looking for food\" is contradicted: they hammer \"To reach insects hidden under bark, to carve out holes for their nests and to send signals to other woodpeckers\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3A-5",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "The passage states all of the following about the biologists' study EXCEPT:",
+          "choices": [
+            "It used computer models to see what a cushion would do",
+            "It found that a cushioned head would break through wood more efficiently",
+            "It set out to test an idea that was widely accepted",
+            "It calculated the forces of ordinary pecking on a small brain"
+          ],
+          "correct_answer": "It found that a cushioned head would break through wood more efficiently",
+          "why": "a head that absorbed shock would waste much of the energy of each strike",
+          "explanation": "\"It found that a cushioned head would break through wood more efficiently\" is correct because the text says the opposite: \"a head that absorbed shock would waste much of the energy of each strike, so the bird would have to hit far harder to break the same amount of wood\".",
+          "distractor_rationales": [
+            {
+              "choice": "It set out to test an idea that was widely accepted",
+              "lure": "stated",
+              "reason": "\"It set out to test an idea that was widely accepted\" is stated: \"The idea was so widely accepted\" and the team \"decided to test the idea directly\"."
+            },
+            {
+              "choice": "It used computer models to see what a cushion would do",
+              "lure": "stated",
+              "reason": "\"It used computer models to see what a cushion would do\" is stated: \"The researchers then used computer models to ask what a cushion would actually do\"."
+            },
+            {
+              "choice": "It calculated the forces of ordinary pecking on a small brain",
+              "lure": "stated",
+              "reason": "\"It calculated the forces of ordinary pecking on a small brain\" is stated: \"According to their calculations, the forces of ordinary pecking stay below the level likely to cause injury in a brain as small as a woodpecker's\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3A-6",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Based on the passage, what is most likely true about the study's findings?",
+          "choices": [
+            "The computer models gave strong support to the shock-absorber idea",
+            "The braincase slowed down more gently than the tip of the beak",
+            "The results went against what the shock-absorber idea had predicted",
+            "The cameras were too slow to show clearly how each part of the head moved"
+          ],
+          "correct_answer": "The results went against what the shock-absorber idea had predicted",
+          "why": "the area around the brain should have slowed down more gently than the tip of the beak",
+          "why2": "the beak and the braincase stopped almost together",
+          "explanation": "\"The results went against what the shock-absorber idea had predicted\" is correct: if the skull absorbed shock, \"the area around the brain should have slowed down more gently than the tip of the beak\", but in the films \"the beak and the braincase stopped almost together\".",
+          "distractor_rationales": [
+            {
+              "choice": "The braincase slowed down more gently than the tip of the beak",
+              "lure": "contradicted",
+              "reason": "\"The braincase slowed down more gently than the tip of the beak\" is contradicted: \"the beak and the braincase stopped almost together\"."
+            },
+            {
+              "choice": "The cameras were too slow to show clearly how each part of the head moved",
+              "lure": "contradicted",
+              "reason": "\"The cameras were too slow to show clearly how each part of the head moved\" is contradicted: with the cameras \"they could measure how quickly each part of the head slowed down\"."
+            },
+            {
+              "choice": "The computer models gave strong support to the shock-absorber idea",
+              "lure": "contradicted",
+              "reason": "\"The computer models gave strong support to the shock-absorber idea\" is contradicted: the models showed \"a head that absorbed shock would waste much of the energy of each strike\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-A-P3B",
+      "part": 3,
+      "genre": "story",
+      "title": "The nest above the porch",
+      "passage": "Every August my cousin Alvy and I spend two weeks at our grandmother's cottage near Ardmere, a village beside a wide, slow river. The cottage is small and old, and that summer it had a new resident. On the first morning, Alvy stepped out onto the porch with his toast and came straight back in, pale. Under the roof, just above the porch light, hung a grey ball the size of a melon, and wasps were drifting in and out of a hole near its bottom.\n\nAlvy wanted it gone at once. He had been stung on the hand the summer before and had spent an afternoon with his arm in a bowl of ice. He found a long broom in the shed and announced that he would knock the nest into the river before breakfast was over. I was ready to help him. Our grandmother, who had been reading at the kitchen table, put down her book and asked us both to sit.\n\nShe told us that the wasps had been there since May and that she had been watching them all summer. They had built the nest themselves, she said, by chewing wood from the old fence into a kind of paper. Every morning she saw them carry green caterpillars back to it, and for the first time in years the cabbages in her garden had hardly a hole in them. \"They feed those to their young,\" she explained. \"I've had the best vegetables in the village.\"\n\nAlvy pointed out that a wasp stings whoever is nearest, whatever garden it is protecting. My grandmother agreed. Knocking down a nest full of angry wasps, she said, was the surest way to be stung, and by more than one of them. Then she made an offer. The nest would last only until the cold weeks of autumn, when the colony would die out and the young queens would fly off to spend the winter somewhere else. Wasps build a fresh nest every year, so after that the old one could simply be taken down. If we could put up with them until then, she would make sure we stayed safe.\n\nThat afternoon we worked out the rules together. We moved the breakfast table from the porch to the shady side of the house, and we used the back door instead of the front one. My grandmother tied a red ribbon across the porch steps to mark the point where we had to stop. Alvy wrote the rules on a card in large letters and pinned it to the kitchen door, which I suspected was mostly so he could feel in charge.\n\nBy the second week, something had changed. Alvy, who had started the holiday armed with a broom, began sitting on the garden wall at a safe distance from the porch, watching the wasps come and go. He counted how many left the nest in a minute and wrote the numbers in a notebook. Nobody was stung that summer. On our last day he asked whether he could have the nest once it was empty, and my grandmother promised to post it to him in November, wrapped in newspaper. It arrived just before his birthday, as light as a dry leaf, and it now sits on a shelf above his bed.",
+      "names": [
+        "Alvy",
+        "Ardmere"
+      ],
+      "other_caps": [
+        "August",
+        "May",
+        "November"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-A-P3B-1",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer mention that Alvy \"had been stung on the hand the summer before\"?",
+          "choices": [
+            "to show that he was unafraid of the wasps on the porch",
+            "to explain why his arm was in a bowl of ice that morning",
+            "to explain why he wanted the nest removed at once",
+            "to show why the writer refused to help him knock it down"
+          ],
+          "correct_answer": "to explain why he wanted the nest removed at once",
+          "why": "Alvy wanted it gone at once. He had been stung on the hand the summer before",
+          "explanation": "\"to explain why he wanted the nest removed at once\" is correct: the sentence comes straight after \"Alvy wanted it gone at once\" and gives the reason for it.",
+          "distractor_rationales": [
+            {
+              "choice": "to show that he was unafraid of the wasps on the porch",
+              "lure": "contradicted",
+              "reason": "\"to show that he was unafraid of the wasps on the porch\" is wrong: when he saw the nest he \"came straight back in, pale\"."
+            },
+            {
+              "choice": "to show why the writer refused to help him knock it down",
+              "lure": "contradicted",
+              "reason": "\"to show why the writer refused to help him knock it down\" is wrong: the writer says \"I was ready to help him\"."
+            },
+            {
+              "choice": "to explain why his arm was in a bowl of ice that morning",
+              "lure": "misreading",
+              "reason": "\"to explain why his arm was in a bowl of ice that morning\" misreads the time: the \"bowl of ice\" was \"the summer before\", not that morning."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3B-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which of the following best summarizes the story?",
+          "choices": [
+            "A boy knocks a wasp nest into the river, and his grandmother explains why wasps are useful",
+            "A grandmother asks the boy to take down the nest so the cousins can use the porch",
+            "A grandmother persuades the cousins to keep the nest, and the writer starts studying the wasps",
+            "A family agrees to leave a wasp nest alone, and a boy's fear turns into interest"
+          ],
+          "correct_answer": "A family agrees to leave a wasp nest alone, and a boy's fear turns into interest",
+          "why": "That afternoon we worked out the rules together.",
+          "explanation": "\"A family agrees to leave a wasp nest alone, and a boy's fear turns into interest\" is correct: after \"That afternoon we worked out the rules together\", Alvy, who first \"came straight back in, pale\", ends up \"watching the wasps come and go\" and asks to keep the nest.",
+          "distractor_rationales": [
+            {
+              "choice": "A grandmother asks the boy to take down the nest so the cousins can use the porch",
+              "lure": "misreading",
+              "reason": "\"A grandmother asks the boy to take down the nest so the cousins can use the porch\" misreads who wanted what: it was Alvy who \"wanted it gone at once\"; the grandmother offered to keep the nest \"until the cold weeks of autumn\", and the family moved the breakfast table \"from the porch\"."
+            },
+            {
+              "choice": "A grandmother persuades the cousins to keep the nest, and the writer starts studying the wasps",
+              "lure": "two-part",
+              "reason": "\"A grandmother persuades the cousins to keep the nest, and the writer starts studying the wasps\" is wrong in its second part: the one who studied the wasps was Alvy, who was \"watching the wasps come and go\" and \"He counted how many left the nest in a minute\"."
+            },
+            {
+              "choice": "A boy knocks a wasp nest into the river, and his grandmother explains why wasps are useful",
+              "lure": "two-part",
+              "reason": "\"A boy knocks a wasp nest into the river, and his grandmother explains why wasps are useful\" is wrong in its first part: he only \"announced that he would knock the nest into the river\"; the grandmother stopped him first."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the story, where did the wasps get the material for their nest?",
+          "choices": [
+            "from the garden shed",
+            "from trees by the river",
+            "from the cabbage plants",
+            "from a wooden fence"
+          ],
+          "correct_answer": "from a wooden fence",
+          "why": "by chewing wood from the old fence into a kind of paper",
+          "explanation": "\"from a wooden fence\" is correct: they built the nest \"by chewing wood from the old fence into a kind of paper\".",
+          "distractor_rationales": [
+            {
+              "choice": "from the garden shed",
+              "lure": "word lure",
+              "reason": "\"from the garden shed\" is wrong: the shed is where Alvy \"found a long broom\"; the nest wood came \"from the old fence\"."
+            },
+            {
+              "choice": "from the cabbage plants",
+              "lure": "word lure",
+              "reason": "\"from the cabbage plants\" is wrong: the cabbages are mentioned because they \"had hardly a hole in them\"; the nest was made \"by chewing wood from the old fence\"."
+            },
+            {
+              "choice": "from trees by the river",
+              "lure": "word lure",
+              "reason": "\"from trees by the river\" is wrong: the river is where Alvy wanted to \"knock the nest\"; the nest was made \"by chewing wood from the old fence\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3B-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the grandmother, what will happen to the colony in autumn?",
+          "choices": [
+            "It will come back to the same nest in spring",
+            "It will die, and its queens will go away for winter",
+            "It will move the nest to a warmer place",
+            "It will grow and build a second nest nearby"
+          ],
+          "correct_answer": "It will die, and its queens will go away for winter",
+          "why": "the colony would die out and the young queens would fly off to spend the winter somewhere else",
+          "explanation": "\"It will die, and its queens will go away for winter\" is correct: she says that in autumn \"the colony would die out and the young queens would fly off to spend the winter somewhere else\".",
+          "distractor_rationales": [
+            {
+              "choice": "It will move the nest to a warmer place",
+              "lure": "contradicted",
+              "reason": "\"It will move the nest to a warmer place\" is wrong: the old nest stays behind, since \"Wasps build a fresh nest every year, so after that the old one could simply be taken down\"."
+            },
+            {
+              "choice": "It will come back to the same nest in spring",
+              "lure": "contradicted",
+              "reason": "\"It will come back to the same nest in spring\" is wrong: \"Wasps build a fresh nest every year\"."
+            },
+            {
+              "choice": "It will grow and build a second nest nearby",
+              "lure": "contradicted",
+              "reason": "\"It will grow and build a second nest nearby\" is wrong: she says \"the colony would die out\", not grow."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3B-5",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 6, the word \"post\" is closest in meaning to",
+          "choices": [
+            "put up on a wall",
+            "send by mail",
+            "share online",
+            "assign to a job"
+          ],
+          "correct_answer": "send by mail",
+          "why": "my grandmother promised to post it to him in November, wrapped in newspaper",
+          "explanation": "\"send by mail\" is correct: she promised \"to post it to him in November, wrapped in newspaper\", and later \"It arrived just before his birthday\".",
+          "distractor_rationales": [
+            {
+              "choice": "put up on a wall",
+              "lure": "other meaning",
+              "reason": "\"put up on a wall\" is the meaning used for notices; the nest is sent \"to him\" and \"arrived just before his birthday\"."
+            },
+            {
+              "choice": "share online",
+              "lure": "other meaning",
+              "reason": "\"share online\" is the meaning used for the internet; a nest \"wrapped in newspaper\" is a real object that \"arrived\"."
+            },
+            {
+              "choice": "assign to a job",
+              "lure": "other meaning",
+              "reason": "\"assign to a job\" is the meaning used for jobs; it is the nest, \"wrapped in newspaper\", that is sent, not a worker."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-A-P3B-6",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 5, the phrase \"in charge\" is closest in meaning to",
+          "choices": [
+            "paying a fee",
+            "being accused",
+            "fully powered",
+            "in control"
+          ],
+          "correct_answer": "in control",
+          "why": "which I suspected was mostly so he could feel in charge",
+          "explanation": "\"in control\" is correct: Alvy \"wrote the rules on a card\" and pinned it up, \"so he could feel in charge\" of the rules.",
+          "distractor_rationales": [
+            {
+              "choice": "paying a fee",
+              "lure": "other meaning",
+              "reason": "\"paying a fee\" is the money meaning of \"charge\"; writing \"the rules on a card\" has nothing to do with paying."
+            },
+            {
+              "choice": "being accused",
+              "lure": "other meaning",
+              "reason": "\"being accused\" is the legal meaning of \"charge\"; Alvy \"wrote the rules\", and nobody accuses him of anything."
+            },
+            {
+              "choice": "fully powered",
+              "lure": "other meaning",
+              "reason": "\"fully powered\" is the meaning used for batteries; the phrase \"feel in charge\" is about a person, not a machine."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

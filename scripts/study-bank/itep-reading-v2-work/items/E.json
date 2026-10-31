@@ -1,0 +1,815 @@
+{
+  "author": "E",
+  "sets": [
+    {
+      "set_id": "ITR2-E-P1A",
+      "part": 1,
+      "genre": "invitation",
+      "title": "Birthday boat trip",
+      "passage": "Hi Lissa,\n\nMy birthday is on Sunday, and this year I don't want a party at home. Instead, my uncle has offered to take four of us across Lake Urren in his little motorboat. We will stop at the small island in the middle, have a picnic lunch there and swim if the water is warm enough. We leave from the boat club at ten and come back by four. Can you come? Please bring a towel and a warm jacket, because it gets windy on the water.\n\nKasper",
+      "names": [
+        "Lissa",
+        "Urren",
+        "Kasper"
+      ],
+      "other_caps": [
+        "Sunday",
+        "Lake"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-E-P1A-1",
+          "kind": "main-idea",
+          "difficulty": "easy",
+          "prompt": "What is Kasper's message mainly about?",
+          "choices": [
+            "Requesting Lissa's help with jobs at the boat club",
+            "Describing a lake picnic and asking to borrow a jacket",
+            "Inviting friends to birthday events at home and on the lake",
+            "Asking Lissa to join a birthday boat trip"
+          ],
+          "correct_answer": "Asking Lissa to join a birthday boat trip",
+          "why": "my uncle has offered to take four of us across Lake Urren in his little motorboat",
+          "explanation": "\"Asking Lissa to join a birthday boat trip\" is correct: the message is a birthday invitation (\"My birthday is on Sunday\") to a boat trip, \"my uncle has offered to take four of us across Lake Urren in his little motorboat\", ending with \"Can you come?\"",
+          "distractor_rationales": [
+            {
+              "choice": "Inviting friends to birthday events at home and on the lake",
+              "lure": "broader (wrong)",
+              "reason": "\"Inviting friends to birthday events at home and on the lake\" is wider than the message and wrong about part of it: the writer says \"this year I don't want a party at home\", so there is no home event."
+            },
+            {
+              "choice": "Requesting Lissa's help with jobs at the boat club",
+              "lure": "misreading",
+              "reason": "\"Requesting Lissa's help with jobs at the boat club\" misreads the boat club: it is only the meeting place, \"We leave from the boat club at ten\", and the uncle \"has offered to take four of us across Lake Urren\"."
+            },
+            {
+              "choice": "Describing a lake picnic and asking to borrow a jacket",
+              "lure": "two-part",
+              "reason": "\"Describing a lake picnic and asking to borrow a jacket\" gets the second part wrong: Lissa is asked to bring her own clothes, \"Please bring a towel and a warm jacket\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-E-P1B",
+      "part": 1,
+      "genre": "travel update",
+      "title": "Coach on a different road",
+      "passage": "Hi Luka,\n\nJust a quick update from the school trip. Our coach was supposed to reach the mountain hostel by lunchtime, but the main road was closed after a rockfall last night. The police diverted all the traffic onto a narrow road through the village of Lakeby, so we are moving much more slowly. The teachers think we will arrive around five instead of one. Everyone is fine, and the views are amazing. I will send you some photos tonight!\n\nKiri",
+      "names": [
+        "Luka",
+        "Lakeby",
+        "Kiri"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-E-P1B-1",
+          "kind": "vocabulary",
+          "difficulty": "easy",
+          "prompt": "In the message, the word \"diverted\" is closest in meaning to",
+          "choices": [
+            "drew attention away",
+            "moved money elsewhere",
+            "kept entertained",
+            "sent another way"
+          ],
+          "correct_answer": "sent another way",
+          "why": "the main road was closed after a rockfall last night",
+          "explanation": "\"sent another way\" is correct: because \"the main road was closed after a rockfall last night\", the police sent the cars \"onto a narrow road through the village of Lakeby\" instead.",
+          "distractor_rationales": [
+            {
+              "choice": "kept entertained",
+              "lure": "other meaning",
+              "reason": "\"kept entertained\" is a meaning used for people having fun, but the police did something to the cars: they \"diverted all the traffic onto a narrow road through the village of Lakeby\"."
+            },
+            {
+              "choice": "drew attention away",
+              "lure": "other meaning",
+              "reason": "\"drew attention away\" is a meaning used for thoughts, but the sentence is about where the cars went, \"onto a narrow road through the village of Lakeby\", because \"the main road was closed\"."
+            },
+            {
+              "choice": "moved money elsewhere",
+              "lure": "other meaning",
+              "reason": "\"moved money elsewhere\" is a meaning used for money, but the police moved \"all the traffic onto a narrow road\", which is about cars, not money."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-E-P2A",
+      "part": 2,
+      "genre": "informational science",
+      "title": "How train wheels take a bend",
+      "passage": "When a car turns a corner, its outside wheels must travel farther than its inside wheels. A car solves this with a set of gears that lets each wheel turn at its own speed. The wheels of a train cannot do this. Each pair is fixed to one solid steel bar called an axle, so both wheels always turn together.\n\nSo how does a train get around a bend? The answer is in the shape of its wheels. The part of a train wheel that touches the rail is not flat. It is shaped like a slice of a cone, slightly wider near the inside of the wheel and narrower toward the outside.\n\nOn a curve, the train drifts a little toward the outside of the bend. This makes the outer wheel roll on its wider part and the inner wheel roll on its narrower part. In one full turn, a wide circle covers more ground than a narrow one, so the outer wheel travels farther even though both wheels turn at the same rate.\n\nThe same shape also keeps a train centred on straight track. If the train slips to one side, the wheels on that side roll on their wider part and steer it back toward the middle. Each wheel also has a raised rim on its inner edge, but this is mainly a safety feature for sharp curves. On most track, the cone shape does the steering.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-E-P2A-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, why do the two wheels on a train axle always turn together?",
+          "choices": [
+            "They are linked by a set of gears.",
+            "The rails hold them at one fixed speed.",
+            "Each one carries an equal part of the weight.",
+            "They are attached to one shared steel bar."
+          ],
+          "correct_answer": "They are attached to one shared steel bar.",
+          "why": "Each pair is fixed to one solid steel bar called an axle, so both wheels always turn together",
+          "explanation": "\"They are attached to one shared steel bar.\" is correct: the passage says \"Each pair is fixed to one solid steel bar called an axle, so both wheels always turn together.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They are linked by a set of gears.",
+              "lure": "word lure",
+              "reason": "\"They are linked by a set of gears.\" is the car's system, not the train's: \"A car solves this with a set of gears\" and \"The wheels of a train cannot do this.\""
+            },
+            {
+              "choice": "The rails hold them at one fixed speed.",
+              "lure": "other",
+              "reason": "\"The rails hold them at one fixed speed.\" gives a reason the passage does not give; the passage explains it by the axle: \"Each pair is fixed to one solid steel bar called an axle, so both wheels always turn together.\""
+            },
+            {
+              "choice": "Each one carries an equal part of the weight.",
+              "lure": "other",
+              "reason": "\"Each one carries an equal part of the weight.\" is a reason the passage never offers; the passage says the cause is that \"Each pair is fixed to one solid steel bar called an axle\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2A-2",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the writer begin the passage by describing a car turning a corner?",
+          "choices": [
+            "to give an example of a vehicle that uses cone-shaped wheels",
+            "to argue that trains ought to use gears like those in cars",
+            "to show that cars and trains are steered in much the same way",
+            "to set up the problem of how a train's wheels get around a bend"
+          ],
+          "correct_answer": "to set up the problem of how a train's wheels get around a bend",
+          "why": "The wheels of a train cannot do this",
+          "explanation": "\"to set up the problem of how a train's wheels get around a bend\" is correct: the car shows that \"outside wheels must travel farther than its inside wheels\", and then the passage says \"The wheels of a train cannot do this\" and asks \"So how does a train get around a bend?\"",
+          "distractor_rationales": [
+            {
+              "choice": "to show that cars and trains are steered in much the same way",
+              "lure": "contradicted",
+              "reason": "\"to show that cars and trains are steered in much the same way\" is the opposite of the point: the car uses gears, and \"The wheels of a train cannot do this.\""
+            },
+            {
+              "choice": "to give an example of a vehicle that uses cone-shaped wheels",
+              "lure": "misreading",
+              "reason": "\"to give an example of a vehicle that uses cone-shaped wheels\" confuses the two vehicles: the car \"solves this with a set of gears\"; the cone shape belongs to the train wheel, which \"is shaped like a slice of a cone\"."
+            },
+            {
+              "choice": "to argue that trains ought to use gears like those in cars",
+              "lure": "contradicted",
+              "reason": "\"to argue that trains ought to use gears like those in cars\" is never argued; the passage ends by saying the cone already works: \"On most track, the cone shape does the steering.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2A-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to paragraph 3, what happens to a train's wheels on a curve?",
+          "choices": [
+            "The inner wheel begins to turn faster than the outer wheel does.",
+            "Each wheel rolls on the narrowest part of its edge.",
+            "The inner wheel takes more of the weight as the train leans inward.",
+            "The outer wheel rolls on a wider part of its edge than the inner wheel."
+          ],
+          "correct_answer": "The outer wheel rolls on a wider part of its edge than the inner wheel.",
+          "why": "This makes the outer wheel roll on its wider part and the inner wheel roll on its narrower part",
+          "explanation": "\"The outer wheel rolls on a wider part of its edge than the inner wheel.\" is correct: the passage says \"This makes the outer wheel roll on its wider part and the inner wheel roll on its narrower part.\"",
+          "distractor_rationales": [
+            {
+              "choice": "The inner wheel begins to turn faster than the outer wheel does.",
+              "lure": "contradicted",
+              "reason": "\"The inner wheel begins to turn faster than the outer wheel does.\" is ruled out: \"both wheels turn at the same rate\"."
+            },
+            {
+              "choice": "Each wheel rolls on the narrowest part of its edge.",
+              "lure": "contradicted",
+              "reason": "\"Each wheel rolls on the narrowest part of its edge.\" is true only of the inner wheel; the passage says it \"makes the outer wheel roll on its wider part\"."
+            },
+            {
+              "choice": "The inner wheel takes more of the weight as the train leans inward.",
+              "lure": "contradicted",
+              "reason": "\"The inner wheel takes more of the weight as the train leans inward.\" reverses the direction of the movement: \"the train drifts a little toward the outside of the bend\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2A-4",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 3, the word \"drifts\" is closest in meaning to",
+          "choices": [
+            "loses focus",
+            "floats on water",
+            "forms a snowbank",
+            "moves gradually"
+          ],
+          "correct_answer": "moves gradually",
+          "why": "the train drifts a little toward the outside of the bend",
+          "explanation": "\"moves gradually\" is correct: the train moves slowly and only \"a little toward the outside of the bend\", which is a gradual movement.",
+          "distractor_rationales": [
+            {
+              "choice": "forms a snowbank",
+              "lure": "other meaning",
+              "reason": "\"forms a snowbank\" is a weather meaning; the sentence is about the train changing position, \"a little toward the outside of the bend\"."
+            },
+            {
+              "choice": "loses focus",
+              "lure": "other meaning",
+              "reason": "\"loses focus\" is a meaning about attention; a train cannot lose focus, and the sentence describes its position, \"toward the outside of the bend\"."
+            },
+            {
+              "choice": "floats on water",
+              "lure": "other meaning",
+              "reason": "\"floats on water\" is a meaning for boats; the train is on rails, and the movement is \"a little toward the outside of the bend\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-E-P2B",
+      "part": 2,
+      "genre": "first-person school life",
+      "title": "A map for newcomers",
+      "passage": "Our school has three buildings joined by long corridors, and every September the new students get lost. Last year I was one of them. On my first day I walked into a music lesson instead of maths and sat through twenty minutes of singing before I found the courage to leave.\n\nThis year our teacher, Ms. Kellaway, asked our class to make a better map for the newcomers. The old one was a plan an architect had drawn, full of tiny room numbers. We decided to walk the buildings ourselves and draw what a lost student would actually see: the blue doors near the library, the noisy drinks machine, the stairs covered in old team photos.\n\nWe tested our first version on a group of younger students. We gave each of them the map and three rooms to find, and we followed them without speaking. Most of them went the wrong way at the same corner, because we had drawn the art room on the wrong side. After we fixed that, every student in our second test found all three rooms in under ten minutes.\n\nCopies of our map now hang by every main entrance. A boy called Uskar, who joined in October, told me he had used it every day for a week. I never told him about my music lesson.",
+      "names": [
+        "Kellaway",
+        "Uskar"
+      ],
+      "other_caps": [
+        "September",
+        "October",
+        "Ms"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-E-P2B-1",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "Which of the following is NOT true about the map the class made?",
+          "choices": [
+            "It was tried out on a group of younger students.",
+            "Copies hang by the main entrances.",
+            "It shows things a lost student would notice.",
+            "It was drawn for the class by an architect."
+          ],
+          "correct_answer": "It was drawn for the class by an architect.",
+          "why": "We decided to walk the buildings ourselves",
+          "explanation": "\"It was drawn for the class by an architect.\" is correct: the architect's plan was the old map, \"The old one was a plan an architect had drawn\"; the new one the class drew itself: \"We decided to walk the buildings ourselves and draw what a lost student would actually see\".",
+          "distractor_rationales": [
+            {
+              "choice": "It shows things a lost student would notice.",
+              "lure": "stated",
+              "reason": "\"It shows things a lost student would notice.\" is stated: the class chose to \"draw what a lost student would actually see\"."
+            },
+            {
+              "choice": "It was tried out on a group of younger students.",
+              "lure": "stated",
+              "reason": "\"It was tried out on a group of younger students.\" is stated: \"We tested our first version on a group of younger students.\""
+            },
+            {
+              "choice": "Copies hang by the main entrances.",
+              "lure": "stated",
+              "reason": "\"Copies hang by the main entrances.\" is stated: \"Copies of our map now hang by every main entrance.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2B-2",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What can be inferred about the writer?",
+          "choices": [
+            "The writer was among the younger students who tested the map.",
+            "The writer found the maths room easily on the first day.",
+            "The writer had already told Uskar about the music lesson mistake.",
+            "The writer was in a second year at the school during the project."
+          ],
+          "correct_answer": "The writer was in a second year at the school during the project.",
+          "why": "Last year I was one of them",
+          "why2": "This year our teacher, Ms. Kellaway, asked our class to make a better map",
+          "explanation": "\"The writer was in a second year at the school during the project.\" is correct: the writer was a new student \"Last year\", and the map was made \"This year\", so the writer was in a second year at the school when the map was made.",
+          "distractor_rationales": [
+            {
+              "choice": "The writer was among the younger students who tested the map.",
+              "lure": "contradicted",
+              "reason": "\"The writer was among the younger students who tested the map.\" is contradicted: the writer's class did the testing, \"We tested our first version on a group of younger students\", and \"we followed them without speaking\"."
+            },
+            {
+              "choice": "The writer found the maths room easily on the first day.",
+              "lure": "contradicted",
+              "reason": "\"The writer found the maths room easily on the first day.\" is contradicted: \"On my first day I walked into a music lesson instead of maths\"."
+            },
+            {
+              "choice": "The writer had already told Uskar about the music lesson mistake.",
+              "lure": "contradicted",
+              "reason": "\"The writer had already told Uskar about the music lesson mistake.\" is contradicted by the last line: \"I never told him about my music lesson.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "Based on paragraph 3, why did most students in the first test go the wrong way?",
+          "choices": [
+            "The map was full of tiny room numbers.",
+            "The drinks machine was drawn in the wrong spot.",
+            "The class followed the students too closely.",
+            "A room was put on the wrong side of the map."
+          ],
+          "correct_answer": "A room was put on the wrong side of the map.",
+          "why": "because we had drawn the art room on the wrong side",
+          "explanation": "\"A room was put on the wrong side of the map.\" is correct: the passage says most went wrong at one corner \"because we had drawn the art room on the wrong side.\"",
+          "distractor_rationales": [
+            {
+              "choice": "The class followed the students too closely.",
+              "lure": "other",
+              "reason": "\"The class followed the students too closely.\" is a reason the passage does not give; the class followed \"without speaking\", and the reason given is \"because we had drawn the art room on the wrong side\"."
+            },
+            {
+              "choice": "The map was full of tiny room numbers.",
+              "lure": "word lure",
+              "reason": "\"The map was full of tiny room numbers.\" describes the old map: \"The old one was a plan an architect had drawn, full of tiny room numbers.\""
+            },
+            {
+              "choice": "The drinks machine was drawn in the wrong spot.",
+              "lure": "word lure",
+              "reason": "\"The drinks machine was drawn in the wrong spot.\" names the wrong thing; the mistake was the art room: \"because we had drawn the art room on the wrong side\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P2B-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which choice best describes what the passage is mainly about?",
+          "choices": [
+            "the art room that was drawn on the wrong side of the map",
+            "a class project to copy the architect's old plan in larger, clearer print",
+            "why new students get lost and how the school put up more signs",
+            "how the writer's class made a new school map and improved it by testing"
+          ],
+          "correct_answer": "how the writer's class made a new school map and improved it by testing",
+          "why": "asked our class to make a better map for the newcomers",
+          "explanation": "\"how the writer's class made a new school map and improved it by testing\" is correct: the passage tells how the class was asked \"to make a better map for the newcomers\", tested it, fixed the error, and how \"every student in our second test found all three rooms\".",
+          "distractor_rationales": [
+            {
+              "choice": "the art room that was drawn on the wrong side of the map",
+              "lure": "detail",
+              "reason": "\"the art room that was drawn on the wrong side of the map\" is one detail of paragraph 3, \"we had drawn the art room on the wrong side\", not the whole passage."
+            },
+            {
+              "choice": "a class project to copy the architect's old plan in larger, clearer print",
+              "lure": "misreading",
+              "reason": "\"a class project to copy the architect's old plan in larger, clearer print\" misreads the project: the class did not copy the old plan; they decided \"to walk the buildings ourselves and draw what a lost student would actually see\"."
+            },
+            {
+              "choice": "why new students get lost and how the school put up more signs",
+              "lure": "two-part",
+              "reason": "\"why new students get lost and how the school put up more signs\" gets the second part wrong: the answer was a map, \"Copies of our map now hang by every main entrance.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-E-P3A",
+      "part": 3,
+      "genre": "informational history",
+      "title": "The green posts of Lunford",
+      "passage": "In the 1830s the town of Lunford, a busy river port of about twelve thousand people, had grown too long for comfortable walking. Its docks lay at the southern end, its market and offices at the northern end, and the workers who lived near one often had to reach the other. A private carriage was far beyond the means of a dock labourer or a shop assistant, so most people simply walked, sometimes for an hour in each direction.\n\nIn 1834 a carpenter named Kester Larkham built a long wooden carriage with benches along both sides, hitched it to two horses, and began driving it up and down Kemble Street, the road that joined the two ends of town. Anyone could ride for a penny. Within a month his vehicle was carrying several hundred passengers a day, and Larkham had ordered a second one.\n\nSuccess quickly created a problem. Larkham's drivers stopped wherever someone raised a hand, so a journey that should have taken twenty minutes could stretch to fifty. Regular riders complained that they could never predict when they would arrive at work, and some went back to walking. Larkham's answer was to paint a dozen wooden posts bright green and set them along Kemble Street at roughly equal distances. From then on, the carriages would halt only at a post, and a printed card in every carriage listed the times at which each post would be reached.\n\nNot everyone welcomed the posts. Several shopkeepers on Kemble Street had enjoyed having customers step down directly outside their doors, and they argued that a stop in front of a rival's window would ruin them. Lisbet Umber, who sold hats near the middle of the street, collected the names of forty traders on a letter asking the town council to remove the posts. The council, which had little power over a private business, declined to act, but it suggested that Larkham meet the traders himself.\n\nThe meeting produced a compromise that pleased few people at first. Larkham kept his posts but agreed to move three of them so that each stood between two shops rather than in front of one. Within a year, however, the traders had changed their minds. Passengers waiting at a post had several minutes to fill, and they spent them looking into the nearest windows. The shops closest to the green posts did noticeably better than before, and by 1840 Umber herself was paying Larkham a small fee each year to have a post placed outside her door.\n\nLarkham's green posts are often described as the first fixed stops in the region. Whether or not that is true, they show how quickly a convenience can become part of daily life: within a generation, the people of Lunford gave directions by them, telling visitors to walk two posts north of the bridge or to wait at the fifth post.",
+      "names": [
+        "Lunford",
+        "Kester Larkham",
+        "Kemble",
+        "Lisbet Umber"
+      ],
+      "other_caps": [
+        "Street"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-E-P3A-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the printed cards in the carriages?",
+          "choices": [
+            "They were added at the shopkeepers' request after the meeting.",
+            "They had been used in every carriage since the first month of service.",
+            "They listed the names of the shops that stood beside each green post.",
+            "Their times were dependable only because each carriage now halted at a post."
+          ],
+          "correct_answer": "Their times were dependable only because each carriage now halted at a post.",
+          "why": "the carriages would halt only at a post",
+          "why2": "a printed card in every carriage listed the times at which each post would be reached",
+          "explanation": "\"Their times were dependable only because each carriage now halted at a post.\" is correct: times could be printed for each post only once \"the carriages would halt only at a post\"; before that, drivers \"stopped wherever someone raised a hand\" and journeys could \"stretch to fifty\" minutes.",
+          "distractor_rationales": [
+            {
+              "choice": "They were added at the shopkeepers' request after the meeting.",
+              "lure": "contradicted",
+              "reason": "\"They were added at the shopkeepers' request after the meeting.\" is contradicted by the order of events: the cards came with the posts, \"From then on, the carriages would halt only at a post, and a printed card\", and the shopkeepers were against the posts: \"Not everyone welcomed the posts.\""
+            },
+            {
+              "choice": "They had been used in every carriage since the first month of service.",
+              "lure": "contradicted",
+              "reason": "\"They had been used in every carriage since the first month of service.\" is contradicted: the cards were part of the answer to a later problem, introduced \"From then on\", after \"Success quickly created a problem.\""
+            },
+            {
+              "choice": "They listed the names of the shops that stood beside each green post.",
+              "lure": "contradicted",
+              "reason": "\"They listed the names of the shops that stood beside each green post.\" is contradicted: the card \"listed the times at which each post would be reached\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3A-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What is most likely true of Lisbet Umber?",
+          "choices": [
+            "She moved her hat shop off Kemble Street soon after the meeting.",
+            "She wanted new posts placed in front of rival shops.",
+            "She persuaded the town council to order Larkham to remove the posts.",
+            "Her view of the posts changed after she saw their effect on trade."
+          ],
+          "correct_answer": "Her view of the posts changed after she saw their effect on trade.",
+          "why": "collected the names of forty traders on a letter asking the town council to remove the posts",
+          "why2": "by 1840 Umber herself was paying Larkham a small fee each year to have a post placed outside her door",
+          "explanation": "\"Her view of the posts changed after she saw their effect on trade.\" is correct: she first wanted the posts removed, but after \"The shops closest to the green posts did noticeably better\" she was paying \"to have a post placed outside her door\".",
+          "distractor_rationales": [
+            {
+              "choice": "She persuaded the town council to order Larkham to remove the posts.",
+              "lure": "contradicted",
+              "reason": "\"She persuaded the town council to order Larkham to remove the posts.\" is contradicted: the council \"declined to act\"."
+            },
+            {
+              "choice": "She moved her hat shop off Kemble Street soon after the meeting.",
+              "lure": "contradicted",
+              "reason": "\"She moved her hat shop off Kemble Street soon after the meeting.\" is contradicted: she stayed beside the posts, and \"by 1840 Umber herself was paying Larkham a small fee each year to have a post placed outside her door\"."
+            },
+            {
+              "choice": "She wanted new posts placed in front of rival shops.",
+              "lure": "contradicted",
+              "reason": "\"She wanted new posts placed in front of rival shops.\" is contradicted: the shopkeepers argued \"that a stop in front of a rival's window would ruin them\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3A-3",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 4, the word \"declined\" is closest in meaning to",
+          "choices": [
+            "became less healthy",
+            "changed word endings",
+            "slowly decreased",
+            "politely refused"
+          ],
+          "correct_answer": "politely refused",
+          "why": "declined to act, but it suggested that Larkham meet the traders himself",
+          "explanation": "\"politely refused\" is correct: the council \"had little power over a private business\", so it chose not to act and suggested a meeting instead.",
+          "distractor_rationales": [
+            {
+              "choice": "slowly decreased",
+              "lure": "other meaning",
+              "reason": "\"slowly decreased\" is a meaning for numbers; the council is choosing what to do: it \"declined to act, but it suggested that Larkham meet the traders himself\"."
+            },
+            {
+              "choice": "became less healthy",
+              "lure": "other meaning",
+              "reason": "\"became less healthy\" is a meaning for health; the sentence says the council \"declined to act\" because it \"had little power over a private business\", which is a decision."
+            },
+            {
+              "choice": "changed word endings",
+              "lure": "other meaning",
+              "reason": "\"changed word endings\" is a grammar meaning for nouns in some languages; the sentence is about the council's answer to the letter, \"declined to act\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3A-4",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "All of the following are mentioned as features of Larkham's service EXCEPT",
+          "choices": [
+            "a penny fare open to anyone",
+            "printed cards showing the times",
+            "stops moved to sit between shops",
+            "seats reserved in advance"
+          ],
+          "correct_answer": "seats reserved in advance",
+          "why": "Anyone could ride for a penny",
+          "explanation": "\"seats reserved in advance\" is correct: the passage describes the fare, \"Anyone could ride for a penny\", the cards and the posts, but says nothing about reserving seats.",
+          "distractor_rationales": [
+            {
+              "choice": "a penny fare open to anyone",
+              "lure": "stated",
+              "reason": "\"a penny fare open to anyone\" is stated in paragraph 2: \"Anyone could ride for a penny.\""
+            },
+            {
+              "choice": "printed cards showing the times",
+              "lure": "stated",
+              "reason": "\"printed cards showing the times\" is stated in paragraph 3: \"a printed card in every carriage listed the times\"."
+            },
+            {
+              "choice": "stops moved to sit between shops",
+              "lure": "stated",
+              "reason": "\"stops moved to sit between shops\" is stated in paragraph 5: Larkham \"agreed to move three of them so that each stood between two shops\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3A-5",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 1, the word \"means\" is closest in meaning to",
+          "choices": [
+            "method",
+            "intention",
+            "average",
+            "income"
+          ],
+          "correct_answer": "income",
+          "why": "A private carriage was far beyond the means of a dock labourer or a shop assistant, so most people simply walked",
+          "explanation": "\"income\" is correct: a carriage cost more than a worker could pay, \"so most people simply walked\".",
+          "distractor_rationales": [
+            {
+              "choice": "method",
+              "lure": "other meaning",
+              "reason": "\"method\" is a meaning for a way of doing something; the sentence is about what workers could afford, \"far beyond the means of a dock labourer\"."
+            },
+            {
+              "choice": "average",
+              "lure": "other meaning",
+              "reason": "\"average\" is a mathematics meaning; the sentence is about what a worker could pay for, so \"most people simply walked\"."
+            },
+            {
+              "choice": "intention",
+              "lure": "other meaning",
+              "reason": "\"intention\" is the meaning of the verb; the sentence is about money, which is why \"most people simply walked\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3A-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "Before the posts were set up, how did Larkham's drivers decide where to stop?",
+          "choices": [
+            "They stopped outside each shop on Kemble Street.",
+            "They stopped where the council had marked the road.",
+            "They stopped at regular times set by the clock.",
+            "They stopped whenever a person signalled."
+          ],
+          "correct_answer": "They stopped whenever a person signalled.",
+          "why": "Larkham's drivers stopped wherever someone raised a hand",
+          "explanation": "\"They stopped whenever a person signalled.\" is correct: the passage says \"Larkham's drivers stopped wherever someone raised a hand\".",
+          "distractor_rationales": [
+            {
+              "choice": "They stopped outside each shop on Kemble Street.",
+              "lure": "other",
+              "reason": "\"They stopped outside each shop on Kemble Street.\" is a rule the passage does not describe; it says drivers \"stopped wherever someone raised a hand\"."
+            },
+            {
+              "choice": "They stopped at regular times set by the clock.",
+              "lure": "other",
+              "reason": "\"They stopped at regular times set by the clock.\" is a rule the passage does not describe; stops depended on passengers, \"wherever someone raised a hand\"."
+            },
+            {
+              "choice": "They stopped where the council had marked the road.",
+              "lure": "contradicted",
+              "reason": "\"They stopped where the council had marked the road.\" is wrong: the marks were Larkham's own green posts, set up later, and before them drivers \"stopped wherever someone raised a hand\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-E-P3B",
+      "part": 3,
+      "genre": "story",
+      "title": "The number 12",
+      "passage": "Una had planned the trip for a week. Her grandfather Konrad wanted to see the new exhibition of old city photographs at the museum on Kipp Street, and her mother had asked Una to take him, since his eyes were now too weak for him to read the small print on timetables. Una had downloaded a travel app, saved the route and checked it twice: tram 4 from the stop outside his flat, a change at Lindgate Square, then tram 9 to the museum door. Thirty-five minutes in all. It was the first time she had been in charge of a whole trip.\n\nAt Lindgate Square the screen above the platform flashed a message in red: tram 9 was suspended because of repairs on the line. Other passengers were already walking away. Una stared at her phone. The app still showed tram 9 running every ten minutes, as if nothing had happened. She refreshed it four times. Her grandfather, meanwhile, had sat down on a bench and was surveying the square with an expression she could only describe as amused.\n\n\"Repairs on the Keeling Bridge, probably,\" he said. \"They always do that bridge in October.\" He stood up and pointed across the square. \"Take the 12 to the old fish market. From there it is a five-minute walk along the river, and the museum is on the corner. I drove the 12 for nineteen years, long before you were born.\"\n\nUna had known, in a general way, that her grandfather had once worked on the trams. It was one of those family facts that are mentioned at birthdays and then forgotten. She had never imagined that the city's lines might still be stored in his head, stop by stop, like a song he had learned as a child.\n\nThey took the 12. Her grandfather named each stop a second before the recorded voice did, and twice he told her about buildings that were no longer there: a cinema where a supermarket now stood, and a bakery that had sold bread shaped like horseshoes. At the fish market he set off along the river so quickly that she had to hurry to keep up.\n\nThe exhibition filled two rooms. Near the end of the second, Konrad stopped in front of a large black-and-white photograph of a tram crossing a bridge in heavy snow. He leaned so close that his nose almost touched the glass, and then he asked Una to read him the small card beside it. She read it aloud: tram 12 on the Keeling Bridge during a snowstorm many winters ago, photographer unknown.\n\n\"Number thirty-one,\" he said quietly. \"I was driving it.\"\n\nOn the way home, Una kept her phone in her pocket and let him choose the route.",
+      "names": [
+        "Una",
+        "Konrad",
+        "Kipp",
+        "Lindgate",
+        "Keeling"
+      ],
+      "other_caps": [
+        "Street",
+        "Square",
+        "Bridge",
+        "October"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-E-P3B-1",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"suspended\" is closest in meaning to",
+          "choices": [
+            "hung from above",
+            "floating in liquid",
+            "sent home from school",
+            "stopped for a time"
+          ],
+          "correct_answer": "stopped for a time",
+          "why": "tram 9 was suspended because of repairs on the line",
+          "explanation": "\"stopped for a time\" is correct: tram 9 was not running for a time \"because of repairs on the line\", so they had to \"Take the 12\" instead.",
+          "distractor_rationales": [
+            {
+              "choice": "hung from above",
+              "lure": "other meaning",
+              "reason": "\"hung from above\" is a meaning for objects such as lamps; the sentence is about a tram service stopped \"because of repairs on the line\"."
+            },
+            {
+              "choice": "sent home from school",
+              "lure": "other meaning",
+              "reason": "\"sent home from school\" is a school meaning; here it is tram 9 that is affected, \"because of repairs on the line\"."
+            },
+            {
+              "choice": "floating in liquid",
+              "lure": "other meaning",
+              "reason": "\"floating in liquid\" is a science meaning; the sentence explains a service problem, \"tram 9 was suspended because of repairs on the line\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3B-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Which of the following can most reasonably be inferred about Konrad at Lindgate Square?",
+          "choices": [
+            "He needed Una's phone to work out another way there.",
+            "He had read about the bridge repairs in the newspaper.",
+            "He wanted to go home as soon as he heard about tram 9.",
+            "He felt no surprise at the red message on the screen."
+          ],
+          "correct_answer": "He felt no surprise at the red message on the screen.",
+          "why": "They always do that bridge in October",
+          "why2": "was surveying the square with an expression she could only describe as amused",
+          "explanation": "\"He felt no surprise at the red message on the screen.\" is correct: he looked \"amused\" while Una was worried, and he explained that \"They always do that bridge in October\", so the closure was something he expected.",
+          "distractor_rationales": [
+            {
+              "choice": "He wanted to go home as soon as he heard about tram 9.",
+              "lure": "contradicted",
+              "reason": "\"He wanted to go home as soon as he heard about tram 9.\" is contradicted: \"He stood up and pointed across the square\" and gave a new route to the museum."
+            },
+            {
+              "choice": "He needed Una's phone to work out another way there.",
+              "lure": "contradicted",
+              "reason": "\"He needed Una's phone to work out another way there.\" is contradicted: he gave the route from memory, \"I drove the 12 for nineteen years\"."
+            },
+            {
+              "choice": "He had read about the bridge repairs in the newspaper.",
+              "lure": "contradicted",
+              "reason": "\"He had read about the bridge repairs in the newspaper.\" is contradicted: he only guesses, \"Repairs on the Keeling Bridge, probably,\" and \"his eyes were now too weak for him to read the small print\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "In the museum, what did Konrad ask Una to do?",
+          "choices": [
+            "take a picture of the photograph for him",
+            "describe the tram in the picture to him",
+            "find out who had taken the photograph",
+            "read the words on the small card to him"
+          ],
+          "correct_answer": "read the words on the small card to him",
+          "why": "he asked Una to read him the small card beside it",
+          "explanation": "\"read the words on the small card to him\" is correct: the story says \"he asked Una to read him the small card beside it\", and \"She read it aloud\".",
+          "distractor_rationales": [
+            {
+              "choice": "take a picture of the photograph for him",
+              "lure": "other",
+              "reason": "\"take a picture of the photograph for him\" is never asked; the story says \"he asked Una to read him the small card beside it\"."
+            },
+            {
+              "choice": "find out who had taken the photograph",
+              "lure": "word lure",
+              "reason": "\"find out who had taken the photograph\" reuses the card's words; the card itself says \"photographer unknown\", and what he asked was for Una \"to read him the small card beside it\"."
+            },
+            {
+              "choice": "describe the tram in the picture to him",
+              "lure": "other",
+              "reason": "\"describe the tram in the picture to him\" is not what he asked; he looked himself, \"He leaned so close that his nose almost touched the glass\", and then asked her \"to read him the small card\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3B-4",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer mention the cinema and the bakery in paragraph 5?",
+          "choices": [
+            "to give an example of how the trams themselves have changed",
+            "to suggest that Konrad was confused about where they were",
+            "to show that Una had seen these places on her app",
+            "to show how much of the old city Konrad recalls"
+          ],
+          "correct_answer": "to show how much of the old city Konrad recalls",
+          "why": "twice he told her about buildings that were no longer there",
+          "explanation": "\"to show how much of the old city Konrad recalls\" is correct: Konrad \"told her about buildings that were no longer there\", which shows his memory of the city, like the lines \"stored in his head, stop by stop\".",
+          "distractor_rationales": [
+            {
+              "choice": "to show that Una had seen these places on her app",
+              "lure": "contradicted",
+              "reason": "\"to show that Una had seen these places on her app\" is wrong: these were \"buildings that were no longer there\", and it was Konrad who \"told her about\" them."
+            },
+            {
+              "choice": "to give an example of how the trams themselves have changed",
+              "lure": "misreading",
+              "reason": "\"to give an example of how the trams themselves have changed\" confuses buildings with trams: \"a cinema where a supermarket now stood, and a bakery\"."
+            },
+            {
+              "choice": "to suggest that Konrad was confused about where they were",
+              "lure": "contradicted",
+              "reason": "\"to suggest that Konrad was confused about where they were\" is contradicted in the same paragraph: he \"named each stop a second before the recorded voice did\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3B-5",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"surveying\" is closest in meaning to",
+          "choices": [
+            "measuring the land",
+            "valuing a building",
+            "polling the public",
+            "looking over carefully"
+          ],
+          "correct_answer": "looking over carefully",
+          "why": "was surveying the square with an expression she could only describe as amused",
+          "explanation": "\"looking over carefully\" is correct: he sat on a bench \"surveying the square\", watching it, and then \"pointed across the square\" to the right tram.",
+          "distractor_rationales": [
+            {
+              "choice": "measuring the land",
+              "lure": "other meaning",
+              "reason": "\"measuring the land\" is a meaning for map-makers; he is sitting \"on a bench\" and simply looking at \"the square\" before he \"pointed across the square\"."
+            },
+            {
+              "choice": "polling the public",
+              "lure": "other meaning",
+              "reason": "\"polling the public\" is a meaning for opinion research; he asks nobody anything, and he looks at the square \"with an expression she could only describe as amused\"."
+            },
+            {
+              "choice": "valuing a building",
+              "lure": "other meaning",
+              "reason": "\"valuing a building\" is a meaning for house sales; the thing he looks at is \"the square\", not a building, and he is sitting \"on a bench\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-E-P3B-6",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the story end with Una keeping her phone in her pocket?",
+          "choices": [
+            "to suggest that Konrad told her to stop checking the app",
+            "to show that Konrad can now read timetables for himself",
+            "to show that Una wants to take the same trams home again",
+            "to show that Una is now happy to let her grandfather guide them both"
+          ],
+          "correct_answer": "to show that Una is now happy to let her grandfather guide them both",
+          "why": "let him choose the route",
+          "explanation": "\"to show that Una is now happy to let her grandfather guide them both\" is correct: after he found a new route and recognised his own tram (\"I was driving it\"), Una \"kept her phone in her pocket and let him choose the route\".",
+          "distractor_rationales": [
+            {
+              "choice": "to show that Una wants to take the same trams home again",
+              "lure": "contradicted",
+              "reason": "\"to show that Una wants to take the same trams home again\" is wrong: she does not choose the route; she \"let him choose the route\"."
+            },
+            {
+              "choice": "to suggest that Konrad told her to stop checking the app",
+              "lure": "contradicted",
+              "reason": "\"to suggest that Konrad told her to stop checking the app\" is wrong: the story gives no such order; Una herself \"kept her phone in her pocket and let him choose the route\"."
+            },
+            {
+              "choice": "to show that Konrad can now read timetables for himself",
+              "lure": "contradicted",
+              "reason": "\"to show that Konrad can now read timetables for himself\" is contradicted: \"his eyes were now too weak for him to read the small print on timetables\", and in the museum he still \"asked Una to read him the small card\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

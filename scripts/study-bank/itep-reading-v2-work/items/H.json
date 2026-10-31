@@ -1,0 +1,664 @@
+{
+  "author": "H",
+  "sets": [
+    {
+      "set_id": "ITR2-H-P1A",
+      "part": 1,
+      "genre": "diary entry",
+      "title": "Binoculars on the hill",
+      "passage": "Saturday, 12 April\n\nTonight was the astronomy club's first trip to Tenley Hill. I was nervous because my only equipment was a cheap pair of binoculars from the market. The other members had telescopes, and I thought they might laugh. But clouds covered the sky for the first hour, and the big telescopes were useless. When the clouds moved, I found Jupiter's moons first, because binoculars are quick to point. Mr. Sefton asked me to show everyone how. I am going again next month.",
+      "names": [
+        "Tenley",
+        "Sefton"
+      ],
+      "other_caps": [
+        "Saturday",
+        "April",
+        "Jupiter",
+        "Mr",
+        "Hill"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-H-P1A-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "The writer mentions that binoculars are quick to point in order to",
+          "choices": [
+            "to explain how the writer was first to find Jupiter's moons",
+            "to explain why the writer felt nervous before the trip",
+            "to explain why the big telescopes were useless at first",
+            "to explain why the writer used binoculars instead of a telescope"
+          ],
+          "correct_answer": "to explain how the writer was first to find Jupiter's moons",
+          "why": "I found Jupiter's moons first, because binoculars are quick to point",
+          "explanation": "\"to explain how the writer was first to find Jupiter's moons\" is correct: the entry says \"I found Jupiter's moons first, because binoculars are quick to point\", so the speed of the binoculars is the reason the writer found the moons before the others.",
+          "distractor_rationales": [
+            {
+              "choice": "to explain why the writer felt nervous before the trip",
+              "lure": "misreading",
+              "reason": "\"to explain why the writer felt nervous before the trip\" is wrong: the nerves came from having cheap equipment, \"I was nervous because my only equipment was a cheap pair of binoculars\"; being quick to point is what helped later."
+            },
+            {
+              "choice": "to explain why the big telescopes were useless at first",
+              "lure": "detail",
+              "reason": "\"to explain why the big telescopes were useless at first\" is wrong: the telescopes were useless because of the weather, \"clouds covered the sky for the first hour, and the big telescopes were useless\"."
+            },
+            {
+              "choice": "to explain why the writer used binoculars instead of a telescope",
+              "lure": "misreading",
+              "reason": "\"to explain why the writer used binoculars instead of a telescope\" is wrong: the writer did not choose binoculars for speed; they were simply \"my only equipment\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-H-P1B",
+      "part": 1,
+      "genre": "sign",
+      "title": "Cave tour sign",
+      "passage": "Tours of Wexmoor Cavern leave from this gate every hour from 10:00 to 4:00. Each tour lasts about fifty minutes. The air inside stays at about 11 degrees all year, so please bring a jacket, even in summer. The paths can be wet, so wear shoes with a good grip. Please keep your hands off the rock formations, because oil from skin can stop them from growing. Children under 12 must stay with an adult. Tickets are sold at the shop across the car park.",
+      "names": [
+        "Wexmoor"
+      ],
+      "other_caps": [
+        "Cavern"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-H-P1B-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "According to the sign, where can visitors buy tickets?",
+          "choices": [
+            "At the shop on the far side of the car park",
+            "At the gate where each tour begins",
+            "From the guide at the cave entrance",
+            "Online, on the cavern's website"
+          ],
+          "correct_answer": "At the shop on the far side of the car park",
+          "why": "Tickets are sold at the shop across the car park.",
+          "explanation": "\"At the shop on the far side of the car park\" is correct: the sign says \"Tickets are sold at the shop across the car park.\"",
+          "distractor_rationales": [
+            {
+              "choice": "At the gate where each tour begins",
+              "lure": "word lure",
+              "reason": "\"At the gate where each tour begins\" is wrong: tours \"leave from this gate\", but \"Tickets are sold at the shop across the car park.\""
+            },
+            {
+              "choice": "From the guide at the cave entrance",
+              "lure": "contradicted",
+              "reason": "\"From the guide at the cave entrance\" is wrong: the sign names one place to buy tickets, \"the shop across the car park\"."
+            },
+            {
+              "choice": "Online, on the cavern's website",
+              "lure": "contradicted",
+              "reason": "\"Online, on the cavern's website\" is wrong: the sign says \"Tickets are sold at the shop across the car park.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-H-P2A",
+      "part": 2,
+      "genre": "informational history",
+      "title": "The slate quarry of Tavenor",
+      "passage": "In the 1800s, the hill town of Tavenor depended on one business: its slate quarry. Slate is a dark gray rock that splits into thin, flat sheets. Workers cut large blocks from the hillside and then split them by hand with a hammer and chisel.\n\nMost of Tavenor's slate became roof tiles. Builders liked it because it kept out rain and lasted far longer than wood or clay. The thinnest, smoothest sheets went to a small workshop in town, where they were set in wooden frames and sold to schools as writing slates. Children wrote on them with a slate pencil and wiped them clean with a cloth.\n\nAround 1900, two changes reached Tavenor within a few years of each other. Factories began making cheap paper, and city schools started buying notebooks instead of slates. Then a new factory in the valley began producing clay roof tiles that cost about half as much as slate. The quarry's orders fell year after year.\n\nThe quarry closed in 1931. Today the deep pit is full of rainwater, and the old workshop is a small museum. Visitors can still try writing on a slate, and many are surprised by how loudly the pencil squeaks.",
+      "names": [
+        "Tavenor"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-H-P2A-1",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What can be inferred about most visitors to the museum in Tavenor?",
+          "choices": [
+            "Few of them have written on a slate before.",
+            "They expect a slate pencil to be louder than it is.",
+            "They can watch workers splitting slate in the pit.",
+            "They visit what was once the quarry office."
+          ],
+          "correct_answer": "Few of them have written on a slate before.",
+          "why": "many are surprised by how loudly the pencil squeaks",
+          "why2": "city schools started buying notebooks instead of slates",
+          "explanation": "\"Few of them have written on a slate before.\" is correct: schools moved away from slates long ago, \"city schools started buying notebooks instead of slates\", and today visitors who try one find the sound new to them: \"many are surprised by how loudly the pencil squeaks\".",
+          "distractor_rationales": [
+            {
+              "choice": "They expect a slate pencil to be louder than it is.",
+              "lure": "misreading",
+              "reason": "\"They expect a slate pencil to be louder than it is.\" is wrong: it is the other way round; \"many are surprised by how loudly the pencil squeaks\", so it is louder than they expect."
+            },
+            {
+              "choice": "They can watch workers splitting slate in the pit.",
+              "lure": "contradicted",
+              "reason": "\"They can watch workers splitting slate in the pit.\" is wrong: \"The quarry closed in 1931\" and \"Today the deep pit is full of rainwater\"."
+            },
+            {
+              "choice": "They visit what was once the quarry office.",
+              "lure": "contradicted",
+              "reason": "\"They visit what was once the quarry office.\" is wrong: the museum was a workshop, \"the old workshop is a small museum\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P2A-2",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What does the passage suggest about builders after the valley factory opened?",
+          "choices": [
+            "Many chose a cheaper roof over a longer-lasting one.",
+            "Many paid more for clay tiles than for slate.",
+            "Many found clay tiles lasted longer than slate.",
+            "Many began ordering even more slate from the Tavenor quarry."
+          ],
+          "correct_answer": "Many chose a cheaper roof over a longer-lasting one.",
+          "why": "lasted far longer than wood or clay",
+          "why2": "clay roof tiles that cost about half as much as slate",
+          "explanation": "\"Many chose a cheaper roof over a longer-lasting one.\" is correct: slate \"lasted far longer than wood or clay\", yet after the valley factory made \"clay roof tiles that cost about half as much as slate\", \"The quarry's orders fell year after year.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Many paid more for clay tiles than for slate.",
+              "lure": "contradicted",
+              "reason": "\"Many paid more for clay tiles than for slate.\" is wrong: the clay tiles \"cost about half as much as slate\"."
+            },
+            {
+              "choice": "Many found clay tiles lasted longer than slate.",
+              "lure": "contradicted",
+              "reason": "\"Many found clay tiles lasted longer than slate.\" is wrong: slate \"lasted far longer than wood or clay\"."
+            },
+            {
+              "choice": "Many began ordering even more slate from the Tavenor quarry.",
+              "lure": "contradicted",
+              "reason": "\"Many began ordering even more slate from the Tavenor quarry.\" is wrong: \"The quarry's orders fell year after year.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P2A-3",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 3, the word \"orders\" is closest in meaning to",
+          "choices": [
+            "purchase requests",
+            "instructions",
+            "arrangements",
+            "religious groups"
+          ],
+          "correct_answer": "purchase requests",
+          "why": "The quarry's orders fell year after year.",
+          "explanation": "\"purchase requests\" is correct: once builders could get \"clay roof tiles that cost about half as much as slate\", fewer of them asked to buy slate, so \"The quarry's orders fell year after year.\"",
+          "distractor_rationales": [
+            {
+              "choice": "instructions",
+              "lure": "other meaning",
+              "reason": "\"instructions\" is wrong: a boss gives orders in this sense, but nobody in the paragraph is telling the quarry what to do; the change is in buyers, as \"city schools started buying notebooks instead of slates\"."
+            },
+            {
+              "choice": "arrangements",
+              "lure": "other meaning",
+              "reason": "\"arrangements\" is wrong: \"order\" can mean the way things are arranged, but a quarry's arrangement would not fall \"year after year\" because of cheaper \"clay roof tiles\"."
+            },
+            {
+              "choice": "religious groups",
+              "lure": "other meaning",
+              "reason": "\"religious groups\" is wrong: the paragraph is about what customers bought, such as \"clay roof tiles that cost about half as much as slate\", not about religion."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P2A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "How did quarry workers split the slate blocks, according to the passage?",
+          "choices": [
+            "By hand, using simple tools",
+            "With machines driven by the river",
+            "By leaving them out in winter frost",
+            "By heating them in a stone oven"
+          ],
+          "correct_answer": "By hand, using simple tools",
+          "why": "split them by hand with a hammer and chisel",
+          "explanation": "\"By hand, using simple tools\" is correct: workers \"split them by hand with a hammer and chisel\".",
+          "distractor_rationales": [
+            {
+              "choice": "With machines driven by the river",
+              "lure": "contradicted",
+              "reason": "\"With machines driven by the river\" is wrong: the blocks were split \"by hand with a hammer and chisel\"."
+            },
+            {
+              "choice": "By leaving them out in winter frost",
+              "lure": "contradicted",
+              "reason": "\"By leaving them out in winter frost\" is wrong: the passage gives the method, \"by hand with a hammer and chisel\"."
+            },
+            {
+              "choice": "By heating them in a stone oven",
+              "lure": "contradicted",
+              "reason": "\"By heating them in a stone oven\" is wrong: workers \"split them by hand with a hammer and chisel\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-H-P3A",
+      "part": 3,
+      "genre": "informational science",
+      "title": "Why distant sounds carry at night",
+      "passage": "Anyone who lives a few kilometres from a railway line may have noticed something odd. During the day, the trains pass almost unheard. On a still, clear night, the same trains seem to rumble right past the bedroom window, and a dog barking on a distant farm can sound as if it were in the garden. The trains make the same noise at both times, and the dog is just as far away. The difference lies in the air itself.\n\nSound is a wave of pressure that travels through the air, and its speed depends partly on the air's temperature. Sound moves a little faster in warm air than in cold air: at about 20 degrees Celsius it covers roughly 343 metres per second, while near freezing it manages about 331. That small gap matters, because when a sound wave passes from air of one temperature into air of another, it changes direction slightly. Scientists call this bending refraction, and the wave always turns toward the cooler, slower air.\n\nOn a sunny afternoon, the ground heats up and warms the air just above it, so the air is usually warmest near the surface and cooler higher up. A sound made near the ground therefore curves upward, away from listeners, and much of its energy is lost to the sky. A person some distance away may hear only a faint version of it, or nothing at all, because they are standing in what researchers call a shadow zone.\n\nAfter sunset on a clear, calm night, the pattern often reverses. The ground gives off its heat quickly into the open sky, and it chills the thin layer of air resting on it. For a few hours, cool air may lie beneath warmer air, an arrangement known as a temperature inversion. Sound that starts to travel upward now curves back down toward the ground. Instead of escaping, it is guided along the surface, and it can reach listeners several kilometres away more strongly than it would by day.\n\nWind adds a second effect. It usually blows faster a little above the ground than at the surface, where trees, buildings and the ground itself slow it down. As a result, sound travelling with the wind tends to bend downward, while sound travelling against it bends upward. This is why the bells of a town, or the crowd at a stadium, may be clear on one side and hard to hear on the other. On a windy night, the moving air also stirs the layers together, which can spoil an inversion.\n\nThese effects are more than a curiosity. Engineers planning new airports, wind farms and factories now study local weather records before predicting how far noise will spread, because a plan based only on daytime measurements can underestimate what neighbours will hear at night. For the people near the railway, the explanation offers a small comfort: the trains themselves are as loud as they always were, and it is the night air that brings them closer.",
+      "names": [],
+      "other_caps": [
+        "Celsius"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-H-P3A-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "In the passage, how do the trains at night compare with the trains during the day?",
+          "choices": [
+            "They run on a track nearer to the houses.",
+            "They make the same amount of noise as by day.",
+            "They are louder because cold steel rings more clearly.",
+            "They run more often, so there is more noise."
+          ],
+          "correct_answer": "They make the same amount of noise as by day.",
+          "why": "The trains make the same noise at both times",
+          "explanation": "\"They make the same amount of noise as by day.\" is correct: the passage says \"The trains make the same noise at both times\", and they only seem nearer because of the air.",
+          "distractor_rationales": [
+            {
+              "choice": "They run on a track nearer to the houses.",
+              "lure": "contradicted",
+              "reason": "\"They run on a track nearer to the houses.\" is wrong: at night it is \"the same trains\" on the same line, and \"The difference lies in the air itself.\""
+            },
+            {
+              "choice": "They are louder because cold steel rings more clearly.",
+              "lure": "contradicted",
+              "reason": "\"They are louder because cold steel rings more clearly.\" is wrong: \"The trains make the same noise at both times\"; it is the air, not the rails, that changes."
+            },
+            {
+              "choice": "They run more often, so there is more noise.",
+              "lure": "contradicted",
+              "reason": "\"They run more often, so there is more noise.\" is wrong: the passage gives the cause as \"the air itself\" and says \"The trains make the same noise at both times\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3A-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can most likely be concluded about noise measurements taken only in the daytime?",
+          "choices": [
+            "They can be low because sound curves upward in the daytime.",
+            "They can be high because warm air slows sound down.",
+            "They can be high because sound is guided along the ground by day.",
+            "They can be low because cool air lies near the ground by day."
+          ],
+          "correct_answer": "They can be low because sound curves upward in the daytime.",
+          "why": "a plan based only on daytime measurements can underestimate what neighbours will hear at night",
+          "why2": "A sound made near the ground therefore curves upward, away from listeners",
+          "explanation": "\"They can be low because sound curves upward in the daytime.\" is correct: on a sunny afternoon \"A sound made near the ground therefore curves upward, away from listeners\", which is why \"a plan based only on daytime measurements can underestimate what neighbours will hear at night\".",
+          "distractor_rationales": [
+            {
+              "choice": "They can be high because warm air slows sound down.",
+              "lure": "contradicted",
+              "reason": "\"They can be high because warm air slows sound down.\" is wrong: \"Sound moves a little faster in warm air than in cold air\", and daytime plans \"underestimate\" the noise."
+            },
+            {
+              "choice": "They can be high because sound is guided along the ground by day.",
+              "lure": "contradicted",
+              "reason": "\"They can be high because sound is guided along the ground by day.\" is wrong: being \"guided along the surface\" happens \"After sunset on a clear, calm night\", and daytime plans \"underestimate\" the noise."
+            },
+            {
+              "choice": "They can be low because cool air lies near the ground by day.",
+              "lure": "contradicted",
+              "reason": "\"They can be low because cool air lies near the ground by day.\" is wrong: in the afternoon \"the air is usually warmest near the surface and cooler higher up\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3A-3",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "All of the following are given in the passage as helping a sound reach faraway listeners EXCEPT",
+          "choices": [
+            "wind that stirs the layers of air together",
+            "a still night when the sky is clear of cloud",
+            "sound travelling the same way as the wind",
+            "a layer of cool air lying beneath warmer air"
+          ],
+          "correct_answer": "wind that stirs the layers of air together",
+          "why": "the moving air also stirs the layers together, which can spoil an inversion",
+          "explanation": "\"wind that stirs the layers of air together\" is correct: the passage says \"the moving air also stirs the layers together, which can spoil an inversion\", so this works against distant hearing rather than helping it.",
+          "distractor_rationales": [
+            {
+              "choice": "a still night when the sky is clear of cloud",
+              "lure": "stated",
+              "reason": "\"a still night when the sky is clear of cloud\" is stated as helping: \"On a still, clear night, the same trains seem to rumble right past the bedroom window\"."
+            },
+            {
+              "choice": "sound travelling the same way as the wind",
+              "lure": "stated",
+              "reason": "\"sound travelling the same way as the wind\" is stated as helping: \"sound travelling with the wind tends to bend downward\", toward listeners."
+            },
+            {
+              "choice": "a layer of cool air lying beneath warmer air",
+              "lure": "stated",
+              "reason": "\"a layer of cool air lying beneath warmer air\" is stated as helping: when \"cool air may lie beneath warmer air\", sound \"can reach listeners several kilometres away more strongly than it would by day\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3A-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 5, the word \"spoil\" is closest in meaning to",
+          "choices": [
+            "destroy",
+            "go rotten",
+            "pamper",
+            "reveal"
+          ],
+          "correct_answer": "destroy",
+          "why": "the moving air also stirs the layers together, which can spoil an inversion",
+          "explanation": "\"destroy\" is correct: an inversion needs \"cool air\" lying \"beneath warmer air\", and wind that \"stirs the layers together\" breaks up that arrangement.",
+          "distractor_rationales": [
+            {
+              "choice": "go rotten",
+              "lure": "other meaning",
+              "reason": "\"go rotten\" is wrong: food can spoil in this sense, but here the wind acts on something, \"stirs the layers together, which can spoil an inversion\", and an inversion is not food."
+            },
+            {
+              "choice": "pamper",
+              "lure": "other meaning",
+              "reason": "\"pamper\" is wrong: parents may spoil a child, but the wind does not treat the air kindly; it \"stirs the layers together\"."
+            },
+            {
+              "choice": "reveal",
+              "lure": "other meaning",
+              "reason": "\"reveal\" is wrong: to spoil a film is to reveal its ending, while this sentence is about \"the moving air\" that \"stirs the layers together\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3A-5",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "Which meaning of \"curiosity\" is used in paragraph 6?",
+          "choices": [
+            "strange fact",
+            "wish to learn",
+            "rare antique",
+            "being nosy"
+          ],
+          "correct_answer": "strange fact",
+          "why": "These effects are more than a curiosity.",
+          "explanation": "\"strange fact\" is correct: \"These effects are more than a curiosity\" means they are not only an odd thing to notice, because engineers \"now study local weather records before predicting how far noise will spread\".",
+          "distractor_rationales": [
+            {
+              "choice": "wish to learn",
+              "lure": "other meaning",
+              "reason": "\"wish to learn\" is wrong: the sentence describes the effects themselves, \"These effects are more than a curiosity\", and an effect cannot have a wish."
+            },
+            {
+              "choice": "rare antique",
+              "lure": "other meaning",
+              "reason": "\"rare antique\" is wrong: the effects are ways that sound bends in air, such as when it \"curves back down toward the ground\", not old objects."
+            },
+            {
+              "choice": "being nosy",
+              "lure": "other meaning",
+              "reason": "\"being nosy\" is wrong: nobody is prying into others' business; the paragraph contrasts the effects with practical use, as engineers \"study local weather records\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3A-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "The passage gives which reason for wind blowing faster a little above the ground?",
+          "choices": [
+            "Objects on the surface, such as trees and houses, hold the lower air back.",
+            "Warm air rising from the ground pushes the wind upward.",
+            "Cooler air higher up moves more easily than warm air does.",
+            "Air higher up is heated by sunlight earlier in the day."
+          ],
+          "correct_answer": "Objects on the surface, such as trees and houses, hold the lower air back.",
+          "why": "where trees, buildings and the ground itself slow it down",
+          "explanation": "\"Objects on the surface, such as trees and houses, hold the lower air back.\" is correct: wind is slower at the surface, \"where trees, buildings and the ground itself slow it down\".",
+          "distractor_rationales": [
+            {
+              "choice": "Warm air rising from the ground pushes the wind upward.",
+              "lure": "contradicted",
+              "reason": "\"Warm air rising from the ground pushes the wind upward.\" is wrong: the reason given is that at the surface \"trees, buildings and the ground itself slow it down\"."
+            },
+            {
+              "choice": "Cooler air higher up moves more easily than warm air does.",
+              "lure": "word lure",
+              "reason": "\"Cooler air higher up moves more easily than warm air does.\" is wrong: temperature explains the bending of sound, not wind speed; for wind the passage says \"trees, buildings and the ground itself slow it down\"."
+            },
+            {
+              "choice": "Air higher up is heated by sunlight earlier in the day.",
+              "lure": "contradicted",
+              "reason": "\"Air higher up is heated by sunlight earlier in the day.\" is wrong: the sun warms the air near the ground, \"the ground heats up and warms the air just above it\", and wind speed is explained by \"trees, buildings and the ground itself\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-H-P3B",
+      "part": 3,
+      "genre": "story",
+      "title": "The streak test",
+      "passage": "Tova had spent the whole autumn learning rocks by their colour. She kept a box of forty samples under her bed, and every evening she tipped them onto the carpet and named them as fast as she could: pink feldspar, white quartz, black hematite, green olivine. By November she could name all forty in under two minutes, and she was sure that the regional mineral contest in Selwyn would be easy. Her older brother timed her each evening with a stopwatch from the kitchen drawer.\n\nHer partner, Zeke, worked much more slowly. He carried a small square of white tile, a steel nail and a magnifying glass, and he would scratch and rub a sample for a full minute before writing anything down. Tova found it hard to watch. On the bus to Selwyn she told him, as kindly as she could, that the contest gave each pair only thirty minutes for twenty samples. Zeke only nodded and went on polishing his tile with his sleeve.\n\nThe contest room was a science laboratory with long black tables. On each table stood a numbered tray, and the organisers had chosen the samples with care. A bell would ring when the thirty minutes were over. Some were wet. Some were coated in dust. Several were pieces Tova had never seen in that colour: a quartz crystal stained brownish-yellow, a dull grey lump that turned out to be hematite, a feldspar so pale it was almost white.\n\nFor the first ten minutes Tova wrote quickly and confidently. Then she reached sample eleven, which looked exactly like the grey lump before it, and she realised she had no idea which of the two was hematite. The clock on the wall showed twenty minutes left. She glanced across at Zeke. He had rubbed sample ten across his tile, and it had left a reddish-brown line. \"Hematite always streaks red-brown,\" he whispered, \"whatever colour the outside is.\" Sample eleven left a dark grey streak.\n\nTova looked back at her sheet. Of the ten samples she had already named, she now doubted four. She picked up the brownish crystal and drew it across the glass of a spare slide. It cut a clean line, which calcite would never do. It was quartz after all. With eight minutes left, she and Zeke worked through the rest of the tray together, she describing each sample's colour and shape, he testing each guess before either of them wrote it down.\n\nThey finished with seconds to spare and came third out of fourteen schools. On the bus home, Tova found the slide still in her pocket. She kept it. That week she bought a white tile of her own, and when she tipped the forty samples onto the carpet again, she left the stopwatch in the drawer and took her time over each one.",
+      "names": [
+        "Tova",
+        "Zeke",
+        "Selwyn"
+      ],
+      "other_caps": [
+        "November",
+        "Hematite",
+        "Sample"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-H-P3B-1",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "What is the purpose of describing Tova naming forty samples in under two minutes?",
+          "choices": [
+            "to show the method she relied on at first",
+            "to show that the contest samples matched hers",
+            "to show that colour is the surest way to name rocks",
+            "to show why Zeke found her hard to work beside"
+          ],
+          "correct_answer": "to show the method she relied on at first",
+          "why": "Tova had spent the whole autumn learning rocks by their colour.",
+          "explanation": "\"to show the method she relied on at first\" is correct: \"Tova had spent the whole autumn learning rocks by their colour\", and the fast naming shows that method before the contest changes it; at the end she \"took her time over each one\".",
+          "distractor_rationales": [
+            {
+              "choice": "to show that the contest samples matched hers",
+              "lure": "contradicted",
+              "reason": "\"to show that the contest samples matched hers\" is wrong: \"Several were pieces Tova had never seen in that colour\"."
+            },
+            {
+              "choice": "to show that colour is the surest way to name rocks",
+              "lure": "contradicted",
+              "reason": "\"to show that colour is the surest way to name rocks\" is wrong: the story shows colour failing her, \"Hematite always streaks red-brown,\" Zeke says, \"whatever colour the outside is.\""
+            },
+            {
+              "choice": "to show why Zeke found her hard to work beside",
+              "lure": "misreading",
+              "reason": "\"to show why Zeke found her hard to work beside\" is wrong: it is Tova who is impatient with Zeke, \"Tova found it hard to watch\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3B-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What did Tova tell Zeke on the way to the contest?",
+          "choices": [
+            "That each pair would have half an hour to name twenty samples",
+            "That he should leave his tile and nail at home",
+            "That she knew all forty of her samples by heart",
+            "That some of the samples might be wet or dusty"
+          ],
+          "correct_answer": "That each pair would have half an hour to name twenty samples",
+          "why": "the contest gave each pair only thirty minutes for twenty samples",
+          "explanation": "\"That each pair would have half an hour to name twenty samples\" is correct: on the bus she told him \"that the contest gave each pair only thirty minutes for twenty samples\".",
+          "distractor_rationales": [
+            {
+              "choice": "That he should leave his tile and nail at home",
+              "lure": "misreading",
+              "reason": "\"That he should leave his tile and nail at home\" is wrong: what she told him on the bus was \"that the contest gave each pair only thirty minutes for twenty samples\"."
+            },
+            {
+              "choice": "That she knew all forty of her samples by heart",
+              "lure": "detail",
+              "reason": "\"That she knew all forty of her samples by heart\" is wrong: that is what she practised at home, \"she could name all forty in under two minutes\"; on the bus she spoke about the time limit."
+            },
+            {
+              "choice": "That some of the samples might be wet or dusty",
+              "lure": "word lure",
+              "reason": "\"That some of the samples might be wet or dusty\" is wrong: the wet and dusty samples were found in the room, \"Some were wet. Some were coated in dust\"; on the bus she spoke about \"thirty minutes for twenty samples\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3B-3",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "The story says that Tova did each of the following EXCEPT",
+          "choices": [
+            "ask the organisers for some extra time",
+            "name her forty samples in less than two minutes",
+            "scratch a glass slide with a brownish crystal",
+            "buy a white tile like her partner's"
+          ],
+          "correct_answer": "ask the organisers for some extra time",
+          "why": "With eight minutes left, she and Zeke worked through the rest of the tray together",
+          "explanation": "\"ask the organisers for some extra time\" is correct: the story never has Tova speak to the organisers; instead, \"With eight minutes left, she and Zeke worked through the rest of the tray together\" and \"They finished with seconds to spare\".",
+          "distractor_rationales": [
+            {
+              "choice": "name her forty samples in less than two minutes",
+              "lure": "stated",
+              "reason": "\"name her forty samples in less than two minutes\" is stated: \"By November she could name all forty in under two minutes\"."
+            },
+            {
+              "choice": "scratch a glass slide with a brownish crystal",
+              "lure": "stated",
+              "reason": "\"scratch a glass slide with a brownish crystal\" is stated: \"She picked up the brownish crystal and drew it across the glass of a spare slide. It cut a clean line\"."
+            },
+            {
+              "choice": "buy a white tile like her partner's",
+              "lure": "stated",
+              "reason": "\"buy a white tile like her partner's\" is stated: Zeke \"carried a small square of white tile\", and later \"she bought a white tile of her own\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3B-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 3, the word \"dull\" is closest in meaning to",
+          "choices": [
+            "not shiny",
+            "not exciting",
+            "not sharp",
+            "not clever"
+          ],
+          "correct_answer": "not shiny",
+          "why": "a dull grey lump that turned out to be hematite",
+          "explanation": "\"not shiny\" is correct: \"a dull grey lump\" describes how the rock's surface looks, and Tova knew hematite as \"black hematite\", so this piece looked different from hers.",
+          "distractor_rationales": [
+            {
+              "choice": "not exciting",
+              "lure": "other meaning",
+              "reason": "\"not exciting\" is wrong: a dull film is not exciting, but here the word describes how a rock looks, beside its colour in \"a dull grey lump\"."
+            },
+            {
+              "choice": "not sharp",
+              "lure": "other meaning",
+              "reason": "\"not sharp\" is wrong: a knife can be dull, but the paragraph is listing how the samples look, \"stained brownish-yellow\", \"so pale it was almost white\", not their edges."
+            },
+            {
+              "choice": "not clever",
+              "lure": "other meaning",
+              "reason": "\"not clever\" is wrong: that sense describes people, while \"a dull grey lump\" is a piece of rock."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3B-5",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "How did Tova and Zeke share the work in the last minutes of the contest?",
+          "choices": [
+            "She described samples, and he tested them.",
+            "Each of them took half of the remaining tray.",
+            "He described samples, and she tested his guesses.",
+            "They went back over the samples she doubted."
+          ],
+          "correct_answer": "She described samples, and he tested them.",
+          "why": "she describing each sample's colour and shape, he testing each guess before either of them wrote it down",
+          "explanation": "\"She described samples, and he tested them.\" is correct: they worked together, \"she describing each sample's colour and shape, he testing each guess before either of them wrote it down\".",
+          "distractor_rationales": [
+            {
+              "choice": "Each of them took half of the remaining tray.",
+              "lure": "contradicted",
+              "reason": "\"Each of them took half of the remaining tray.\" is wrong: they did not split it; \"she and Zeke worked through the rest of the tray together\"."
+            },
+            {
+              "choice": "He described samples, and she tested his guesses.",
+              "lure": "misreading",
+              "reason": "\"He described samples, and she tested his guesses.\" is wrong: the roles were the other way round, \"she describing each sample's colour and shape, he testing each guess\"."
+            },
+            {
+              "choice": "They went back over the samples she doubted.",
+              "lure": "contradicted",
+              "reason": "\"They went back over the samples she doubted.\" is wrong: in those minutes they \"worked through the rest of the tray together\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-H-P3B-6",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the story mainly about?",
+          "choices": [
+            "how a contest taught Tova to test rocks, not trust colour",
+            "how young collectors learn that a rock's colour is worthless",
+            "how Zeke showed Tova the streak that hematite leaves",
+            "how Tova ended up keeping a glass slide from the contest"
+          ],
+          "correct_answer": "how a contest taught Tova to test rocks, not trust colour",
+          "why": "she bought a white tile of her own",
+          "explanation": "\"how a contest taught Tova to test rocks, not trust colour\" is correct: she begins \"learning rocks by their colour\", is caught out at the contest, and ends by buying \"a white tile of her own\" and taking \"her time over each one\".",
+          "distractor_rationales": [
+            {
+              "choice": "how young collectors learn that a rock's colour is worthless",
+              "lure": "broader",
+              "reason": "\"how young collectors learn that a rock's colour is worthless\" is wrong: the story follows one girl, and colour still matters to her, as she spends the end of the contest \"describing each sample's colour and shape\"."
+            },
+            {
+              "choice": "how Zeke showed Tova the streak that hematite leaves",
+              "lure": "detail",
+              "reason": "\"how Zeke showed Tova the streak that hematite leaves\" is wrong: this is one moment in paragraph 4, \"Hematite always streaks red-brown,\" and the story goes on to the contest result and what she does afterwards."
+            },
+            {
+              "choice": "how Tova ended up keeping a glass slide from the contest",
+              "lure": "minor-point",
+              "reason": "\"how Tova ended up keeping a glass slide from the contest\" is wrong: it is a small closing detail, \"Tova found the slide still in her pocket. She kept it.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

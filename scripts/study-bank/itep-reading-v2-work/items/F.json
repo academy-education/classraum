@@ -1,0 +1,662 @@
+{
+  "author": "F",
+  "sets": [
+    {
+      "set_id": "ITR2-F-P1A",
+      "part": 1,
+      "genre": "text message",
+      "title": "The broken washing machine",
+      "passage": "Hi, it's Navid. The washing machine started shaking and banging halfway through, so I switched it off at the wall. Water is still inside, so please keep the door closed or the floor will get wet. Dad says he can look at it after work on Thursday. Your football shirt is in there too. I know you need it for the match on Wednesday, so maybe wash it by hand in the sink tonight and hang it by the heater. Sorry!",
+      "names": [
+        "Navid"
+      ],
+      "other_caps": [
+        "Thursday",
+        "Wednesday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-F-P1A-1",
+          "kind": "inference",
+          "difficulty": "easy",
+          "prompt": "What can be inferred from the message?",
+          "choices": [
+            "Dad has already tried to repair the washing machine.",
+            "The machine will still be broken on the day of the match.",
+            "The water inside the machine has already been emptied.",
+            "Navid turned the machine off before the wash had started."
+          ],
+          "correct_answer": "The machine will still be broken on the day of the match.",
+          "why": "Dad says he can look at it after work on Thursday",
+          "why2": "you need it for the match on Wednesday",
+          "explanation": "\"The machine will still be broken on the day of the match.\" is correct: the match is \"on Wednesday\", but \"Dad says he can look at it after work on Thursday\", which is the day after the match.",
+          "distractor_rationales": [
+            {
+              "choice": "Dad has already tried to repair the washing machine.",
+              "lure": "contradicted",
+              "reason": "\"Dad has already tried to repair the washing machine.\" is wrong: Dad has not looked at it yet; \"Dad says he can look at it after work on Thursday\"."
+            },
+            {
+              "choice": "The water inside the machine has already been emptied.",
+              "lure": "contradicted",
+              "reason": "\"The water inside the machine has already been emptied.\" is wrong: the message says \"Water is still inside\"."
+            },
+            {
+              "choice": "Navid turned the machine off before the wash had started.",
+              "lure": "contradicted",
+              "reason": "\"Navid turned the machine off before the wash had started.\" is wrong: the machine \"started shaking and banging halfway through, so I switched it off at the wall\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-F-P1B",
+      "part": 1,
+      "genre": "short review",
+      "title": "A light alarm clock",
+      "passage": "I bought this light alarm clock because loud alarms always put me in a bad mood. Half an hour before the alarm time, its lamp slowly gets brighter, like a sunrise, and then soft bird sounds begin. For the first two weeks I woke up before the birds every morning and felt much calmer. Then my family went camping for a week. When I got home, my brother had moved the clock onto a high shelf, where the lamp faced the wall. I overslept twice before I noticed. Orla, age 15",
+      "names": [
+        "Orla"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-F-P1B-1",
+          "kind": "inference",
+          "difficulty": "easy",
+          "prompt": "What does the review suggest about the clock?",
+          "choices": [
+            "Orla was usually woken by the light rather than the sound.",
+            "Orla moved the clock to the shelf before the camping trip.",
+            "The bird sounds started at the same moment as the lamp.",
+            "Orla often woke up unhappy during the first two weeks."
+          ],
+          "correct_answer": "Orla was usually woken by the light rather than the sound.",
+          "why": "I woke up before the birds every morning",
+          "why2": "where the lamp faced the wall. I overslept twice",
+          "explanation": "\"Orla was usually woken by the light rather than the sound.\" is correct: the writer \"woke up before the birds every morning\", and when the clock was moved \"where the lamp faced the wall. I overslept twice\", so the sounds alone did not wake the writer.",
+          "distractor_rationales": [
+            {
+              "choice": "Orla moved the clock to the shelf before the camping trip.",
+              "lure": "contradicted",
+              "reason": "\"Orla moved the clock to the shelf before the camping trip.\" is wrong: \"my brother had moved the clock onto a high shelf\" while the family was away."
+            },
+            {
+              "choice": "The bird sounds started at the same moment as the lamp.",
+              "lure": "contradicted",
+              "reason": "\"The bird sounds started at the same moment as the lamp.\" is wrong: the lamp starts \"Half an hour before the alarm time\", \"and then soft bird sounds begin\"."
+            },
+            {
+              "choice": "Orla often woke up unhappy during the first two weeks.",
+              "lure": "contradicted",
+              "reason": "\"Orla often woke up unhappy during the first two weeks.\" is wrong: \"For the first two weeks\" the writer \"felt much calmer\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-F-P2A",
+      "part": 2,
+      "genre": "story",
+      "title": "The sticker on the camera",
+      "passage": "Mr. Nyberg, who lived in the flat below Minna's family, knocked on their door one Sunday holding a small box. His grandson Osric had moved to Canada for university, and Osric's mother had sent Mr. Nyberg a tablet so that the two of them could talk on video. The tablet had stayed in its box for a month because he was afraid of breaking it.\n\nMinna charged the tablet, connected it to his internet and showed him the green button for answering calls. She also wrote the steps on a card in large letters. That evening Osric called, and Mr. Nyberg pressed the green button at once. Osric could hear his grandfather clearly, but the screen on his side stayed completely black.\n\nThe next morning Mr. Nyberg came upstairs, worried that he had broken something. Minna went down to look. The tablet worked perfectly, and the camera was fine. Then she noticed a small paper sticker with the shop's name on it, stuck right over the camera lens. She peeled it off and laughed, and after a moment Mr. Nyberg laughed too.\n\nOn the next call, Osric saw his grandfather's face for the first time in four months. He showed him his tiny student room and the snow outside his window. A week later, Mr. Nyberg knocked on Minna's door again, this time to show her a new card he had written himself, with the steps for sending photos.",
+      "names": [
+        "Minna",
+        "Nyberg",
+        "Osric"
+      ],
+      "other_caps": [
+        "Mr",
+        "Sunday",
+        "Canada"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-F-P2A-1",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the story mainly about?",
+          "choices": [
+            "How Minna helped her neighbour talk to his grandson by video",
+            "How Osric showed his grandfather his small room at university",
+            "How Mr. Nyberg broke the tablet that his grandson's mother sent",
+            "How Minna charged a new tablet and repaired its broken camera"
+          ],
+          "correct_answer": "How Minna helped her neighbour talk to his grandson by video",
+          "why": "Osric saw his grandfather's face for the first time in four months",
+          "explanation": "\"How Minna helped her neighbour talk to his grandson by video\" is correct: Minna sets up the tablet, finds the problem, and in the end \"Osric saw his grandfather's face for the first time in four months\".",
+          "distractor_rationales": [
+            {
+              "choice": "How Osric showed his grandfather his small room at university",
+              "lure": "detail",
+              "reason": "\"How Osric showed his grandfather his small room at university\" is one moment near the end: \"He showed him his tiny student room\". The rest of the story is about getting the video call to work."
+            },
+            {
+              "choice": "How Mr. Nyberg broke the tablet that his grandson's mother sent",
+              "lure": "misreading",
+              "reason": "\"How Mr. Nyberg broke the tablet that his grandson's mother sent\" is wrong: he only feared he had; \"The tablet worked perfectly, and the camera was fine.\""
+            },
+            {
+              "choice": "How Minna charged a new tablet and repaired its broken camera",
+              "lure": "two-part",
+              "reason": "\"How Minna charged a new tablet and repaired its broken camera\" is wrong in its second part: Minna did charge the tablet, but \"The tablet worked perfectly, and the camera was fine\"; she only peeled off a sticker."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P2A-2",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the writer include the last sentence of the story?",
+          "choices": [
+            "to show that Mr. Nyberg had started learning new tablet skills on his own",
+            "to show that Minna still had to write every card for him",
+            "to explain why Osric had moved so far away from home",
+            "to give an example of a new problem with the tablet"
+          ],
+          "correct_answer": "to show that Mr. Nyberg had started learning new tablet skills on his own",
+          "why": "a new card he had written himself, with the steps for sending photos",
+          "explanation": "\"to show that Mr. Nyberg had started learning new tablet skills on his own\" is correct: he comes back with \"a new card he had written himself, with the steps for sending photos\".",
+          "distractor_rationales": [
+            {
+              "choice": "to show that Minna still had to write every card for him",
+              "lure": "contradicted",
+              "reason": "\"to show that Minna still had to write every card for him\" is wrong: this card is one \"he had written himself\"."
+            },
+            {
+              "choice": "to explain why Osric had moved so far away from home",
+              "lure": "wrong paragraph",
+              "reason": "\"to explain why Osric had moved so far away from home\" is wrong: the reason is given at the start, \"His grandson Osric had moved to Canada for university\", and the last sentence is about Mr. Nyberg's card."
+            },
+            {
+              "choice": "to give an example of a new problem with the tablet",
+              "lure": "contradicted",
+              "reason": "\"to give an example of a new problem with the tablet\" is wrong: he knocks \"this time to show her a new card\", not to report a fault as he did when he was \"worried that he had broken something\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P2A-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the story, what did Minna notice when she looked at the tablet?",
+          "choices": [
+            "a paper label from the shop that covered the camera",
+            "a thin crack running across the corner of the screen",
+            "a setting that had switched off the tablet's camera",
+            "a loose cable inside the tablet's charging socket"
+          ],
+          "correct_answer": "a paper label from the shop that covered the camera",
+          "why": "a small paper sticker with the shop's name on it, stuck right over the camera lens",
+          "explanation": "\"a paper label from the shop that covered the camera\" is correct: she saw \"a small paper sticker with the shop's name on it, stuck right over the camera lens\".",
+          "distractor_rationales": [
+            {
+              "choice": "a thin crack running across the corner of the screen",
+              "lure": "invented fault",
+              "reason": "\"a thin crack running across the corner of the screen\" is wrong: \"The tablet worked perfectly\"."
+            },
+            {
+              "choice": "a setting that had switched off the tablet's camera",
+              "lure": "invented fault",
+              "reason": "\"a setting that had switched off the tablet's camera\" is wrong: \"the camera was fine\"; it was covered by a sticker."
+            },
+            {
+              "choice": "a loose cable inside the tablet's charging socket",
+              "lure": "word lure",
+              "reason": "\"a loose cable inside the tablet's charging socket\" is wrong: Minna only \"charged the tablet\" earlier, and when she checked, \"The tablet worked perfectly\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P2A-4",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "What is NOT stated about Mr. Nyberg in the story?",
+          "choices": [
+            "He lived one floor below Minna's family.",
+            "He answered Osric's call with the green button.",
+            "He wrote his own card about sending photos.",
+            "He had used a computer at work for many years."
+          ],
+          "correct_answer": "He had used a computer at work for many years.",
+          "why": "he was afraid of breaking it",
+          "explanation": "\"He had used a computer at work for many years.\" is correct: the story never mentions his work; it says only that the tablet stayed in its box \"because he was afraid of breaking it\".",
+          "distractor_rationales": [
+            {
+              "choice": "He lived one floor below Minna's family.",
+              "lure": "stated",
+              "reason": "\"He lived one floor below Minna's family.\" is stated: \"who lived in the flat below Minna's family\"."
+            },
+            {
+              "choice": "He answered Osric's call with the green button.",
+              "lure": "stated",
+              "reason": "\"He answered Osric's call with the green button.\" is stated: \"Osric called, and Mr. Nyberg pressed the green button at once\"."
+            },
+            {
+              "choice": "He wrote his own card about sending photos.",
+              "lure": "stated",
+              "reason": "\"He wrote his own card about sending photos.\" is stated: \"a new card he had written himself, with the steps for sending photos\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-F-P3A",
+      "part": 3,
+      "genre": "informational technology",
+      "title": "Why touchscreens ignore gloves",
+      "passage": "On a freezing morning, many people discover a small but annoying fact about their phones. With their gloves on, they tap the screen again and again, and the phone ignores every tap. It has not frozen, and the gloves may be quite thin. The screen is simply unable to notice them, and the reason lies in how most modern touchscreens are built.\n\nMost phones and tablets today use what engineers call a capacitive screen. Under the glass lies a fine grid of transparent material that conducts electricity, and the phone keeps a weak electric field across it. A human finger is a reasonably good conductor, because the body contains a great deal of salty water. When a fingertip comes close to the glass, it disturbs the field at that point, and the phone measures exactly where the change has happened. Wool, leather and most other glove materials are poor conductors, so the field stays almost the same and the screen behaves as if nothing has touched it.\n\nTouchscreens did not always work this way. Many earlier devices, such as ticket machines and the first handheld computers, used resistive screens. These were made of two flexible sheets separated by a very thin gap. Pressing the top sheet pushed it against the lower one, and the device detected the point where they met. Because it responded to pressure alone, a resistive screen worked with a fingernail, a plastic pen or a thick winter glove. Its weaknesses were that it needed a firm push, the extra layers made the picture slightly duller, and it usually recognised only one point of contact at a time.\n\nPhone makers began switching to capacitive screens in large numbers in the late 2000s. What attracted them was a screen that reacted to the lightest touch and could follow two fingers at once, so that a user could spread them apart to enlarge a photo or a map. The cost of this change was hardly visible in a warm shop. A screen that senses electric charge responds only to objects that conduct electricity, and a gloved hand in winter is not one of them.\n\nManufacturers and users have found several ways around the problem. Some winter gloves now have threads coated with silver or copper sewn into the fingertips, which carry the effect of the finger through the fabric. A simple stylus designed for these screens has a soft tip made of conductive rubber, and the tip is roughly as wide as a fingertip, because a very narrow point changes the field too little to be detected. Some phones also include a setting that makes the screen more sensitive, so that it can find a finger through a thin glove, although this setting can make accidental touches more common.\n\nThe same physics explains a less familiar problem. Rainwater conducts electricity well enough that a phone used in heavy rain may react to drops on the glass as if they were fingers, opening apps or typing letters on its own. In other words, the feature that makes these screens so pleasant to use is also the source of their strangest failures: they do not really feel a touch at all, only the electrical presence of something that behaves like skin.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-F-P3A-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the older resistive screens?",
+          "choices": [
+            "They were poorly suited to enlarging a photo with two fingers.",
+            "They needed an object that conducts electricity to work.",
+            "They gave a brighter picture than the screens that replaced them.",
+            "They reacted to a lighter touch than capacitive screens do."
+          ],
+          "correct_answer": "They were poorly suited to enlarging a photo with two fingers.",
+          "why": "it usually recognised only one point of contact at a time",
+          "why2": "could follow two fingers at once, so that a user could spread them apart to enlarge a photo or a map",
+          "explanation": "\"They were poorly suited to enlarging a photo with two fingers.\" is correct: enlarging means a user can \"spread them apart to enlarge a photo\" with two fingers, but a resistive screen \"usually recognised only one point of contact at a time\".",
+          "distractor_rationales": [
+            {
+              "choice": "They needed an object that conducts electricity to work.",
+              "lure": "contradicted",
+              "reason": "\"They needed an object that conducts electricity to work.\" is wrong: \"it responded to pressure alone\" and worked with \"a plastic pen or a thick winter glove\"."
+            },
+            {
+              "choice": "They gave a brighter picture than the screens that replaced them.",
+              "lure": "contradicted",
+              "reason": "\"They gave a brighter picture than the screens that replaced them.\" is wrong: \"the extra layers made the picture slightly duller\"."
+            },
+            {
+              "choice": "They reacted to a lighter touch than capacitive screens do.",
+              "lure": "contradicted",
+              "reason": "\"They reacted to a lighter touch than capacitive screens do.\" is wrong: a resistive screen \"needed a firm push\", while the capacitive screen \"reacted to the lightest touch\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3A-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, why does a simple stylus have a wide tip?",
+          "choices": [
+            "A narrow point would change the electric field too slightly to be noticed.",
+            "A wide tip can hold more of the silver thread used in gloves.",
+            "A narrow point would scratch the glass by pressing too hard.",
+            "A wide tip stops raindrops from being read as touches."
+          ],
+          "correct_answer": "A narrow point would change the electric field too slightly to be noticed.",
+          "why": "because a very narrow point changes the field too little to be detected",
+          "explanation": "\"A narrow point would change the electric field too slightly to be noticed.\" is correct: the tip is wide \"because a very narrow point changes the field too little to be detected\".",
+          "distractor_rationales": [
+            {
+              "choice": "A wide tip can hold more of the silver thread used in gloves.",
+              "lure": "word lure",
+              "reason": "\"A wide tip can hold more of the silver thread used in gloves.\" is wrong: the stylus tip is \"made of conductive rubber\"; silver threads are in \"Some winter gloves\"."
+            },
+            {
+              "choice": "A narrow point would scratch the glass by pressing too hard.",
+              "lure": "other reason",
+              "reason": "\"A narrow point would scratch the glass by pressing too hard.\" is wrong: the passage gives a different reason, \"because a very narrow point changes the field too little to be detected\"."
+            },
+            {
+              "choice": "A wide tip stops raindrops from being read as touches.",
+              "lure": "word lure",
+              "reason": "\"A wide tip stops raindrops from being read as touches.\" is wrong: rain is a separate problem in the last paragraph, and the tip is wide \"because a very narrow point changes the field too little to be detected\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3A-3",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "The writer mentions ticket machines and the first handheld computers in order",
+          "choices": [
+            "to name some devices that used resistive screens",
+            "to show which devices first had trouble with winter gloves",
+            "to explain why capacitive screens later became popular in shops",
+            "to show where the first capacitive screens were tried out"
+          ],
+          "correct_answer": "to name some devices that used resistive screens",
+          "why": "Many earlier devices, such as ticket machines and the first handheld computers, used resistive screens.",
+          "explanation": "\"to name some devices that used resistive screens\" is correct: \"Many earlier devices, such as ticket machines and the first handheld computers, used resistive screens.\"",
+          "distractor_rationales": [
+            {
+              "choice": "to show which devices first had trouble with winter gloves",
+              "lure": "contradicted",
+              "reason": "\"to show which devices first had trouble with winter gloves\" is wrong: those screens worked with \"a thick winter glove\"."
+            },
+            {
+              "choice": "to explain why capacitive screens later became popular in shops",
+              "lure": "wrong paragraph",
+              "reason": "\"to explain why capacitive screens later became popular in shops\" is wrong: that reason comes in the next paragraph, \"What attracted them was a screen that reacted to the lightest touch\"."
+            },
+            {
+              "choice": "to show where the first capacitive screens were tried out",
+              "lure": "contradicted",
+              "reason": "\"to show where the first capacitive screens were tried out\" is wrong: these devices \"used resistive screens\", not capacitive ones."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3A-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"fine\" is closest in meaning to",
+          "choices": [
+            "very thin",
+            "healthy",
+            "rain-free",
+            "acceptable"
+          ],
+          "correct_answer": "very thin",
+          "why": "Under the glass lies a fine grid of transparent material that conducts electricity",
+          "explanation": "\"very thin\" is correct: \"a fine grid of transparent material\" lies under the glass, so the grid is made of very thin material that the user looks through.",
+          "distractor_rationales": [
+            {
+              "choice": "healthy",
+              "lure": "other meaning",
+              "reason": "\"healthy\" is the sense used about how a person feels; the word here describes a material, \"a fine grid of transparent material\"."
+            },
+            {
+              "choice": "rain-free",
+              "lure": "other meaning",
+              "reason": "\"rain-free\" is the weather sense, as in a fine day; the sentence is about what lies \"Under the glass\"."
+            },
+            {
+              "choice": "acceptable",
+              "lure": "other meaning",
+              "reason": "\"acceptable\" is the sense of something being good enough; the sentence describes the grid itself, \"a fine grid of transparent material that conducts electricity\", not whether it is good enough."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3A-5",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "The writer describes what happens to a phone in heavy rain in order",
+          "choices": [
+            "to show another result of the screen reacting to electric charge",
+            "to explain why some phones include a setting for gloves",
+            "to give an example of a weakness that older resistive screens shared",
+            "to show how heavy rain can damage the glass of a phone"
+          ],
+          "correct_answer": "to show another result of the screen reacting to electric charge",
+          "why": "The same physics explains a less familiar problem.",
+          "explanation": "\"to show another result of the screen reacting to electric charge\" is correct: \"The same physics explains a less familiar problem.\" Rainwater conducts electricity, so the phone may \"react to drops on the glass as if they were fingers\".",
+          "distractor_rationales": [
+            {
+              "choice": "to explain why some phones include a setting for gloves",
+              "lure": "wrong paragraph",
+              "reason": "\"to explain why some phones include a setting for gloves\" is wrong: that setting comes in the paragraph before, and it exists \"so that it can find a finger through a thin glove\"."
+            },
+            {
+              "choice": "to give an example of a weakness that older resistive screens shared",
+              "lure": "contradicted",
+              "reason": "\"to give an example of a weakness that older resistive screens shared\" is wrong: a resistive screen \"responded to pressure alone\", so drops of water would not trigger it; the rain problem comes from \"The same physics\" as the glove problem."
+            },
+            {
+              "choice": "to show how heavy rain can damage the glass of a phone",
+              "lure": "misreading",
+              "reason": "\"to show how heavy rain can damage the glass of a phone\" is wrong: the phone may \"react to drops on the glass as if they were fingers\"; nothing is damaged."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3A-6",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Overall, the passage is mainly concerned with",
+          "choices": [
+            "Why gloves fail on most modern touchscreens and how people have dealt with it",
+            "How resistive screens were improved until they could sense a gloved finger",
+            "Why modern touchscreens need firm pressure and how gloves can provide it",
+            "Why phone makers chose resistive screens and how winter exposed the problem"
+          ],
+          "correct_answer": "Why gloves fail on most modern touchscreens and how people have dealt with it",
+          "why": "A screen that senses electric charge responds only to objects that conduct electricity, and a gloved hand in winter is not one of them.",
+          "explanation": "\"Why gloves fail on most modern touchscreens and how people have dealt with it\" is correct: the passage explains that \"A screen that senses electric charge responds only to objects that conduct electricity\", and then that \"Manufacturers and users have found several ways around the problem\".",
+          "distractor_rationales": [
+            {
+              "choice": "How resistive screens were improved until they could sense a gloved finger",
+              "lure": "misreading",
+              "reason": "\"How resistive screens were improved until they could sense a gloved finger\" is wrong: resistive screens already \"worked with a fingernail, a plastic pen or a thick winter glove\", and they were replaced."
+            },
+            {
+              "choice": "Why modern touchscreens need firm pressure and how gloves can provide it",
+              "lure": "two-part",
+              "reason": "\"Why modern touchscreens need firm pressure and how gloves can provide it\" is wrong: the modern screen \"reacted to the lightest touch\"; it was the older screen that \"needed a firm push\"."
+            },
+            {
+              "choice": "Why phone makers chose resistive screens and how winter exposed the problem",
+              "lure": "two-part",
+              "reason": "\"Why phone makers chose resistive screens and how winter exposed the problem\" is wrong: \"Phone makers began switching to capacitive screens\", and the glove problem belongs to those."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-F-P3B",
+      "part": 3,
+      "genre": "biography of an invented person",
+      "title": "The mirrors across the valley",
+      "passage": "Ottilie Mendrell was born in Netherholt, a mountain village whose only road ran down a narrow valley to the market town of Ollendale, about thirty kilometres away. Her father repaired clocks, and as a girl she spent long evenings at his bench, learning how small parts could be made to work together. At sixteen she built an oil lamp that put itself out when its fuel ran low, and the village talked about it for weeks.\n\nNetherholt's problem was distance. A message to Ollendale had to be carried on horseback, which took most of a day on the steep road, and in winter the road could be blocked by snow for a week or more. Ottilie had read about armies that sent signals with flashes of sunlight, and she knew that the church tower in Ollendale could be seen from the hill above her village on clear days. In the spring of her twentieth year, she proposed placing a large mirror at each end, so that the two places could exchange messages by flashing sunlight across the valley in a simple code of long and short flashes.\n\nThe village council was unimpressed. Its oldest member, Nevin Osterfeld, argued that a mirror would be useless at night or under cloud, which was true, and that the money would be better spent on widening the road. Others simply laughed at the idea of talking with sunshine. Ottilie replied that a storm would close even a wider road, while the sky usually cleared within a day or two. After a long debate, the council gave her a small sum, about half of what she had asked for.\n\nWith half the money, Ottilie could afford only one large mirror, so she placed it on the hill above Netherholt and, for the first months, used a much smaller mirror lent by the church in Ollendale. She spent the summer training two boys from each place to send and read the code. The first messages were short and slow, and a cloud passing at the wrong moment could ruin a whole sentence, but by autumn the two stations could exchange a simple message in less than an hour.\n\nThe real test came that winter. In January a heavy snowfall closed the road for nine days, and on the third day a child in Netherholt fell seriously ill. On the first clear morning, the hill station flashed a request for a doctor, and Ollendale replied within the hour that one would set out on skis. He arrived the next afternoon, and the child recovered. After that, the council paid for a second large mirror without any argument, and Nevin Osterfeld himself climbed the hill to watch the first message sent with it.\n\nThe mirrors served the two places for about fourteen years, until a telephone line was finally strung along the valley road. Ottilie welcomed it. By then she was running a small workshop in Netherholt that repaired sewing machines and farm tools, and she said the telephone did the job better, since it worked at night. When people later asked whether she was sad to see her mirrors taken down, she answered that she had never cared about the mirrors themselves, only about the messages.",
+      "names": [
+        "Ottilie Mendrell",
+        "Netherholt",
+        "Ollendale",
+        "Nevin Osterfeld"
+      ],
+      "other_caps": [
+        "January"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-F-P3B-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "Before Ottilie's mirrors, how did a message travel to Ollendale?",
+          "choices": [
+            "by someone riding a horse along the road",
+            "by boys running between the two places on foot",
+            "by lamp signals from the church tower at night",
+            "by a post cart that travelled down once a week"
+          ],
+          "correct_answer": "by someone riding a horse along the road",
+          "why": "A message to Ollendale had to be carried on horseback",
+          "explanation": "\"by someone riding a horse along the road\" is correct: \"A message to Ollendale had to be carried on horseback\".",
+          "distractor_rationales": [
+            {
+              "choice": "by boys running between the two places on foot",
+              "lure": "word lure",
+              "reason": "\"by boys running between the two places on foot\" is wrong: messages went \"on horseback\"; the boys came later, when Ottilie was \"training two boys from each place to send and read the code\"."
+            },
+            {
+              "choice": "by lamp signals from the church tower at night",
+              "lure": "word lure",
+              "reason": "\"by lamp signals from the church tower at night\" is wrong: \"A message to Ollendale had to be carried on horseback\"; the church tower was only something that \"could be seen from the hill\"."
+            },
+            {
+              "choice": "by a post cart that travelled down once a week",
+              "lure": "detail",
+              "reason": "\"by a post cart that travelled down once a week\" is wrong: the passage says a message \"had to be carried on horseback, which took most of a day\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3B-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What is most likely true, based on the passage?",
+          "choices": [
+            "Ottilie later relied on a point Nevin had once raised against her.",
+            "Ottilie argued to keep her mirrors after the telephone line arrived.",
+            "Nevin continued to doubt the mirrors even after the winter snowfall.",
+            "The council trusted Ottilie's plan from the moment she first described it."
+          ],
+          "correct_answer": "Ottilie later relied on a point Nevin had once raised against her.",
+          "why": "a mirror would be useless at night or under cloud",
+          "why2": "the telephone did the job better, since it worked at night",
+          "explanation": "\"Ottilie later relied on a point Nevin had once raised against her.\" is correct: Nevin argued that \"a mirror would be useless at night or under cloud\", and years later Ottilie said \"the telephone did the job better, since it worked at night\".",
+          "distractor_rationales": [
+            {
+              "choice": "Ottilie argued to keep her mirrors after the telephone line arrived.",
+              "lure": "contradicted",
+              "reason": "\"Ottilie argued to keep her mirrors after the telephone line arrived.\" is wrong: \"Ottilie welcomed it.\""
+            },
+            {
+              "choice": "Nevin continued to doubt the mirrors even after the winter snowfall.",
+              "lure": "contradicted",
+              "reason": "\"Nevin continued to doubt the mirrors even after the winter snowfall.\" is wrong: after the snow, \"Nevin Osterfeld himself climbed the hill to watch the first message sent with it\"."
+            },
+            {
+              "choice": "The council trusted Ottilie's plan from the moment she first described it.",
+              "lure": "contradicted",
+              "reason": "\"The council trusted Ottilie's plan from the moment she first described it.\" is wrong: \"The village council was unimpressed.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3B-3",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 6, the word \"served\" is closest in meaning to",
+          "choices": [
+            "worked for",
+            "waited on",
+            "dished up",
+            "enlisted in"
+          ],
+          "correct_answer": "worked for",
+          "why": "The mirrors served the two places for about fourteen years",
+          "explanation": "\"worked for\" is correct: \"The mirrors served the two places for about fourteen years\" means they did their job for the two places until the telephone came.",
+          "distractor_rationales": [
+            {
+              "choice": "waited on",
+              "lure": "other meaning",
+              "reason": "\"waited on\" is the restaurant sense of bringing food to guests; the subject here is \"The mirrors\", which carried messages."
+            },
+            {
+              "choice": "dished up",
+              "lure": "other meaning",
+              "reason": "\"dished up\" is the cooking sense of putting food on plates; the sentence is about how long the signals were used, \"for about fourteen years\"."
+            },
+            {
+              "choice": "enlisted in",
+              "lure": "other meaning",
+              "reason": "\"enlisted in\" is the army sense of joining up; \"The mirrors served the two places\" means they were useful to the villages, not that they joined them."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3B-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "How a doubted signalling plan proved its worth to a mountain village",
+            "Why the council gave Ottilie's plan its full support at once",
+            "The way Ottilie's mirrors replaced the valley's telephone line",
+            "What Ottilie built for signalling and how it was used at night"
+          ],
+          "correct_answer": "How a doubted signalling plan proved its worth to a mountain village",
+          "why": "After that, the council paid for a second large mirror without any argument",
+          "explanation": "\"How a doubted signalling plan proved its worth to a mountain village\" is correct: at first \"The village council was unimpressed\", but after the snowstorm \"the council paid for a second large mirror without any argument\".",
+          "distractor_rationales": [
+            {
+              "choice": "Why the council gave Ottilie's plan its full support at once",
+              "lure": "misreading",
+              "reason": "\"Why the council gave Ottilie's plan its full support at once\" is wrong: \"The village council was unimpressed\" and gave her only \"about half of what she had asked for\"."
+            },
+            {
+              "choice": "The way Ottilie's mirrors replaced the valley's telephone line",
+              "lure": "misreading",
+              "reason": "\"The way Ottilie's mirrors replaced the valley's telephone line\" reverses the order: the mirrors were used \"until a telephone line was finally strung along the valley road\"."
+            },
+            {
+              "choice": "What Ottilie built for signalling and how it was used at night",
+              "lure": "two-part",
+              "reason": "\"What Ottilie built for signalling and how it was used at night\" is wrong in its second part: Nevin pointed out that \"a mirror would be useless at night or under cloud\", \"which was true\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3B-5",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "The passage tells us all of the following about Ottilie EXCEPT:",
+          "choices": [
+            "Her father worked as a clock repairer.",
+            "She taught young people to send the code.",
+            "She later ran a workshop that mended tools.",
+            "She wrote a short book explaining her code."
+          ],
+          "correct_answer": "She wrote a short book explaining her code.",
+          "why": "She spent the summer training two boys from each place to send and read the code.",
+          "explanation": "\"She wrote a short book explaining her code.\" is correct: the passage says she taught the code in person, \"She spent the summer training two boys from each place to send and read the code.\" It mentions no book.",
+          "distractor_rationales": [
+            {
+              "choice": "Her father worked as a clock repairer.",
+              "lure": "stated",
+              "reason": "\"Her father worked as a clock repairer.\" is stated: \"Her father repaired clocks\"."
+            },
+            {
+              "choice": "She taught young people to send the code.",
+              "lure": "stated",
+              "reason": "\"She taught young people to send the code.\" is stated: \"training two boys from each place to send and read the code\"."
+            },
+            {
+              "choice": "She later ran a workshop that mended tools.",
+              "lure": "stated",
+              "reason": "\"She later ran a workshop that mended tools.\" is stated: \"a small workshop in Netherholt that repaired sewing machines and farm tools\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-F-P3B-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What did the council do after the sick child recovered?",
+          "choices": [
+            "It paid for another big mirror without any dispute.",
+            "It finally agreed to spend money widening the road.",
+            "It asked Ottilie to train more people in the code.",
+            "It ordered a telephone line to be built to Ollendale."
+          ],
+          "correct_answer": "It paid for another big mirror without any dispute.",
+          "why": "the council paid for a second large mirror without any argument",
+          "explanation": "\"It paid for another big mirror without any dispute.\" is correct: \"the council paid for a second large mirror without any argument\".",
+          "distractor_rationales": [
+            {
+              "choice": "It finally agreed to spend money widening the road.",
+              "lure": "word lure",
+              "reason": "\"It finally agreed to spend money widening the road.\" is wrong: widening the road was Nevin's earlier idea; after the child recovered, \"the council paid for a second large mirror\"."
+            },
+            {
+              "choice": "It asked Ottilie to train more people in the code.",
+              "lure": "detail",
+              "reason": "\"It asked Ottilie to train more people in the code.\" is wrong: the council's action was that it \"paid for a second large mirror without any argument\"; the training happened the summer before."
+            },
+            {
+              "choice": "It ordered a telephone line to be built to Ollendale.",
+              "lure": "wrong time",
+              "reason": "\"It ordered a telephone line to be built to Ollendale.\" is wrong: the mirrors \"served the two places for about fourteen years\" before the telephone line came."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

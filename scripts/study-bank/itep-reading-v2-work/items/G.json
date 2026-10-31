@@ -1,0 +1,669 @@
+{
+  "author": "G",
+  "sets": [
+    {
+      "set_id": "ITR2-G-P1A",
+      "part": 1,
+      "genre": "email",
+      "title": "Practising songs for the concert",
+      "passage": "Hi Pernille,\n\nThank you for lending me your guitar songbook. I have already learned two of the songs. Our school concert is on Friday, and Mr Pomeroy wants our group to play one song at the start. Could we fix a time to practise together this weekend? I am free on Saturday after lunch or on Sunday before ten in the morning. My house has a big living room, so we can practise there. Please bring your guitar, and I will make some snacks.\n\nSee you soon,\nRafe",
+      "names": [
+        "Pernille",
+        "Pomeroy",
+        "Rafe"
+      ],
+      "other_caps": [
+        "Mr",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-G-P1A-1",
+          "kind": "vocabulary",
+          "difficulty": "easy",
+          "prompt": "In the email, the word \"fix\" is closest in meaning to",
+          "choices": [
+            "arrange",
+            "repair",
+            "fasten",
+            "prepare"
+          ],
+          "correct_answer": "arrange",
+          "why": "Could we fix a time to practise together this weekend?",
+          "explanation": "\"arrange\" is correct: Rafe asks to \"fix a time to practise together this weekend\" and then offers two possible times, \"Saturday after lunch or on Sunday before ten in the morning\", so the meaning is to arrange a time.",
+          "distractor_rationales": [
+            {
+              "choice": "repair",
+              "lure": "other meaning",
+              "reason": "\"repair\" is what \"fix\" means for a broken object, but the email uses it with \"a time\", and a time is chosen, not mended: \"I am free on Saturday after lunch or on Sunday before ten in the morning\"."
+            },
+            {
+              "choice": "fasten",
+              "lure": "other meaning",
+              "reason": "\"fasten\" is the meaning of \"fix\" for attaching something to a wall, but here the object is \"a time to practise together\", which cannot be attached to anything."
+            },
+            {
+              "choice": "prepare",
+              "lure": "other meaning",
+              "reason": "\"prepare\" is the meaning of \"fix\" in fixing a meal, but Rafe is not getting anything ready; he wants the two of them to agree on when to meet, and he offers \"Saturday after lunch or on Sunday before ten in the morning\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-G-P1B",
+      "part": 1,
+      "genre": "note",
+      "title": "The piano tuner's visit",
+      "passage": "Ronja,\n\nThe piano tuner is coming at four o'clock today. I will still be at work then, so please be home by quarter to four to let him in. He needs about an hour, and the room must be quiet while he works. You can do your homework in the kitchen. Your lesson with Mrs Prentiss is still on Thursday, as usual. I have left money for the tuner in the blue envelope by the phone.\n\nMum",
+      "names": [
+        "Ronja",
+        "Prentiss"
+      ],
+      "other_caps": [
+        "Mrs",
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-G-P1B-1",
+          "kind": "purpose",
+          "difficulty": "easy",
+          "prompt": "Why did Mum write this note?",
+          "choices": [
+            "to ask Ronja to be home in time to let a visitor in",
+            "to explain why Ronja's piano lesson has moved to a new day",
+            "to ask Ronja to phone the tuner and arrange a visit",
+            "to ask Ronja to come and meet Mum at work after school"
+          ],
+          "correct_answer": "to ask Ronja to be home in time to let a visitor in",
+          "why": "please be home by quarter to four to let him in",
+          "explanation": "\"to ask Ronja to be home in time to let a visitor in\" is correct: the tuner \"is coming at four o'clock today\", Mum \"will still be at work then\", so she writes \"please be home by quarter to four to let him in\". The rest of the note (where to do homework, the money) is about the same visit.",
+          "distractor_rationales": [
+            {
+              "choice": "to explain why Ronja's piano lesson has moved to a new day",
+              "lure": "contradicted",
+              "reason": "\"to explain why Ronja's piano lesson has moved to a new day\" is wrong because the note says the lesson has not moved: \"Your lesson with Mrs Prentiss is still on Thursday, as usual.\""
+            },
+            {
+              "choice": "to ask Ronja to phone the tuner and arrange a visit",
+              "lure": "misreading",
+              "reason": "\"to ask Ronja to phone the tuner and arrange a visit\" is wrong because the visit is already arranged: \"The piano tuner is coming at four o'clock today.\""
+            },
+            {
+              "choice": "to ask Ronja to come and meet Mum at work after school",
+              "lure": "word lure",
+              "reason": "\"to ask Ronja to come and meet Mum at work after school\" reuses \"work\", but Mum says \"I will still be at work then, so please be home by quarter to four\"; Ronja is to stay home, not go to her."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-G-P2A",
+      "part": 2,
+      "genre": "first-person school life",
+      "title": "Painting the backdrop",
+      "passage": "When our drama teacher, Ms Rennick, put up the cast list for the spring play, my name was missing. I had tried out for the part of the old fisherman and had practised his lines for two weeks. Instead, she asked me to paint the backdrop, the huge cloth that hangs behind the actors.\n\nI said yes, but I was disappointed. The play was set in a fishing village, so I had to paint a harbour, three boats and a long row of houses along the shore. My art teacher lent me his best brushes and showed me how to mix a grey-blue for the water. Every day after school, I worked on the gym floor while the actors rehearsed on the stage nearby.\n\nAfter the first week, we hung the cloth up to check it. Under the bright stage lights, my sea looked almost white. I had to paint the whole lower half again in a darker blue, which took four more afternoons.\n\nOn the first night, the curtain opened and the audience saw the harbour before any actor said a word. Some people actually clapped. Afterwards, the boy who played the fisherman told me that the backdrop made him feel he was standing on a real dock. I still want to act one day, but now I am proud of that cloth.",
+      "names": [
+        "Rennick"
+      ],
+      "other_caps": [
+        "Ms"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-G-P2A-1",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 2, the word \"row\" is closest in meaning to",
+          "choices": [
+            "line",
+            "fight",
+            "noise",
+            "paddle"
+          ],
+          "correct_answer": "line",
+          "why": "a long row of houses along the shore",
+          "explanation": "\"line\" is correct: the writer had to paint \"a long row of houses along the shore\", that is, houses standing one beside another in a line.",
+          "distractor_rationales": [
+            {
+              "choice": "fight",
+              "lure": "other meaning",
+              "reason": "\"fight\" is close to the meaning of \"row\" as an argument between people, but houses cannot argue; the phrase is \"a long row of houses along the shore\", something the writer paints."
+            },
+            {
+              "choice": "paddle",
+              "lure": "other meaning",
+              "reason": "\"paddle\" is the boating meaning of \"row\", and the passage does mention \"three boats\", but \"a long row of houses\" describes buildings standing along the shore, not moving a boat."
+            },
+            {
+              "choice": "noise",
+              "lure": "other meaning",
+              "reason": "\"noise\" is another meaning of \"row\", but the writer is listing things to paint, \"a harbour, three boats and a long row of houses\", and a noise cannot be painted or stretch \"along the shore\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P2A-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the writer, what was wrong when the backdrop was first hung up?",
+          "choices": [
+            "The sea looked far too pale under the lights.",
+            "The houses were too small to see from the seats.",
+            "The boats had been painted in the wrong place.",
+            "The cloth was too short to reach the floor."
+          ],
+          "correct_answer": "The sea looked far too pale under the lights.",
+          "why": "Under the bright stage lights, my sea looked almost white.",
+          "explanation": "\"The sea looked far too pale under the lights.\" is correct: when the cloth was hung up, \"Under the bright stage lights, my sea looked almost white\", and the fix was a \"darker blue\".",
+          "distractor_rationales": [
+            {
+              "choice": "The houses were too small to see from the seats.",
+              "lure": "detail",
+              "reason": "\"The houses were too small to see from the seats.\" is wrong: the problem the writer found was the colour of the water, \"my sea looked almost white\", and the repair was to \"paint the whole lower half again in a darker blue\"; the houses were left as they were."
+            },
+            {
+              "choice": "The boats had been painted in the wrong place.",
+              "lure": "detail",
+              "reason": "\"The boats had been painted in the wrong place.\" is wrong: the only fault described is that \"my sea looked almost white\", and the repair changed the colour, \"in a darker blue\", not the position of anything."
+            },
+            {
+              "choice": "The cloth was too short to reach the floor.",
+              "lure": "misreading",
+              "reason": "\"The cloth was too short to reach the floor.\" is wrong: the check showed a colour problem, \"my sea looked almost white\", which was fixed with paint over \"four more afternoons\"; the size of the cloth is never the issue."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P2A-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What did the boy who played the fisherman tell the writer?",
+          "choices": [
+            "that the backdrop helped him believe he was on an actual dock",
+            "that he wished the writer had been given his part",
+            "that the lights made the backdrop hard to see",
+            "that the painted boats looked like the ones in his village"
+          ],
+          "correct_answer": "that the backdrop helped him believe he was on an actual dock",
+          "why": "the backdrop made him feel he was standing on a real dock",
+          "explanation": "\"that the backdrop helped him believe he was on an actual dock\" is correct: he \"told me that the backdrop made him feel he was standing on a real dock\".",
+          "distractor_rationales": [
+            {
+              "choice": "that he wished the writer had been given his part",
+              "lure": "misreading",
+              "reason": "\"that he wished the writer had been given his part\" is wrong: what he said was about the painting, \"the backdrop made him feel he was standing on a real dock\"; the writer's own wish to act comes later, \"I still want to act one day\"."
+            },
+            {
+              "choice": "that the lights made the backdrop hard to see",
+              "lure": "word lure",
+              "reason": "\"that the lights made the backdrop hard to see\" borrows the earlier problem with the lights, but that was fixed before the show, and on the first night \"the audience saw the harbour before any actor said a word\"."
+            },
+            {
+              "choice": "that the painted boats looked like the ones in his village",
+              "lure": "detail",
+              "reason": "\"that the painted boats looked like the ones in his village\" is wrong: what the boy said was about the whole scene and a dock, \"the backdrop made him feel he was standing on a real dock\"; he said nothing about the boats or a village of his own."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P2A-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the writer's account mainly about?",
+          "choices": [
+            "a student who lost out on an acting role and grew proud of the painted scenery",
+            "a young actor who won the leading role and then also learned to paint the scenery",
+            "an art teacher who painted a harbour backdrop for the school play",
+            "a class that painted the walls of the school gym to look like a fishing village"
+          ],
+          "correct_answer": "a student who lost out on an acting role and grew proud of the painted scenery",
+          "why": "I still want to act one day, but now I am proud of that cloth.",
+          "explanation": "\"a student who lost out on an acting role and grew proud of the painted scenery\" is correct: it covers both the start, \"my name was missing\" from the cast list, and the end, \"now I am proud of that cloth\".",
+          "distractor_rationales": [
+            {
+              "choice": "a young actor who won the leading role and then also learned to paint the scenery",
+              "lure": "two-part",
+              "reason": "\"a young actor who won the leading role and then also learned to paint the scenery\" gets the painting right but the first half wrong: the writer \"tried out for the part of the old fisherman\", but \"my name was missing\" from the cast list, and another boy \"played the fisherman\"."
+            },
+            {
+              "choice": "an art teacher who painted a harbour backdrop for the school play",
+              "lure": "misreading",
+              "reason": "\"an art teacher who painted a harbour backdrop for the school play\" misreads who did the painting: Ms Rennick \"asked me to paint the backdrop\", and the art teacher only \"lent me his best brushes and showed me how to mix a grey-blue for the water\"."
+            },
+            {
+              "choice": "a class that painted the walls of the school gym to look like a fishing village",
+              "lure": "misreading",
+              "reason": "\"a class that painted the walls of the school gym to look like a fishing village\" misreads what was painted: the writer painted one cloth, \"the huge cloth that hangs behind the actors\", working \"on the gym floor\", not on the gym's walls."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-G-P3A",
+      "part": 3,
+      "genre": "informational history",
+      "title": "The Quorndale Museum opens on Sundays",
+      "passage": "When the Quorndale Museum opened in 1851, it held the collection of a wealthy cloth merchant, Roderick Paskin, who had spent forty years buying shells, coins, old maps and stuffed birds from dealers abroad. His will left the objects and a handsome stone building to the town, together with a set of rules. The museum would open from ten until four, Monday to Saturday, and every visitor had to bring a letter from a respected citizen.\n\nFor more than twenty years these rules decided who saw the collection. The town's mills ran from six in the morning until six at night, six days a week, so the people who made up most of Quorndale had little spare time during opening hours. Few of them, moreover, knew anyone who could write the required letter. The visitors' book from the 1860s shows about two thousand names a year, almost all of them doctors, lawyers, merchants and their families.\n\nThe change began with a new keeper, Peregrine Rusby, appointed in 1873. Rusby had grown up in a mill family himself, and he argued that a gift to the town ought to be open to the whole town. He asked the trustees to drop the letter rule and to open the doors on Sunday afternoons, the only hours most workers could call their own. The trustees were divided. Some feared that crowds would break the glass display cases or carry off small coins. The town's minister, Rufus Pendle, objected for a different reason: Sunday, he said, was a day for church and rest, and a museum open on that day would encourage people to treat it like any other.\n\nIn the end the trustees agreed to a trial of one year, and the results surprised both sides. Sunday visitors numbered about fourteen thousand that year, seven times the old total. Many arrived in family groups straight from the midday meal, and on wet afternoons the keeper had to admit them fifty at a time. His report for the year noted a single broken pane of glass, caused by a child who slipped on the stairs. Weekday visitors, the merchants and professionals who had always come, kept coming at about the same rate. Pendle went on preaching against Sunday opening for several years, but attendance at his own services showed little change.\n\nThe most lasting effect was one that nobody had planned. Many of the new visitors began bringing objects of their own: a weaver's shuttle more than a century old, fossils split from the stone of the local quarry, a wooden doll carved by a soldier's widow. Rusby accepted almost everything, labelled each piece with the giver's name, and gave the gifts a room of their own. By 1890 that room had grown into three, and guidebooks were describing the Quorndale Museum less as a merchant's cabinet of foreign curiosities than as a record of the town itself.",
+      "names": [
+        "Quorndale",
+        "Roderick Paskin",
+        "Peregrine Rusby",
+        "Rufus Pendle"
+      ],
+      "other_caps": [
+        "Museum",
+        "Monday",
+        "Saturday",
+        "Sunday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-G-P3A-1",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"spare\" is closest in meaning to",
+          "choices": [
+            "free",
+            "lean",
+            "angry",
+            "save"
+          ],
+          "correct_answer": "free",
+          "why": "had little spare time during opening hours",
+          "explanation": "\"free\" is correct: the mills ran \"from six in the morning until six at night, six days a week\", so workers \"had little spare time during opening hours\", that is, little time free from work.",
+          "distractor_rationales": [
+            {
+              "choice": "lean",
+              "lure": "other meaning",
+              "reason": "\"lean\" is the meaning of \"spare\" for a thin body, but the word describes time, \"little spare time during opening hours\", and time cannot be thin."
+            },
+            {
+              "choice": "save",
+              "lure": "other meaning",
+              "reason": "\"save\" is the meaning of the verb \"spare\" in sparing someone from harm, but here the word describes time, \"little spare time during opening hours\", and the point is that the mills ran \"from six in the morning until six at night\"."
+            },
+            {
+              "choice": "angry",
+              "lure": "other meaning",
+              "reason": "\"angry\" is the meaning of \"spare\" in the informal phrase go spare, but the sentence is about how much time workers had, \"little spare time during opening hours\", not about how they felt."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3A-2",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "Under the merchant's rules, what did every visitor have to bring?",
+          "choices": [
+            "a written recommendation from a respected person",
+            "a small payment for the keeper at the door",
+            "a ticket bought in advance from the merchant's family",
+            "proof of membership in a church of the town"
+          ],
+          "correct_answer": "a written recommendation from a respected person",
+          "why": "every visitor had to bring a letter from a respected citizen",
+          "explanation": "\"a written recommendation from a respected person\" is correct: the will's rules said \"every visitor had to bring a letter from a respected citizen\".",
+          "distractor_rationales": [
+            {
+              "choice": "a small payment for the keeper at the door",
+              "lure": "detail",
+              "reason": "\"a small payment for the keeper at the door\" is wrong: the passage lists what a visitor had to bring, \"a letter from a respected citizen\", and the difficulty for workers was that few \"knew anyone who could write the required letter\", not the cost."
+            },
+            {
+              "choice": "a ticket bought in advance from the merchant's family",
+              "lure": "word lure",
+              "reason": "\"a ticket bought in advance from the merchant's family\" reuses \"merchant\", but the requirement was \"a letter from a respected citizen\", and the merchant had left the collection \"to the town\"."
+            },
+            {
+              "choice": "proof of membership in a church of the town",
+              "lure": "word lure",
+              "reason": "\"proof of membership in a church of the town\" borrows the church from paragraph 3, but the rule was \"a letter from a respected citizen\"; church comes up only later, when the minister objected to Sunday opening."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3A-3",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "The passage states all of the following about Peregrine Rusby EXCEPT:",
+          "choices": [
+            "He had grown up in a family of mill workers.",
+            "He noted a broken pane of glass during the trial.",
+            "He set aside a room for objects visitors brought.",
+            "He shared the minister's view of Sunday opening."
+          ],
+          "correct_answer": "He shared the minister's view of Sunday opening.",
+          "why": "He asked the trustees to drop the letter rule and to open the doors on Sunday afternoons",
+          "explanation": "\"He shared the minister's view of Sunday opening.\" is correct because the text contradicts it: Rusby asked the trustees \"to open the doors on Sunday afternoons\", while the minister \"objected\" and \"went on preaching against Sunday opening for several years\".",
+          "distractor_rationales": [
+            {
+              "choice": "He had grown up in a family of mill workers.",
+              "lure": "stated",
+              "reason": "\"He had grown up in a family of mill workers.\" is stated: \"Rusby had grown up in a mill family himself\"."
+            },
+            {
+              "choice": "He noted a broken pane of glass during the trial.",
+              "lure": "stated",
+              "reason": "\"He noted a broken pane of glass during the trial.\" is stated: \"His report for the year noted a single broken pane of glass\"."
+            },
+            {
+              "choice": "He set aside a room for objects visitors brought.",
+              "lure": "stated",
+              "reason": "\"He set aside a room for objects visitors brought.\" is stated: visitors \"began bringing objects of their own\", and Rusby \"gave the gifts a room of their own\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What does the passage say about weekday visits during the trial year?",
+          "choices": [
+            "They continued at roughly the same rate as before the trial.",
+            "They fell sharply as the merchants avoided the crowds.",
+            "They rose to about fourteen thousand over the year.",
+            "They were cut to two mornings a week to save space."
+          ],
+          "correct_answer": "They continued at roughly the same rate as before the trial.",
+          "why": "Weekday visitors, the merchants and professionals who had always come, kept coming at about the same rate.",
+          "explanation": "\"They continued at roughly the same rate as before the trial.\" is correct: \"Weekday visitors, the merchants and professionals who had always come, kept coming at about the same rate.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They fell sharply as the merchants avoided the crowds.",
+              "lure": "contradicted",
+              "reason": "\"They fell sharply as the merchants avoided the crowds.\" is contradicted: the merchants and professionals \"kept coming at about the same rate\"."
+            },
+            {
+              "choice": "They rose to about fourteen thousand over the year.",
+              "lure": "word lure",
+              "reason": "\"They rose to about fourteen thousand over the year.\" takes the Sunday figure, \"Sunday visitors numbered about fourteen thousand that year\", and gives it to weekdays, which \"kept coming at about the same rate\"."
+            },
+            {
+              "choice": "They were cut to two mornings a week to save space.",
+              "lure": "misreading",
+              "reason": "\"They were cut to two mornings a week to save space.\" is wrong: Sunday hours were added, but nothing was taken away from weekdays; the weekday visitors \"kept coming at about the same rate\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3A-5",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "the museum opening its doors to working people, whose own gifts then reshaped the collection",
+            "a merchant's will that welcomed every townsperson, whose visits then filled the rooms",
+            "a town minister's campaign for wider opening, which brought crowds of workers inside",
+            "the trustees' decision to sell foreign curiosities and buy local objects in their place"
+          ],
+          "correct_answer": "the museum opening its doors to working people, whose own gifts then reshaped the collection",
+          "why": "Many of the new visitors began bringing objects of their own",
+          "explanation": "\"the museum opening its doors to working people, whose own gifts then reshaped the collection\" is correct: paragraphs 1 to 4 explain how Rusby got the doors opened to people with \"little spare time during opening hours\", and paragraph 5 gives the result, a museum described \"as a record of the town itself\".",
+          "distractor_rationales": [
+            {
+              "choice": "a merchant's will that welcomed every townsperson, whose visits then filled the rooms",
+              "lure": "two-part",
+              "reason": "\"a merchant's will that welcomed every townsperson, whose visits then filled the rooms\" is wrong in its first half: the will kept most people out, since \"every visitor had to bring a letter from a respected citizen\", and for years the visitors were \"almost all of them doctors, lawyers, merchants and their families\"."
+            },
+            {
+              "choice": "a town minister's campaign for wider opening, which brought crowds of workers inside",
+              "lure": "two-part",
+              "reason": "\"a town minister's campaign for wider opening, which brought crowds of workers inside\" misreads who pushed for the change: it was the keeper, Rusby, who \"asked the trustees to drop the letter rule\", while the minister \"objected\" and \"went on preaching against Sunday opening\"."
+            },
+            {
+              "choice": "the trustees' decision to sell foreign curiosities and buy local objects in their place",
+              "lure": "misreading",
+              "reason": "\"the trustees' decision to sell foreign curiosities and buy local objects in their place\" misreads where the local objects came from: \"Many of the new visitors began bringing objects of their own\", and Rusby \"gave the gifts a room of their own\"; nothing was sold or bought."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3A-6",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 5, the word \"record\" is closest in meaning to",
+          "choices": [
+            "history",
+            "top score",
+            "music disc",
+            "data entry"
+          ],
+          "correct_answer": "history",
+          "why": "as a record of the town itself",
+          "explanation": "\"history\" is correct: the new rooms held local things, \"a weaver's shuttle more than a century old, fossils split from the stone of the local quarry\", so the museum became \"a record of the town itself\", a history of the town told through its objects.",
+          "distractor_rationales": [
+            {
+              "choice": "top score",
+              "lure": "other meaning",
+              "reason": "\"top score\" is the sports meaning of \"record\", but nothing is being measured or beaten; the phrase compares the museum to \"a merchant's cabinet of foreign curiosities\"."
+            },
+            {
+              "choice": "music disc",
+              "lure": "other meaning",
+              "reason": "\"music disc\" is another meaning of \"record\", but the museum holds objects such as \"a wooden doll carved by a soldier's widow\", not recordings."
+            },
+            {
+              "choice": "data entry",
+              "lure": "other meaning",
+              "reason": "\"data entry\" is the computer meaning of one record in a list, but the phrase describes the whole museum, which held \"a weaver's shuttle more than a century old\" and other local objects; it is an account of the town, not one line of data."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-G-P3B",
+      "part": 3,
+      "genre": "informational technology",
+      "title": "How music files were made smaller",
+      "passage": "A song stored on a music CD takes up a surprising amount of space. Each second of stereo sound is described by roughly 1.4 million bits of data, so a three-minute song needs about 30 megabytes. In the early 1990s, when most home computers had small hard drives and slow internet connections, sending a single song to a friend could take hours. Engineers wanted a way to make music files much smaller while keeping them pleasant to listen to.\n\nThe obvious approaches were to throw away information at random or to record the sound less precisely everywhere, but both made the music sound rough. The successful approach started from a different question: which parts of a sound does a listener actually hear? The answer comes from the scientific study of hearing, known as psychoacoustics. Human ears are most sensitive to middle pitches, roughly those of speech, and much less sensitive to very low and very high ones. A quiet sound at the edges of that range can therefore be dropped with little effect.\n\nMore important is an effect called masking. When a loud sound and a quiet sound occur at the same moment and at similar pitches, the loud one hides the quiet one, and the ear simply does not register it. A soft flute note played during a crash of cymbals, for example, may be completely covered. Masking also works for a short moment in time: just after a loud sound, nearby quieter sounds are harder to hear.\n\nAn encoder, the program that creates the smaller file, uses these facts. It splits each short slice of music into many narrow bands of pitch and estimates, band by band, how much of the sound will be masked. Bands that a listener would notice receive plenty of data, while bands that are hidden receive little or none. At a common setting of 128 thousand bits per second, the result is about one-eleventh the size of the original, so the three-minute song shrinks to roughly 3 megabytes. When the song is played, a decoder on the listener's computer rebuilds the sound from this smaller description.\n\nThe method has a price. The removed information is gone for good, so the original recording can be rebuilt from the smaller file only approximately. Engineers tested their encoders by asking trained listeners to compare compressed and uncompressed versions of the same music, and for most recordings at the common setting, many listeners were unable to tell them apart reliably. Certain sounds, however, gave the trick away. Sharp, sudden noises such as castanets could be preceded by a faint smear, because the encoder had spread its errors across a stretch of time that began before the sound itself. Recordings like these were used again and again to improve later versions.",
+      "names": [],
+      "other_caps": [
+        "CD"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-G-P3B-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about recordings of sharp, sudden noises such as castanets?",
+          "choices": [
+            "They revealed weaknesses in encoders.",
+            "Listeners judged them identical to the originals.",
+            "They held mostly quiet, middle-pitched sounds.",
+            "They were dropped from later rounds of testing."
+          ],
+          "correct_answer": "They revealed weaknesses in encoders.",
+          "why": "Sharp, sudden noises such as castanets could be preceded by a faint smear",
+          "why2": "Recordings like these were used again and again to improve later versions.",
+          "explanation": "\"They revealed weaknesses in encoders.\" is correct: such noises \"could be preceded by a faint smear, because the encoder had spread its errors\", and \"Recordings like these were used again and again to improve later versions\", so they showed engineers where the encoders still went wrong.",
+          "distractor_rationales": [
+            {
+              "choice": "Listeners judged them identical to the originals.",
+              "lure": "contradicted",
+              "reason": "\"Listeners judged them identical to the originals.\" is contradicted: \"Certain sounds, however, gave the trick away\", and the castanets are the example of those sounds."
+            },
+            {
+              "choice": "They held mostly quiet, middle-pitched sounds.",
+              "lure": "contradicted",
+              "reason": "\"They held mostly quiet, middle-pitched sounds.\" is contradicted: the passage describes them as \"Sharp, sudden noises such as castanets\"."
+            },
+            {
+              "choice": "They were dropped from later rounds of testing.",
+              "lure": "contradicted",
+              "reason": "\"They were dropped from later rounds of testing.\" is contradicted: \"Recordings like these were used again and again to improve later versions.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3B-2",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "What is NOT mentioned in the passage as part of the work on smaller music files?",
+          "choices": [
+            "learning which sounds a listener truly hears",
+            "dividing music into narrow bands of pitch",
+            "asking trained listeners to compare versions",
+            "turning down the loudest parts of each song"
+          ],
+          "correct_answer": "turning down the loudest parts of each song",
+          "why": "It splits each short slice of music into many narrow bands of pitch",
+          "explanation": "\"turning down the loudest parts of each song\" is correct: the passage describes studying hearing, splitting music into bands and testing with listeners, but it never describes lowering the volume of anything; loud sounds matter only because they hide quiet ones, \"the loud one hides the quiet one\".",
+          "distractor_rationales": [
+            {
+              "choice": "learning which sounds a listener truly hears",
+              "lure": "stated",
+              "reason": "\"learning which sounds a listener truly hears\" is mentioned: \"The successful approach started from a different question: which parts of a sound does a listener actually hear?\""
+            },
+            {
+              "choice": "dividing music into narrow bands of pitch",
+              "lure": "stated",
+              "reason": "\"dividing music into narrow bands of pitch\" is mentioned: the encoder \"splits each short slice of music into many narrow bands of pitch\"."
+            },
+            {
+              "choice": "asking trained listeners to compare versions",
+              "lure": "stated",
+              "reason": "\"asking trained listeners to compare versions\" is mentioned: \"Engineers tested their encoders by asking trained listeners to compare compressed and uncompressed versions of the same music\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What happened, according to the passage, when sound was recorded less precisely everywhere?",
+          "choices": [
+            "The music lost its smooth sound.",
+            "Very high notes became hard to hear.",
+            "Quiet passages turned unpleasantly loud.",
+            "The files ended up barely any smaller."
+          ],
+          "correct_answer": "The music lost its smooth sound.",
+          "why": "both made the music sound rough",
+          "explanation": "\"The music lost its smooth sound.\" is correct: recording \"the sound less precisely everywhere\" was one of two approaches, and \"both made the music sound rough\".",
+          "distractor_rationales": [
+            {
+              "choice": "Very high notes became hard to hear.",
+              "lure": "word lure",
+              "reason": "\"Very high notes became hard to hear.\" borrows the later point that ears are \"much less sensitive to very low and very high ones\", which belongs to the successful method; the less-precise approach simply \"made the music sound rough\"."
+            },
+            {
+              "choice": "Quiet passages turned unpleasantly loud.",
+              "lure": "detail",
+              "reason": "\"Quiet passages turned unpleasantly loud.\" is wrong: the passage names the result of that approach, \"both made the music sound rough\", and says nothing about the volume changing."
+            },
+            {
+              "choice": "The files ended up barely any smaller.",
+              "lure": "misreading",
+              "reason": "\"The files ended up barely any smaller.\" is wrong: the passage gives the problem with that approach as the sound, \"both made the music sound rough\", not the size of the files."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3B-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 2, the word \"edges\" is closest in meaning to",
+          "choices": [
+            "outer limits",
+            "advantages",
+            "sharp blades",
+            "harsh tones"
+          ],
+          "correct_answer": "outer limits",
+          "why": "A quiet sound at the edges of that range can therefore be dropped with little effect.",
+          "explanation": "\"outer limits\" is correct: ears are \"much less sensitive to very low and very high\" pitches, so \"the edges of that range\" are its outer limits, the very low and very high ends.",
+          "distractor_rationales": [
+            {
+              "choice": "advantages",
+              "lure": "other meaning",
+              "reason": "\"advantages\" is the meaning of having an edge over a rival, but the sentence is about where a sound sits in the range of hearing, the \"very low and very high\" pitches, and a sound there is what gets \"dropped\"."
+            },
+            {
+              "choice": "sharp blades",
+              "lure": "other meaning",
+              "reason": "\"sharp blades\" is the meaning of the edge of a knife, but a range of pitches has no blade; the sentence refers back to \"very low and very high\" pitches."
+            },
+            {
+              "choice": "harsh tones",
+              "lure": "other meaning",
+              "reason": "\"harsh tones\" is the meaning of an edge in someone's voice, but the passage says these sounds are \"quiet\", \"A quiet sound at the edges of that range\", and they sit at the very low and very high ends."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3B-5",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can most likely be concluded about the flute note in the example in paragraph 3?",
+          "choices": [
+            "It might receive little data.",
+            "It would be easy to pick out clearly.",
+            "It would make the cymbals harder to hear.",
+            "It could keep its full detail in the file."
+          ],
+          "correct_answer": "It might receive little data.",
+          "why": "A soft flute note played during a crash of cymbals, for example, may be completely covered.",
+          "why2": "bands that are hidden receive little or none",
+          "explanation": "\"It might receive little data.\" is correct: paragraph 3 says the flute note \"may be completely covered\" by the cymbals, and paragraph 4 says \"bands that are hidden receive little or none\" of the data.",
+          "distractor_rationales": [
+            {
+              "choice": "It would be easy to pick out clearly.",
+              "lure": "contradicted",
+              "reason": "\"It would be easy to pick out clearly.\" is contradicted: the soft flute note \"may be completely covered\"."
+            },
+            {
+              "choice": "It would make the cymbals harder to hear.",
+              "lure": "contradicted",
+              "reason": "\"It would make the cymbals harder to hear.\" reverses the effect: \"the loud one hides the quiet one\", so the cymbals hide the flute, not the other way round."
+            },
+            {
+              "choice": "It could keep its full detail in the file.",
+              "lure": "contradicted",
+              "reason": "\"It could keep its full detail in the file.\" is contradicted: \"bands that are hidden receive little or none\" of the data, and \"The removed information is gone for good\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-G-P3B-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "How much data describes each second of stereo sound on a CD?",
+          "choices": [
+            "about 1.4 million bits",
+            "about 128 thousand bits",
+            "about 30 million bits",
+            "about 3 million bits"
+          ],
+          "correct_answer": "about 1.4 million bits",
+          "why": "Each second of stereo sound is described by roughly 1.4 million bits of data",
+          "explanation": "\"about 1.4 million bits\" is correct: \"Each second of stereo sound is described by roughly 1.4 million bits of data\".",
+          "distractor_rationales": [
+            {
+              "choice": "about 128 thousand bits",
+              "lure": "word lure",
+              "reason": "\"about 128 thousand bits\" is the compressed rate, \"a common setting of 128 thousand bits per second\", not the CD rate of \"roughly 1.4 million bits of data\"."
+            },
+            {
+              "choice": "about 30 million bits",
+              "lure": "word lure",
+              "reason": "\"about 30 million bits\" borrows the number for a whole song, \"a three-minute song needs about 30 megabytes\", but one second of CD sound takes \"roughly 1.4 million bits of data\"."
+            },
+            {
+              "choice": "about 3 million bits",
+              "lure": "word lure",
+              "reason": "\"about 3 million bits\" borrows the size of the compressed song, \"roughly 3 megabytes\", but the question asks about one second of CD sound, \"roughly 1.4 million bits of data\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

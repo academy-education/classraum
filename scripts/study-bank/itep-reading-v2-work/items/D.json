@@ -1,0 +1,665 @@
+{
+  "author": "D",
+  "sets": [
+    {
+      "set_id": "ITR2-D-P1A",
+      "part": 1,
+      "genre": "advertisement",
+      "title": "Teen cooking course",
+      "passage": "The Hasby community centre is starting a cooking course for young people aged 12 to 16. Classes meet on Tuesday evenings from 5:00 to 7:00 for six weeks, beginning on 4 March. Each week you will make one simple meal, such as fried rice or a vegetable curry, and eat it together at the end of the class. The centre has knives, pans and all the food you need. Please bring an apron and a small box for any extra food. The course costs 30 dollars, paid when you book by phone.",
+      "names": [
+        "Hasby"
+      ],
+      "other_caps": [
+        "Tuesday",
+        "March"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-D-P1A-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "According to the advertisement, what should students bring to the classes?",
+          "choices": [
+            "an apron and the food for that week's meal",
+            "a small box and a sharp knife of their own",
+            "an apron and a container for any leftovers",
+            "an apron and the money for the course"
+          ],
+          "correct_answer": "an apron and a container for any leftovers",
+          "why": "Please bring an apron and a small box for any extra food",
+          "explanation": "\"an apron and a container for any leftovers\" is correct: the advertisement says \"Please bring an apron and a small box for any extra food.\"",
+          "distractor_rationales": [
+            {
+              "choice": "an apron and the food for that week's meal",
+              "lure": "contradicted",
+              "reason": "\"an apron and the food for that week's meal\" is wrong: the centre supplies the food: \"The centre has knives, pans and all the food you need.\""
+            },
+            {
+              "choice": "a small box and a sharp knife of their own",
+              "lure": "contradicted",
+              "reason": "\"a small box and a sharp knife of their own\" is wrong: knives are supplied: \"The centre has knives, pans and all the food you need.\""
+            },
+            {
+              "choice": "an apron and the money for the course",
+              "lure": "misreading",
+              "reason": "\"an apron and the money for the course\" is wrong: the money is not brought to class; it is \"paid when you book by phone.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-D-P1B",
+      "part": 1,
+      "genre": "postcard",
+      "title": "Plum harvest postcard",
+      "passage": "Dear Jory,\n\nGreetings from my grandparents' farm in Hennaby! I am staying here for two weeks to help with the plum harvest. Every morning we climb ladders and fill big baskets with fruit before the day gets too hot. In the afternoons Grandma and I cook the softest plums into jam, and yesterday we filled forty jars. Tomorrow we will take them to the village market to sell. My arms are tired every evening, but I love it here. The farm cat follows me everywhere I go.\n\nSee you soon,\nIlsa",
+      "names": [
+        "Jory",
+        "Hennaby",
+        "Ilsa"
+      ],
+      "other_caps": [
+        "Grandma"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-D-P1B-1",
+          "kind": "main-idea",
+          "difficulty": "easy",
+          "prompt": "What is the postcard mainly about?",
+          "choices": [
+            "selling jars of plum jam at a village market",
+            "picking plums on a farm and turning them into jam",
+            "a cat that follows the writer around the farm",
+            "harvesting the fruit each morning and drying it in the sun"
+          ],
+          "correct_answer": "picking plums on a farm and turning them into jam",
+          "why": "I am staying here for two weeks to help with the plum harvest",
+          "explanation": "\"picking plums on a farm and turning them into jam\" is correct: the writer is there \"to help with the plum harvest\", describes how \"we climb ladders and fill big baskets with fruit\", and then how \"Grandma and I cook the softest plums into jam\".",
+          "distractor_rationales": [
+            {
+              "choice": "selling jars of plum jam at a village market",
+              "lure": "detail",
+              "reason": "\"selling jars of plum jam at a village market\" is too narrow: selling is only a plan for the next day in one sentence, \"Tomorrow we will take them to the village market to sell.\""
+            },
+            {
+              "choice": "a cat that follows the writer around the farm",
+              "lure": "minor-point",
+              "reason": "\"a cat that follows the writer around the farm\" is a minor point mentioned once at the end: \"The farm cat follows me everywhere I go.\""
+            },
+            {
+              "choice": "harvesting the fruit each morning and drying it in the sun",
+              "lure": "two-part",
+              "reason": "\"harvesting the fruit each morning and drying it in the sun\" gets the second part wrong: the morning picking is right (\"Every morning we climb ladders and fill big baskets with fruit\"), but the plums are not dried; the writer and Grandma \"cook the softest plums into jam\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-D-P2A",
+      "part": 2,
+      "genre": "first-person school life",
+      "title": "Pumpkin soup day",
+      "passage": "Every November, the eighth-grade classes at our school hold a soup day. Each class cooks one big pot of soup, and the rest of the school buys bowls of it at lunch. All the money goes to a local food bank.\n\nThis year our teacher, Mr. Hennick, let us choose the recipe ourselves. Half the class wanted tomato soup because it is easy, but Isobel suggested her grandmother's pumpkin soup. In the end we voted, and pumpkin won by three votes.\n\nThe day before soup day, we met in the school kitchen after classes. Some of us chopped onions and carrots, and others washed the pumpkins. Cutting the pumpkins was the hardest job, because their skin was so thick. Mr. Hennick did that part himself with a large knife. We cooked everything slowly for two hours, and the whole building smelled wonderful.\n\nAt lunch the next day, we sold bowls for one dollar each. I was worried that nobody would want to try an orange soup, but within ten minutes the line reached the door. We sold out before any other class and raised 146 dollars. Afterwards, three teachers asked Isobel for the recipe, and she promised to write it out for them.",
+      "names": [
+        "Hennick",
+        "Isobel"
+      ],
+      "other_caps": [
+        "November",
+        "Mr"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-D-P2A-1",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the writer say that the skin of the pumpkins was \"so thick\"?",
+          "choices": [
+            "to explain why the soup had to cook so slowly",
+            "to explain why the class voted for pumpkin soup",
+            "to explain why the writer felt worried about selling",
+            "to explain why the teacher did the cutting"
+          ],
+          "correct_answer": "to explain why the teacher did the cutting",
+          "why": "Cutting the pumpkins was the hardest job, because their skin was so thick. Mr. Hennick did that part himself",
+          "explanation": "\"to explain why the teacher did the cutting\" is correct: the thick skin made cutting \"the hardest job\", and so \"Mr. Hennick did that part himself with a large knife.\"",
+          "distractor_rationales": [
+            {
+              "choice": "to explain why the soup had to cook so slowly",
+              "lure": "misreading",
+              "reason": "\"to explain why the soup had to cook so slowly\" is wrong: the thick skin is given as the reason cutting was hard, \"Cutting the pumpkins was the hardest job, because their skin was so thick\", and the slow cooking is a separate step later."
+            },
+            {
+              "choice": "to explain why the class voted for pumpkin soup",
+              "lure": "misreading",
+              "reason": "\"to explain why the class voted for pumpkin soup\" is wrong: the vote had already happened before the kitchen day (\"In the end we voted, and pumpkin won by three votes\"), and the thick skin is mentioned only to explain why \"Cutting the pumpkins was the hardest job\"."
+            },
+            {
+              "choice": "to explain why the writer felt worried about selling",
+              "lure": "misreading",
+              "reason": "\"to explain why the writer felt worried about selling\" is wrong: the writer was worried for another reason: \"I was worried that nobody would want to try an orange soup\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P2A-2",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "All of the following are things the writer's class did EXCEPT",
+          "choices": [
+            "growing the pumpkins for the soup in the school garden",
+            "voting on which recipe the class would use",
+            "washing the pumpkins in the school kitchen",
+            "selling bowls of soup to the school at lunch"
+          ],
+          "correct_answer": "growing the pumpkins for the soup in the school garden",
+          "why": "we met in the school kitchen after classes",
+          "explanation": "\"growing the pumpkins for the soup in the school garden\" is correct: the text describes the class choosing, preparing, cooking and selling the soup (\"we met in the school kitchen after classes\", \"we sold bowls for one dollar each\"), but it never says where the pumpkins came from or that the class grew anything.",
+          "distractor_rationales": [
+            {
+              "choice": "voting on which recipe the class would use",
+              "lure": "stated",
+              "reason": "\"voting on which recipe the class would use\" is stated: \"In the end we voted, and pumpkin won by three votes.\""
+            },
+            {
+              "choice": "washing the pumpkins in the school kitchen",
+              "lure": "stated",
+              "reason": "\"washing the pumpkins in the school kitchen\" is stated: \"we met in the school kitchen after classes\" and \"others washed the pumpkins.\""
+            },
+            {
+              "choice": "selling bowls of soup to the school at lunch",
+              "lure": "stated",
+              "reason": "\"selling bowls of soup to the school at lunch\" is stated: \"At lunch the next day, we sold bowls for one dollar each.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P2A-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the writer, why did half the class want tomato soup?",
+          "choices": [
+            "They thought it would sell more quickly.",
+            "They thought it would be simple to make.",
+            "They thought it would cost less to cook.",
+            "They thought the teacher liked it best."
+          ],
+          "correct_answer": "They thought it would be simple to make.",
+          "why": "Half the class wanted tomato soup because it is easy",
+          "explanation": "\"They thought it would be simple to make.\" is correct: the writer says \"Half the class wanted tomato soup because it is easy\".",
+          "distractor_rationales": [
+            {
+              "choice": "They thought it would sell more quickly.",
+              "lure": "other reason",
+              "reason": "\"They thought it would sell more quickly.\" is wrong: the reason given is different: \"Half the class wanted tomato soup because it is easy\"."
+            },
+            {
+              "choice": "They thought it would cost less to cook.",
+              "lure": "other reason",
+              "reason": "\"They thought it would cost less to cook.\" is wrong: cost is never the reason; they wanted it \"because it is easy\"."
+            },
+            {
+              "choice": "They thought the teacher liked it best.",
+              "lure": "other reason",
+              "reason": "\"They thought the teacher liked it best.\" is wrong: the teacher's taste is never mentioned; they wanted it \"because it is easy\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P2A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What did three of the teachers do after the soup was sold?",
+          "choices": [
+            "They asked the class to make soup again next year",
+            "They gave Isobel extra money for the food bank",
+            "They asked Isobel to share the steps for making the soup",
+            "They helped the class count the money it raised"
+          ],
+          "correct_answer": "They asked Isobel to share the steps for making the soup",
+          "why": "three teachers asked Isobel for the recipe",
+          "explanation": "\"They asked Isobel to share the steps for making the soup\" is correct: the text says \"three teachers asked Isobel for the recipe, and she promised to write it out for them.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They asked the class to make soup again next year",
+              "lure": "word lure",
+              "reason": "\"They asked the class to make soup again next year\" is wrong: the teachers asked for something else: \"three teachers asked Isobel for the recipe\"."
+            },
+            {
+              "choice": "They gave Isobel extra money for the food bank",
+              "lure": "word lure",
+              "reason": "\"They gave Isobel extra money for the food bank\" is wrong: the teachers did not give money; \"three teachers asked Isobel for the recipe\"."
+            },
+            {
+              "choice": "They helped the class count the money it raised",
+              "lure": "word lure",
+              "reason": "\"They helped the class count the money it raised\" is wrong: the money is mentioned (\"raised 146 dollars\"), but the teachers only \"asked Isobel for the recipe\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-D-P3A",
+      "part": 3,
+      "genre": "informational science",
+      "title": "Ice that protects blossoms",
+      "passage": "On a clear spring night, a fruit farmer may do something that looks completely backwards. As the temperature falls toward freezing, the farmer turns on sprinklers and covers the trees in water. By sunrise, every branch and blossom is wrapped in ice, hanging in glassy drops. Yet when the ice melts, the flowers underneath are often healthy, while blossoms on unsprayed trees nearby have turned brown and died.\n\nThe danger comes from timing. Many fruit trees flower early in spring, when warm days can still be followed by cold nights. An open blossom is delicate: depending on the type of fruit and how far the flower has opened, a few hours at around two or three degrees below freezing can kill the tiny parts that would later become fruit. One bad night can destroy most of a season's harvest before a single fruit has formed.\n\nThe sprinklers work because of a fact about water that surprises many people: when water freezes, it gives off heat. Turning liquid water into ice means removing energy from it, and that energy has to go somewhere. On a sprayed tree, much of it goes into the bud. As long as fresh water keeps arriving and freezing, the thin mix of water and ice around each blossom stays at about zero degrees Celsius, the freezing point, even if the air around the tree is several degrees colder. The ice, in other words, acts less like a freezer than like a heater set to exactly zero.\n\nThe method has strict rules, however. The water must keep coming all night, and the sprinklers must stay on after sunrise until the ice begins to melt and slide off. This is the part beginners often get wrong. If the spraying stops too early, the thin layer of water on the ice begins to evaporate, and evaporation draws heat out of the bud, about seven times as much heat for each gram of water as freezing releases. A farmer who switches off at dawn to save water can lose more blossoms than a neighbour who never sprayed at all.\n\nThere are other costs too. Spraying a large orchard through a cold night uses an enormous amount of water, which many farms cannot afford in a dry year. The ice is also heavy, and on older trees a thick coat can snap branches. For these reasons, some growers prefer large fans on tall poles. On calm, frosty nights, the air a few metres above the ground is often warmer than the air at the bottom, and the fans push that warmer air down among the trees. Fans use far less water, but they help only when such a warm layer exists.\n\nEven so, for many fruit growers the sprinkler remains the most reliable defence against a spring frost. It is one of the few cases in farming where the answer to cold is, quite literally, more ice.",
+      "names": [],
+      "other_caps": [
+        "Celsius"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-D-P3A-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Based on the passage, what can be inferred about the blossoms on a sprayed tree?",
+          "choices": [
+            "The blossoms are kept a few degrees above zero all night.",
+            "The blossoms survive only if the night air stays above zero degrees.",
+            "The blossoms can survive being held at about zero degrees.",
+            "The blossoms can survive several hours well below freezing."
+          ],
+          "correct_answer": "The blossoms can survive being held at about zero degrees.",
+          "why": "the flowers underneath are often healthy",
+          "why2": "stays at about zero degrees Celsius",
+          "explanation": "\"The blossoms can survive being held at about zero degrees.\" is correct: the mix of water and ice around each blossom \"stays at about zero degrees Celsius\", and after the ice melts \"the flowers underneath are often healthy\", so the blossoms can live through being held at zero.",
+          "distractor_rationales": [
+            {
+              "choice": "The blossoms are kept a few degrees above zero all night.",
+              "lure": "contradicted",
+              "reason": "\"The blossoms are kept a few degrees above zero all night.\" is contradicted: the mix around each blossom \"stays at about zero degrees Celsius, the freezing point\", not above it."
+            },
+            {
+              "choice": "The blossoms survive only if the night air stays above zero degrees.",
+              "lure": "contradicted",
+              "reason": "\"The blossoms survive only if the night air stays above zero degrees.\" is contradicted: the blossom stays at zero \"even if the air around the tree is several degrees colder\"."
+            },
+            {
+              "choice": "The blossoms can survive several hours well below freezing.",
+              "lure": "contradicted",
+              "reason": "\"The blossoms can survive several hours well below freezing.\" is contradicted: \"a few hours at around two or three degrees below freezing can kill the tiny parts that would later become fruit.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3A-2",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer say that the ice acts \"less like a freezer than like a heater set to exactly zero\"?",
+          "choices": [
+            "to sum up in a single image how freezing water keeps the buds from going below zero",
+            "to warn that ice on the buds becomes colder than the air around them",
+            "to compare the sprinklers with heaters that some farmers place in orchards",
+            "to explain why the ice should be knocked off the trees before sunrise"
+          ],
+          "correct_answer": "to sum up in a single image how freezing water keeps the buds from going below zero",
+          "why": "The ice, in other words, acts less like a freezer than like a heater set to exactly zero",
+          "explanation": "\"to sum up in a single image how freezing water keeps the buds from going below zero\" is correct: the sentence opens with \"in other words\" and restates the point before it: freezing water gives off heat, so the blossom \"stays at about zero degrees Celsius\" while the air is colder.",
+          "distractor_rationales": [
+            {
+              "choice": "to warn that ice on the buds becomes colder than the air around them",
+              "lure": "contradicted",
+              "reason": "\"to warn that ice on the buds becomes colder than the air around them\" is wrong: the paragraph says the reverse: the mix \"stays at about zero degrees Celsius, the freezing point, even if the air around the tree is several degrees colder.\""
+            },
+            {
+              "choice": "to compare the sprinklers with heaters that some farmers place in orchards",
+              "lure": "misreading",
+              "reason": "\"to compare the sprinklers with heaters that some farmers place in orchards\" is wrong: the sentence begins \"in other words\", so it restates the point just made about the sprayed tree; the only other method the passage describes is \"large fans on tall poles\"."
+            },
+            {
+              "choice": "to explain why the ice should be knocked off the trees before sunrise",
+              "lure": "contradicted",
+              "reason": "\"to explain why the ice should be knocked off the trees before sunrise\" is wrong: the passage says the opposite: \"the sprinklers must stay on after sunrise until the ice begins to melt and slide off.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3A-3",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 4, the word \"draws\" is closest in meaning to",
+          "choices": [
+            "sketches",
+            "picks out",
+            "takes away",
+            "ends level"
+          ],
+          "correct_answer": "takes away",
+          "why": "evaporation draws heat out of the bud",
+          "explanation": "\"takes away\" is correct: the heat is taken away from the bud, which is why stopping too early means a farmer \"can lose more blossoms than a neighbour who never sprayed at all.\"",
+          "distractor_rationales": [
+            {
+              "choice": "sketches",
+              "lure": "other meaning",
+              "reason": "\"sketches\" is a meaning used in art, but nothing is pictured here: evaporation \"draws heat out of the bud\", taking heat away from it."
+            },
+            {
+              "choice": "picks out",
+              "lure": "other meaning",
+              "reason": "\"picks out\" is a meaning used for games of chance, but the sentence describes heat leaving the bud: \"draws heat out of the bud\"."
+            },
+            {
+              "choice": "ends level",
+              "lure": "other meaning",
+              "reason": "\"ends level\" is a meaning used for a match in sport, but the sentence is about heat moving: \"evaporation draws heat out of the bud\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, what do the fans on tall poles do?",
+          "choices": [
+            "They shake heavy ice off the branches during the night.",
+            "They dry the blossoms so that frost cannot form on them.",
+            "They spread sprinkler water evenly over the orchard.",
+            "They bring warmer air from higher up down to the trees."
+          ],
+          "correct_answer": "They bring warmer air from higher up down to the trees.",
+          "why": "the fans push that warmer air down among the trees",
+          "explanation": "\"They bring warmer air from higher up down to the trees.\" is correct: the air \"a few metres above the ground is often warmer than the air at the bottom, and the fans push that warmer air down among the trees.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They shake heavy ice off the branches during the night.",
+              "lure": "word lure",
+              "reason": "\"They shake heavy ice off the branches during the night.\" is wrong: the fans move air: \"the fans push that warmer air down among the trees.\""
+            },
+            {
+              "choice": "They dry the blossoms so that frost cannot form on them.",
+              "lure": "word lure",
+              "reason": "\"They dry the blossoms so that frost cannot form on them.\" is wrong: what the fans do is \"push that warmer air down among the trees.\""
+            },
+            {
+              "choice": "They spread sprinkler water evenly over the orchard.",
+              "lure": "contradicted",
+              "reason": "\"They spread sprinkler water evenly over the orchard.\" is wrong: fans are an alternative to sprinkling, and \"Fans use far less water\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3A-5",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "What is the writer's purpose in mentioning a farmer who \"switches off at dawn to save water\"?",
+          "choices": [
+            "to show how much water can be saved by spraying less",
+            "to show the danger of ending the spray too early",
+            "to show that sprinklers work better than tall fans do",
+            "to show why many nearby farmers choose not to spray"
+          ],
+          "correct_answer": "to show the danger of ending the spray too early",
+          "why": "If the spraying stops too early, the thin layer of water on the ice begins to evaporate",
+          "explanation": "\"to show the danger of ending the spray too early\" is correct: it follows the warning that \"If the spraying stops too early\" evaporation \"draws heat out of the bud\", so that farmer \"can lose more blossoms than a neighbour who never sprayed at all.\"",
+          "distractor_rationales": [
+            {
+              "choice": "to show how much water can be saved by spraying less",
+              "lure": "misreading",
+              "reason": "\"to show how much water can be saved by spraying less\" is wrong: saving water is the farmer's mistake, since that farmer \"can lose more blossoms than a neighbour who never sprayed at all.\""
+            },
+            {
+              "choice": "to show that sprinklers work better than tall fans do",
+              "lure": "misreading",
+              "reason": "\"to show that sprinklers work better than tall fans do\" is wrong: fans are not part of this paragraph; they appear later, when \"some growers prefer large fans on tall poles.\""
+            },
+            {
+              "choice": "to show why many nearby farmers choose not to spray",
+              "lure": "misreading",
+              "reason": "\"to show why many nearby farmers choose not to spray\" is wrong: the neighbour is only a comparison; the paragraph is about timing: \"This is the part beginners often get wrong.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3A-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, what is one problem with spraying older trees?",
+          "choices": [
+            "Their branches may break under the weight of ice.",
+            "Their bark may crack as the water turns to ice.",
+            "Their roots may rot from so much extra water.",
+            "Their blossoms may freeze before the ice can form."
+          ],
+          "correct_answer": "Their branches may break under the weight of ice.",
+          "why": "The ice is also heavy, and on older trees a thick coat can snap branches",
+          "explanation": "\"Their branches may break under the weight of ice.\" is correct: the text says \"The ice is also heavy, and on older trees a thick coat can snap branches.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Their bark may crack as the water turns to ice.",
+              "lure": "other problem",
+              "reason": "\"Their bark may crack as the water turns to ice.\" is wrong: the problem the text names for older trees is \"on older trees a thick coat can snap branches.\""
+            },
+            {
+              "choice": "Their roots may rot from so much extra water.",
+              "lure": "other problem",
+              "reason": "\"Their roots may rot from so much extra water.\" is wrong: the water problem in the text is cost, \"which many farms cannot afford in a dry year\", and for older trees it is that \"a thick coat can snap branches.\""
+            },
+            {
+              "choice": "Their blossoms may freeze before the ice can form.",
+              "lure": "other problem",
+              "reason": "\"Their blossoms may freeze before the ice can form.\" is wrong: the text says the problem with older trees is that \"a thick coat can snap branches.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-D-P3B",
+      "part": 3,
+      "genre": "informational history",
+      "title": "The shared oven of Inchmere",
+      "passage": "For most of the nineteenth century, very few houses in the farming village of Inchmere had an oven of their own. A brick oven large enough to bake bread needs a great deal of wood to heat, and most families could spare little room and even less fuel. Instead, the whole village shared a single oven, which stood in a low stone building beside the mill.\n\nThe oven belonged to the miller's family, and for over forty years it was run by a woman named Hettie Jessop. Each morning she lit a fire inside it before dawn, raked out the ashes once the bricks were hot, and opened the door to customers at seven. Families mixed their dough at home and carried it to her on wooden boards. To tell the loaves apart, each household pressed its own sign into the top of the dough: a cross, a star, a set of dots. In return for her work, Hettie kept a small piece of every family's dough, which she baked and sold to travellers.\n\nBecause one fire baked bread for nearly sixty households, the system used far less wood than separate ovens would have. It also shaped the week. Bread was baked on Tuesdays and Fridays, and on those mornings the oven house became the busiest place in Inchmere. While their loaves baked, people waited on benches outside and exchanged news: who was ill, whose cow had calved, what prices the market town was paying for wheat. A visiting teacher later wrote that she learned more about the village in one baking morning than in a month of church services.\n\nThe change came with the railway. When a line reached the market town of Jandrel in 1879, factory-made iron stoves began to arrive at prices ordinary families could afford. An iron stove burned coal, heated a kitchen in winter and baked a loaf whenever its owner chose. Within fifteen years, roughly two thirds of Inchmere's households had one.\n\nHettie's customers slowly disappeared. By 1895 she was baking for fewer than twenty families, and the oven was lit only on Fridays. She tried to make up the difference by baking more bread of her own to sell, but the travellers who had once bought it now came through on the train and seldom stopped. When she retired in 1901, nobody took her place, and the oven house was later turned into a storeroom for the mill.\n\nOlder villagers complained for years afterwards that Inchmere had become a quieter, lonelier place. News that once spread in a single morning now took days, if it arrived at all. The stoves had saved families the walk to the mill, but they had also removed the one ordinary reason everyone had to meet.",
+      "names": [
+        "Inchmere",
+        "Hettie Jessop",
+        "Jandrel"
+      ],
+      "other_caps": [
+        "Tuesdays",
+        "Fridays"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-D-P3B-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "In the passage, how did each family know which loaves were theirs?",
+          "choices": [
+            "They wrote the family name on the board that held the dough",
+            "They marked each loaf with a pattern that belonged to their household",
+            "They came on a baking day set aside for their own street",
+            "They paid the baker extra to keep a list of each loaf"
+          ],
+          "correct_answer": "They marked each loaf with a pattern that belonged to their household",
+          "why": "each household pressed its own sign into the top of the dough: a cross, a star, a set of dots",
+          "explanation": "\"They marked each loaf with a pattern that belonged to their household\" is correct: the passage says \"To tell the loaves apart, each household pressed its own sign into the top of the dough: a cross, a star, a set of dots.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They wrote the family name on the board that held the dough",
+              "lure": "word lure",
+              "reason": "\"They wrote the family name on the board that held the dough\" is wrong: the boards only carried the dough; \"each household pressed its own sign into the top of the dough\"."
+            },
+            {
+              "choice": "They came on a baking day set aside for their own street",
+              "lure": "contradicted",
+              "reason": "\"They came on a baking day set aside for their own street\" is wrong: the whole village baked on the same days: \"Bread was baked on Tuesdays and Fridays\"."
+            },
+            {
+              "choice": "They paid the baker extra to keep a list of each loaf",
+              "lure": "word lure",
+              "reason": "\"They paid the baker extra to keep a list of each loaf\" is wrong: the baker's payment was dough, \"Hettie kept a small piece of every family's dough\", and the loaves were told apart by a sign."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3B-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the oven house?",
+          "choices": [
+            "It baked bread for the village on every day of the week.",
+            "It was heated with coal that was brought in by train.",
+            "It closed soon after the railway line reached Jandrel.",
+            "It was the village's main place for sharing news."
+          ],
+          "correct_answer": "It was the village's main place for sharing news.",
+          "why": "people waited on benches outside and exchanged news",
+          "why2": "News that once spread in a single morning now took days",
+          "explanation": "\"It was the village's main place for sharing news.\" is correct: on baking mornings \"people waited on benches outside and exchanged news\", and after the oven closed \"News that once spread in a single morning now took days\", so the oven house had been where most news was passed on.",
+          "distractor_rationales": [
+            {
+              "choice": "It baked bread for the village on every day of the week.",
+              "lure": "contradicted",
+              "reason": "\"It baked bread for the village on every day of the week.\" is contradicted: \"Bread was baked on Tuesdays and Fridays\"."
+            },
+            {
+              "choice": "It was heated with coal that was brought in by train.",
+              "lure": "contradicted",
+              "reason": "\"It was heated with coal that was brought in by train.\" is contradicted: the oven burned wood; \"one fire baked bread for nearly sixty households\" and \"the system used far less wood than separate ovens would have.\" Coal came with the stoves: \"An iron stove burned coal\"."
+            },
+            {
+              "choice": "It closed soon after the railway line reached Jandrel.",
+              "lure": "contradicted",
+              "reason": "\"It closed soon after the railway line reached Jandrel.\" is contradicted: the line came \"in 1879\", but the oven was still lit \"By 1895\", and Hettie only \"retired in 1901\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3B-3",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which of the following best states the main idea of the passage?",
+          "choices": [
+            "Railways made life better for farming villages in the region.",
+            "Villagers waited on benches outside while their bread baked.",
+            "A shared oven shaped village life until cheap stoves replaced it.",
+            "The village oven closed mainly because travellers stopped buying its bread."
+          ],
+          "correct_answer": "A shared oven shaped village life until cheap stoves replaced it.",
+          "why": "It also shaped the week",
+          "explanation": "\"A shared oven shaped village life until cheap stoves replaced it.\" is correct: the passage shows how the oven organised village life (\"It also shaped the week\", \"the oven house became the busiest place in Inchmere\") and how it ended once \"factory-made iron stoves began to arrive at prices ordinary families could afford.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Railways made life better for farming villages in the region.",
+              "lure": "broader (wrong)",
+              "reason": "\"Railways made life better for farming villages in the region.\" is wider than the passage, which describes one village, and it is contradicted: villagers said \"Inchmere had become a quieter, lonelier place.\""
+            },
+            {
+              "choice": "Villagers waited on benches outside while their bread baked.",
+              "lure": "detail",
+              "reason": "\"Villagers waited on benches outside while their bread baked.\" is one detail from paragraph 3: \"people waited on benches outside and exchanged news\"."
+            },
+            {
+              "choice": "The village oven closed mainly because travellers stopped buying its bread.",
+              "lure": "misreading",
+              "reason": "\"The village oven closed mainly because travellers stopped buying its bread.\" misreads the cause: customers left after the stoves arrived (\"Hettie's customers slowly disappeared\"), and selling to travellers was only her attempt \"to make up the difference\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3B-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 1, the word \"spare\" is closest in meaning to",
+          "choices": [
+            "afford to give",
+            "show mercy to",
+            "save from trouble",
+            "leave unsaid"
+          ],
+          "correct_answer": "afford to give",
+          "why": "most families could spare little room and even less fuel",
+          "explanation": "\"afford to give\" is correct: an oven \"needs a great deal of wood to heat\", and families had \"little room and even less fuel\" to give to one.",
+          "distractor_rationales": [
+            {
+              "choice": "show mercy to",
+              "lure": "other meaning",
+              "reason": "\"show mercy to\" is a meaning used for people in danger, but here the things are objects: \"little room and even less fuel\"."
+            },
+            {
+              "choice": "save from trouble",
+              "lure": "other meaning",
+              "reason": "\"save from trouble\" is a meaning used between people, but the sentence is about what families had too little of: \"needs a great deal of wood to heat\"."
+            },
+            {
+              "choice": "leave unsaid",
+              "lure": "other meaning",
+              "reason": "\"leave unsaid\" is a meaning used for details in speech or writing, but the sentence is about objects a family owns, \"little room and even less fuel\", for an oven that \"needs a great deal of wood to heat\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3B-5",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to paragraph 4, when could a family with an iron stove bake bread?",
+          "choices": [
+            "on the same days that the shared oven was lit",
+            "on the cold days when the kitchen needed heating",
+            "on whatever day of the week the family chose",
+            "on the days the coal train came to Jandrel"
+          ],
+          "correct_answer": "on whatever day of the week the family chose",
+          "why": "baked a loaf whenever its owner chose",
+          "explanation": "\"on whatever day of the week the family chose\" is correct: paragraph 4 says an iron stove \"baked a loaf whenever its owner chose.\"",
+          "distractor_rationales": [
+            {
+              "choice": "on the same days that the shared oven was lit",
+              "lure": "contradicted",
+              "reason": "\"on the same days that the shared oven was lit\" is wrong: a stove \"baked a loaf whenever its owner chose.\""
+            },
+            {
+              "choice": "on the cold days when the kitchen needed heating",
+              "lure": "word lure",
+              "reason": "\"on the cold days when the kitchen needed heating\" is wrong: heating the kitchen was a separate use (\"heated a kitchen in winter\"); baking happened \"whenever its owner chose.\""
+            },
+            {
+              "choice": "on the days the coal train came to Jandrel",
+              "lure": "word lure",
+              "reason": "\"on the days the coal train came to Jandrel\" is wrong: the stove \"burned coal\", but it \"baked a loaf whenever its owner chose.\""
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-D-P3B-6",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "Which of the following is most likely true about Hettie Jessop?",
+          "choices": [
+            "Hettie began running the oven before 1861.",
+            "Hettie ran the oven for fewer than thirty years in total.",
+            "Hettie took charge of the oven after the railway arrived.",
+            "Hettie kept baking in the oven until about the year 1910."
+          ],
+          "correct_answer": "Hettie began running the oven before 1861.",
+          "why": "for over forty years it was run by a woman named Hettie Jessop",
+          "why2": "When she retired in 1901",
+          "explanation": "\"Hettie began running the oven before 1861.\" is correct: she ran the oven \"for over forty years\", and she stopped \"When she retired in 1901\", so she must have started before 1861.",
+          "distractor_rationales": [
+            {
+              "choice": "Hettie ran the oven for fewer than thirty years in total.",
+              "lure": "contradicted",
+              "reason": "\"Hettie ran the oven for fewer than thirty years in total.\" is contradicted: \"for over forty years it was run by a woman named Hettie Jessop\"."
+            },
+            {
+              "choice": "Hettie took charge of the oven after the railway arrived.",
+              "lure": "contradicted",
+              "reason": "\"Hettie took charge of the oven after the railway arrived.\" is contradicted: the line reached Jandrel \"in 1879\" and she retired \"in 1901\", which is far less than the \"over forty years\" she ran the oven."
+            },
+            {
+              "choice": "Hettie kept baking in the oven until about the year 1910.",
+              "lure": "contradicted",
+              "reason": "\"Hettie kept baking in the oven until about the year 1910.\" is contradicted: \"When she retired in 1901, nobody took her place\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

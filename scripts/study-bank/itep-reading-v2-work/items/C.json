@@ -1,0 +1,674 @@
+{
+  "author": "C",
+  "sets": [
+    {
+      "set_id": "ITR2-C-P1A",
+      "part": 1,
+      "genre": "poster",
+      "title": "School second-hand market",
+      "passage": "Do you have old books, toys or clothes at home that you no longer use? Bring them to our second-hand market in the Gelby School hall on Saturday, 12 October, from ten until two. Anyone can sell. A table costs three dollars, and each seller brings their own stock. Shoppers get in free. All the money from the tables will buy new games for the school library. To book a table, please see Mr Farrow in Room 4 before Friday.",
+      "names": [
+        "Gelby",
+        "Farrow"
+      ],
+      "other_caps": [
+        "School",
+        "Saturday",
+        "October",
+        "Mr",
+        "Room",
+        "Friday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-C-P1A-1",
+          "kind": "vocabulary",
+          "difficulty": "easy",
+          "prompt": "In the poster, the word \"stock\" is closest in meaning to",
+          "choices": [
+            "cooking broth",
+            "company shares",
+            "goods to sell",
+            "farm animals"
+          ],
+          "correct_answer": "goods to sell",
+          "why": "each seller brings their own stock",
+          "explanation": "\"goods to sell\" is correct: people bring \"old books, toys or clothes\" to sell, so \"each seller brings their own stock\" means each seller brings the things they will sell.",
+          "distractor_rationales": [
+            {
+              "choice": "cooking broth",
+              "lure": "other meaning",
+              "reason": "\"cooking broth\" is a cooking meaning of the word, but the market is for \"old books, toys or clothes\", and sellers bring these things to sell."
+            },
+            {
+              "choice": "company shares",
+              "lure": "other meaning",
+              "reason": "\"company shares\" is a business meaning of the word, but each seller is someone bringing \"old books, toys or clothes\" to a table at a school market."
+            },
+            {
+              "choice": "farm animals",
+              "lure": "other meaning",
+              "reason": "\"farm animals\" is a farming meaning of the word, but the market is \"in the Gelby School hall\" and is for \"old books, toys or clothes\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-C-P1B",
+      "part": 1,
+      "genre": "lost-and-found notice",
+      "title": "Glasses found at the market",
+      "passage": "Found at the Fallowby Sunday market: a pair of glasses in a red case. A shopper found them under the flower stall at about eleven o'clock last Sunday and gave them to the market office. If they are yours, please come to the office next to the car park on Tuesday or Thursday between ten and two. To collect them, you must tell us the name written inside the case. We will keep the glasses until the end of the month. After that, they will go to the town charity shop.",
+      "names": [
+        "Fallowby"
+      ],
+      "other_caps": [
+        "Sunday",
+        "Tuesday",
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-C-P1B-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What does the owner need to do to get the glasses back?",
+          "choices": [
+            "Phone the office and describe the red glasses case",
+            "Go back to the flower stall on Sunday at eleven",
+            "Write a letter to the office before the month ends",
+            "Go to the office in person and give the name inside the case"
+          ],
+          "correct_answer": "Go to the office in person and give the name inside the case",
+          "why": "you must tell us the name written inside the case",
+          "explanation": "\"Go to the office in person and give the name inside the case\" is correct: the owner must \"come to the office next to the car park\", and \"To collect them, you must tell us the name written inside the case.\"",
+          "distractor_rationales": [
+            {
+              "choice": "Phone the office and describe the red glasses case",
+              "lure": "contradicted",
+              "reason": "\"Phone the office and describe the red glasses case\" is wrong: the notice says \"please come to the office next to the car park\", and the owner must \"tell us the name written inside the case\", which is more than describing the case."
+            },
+            {
+              "choice": "Go back to the flower stall on Sunday at eleven",
+              "lure": "word lure",
+              "reason": "\"Go back to the flower stall on Sunday at eleven\" mixes up where the glasses were found with where to collect them: the owner should \"come to the office next to the car park on Tuesday or Thursday between ten and two\"."
+            },
+            {
+              "choice": "Write a letter to the office before the month ends",
+              "lure": "contradicted",
+              "reason": "\"Write a letter to the office before the month ends\" is wrong: the notice asks the owner to \"please come to the office\", and \"until the end of the month\" is how long the glasses are kept, not a deadline for a letter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-C-P2A",
+      "part": 2,
+      "genre": "story",
+      "title": "The usual",
+      "passage": "Every Saturday, Fintan helped his aunt Greta at her spice stall in the Fernmoor market. Usually he only filled paper bags and gave customers their change. One morning, however, Greta had to leave for an hour to collect a delivery, and Fintan was left alone with forty jars of brown, red and yellow powder.\n\nFor the first twenty minutes, everything went well. Then an old man in a green coat stopped at the stall and smiled. \"The usual, please,\" he said. Fintan's face went hot. He had seen the man many times, but he had no idea what the usual was.\n\nSuddenly Fintan remembered that his aunt wrote every sale in a small blue notebook. He opened it and turned back through the Saturdays. On almost every page, near the top, he found the same line: \"Green coat: cumin and black pepper, one bag of each.\" Fintan filled the two bags, and the man paid and walked off, still smiling.\n\nWhen Greta came back, Fintan told her the story. She laughed. She had sold spices to the man for eleven years, she said, and she still wrote him down as \"Green coat\" because she had never asked his name. \"From now on,\" she told Fintan, \"you can keep the notebook as well.\"",
+      "names": [
+        "Fintan",
+        "Greta",
+        "Fernmoor"
+      ],
+      "other_caps": [
+        "Saturday",
+        "Saturdays"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-C-P2A-1",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the writer mention that Greta had to collect a delivery?",
+          "choices": [
+            "to show that Fintan often ran the stall by himself",
+            "to explain how the spices reached the market",
+            "to show that Greta's business was growing quickly",
+            "to explain why Fintan was looking after the stall by himself"
+          ],
+          "correct_answer": "to explain why Fintan was looking after the stall by himself",
+          "why": "Greta had to leave for an hour to collect a delivery, and Fintan was left alone",
+          "explanation": "\"to explain why Fintan was looking after the stall by himself\" is correct: the delivery is why \"Greta had to leave for an hour\", and as a result \"Fintan was left alone with forty jars\".",
+          "distractor_rationales": [
+            {
+              "choice": "to show that Fintan often ran the stall by himself",
+              "lure": "contradicted",
+              "reason": "\"to show that Fintan often ran the stall by himself\" is wrong: \"Usually he only filled paper bags and gave customers their change\", so being alone that morning was unusual."
+            },
+            {
+              "choice": "to explain how the spices reached the market",
+              "lure": "word lure",
+              "reason": "\"to explain how the spices reached the market\" misreads the sentence: the delivery is the reason \"Greta had to leave for an hour\", and the story says nothing about how spices travel to the market; its point is that \"Fintan was left alone\"."
+            },
+            {
+              "choice": "to show that Greta's business was growing quickly",
+              "lure": "other",
+              "reason": "\"to show that Greta's business was growing quickly\" is wrong: the delivery is given only as the reason \"Greta had to leave for an hour\", after which \"Fintan was left alone\"; the story gives no sign of the business growing."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P2A-2",
+          "kind": "inference",
+          "difficulty": "medium",
+          "prompt": "What can be inferred about the old man in the green coat?",
+          "choices": [
+            "He had often bought the same spices from Greta",
+            "He was shopping at this stall for the first time",
+            "He was annoyed to find Greta away from the stall",
+            "He asked for a spice that had sold out"
+          ],
+          "correct_answer": "He had often bought the same spices from Greta",
+          "why": "On almost every page, near the top, he found the same line",
+          "why2": "\"The usual, please,\" he said.",
+          "explanation": "\"He had often bought the same spices from Greta\" is correct: he asked for \"The usual\", and in the notebook \"On almost every page, near the top, he found the same line\" about his order, so he bought the same thing again and again.",
+          "distractor_rationales": [
+            {
+              "choice": "He was shopping at this stall for the first time",
+              "lure": "contradicted",
+              "reason": "\"He was shopping at this stall for the first time\" is contradicted: Fintan \"had seen the man many times\", and Greta \"had sold spices to the man for eleven years\"."
+            },
+            {
+              "choice": "He was annoyed to find Greta away from the stall",
+              "lure": "contradicted",
+              "reason": "\"He was annoyed to find Greta away from the stall\" is contradicted: he \"stopped at the stall and smiled\" and left \"still smiling\"."
+            },
+            {
+              "choice": "He asked for a spice that had sold out",
+              "lure": "contradicted",
+              "reason": "\"He asked for a spice that had sold out\" is contradicted: after reading the notebook, \"Fintan filled the two bags, and the man paid\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P2A-3",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the story mainly about?",
+          "choices": [
+            "how market sellers keep track of the names of all their customers",
+            "how Fintan worked out an order without his aunt",
+            "how Fintan learned the man's name and wrote it in the notebook",
+            "how Greta collected a delivery and how Fintan helped her carry it"
+          ],
+          "correct_answer": "how Fintan worked out an order without his aunt",
+          "why": "Suddenly Fintan remembered that his aunt wrote every sale in a small blue notebook",
+          "explanation": "\"how Fintan worked out an order without his aunt\" is correct: while Greta was away, Fintan \"had no idea what the usual was\", found the order in the notebook, and \"filled the two bags\"; the whole story is about solving that problem.",
+          "distractor_rationales": [
+            {
+              "choice": "how market sellers keep track of the names of all their customers",
+              "lure": "broader",
+              "reason": "\"how market sellers keep track of the names of all their customers\" is wider than the story and wrong: Greta \"had never asked his name\" and wrote him down only as a coat colour."
+            },
+            {
+              "choice": "how Fintan learned the man's name and wrote it in the notebook",
+              "lure": "two-part",
+              "reason": "\"how Fintan learned the man's name and wrote it in the notebook\" misreads the story: nobody learns the name; Greta \"still wrote him down as\" a coat colour \"because she had never asked his name\"."
+            },
+            {
+              "choice": "how Greta collected a delivery and how Fintan helped her carry it",
+              "lure": "two-part",
+              "reason": "\"how Greta collected a delivery and how Fintan helped her carry it\" has a wrong second part: while Greta went for the delivery, \"Fintan was left alone with forty jars\" at the stall."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P2A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the story, what did Greta tell Fintan at the end?",
+          "choices": [
+            "that he could run the stall alone every Saturday",
+            "that he should learn the man's name",
+            "that he could also look after her notebook",
+            "that the notebook was full and needed replacing"
+          ],
+          "correct_answer": "that he could also look after her notebook",
+          "why": "you can keep the notebook as well",
+          "explanation": "\"that he could also look after her notebook\" is correct: Greta says, \"From now on,\" and then \"you can keep the notebook as well\", which means he may take care of it too.",
+          "distractor_rationales": [
+            {
+              "choice": "that he could run the stall alone every Saturday",
+              "lure": "contradicted",
+              "reason": "\"that he could run the stall alone every Saturday\" is wrong: what she offers is the notebook: \"you can keep the notebook as well\"."
+            },
+            {
+              "choice": "that he should learn the man's name",
+              "lure": "word lure",
+              "reason": "\"that he should learn the man's name\" is wrong: she mentions that she \"had never asked his name\", but what she tells Fintan is \"you can keep the notebook as well\"."
+            },
+            {
+              "choice": "that the notebook was full and needed replacing",
+              "lure": "contradicted",
+              "reason": "\"that the notebook was full and needed replacing\" is wrong: she says \"you can keep the notebook as well\", and nothing she says is about replacing it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-C-P3A",
+      "part": 3,
+      "genre": "informational history",
+      "title": "The shop windows of Gelmouth",
+      "passage": "Two hundred years ago, the shops along the main street of Gelmouth, a busy market town, looked almost exactly like the houses beside them. Each shop front had one or two ordinary windows made of many small panes, each about the size of a book, held together by strips of wood or lead. The glass was thick and slightly green, and it bent the light, so a person standing in the street saw only dim shapes inside. To find out what a shop sold, you had to know already, or you had to open the door and ask.\n\nAt that time, glass was made by hand. A worker blew a large bubble of hot glass and then spun or cut it into flat pieces, and the method could only produce small sheets of good quality. Large panes often cracked as they cooled, and in some countries glass was also taxed, so a big window was a luxury that few shopkeepers could afford. Shopping in Gelmouth was therefore a matter of trust and habit. People bought their bread, cloth and nails from the same families their parents had used, and a stranger rarely walked into a shop just to look.\n\nIn the middle of the nineteenth century, new methods made it possible to produce large, flat sheets of clear glass at a much lower price. The first Gelmouth shop to use one was a draper's owned by Eben Garrod, who sold cloth and ribbons. In 1852 he replaced his old front with a single pane roughly two metres wide. Neighbours called it a waste of money and predicted that it would break in the first winter storm. Instead, it became the most talked-about object in the town.\n\nWhat Garrod did next mattered even more than the glass itself. Behind the window he built a low platform and arranged his brightest fabrics on it, changing the display every week. On market days, families who had never bought anything from him stopped to look, and some came inside to ask about prices. Within a year his sales had roughly doubled, and the other shopkeepers on the street began to save for windows of their own.\n\nThe change spread surprisingly fast. By about 1880, nearly every shop on the main street had a large window, and the shopkeepers competed to make their displays the most attractive. A baker named Gilbert Ebbs piled his loaves into the shape of the town hall, and a toy seller put a small moving train in her window. For the first time, people walked along the street in the evening simply to enjoy the windows, a habit that the people of Gelmouth called \"taking the glass.\" Shopkeepers soon discovered that a window lit by gas lamps after dark could attract more customers than the busiest market morning.\n\nThe new windows had critics as well. Some older customers complained that shopping had become a show and that prices rose to pay for the glass and the lamps. Small shops that were unable to buy a large window sometimes lost trade to their richer neighbours. Yet the windows changed something lasting about the town: a shop stopped being a private room that only regular customers entered and became a public space that invited anyone in the street to look first and decide later.",
+      "names": [
+        "Gelmouth",
+        "Eben Garrod",
+        "Gilbert Ebbs"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-C-P3A-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can most likely be inferred about Garrod's shop before 1852?",
+          "choices": [
+            "People in the street could barely see what it sold",
+            "It already had one large window made of clear glass",
+            "Strangers often came inside just to look at the cloth",
+            "Its old window was made of thin, clear glass"
+          ],
+          "correct_answer": "People in the street could barely see what it sold",
+          "why": "a person standing in the street saw only dim shapes inside",
+          "why2": "In 1852 he replaced his old front with a single pane roughly two metres wide.",
+          "explanation": "\"People in the street could barely see what it sold\" is correct: the old shop fronts let a person in the street see \"only dim shapes inside\", and Garrod's shop had such a front until \"In 1852 he replaced his old front with a single pane\".",
+          "distractor_rationales": [
+            {
+              "choice": "It already had one large window made of clear glass",
+              "lure": "contradicted",
+              "reason": "\"It already had one large window made of clear glass\" is contradicted: \"The first Gelmouth shop to use one was a draper's owned by Eben Garrod\", and he got it in 1852 when \"he replaced his old front\"."
+            },
+            {
+              "choice": "Strangers often came inside just to look at the cloth",
+              "lure": "contradicted",
+              "reason": "\"Strangers often came inside just to look at the cloth\" is contradicted: before the new glass, \"a stranger rarely walked into a shop just to look\"."
+            },
+            {
+              "choice": "Its old window was made of thin, clear glass",
+              "lure": "contradicted",
+              "reason": "\"Its old window was made of thin, clear glass\" is contradicted: the old shop windows were made of glass that \"was thick and slightly green\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3A-2",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "All of the following are described in the passage as results of the large shop windows EXCEPT",
+          "choices": [
+            "Garrod's sales grew to about twice their old level",
+            "Shop prices fell as shopkeepers competed for customers",
+            "People often walked along the street at night to see displays",
+            "Some small shops lost customers to richer neighbours"
+          ],
+          "correct_answer": "Shop prices fell as shopkeepers competed for customers",
+          "why": "prices rose to pay for the glass and the lamps",
+          "explanation": "\"Shop prices fell as shopkeepers competed for customers\" is correct: the text says the opposite: older customers complained that \"prices rose to pay for the glass and the lamps\".",
+          "distractor_rationales": [
+            {
+              "choice": "Garrod's sales grew to about twice their old level",
+              "lure": "stated",
+              "reason": "\"Garrod's sales grew to about twice their old level\" is stated: \"Within a year his sales had roughly doubled\"."
+            },
+            {
+              "choice": "People often walked along the street at night to see displays",
+              "lure": "stated",
+              "reason": "\"People often walked along the street at night to see displays\" is stated: \"people walked along the street in the evening simply to enjoy the windows, a habit\"."
+            },
+            {
+              "choice": "Some small shops lost customers to richer neighbours",
+              "lure": "stated",
+              "reason": "\"Some small shops lost customers to richer neighbours\" is stated: \"Small shops that were unable to buy a large window sometimes lost trade to their richer neighbours\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3A-3",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 1, the word \"dim\" is closest in meaning to",
+          "choices": [
+            "stupid",
+            "lowered",
+            "blurry",
+            "negative"
+          ],
+          "correct_answer": "blurry",
+          "why": "saw only dim shapes inside",
+          "explanation": "\"blurry\" is correct: the glass \"was thick and slightly green, and it bent the light\", so the shapes a person saw inside were hard to see clearly.",
+          "distractor_rationales": [
+            {
+              "choice": "stupid",
+              "lure": "other meaning",
+              "reason": "\"stupid\" is the meaning used for a person's mind, but here the word describes \"shapes\" seen through glass that \"bent the light\"."
+            },
+            {
+              "choice": "lowered",
+              "lure": "other meaning",
+              "reason": "\"lowered\" is the meaning used for turning lights down, but here nobody lowers anything; the glass \"bent the light, so a person standing in the street saw only dim shapes inside\"."
+            },
+            {
+              "choice": "negative",
+              "lure": "other meaning",
+              "reason": "\"negative\" is the meaning in taking a dim view of something, but here the word describes what a person \"saw\" through thick, green glass."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3A-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, how often did Garrod change the display behind his window?",
+          "choices": [
+            "Once every season",
+            "Every morning",
+            "Twice every month",
+            "Once every week"
+          ],
+          "correct_answer": "Once every week",
+          "why": "changing the display every week",
+          "explanation": "\"Once every week\" is correct: Garrod \"arranged his brightest fabrics on it, changing the display every week\".",
+          "distractor_rationales": [
+            {
+              "choice": "Once every season",
+              "lure": "contradicted",
+              "reason": "\"Once every season\" is wrong: he was \"changing the display every week\"."
+            },
+            {
+              "choice": "Every morning",
+              "lure": "contradicted",
+              "reason": "\"Every morning\" is wrong: he was \"changing the display every week\", not every day."
+            },
+            {
+              "choice": "Twice every month",
+              "lure": "contradicted",
+              "reason": "\"Twice every month\" is wrong: he was \"changing the display every week\", which is about four times a month."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3A-5",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "how large shop windows changed the way people shopped in Gelmouth",
+            "how Garrod arranged fabrics on a platform behind his glass",
+            "how Garrod fitted a big window and how other shops copied his fabrics",
+            "how cheap clear glass reached Gelmouth and how a baker was the first to use it"
+          ],
+          "correct_answer": "how large shop windows changed the way people shopped in Gelmouth",
+          "why": "Yet the windows changed something lasting about the town",
+          "explanation": "\"how large shop windows changed the way people shopped in Gelmouth\" is correct: the passage moves from shops where people \"saw only dim shapes inside\" to a town where a shop \"invited anyone in the street to look first and decide later\".",
+          "distractor_rationales": [
+            {
+              "choice": "how Garrod arranged fabrics on a platform behind his glass",
+              "lure": "detail",
+              "reason": "\"how Garrod arranged fabrics on a platform behind his glass\" is one detail from paragraph 4 (\"he built a low platform and arranged his brightest fabrics on it\"); the passage goes on to the whole town."
+            },
+            {
+              "choice": "how Garrod fitted a big window and how other shops copied his fabrics",
+              "lure": "two-part",
+              "reason": "\"how Garrod fitted a big window and how other shops copied his fabrics\" has a wrong second part: what the other shopkeepers copied was the window, since they \"began to save for windows of their own\"."
+            },
+            {
+              "choice": "how cheap clear glass reached Gelmouth and how a baker was the first to use it",
+              "lure": "two-part",
+              "reason": "\"how cheap clear glass reached Gelmouth and how a baker was the first to use it\" has a wrong second part: \"The first Gelmouth shop to use one was a draper's owned by Eben Garrod\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3A-6",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "In paragraph 5, why does the writer mention Gilbert Ebbs's loaves and the toy seller's train?",
+          "choices": [
+            "to give examples of the goods that sold best in Gelmouth",
+            "to give examples of how shopkeepers competed with their displays",
+            "to show that the food shops earned more money than the toy shops did",
+            "to explain why some older customers disliked the windows"
+          ],
+          "correct_answer": "to give examples of how shopkeepers competed with their displays",
+          "why": "the shopkeepers competed to make their displays the most attractive",
+          "explanation": "\"to give examples of how shopkeepers competed with their displays\" is correct: the loaves and the train come straight after \"the shopkeepers competed to make their displays the most attractive\" and show two such displays.",
+          "distractor_rationales": [
+            {
+              "choice": "to give examples of the goods that sold best in Gelmouth",
+              "lure": "other",
+              "reason": "\"to give examples of the goods that sold best in Gelmouth\" is wrong: the examples follow \"the shopkeepers competed to make their displays the most attractive\"; they show how goods were arranged, and the passage gives no sales figures for bread or toys."
+            },
+            {
+              "choice": "to show that the food shops earned more money than the toy shops did",
+              "lure": "other",
+              "reason": "\"to show that the food shops earned more money than the toy shops did\" is wrong: the two shops are given side by side right after \"the shopkeepers competed to make their displays the most attractive\"; their earnings are never compared."
+            },
+            {
+              "choice": "to explain why some older customers disliked the windows",
+              "lure": "other",
+              "reason": "\"to explain why some older customers disliked the windows\" is wrong: the older customers' complaint comes in paragraph 6, that \"shopping had become a show\"; the loaves and the train illustrate \"the shopkeepers competed to make their displays the most attractive\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-C-P3B",
+      "part": 3,
+      "genre": "first-person account",
+      "title": "Grandmother's sewing shop",
+      "passage": "My grandmother has run a small sewing shop near the market square in Elmwick for almost forty years. She sells thread, buttons, zips, needles and fabric, and the walls are covered with drawers, each with a label in her neat handwriting. When I was a child, the shop seemed to me like the most crowded place in the world. On a Saturday you could hardly reach the counter.\n\nBy the time I turned sixteen, those busy Saturdays had gone. Big stores on the edge of town sold cheaper fabric, and many people bought buttons and thread online with a single click. Some weeks my grandmother took in less money than she paid in rent. One evening, while I was helping her count the money in the till, she told me quietly that she might have to close the shop by the end of the year.\n\nI was sure I knew the answer. The shop needed a website. I spent most of my summer holiday photographing buttons and writing descriptions, and in September we opened an online store. For a few weeks I checked it every hour. In that time we sold eleven packets of needles, three zips and one pair of scissors. The postage and the website fee cost more than we earned, and the problem was simple: anyone could find the same buttons more cheaply on bigger sites.\n\nThe real answer came from somewhere I had ignored. Every few days, someone walked into the shop holding a torn coat or a pair of trousers that needed shortening and asked my grandmother whether she knew anyone who could fix it. She always did the job herself, usually for almost nothing, because she thought of it as a favour. One afternoon a young man came in with a jacket that had lost a button, and while she sewed on a new one, he asked whether she ever taught people to do it themselves.\n\nThat question changed the shop. In October my grandmother started a mending class on Thursday evenings, for six people around the big table at the back. It filled within two days. She taught people to sew on buttons, fix hems and patch elbows, and at the end of every class almost everyone bought the thread, needles and buttons they needed for their own repairs at home. Soon she added a second evening, and then a Saturday morning class for teenagers.\n\nA year later, the shop is still open. The classes themselves earn only a modest amount, but the students keep coming back for supplies, and many of them bring friends. The website still exists, though I hardly look at it. What I learned is that I had been trying to make the shop more like the big stores, when the thing people wanted was the one thing the big stores could never offer: someone who could help them make and mend things with their own hands.",
+      "names": [
+        "Elmwick"
+      ],
+      "other_caps": [
+        "Saturday",
+        "Saturdays",
+        "September",
+        "October",
+        "Thursday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-C-P3B-1",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What does the passage suggest about the mending classes?",
+          "choices": [
+            "Few people signed up for the first Thursday class",
+            "More people wanted lessons than one evening had room for",
+            "The Saturday class was the first one she offered",
+            "Most students brought their own thread and buttons from home"
+          ],
+          "correct_answer": "More people wanted lessons than one evening had room for",
+          "why": "It filled within two days.",
+          "why2": "Soon she added a second evening",
+          "explanation": "\"More people wanted lessons than one evening had room for\" is correct: the first class \"filled within two days\", and after that \"Soon she added a second evening\", which shows that one evening was not enough for everyone who wanted to come.",
+          "distractor_rationales": [
+            {
+              "choice": "Few people signed up for the first Thursday class",
+              "lure": "contradicted",
+              "reason": "\"Few people signed up for the first Thursday class\" is contradicted: the first class \"filled within two days\"."
+            },
+            {
+              "choice": "The Saturday class was the first one she offered",
+              "lure": "contradicted",
+              "reason": "\"The Saturday class was the first one she offered\" is contradicted: she \"started a mending class on Thursday evenings\" and only later added \"a Saturday morning class for teenagers\"."
+            },
+            {
+              "choice": "Most students brought their own thread and buttons from home",
+              "lure": "contradicted",
+              "reason": "\"Most students brought their own thread and buttons from home\" is contradicted: \"almost everyone bought the thread, needles and buttons they needed\" at the shop."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3B-2",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 6, the word \"modest\" is closest in meaning to",
+          "choices": [
+            "timid",
+            "plain",
+            "small",
+            "covered"
+          ],
+          "correct_answer": "small",
+          "why": "earn only a modest amount",
+          "explanation": "\"small\" is correct: the classes \"earn only a modest amount, but the students keep coming back for supplies\": the word \"only\" and the contrast show that the amount is small.",
+          "distractor_rationales": [
+            {
+              "choice": "timid",
+              "lure": "other meaning",
+              "reason": "\"timid\" is the meaning used for a person's character, but here the word describes an \"amount\" of money the classes earn."
+            },
+            {
+              "choice": "plain",
+              "lure": "other meaning",
+              "reason": "\"plain\" is the meaning used for a simple house or meal, but here the word describes how much the classes \"earn\", set against the students who \"keep coming back for supplies\"."
+            },
+            {
+              "choice": "covered",
+              "lure": "other meaning",
+              "reason": "\"covered\" is the meaning used for clothing, but here the word describes an \"amount\" that the classes \"earn\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the writer, why did the online store lose money?",
+          "choices": [
+            "The photographs of the buttons were not clear",
+            "Few people in Elmwick were used to shopping online",
+            "Customers found the website too hard to use on their phones",
+            "Shoppers found the same things for less elsewhere"
+          ],
+          "correct_answer": "Shoppers found the same things for less elsewhere",
+          "why": "anyone could find the same buttons more cheaply on bigger sites",
+          "explanation": "\"Shoppers found the same things for less elsewhere\" is correct: the writer says \"the problem was simple: anyone could find the same buttons more cheaply on bigger sites\".",
+          "distractor_rationales": [
+            {
+              "choice": "The photographs of the buttons were not clear",
+              "lure": "word lure",
+              "reason": "\"The photographs of the buttons were not clear\" is wrong: the writer spent the summer \"photographing buttons\", but names the real cause: \"the problem was simple: anyone could find the same buttons more cheaply on bigger sites\"."
+            },
+            {
+              "choice": "Few people in Elmwick were used to shopping online",
+              "lure": "contradicted",
+              "reason": "\"Few people in Elmwick were used to shopping online\" is wrong: the passage says \"many people bought buttons and thread online with a single click\"."
+            },
+            {
+              "choice": "Customers found the website too hard to use on their phones",
+              "lure": "other",
+              "reason": "\"Customers found the website too hard to use on their phones\" is wrong: the writer gives a different reason, \"the problem was simple: anyone could find the same buttons more cheaply on bigger sites\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3B-4",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, how did the grandmother deal with repair requests before the classes started?",
+          "choices": [
+            "She did them herself for very little",
+            "She sent the customers to a repair shop nearby",
+            "She did them herself for a high price",
+            "She told customers to learn to sew themselves"
+          ],
+          "correct_answer": "She did them herself for very little",
+          "why": "She always did the job herself, usually for almost nothing",
+          "explanation": "\"She did them herself for very little\" is correct: \"She always did the job herself, usually for almost nothing, because she thought of it as a favour.\"",
+          "distractor_rationales": [
+            {
+              "choice": "She sent the customers to a repair shop nearby",
+              "lure": "contradicted",
+              "reason": "\"She sent the customers to a repair shop nearby\" is wrong: customers asked \"whether she knew anyone who could fix it\", but \"She always did the job herself\"."
+            },
+            {
+              "choice": "She did them herself for a high price",
+              "lure": "contradicted",
+              "reason": "\"She did them herself for a high price\" is wrong: she did the work \"usually for almost nothing, because she thought of it as a favour\"."
+            },
+            {
+              "choice": "She told customers to learn to sew themselves",
+              "lure": "contradicted",
+              "reason": "\"She told customers to learn to sew themselves\" is wrong: \"She always did the job herself\"; the idea of teaching came later, when a young man \"asked whether she ever taught people to do it themselves\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3B-5",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which of the following best describes what the passage is mainly about?",
+          "choices": [
+            "how the writer photographed buttons for the shop's website",
+            "how the shop nearly closed and how classes saved it",
+            "how the grandmother earned money by repairing customers' coats",
+            "why the shop lost customers and how its website won them back"
+          ],
+          "correct_answer": "how the shop nearly closed and how classes saved it",
+          "why": "That question changed the shop.",
+          "explanation": "\"how the shop nearly closed and how classes saved it\" is correct: the grandmother \"might have to close the shop by the end of the year\", the website failed, and after the mending classes began, \"A year later, the shop is still open.\"",
+          "distractor_rationales": [
+            {
+              "choice": "how the writer photographed buttons for the shop's website",
+              "lure": "minor-point",
+              "reason": "\"how the writer photographed buttons for the shop's website\" is one minor point from paragraph 3 (\"photographing buttons and writing descriptions\"); the passage is about the whole rescue of the shop."
+            },
+            {
+              "choice": "how the grandmother earned money by repairing customers' coats",
+              "lure": "misreading",
+              "reason": "\"how the grandmother earned money by repairing customers' coats\" misreads paragraph 4: she did repairs \"usually for almost nothing, because she thought of it as a favour\"."
+            },
+            {
+              "choice": "why the shop lost customers and how its website won them back",
+              "lure": "two-part",
+              "reason": "\"why the shop lost customers and how its website won them back\" has a wrong second part: \"The postage and the website fee cost more than we earned\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-C-P3B-6",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer describe the young man with the jacket in paragraph 4?",
+          "choices": [
+            "to give an example of a regular online customer",
+            "to show that the grandmother disliked doing repairs",
+            "to show where the idea for the mending classes came from",
+            "to explain why the writer built the website"
+          ],
+          "correct_answer": "to show where the idea for the mending classes came from",
+          "why": "he asked whether she ever taught people to do it themselves",
+          "explanation": "\"to show where the idea for the mending classes came from\" is correct: the young man \"asked whether she ever taught people to do it themselves\", and the next paragraph begins \"That question changed the shop\" and describes the new mending class.",
+          "distractor_rationales": [
+            {
+              "choice": "to give an example of a regular online customer",
+              "lure": "contradicted",
+              "reason": "\"to give an example of a regular online customer\" is wrong: he \"came in with a jacket\" to the shop itself, and the online store sold very little."
+            },
+            {
+              "choice": "to show that the grandmother disliked doing repairs",
+              "lure": "contradicted",
+              "reason": "\"to show that the grandmother disliked doing repairs\" is wrong: \"She always did the job herself\", and \"she thought of it as a favour\"."
+            },
+            {
+              "choice": "to explain why the writer built the website",
+              "lure": "contradicted",
+              "reason": "\"to explain why the writer built the website\" is wrong: the website was built in the summer, before this; the young man's visit is what led to the classes: \"That question changed the shop.\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

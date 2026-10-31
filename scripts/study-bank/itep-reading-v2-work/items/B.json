@@ -1,0 +1,660 @@
+{
+  "author": "B",
+  "sets": [
+    {
+      "set_id": "ITR2-B-P1A",
+      "part": 1,
+      "genre": "club announcement",
+      "title": "Doubles evening",
+      "passage": "Hello members! This Friday we are holding a doubles evening for members and their parents. Play starts at half past six in the Cedarbrook club hall and finishes at half past eight. Each pair will play four short games against different pairs. You do not need your own bat, because the club has plenty to lend. Please bring a water bottle and indoor shoes. To save a table for your pair, write both names on the list by the front door before Wednesday. See you there!\n\nDilys Corwen, club secretary",
+      "names": [
+        "Cedarbrook",
+        "Dilys Corwen"
+      ],
+      "other_caps": [
+        "Friday",
+        "Wednesday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-B-P1A-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "According to the announcement, how can a pair save a table?",
+          "choices": [
+            "By signing a list at the door",
+            "By emailing the secretary before Wednesday",
+            "By arriving at the club hall early",
+            "By paying a small fee on Friday"
+          ],
+          "correct_answer": "By signing a list at the door",
+          "why": "To save a table for your pair, write both names on the list by the front door before Wednesday.",
+          "explanation": "\"By signing a list at the door\" is correct: the announcement says \"To save a table for your pair, write both names on the list by the front door\".",
+          "distractor_rationales": [
+            {
+              "choice": "By emailing the secretary before Wednesday",
+              "lure": "word lure",
+              "reason": "\"By emailing the secretary before Wednesday\" is wrong: Wednesday is the deadline, but the way to save a table is to \"write both names on the list by the front door\", not to email anyone."
+            },
+            {
+              "choice": "By arriving at the club hall early",
+              "lure": "detail",
+              "reason": "\"By arriving at the club hall early\" is wrong: the announcement gives the time \"Play starts at half past six\", but a table is saved by writing names \"on the list by the front door before Wednesday\", days before the evening."
+            },
+            {
+              "choice": "By paying a small fee on Friday",
+              "lure": "other",
+              "reason": "\"By paying a small fee on Friday\" is wrong: the text explains how to save a table, and the way it gives is \"write both names on the list by the front door\"; it asks only that you \"bring a water bottle and indoor shoes\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-B-P1B",
+      "part": 1,
+      "genre": "school notice",
+      "title": "School bag check",
+      "passage": "Dear students, next Tuesday our school nurse, Carys Dowling, will check how heavy your school bags are. Please bring your bag packed as usual for a normal day. During morning lessons, each class will visit the nurse's room for about ten minutes. The nurse will weigh every bag and show you how to wear it on both shoulders. Doctors often say a bag should weigh less than about one tenth of your body weight. Students whose bags are too heavy will get a free locker key for the rest of the term.",
+      "names": [
+        "Carys Dowling"
+      ],
+      "other_caps": [
+        "Tuesday"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-B-P1B-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "What will happen to students whose bags are too heavy?",
+          "choices": [
+            "They will get a locker for the rest of term",
+            "They will have to buy a lighter school bag",
+            "Their parents will receive a letter from the nurse",
+            "They will see the nurse again the next week"
+          ],
+          "correct_answer": "They will get a locker for the rest of term",
+          "why": "Students whose bags are too heavy will get a free locker key for the rest of the term.",
+          "explanation": "\"They will get a locker for the rest of term\" is correct: the notice says \"Students whose bags are too heavy will get a free locker key for the rest of the term.\"",
+          "distractor_rationales": [
+            {
+              "choice": "They will have to buy a lighter school bag",
+              "lure": "contradicted",
+              "reason": "\"They will have to buy a lighter school bag\" is wrong: the notice says what happens to these students, and it is that they \"will get a free locker key\", not that they must buy anything."
+            },
+            {
+              "choice": "Their parents will receive a letter from the nurse",
+              "lure": "other",
+              "reason": "\"Their parents will receive a letter from the nurse\" is wrong: the notice names the one thing these students get, \"a free locker key for the rest of the term\"; the nurse's only other job is to \"weigh every bag and show you how to wear it\"."
+            },
+            {
+              "choice": "They will see the nurse again the next week",
+              "lure": "detail",
+              "reason": "\"They will see the nurse again the next week\" is wrong: each class visits the nurse once, \"for about ten minutes\" on \"next Tuesday\", and students with heavy bags \"will get a free locker key\" instead of a second visit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-B-P2A",
+      "part": 2,
+      "genre": "first-person school life",
+      "title": "The jump rope team",
+      "passage": "When our school started a jump rope team in September, I joined only because my friend Dessa begged me. I thought jumping rope was a game for small children in the playground. On the first afternoon, our coach, a tall woman named Clea Darrow, did nothing except hand out ropes and ask us to jump for one minute without stopping. Most of us tripped within twenty seconds.\n\nOver the next few weeks, I learned that the sport is much harder than it looks. We practised speed jumping, where you count how many times the rope passes under your feet in thirty seconds. We also worked on tricks, such as crossing our arms in the middle of a jump. My legs ached after every practice, and I often wanted to quit.\n\nThen Clea showed us a way to record our progress. Each of us kept a small notebook and wrote down our speed score after every session. When I looked back at my notebook in November, I saw that my score had almost doubled. That surprised me more than anything else.\n\nIn December we performed at the winter assembly. My hands shook as we walked onto the stage, but our routine went well, and the younger students cheered loudly. Now I practise at home most evenings. Dessa, who still jumps beside me at every practice, says I have become more serious about the team than she is.",
+      "names": [
+        "Dessa",
+        "Clea Darrow"
+      ],
+      "other_caps": [
+        "September",
+        "November",
+        "December"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-B-P2A-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "What happened on the team's first afternoon?",
+          "choices": [
+            "Few students could jump for the whole minute",
+            "The coach showed the students some hard tricks",
+            "The students recorded their scores in notebooks",
+            "The coach explained how speed jumping works"
+          ],
+          "correct_answer": "Few students could jump for the whole minute",
+          "why": "Most of us tripped within twenty seconds.",
+          "explanation": "\"Few students could jump for the whole minute\" is correct: the coach asked them \"to jump for one minute without stopping\", and \"Most of us tripped within twenty seconds.\"",
+          "distractor_rationales": [
+            {
+              "choice": "The coach showed the students some hard tricks",
+              "lure": "detail",
+              "reason": "\"The coach showed the students some hard tricks\" is wrong: on the first afternoon the coach \"did nothing except hand out ropes and ask us to jump for one minute\"; tricks came \"Over the next few weeks\"."
+            },
+            {
+              "choice": "The students recorded their scores in notebooks",
+              "lure": "detail",
+              "reason": "\"The students recorded their scores in notebooks\" is wrong: the notebooks came later (\"Then Clea showed us a way to record our progress\"), while on the first afternoon she \"did nothing except hand out ropes\"."
+            },
+            {
+              "choice": "The coach explained how speed jumping works",
+              "lure": "detail",
+              "reason": "\"The coach explained how speed jumping works\" is wrong: on the first afternoon she \"did nothing except hand out ropes and ask us to jump for one minute without stopping\"; speed jumping was practised \"Over the next few weeks\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P2A-2",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 4, the word \"routine\" is closest in meaning to",
+          "choices": [
+            "planned show",
+            "usual habit",
+            "boring task",
+            "computer program"
+          ],
+          "correct_answer": "planned show",
+          "why": "In December we performed at the winter assembly. My hands shook as we walked onto the stage, but our routine went well",
+          "explanation": "\"planned show\" is correct: the team \"performed at the winter assembly\" and \"walked onto the stage\", so their routine is the set of moves they had prepared to perform.",
+          "distractor_rationales": [
+            {
+              "choice": "usual habit",
+              "lure": "other meaning",
+              "reason": "\"usual habit\" is wrong: the sentence is about one performance, when \"we walked onto the stage\" and \"our routine went well\", not something done every day."
+            },
+            {
+              "choice": "boring task",
+              "lure": "other meaning",
+              "reason": "\"boring task\" is wrong: the routine was something the team \"performed at the winter assembly\", and \"the younger students cheered loudly\"."
+            },
+            {
+              "choice": "computer program",
+              "lure": "other meaning",
+              "reason": "\"computer program\" is wrong: there are no computers in the text; the routine is what the team \"performed at the winter assembly\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P2A-3",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "Which of the following is NOT something the writer did as a team member?",
+          "choices": [
+            "Practised jumping as quickly as possible",
+            "Kept a written record of scores",
+            "Performed in front of other students",
+            "Jumped in a contest at another school"
+          ],
+          "correct_answer": "Jumped in a contest at another school",
+          "why": "In December we performed at the winter assembly.",
+          "explanation": "\"Jumped in a contest at another school\" is correct: the only performance the writer describes is at their own school, \"In December we performed at the winter assembly\"; no contest with another school is mentioned.",
+          "distractor_rationales": [
+            {
+              "choice": "Practised jumping as quickly as possible",
+              "lure": "stated",
+              "reason": "\"Practised jumping as quickly as possible\" is stated: \"We practised speed jumping, where you count how many times the rope passes under your feet\"."
+            },
+            {
+              "choice": "Kept a written record of scores",
+              "lure": "stated",
+              "reason": "\"Kept a written record of scores\" is stated: \"Each of us kept a small notebook and wrote down our speed score after every session.\""
+            },
+            {
+              "choice": "Performed in front of other students",
+              "lure": "stated",
+              "reason": "\"Performed in front of other students\" is stated: \"we performed at the winter assembly\" and \"the younger students cheered loudly\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P2A-4",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "How the writer's view of jump rope changed",
+            "How the team did at the winter assembly",
+            "How the writer started the team and chose its coach",
+            "How Dessa joined the team and learned to do tricks"
+          ],
+          "correct_answer": "How the writer's view of jump rope changed",
+          "why": "I thought jumping rope was a game for small children in the playground.",
+          "explanation": "\"How the writer's view of jump rope changed\" is correct: the writer begins thinking \"jumping rope was a game for small children\" and ends practising \"at home most evenings\", more serious \"about the team than she is\".",
+          "distractor_rationales": [
+            {
+              "choice": "How the team did at the winter assembly",
+              "lure": "detail",
+              "reason": "\"How the team did at the winter assembly\" is wrong: the assembly fills only part of the last paragraph (\"In December we performed at the winter assembly\"); the rest of the text covers the months before it."
+            },
+            {
+              "choice": "How the writer started the team and chose its coach",
+              "lure": "two-part",
+              "reason": "\"How the writer started the team and chose its coach\" is wrong: the writer did neither; \"our school started a jump rope team\", and the writer \"joined only because my friend Dessa begged me\"."
+            },
+            {
+              "choice": "How Dessa joined the team and learned to do tricks",
+              "lure": "two-part",
+              "reason": "\"How Dessa joined the team and learned to do tricks\" is wrong: the passage follows the writer, not Dessa; the scores and practice it describes are the writer's own (\"my score had almost doubled\", \"Now I practise at home most evenings\")."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-B-P3A",
+      "part": 3,
+      "genre": "biography of an invented person",
+      "title": "The Sunday runners of Cressley",
+      "passage": "Cato Derwin was born in 1934 in Cressley, a small mill town where most people worked long shifts and few had time for sport. As a teenager he ran everywhere, partly because the family could not afford a bicycle. By the age of twenty he was winning regional races over ten miles, and a newspaper in the nearest city called him the fastest young runner the county had produced.\n\nTwo years later, during a race on a wet road, he slipped and badly injured his left knee. Doctors told him that the knee would recover enough for daily life, but that serious racing was over. Derwin took a job as a postman, which kept him walking for six hours a day. He later said that those long walks gave him time to think about what running had meant to him.\n\nOn his rounds he noticed something that bothered him. Many of the men and women he delivered letters to were in their forties and fifties, and they often told him they felt tired and stiff. Several of them had played football or cycled when they were young, and had given up only when work and families filled their days. When he suggested they try running, almost all of them gave the same answer: running was for young athletes, and they were too old and too slow to start.\n\nIn the spring of 1961, Derwin put a small card in the window of the post office. It invited anyone to meet in Cressley Park at eight o'clock on Sunday morning. Only five people came. Instead of asking them to run around the park, he asked them to run for one minute and then walk for one minute, again and again, for half an hour. Experienced runners in the town laughed at the idea, and the local paper gave the group a nickname: the Sunday Shufflers.\n\nDerwin ignored the jokes. He believed that the walking breaks were the whole point, because they let beginners finish a session feeling that they could do more. Week by week he made the running minutes slightly longer. By the end of the first year, the group had grown to more than sixty people, and several members who had started with one-minute runs completed a five-mile race in the city.\n\nThe Shufflers kept growing after that. A local doctor began suggesting the group to patients who wanted to become more active, and similar groups started in three neighbouring towns. Derwin led the Sunday sessions for almost thirty years without being paid, and by the end he knew the name of nearly every runner who came to the park. He never raced again, but when a reporter asked him in 1990 whether he missed competing, he answered that watching a grandmother finish her first race had pleased him more than any of his own victories.",
+      "names": [
+        "Cato Derwin",
+        "Cressley"
+      ],
+      "other_caps": [
+        "Sunday",
+        "Shufflers",
+        "Park"
+      ],
+      "items": [
+        {
+          "qid": "ITR2-B-P3A-1",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the main subject of this biography?",
+          "choices": [
+            "How Derwin stopped racing and began coaching beginners",
+            "Why a local newspaper gave the Sunday group its nickname",
+            "How Derwin returned to racing after his knee injury healed",
+            "How Derwin was injured and won the praise of local runners"
+          ],
+          "correct_answer": "How Derwin stopped racing and began coaching beginners",
+          "why": "Derwin led the Sunday sessions for almost thirty years without being paid",
+          "explanation": "\"How Derwin stopped racing and began coaching beginners\" is correct: the text moves from his injury, after which \"serious racing was over\", to the group he started, which he \"led the Sunday sessions for almost thirty years\".",
+          "distractor_rationales": [
+            {
+              "choice": "Why a local newspaper gave the Sunday group its nickname",
+              "lure": "minor-point",
+              "reason": "\"Why a local newspaper gave the Sunday group its nickname\" is wrong: the nickname is one sentence (\"the local paper gave the group a nickname\") in a text that covers Derwin's whole life."
+            },
+            {
+              "choice": "How Derwin returned to racing after his knee injury healed",
+              "lure": "misreading",
+              "reason": "\"How Derwin returned to racing after his knee injury healed\" is wrong: the text says \"He never raced again\"."
+            },
+            {
+              "choice": "How Derwin was injured and won the praise of local runners",
+              "lure": "two-part",
+              "reason": "\"How Derwin was injured and won the praise of local runners\" is wrong in its second part: \"Experienced runners in the town laughed at the idea\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3A-2",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "All of the following are true of the Sunday group EXCEPT",
+          "choices": [
+            "It met in a park on Sunday mornings",
+            "Its running minutes grew longer week by week",
+            "Similar groups began in three nearby towns",
+            "Its first meeting drew about twenty people"
+          ],
+          "correct_answer": "Its first meeting drew about twenty people",
+          "why": "Only five people came.",
+          "explanation": "\"Its first meeting drew about twenty people\" is correct because it is false: after the card invited people to Cressley Park, \"Only five people came.\"",
+          "distractor_rationales": [
+            {
+              "choice": "It met in a park on Sunday mornings",
+              "lure": "stated",
+              "reason": "\"It met in a park on Sunday mornings\" is true: the card invited people \"to meet in Cressley Park at eight o'clock on Sunday morning\", and Derwin \"led the Sunday sessions for almost thirty years\"."
+            },
+            {
+              "choice": "Its running minutes grew longer week by week",
+              "lure": "stated",
+              "reason": "\"Its running minutes grew longer week by week\" is true: \"Week by week he made the running minutes slightly longer.\""
+            },
+            {
+              "choice": "Similar groups began in three nearby towns",
+              "lure": "stated",
+              "reason": "\"Similar groups began in three nearby towns\" is true: \"similar groups started in three neighbouring towns\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3A-3",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer mention a bicycle in paragraph 1?",
+          "choices": [
+            "To give the reason he ran so much as a boy",
+            "To show that cycling was rare in Cressley then",
+            "To explain why he later chose to work as a postman",
+            "To suggest that his family disliked his racing"
+          ],
+          "correct_answer": "To give the reason he ran so much as a boy",
+          "why": "As a teenager he ran everywhere, partly because the family could not afford a bicycle.",
+          "explanation": "\"To give the reason he ran so much as a boy\" is correct: the bicycle appears in the sentence \"As a teenager he ran everywhere, partly because the family could not afford a bicycle\", where it gives a reason for his running.",
+          "distractor_rationales": [
+            {
+              "choice": "To show that cycling was rare in Cressley then",
+              "lure": "word lure",
+              "reason": "\"To show that cycling was rare in Cressley then\" is wrong: the bicycle is about one family's money (\"the family could not afford a bicycle\"), not about the town; what Cressley people lacked was time, as \"few had time for sport\"."
+            },
+            {
+              "choice": "To explain why he later chose to work as a postman",
+              "lure": "misreading",
+              "reason": "\"To explain why he later chose to work as a postman\" is wrong: he became a postman after he \"badly injured his left knee\", years after the teenage running the bicycle sentence explains."
+            },
+            {
+              "choice": "To suggest that his family disliked his racing",
+              "lure": "other",
+              "reason": "\"To suggest that his family disliked his racing\" is wrong: the sentence links the bicycle only to how he got around (\"he ran everywhere, partly because the family could not afford a bicycle\"), and says nothing about the family's feelings."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3A-4",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "What is the main purpose of the reporter's question in the last paragraph?",
+          "choices": [
+            "To show what Derwin valued more than his victories",
+            "To suggest that Derwin regretted leaving racing",
+            "To explain why Derwin finally stopped leading the group",
+            "To give another example of the town's jokes"
+          ],
+          "correct_answer": "To show what Derwin valued more than his victories",
+          "why": "watching a grandmother finish her first race had pleased him more than any of his own victories",
+          "explanation": "\"To show what Derwin valued more than his victories\" is correct: asked \"whether he missed competing\", he answered that \"watching a grandmother finish her first race had pleased him more than any of his own victories\".",
+          "distractor_rationales": [
+            {
+              "choice": "To suggest that Derwin regretted leaving racing",
+              "lure": "contradicted",
+              "reason": "\"To suggest that Derwin regretted leaving racing\" is wrong: his answer was that the group \"had pleased him more than any of his own victories\"."
+            },
+            {
+              "choice": "To explain why Derwin finally stopped leading the group",
+              "lure": "other",
+              "reason": "\"To explain why Derwin finally stopped leading the group\" is wrong: the reporter asked \"whether he missed competing\", which is about racing, and the text gives no reason for stopping, only that he \"led the Sunday sessions for almost thirty years\"."
+            },
+            {
+              "choice": "To give another example of the town's jokes",
+              "lure": "misreading",
+              "reason": "\"To give another example of the town's jokes\" is wrong: the jokes came at the start, when \"the local paper gave the group a nickname\"; the reporter's question \"whether he missed competing\" is a serious one."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3A-5",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "By the end of the group's first year, what had happened?",
+          "choices": [
+            "Several members finished a race in the city",
+            "A doctor started sending patients to the group",
+            "Derwin began to be paid for leading the group",
+            "The local paper gave the group a nickname"
+          ],
+          "correct_answer": "Several members finished a race in the city",
+          "why": "several members who had started with one-minute runs completed a five-mile race in the city",
+          "explanation": "\"Several members finished a race in the city\" is correct: \"By the end of the first year\", \"several members who had started with one-minute runs completed a five-mile race in the city\".",
+          "distractor_rationales": [
+            {
+              "choice": "A doctor started sending patients to the group",
+              "lure": "detail",
+              "reason": "\"A doctor started sending patients to the group\" is wrong for the first year: the doctor comes after it, when \"The Shufflers kept growing after that. A local doctor began suggesting the group to patients\"."
+            },
+            {
+              "choice": "Derwin began to be paid for leading the group",
+              "lure": "contradicted",
+              "reason": "\"Derwin began to be paid for leading the group\" is wrong: he \"led the Sunday sessions for almost thirty years without being paid\"."
+            },
+            {
+              "choice": "The local paper gave the group a nickname",
+              "lure": "detail",
+              "reason": "\"The local paper gave the group a nickname\" is wrong for this time: the nickname came at the very start, right after \"Only five people came\", not as a result of the first year."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3A-6",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "As it is used in paragraph 3, \"rounds\" most nearly means",
+          "choices": [
+            "regular routes",
+            "stages of a contest",
+            "circle shapes",
+            "shots from a gun"
+          ],
+          "correct_answer": "regular routes",
+          "why": "On his rounds he noticed something that bothered him. Many of the men and women he delivered letters to",
+          "explanation": "\"regular routes\" is correct: as a postman he walked \"for six hours a day\", and on his rounds he met the people \"he delivered letters to\".",
+          "distractor_rationales": [
+            {
+              "choice": "stages of a contest",
+              "lure": "other meaning",
+              "reason": "\"stages of a contest\" is wrong: his racing was over by then; on his rounds he was meeting people \"he delivered letters to\"."
+            },
+            {
+              "choice": "circle shapes",
+              "lure": "other meaning",
+              "reason": "\"circle shapes\" is wrong: he \"noticed something\" on his rounds, which only makes sense of a walk, the job that \"kept him walking for six hours a day\"."
+            },
+            {
+              "choice": "shots from a gun",
+              "lure": "other meaning",
+              "reason": "\"shots from a gun\" is wrong: nothing in the text involves guns; his rounds were the walks of a postman who \"delivered letters\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR2-B-P3B",
+      "part": 3,
+      "genre": "informational science",
+      "title": "Why muscles hurt a day later",
+      "passage": "Anyone who has started a new sport knows the feeling. The day after a first hike or a first long session in the gym, the legs feel fine, but the following morning climbing the stairs suddenly hurts, and even sitting down on a chair becomes uncomfortable. Scientists call this delayed onset muscle soreness, and the name describes its strangest feature: the pain usually begins several hours after the exercise, is strongest one to three days later, and then fades within about a week.\n\nFor much of the twentieth century, coaches and even textbooks offered a simple explanation. During hard exercise, muscles produce a substance called lactic acid, and it was widely believed that this acid stayed in the muscles and caused the pain. The idea seemed reasonable, because lactic acid really does build up during intense effort, and many athletes still repeat it today.\n\nThe explanation, however, does not fit the timing. Measurements show that lactic acid is cleared from the muscles within roughly an hour after exercise ends, long before the soreness appears. Something else had to be happening during the day or two that followed.\n\nA clue came from comparing different kinds of movement. Muscles can work while shortening, as the front of the thigh does when a person climbs a hill, or while lengthening under a load, as the same muscle does when a person walks down the hill and has to brake at each step. In experiments, volunteers who walked or ran downhill reported far more soreness in the following days than those who went uphill, even though going uphill felt harder at the time and used more energy. The lengthening, braking kind of work turned out to be the kind most likely to cause soreness.\n\nMost researchers now believe that this kind of work creates very small areas of damage inside the muscle fibres. Under a microscope, samples taken from sore muscles often show small signs of disruption in the fibres. Over the next day or two, the body responds by repairing them, and this repair process seems to make nearby nerve endings more sensitive, so that ordinary movements become painful. Scientists still debate the exact details, but the timing of the repair matches the timing of the pain far better than lactic acid ever did.\n\nThe research also explains a second puzzle. If people repeat the same exercise a week or two later, they usually feel much less sore, even if the second session is just as hard. The muscle seems to adapt quickly after the first experience, which is why trainers advise beginners to start gently and build up over several weeks. For the same reason, soreness is a poor measure of a good workout: an experienced runner may train very hard and feel almost nothing the next day.",
+      "names": [],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR2-B-P3B-1",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "The word \"cleared\" in paragraph 3 is closest in meaning to",
+          "choices": [
+            "taken away",
+            "found innocent",
+            "given approval",
+            "jumped over"
+          ],
+          "correct_answer": "taken away",
+          "why": "lactic acid is cleared from the muscles within roughly an hour after exercise ends, long before the soreness appears",
+          "explanation": "\"taken away\" is correct: the acid is cleared \"from the muscles\" within an hour, \"long before the soreness appears\", so it is no longer there to cause the pain.",
+          "distractor_rationales": [
+            {
+              "choice": "found innocent",
+              "lure": "other meaning",
+              "reason": "\"found innocent\" is wrong: the sentence describes where the acid is, \"cleared from the muscles\", not a judgement about it."
+            },
+            {
+              "choice": "given approval",
+              "lure": "other meaning",
+              "reason": "\"given approval\" is wrong: nobody approves anything here; the acid is \"cleared from the muscles within roughly an hour\"."
+            },
+            {
+              "choice": "jumped over",
+              "lure": "other meaning",
+              "reason": "\"jumped over\" is wrong: an acid cannot jump; the point is that it is gone \"long before the soreness appears\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3B-2",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "Which of the following best states the main idea of the passage?",
+          "choices": [
+            "What causes the muscle pain that begins hours after hard exercise",
+            "How the human body heals itself after different injuries",
+            "Why walking down a hill makes the thigh muscles sore",
+            "Why soreness appears late and how stretching prevents it"
+          ],
+          "correct_answer": "What causes the muscle pain that begins hours after hard exercise",
+          "why": "the pain usually begins several hours after the exercise, is strongest one to three days later",
+          "explanation": "\"What causes the muscle pain that begins hours after hard exercise\" is correct: the passage introduces pain that \"usually begins several hours after the exercise\", rejects lactic acid because it \"does not fit the timing\", and explains it by \"very small areas of damage inside the muscle fibres\".",
+          "distractor_rationales": [
+            {
+              "choice": "How the human body heals itself after different injuries",
+              "lure": "broader (wrong)",
+              "reason": "\"How the human body heals itself after different injuries\" is wrong: the only damage the passage discusses is \"very small areas of damage inside the muscle fibres\" caused by exercise; other injuries are outside its subject."
+            },
+            {
+              "choice": "Why walking down a hill makes the thigh muscles sore",
+              "lure": "detail",
+              "reason": "\"Why walking down a hill makes the thigh muscles sore\" is wrong: downhill walking is one clue in paragraph 4 (\"A clue came from comparing different kinds of movement\"), not the subject of the whole passage."
+            },
+            {
+              "choice": "Why soreness appears late and how stretching prevents it",
+              "lure": "two-part",
+              "reason": "\"Why soreness appears late and how stretching prevents it\" is wrong in its second part: the passage gives different advice, that \"trainers advise beginners to start gently and build up over several weeks\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3B-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, what did the volunteers who went uphill report?",
+          "choices": [
+            "Less soreness, although the climb felt harder at the time",
+            "Less soreness, because the climb used less energy",
+            "More soreness, although the climb felt easier at the time",
+            "More soreness, because the climb used more of their energy"
+          ],
+          "correct_answer": "Less soreness, although the climb felt harder at the time",
+          "why": "volunteers who walked or ran downhill reported far more soreness in the following days than those who went uphill, even though going uphill felt harder at the time",
+          "explanation": "\"Less soreness, although the climb felt harder at the time\" is correct: the downhill group \"reported far more soreness in the following days than those who went uphill, even though going uphill felt harder at the time\".",
+          "distractor_rationales": [
+            {
+              "choice": "Less soreness, because the climb used less energy",
+              "lure": "contradicted",
+              "reason": "\"Less soreness, because the climb used less energy\" is wrong: going uphill \"used more energy\"."
+            },
+            {
+              "choice": "More soreness, although the climb felt easier at the time",
+              "lure": "contradicted",
+              "reason": "\"More soreness, although the climb felt easier at the time\" is wrong on both points: the downhill group had \"far more soreness\", and \"going uphill felt harder at the time\"."
+            },
+            {
+              "choice": "More soreness, because the climb used more of their energy",
+              "lure": "contradicted",
+              "reason": "\"More soreness, because the climb used more of their energy\" is wrong: it was the downhill volunteers who \"reported far more soreness in the following days than those who went uphill\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3B-4",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "Why does the writer describe climbing the stairs in paragraph 1?",
+          "choices": [
+            "To give an everyday example of pain that appears after a delay",
+            "To show that this kind of soreness is worst in the morning",
+            "To explain why beginners should avoid stairs after training",
+            "To show that hiking hurts the legs more than gym work"
+          ],
+          "correct_answer": "To give an everyday example of pain that appears after a delay",
+          "why": "the legs feel fine, but the following morning climbing the stairs suddenly hurts",
+          "explanation": "\"To give an everyday example of pain that appears after a delay\" is correct: \"the legs feel fine\" the day after, \"but the following morning climbing the stairs suddenly hurts\", which is the delay the name \"delayed onset muscle soreness\" describes.",
+          "distractor_rationales": [
+            {
+              "choice": "To show that this kind of soreness is worst in the morning",
+              "lure": "misreading",
+              "reason": "\"To show that this kind of soreness is worst in the morning\" is wrong: the passage measures the pain in days, not hours of the day; it \"is strongest one to three days later\"."
+            },
+            {
+              "choice": "To explain why beginners should avoid stairs after training",
+              "lure": "other",
+              "reason": "\"To explain why beginners should avoid stairs after training\" is wrong: the only advice given to beginners is \"to start gently and build up over several weeks\"."
+            },
+            {
+              "choice": "To show that hiking hurts the legs more than gym work",
+              "lure": "word lure",
+              "reason": "\"To show that hiking hurts the legs more than gym work\" is wrong: the two are given as equal examples, \"a first hike or a first long session in the gym\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3B-5",
+          "kind": "purpose",
+          "difficulty": "hard",
+          "prompt": "What is the role of paragraph 3 in the passage?",
+          "choices": [
+            "To show that the old explanation does not match the timing",
+            "To explain how muscles produce lactic acid during exercise",
+            "To describe how scientists measured damage in muscle fibres",
+            "To explain why many athletes still believe the old idea"
+          ],
+          "correct_answer": "To show that the old explanation does not match the timing",
+          "why": "The explanation, however, does not fit the timing.",
+          "explanation": "\"To show that the old explanation does not match the timing\" is correct: paragraph 3 opens \"The explanation, however, does not fit the timing\", because lactic acid is gone \"long before the soreness appears\".",
+          "distractor_rationales": [
+            {
+              "choice": "To explain how muscles produce lactic acid during exercise",
+              "lure": "detail",
+              "reason": "\"To explain how muscles produce lactic acid during exercise\" is wrong: that is paragraph 2 (\"During hard exercise, muscles produce a substance called lactic acid\"); paragraph 3 is about how fast it is \"cleared from the muscles\"."
+            },
+            {
+              "choice": "To describe how scientists measured damage in muscle fibres",
+              "lure": "detail",
+              "reason": "\"To describe how scientists measured damage in muscle fibres\" is wrong: the measurements in paragraph 3 show that \"lactic acid is cleared from the muscles within roughly an hour\"; damage to fibres comes in paragraph 5."
+            },
+            {
+              "choice": "To explain why many athletes still believe the old idea",
+              "lure": "word lure",
+              "reason": "\"To explain why many athletes still believe the old idea\" is wrong: that point ends paragraph 2 (\"many athletes still repeat it today\"); paragraph 3 argues against the idea."
+            }
+          ]
+        },
+        {
+          "qid": "ITR2-B-P3B-6",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, why do ordinary movements become painful while the muscle is repaired?",
+          "choices": [
+            "Repairing the fibres seems to make the nerves close by react more easily",
+            "Lactic acid may build up again while the fibres are being repaired",
+            "The damaged fibres press against the bones around the muscle",
+            "The muscle has less energy available while it is healing"
+          ],
+          "correct_answer": "Repairing the fibres seems to make the nerves close by react more easily",
+          "why": "this repair process seems to make nearby nerve endings more sensitive, so that ordinary movements become painful",
+          "explanation": "\"Repairing the fibres seems to make the nerves close by react more easily\" is correct: the passage says \"this repair process seems to make nearby nerve endings more sensitive, so that ordinary movements become painful\".",
+          "distractor_rationales": [
+            {
+              "choice": "Lactic acid may build up again while the fibres are being repaired",
+              "lure": "contradicted",
+              "reason": "\"Lactic acid may build up again while the fibres are being repaired\" is wrong: lactic acid \"is cleared from the muscles within roughly an hour after exercise ends\", and the repair happens \"Over the next day or two\"."
+            },
+            {
+              "choice": "The damaged fibres press against the bones around the muscle",
+              "lure": "other",
+              "reason": "\"The damaged fibres press against the bones around the muscle\" is wrong: the passage gives a different reason for the pain, that the repair makes \"nearby nerve endings more sensitive\"."
+            },
+            {
+              "choice": "The muscle has less energy available while it is healing",
+              "lure": "word lure",
+              "reason": "\"The muscle has less energy available while it is healing\" is wrong: energy is mentioned only for the uphill walk, which \"used more energy\"; the pain comes because the repair makes \"nearby nerve endings more sensitive\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
